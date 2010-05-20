@@ -1,16 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="edu" Class="OnlineExaminationDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=ROHANNAIK\SQLEXPRESS;Initial Catalog=edu;Persist Security Info=True;User ID=sa" SettingsObjectName="DataEntity.Properties.Settings" SettingsPropertyName="eduConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.EXM_Question" Member="EXM_Questions">
-    <Type Name="EXM_Question">
-      <Column Name="EXM_QuestionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Question" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="ExamID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Q_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.LoginUser" Member="LoginUsers">
+    <Type Name="LoginUser">
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="UserType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="EXM_Question_EXM_Answer" Member="EXM_Answers" OtherKey="EXM_QuestionID" Type="EXM_Answer" />
-      <Association Name="Exam_EXM_Question" Member="Exam" ThisKey="ExamID" Type="Exam" IsForeignKey="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="LoginUser_Exam" Member="Exams" OtherKey="LoginUserID" Type="Exam" />
+      <Association Name="LoginUser_EXM_UserAnswer" Member="EXM_UserAnswers" OtherKey="LoginUserID" Type="EXM_UserAnswer" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Exam" Member="Exams">
+    <Type Name="Exam">
+      <Column Name="ExamID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ExamName" Type="System.String" DbType="VarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Exam_EXM_Question" Member="EXM_Questions" OtherKey="ExamID" Type="EXM_Question" />
+      <Association Name="LoginUser_Exam" Member="LoginUser" ThisKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.EXM_Answer" Member="EXM_Answers">
@@ -20,26 +30,32 @@
       <Column Name="Answer" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="IsRight" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="EXM_Answer_EXM_UserAnswer" Member="EXM_UserAnswers" OtherKey="EXM_AnswerID" Type="EXM_UserAnswer" />
       <Association Name="EXM_Question_EXM_Answer" Member="EXM_Question" ThisKey="EXM_QuestionID" Type="EXM_Question" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Exam" Member="Exams">
-    <Type Name="Exam">
-      <Column Name="ExamID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ExamName" Type="System.String" DbType="VarChar(2000) NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.EXM_Question" Member="EXM_Questions">
+    <Type Name="EXM_Question">
+      <Column Name="EXM_QuestionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Question" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExamID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Q_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Exam_EXM_Question" Member="EXM_Questions" OtherKey="ExamID" Type="EXM_Question" />
+      <Association Name="EXM_Question_EXM_Answer" Member="EXM_Answers" OtherKey="EXM_QuestionID" Type="EXM_Answer" />
+      <Association Name="Exam_EXM_Question" Member="Exam" ThisKey="ExamID" Type="Exam" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.aspnet_Users" Member="aspnet_Users">
-    <Type Name="aspnet_User">
-      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
-      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
-      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.EXM_UserAnswer" Member="EXM_UserAnswers">
+    <Type Name="EXM_UserAnswer">
+      <Column Name="EXM_UserAnswerID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EXM_AnswerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EXM_AnswerText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="EXM_Answer_EXM_UserAnswer" Member="EXM_Answer" ThisKey="EXM_AnswerID" Type="EXM_Answer" IsForeignKey="true" />
+      <Association Name="LoginUser_EXM_UserAnswer" Member="LoginUser" ThisKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
