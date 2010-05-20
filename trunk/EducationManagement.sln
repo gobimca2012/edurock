@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogin", "BusinessLogin\BusinessLogin.csproj", "{1A9E6B33-7990-4479-8CB9-476E3214ECA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogin\BusinessLogic.csproj", "{1A9E6B33-7990-4479-8CB9-476E3214ECA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{8A0AE474-D87D-415B-A5D4-7AC5461431FE}"
 EndProject
