@@ -24,8 +24,6 @@ $.fn.ToolTipCourse = function()
       var width = $(this).width();
       $("#tooltipcontainer").css(
       {
-         //         left : (pos.left + width) + 'px',
-         //         top : pos.top - 5 + 'px'
          left : (300) + 'px',
          top : 100 + 'px',
          width : '300px',
@@ -697,18 +695,14 @@ $.fn.LinkPostJ = function(url, PostContainnerID, ContainnerID)
 }
 $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
 {
-
-   //   // $(this).html("Loading...");
-   //   var LinkID = $(this).attr("id");
-   //   LinkID = "#" + LinkID;
-
+   //alert("hello");
    $(this).click(function()
    {
+   //alert("hello");
       var data = $(PostContainnerID).serializeNoViewState();
       $.post(url, data,
       function(result)
       {
-
          HtmlPaste(result, ContainnerID);
          BuildLinks(ContainnerID);
       }
