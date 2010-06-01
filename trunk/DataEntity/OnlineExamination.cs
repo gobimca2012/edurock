@@ -6,7 +6,7 @@ namespace DataEntity
     partial class OnlineExaminationDataContext
     {
         public OnlineExaminationDataContext() :
-            base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ExternalData"].ConnectionString, mappingSource)
+            base(global::System.Configuration.ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString, mappingSource)
         {
             OnCreated();
         }
