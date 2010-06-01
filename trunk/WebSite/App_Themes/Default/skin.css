@@ -1,0 +1,36 @@
+﻿body
+{
+    line-height: 18px;
+    font-family: Verdana,san-serif;
+    font-size: 12px;
+    text-align: center;
+    margin:0px;
+    padding:0px;
+}
+.page
+{
+    width: 1000px;
+    margin: 0 auto;
+    border:solid 1px;
+    min-height:500px;
+}
+.header a
+{
+    
+}
+.header
+{
+    height: 100px;
+    width: 100%;
+}
+li
+{
+    display: inline;
+}
+.menu
+{
+    background-color:#538CDB;
+    border:solid 1px #2867BE;
+    padding:3px 5px;
+    margin:1px;
+}
