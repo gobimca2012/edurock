@@ -84,7 +84,7 @@ public partial class AddSingleFillInTheBlank : System.Web.UI.UserControl
             txtQuestionPart1.Text = Questions[0];
             txtQuestionPart2.Text = Questions[1];
             _EditExamID = data.ExamID;
-            rdbQuestionType.SelectedValue = data.Q_Type.ToString();
+            
             if (data.Marks != null)
                 txtMarks.Text = data.Marks.ToString();
             txtDescription.Text = data.Description;
@@ -104,7 +104,7 @@ public partial class AddSingleFillInTheBlank : System.Web.UI.UserControl
 
         int ExamID; if (true) { ExamID = _EditExamID; }
 
-        int Q_Type; if (true) { Q_Type = Convert.ToInt32(rdbQuestionType.SelectedValue); }
+        int Q_Type; if (true) { Q_Type = 3; }
 
         string Description; if (true) { Description = txtDescription.Text; }
         int Marks = 1;
@@ -130,7 +130,7 @@ public partial class AddSingleFillInTheBlank : System.Web.UI.UserControl
 
         int ExamID; if (true) { ExamID = _ExamId; }
 
-        int Q_Type; if (true) { Q_Type = Convert.ToInt32(rdbQuestionType.SelectedValue); }
+        int Q_Type; if (true) { Q_Type = 3; }
 
         string Description; if (true) { Description = txtDescription.Text; }
 

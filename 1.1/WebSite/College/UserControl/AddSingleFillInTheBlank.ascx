@@ -16,20 +16,7 @@
                     <asp:TextBox ID="txtQuestionPart2" runat="server" Width="579px"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    Select your question Type
-                </td>
-                <td class="style1">
-                    <asp:RadioButtonList ID="rdbQuestionType" runat="server">
-                        <asp:ListItem Text="Single Choice" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="Multiple Choice" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="Single Fill in the Blanks" Value="3"></asp:ListItem>
-                        <asp:ListItem Text="Multiple Fill in the Blanks" Value="4"></asp:ListItem>
-                        <asp:ListItem Text="Match words" Value="5"></asp:ListItem>
-                    </asp:RadioButtonList>
-                </td>
-            </tr>
+           
             <tr>
                 <td>
                     <span class="label">Description</span>

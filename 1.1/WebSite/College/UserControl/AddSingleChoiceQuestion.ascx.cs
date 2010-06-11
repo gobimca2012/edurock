@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class AddSingleChoiceQuestionSubLayout : System.Web.UI.UserControl
+public partial class College_UserControl_AddSingleChoiceQuestion : System.Web.UI.UserControl
 {
     private int _ExamId
     {

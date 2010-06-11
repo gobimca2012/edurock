@@ -53,9 +53,11 @@ public partial class College_QuestionWizard_Step1 : BasePage
             }
         }
     }
-    protected override void OnInitComplete(EventArgs e)
+
+
+    protected void Page_Load(object sender, EventArgs e)
     {
-        if (!this.IsPostBack)
+        //if (!this.IsPostBack)
         {
             if (Request.QueryString["qid"] != null)
             {
@@ -63,7 +65,7 @@ public partial class College_QuestionWizard_Step1 : BasePage
                 var data = new EXM_QuestionController().GetbyEXM_QuestionID(_QuestionID);
                 if (data.Count > 0)
                 {
-                    LoadQuestionBox(data[0].Q_Type);
+                    
                     rdbQuestionType.SelectedValue = data[0].Q_Type.ToString();
                 }
 
@@ -73,28 +75,8 @@ public partial class College_QuestionWizard_Step1 : BasePage
         {
 
         }
-        base.OnInitComplete(e);
-    }
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        //if (!this.IsPostBack)
-        //{
-        //    if (Request.QueryString["qid"] != null)
-        //    {
-        //        lnkNextStep.Visible = false;
-        //        var data = new EXM_QuestionController().GetbyEXM_QuestionID(_QuestionID);
-        //        if (data.Count > 0)
-        //        {
-        //            LoadQuestionBox(data[0].Q_Type);
-        //            rdbQuestionType.SelectedValue = data[0].Q_Type.ToString();
-        //        }
-
-        //    }
-        //}
-        //if (Request.QueryString["qid"] != null)
-        //{
-
-        //}
+        if(rdbQuestionType.SelectedValue!="")
+            LoadQuestionBox(Convert.ToInt32(rdbQuestionType.SelectedValue));
     }
 
 
@@ -106,14 +88,14 @@ public partial class College_QuestionWizard_Step1 : BasePage
 
     protected void rdbQuestionType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        int QuestionType = Convert.ToInt32(rdbQuestionType.SelectedValue);
-        LoadQuestionBox(QuestionType);
+        //int QuestionType = Convert.ToInt32(rdbQuestionType.SelectedValue);
+        //LoadQuestionBox(QuestionType);
     }
     private void LoadQuestionBox(int Type)
     {
         if (Type == (int)QuestionType.SingleChoice)
         {
-            AddSingleChoiceQuestionSubLayout AddSingleFillInTheBlankControl = (AddSingleChoiceQuestionSubLayout)CommonController.GetControl("~/College/UserControl/AddSingleChoiceQuestion.ascx");            
+            College_UserControl_AddSingleChoiceQuestion AddSingleFillInTheBlankControl = (College_UserControl_AddSingleChoiceQuestion)CommonController.GetControl("~/College/UserControl/AddSingleChoiceQuestion.ascx");
             QuestionPlaceHolder.Controls.Add(AddSingleFillInTheBlankControl);
         }
         else if (Type == (int)QuestionType.MultipleChoice)

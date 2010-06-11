@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddSingleChoiceQuestion.ascx.cs"
-    Inherits="AddSingleChoiceQuestionSubLayout" %>
+    Inherits="College_UserControl_AddSingleChoiceQuestion" %>
 <%@ Register Src="../UserControl/ListAnswer.ascx" TagName="ListAnswer" TagPrefix="uc2" %>
 <div class="contentbox">
     <div id="divError" runat="server">

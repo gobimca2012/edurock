@@ -57,6 +57,10 @@ namespace BusinessLogic
             {
                 return "Multiple Choice";
             }
+            else if (QuestionType == 3)
+            {
+                return "Single Fill in the Blank";
+            }
             else
             {
                 return "";

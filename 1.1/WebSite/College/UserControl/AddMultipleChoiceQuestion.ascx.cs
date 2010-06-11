@@ -111,7 +111,7 @@ public partial class AddMultipleChoiceQuestionSubLayout : System.Web.UI.UserCont
 
         new EXM_QuestionController().UpdateByEXM_QuestionID(EXM_QuestionID, Question, LoginUserID, ExamID, Marks, Q_Type, Description, ModifiedDate);
         divError.InnerHtml = "<div class='success'>Success Fully Updated</div>";
-        Response.Redirect("~/College/QuestionWizard/ListQuestion.aspx");
+        //Response.Redirect("~/College/QuestionWizard/ListQuestion.aspx");
     }
 
     protected void lnkNextStep_Click(object sender, EventArgs e)

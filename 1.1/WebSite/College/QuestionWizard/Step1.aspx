@@ -17,6 +17,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div>
+        <%--<uc3:AddSingleChoiceQuestion ID="AddSingleChoiceQuestion1" runat="server" />--%>
     </div>
     <div class="contentbox">
         <div id="divError" runat="server">

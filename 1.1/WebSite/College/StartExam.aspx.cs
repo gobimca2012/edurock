@@ -80,8 +80,9 @@ public partial class College_StartExam : BasePage
         if (!this.IsPostBack)
         {
             BindQuestion();
-            LoadQuestionUI();
+            
         }
+        LoadQuestionUI();
     }
     private void LoadQuestionUI()
     {
@@ -94,6 +95,12 @@ public partial class College_StartExam : BasePage
         else if (CurrentQuestion.Q_Type == (int)QuestionType.MultipleChoice)
         {
             College_UserControl_MultipleChoiceQuestion newControl = (College_UserControl_MultipleChoiceQuestion)CommonController.GetControl("~/College/UserControl/MultipleChoiceQuestion.ascx");
+            newControl._Question = CurrentQuestion;
+            QuestionBox.Controls.Add(newControl);
+        }
+        else if (CurrentQuestion.Q_Type == (int)QuestionType.SingleFillintheBlanks)
+        {
+            College_UserControl_SingleFillInTheBlankQuestion newControl = (College_UserControl_SingleFillInTheBlankQuestion)CommonController.GetControl("~/College/UserControl/SingleFillInTheBlankQuestion.ascx");
             newControl._Question = CurrentQuestion;
             QuestionBox.Controls.Add(newControl);
         }
