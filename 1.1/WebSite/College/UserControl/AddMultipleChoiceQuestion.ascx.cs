@@ -102,7 +102,7 @@ public partial class AddMultipleChoiceQuestionSubLayout : System.Web.UI.UserCont
 
         int ExamID; if (true) { ExamID = _EditExamID; }
 
-        int Q_Type; if (true) { Q_Type = 1; }
+        int Q_Type; if (true) { Q_Type = 2; }
 
         string Description; if (true) { Description = txtDescription.Text; }
         int Marks = 1;
@@ -129,7 +129,7 @@ public partial class AddMultipleChoiceQuestionSubLayout : System.Web.UI.UserCont
 
         int ExamID; if (true) { ExamID = _ExamId; }
 
-        int Q_Type; if (true) { Q_Type = 1; }
+        int Q_Type; if (true) { Q_Type = 2; }
 
         string Description; if (true) { Description = txtDescription.Text; }
 

@@ -66,5 +66,17 @@ namespace BusinessLogic
                 return "";
             }
         }
+        public static string GetValueFromRequestparam(string ControlID)
+        {
+            var data = (from p in HttpContext.Current.Request.Params.AllKeys where p.Contains(ControlID) select p).ToList();
+            if (data.Count > 0)
+            {
+                return HttpContext.Current.Request.Params[data[0]];
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }

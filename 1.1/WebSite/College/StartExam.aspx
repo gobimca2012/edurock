@@ -6,11 +6,12 @@
 <%@ Register Src="UserControl/ExamQuestionList.ascx" TagName="ExamQuestionList" TagPrefix="uc1" %>
 <%@ Register Src="UserControl/SingleChoiceQuestion.ascx" TagName="SingleChoiceQuestion"
     TagPrefix="uc2" %>
+<%@ Register Src="UserControl/Question.ascx" TagName="Question" TagPrefix="uc3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div style="float: left; width: 800px;">
-        <asp:PlaceHolder ID="QuestionBox" runat="server"></asp:PlaceHolder>
+        <uc3:Question ID="Question1" runat="server" />
     </div>
     <div style="float: right; width: 200px;">
         <div class="contentbox">
@@ -31,11 +32,5 @@
                 </ItemTemplate>
             </asp:ListView>
         </div>
-    </div>
-    <div style="clear: both">
-        <div style="float: left; padding: 5px;">
-            <asp:LinkButton ID="lnkPrev" runat="server" Text="Prev" OnClick="lnkPrev_Click"></asp:LinkButton></div>
-        <div style="float: left; padding: 5px;">
-            <asp:LinkButton ID="lnkNext" runat="server" Text="Next" OnClick="lnkNext_Click"></asp:LinkButton></div>
     </div>
 </asp:Content>

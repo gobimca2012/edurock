@@ -22,11 +22,12 @@ namespace BusinessLogic
 		}
         protected override void OnLoad(EventArgs e)
         {
-            base.OnLoad(e);
+            
             if (IsLogginMandatory && !new UserAuthontication().IsLoggedIn)
             {
                 Response.Redirect("~/Home.aspx");
-            }            
+            }
+            base.OnLoad(e);
          
         }
         protected void AjaxLoad(string ContainnerID, string Url)

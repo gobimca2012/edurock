@@ -75,48 +75,16 @@ public partial class College_StartExam : BasePage
             ViewState["CurrentPageIndex"] = value;
         }
     }
+   
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.IsPostBack)
         {
-            BindQuestion();
-            
+            BindQuestion();            
         }
-        LoadQuestionUI();
+        
     }
-    private void LoadQuestionUI()
-    {
-        if (CurrentQuestion.Q_Type == (int)QuestionType.SingleChoice)
-        {
-            College_UserControl_SingleChoiceQuestion newControl = (College_UserControl_SingleChoiceQuestion)CommonController.GetControl("~/College/UserControl/SingleChoiceQuestion.ascx");
-            newControl._Question = CurrentQuestion;
-            QuestionBox.Controls.Add(newControl);
-        }
-        else if (CurrentQuestion.Q_Type == (int)QuestionType.MultipleChoice)
-        {
-            College_UserControl_MultipleChoiceQuestion newControl = (College_UserControl_MultipleChoiceQuestion)CommonController.GetControl("~/College/UserControl/MultipleChoiceQuestion.ascx");
-            newControl._Question = CurrentQuestion;
-            QuestionBox.Controls.Add(newControl);
-        }
-        else if (CurrentQuestion.Q_Type == (int)QuestionType.SingleFillintheBlanks)
-        {
-            College_UserControl_SingleFillInTheBlankQuestion newControl = (College_UserControl_SingleFillInTheBlankQuestion)CommonController.GetControl("~/College/UserControl/SingleFillInTheBlankQuestion.ascx");
-            newControl._Question = CurrentQuestion;
-            QuestionBox.Controls.Add(newControl);
-        }
-        lnkNext.Visible = true;
-        lnkPrev.Visible = true;
-        if (CurrentQuestion.Order == QuestionList.Count)
-        {
-            lnkNext.Visible = false;
-            
-        }
-        else if(CurrentQuestion.Order==1)
-        {
-            lnkPrev.Visible = false;
-        }
-
-    }
+  
     private void BindQuestion()
     {
         if (QuestionList == null)
@@ -137,21 +105,10 @@ public partial class College_StartExam : BasePage
             ListViewDataItem dataItem = (ListViewDataItem)e.Item;
             string QuestionID = ListQuestion.DataKeys[dataItem.DisplayIndex].Value.ToString();
             CurrentQuestion = QuestionList.Single(p => p.EXM_QuestionID == Convert.ToInt32(QuestionID));
-            LoadQuestionUI();
+            
 
 
         }
     }
-    protected void lnkNext_Click(object sender, EventArgs e)
-    {
-        
-        CurrentQuestion = QuestionList.Single(p => p.Order == (CurrentQuestion.Order + 1));
-        LoadQuestionUI();
-
-    }
-    protected void lnkPrev_Click(object sender, EventArgs e)
-    {
-        CurrentQuestion = QuestionList.Single(p => p.Order == (CurrentQuestion.Order - 1));
-        LoadQuestionUI();
-    }
+   
 }

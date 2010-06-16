@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SingleChoiceQuestion.ascx.cs"
     Inherits="College_UserControl_SingleChoiceQuestion" %>
+<%@ Register src="MultipleChoiceQuestion.ascx" tagname="MultipleChoiceQuestion" tagprefix="uc1" %>
+<%@ Register src="SingleFillInTheBlankQuestion.ascx" tagname="SingleFillInTheBlankQuestion" tagprefix="uc2" %>
 <div class="contentbox">
     <div>
         <span id="lblQuestion" runat="server" class="label"></span>
@@ -17,12 +19,16 @@
                 </div>
             </ItemTemplate>
         </asp:ListView>
+        <asp:RadioButtonList ID="chkOption" runat="server">
+        </asp:RadioButtonList>
     </div>
     <div>
-        
     </div>
     <div>
         Marks : <span id="lblMarks" runat="server" class="label"></span>
+    </div>
+    <div>
+    <asp:LinkButton ID="lnkNext" runat="server" onclick="lnkNext_Click1">Next Question</asp:LinkButton>
     </div>
 </div>
 
@@ -40,4 +46,6 @@ function SetSingleRadioButton(nameregex, current) {
         current.checked = true;
     }
 </script>
+
+
 

@@ -1270,7 +1270,7 @@ namespace DataEntity
 			OnCreated();
 		}
 		
-		[Column(Storage="_EXM_UserAnswerID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_EXM_UserAnswerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int EXM_UserAnswerID
 		{
 			get

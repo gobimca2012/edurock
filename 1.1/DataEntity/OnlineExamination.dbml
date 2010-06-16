@@ -55,7 +55,7 @@
   </Table>
   <Table Name="dbo.EXM_UserAnswer" Member="EXM_UserAnswers">
     <Type Name="EXM_UserAnswer">
-      <Column Name="EXM_UserAnswerID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EXM_UserAnswerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="EXM_QuestionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="EXM_AnswerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />

@@ -22,7 +22,7 @@ public partial class College_UserControl_SingleFillInTheBlankQuestion : System.W
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!this.IsPostBack)
+        if (this.IsPostBack)
         {
             if (_Question != null)
             {
@@ -35,8 +35,9 @@ public partial class College_UserControl_SingleFillInTheBlankQuestion : System.W
         }
     }
     private void BindQuestionOption()
-    {        
-     
+    {
+
+        
         ddAnswer.DataSource = _Question.EXM_Answers;
         ddAnswer.DataTextField = "Answer";
         ddAnswer.DataValueField = "EXM_AnswerID";
@@ -44,7 +45,7 @@ public partial class College_UserControl_SingleFillInTheBlankQuestion : System.W
         ListItem noneItem = new ListItem();
         noneItem.Text = "Select";
         noneItem.Value = "0";
-        ddAnswer.Items.Add(noneItem);
+        ddAnswer.Items.Insert(0, noneItem);
 
     }
 }

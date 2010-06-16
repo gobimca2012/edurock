@@ -1338,8 +1338,7 @@ namespace DataAccess
 
             ObjEXM_UserAnswer.ModifiedDate = ModifiedDate;
 
-            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
-            db.ObjectTrackingEnabled = false;
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();            
             db.DeferredLoadingEnabled = false;
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             db.EXM_UserAnswers.InsertOnSubmit(ObjEXM_UserAnswer);
@@ -1643,8 +1642,36 @@ namespace DataAccess
 
         #endregion
         #region CustomEXM_UserAnswer
+        public void EXM_UserAnswerUpdateByQuestionID(int QuestionID,int AnswerID,int LoginUserID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.EXM_UserAnswers where p.EXM_QuestionID == QuestionID select p).ToList();
+            if (data.Count > 0)
+            {
+                EXM_UserAnswer exmData = data[0];
+                exmData.EXM_AnswerID = AnswerID;
+                
+            }
+            else
+            {
+                EXM_UserAnswer newAnswer = new EXM_UserAnswer();
+                newAnswer.EXM_AnswerID = AnswerID;
+                newAnswer.EXM_AnswerText = "";
+                newAnswer.EXM_QuestionID = QuestionID;
+                newAnswer.LoginUserID = LoginUserID;
+                newAnswer.ModifiedDate = DateTime.Now;
+                db.EXM_UserAnswers.InsertOnSubmit(newAnswer);
+            }
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+        
         #endregion
-	
+
+
+      
 	
 	
 	

@@ -4,7 +4,7 @@
         <span id="lblQuestion" runat="server" class="label"></span>
     </div>
     <div>
-        <asp:ListView ID="listOption" runat="server">
+       <%-- <asp:ListView ID="listOption" runat="server">
             <LayoutTemplate>
                 <div>
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
@@ -15,7 +15,8 @@
                     <asp:CheckBox ID="chkOption" runat="server" Text='<%#Eval("Answer") %>' />
                 </div>
             </ItemTemplate>
-        </asp:ListView>
+        </asp:ListView>--%>
+        <asp:CheckBoxList ID="chkOption" runat="server"  />
     </div>
     <div>
        Marks : <span id="lblMarks" runat="server" class="label"></span>
