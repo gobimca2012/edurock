@@ -63,12 +63,41 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.IsPostBack)
+        {
+            BindQuestion();
             LoadQuestionUI();
+        }
+    }
+    private void BindQuestion()
+    {
+        if (QuestionList == null)
+        {
+            var data = new EXM_QuestionController().GetbyExamID(_ExamID);
+            QuestionList = data;
+        }
+        ListQuestion.DataSource = QuestionList;
+        ListQuestion.DataBind();
+        CurrentQuestion = QuestionList[0];
+        
+    }
+
+    protected void QuestionList_ItemCommand(object sender, ListViewCommandEventArgs e)
+    {
+        if (String.Equals(e.CommandName, "LoadQuestion"))
+        {
+            ListViewDataItem dataItem = (ListViewDataItem)e.Item;
+            string QuestionID = ListQuestion.DataKeys[dataItem.DisplayIndex].Value.ToString();
+            CurrentQuestion = QuestionList.Single(p => p.EXM_QuestionID == Convert.ToInt32(QuestionID));
+            LoadQuestionUI();
+
+
+        }
     }
     private void LoadQuestionUI()
     {
         DivSingleChoice.Visible = false;
         DivMultipleChoice.Visible = false;
+        divSingleFillIntheBlanck.Visible = false;
         if (CurrentQuestion.Q_Type == (int)QuestionType.SingleChoice)
         {
             DivSingleChoice.Visible = true;
@@ -81,7 +110,8 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         }
         else if (CurrentQuestion.Q_Type == (int)QuestionType.SingleFillintheBlanks)
         {
-
+            divSingleFillIntheBlanck.Visible = true;
+            BindSingleFillIntheBlank();
         }
         lnkNext.Visible = true;
         lnkPrev.Visible = true;
@@ -96,6 +126,29 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         }
 
     }
+    private void BindSingleFillIntheBlank()
+    {
+        string[] Questionpart = CurrentQuestion.Question.Split(';');
+        lblPrefixText.InnerHtml = Questionpart[0] ;
+        lblsufixText.InnerHtml = Questionpart[1];
+        lblMarks.InnerText = CurrentQuestion.Marks.ToString();
+        ddAnswer.DataSource = CurrentQuestion.EXM_Answers;
+        ddAnswer.DataTextField = "Answer";
+        ddAnswer.DataValueField = "EXM_AnswerID";
+        ddAnswer.DataBind();
+        ListItem noneItem = new ListItem();
+        noneItem.Text = "Select";
+        noneItem.Value = "0";
+        ddAnswer.Items.Insert(0, noneItem);
+        var data = new EXM_UserAnswerController().GetbyEXM_QuestionID(CurrentQuestion.EXM_QuestionID);
+        foreach (EXM_UserAnswer answerData in data)
+        {
+            for (int i = 0; i < ddAnswer.Items.Count; i++)
+                if (ddAnswer.Items[i].Value == answerData.EXM_AnswerID.ToString())
+                    ddAnswer.Items[i].Selected = true;
+        }
+        
+    }
     private void BindSingleChoiceQuestion()
     {
         lblQuestion.InnerText = CurrentQuestion.Question;
@@ -107,10 +160,16 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         //listOption.DataSource = _Question.EXM_Answers;
         //listOption.DataBind();
         var data = new EXM_UserAnswerController().GetbyEXM_QuestionID(CurrentQuestion.EXM_QuestionID);
-        if (data.Count > 0)
+        //if (data.Count > 0)
+        //{
+        //    for (int i = 0; i < chkOption.Items.Count; i++)
+        //        chkOption.SelectedValue = data[0].EXM_AnswerID.ToString();
+        //}
+        foreach (EXM_UserAnswer answerData in data)
         {
             for (int i = 0; i < chkOption.Items.Count; i++)
-                chkOption.SelectedValue = data[0].EXM_AnswerID.ToString();
+                if (chkOption.Items[i].Value == answerData.EXM_AnswerID.ToString())
+                    chkOption.Items[i].Selected = true;
         }
     }
     private void BindMultiChoiceQuestion()
@@ -124,10 +183,11 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         chkMulti.DataValueField = "EXM_AnswerID";
         chkMulti.DataBind();
         var data = new EXM_UserAnswerController().GetbyEXM_QuestionID(CurrentQuestion.EXM_QuestionID);
-        if (data.Count > 0)
+        foreach (EXM_UserAnswer answerData in data)
         {
             for (int i = 0; i < chkMulti.Items.Count; i++)
-                chkMulti.SelectedValue = data[0].EXM_AnswerID.ToString();
+                if (chkMulti.Items[i].Value == answerData.EXM_AnswerID.ToString())
+                    chkMulti.Items[i].Selected = true;
         }
     }
     protected void lnkNext_Click(object sender, EventArgs e)
@@ -167,6 +227,15 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         }
         else if (CurrentQuestion.Q_Type == (int)QuestionType.SingleFillintheBlanks)
         {
+            if (ddAnswer.SelectedValue != "")
+            {
+                new EXM_UserAnswerController().DeletebyEXM_QuestionID(CurrentQuestion.EXM_QuestionID);
+                for (int i = 0; i < ddAnswer.Items.Count; i++)
+                {
+                    if (ddAnswer.Items[i].Selected)
+                        new EXM_UserAnswerController().Add(new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(ddAnswer.Items[i].Value), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
+                }
+            }
 
         }
     }

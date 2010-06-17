@@ -13,7 +13,7 @@
     width: 1000px;
     margin: 0 auto;
     border:solid 0px;
-    min-height:500px;
+    min-height:700px;
     padding:0px;
     background:#fff;
     border:5px solid #497BAC;
@@ -121,5 +121,13 @@ table
     background:#497BAC;
     padding:5px;
     border:solid 1px #325994;
-    max-width:50px;
+
+}
+.qtxt
+{
+    width:400px;
+}
+.qs .contentbox
+{
+    min-height:300px;
 }

@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using BusinessLogic;
 using DataEntity;
 using System.Collections.Generic;
+using System.Web.Services;
 public partial class College_StartExam : BasePage
 {
     private int _ExamID
@@ -75,40 +76,63 @@ public partial class College_StartExam : BasePage
             ViewState["CurrentPageIndex"] = value;
         }
     }
-   
+    private DateTime StartTime
+    {
+        get
+        {
+            if (Session[SessionName.ExamStartTime.ToString()] != null)
+            {
+                return Convert.ToDateTime(Session[SessionName.ExamStartTime.ToString()].ToString());
+            }
+            else
+            {
+                var data = new UserExamController().GetbyExamID(_ExamID, new UserAuthontication().LoggedInUserID);
+                if (data.Count > 0)
+                {
+                    if (data[0].StartTime != null)
+                    {
+                        return data[0].StartTime;
+                    }
+                    else
+                    {
+
+                        return DateTime.Now;
+                    }
+                }
+                else
+                {
+                    return DateTime.Now;
+                }
+            }
+        }
+        set
+        {
+            Session[SessionName.ExamStartTime.ToString()] = value;
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.IsPostBack)
         {
-            BindQuestion();            
+           // BindQuestion();  
+            StartTime = DateTime.Now;
+            new UserExamController().Add(new UserAuthontication().LoggedInUserID, _ExamID, DateTime.Now, DateTime.Now.AddHours(1), DateTime.Now);
+
         }
+        JScripter.Loader objLoad = new JScripter.Loader(this.Page, false);
+        string ScriptInj = objLoad.LoadPageScript("#time", ResolveUrl("~/CallBack.aspx") + "?tm=s&eid=" + _ExamID.ToString());
+        JScripter.JScripter.IncludeJavascriptFile("counter", ResolveUrl("~/Jscript/jquery.countdownTimer.1-0-1.js"), this.Page);
+
+        objLoad.InjectScript(string.Format("Timmer('{0}','{1}','{2}');", "#time", ResolveUrl("~/CallBack.aspx") + "?tm=s&eid=" + _ExamID.ToString(), "15000"), this.Page);
+
         
     }
-  
-    private void BindQuestion()
+
+    [WebMethod]
+    public static string GetRemainingTime()
     {
-        if (QuestionList == null)
-        {
-            var data = new EXM_QuestionController().GetbyExamID(_ExamID);
-            QuestionList = data;
-        }
-        ListQuestion.DataSource = QuestionList;
-        ListQuestion.DataBind();
-        CurrentQuestion = QuestionList[0];
-        CurrentQuestionIndex = 0;
-    }
-
-    protected void QuestionList_ItemCommand(object sender, ListViewCommandEventArgs e)
-    {
-        if (String.Equals(e.CommandName, "LoadQuestion"))
-        {
-            ListViewDataItem dataItem = (ListViewDataItem)e.Item;
-            string QuestionID = ListQuestion.DataKeys[dataItem.DisplayIndex].Value.ToString();
-            CurrentQuestion = QuestionList.Single(p => p.EXM_QuestionID == Convert.ToInt32(QuestionID));
-            
-
-
-        }
+        
+        return "01:00";
     }
    
 }

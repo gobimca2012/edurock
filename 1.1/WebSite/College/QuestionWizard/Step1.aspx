@@ -7,6 +7,7 @@
     TagPrefix="uc4" %>
 <%@ Register Src="../UserControl/AddSingleFillInTheBlank.ascx" TagName="AddSingleFillInTheBlank"
     TagPrefix="uc1" %>
+<%@ Register src="../UserControl/AddMatchFollowing.ascx" tagname="AddMatchFollowing" tagprefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
         .style1
@@ -45,6 +46,7 @@
                 <div>
                     <asp:LinkButton ID="lnkNextStep" runat="server" OnClick="lnkNextStep_Click">Next 
                 Step</asp:LinkButton>
+                    
                 </div>
             </div>
         </asp:Panel>

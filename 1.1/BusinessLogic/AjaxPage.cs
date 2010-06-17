@@ -76,7 +76,7 @@ namespace BusinessLogic
                 objcommandevent.Id = Request.QueryString["id"];
                 OnAjaxListViewCommand(objcommandevent);
             }
-            string HidentControl = string.Format("<input type=\"hidden\" name=\"_DIMMER\" id=\"_DIMMER\" value=\"{0}\" />", GetStringFromDictionary());
+            //string HidentControl = string.Format("<input type=\"hidden\" name=\"_DIMMER\" id=\"_DIMMER\" value=\"{0}\" />", GetStringFromDictionary());
 
         }
         private string GetStringFromDictionary()
@@ -114,12 +114,12 @@ namespace BusinessLogic
 
             string s = sb.ToString();
 
-            //  s = Regex.Replace(s, @"<!.*?>", string.Empty, RegexOptions.Compiled |
-            //        RegexOptions.Multiline);
-            //s = Regex.Replace(s, @"<input.*_EVENTTARGET.*/>", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
-            //s = Regex.Replace(s, @"<input.*VIEWSTATE.*/>", string.Empty, RegexOptions.Compiled |
-            //RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<!.*?>", string.Empty, RegexOptions.Compiled |
+                  RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<input.*_EVENTTARGET.*/>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<input.*VIEWSTATE.*/>", string.Empty, RegexOptions.Compiled |
+            RegexOptions.Multiline);
             s = Regex.Replace(s, @"<input.*EVENTARGUMENT.*/>", string.Empty, RegexOptions.Compiled |
             RegexOptions.Multiline);
             s = Regex.Replace(s, @"<input.*EVENTVALIDATION.*/>", string.Empty, RegexOptions.Compiled |
@@ -148,7 +148,7 @@ namespace BusinessLogic
             s = s.Replace("</head>", "");
             s = s.Replace("<body>", "");
             s = s.Replace("</body>", "");
-            writer.Write(Context.Server.HtmlEncode(s));
+            writer.Write(s);
 
         }
     }

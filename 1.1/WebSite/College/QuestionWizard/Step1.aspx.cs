@@ -65,7 +65,7 @@ public partial class College_QuestionWizard_Step1 : BasePage
                 var data = new EXM_QuestionController().GetbyEXM_QuestionID(_QuestionID);
                 if (data.Count > 0)
                 {
-                    
+
                     rdbQuestionType.SelectedValue = data[0].Q_Type.ToString();
                 }
 
@@ -75,7 +75,7 @@ public partial class College_QuestionWizard_Step1 : BasePage
         {
 
         }
-        if(rdbQuestionType.SelectedValue!="")
+        if (rdbQuestionType.SelectedValue != "")
             LoadQuestionBox(Convert.ToInt32(rdbQuestionType.SelectedValue));
     }
 
@@ -107,6 +107,11 @@ public partial class College_QuestionWizard_Step1 : BasePage
         {
             AddSingleFillInTheBlank AddSingleFillInTheBlankControl = (AddSingleFillInTheBlank)CommonController.GetControl("~/College/UserControl/AddSingleFillInTheBlank.ascx");
             QuestionPlaceHolder.Controls.Add(AddSingleFillInTheBlankControl);
+        }
+        else if (Type == (int)QuestionType.Matchwords)
+        {
+            AddMatchFollowing AddMatchFollowingControl = (AddMatchFollowing)CommonController.GetControl("~/College/UserControl/AddMatchFollowing.ascx");
+            QuestionPlaceHolder.Controls.Add(AddMatchFollowingControl);
         }
     }
 }

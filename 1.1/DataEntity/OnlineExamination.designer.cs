@@ -45,6 +45,9 @@ namespace DataEntity
     partial void InsertEXM_UserAnswer(EXM_UserAnswer instance);
     partial void UpdateEXM_UserAnswer(EXM_UserAnswer instance);
     partial void DeleteEXM_UserAnswer(EXM_UserAnswer instance);
+    partial void InsertUserExam(UserExam instance);
+    partial void UpdateUserExam(UserExam instance);
+    partial void DeleteUserExam(UserExam instance);
     #endregion
 		
 		public OnlineExaminationDataContext(string connection) : 
@@ -108,6 +111,14 @@ namespace DataEntity
 			get
 			{
 				return this.GetTable<EXM_UserAnswer>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserExam> UserExams
+		{
+			get
+			{
+				return this.GetTable<UserExam>();
 			}
 		}
 	}
@@ -363,6 +374,8 @@ namespace DataEntity
 		
 		private EntitySet<EXM_UserAnswer> _EXM_UserAnswers;
 		
+		private EntitySet<UserExam> _UserExams;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -387,6 +400,7 @@ namespace DataEntity
 		{
 			this._Exams = new EntitySet<Exam>(new Action<Exam>(this.attach_Exams), new Action<Exam>(this.detach_Exams));
 			this._EXM_UserAnswers = new EntitySet<EXM_UserAnswer>(new Action<EXM_UserAnswer>(this.attach_EXM_UserAnswers), new Action<EXM_UserAnswer>(this.detach_EXM_UserAnswers));
+			this._UserExams = new EntitySet<UserExam>(new Action<UserExam>(this.attach_UserExams), new Action<UserExam>(this.detach_UserExams));
 			OnCreated();
 		}
 		
@@ -556,6 +570,19 @@ namespace DataEntity
 			}
 		}
 		
+		[Association(Name="LoginUser_UserExam", Storage="_UserExams", OtherKey="LoginUserID")]
+		public EntitySet<UserExam> UserExams
+		{
+			get
+			{
+				return this._UserExams;
+			}
+			set
+			{
+				this._UserExams.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -595,6 +622,18 @@ namespace DataEntity
 		}
 		
 		private void detach_EXM_UserAnswers(EXM_UserAnswer entity)
+		{
+			this.SendPropertyChanging();
+			entity.LoginUser = null;
+		}
+		
+		private void attach_UserExams(UserExam entity)
+		{
+			this.SendPropertyChanging();
+			entity.LoginUser = this;
+		}
+		
+		private void detach_UserExams(UserExam entity)
 		{
 			this.SendPropertyChanging();
 			entity.LoginUser = null;
@@ -1455,6 +1494,229 @@ namespace DataEntity
 					if ((value != null))
 					{
 						value.EXM_UserAnswers.Add(this);
+						this._LoginUserID = value.LoginUserID;
+					}
+					else
+					{
+						this._LoginUserID = default(int);
+					}
+					this.SendPropertyChanged("LoginUser");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.UserExam")]
+	public partial class UserExam : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserExamID;
+		
+		private int _LoginUserID;
+		
+		private int _ExamID;
+		
+		private System.DateTime _StartTime;
+		
+		private System.DateTime _EndDate;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntityRef<LoginUser> _LoginUser;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserExamIDChanging(int value);
+    partial void OnUserExamIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnExamIDChanging(int value);
+    partial void OnExamIDChanged();
+    partial void OnStartTimeChanging(System.DateTime value);
+    partial void OnStartTimeChanged();
+    partial void OnEndDateChanging(System.DateTime value);
+    partial void OnEndDateChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public UserExam()
+		{
+			this._LoginUser = default(EntityRef<LoginUser>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_UserExamID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserExamID
+		{
+			get
+			{
+				return this._UserExamID;
+			}
+			set
+			{
+				if ((this._UserExamID != value))
+				{
+					this.OnUserExamIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserExamID = value;
+					this.SendPropertyChanged("UserExamID");
+					this.OnUserExamIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					if (this._LoginUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ExamID", DbType="Int NOT NULL")]
+		public int ExamID
+		{
+			get
+			{
+				return this._ExamID;
+			}
+			set
+			{
+				if ((this._ExamID != value))
+				{
+					this.OnExamIDChanging(value);
+					this.SendPropertyChanging();
+					this._ExamID = value;
+					this.SendPropertyChanged("ExamID");
+					this.OnExamIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this.OnStartTimeChanging(value);
+					this.SendPropertyChanging();
+					this._StartTime = value;
+					this.SendPropertyChanged("StartTime");
+					this.OnStartTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EndDate", DbType="DateTime NOT NULL")]
+		public System.DateTime EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="LoginUser_UserExam", Storage="_LoginUser", ThisKey="LoginUserID", IsForeignKey=true)]
+		public LoginUser LoginUser
+		{
+			get
+			{
+				return this._LoginUser.Entity;
+			}
+			set
+			{
+				LoginUser previousValue = this._LoginUser.Entity;
+				if (((previousValue != value) 
+							|| (this._LoginUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LoginUser.Entity = null;
+						previousValue.UserExams.Remove(this);
+					}
+					this._LoginUser.Entity = value;
+					if ((value != null))
+					{
+						value.UserExams.Add(this);
 						this._LoginUserID = value.LoginUserID;
 					}
 					else

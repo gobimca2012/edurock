@@ -22,8 +22,12 @@ public partial class College_ExamIntroduction : BasePage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        Session.Remove(SessionName.ExamList.ToString());
+        Session.Remove(SessionName.QuestionList.ToString());
+        Session.Remove(SessionName.CurrentQuestion.ToString());
         if (!this.IsPostBack)
         {
+
             Response.Cookies[CookieName.ExamID.ToString()].Value = Request.QueryString["eid"];
             BindData();
         }
