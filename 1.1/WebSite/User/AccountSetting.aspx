@@ -126,6 +126,9 @@
             <div style="float: left">
                 <asp:LinkButton ID="lnkUpdate" runat="server" OnClick="lnkUpdate_Click">Update</asp:LinkButton>
             </div>
+            <div style="float: left">
+                <asp:LinkButton ID="lnkAdd" runat="server" onclick="lnkAdd_Click" >Update</asp:LinkButton>
+            </div>
         </div>
     </div>
 </asp:Content>

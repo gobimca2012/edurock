@@ -162,7 +162,7 @@ namespace DataEntity
 			OnCreated();
 		}
 		
-		[Column(Storage="_UserID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_UserID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int UserID
 		{
 			get
@@ -827,7 +827,7 @@ namespace DataEntity
 			OnCreated();
 		}
 		
-		[Column(Storage="_InstituteID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_InstituteID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int InstituteID
 		{
 			get

@@ -123,5 +123,9 @@ namespace BusinessLogic
                 dd.Items.Add(new_Itemf);
             }
         }
+        public static DateTime GetDate(int day, int month, int Year)
+        {
+            return new DateTime(Year, month, day);
+        }
     }
 }

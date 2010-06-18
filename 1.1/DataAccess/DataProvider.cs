@@ -2068,9 +2068,8 @@ namespace DataAccess
 
         public int UserAdd(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite, DateTime ModifiedDate)
         {
+
             User ObjUser = new User();
-
-
 
             ObjUser.LoginUserID = LoginUserID;
 
@@ -2660,6 +2659,66 @@ namespace DataAccess
 
         #endregion
         #region CustomUser
+        public int UserAdd(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite)
+        {
+            UserDataContext db = new UserDataContext();
+            var data = (from p in db.Users where p.LoginUserID == LoginUserID select p).ToList();
+            User ObjUser = new User();
+            if (data.Count > 0)
+            {
+                ObjUser = data[0];
+            }
+            ObjUser.LoginUserID = LoginUserID;
+
+
+            ObjUser.FirstName = FirstName;
+
+
+            ObjUser.LastName = LastName;
+
+
+            ObjUser.MiddleName = MiddleName;
+
+
+            ObjUser.BirthDate = BirthDate;
+
+
+            ObjUser.Address1 = Address1;
+
+
+            ObjUser.Address2 = Address2;
+
+
+            ObjUser.City = City;
+
+
+            ObjUser.State = State;
+
+
+            ObjUser.Country = Country;
+
+
+            ObjUser.WebSite = WebSite;
+
+
+            ObjUser.ModifiedDate = DateTime.Now;
+
+            
+
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            if (data.Count > 0)
+            {
+                ObjUser = data[0];
+            }
+            else
+            {
+                db.Users.InsertOnSubmit(ObjUser);
+            }
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return ObjUser.UserID;
+        }
         #endregion
 	
 	
