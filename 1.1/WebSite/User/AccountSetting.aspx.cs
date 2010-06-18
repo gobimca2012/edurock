@@ -22,6 +22,8 @@ public partial class User_AccountSetting : BasePage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.Tab objTab = new JScripter.Tab(this.Page,true);
+        objTab.TabUl("#tabs");
         if (!this.IsPostBack)
         {
             var data=new UserController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID);

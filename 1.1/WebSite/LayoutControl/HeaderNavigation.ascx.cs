@@ -20,10 +20,12 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
         if (!new UserAuthontication().IsLoggedIn)
         {
             lnkLogout.Visible = false;
+            lnkAccountSetting.Visible = false;
         }
         else
         {
             lnkLogout.Visible = true;
+            
             lnkCreate.Visible = false;
             lnkLogin.Text = new UserAuthontication().LoggedInUserName;
             if (new UserAuthontication().UserType == UserTypeEnum.College)
