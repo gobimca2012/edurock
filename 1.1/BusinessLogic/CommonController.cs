@@ -78,5 +78,50 @@ namespace BusinessLogic
                 return "";
             }
         }
+        public static void BindMonth(DropDownList dd)
+        {
+            int year = DateTime.Now.Year;
+            ListItem new_Item = new ListItem();
+            new_Item.Text = "Month";
+            new_Item.Value = "0";
+            dd.Items.Add(new_Item);
+            for (int month = 1; month < 13; month++)
+            {
+                ListItem li = new ListItem();
+                //li.Text = new DateTime(year, month, 1).ToString("{0:dddd, MMMM d, yyyy}");//dtfi.GetMonthName(month);
+                li.Text = new DateTime(year, month, 1).ToString("MMMM");//dtfi.GetMonthName(month);
+                li.Value = month.ToString();
+                dd.Items.Add(li);
+            }
+            // dd.SelectedValue = DateTime.Now.Month.ToString();
+        }
+        public static void BindYear(DropDownList dd)
+        {
+            ListItem new_Item = new ListItem();
+            new_Item.Text = "Year";
+            new_Item.Value = "0";
+            dd.Items.Add(new_Item);
+            for (int i = DateTime.Now.Year; i > 1900; i--)
+            {
+                ListItem new_Itemf = new ListItem();
+                new_Itemf.Text = i.ToString();
+                new_Itemf.Value = i.ToString();
+                dd.Items.Add(new_Itemf);
+            }
+        }
+        public static void BindDay(DropDownList dd)
+        {
+            ListItem new_Item = new ListItem();
+            new_Item.Text = "Days";
+            new_Item.Value = "0";
+            dd.Items.Add(new_Item);
+            for (int i = 1; i <= 31; i++)
+            {
+                ListItem new_Itemf = new ListItem();
+                new_Itemf.Text = i.ToString();
+                new_Itemf.Value = i.ToString();
+                dd.Items.Add(new_Itemf);
+            }
+        }
     }
 }

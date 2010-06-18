@@ -240,11 +240,12 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public bool Login(string Username, bool IsRemember)
+        public LoginUser Login(string Username, bool IsRemember)
         {
             HttpContext.Current.Session["LoggedInUserID"] = Username;
             LoginUserController objLogin = new LoginUserController();
             var UserData = objLogin.GetbyUsername(Username.Trim().ToLower());
+            LoginUser Logindata = UserData[0];
             LoginUser loginUserData;
             if (UserData.Count > 0)
             {
@@ -256,23 +257,23 @@ namespace BusinessLogic
                     HttpContext.Current.Response.Cookies.Add(loginCookie);
                     loginCookie.Expires = DateTime.Now.AddYears(1);
                     HttpContext.Current.Session["LoggedInUserID"] = loginUserData.LoginUserID.ToString();
-                    return true;
+                    return Logindata;
                 }
                 else if (!IsRemember)
                 {
                     HttpContext.Current.Session["LoggedInUserID"] = loginUserData.LoginUserID.ToString();
-                    return true;
+                    return Logindata;
                 }
                 else
                 {
-                    return false;
+                    return null;
                 }
             }
             else
             {
-                return false;
+                return null;
             }
-            return false;
+            return null;
         }
         public bool ChangePassword(string OlderPassword, string Newpassword)
         {
@@ -323,7 +324,7 @@ namespace BusinessLogic
 
 
 
-        public  bool ValidateUser(string Username, string Password)
+        public  LoginUser ValidateUser(string Username, string Password)
         {
             try
             {
@@ -335,18 +336,18 @@ namespace BusinessLogic
                     HttpContext.Current.Response.Cookies.Add(loginCookie);
                     loginCookie.Expires = DateTime.Now.AddYears(1);
                     loginCookie.Value = Username;// GetLoginByUsername(userName);
-                    Login(Username, false);
-                    return true;
+                    LoginUser logindata= Login(Username, false);
+                    return logindata;
                 }
                 else
                 {
-                    return false;
+                    return null; ;
                 }
 
             }
             catch
             {
-                return false;
+                return null;
             }
         }
 

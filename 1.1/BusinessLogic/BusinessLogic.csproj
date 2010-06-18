@@ -76,6 +76,7 @@
     <Compile Include="SettingProvider.cs" />
     <Compile Include="StartExam.cs" />
     <Compile Include="UserAuthontication.cs" />
+    <Compile Include="UserController.cs" />
     <Compile Include="UserExamController.cs" />
   </ItemGroup>
   <ItemGroup>
