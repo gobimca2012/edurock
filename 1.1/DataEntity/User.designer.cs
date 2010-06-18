@@ -39,6 +39,9 @@ namespace DataEntity
     partial void InsertInstitute(Institute instance);
     partial void UpdateInstitute(Institute instance);
     partial void DeleteInstitute(Institute instance);
+    partial void InsertUserEducation(UserEducation instance);
+    partial void UpdateUserEducation(UserEducation instance);
+    partial void DeleteUserEducation(UserEducation instance);
     #endregion
 		
 		public UserDataContext(string connection) : 
@@ -86,6 +89,14 @@ namespace DataEntity
 			get
 			{
 				return this.GetTable<Institute>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserEducation> UserEducations
+		{
+			get
+			{
+				return this.GetTable<UserEducation>();
 			}
 		}
 	}
@@ -426,7 +437,7 @@ namespace DataEntity
 			}
 		}
 		
-		[Association(Name="LoginUser_User", Storage="_StudentLogin", ThisKey="LoginUserID", IsForeignKey=true)]
+		[Association(Name="StudentLogin_User", Storage="_StudentLogin", ThisKey="LoginUserID", IsForeignKey=true)]
 		public StudentLogin StudentLogin
 		{
 			get
@@ -505,6 +516,8 @@ namespace DataEntity
 		
 		private EntitySet<Institute> _Institutes;
 		
+		private EntitySet<UserEducation> _UserEducations;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -529,6 +542,7 @@ namespace DataEntity
 		{
 			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			this._Institutes = new EntitySet<Institute>(new Action<Institute>(this.attach_Institutes), new Action<Institute>(this.detach_Institutes));
+			this._UserEducations = new EntitySet<UserEducation>(new Action<UserEducation>(this.attach_UserEducations), new Action<UserEducation>(this.detach_UserEducations));
 			OnCreated();
 		}
 		
@@ -672,7 +686,7 @@ namespace DataEntity
 			}
 		}
 		
-		[Association(Name="LoginUser_User", Storage="_Users", OtherKey="LoginUserID")]
+		[Association(Name="StudentLogin_User", Storage="_Users", OtherKey="LoginUserID")]
 		public EntitySet<User> Users
 		{
 			get
@@ -685,7 +699,7 @@ namespace DataEntity
 			}
 		}
 		
-		[Association(Name="LoginUser_Institute", Storage="_Institutes", OtherKey="LoginUserID")]
+		[Association(Name="StudentLogin_Institute", Storage="_Institutes", OtherKey="LoginUserID")]
 		public EntitySet<Institute> Institutes
 		{
 			get
@@ -695,6 +709,19 @@ namespace DataEntity
 			set
 			{
 				this._Institutes.Assign(value);
+			}
+		}
+		
+		[Association(Name="StudentLogin_UserEducation", Storage="_UserEducations", OtherKey="LoginUserID")]
+		public EntitySet<UserEducation> UserEducations
+		{
+			get
+			{
+				return this._UserEducations;
+			}
+			set
+			{
+				this._UserEducations.Assign(value);
 			}
 		}
 		
@@ -737,6 +764,18 @@ namespace DataEntity
 		}
 		
 		private void detach_Institutes(Institute entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentLogin = null;
+		}
+		
+		private void attach_UserEducations(UserEducation entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentLogin = this;
+		}
+		
+		private void detach_UserEducations(UserEducation entity)
 		{
 			this.SendPropertyChanging();
 			entity.StudentLogin = null;
@@ -1151,7 +1190,7 @@ namespace DataEntity
 			}
 		}
 		
-		[Association(Name="LoginUser_Institute", Storage="_StudentLogin", ThisKey="LoginUserID", IsForeignKey=true)]
+		[Association(Name="StudentLogin_Institute", Storage="_StudentLogin", ThisKey="LoginUserID", IsForeignKey=true)]
 		public StudentLogin StudentLogin
 		{
 			get
@@ -1174,6 +1213,229 @@ namespace DataEntity
 					if ((value != null))
 					{
 						value.Institutes.Add(this);
+						this._LoginUserID = value.LoginUserID;
+					}
+					else
+					{
+						this._LoginUserID = default(int);
+					}
+					this.SendPropertyChanged("StudentLogin");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.UserEducation")]
+	public partial class UserEducation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserEducationID;
+		
+		private int _LoginUserID;
+		
+		private string _InstitueName;
+		
+		private string _SubjectName;
+		
+		private string _Year;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		private EntityRef<StudentLogin> _StudentLogin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserEducationIDChanging(int value);
+    partial void OnUserEducationIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnInstitueNameChanging(string value);
+    partial void OnInstitueNameChanged();
+    partial void OnSubjectNameChanging(string value);
+    partial void OnSubjectNameChanged();
+    partial void OnYearChanging(string value);
+    partial void OnYearChanged();
+    partial void OnModifiedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public UserEducation()
+		{
+			this._StudentLogin = default(EntityRef<StudentLogin>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_UserEducationID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserEducationID
+		{
+			get
+			{
+				return this._UserEducationID;
+			}
+			set
+			{
+				if ((this._UserEducationID != value))
+				{
+					this.OnUserEducationIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserEducationID = value;
+					this.SendPropertyChanged("UserEducationID");
+					this.OnUserEducationIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					if (this._StudentLogin.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstitueName", DbType="VarChar(MAX)")]
+		public string InstitueName
+		{
+			get
+			{
+				return this._InstitueName;
+			}
+			set
+			{
+				if ((this._InstitueName != value))
+				{
+					this.OnInstitueNameChanging(value);
+					this.SendPropertyChanging();
+					this._InstitueName = value;
+					this.SendPropertyChanged("InstitueName");
+					this.OnInstitueNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SubjectName", DbType="VarChar(MAX)")]
+		public string SubjectName
+		{
+			get
+			{
+				return this._SubjectName;
+			}
+			set
+			{
+				if ((this._SubjectName != value))
+				{
+					this.OnSubjectNameChanging(value);
+					this.SendPropertyChanging();
+					this._SubjectName = value;
+					this.SendPropertyChanged("SubjectName");
+					this.OnSubjectNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Year", DbType="VarChar(10)")]
+		public string Year
+		{
+			get
+			{
+				return this._Year;
+			}
+			set
+			{
+				if ((this._Year != value))
+				{
+					this.OnYearChanging(value);
+					this.SendPropertyChanging();
+					this._Year = value;
+					this.SendPropertyChanged("Year");
+					this.OnYearChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="StudentLogin_UserEducation", Storage="_StudentLogin", ThisKey="LoginUserID", IsForeignKey=true)]
+		public StudentLogin StudentLogin
+		{
+			get
+			{
+				return this._StudentLogin.Entity;
+			}
+			set
+			{
+				StudentLogin previousValue = this._StudentLogin.Entity;
+				if (((previousValue != value) 
+							|| (this._StudentLogin.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StudentLogin.Entity = null;
+						previousValue.UserEducations.Remove(this);
+					}
+					this._StudentLogin.Entity = value;
+					if ((value != null))
+					{
+						value.UserEducations.Add(this);
 						this._LoginUserID = value.LoginUserID;
 					}
 					else
