@@ -15,7 +15,10 @@
             <cc1:ShowHideLinkButton ID="lnkCreate" runat="server" Show="true" ContainnerID="#creatediv">Sign Up</cc1:ShowHideLinkButton>
         </li>
         <li>
-            <asp:LinkButton ID="lnkLogout" runat="server" >LogOut</asp:LinkButton></li>
+            <asp:HyperLink ID="lnkAccountSetting" runat="server" NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
+        </li>
+        <li>
+            <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">LogOut</asp:LinkButton></li>
     </ul>
     <div id="logindiv" style="display: none">
         <uc2:Login ID="Login1" runat="server" />

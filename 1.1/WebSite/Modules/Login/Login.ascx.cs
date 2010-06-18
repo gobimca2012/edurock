@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using DataEntity;
 
 public partial class Modules_Login_Login : System.Web.UI.UserControl
 {
@@ -23,9 +24,18 @@ public partial class Modules_Login_Login : System.Web.UI.UserControl
         if (txtUsername.Text != "" && txtPassword.Text != null)
         {
             UserAuthontication objNewAuth = new UserAuthontication();
-            if (new UserAuthontication().ValidateUser(txtUsername.Text, txtPassword.Text))
+            LoginUser loginData = new UserAuthontication().ValidateUser(txtUsername.Text, txtPassword.Text);
+            if (loginData!=null)
             {
-                JScripter.Loader.RedirectPage(ResolveUrl("~/Home.aspx"), this.Page);
+                if (loginData.UserType == 1)
+                {
+                    JScripter.Loader.RedirectPage(ResolveUrl("~/User/DashBoard.aspx"), this.Page);
+                }
+                else
+                {
+                    JScripter.Loader.RedirectPage(ResolveUrl("~/Home.aspx"), this.Page);
+                }
+                
             }
             Response.Redirect("~/Home.aspx");
         }

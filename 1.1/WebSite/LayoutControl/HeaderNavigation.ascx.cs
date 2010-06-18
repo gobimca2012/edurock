@@ -30,9 +30,17 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
             {
                 ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/CollegeMenu.ascx"));
             }
+            if (new UserAuthontication().UserType == UserTypeEnum.Student)
+            {
+                ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/UserMenu.ascx"));
+            }
             
         }
 
     }
-   
+
+    protected void lnkLogout_Click(object sender, EventArgs e)
+    {
+        new UserAuthontication().LogOut();
+    }
 }

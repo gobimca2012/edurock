@@ -59,7 +59,7 @@ li
     padding:0px;
     background-color:Transparent;
 }
-a
+.contentbox a,a
 {
     padding:2px 4px;
     border:solid 1px #2867BE;
@@ -130,4 +130,8 @@ table
 .qs .contentbox
 {
     min-height:300px;
+}
+.headx
+{
+    background:Transparent url(images/scv1.png);
 }
