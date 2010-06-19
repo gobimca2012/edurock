@@ -9,6 +9,7 @@ namespace BusinessLogic
         ExamList,
         CurrentQuestion,
         QuestionList,
-        ExamStartTime
+        ExamStartTime,
+        ExamTime
     }
 }

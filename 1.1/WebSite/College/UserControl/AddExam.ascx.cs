@@ -41,8 +41,8 @@ public partial class College_UserControl_AddExam : System.Web.UI.UserControl
         int LoginUserID; if (true) { LoginUserID = new UserAuthontication().LoggedInUserID; }
 
         DateTime ModifiedDate; if (true) { ModifiedDate = DateTime.Now; }
-
-        new ExamController().Add(ExamName, SubjectName, LoginUserID,txtDescription.Text ,ModifiedDate);
+        TimeSpan ExamTime = new TimeSpan(Convert.ToInt32(txtHour.Text), Convert.ToInt32(txtMinut.Text), 0);
+        new ExamController().Add(ExamName, SubjectName, LoginUserID,txtDescription.Text ,ExamTime, ModifiedDate);
         Response.Redirect("~/College/ListExam.aspx");
     }
     private void EditData(int ID)
@@ -55,7 +55,9 @@ public partial class College_UserControl_AddExam : System.Web.UI.UserControl
 
         string SubjectName; if (true) { SubjectName = txtSubjectName.Text; }
 
-        new ExamController().UpdateByExamID(ExamID, ExamName, SubjectName,txtDescription.Text, new UserAuthontication().LoggedInUserID, DateTime.Now);
+        TimeSpan ExamTime = new TimeSpan(Convert.ToInt32(txtHour.Text), Convert.ToInt32(txtMinut.Text), 0);
+
+        new ExamController().UpdateByExamID(ExamID, ExamName, SubjectName,txtDescription.Text,ExamTime, new UserAuthontication().LoggedInUserID, DateTime.Now);
     }
     private void BindData(int ID)
     {
@@ -68,7 +70,9 @@ public partial class College_UserControl_AddExam : System.Web.UI.UserControl
             txtExamName.Text = data.ExamName;
 
             txtSubjectName.Text = data.SubjectName;
-
+            string[] ExamTimes = data.ExamTime.ToString().Split(':');
+            txtHour.Text = ExamTimes[0];
+            txtMinut.Text = ExamTimes[1];
 
 
         }

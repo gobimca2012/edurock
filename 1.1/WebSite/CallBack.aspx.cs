@@ -21,6 +21,26 @@ public partial class CallBack :AjaxPage
             return Convert.ToInt32(Request.QueryString["eid"]);
         }
     }
+    private string ExamTime
+    {
+        get
+        {
+            if (Session[SessionName.ExamTime.ToString()] != null)
+            {
+                return Session[SessionName.ExamTime.ToString()].ToString();
+            }
+            else
+            {
+                Session[SessionName.ExamTime.ToString()] = new ExamController().GetbyExamID(ExamID)[0].ExamTime.ToString();
+                return Session[SessionName.ExamTime.ToString()].ToString();
+            }
+        }
+
+        set
+        {
+            Session[SessionName.ExamTime.ToString()] = value;
+        }
+    }
     private DateTime StartTime
     {
         get
@@ -35,7 +55,7 @@ public partial class CallBack :AjaxPage
                 if (data.Count > 0)
                 {
                     if (data[0].StartTime != null)
-                    {
+                    {                        
                         return data[0].StartTime;
                     }
                     else
@@ -58,7 +78,9 @@ public partial class CallBack :AjaxPage
     {
         if (Request.QueryString["tm"] != null)
         {
-            TimeSpan RemainingTime = (TimeSpan)(StartTime.AddHours(2) - DateTime.Now);
+            string[] ExamTimeS = ExamTime.Split(':');
+            TimeSpan ExamT = new TimeSpan(Convert.ToInt32(ExamTimeS[0]), Convert.ToInt32(ExamTimeS[1]), 0);
+            TimeSpan RemainingTime = (TimeSpan)(StartTime.Add(ExamT) - DateTime.Now);
             string Time = RemainingTime.Hours.ToString() + ":" + RemainingTime.Minutes.ToString();
             Response.Write(Time);
         }

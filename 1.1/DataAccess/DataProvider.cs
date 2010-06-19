@@ -331,7 +331,7 @@ namespace DataAccess
 
         #region Exam
 
-        public int ExamAdd(string ExamName, string SubjectName, int LoginUserID, string Description, DateTime ModifiedDate)
+        public int ExamAdd(string ExamName, string SubjectName, int LoginUserID, string Description,TimeSpan ExamTime, DateTime ModifiedDate)
         {
             Exam ObjExam = new Exam();
 
@@ -344,6 +344,7 @@ namespace DataAccess
             ObjExam.LoginUserID = LoginUserID;
 
             ObjExam.ModifiedDate = ModifiedDate;
+            ObjExam.ExamTime = ExamTime.ToString();
             ObjExam.IsActive = false;
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -597,6 +598,22 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
+        public void ExamUpdateByExamID(int ExamID, string ExamName, string SubjectName, int LoginUserID, string Description,TimeSpan ExamTime, DateTime ModifiedDate)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            Exam data = db.Exams.Single(p => p.ExamID == ExamID);
+            data.ExamName = ExamName;
+            data.Description = Description;
+            data.SubjectName = SubjectName;
+            data.LoginUserID = LoginUserID;
+            data.ModifiedDate = ModifiedDate;
+            data.ExamTime = ExamTime.ToString();
+
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
         #endregion
 
 

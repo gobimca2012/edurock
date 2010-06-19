@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AddExam.ascx.cs" Inherits="College_UserControl_AddExam" %>
-
 <div class="contentbox">
     <fieldset>
         <legend>Exam</legend>
@@ -25,8 +24,18 @@
                     <span class="label">Description</span>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtDescription" runat="server" Width="773px" 
-                        TextMode="MultiLine" Height="673px"></asp:TextBox>
+                    <asp:TextBox ID="txtDescription" runat="server" Width="773px" TextMode="MultiLine"
+                        Height="673px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Examination Time
+                </td>
+                <td>
+                    <span>
+                        <asp:TextBox ID="txtHour" runat="server"></asp:TextBox></span><span><asp:TextBox
+                            ID="txtMinut" runat="server"></asp:TextBox></span>
                 </td>
             </tr>
         </table>
@@ -35,6 +44,7 @@
     <asp:LinkButton ID="lnkSave" runat="server" Text="Update" OnClick="lnkSave_Click"
         Visible="false"></asp:LinkButton>
 </div>
+
 <script language='javascript' type='text/javascript'>
 tinyMCE.init({
 mode : 'textareas',
@@ -45,3 +55,4 @@ theme_advanced_buttons3:""
 });
 //you can also used “advanced” for themes
 </script>
+

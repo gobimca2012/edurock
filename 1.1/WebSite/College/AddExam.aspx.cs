@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class College_AddExam : CollegeBasePage
+public partial class College_AddExam : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
