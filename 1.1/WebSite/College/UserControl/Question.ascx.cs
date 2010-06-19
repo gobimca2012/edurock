@@ -140,7 +140,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         noneItem.Text = "Select";
         noneItem.Value = "0";
         ddAnswer.Items.Insert(0, noneItem);
-        var data = new EXM_UserAnswerController().GetbyEXM_QuestionID(CurrentQuestion.EXM_QuestionID);
+        var data = new EXM_UserAnswerController().Gets(CurrentQuestion.EXM_QuestionID,new UserAuthontication().LoggedInUserID);
         foreach (EXM_UserAnswer answerData in data)
         {
             for (int i = 0; i < ddAnswer.Items.Count; i++)
@@ -159,7 +159,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         chkOption.DataBind();
         //listOption.DataSource = _Question.EXM_Answers;
         //listOption.DataBind();
-        var data = new EXM_UserAnswerController().GetbyEXM_QuestionID(CurrentQuestion.EXM_QuestionID);
+        var data = new EXM_UserAnswerController().Gets(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
         //if (data.Count > 0)
         //{
         //    for (int i = 0; i < chkOption.Items.Count; i++)
@@ -182,7 +182,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         chkMulti.DataTextField = "Answer";
         chkMulti.DataValueField = "EXM_AnswerID";
         chkMulti.DataBind();
-        var data = new EXM_UserAnswerController().GetbyEXM_QuestionID(CurrentQuestion.EXM_QuestionID);
+        var data = new EXM_UserAnswerController().Gets(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
         foreach (EXM_UserAnswer answerData in data)
         {
             for (int i = 0; i < chkMulti.Items.Count; i++)
@@ -216,7 +216,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         {
             if (chkMulti.SelectedValue != "")
             {
-                new EXM_UserAnswerController().DeletebyEXM_QuestionID(CurrentQuestion.EXM_QuestionID);
+                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID,new UserAuthontication().LoggedInUserID);
                 for (int i = 0; i < chkMulti.Items.Count; i++)
                 {
                     if (chkMulti.Items[i].Selected)
@@ -229,7 +229,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         {
             if (ddAnswer.SelectedValue != "")
             {
-                new EXM_UserAnswerController().DeletebyEXM_QuestionID(CurrentQuestion.EXM_QuestionID);
+                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
                 for (int i = 0; i < ddAnswer.Items.Count; i++)
                 {
                     if (ddAnswer.Items[i].Selected)

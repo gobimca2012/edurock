@@ -60,6 +60,9 @@
                     <td>
                         <asp:HyperLink ID="lnkListQuestion" runat="server" NavigateUrl='<%#ResolveUrl("~/College/QuestionWizard/ListQuestion.aspx")+"?eid="+Eval("ExamID")%>'>List Question</asp:HyperLink>
                     </td>
+                    <td>
+                        <asp:HyperLink ID="lnkListUser" runat="server" NavigateUrl='<%#ResolveUrl("~/College/ExamAttenders.aspx")+"?eid="+Eval("ExamID")%>'>List Exammer</asp:HyperLink>
+                    </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>

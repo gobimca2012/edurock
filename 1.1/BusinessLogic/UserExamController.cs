@@ -454,6 +454,31 @@ namespace BusinessLogic
                 return null;
             }
         }
+
+        public List<ExamUserByExamIDResult> ExamUserByExamID(int ExamID)
+        {
+            try
+            {
+
+                return new DataProvider().ExamUserByExamID(ExamID);
+            }
+            catch
+            {
+                return new List<ExamUserByExamIDResult>();
+            }
+        }
+        public List<ExamUserByExamIDResult> ExamUserByExamID(int ExamID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().ExamUserByExamID(ExamID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<ExamUserByExamIDResult>();
+            }
+        }
         #endregion
 				
 				

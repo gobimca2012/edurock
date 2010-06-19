@@ -121,6 +121,13 @@ namespace DataEntity
 				return this.GetTable<UserExam>();
 			}
 		}
+		
+		[Function(Name="dbo.ExamUserByExamID")]
+		public ISingleResult<ExamUserByExamIDResult> ExamUserByExamID([Parameter(Name="ExamID", DbType="Int")] System.Nullable<int> examID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), examID);
+			return ((ISingleResult<ExamUserByExamIDResult>)(result.ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.EXM_Answer")]
@@ -1745,6 +1752,158 @@ namespace DataEntity
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class ExamUserByExamIDResult
+	{
+		
+		private int _UserExamID;
+		
+		private int _LoginUserID;
+		
+		private int _ExamID;
+		
+		private System.DateTime _StartTime;
+		
+		private System.DateTime _EndDate;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		public ExamUserByExamIDResult()
+		{
+		}
+		
+		[Column(Storage="_UserExamID", DbType="Int NOT NULL")]
+		public int UserExamID
+		{
+			get
+			{
+				return this._UserExamID;
+			}
+			set
+			{
+				if ((this._UserExamID != value))
+				{
+					this._UserExamID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this._LoginUserID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ExamID", DbType="Int NOT NULL")]
+		public int ExamID
+		{
+			get
+			{
+				return this._ExamID;
+			}
+			set
+			{
+				if ((this._ExamID != value))
+				{
+					this._ExamID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this._StartTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EndDate", DbType="DateTime NOT NULL")]
+		public System.DateTime EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this._EndDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstName", DbType="VarChar(1000)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LastName", DbType="VarChar(1000)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
 			}
 		}
 	}
