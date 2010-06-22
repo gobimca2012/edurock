@@ -53,7 +53,7 @@ public partial class College_QuestionWizard_Step1 : BasePage
             }
         }
     }
-
+    
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -65,7 +65,6 @@ public partial class College_QuestionWizard_Step1 : BasePage
                 var data = new EXM_QuestionController().GetbyEXM_QuestionID(_QuestionID);
                 if (data.Count > 0)
                 {
-
                     rdbQuestionType.SelectedValue = data[0].Q_Type.ToString();
                 }
 

@@ -15,6 +15,12 @@
                         <td>
                             ModifiedDate
                         </td>
+                        <td>
+                            Start Date
+                        </td>
+                        <td>
+                            End Date
+                        </td>
                         <%--<td>
                             Status
                         </td>--%>
@@ -26,8 +32,6 @@
         <ItemTemplate>
             <tr>
                 <td>
-                    <%--<asp:HyperLink ID="lnkExam" runat="server" NavigateUrl='<%#ResolveUrl("~/College/ExamIntroduction.aspx")+"?eid="+Eval("ExamID") %>'>
-                        <%#Eval("ExamName") %></asp:HyperLink>--%>
                     <asp:HyperLink ID="lnkExam" runat="server">
                         <%#Eval("ExamName") %></asp:HyperLink>
                 </td>
@@ -37,7 +41,13 @@
                 <td>
                     <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("ModifiedDate"))) %>
                 </td>
-               <%-- <td>
+                <td>
+                    <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("StartDate"))) %>
+                </td>
+                <td>
+                    <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("EndDate"))) %>
+                </td>
+                <%-- <td>
                     <%#BusinessLogic.UserExamController.GetStatus(Convert.ToBoolean(Eval("IsFinish").ToString()))%>
                 </td>--%>
             </tr>

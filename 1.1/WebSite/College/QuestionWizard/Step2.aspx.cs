@@ -21,6 +21,7 @@ public partial class College_QuestionWizard_Step2 : BasePage
             return Convert.ToInt32(Request.QueryString["qid"]);
         }
     }
+    
     private Dictionary<string, string> Status;
     private int AnswerCounter
     {

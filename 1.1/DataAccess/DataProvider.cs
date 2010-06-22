@@ -1273,6 +1273,32 @@ namespace DataAccess
 
         #endregion
         #region CustomEXM_Answer
+        public int EXM_AnswerAdd(int EXM_QuestionID, string Answer, bool IsRight,decimal Marks, DateTime ModifiedDate)
+        {
+            EXM_Answer ObjEXM_Answer = new EXM_Answer();
+
+
+            ObjEXM_Answer.Marks = Marks;
+
+
+            ObjEXM_Answer.EXM_QuestionID = EXM_QuestionID;
+
+
+            ObjEXM_Answer.Answer = Answer;
+
+
+            ObjEXM_Answer.IsRight = IsRight;
+
+
+            ObjEXM_Answer.ModifiedDate = ModifiedDate;
+
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.EXM_Answers.InsertOnSubmit(ObjEXM_Answer);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return ObjEXM_Answer.EXM_AnswerID;
+        }
         public bool IsRightAnswerAdded(int QuestionID)
         {
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();

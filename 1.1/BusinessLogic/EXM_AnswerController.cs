@@ -239,7 +239,7 @@ namespace BusinessLogic
             }
         }
 
-        
+
 
 
 
@@ -377,7 +377,7 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public Dictionary<string,string> Add(int EXM_QuestionID, string Answer, bool IsRight, DateTime ModifiedDate)
+        public Dictionary<string, string> Add(int EXM_QuestionID, string Answer, bool IsRight, DateTime ModifiedDate)
         {
             Dictionary<string, string> Status = new Dictionary<string, string>();
             try
@@ -389,14 +389,14 @@ namespace BusinessLogic
                     {
                         Status.Add("ID", " 0");
                         Status.Add("Error", "You allready Added Right Answer");
-                        
+
                     }
                     else
                     {
                         int AnswerID = new DataProvider().EXM_AnswerAdd(EXM_QuestionID, Answer, IsRight, ModifiedDate);
                         Status.Add("ID", AnswerID.ToString());
                         Status.Add("Error", "");
-                        
+
                     }
                 }
                 else if (data[0].Q_Type == (int)QuestionType.MultipleChoice || data[0].Q_Type == (int)QuestionType.MultipleFillintheBlanks)

@@ -18,20 +18,7 @@
                 <fieldset>
                     <legend>User</legend>
                     <table>
-                        <tr>
-                            <td>
-                                <span class="label">UserID</span>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="label">LoginUserID</span>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
+                        
                         <tr>
                             <td>
                                 <span class="label">FirstName</span>
@@ -121,13 +108,7 @@
                                 <asp:TextBox ID="txtWebSite" runat="server"></asp:TextBox>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <span class="label">ModifiedDate</span>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
+                       
                     </table>
                 </fieldset>
                 <div>
