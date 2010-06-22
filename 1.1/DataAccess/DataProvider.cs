@@ -2080,7 +2080,20 @@ namespace DataAccess
             return db.ExamUserByExamID(ExamID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
+
+        public void UserExamUpdate(int ExamID,int UserExamID,bool IsFinish)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            db.DeferredLoadingEnabled = false;
+            UserExam data = db.UserExams.Single(p => p.ExamID == ExamID && p.UserExamID==UserExamID);
+            data.IsFinish = IsFinish;
+            data.ModifiedDate = DateTime.Now;
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
         #endregion
+
 
 
         #region User

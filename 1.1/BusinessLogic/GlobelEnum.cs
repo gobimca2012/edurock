@@ -10,7 +10,8 @@ namespace BusinessLogic
     }
     public enum CookieName
     {
-        ExamID=1
+        ExamID=1,
+        UserExamID=2
 
     }
 }

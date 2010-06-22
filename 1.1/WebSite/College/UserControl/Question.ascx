@@ -36,7 +36,8 @@
                 <asp:LinkButton ID="lnkPrev" runat="server" Text="Prev" OnClick="lnkPrev_Click"></asp:LinkButton></div>
             <div style="float: left; padding: 5px;">
                 <asp:LinkButton ID="lnkNext" runat="server" Text="Next" OnClick="lnkNext_Click"></asp:LinkButton></div>
-                <div style="clear:both"></div>
+            <div style="clear: both">
+            </div>
         </div>
     </div>
 </div>
@@ -61,4 +62,8 @@
             </ItemTemplate>
         </asp:ListView>
     </div>
+</div>
+<div>
+    <asp:LinkButton ID="lnkSubmitAnswer" runat="server" 
+        onclick="lnkSubmitAnswer_Click">Submit Answers</asp:LinkButton>
 </div>

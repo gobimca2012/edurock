@@ -110,13 +110,31 @@ public partial class College_StartExam : BasePage
             Session[SessionName.ExamStartTime.ToString()] = value;
         }
     }
+    private int UserExamID
+    {
+        get
+        {
+            if (Request.Cookies[CookieName.UserExamID.ToString()] != null)
+            {
+                return Convert.ToInt32(Request.Cookies[CookieName.UserExamID.ToString()].Value.ToString());
+
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+     
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.IsPostBack)
         {
-           // BindQuestion();  
+            // BindQuestion();  
             StartTime = DateTime.Now;
-            new UserExamController().Add(new UserAuthontication().LoggedInUserID, _ExamID, DateTime.Now, DateTime.Now.AddHours(1), DateTime.Now);
+            int UserExamID=new UserExamController().Add(new UserAuthontication().LoggedInUserID, _ExamID, DateTime.Now, DateTime.Now.AddHours(1), DateTime.Now);
+            Response.Cookies[CookieName.UserExamID.ToString()].Value = UserExamID.ToString();
 
         }
         JScripter.Loader objLoad = new JScripter.Loader(this.Page, false);
@@ -125,14 +143,14 @@ public partial class College_StartExam : BasePage
 
         objLoad.InjectScript(string.Format("Timmer('{0}','{1}','{2}');", "#time", ResolveUrl("~/CallBack.aspx") + "?tm=s&eid=" + _ExamID.ToString(), "15000"), this.Page);
 
-        
+
     }
 
     [WebMethod]
     public static string GetRemainingTime()
     {
-        
+
         return "01:00";
     }
-   
+
 }

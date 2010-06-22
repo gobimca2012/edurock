@@ -1,9 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AvailableExam.ascx.cs"
     Inherits="User_UserControl_Exam_AvailableExam" %>
 <div class="contentbox">
-    <asp:ListView ID="ListExam" runat="server" DataKeyNames="ExamID" 
-        OnItemDataBound="ListUserExamOnItemDataBound" 
-        >
+    <asp:ListView ID="ListExam" runat="server" DataKeyNames="ExamID" OnItemDataBound="ListUserExamOnItemDataBound">
         <LayoutTemplate>
             <table>
                 <thead>
@@ -17,6 +15,9 @@
                         <td>
                             ModifiedDate
                         </td>
+                        <%--<td>
+                            Status
+                        </td>--%>
                     </tr>
                 </thead>
                 <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
@@ -25,12 +26,10 @@
         <ItemTemplate>
             <tr>
                 <td>
-                    
                     <%--<asp:HyperLink ID="lnkExam" runat="server" NavigateUrl='<%#ResolveUrl("~/College/ExamIntroduction.aspx")+"?eid="+Eval("ExamID") %>'>
                         <%#Eval("ExamName") %></asp:HyperLink>--%>
-                        <asp:HyperLink ID="lnkExam" runat="server" >
+                    <asp:HyperLink ID="lnkExam" runat="server">
                         <%#Eval("ExamName") %></asp:HyperLink>
-                    
                 </td>
                 <td>
                     <%#Eval("SubjectName") %>
@@ -38,6 +37,9 @@
                 <td>
                     <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("ModifiedDate"))) %>
                 </td>
+               <%-- <td>
+                    <%#BusinessLogic.UserExamController.GetStatus(Convert.ToBoolean(Eval("IsFinish").ToString()))%>
+                </td>--%>
             </tr>
         </ItemTemplate>
     </asp:ListView>

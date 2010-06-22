@@ -60,6 +60,23 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
             Session[SessionName.QuestionList.ToString()] = value;
         }
     }
+    private int UserExamID
+    {
+        get
+        {
+            if (Request.Cookies[CookieName.UserExamID.ToString()] != null)
+            {
+                return Convert.ToInt32(Request.Cookies[CookieName.UserExamID.ToString()].Value.ToString());
+
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.IsPostBack)
@@ -238,5 +255,9 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
             }
 
         }
+    }
+    protected void lnkSubmitAnswer_Click(object sender, EventArgs e)
+    {
+        new UserExamController().Update(_ExamID, UserExamID, true);
     }
 }

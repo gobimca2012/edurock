@@ -21,8 +21,8 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="LoginUser_EXM_UserAnswer" Member="EXM_UserAnswers" OtherKey="LoginUserID" Type="EXM_UserAnswer" />
-      <Association Name="LoginUser_UserExam" Member="UserExams" OtherKey="LoginUserID" Type="UserExam" />
       <Association Name="LoginUser_Exam" Member="Exams" OtherKey="LoginUserID" Type="Exam" />
+      <Association Name="LoginUser_UserExam" Member="UserExams" OtherKey="LoginUserID" Type="UserExam" />
     </Type>
   </Table>
   <Table Name="dbo.EXM_Question" Member="EXM_Questions">
@@ -53,17 +53,6 @@
       <Association Name="LoginUser_EXM_UserAnswer" Member="LoginUser" ThisKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.UserExam" Member="UserExams">
-    <Type Name="UserExam">
-      <Column Name="UserExamID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ExamID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="LoginUser_UserExam" Member="LoginUser" ThisKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Exam" Member="Exams">
     <Type Name="Exam">
       <Column Name="ExamID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -76,6 +65,18 @@
       <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Exam_EXM_Question" Member="EXM_Questions" OtherKey="ExamID" Type="EXM_Question" />
       <Association Name="LoginUser_Exam" Member="LoginUser" ThisKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserExam" Member="UserExams">
+    <Type Name="UserExam">
+      <Column Name="UserExamID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExamID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsFinish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="LoginUser_UserExam" Member="LoginUser" ThisKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.ExamUserByExamID" Method="ExamUserByExamID">
