@@ -68,7 +68,7 @@ public partial class College_UserControl_AddExam : System.Web.UI.UserControl
 
 
             txtExamName.Text = data.ExamName;
-
+            txtDescription.Text = data.Description;
             txtSubjectName.Text = data.SubjectName;
             string[] ExamTimes = data.ExamTime.ToString().Split(':');
             txtHour.Text = ExamTimes[0];

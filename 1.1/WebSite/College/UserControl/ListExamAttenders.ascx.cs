@@ -63,6 +63,7 @@ public partial class College_UserControl_ListExamAttenders : System.Web.UI.UserC
         {
             BindList();
             TotalPage = new UserExamController().ExamUserByExamID(ExamId).Count / PageSize;
+            PaggerLinkManager();
         }
 
     }

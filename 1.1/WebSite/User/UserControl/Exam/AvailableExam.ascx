@@ -1,7 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AvailableExam.ascx.cs"
     Inherits="User_UserControl_Exam_AvailableExam" %>
 <div class="contentbox">
-    <asp:ListView ID="ListExam" runat="server" DataKeyNames="ExamID">
+    <asp:ListView ID="ListExam" runat="server" DataKeyNames="ExamID" 
+        OnItemDataBound="ListUserExamOnItemDataBound" 
+        >
         <LayoutTemplate>
             <table>
                 <thead>
@@ -23,8 +25,12 @@
         <ItemTemplate>
             <tr>
                 <td>
-                    <asp:HyperLink ID="lnkExam" runat="server" NavigateUrl='<%#ResolveUrl("~/College/ExamIntroduction.aspx")+"?eid="+Eval("ExamID") %>'>
+                    
+                    <%--<asp:HyperLink ID="lnkExam" runat="server" NavigateUrl='<%#ResolveUrl("~/College/ExamIntroduction.aspx")+"?eid="+Eval("ExamID") %>'>
+                        <%#Eval("ExamName") %></asp:HyperLink>--%>
+                        <asp:HyperLink ID="lnkExam" runat="server" >
                         <%#Eval("ExamName") %></asp:HyperLink>
+                    
                 </td>
                 <td>
                     <%#Eval("SubjectName") %>

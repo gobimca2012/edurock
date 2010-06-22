@@ -6,13 +6,7 @@
             <thead>
                 <tr>
                     <td>
-                        UserExamID
-                    </td>
-                    <td>
-                        LoginUserID
-                    </td>
-                    <td>
-                        ExamID
+                        User
                     </td>
                     <td>
                         StartTime
@@ -31,14 +25,9 @@
     <ItemTemplate>
         <tr>
             <td>
-                <%#Eval("UserExamID") %>
+                <%#Eval("FirstName") %>&nbsp;<%#Eval("LastName")%>
             </td>
-            <td>
-                <%#Eval("LoginUserID") %>
-            </td>
-            <td>
-                <%#Eval("ExamID") %>
-            </td>
+           
             <td>
                 <%#Eval("StartTime") %>
             </td>
@@ -46,7 +35,7 @@
                 <%#Eval("EndDate") %>
             </td>
             <td>
-                <%#Eval("ModifiedDate") %>
+                <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("ModifiedDate").ToString())) %>
             </td>
         </tr>
     </ItemTemplate>

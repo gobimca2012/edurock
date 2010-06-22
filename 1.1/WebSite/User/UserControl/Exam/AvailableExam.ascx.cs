@@ -14,6 +14,11 @@ using BusinessLogic;
 
 public partial class User_UserControl_Exam_AvailableExam : System.Web.UI.UserControl
 {
+    public string Url
+    {
+        get;
+        set;
+    }
     private int PageNumber
     {
         get
@@ -88,4 +93,25 @@ public partial class User_UserControl_Exam_AvailableExam : System.Web.UI.UserCon
         BindList();
         PaggerLinkManager();
     }
+    protected void ListUserExamOnItemDataBound(object sender, ListViewItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListViewItemType.DataItem)
+        {
+            
+            {
+                ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+                string ExamId = ListExam.DataKeys[currentItem.DataItemIndex]["ExamID"].ToString();
+
+                HyperLink lnkExam = (HyperLink)currentItem.FindControl("lnkExam");
+                if (lnkExam != null)
+                {
+                    lnkExam.Attributes["onclick"] = string.Format("window.open('{0}','mywindow','width=1000,height=600,toolbar=no,scrollbars=yes,copyhistory=no,menubar=no,status=no,directories=no')", ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + ExamId);
+                }
+            }
+            //Do something   
+        }
+
+
+    }
+
 }

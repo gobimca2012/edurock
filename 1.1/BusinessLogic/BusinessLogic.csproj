@@ -69,6 +69,7 @@
     <Compile Include="EXM_QuestionController.cs" />
     <Compile Include="EXM_UserAnswerController.cs" />
     <Compile Include="GlobelEnum.cs" />
+    <Compile Include="InstituteController.cs" />
     <Compile Include="IStartExam.cs" />
     <Compile Include="LoginUserController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
