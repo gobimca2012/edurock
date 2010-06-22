@@ -38,6 +38,24 @@
                             ID="txtMinut" runat="server"></asp:TextBox></span>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    Start Date
+                </td>
+                <td>
+                    <span>
+                        <asp:TextBox ID="TxtStart" runat="server"></asp:TextBox></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    End Date
+                </td>
+                <td>
+                    <span>
+                        <asp:TextBox ID="TxtEndDate" runat="server"></asp:TextBox></span>
+                </td>
+            </tr>
         </table>
     </fieldset>
     <asp:LinkButton ID="lnkAdd" runat="server" Text="Add" OnClick="lnkAdd_Click"></asp:LinkButton>
