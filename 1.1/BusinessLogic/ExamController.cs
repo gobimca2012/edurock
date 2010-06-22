@@ -221,12 +221,12 @@ namespace BusinessLogic
 
 
 
-        public int Add(string ExamName, string SubjectName, int LoginUserID,string Description,TimeSpan ExamTime, DateTime ModifiedDate)
+        public int Add(string ExamName, string SubjectName, int LoginUserID,string Description,TimeSpan ExamTime, DateTime ModifiedDate,DateTime StartDate,DateTime EndDate)
         {
 
             try
             {
-                return new DataProvider().ExamAdd( ExamName, SubjectName, LoginUserID,Description,ExamTime, ModifiedDate);
+                return new DataProvider().ExamAdd(ExamName, SubjectName, LoginUserID, Description, ExamTime, ModifiedDate, StartDate,EndDate);
                 
             }
             catch (Exception ex)
@@ -395,12 +395,12 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public bool UpdateByExamID(int ExamID, string ExamName, string SubjectName, string Description,TimeSpan ExamTime, int LoginUserID, DateTime ModifiedDate)
+        public bool UpdateByExamID(int ExamID, string ExamName, string SubjectName, string Description, TimeSpan ExamTime, int LoginUserID, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate)
         {
 
             try
             {
-                new DataProvider().ExamUpdateByExamID(ExamID, ExamName, SubjectName, LoginUserID, Description,ExamTime, ModifiedDate);
+                new DataProvider().ExamUpdateByExamID(ExamID, ExamName, SubjectName, LoginUserID, Description,ExamTime, ModifiedDate,StartDate,EndDate);
                 return true;
             }
             catch (Exception ex)

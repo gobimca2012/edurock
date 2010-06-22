@@ -331,7 +331,7 @@ namespace DataAccess
 
         #region Exam
 
-        public int ExamAdd(string ExamName, string SubjectName, int LoginUserID, string Description,TimeSpan ExamTime, DateTime ModifiedDate)
+        public int ExamAdd(string ExamName, string SubjectName, int LoginUserID, string Description, TimeSpan ExamTime, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate)
         {
             Exam ObjExam = new Exam();
 
@@ -346,6 +346,8 @@ namespace DataAccess
             ObjExam.ModifiedDate = ModifiedDate;
             ObjExam.ExamTime = ExamTime.ToString();
             ObjExam.IsActive = false;
+            ObjExam.StartDate = StartDate;
+            ObjExam.EndDate = EndDate;
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             db.Exams.InsertOnSubmit(ObjExam);
@@ -598,7 +600,7 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
-        public void ExamUpdateByExamID(int ExamID, string ExamName, string SubjectName, int LoginUserID, string Description,TimeSpan ExamTime, DateTime ModifiedDate)
+        public void ExamUpdateByExamID(int ExamID, string ExamName, string SubjectName, int LoginUserID, string Description, TimeSpan ExamTime, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();
@@ -609,7 +611,8 @@ namespace DataAccess
             data.LoginUserID = LoginUserID;
             data.ModifiedDate = ModifiedDate;
             data.ExamTime = ExamTime.ToString();
-
+            data.StartDate = StartDate;
+            data.EndDate = EndDate;
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
