@@ -128,6 +128,13 @@ namespace DataEntity
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), examID);
 			return ((ISingleResult<ExamUserByExamIDResult>)(result.ReturnValue));
 		}
+		
+		[Function(Name="dbo.GetExamResultByLoginUserID")]
+		public ISingleResult<GetExamResultByLoginUserIDResult> GetExamResultByLoginUserID([Parameter(Name="LoginUserID", DbType="Int")] System.Nullable<int> loginUserID, [Parameter(Name="ExamID", DbType="Int")] System.Nullable<int> examID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID, examID);
+			return ((ISingleResult<GetExamResultByLoginUserIDResult>)(result.ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.LoginUser")]
@@ -2023,6 +2030,140 @@ namespace DataEntity
 				if ((this._LastName != value))
 				{
 					this._LastName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetExamResultByLoginUserIDResult
+	{
+		
+		private System.Nullable<int> _Marks;
+		
+		private string _ExamName;
+		
+		private string _SubjectName;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private System.DateTime _StartTime;
+		
+		private System.DateTime _EndTime;
+		
+		public GetExamResultByLoginUserIDResult()
+		{
+		}
+		
+		[Column(Storage="_Marks", DbType="Int")]
+		public System.Nullable<int> Marks
+		{
+			get
+			{
+				return this._Marks;
+			}
+			set
+			{
+				if ((this._Marks != value))
+				{
+					this._Marks = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ExamName", DbType="VarChar(2000) NOT NULL", CanBeNull=false)]
+		public string ExamName
+		{
+			get
+			{
+				return this._ExamName;
+			}
+			set
+			{
+				if ((this._ExamName != value))
+				{
+					this._ExamName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_SubjectName", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string SubjectName
+		{
+			get
+			{
+				return this._SubjectName;
+			}
+			set
+			{
+				if ((this._SubjectName != value))
+				{
+					this._SubjectName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_StartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this._StartDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this._EndDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this._StartTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EndTime", DbType="DateTime NOT NULL")]
+		public System.DateTime EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this._EndTime = value;
 				}
 			}
 		}

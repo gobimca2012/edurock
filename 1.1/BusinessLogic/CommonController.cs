@@ -19,6 +19,10 @@ namespace BusinessLogic
             return uc;
 
         }
+        public static string GetTime(DateTime Date1, DateTime Date2)
+        {
+            return (Date1.Subtract(Date2)).ToString();
+        }
         public static void BindQuestionType(System.Web.UI.WebControls.DropDownList dd)
         {
             

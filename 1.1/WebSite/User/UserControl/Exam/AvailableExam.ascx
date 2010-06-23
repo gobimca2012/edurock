@@ -47,6 +47,9 @@
                 <td>
                     <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("EndDate"))) %>
                 </td>
+                <td>
+                    <asp:HyperLink ID="lnkResult" runat="server">Results</asp:HyperLink>
+                </td>
                 <%-- <td>
                     <%#BusinessLogic.UserExamController.GetStatus(Convert.ToBoolean(Eval("IsFinish").ToString()))%>
                 </td>--%>

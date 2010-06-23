@@ -2121,6 +2121,35 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
+        public List<UserExam> UserExamGetByLoginUserID(int LoginUserID, int ExamID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();            
+            db.DeferredLoadingEnabled = false;
+            db.ObjectTrackingEnabled = false;
+            var data = (from p in db.UserExams where p.LoginUserID==LoginUserID && p.ExamID==ExamID select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+        public List<GetExamResultByLoginUserIDResult> GetExamResultByLoginUserID(int LoginUserID, int ExamID)
+        {
+
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();     
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetExamResultByLoginUserID(LoginUserID, ExamID).ToList();
+
+        }
+        public List<GetExamResultByLoginUserIDResult> GetExamResultByLoginUserID(int LoginUserID, int ExamID, int PageSize, int PageNumber)
+        {
+
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();     
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetExamResultByLoginUserID(LoginUserID, ExamID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         #endregion
 
 

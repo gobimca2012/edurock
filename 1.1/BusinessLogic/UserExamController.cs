@@ -508,6 +508,46 @@ namespace BusinessLogic
                 return "Available";
             }
         }
+        public List<UserExam> GetByLoginUserID(int LoginUserID,int ExamID)
+        {
+            try
+            {
+                return new DataProvider().UserExamGetByLoginUserID(LoginUserID,ExamID);
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return new List<UserExam>();
+            }
+        }
+        public List<GetExamResultByLoginUserIDResult> GetExamResultByLoginUserID(int LoginUserID, int ExamID)
+        {
+            try
+            {
+
+                return new DataProvider().GetExamResultByLoginUserID(LoginUserID, ExamID);
+            }
+            catch
+            {
+                return new List<GetExamResultByLoginUserIDResult>();
+            }
+        }
+        public List<GetExamResultByLoginUserIDResult> GetExamResultByLoginUserID(int LoginUserID, int ExamID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetExamResultByLoginUserID(LoginUserID, ExamID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetExamResultByLoginUserIDResult>();
+            }
+        }
         #endregion
 				
 				
