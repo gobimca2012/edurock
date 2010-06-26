@@ -28,6 +28,8 @@ public partial class College_ExamIntroduction : BasePage
         if (!this.IsPostBack)
         {
 
+            int _UserExamID = new UserExamController().Add(new UserAuthontication().LoggedInUserID, _ExamId, DateTime.Now, DateTime.Now, false, DateTime.Now);
+            Response.Cookies[CookieName.UserExamID.ToString()].Value = _UserExamID.ToString();
             Response.Cookies[CookieName.ExamID.ToString()].Value = Request.QueryString["eid"];
             BindData();
         }

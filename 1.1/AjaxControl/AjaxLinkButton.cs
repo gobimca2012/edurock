@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.UI;
 
 namespace AjaxControl
 {
@@ -20,7 +21,7 @@ namespace AjaxControl
         }
 
     }
-    
+
     public class AjaxLinkButton : System.Web.UI.WebControls.LinkButton
     {
         private string _Url;
@@ -31,7 +32,7 @@ namespace AjaxControl
             if (AjaxClick != null)
                 AjaxClick(this, e);
         }
-        
+
         public string Url
         {
             get
@@ -44,7 +45,7 @@ namespace AjaxControl
                 {
                     return "";
                 }
-            }           
+            }
             set
             {
                 _Url = value;
@@ -75,13 +76,47 @@ namespace AjaxControl
             this.EnableViewState = false;
             base.OnInit(e);
         }
-        
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            string Url =ResolveUrl(this.PostBackUrl);
+            string Url = ResolveUrl(this.PostBackUrl);
+            string Questring = "", QueryStringStr = "";
+            if (Url == "")
+            {
+                Questring = this.Page.Request.QueryString.ToString();
+                if (Questring != "")
+                {
+                    string[] queryString = Questring.Split('&');
+                    for (int i = 0; i < queryString.Length; i++)
+                    {
+                        string[] qstr = queryString[i].Split('=');
+                        if (qstr[0] != "cmd" && qstr[0] != "k" && qstr[0] != "ac")
+                        {
+                            if (QueryStringStr == "")
+                            {
+                                QueryStringStr += queryString[i];
+                            }
+                            else
+                            {
+                                QueryStringStr += "&" + queryString[i];
+                            }
+                        }
+                    }
+                }
+                if (Questring == "" && QueryStringStr == "")
+                    Url = this.Page.Request.RawUrl;
+                else
+                {
+                    if (QueryStringStr != "")
+                    {
+                        Url = this.Page.Request.UrlReferrer + "?" + QueryStringStr;
+                    }
+
+                }
+            }
             string QuesryString = "";
-            if (QID != "" && QID!=null)
+            if (QID != "" && QID != null)
             {
                 if (Url.Contains("?"))
                 {
@@ -96,6 +131,7 @@ namespace AjaxControl
             {
                 if (Url.Contains("?"))
                 {
+
                     QuesryString += "&cmd=" + AjaxCommand;
                 }
                 else
@@ -108,13 +144,13 @@ namespace AjaxControl
             {
                 ResponseContainner = RequestContainner;
             }
-            new JScripter.Loader(this.Page, false).PostData(RequestContainner, ResponseContainner,Url, this);
+            new JScripter.Loader(this.Page, false).PostData(RequestContainner, ResponseContainner, Url, this);
             if (HttpContext.Current.Request.QueryString["k"] != null)
             {
                 if (HttpContext.Current.Request.QueryString["k"] == this.ClientID)
                 {
                     AjaxEventArg objArg = new AjaxEventArg();
-                    if(HttpContext.Current.Request.QueryString["id"]!="")
+                    if (HttpContext.Current.Request.QueryString["id"] != "")
                     {
                         objArg.Id = HttpContext.Current.Request.QueryString["id"];
                     }
@@ -125,16 +161,20 @@ namespace AjaxControl
                     OnAjaxClick(objArg);
                 }
             }
-            string HidentControl = string.Format("<input type=\"hidden\" name=\"_DIMMER\" id=\"_DIMMER\" value=\"{0}\" />",QuesryString);
-            //System.Web.UI.WebControls.HiddenField que = new System.Web.UI.WebControls.HiddenField();
-            //que.Value = QuesryString;
-            //que.ID = "dim";
-            //System.Web.UI.Page currentPage = (System.Web.UI.Page)HttpContext.Current.Handler;
-            HttpContext.Current.Response.Write(HidentControl);
-            //currentPage.Controls.Add(que);
+            //string HidentControl = string.Format("<input type=\"hidden\" name=\"_DIMMER\" id=\"_DIMMER\" value=\"{0}\" />",QuesryString);
+            ////System.Web.UI.WebControls.HiddenField que = new System.Web.UI.WebControls.HiddenField();
+            ////que.Value = QuesryString;
+            ////que.ID = "dim";
+            ////System.Web.UI.Page currentPage = (System.Web.UI.Page)HttpContext.Current.Handler;
+            //HttpContext.Current.Response.Write(HidentControl);
+            ////currentPage.Controls.Add(que);
             PostBackUrl = _Url;
-          
+
         }
+
+
+
+
 
 
     }

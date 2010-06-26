@@ -132,9 +132,7 @@ public partial class College_StartExam : BasePage
         if (!this.IsPostBack)
         {
             // BindQuestion();  
-            StartTime = DateTime.Now;
-            int UserExamID=new UserExamController().Add(new UserAuthontication().LoggedInUserID, _ExamID, DateTime.Now, DateTime.Now.AddHours(1), DateTime.Now);
-            Response.Cookies[CookieName.UserExamID.ToString()].Value = UserExamID.ToString();
+           objLoader.LoadPage("#exam", ResolveUrl("~/College/Ajaxer/Question.aspx"));
 
         }
         JScripter.Loader objLoad = new JScripter.Loader(this.Page, false);

@@ -11,6 +11,7 @@ $.fn.serializeNoViewState = function()
    return this.find("input,textarea,select")
    .not("[type=hidden][name^=__]")
    .serialize();
+   //return this.serialize();
 
 }
 
@@ -187,4 +188,25 @@ $("#aa").countdown(
             }
          }
 );
+}
+
+
+
+$.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
+{
+   //alert("hello");
+   $(this).click(function()
+   {
+      var data = $("form").serializeNoViewState();
+      //alert(data);
+      alert($("form").serialize());
+      $.post(url, data,
+      function(result)
+      {
+         HtmlPaste(result, ContainnerID);
+         BuildLinks(ContainnerID);
+      }
+      );
+   }
+   );
 }

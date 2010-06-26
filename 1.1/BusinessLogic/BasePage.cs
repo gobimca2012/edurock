@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JScripter;
+using System.Web.UI;
 namespace BusinessLogic
 {
-	public class BasePage : System.Web.UI.Page
+    public class BasePage : System.Web.UI.Page
 	{
         protected JScripter.Loader objLoader;
         public Dictionary<string, string> CallStatus;
@@ -34,5 +35,19 @@ namespace BusinessLogic
         {
             objLoader.LoadPage(ContainnerID, Url);
         }
-	}
+
+        #region IPostBackDataHandler Members
+
+        public bool LoadPostData(string postDataKey, System.Collections.Specialized.NameValueCollection postCollection)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RaisePostDataChangedEvent()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
 }

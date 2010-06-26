@@ -17,7 +17,7 @@ namespace JScripter
 			{
                 JScripter.IncludeJavascriptFile("jquery", thisPage.ResolveUrl("~/JScript/jquery-1.3.2.js"),thisPage);
                 JScripter.IncludeJavascriptFile("encode", thisPage.ResolveUrl("~/JScript/encode.js"), thisPage);
-                JScripter.IncludeJavascriptFile("ajax", thisPage.ResolveUrl("~/JScript/ajax.js"), thisPage);
+                //JScripter.IncludeJavascriptFile("ajax", thisPage.ResolveUrl("~/JScript/ajax.js"), thisPage);
                 JScripter.IncludeJavascriptFile("vtajax", thisPage.ResolveUrl("~/JScript/vtajax.js"), thisPage);
                 
 

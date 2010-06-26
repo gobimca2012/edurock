@@ -105,7 +105,8 @@ public partial class User_UserControl_Exam_AvailableExam : System.Web.UI.UserCon
                 HyperLink lnkExam = (HyperLink)currentItem.FindControl("lnkExam");
                 if (lnkExam != null)
                 {
-                    lnkExam.Attributes["onclick"] = string.Format("window.open('{0}','mywindow','width=1000,height=600,toolbar=no,scrollbars=yes,copyhistory=no,menubar=no,status=no,directories=no')", ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + ExamId);
+                    //lnkExam.Attributes["onclick"] = string.Format("window.open('{0}','mywindow','width=1000,height=600,toolbar=no,scrollbars=yes,copyhistory=no,menubar=no,status=no,directories=no')", ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + ExamId);
+                    lnkExam.NavigateUrl =ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + ExamId;
                 }
                 HyperLink lnkResult = (HyperLink)currentItem.FindControl("lnkResult");
                 if (lnkResult != null)

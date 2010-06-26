@@ -24,7 +24,7 @@ public partial class College_QuestionWizard_ListQuestion : BasePage
     {
         JScripter.JScripter.IncludeJavascriptFile("jquery", ResolveUrl("~/Jscript/jquery-1.3.2.js"), this.Page);
         JScripter.JScripter.IncludeJavascriptFile("jqueryui", ResolveUrl("~/Jscript/jquery-ui.js"), this.Page);
-        JScripter.JScripter.IncludeJavascriptFile("ajax", ResolveUrl("~/Jscript/ajax.js"), this.Page);
+        //JScripter.JScripter.IncludeJavascriptFile("ajax", ResolveUrl("~/Jscript/ajax.js"), this.Page);
         JScripter.JScripter.IncludeJavascriptFile("vtajax", ResolveUrl("~/Jscript/vtAjax.js"), this.Page);
         JScripter.JScripter.IncludeJavascriptFile("sortable", ResolveUrl("~/Jscript/ui.sortable.js"), this.Page);
         if (!this.IsPostBack)

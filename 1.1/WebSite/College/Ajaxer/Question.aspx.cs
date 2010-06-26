@@ -13,7 +13,8 @@ using System.Xml.Linq;
 using BusinessLogic;
 using DataEntity;
 using System.Collections.Generic;
-public partial class College_UserControl_Question : System.Web.UI.UserControl
+
+public partial class College_Ajaxer_Question : AjaxPage
 {
     private int _ExamID
     {
@@ -75,11 +76,11 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
             }
         }
 
-        
+
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!this.IsPostBack)
+        if (!this.IsAjaxPostBack)
         {
             BindQuestion();
             LoadQuestionUI();
@@ -95,7 +96,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         ListQuestion.DataSource = QuestionList;
         ListQuestion.DataBind();
         CurrentQuestion = QuestionList[0];
-        
+
     }
 
     protected void QuestionList_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -146,7 +147,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
     private void BindSingleFillIntheBlank()
     {
         string[] Questionpart = CurrentQuestion.Question.Split(';');
-        lblPrefixText.InnerHtml = Questionpart[0] ;
+        lblPrefixText.InnerHtml = Questionpart[0];
         lblsufixText.InnerHtml = Questionpart[1];
         lblMarks.InnerText = CurrentQuestion.Marks.ToString();
         ddAnswer.DataSource = CurrentQuestion.EXM_Answers;
@@ -157,14 +158,14 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         noneItem.Text = "Select";
         noneItem.Value = "0";
         ddAnswer.Items.Insert(0, noneItem);
-        var data = new EXM_UserAnswerController().Gets(CurrentQuestion.EXM_QuestionID,new UserAuthontication().LoggedInUserID,UserExamID);
+        var data = new EXM_UserAnswerController().Gets(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID, UserExamID);
         foreach (EXM_UserAnswer answerData in data)
         {
             for (int i = 0; i < ddAnswer.Items.Count; i++)
                 if (ddAnswer.Items[i].Value == answerData.EXM_AnswerID.ToString())
                     ddAnswer.Items[i].Selected = true;
         }
-        
+
     }
     private void BindSingleChoiceQuestion()
     {
@@ -176,7 +177,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         chkOption.DataBind();
         //listOption.DataSource = _Question.EXM_Answers;
         //listOption.DataBind();
-        var data = new EXM_UserAnswerController().Gets(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID,UserExamID);
+        var data = new EXM_UserAnswerController().Gets(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID, UserExamID);
         //if (data.Count > 0)
         //{
         //    for (int i = 0; i < chkOption.Items.Count; i++)
@@ -195,17 +196,38 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         lblMarks.InnerText = CurrentQuestion.Marks.ToString();
         //listOption.DataSource = _Question.EXM_Answers;
         //listOption.DataBind();
-        chkMulti.DataSource = CurrentQuestion.EXM_Answers;
-        chkMulti.DataTextField = "Answer";
-        chkMulti.DataValueField = "EXM_AnswerID";
-        chkMulti.DataBind();
-        var data = new EXM_UserAnswerController().Gets(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID,UserExamID);
-        foreach (EXM_UserAnswer answerData in data)
+        var data = new EXM_UserAnswerController().Gets(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID, UserExamID);
+        string CheckBoxListString = "";
+        foreach (EXM_Answer exmAns in CurrentQuestion.EXM_Answers)
         {
-            for (int i = 0; i < chkMulti.Items.Count; i++)
-                if (chkMulti.Items[i].Value == answerData.EXM_AnswerID.ToString())
-                    chkMulti.Items[i].Selected = true;
+            bool IsApply = false;
+            foreach (EXM_UserAnswer answerData in data)
+            {
+                if (answerData.EXM_AnswerID == exmAns.EXM_AnswerID)
+                {
+                    CheckBoxListString += string.Format(" <input type='checkbox' name='chk${0}' id='chk${0}'checked='checked'/><label for='chk${0}'>{1}</label>", exmAns.EXM_AnswerID, exmAns.Answer);
+                    IsApply = true;
+                }
+            }
+            if (!IsApply)
+            {
+                CheckBoxListString += string.Format(" <input type='checkbox' name='chk${0}' id='chk${0}'/><label for='chk${0}'>{1}</label>", exmAns.EXM_AnswerID, exmAns.Answer);
+            }
         }
+        multiCheck.InnerHtml = CheckBoxListString;
+        //string.Format(" <input type='checkbox' name='chk${0}' id='chk${0}'/><label for='chk${0}'>{1}</label>");
+        //string.Format(" <input type='checkbox' name='chk${0}' id='chk${0}'checked='checked'/><label for='chk${0}'>{1}</label>");
+        //chkMulti.DataSource = CurrentQuestion.EXM_Answers;
+        //chkMulti.DataTextField = "Answer";
+        //chkMulti.DataValueField = "EXM_AnswerID";
+        //chkMulti.DataBind();
+        //var data = new EXM_UserAnswerController().Gets(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID, UserExamID);
+        //foreach (EXM_UserAnswer answerData in data)
+        //{
+        //    for (int i = 0; i < chkMulti.Items.Count; i++)
+        //        if (chkMulti.Items[i].Value == answerData.EXM_AnswerID.ToString())
+        //            chkMulti.Items[i].Selected = true;
+        //}
     }
     protected void lnkNext_Click(object sender, EventArgs e)
     {
@@ -223,35 +245,34 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
     {
         if (CurrentQuestion.Q_Type == (int)QuestionType.SingleChoice)
         {
-            
-            if (chkOption.SelectedValue != "")
+
+            if (Request.Params[chkOption.ClientID] != null)
             {
-                new EXM_UserAnswerController().UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkOption.SelectedValue), new UserAuthontication().LoggedInUserID,UserExamID);
+                new EXM_UserAnswerController().UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[chkOption.ClientID].ToString()), new UserAuthontication().LoggedInUserID, UserExamID);
             }
         }
         else if (CurrentQuestion.Q_Type == (int)QuestionType.MultipleChoice)
         {
-            if (chkMulti.SelectedValue != "")
+            List<string> SelectedItem = HtmlHelper.CheckBox("chk");
+            if (SelectedItem.Count > 0)
             {
-                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID,new UserAuthontication().LoggedInUserID);
-                for (int i = 0; i < chkMulti.Items.Count; i++)
+                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
+
+                for (int i = 0; i < SelectedItem.Count; i++)
                 {
-                    if (chkMulti.Items[i].Selected)
-                        new EXM_UserAnswerController().Add(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
+                    new EXM_UserAnswerController().Add(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(SelectedItem[i]), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
                 }
             }
 
         }
         else if (CurrentQuestion.Q_Type == (int)QuestionType.SingleFillintheBlanks)
         {
-            if (ddAnswer.SelectedValue != "")
+            if (Request.Params[ddAnswer.ClientID] != null && Request.Params[ddAnswer.ClientID] != "0")
             {
                 new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
-                for (int i = 0; i < ddAnswer.Items.Count; i++)
-                {
-                    if (ddAnswer.Items[i].Selected)
-                        new EXM_UserAnswerController().Add(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(ddAnswer.Items[i].Value), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
-                }
+
+                new EXM_UserAnswerController().Add(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[ddAnswer.ClientID].ToString()), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
+
             }
 
         }
@@ -259,5 +280,17 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
     protected void lnkSubmitAnswer_Click(object sender, EventArgs e)
     {
         new UserExamController().Update(_ExamID, UserExamID, true);
+    }
+    protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        UpdateAnswer();
+        CurrentQuestion = QuestionList.Single(p => p.Order == (CurrentQuestion.Order + 1));
+        LoadQuestionUI();
+    }
+    protected void PrevAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        UpdateAnswer();
+        CurrentQuestion = QuestionList.Single(p => p.Order == (CurrentQuestion.Order - 1));
+        LoadQuestionUI();
     }
 }

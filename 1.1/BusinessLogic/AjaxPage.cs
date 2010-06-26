@@ -19,7 +19,7 @@ namespace BusinessLogic
         }
 
     }
-    public class AjaxPage : System.Web.UI.Page
+    public class AjaxPage : System.Web.UI.Page,IPostBackDataHandler
     {
         public JScripter.Loader objLoader;
         public int LoginUserID
@@ -57,18 +57,43 @@ namespace BusinessLogic
         }
         public delegate void AjaxClickEventHandler(object sender, AjaxListViewCommandArg e);
         public event AjaxClickEventHandler AjaxListViewCommand;
+        protected bool IsAjaxPostBack
+        {
+            get
+            {
+                if (Request.QueryString["ac"] != null)
+                {
+                    if (Request.QueryString["ac"] == "p")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
         protected virtual void OnAjaxListViewCommand(AjaxListViewCommandArg e)
         {
             if (AjaxListViewCommand != null)
                 AjaxListViewCommand(this, e);
         }
+        protected override void OnInitComplete(EventArgs e)
+        {
+            base.OnInitComplete(e);
+            base.LoadViewState(Request.Params["__VIEWSTATE"]);
+        }
         protected override void OnLoad(EventArgs e)
         {
             objLoader = new JScripter.Loader(this.Page, false);
             this.Page.Header.Visible = false;
-            //MikeCompression.AjaxCompression objAjaxCompression = new MikeCompression.AjaxCompression();
-            //objAjaxCompression.Compress();
             base.OnLoad(e);
+            
             if (Request.QueryString["cmd"] != null)
             {
                 AjaxListViewCommandArg objcommandevent = new AjaxListViewCommandArg();
@@ -76,9 +101,11 @@ namespace BusinessLogic
                 objcommandevent.Id = Request.QueryString["id"];
                 OnAjaxListViewCommand(objcommandevent);
             }
-            //string HidentControl = string.Format("<input type=\"hidden\" name=\"_DIMMER\" id=\"_DIMMER\" value=\"{0}\" />", GetStringFromDictionary());
-
+            
+            
+            
         }
+        
         private string GetStringFromDictionary()
         {
             string dataString = "";
@@ -95,7 +122,11 @@ namespace BusinessLogic
             }
             return dataString;
         }
-      
+        protected override void LoadViewState(object savedState)
+        {
+            
+            base.LoadViewState(savedState);
+        }
 
         protected override void Render(HtmlTextWriter writer)
         {
@@ -151,5 +182,19 @@ namespace BusinessLogic
             writer.Write(s);
 
         }
+
+        #region IPostBackDataHandler Members
+
+        public bool LoadPostData(string postDataKey, System.Collections.Specialized.NameValueCollection postCollection)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RaisePostDataChangedEvent()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

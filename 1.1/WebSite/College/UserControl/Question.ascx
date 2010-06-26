@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Question.ascx.cs" Inherits="College_UserControl_Question" %>
-<%--<asp:UpdatePanel ID="Update" runat="server" RenderMode="Inline" UpdateMode="Always" ChildrenAsTriggers="true">
-    <ContentTemplate>--%>
+
 <div style="float: left; width: 800px">
     <div class="contentbox">
         <div id="DivSingleChoice" runat="server">
@@ -41,8 +40,6 @@
         </div>
     </div>
 </div>
-<%--    </ContentTemplate>
-</asp:UpdatePanel>--%>
 <div style="float: right; width: 200px;">
     <div class="contentbox">
         <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="EXM_QuestionID" OnItemCommand="QuestionList_ItemCommand">
@@ -64,6 +61,5 @@
     </div>
 </div>
 <div>
-    <asp:LinkButton ID="lnkSubmitAnswer" runat="server" 
-        onclick="lnkSubmitAnswer_Click">Submit Answers</asp:LinkButton>
+    <asp:LinkButton ID="lnkSubmitAnswer" runat="server" OnClick="lnkSubmitAnswer_Click">Submit Answers</asp:LinkButton>
 </div>
