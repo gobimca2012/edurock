@@ -6,6 +6,7 @@ function loadobject(url, loadid, clickid)
    this.clickid = clickid;
 }
 
+//  ---------------------------------------
 
 $.fn.serializeNoViewState = function()
 {
@@ -16,6 +17,7 @@ $.fn.serializeNoViewState = function()
 
 }
 
+//  ---------------------------------------
 
 
 $.fn.LoadPage = function(url)
@@ -50,10 +52,15 @@ $.fn.LoadPage = function(url)
 
 
 }
+
+//  ---------------------------------------
+
 function SuccessHtml(obj, htm)
 {
    $(this).html(replacehtml);
 }
+
+//  ---------------------------------------
 
 function ParseParam(domobj)
 {
@@ -91,6 +98,8 @@ function ParseParam(domobj)
    }
 }
 
+//  ---------------------------------------
+
 function BuildLinks(id)
 {
    $(id).find("a").filter(function()
@@ -100,6 +109,9 @@ function BuildLinks(id)
    }
    );
 }
+
+//  ---------------------------------------
+
 function SelectAllCheckBox(value)
 {
    if(value == true)
@@ -113,6 +125,7 @@ function SelectAllCheckBox(value)
    }
 }
 
+//  ---------------------------------------
 
 function ProgressBar(status)
 {
@@ -125,6 +138,9 @@ function ProgressBar(status)
       $("#progress").html("");
    }
 }
+
+//  ---------------------------------------
+
 function NormalizeUrl(hypobj)
 {
    if($(hypobj).hasClass("ck") == true)
@@ -139,6 +155,9 @@ function NormalizeUrl(hypobj)
 
 
 }
+
+//  ---------------------------------------
+
 function HtmlPaste(obj, ContainnerID)
 {
    var htmldata = decHTMLifEnc(obj);
@@ -147,6 +166,8 @@ function HtmlPaste(obj, ContainnerID)
 
 
 }
+
+//  ---------------------------------------
 
 function JsonPaste(obj, ContainnerID)
 {
@@ -157,11 +178,16 @@ function JsonPaste(obj, ContainnerID)
    eval(injscript);
 
 }
+
+//  ---------------------------------------
+
 function redirect(url)
 {
    window.location = url;
    return true;
 }
+
+//  ---------------------------------------
 
 function decHTMLifEnc(str)
 {
@@ -169,6 +195,9 @@ function decHTMLifEnc(str)
    return str.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/####/g,'$');
    return str;
 }
+
+//  ---------------------------------------
+
 function isEncHTML(str)
 {
    if(str.search(/&amp;/g) != - 1 || str.search(/&lt;/g) != - 1 || str.search(/&gt;/g) != - 1)
@@ -176,6 +205,8 @@ function isEncHTML(str)
    else
    return false;
 }
+
+//  ---------------------------------------
 
 function Timmer(containnerid, url, Milisecond)
 {
@@ -191,13 +222,15 @@ function Timmer(containnerid, url, Milisecond)
    );
 }
 
+//  ---------------------------------------
 
 
 $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
-{   
+{
+   // alert("hello");
    $(this).click(function()
    {
-      var data = $("form").serializeNoViewState();            
+      var data = $("form").serializeNoViewState();     
       $.post(url, data,
       function(result)
       {
@@ -209,6 +242,7 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
    );
 }
 
+//  ---------------------------------------
 
 ///// PopUp////////////////////////////////
 
@@ -221,26 +255,36 @@ $.fn.PopUp = function(url, PopUpContainnerID)
    }
    );
 }
+
+//  ---------------------------------------
+
 $.fn.PopUps = function(PopUpContainnerID, url, width, height)
 {
    $(this).click(function()
    {
       $(PopUpContainnerID).dialog(
       {
-         autoOpen : false,
+         // autoOpen : false,
          height : height + 'px',
          width : width + 'px',
          modal : true,
-         position : ['center',10],
+         position : 'center',
          open : function()
          {
             $(PopUpContainnerID).LoadPage(url);
-         }        
+         }
+         ,
+         beforeclose : function()
+         {
+            $(this).dialog('hide');
+            // $(this).dialog('close');
+
+         }
 
       }
       );
 
-      $(PopUpContainnerID).dialog('open');
+      // $(PopUpContainnerID).dialog('open');
    }
    );
 

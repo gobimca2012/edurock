@@ -82,9 +82,31 @@ public partial class College_Ajaxer_Question : AjaxPage
     {
         if (!this.IsAjaxPostBack)
         {
-            BindQuestion();
-            LoadQuestionUI();
+            //if (Request.QueryString["oid"] != null)
+            //{
+            //    int OrderID = Convert.ToInt32(Request.QueryString["oid"]);
+            //    GetCurrentQuestionByOrder(OrderID);
+            //    UpdateAnswer();
+            //    LoadQuestionUI();
+            //    BindQuestion();
+            //}
+            //else
+            {
+                BindQuestion();
+                LoadQuestionUI();
+            }
+
         }
+        else if (Request.QueryString["oid"] != null)
+        {
+            int OrderID = Convert.ToInt32(Request.QueryString["oid"]);
+            UpdateAnswer();
+            GetCurrentQuestionByOrder(OrderID);
+           
+            LoadQuestionUI();
+            BindQuestion();
+        }
+
     }
     private void BindQuestion()
     {
@@ -95,7 +117,8 @@ public partial class College_Ajaxer_Question : AjaxPage
         }
         ListQuestion.DataSource = QuestionList;
         ListQuestion.DataBind();
-        CurrentQuestion = QuestionList[0];
+        if (CurrentQuestion == null)
+            CurrentQuestion = QuestionList[0];
 
     }
 
@@ -109,6 +132,14 @@ public partial class College_Ajaxer_Question : AjaxPage
             LoadQuestionUI();
 
 
+        }
+    }
+    private void GetCurrentQuestionByOrder(int Order)
+    {
+        var Odata = (from p in QuestionList where p.Order == Order select p).ToList();
+        if (Odata.Count > 0)
+        {
+            CurrentQuestion = Odata[0];
         }
     }
     private void LoadQuestionUI()
@@ -286,11 +317,25 @@ public partial class College_Ajaxer_Question : AjaxPage
         UpdateAnswer();
         CurrentQuestion = QuestionList.Single(p => p.Order == (CurrentQuestion.Order + 1));
         LoadQuestionUI();
+        BindQuestion();
     }
     protected void PrevAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
         UpdateAnswer();
         CurrentQuestion = QuestionList.Single(p => p.Order == (CurrentQuestion.Order - 1));
         LoadQuestionUI();
+        BindQuestion();
     }
+    protected void OrderAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        //if (Request.QueryString["oid"] != null)
+        //{
+        //    int OrderID = Convert.ToInt32(Request.QueryString["oid"]);
+        //    GetCurrentQuestionByOrder(OrderID);
+        //    UpdateAnswer();
+        //    LoadQuestionUI();
+        //    BindQuestion();
+        //}
+    }
+
 }

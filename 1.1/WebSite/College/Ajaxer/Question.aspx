@@ -7,9 +7,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="float: left; width: 800px">
+    <div style="float: left; width: 750px">
         <div id="exami">
-            
             <div class="contentbox">
                 <div id="DivSingleChoice" runat="server">
                     <div>
@@ -26,9 +25,8 @@
                     </div>
                     <div>
                         <asp:CheckBoxList ID="chkMulti" runat="server" />
-                       <div id="multiCheck" runat="server">
-                       
-                       </div>
+                        <div id="multiCheck" runat="server">
+                        </div>
                     </div>
                 </div>
                 <div id="divSingleFillIntheBlanck" runat="server">
@@ -44,8 +42,8 @@
                 </div>
                 <div style="clear: both">
                     <div style="float: left; padding: 5px;">
-                        <aspajax:AjaxLinkButton ID="lnkPrev" runat="server" Text="Prev" RequestContainner="#exam" ResponseContainner="#exam" 
-                            PostBackUrl="Question.aspx" OnAjaxClick="PrevAjaxClick" ></aspajax:AjaxLinkButton></div>
+                        <aspajax:AjaxLinkButton ID="lnkPrev" runat="server" Text="Prev" RequestContainner="#exam"
+                            ResponseContainner="#exam" PostBackUrl="Question.aspx" OnAjaxClick="PrevAjaxClick"></aspajax:AjaxLinkButton></div>
                     <div style="float: left; padding: 5px;">
                         <aspajax:AjaxLinkButton ID="lnkNext" runat="server" Text="Next" RequestContainner="#exam"
                             PostBackUrl="Question.aspx" ResponseContainner="#exam" OnAjaxClick="NextAjaxClick"></aspajax:AjaxLinkButton></div>
@@ -68,14 +66,16 @@
                         <div>
                         </div>
                         <div class="tab">
-                            <asp:LinkButton ID="lnkOrder" runat="server" CommandName="LoadQuestion"><%#Eval("Order") %></asp:LinkButton>
+                            <%--<asp:LinkButton ID="lnkOrder" runat="server" CommandName="LoadQuestion"><%#Eval("Order") %></asp:LinkButton>--%>
+                            <aspajax:AjaxLinkButton ID="lnkOrder" runat="server" PostBackUrl='<%#ResolveUrl("~/College/Ajaxer/Question.aspx")+"?oid="+Eval("Order") %>'
+                                RequestContainner="#exam" ResponseContainner="#exam" OnAjaxClick="OrderAjaxClick"><%#Eval("Order") %></aspajax:AjaxLinkButton>
                         </div>
                     </div>
                 </ItemTemplate>
             </asp:ListView>
         </div>
     </div>
-    <div>
+    <div style="clear: both">
         <asp:LinkButton ID="lnkSubmitAnswer" runat="server" OnClick="lnkSubmitAnswer_Click">Submit Answers</asp:LinkButton>
     </div>
     </form>
