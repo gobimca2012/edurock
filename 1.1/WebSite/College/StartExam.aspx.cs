@@ -14,7 +14,7 @@ using BusinessLogic;
 using DataEntity;
 using System.Collections.Generic;
 using System.Web.Services;
-public partial class College_StartExam : BasePage
+public partial class College_StartExam : AjaxPage
 {
     private int _ExamID
     {

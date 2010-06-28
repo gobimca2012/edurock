@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
-public partial class College_ExamIntroduction : BasePage
+public partial class College_ExamIntroduction : AjaxPage
 {
     private int _ExamId
     {

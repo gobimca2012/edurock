@@ -108,7 +108,7 @@ public partial class User_UserControl_Exam_AvailableExam : System.Web.UI.UserCon
                     //lnkExam.Attributes["onclick"] = string.Format("window.open('{0}','mywindow','width=1000,height=600,toolbar=no,scrollbars=yes,copyhistory=no,menubar=no,status=no,directories=no')", ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + ExamId);
                     //lnkExam.NavigateUrl =ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + ExamId;
                     JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, true);
-                    objPopup.PopUpOen(lnkExam, "#examOpen", ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + ExamId,"1000","600");
+                    objPopup.PopUpOpen(lnkExam, "#examOpen", ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + ExamId,"1000","600");
 
                 }
                 HyperLink lnkResult = (HyperLink)currentItem.FindControl("lnkResult");

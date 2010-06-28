@@ -101,7 +101,7 @@ namespace JScripter
                 //cs.RegisterClientScriptBlock(cstype, csname1, PopUpCloseScript, true);
             }
         }
-        public void PopUpOen(HyperLink lnk, string PopUpDivID, string url,string width,string height)
+        public void PopUpOpen(HyperLink lnk, string PopUpDivID, string url,string width,string height)
         {
 
             System.Web.UI.Page aspxPage = new System.Web.UI.Page();
@@ -111,6 +111,23 @@ namespace JScripter
             // Get a ClientScriptManager reference from the Page class.
             ClientScriptManager cs = aspxPage.ClientScript;
             string PopUpCloseScript = string.Format("$('#{0}').PopUps('{1}','{2}','{3}','{4}');", lnk.ClientID, PopUpDivID, url,width,height);
+            if (!cs.IsStartupScriptRegistered(cstype, csname1))
+            {
+
+                cs.RegisterStartupScript(cstype, csname1, PopUpCloseScript, true);
+                //cs.RegisterClientScriptBlock(cstype, csname1, PopUpCloseScript, true);
+            }
+        }
+        public void PopUpClose(string PopUpDivID)
+        {
+
+            System.Web.UI.Page aspxPage = new System.Web.UI.Page();
+            String csname1 = Guid.NewGuid().ToString().Replace("-", "");
+            aspxPage = _thisPage;
+            Type cstype = aspxPage.GetType();
+            // Get a ClientScriptManager reference from the Page class.
+            ClientScriptManager cs = aspxPage.ClientScript;
+            string PopUpCloseScript = string.Format("eval(alert('aa'));$('{0}).dialog('close');$('{0}).dialog('destroy');", PopUpDivID);
             if (!cs.IsStartupScriptRegistered(cstype, csname1))
             {
 

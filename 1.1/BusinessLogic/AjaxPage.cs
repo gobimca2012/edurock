@@ -19,7 +19,7 @@ namespace BusinessLogic
         }
 
     }
-    public class AjaxPage : System.Web.UI.Page,IPostBackDataHandler
+    public class AjaxPage : System.Web.UI.Page
     {
         public JScripter.Loader objLoader;
         public int LoginUserID
@@ -155,7 +155,7 @@ namespace BusinessLogic
             RegexOptions.Multiline);
             s = Regex.Replace(s, @"<input.*EVENTVALIDATION.*/>", string.Empty, RegexOptions.Compiled |
             RegexOptions.Multiline);
-            //  //string injscript = Regex.Match(s, "[<script type=\"text/javascript\" id=\"externalScript\">].*?</script>").Value;
+            string injscript = Regex.Match(s, "[<script type=\"text/javascript\" id=\"externalScript\">].*?</script>").Value;
             s = Regex.Replace(s, @"<meta.*?>", string.Empty, RegexOptions.Compiled |
                               RegexOptions.Multiline);
             s = Regex.Replace(s, @"<link.*?>", string.Empty, RegexOptions.Compiled |
@@ -169,10 +169,15 @@ namespace BusinessLogic
             s = Regex.Replace(s, @"<title>.*?title>", string.Empty, RegexOptions.Compiled |
                               RegexOptions.Multiline);
             s = s.Replace("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' >", "");
-            //  s = Regex.Replace(s, "^\\s*", string.Empty, RegexOptions.Compiled |
-            //RegexOptions.Multiline);
+            s = Regex.Replace(s, "^\\s*", string.Empty, RegexOptions.Compiled |
+          RegexOptions.Multiline);
             //s = Regex.Replace(s, "\\r\\n", string.Empty, RegexOptions.Compiled |
-            //		                   RegexOptions.Multiline);
+            //                           RegexOptions.Multiline);
+            //<script\stype(.*\n)*(</script>).
+            //s = Regex.Replace(s, "<script\\stype(.*\n)*(</script>).", string.Empty, RegexOptions.Compiled |
+          //RegexOptions.Multiline);
+            s = Regex.Replace(s, "var\\stheForm.*;(.*\n)*theForm.*(?<submit>)\n.*\n.*", string.Empty, RegexOptions.Compiled |
+            RegexOptions.Multiline);
             s = Regex.Replace(s, "<!--*.*?-->", string.Empty, RegexOptions.Compiled |
                               RegexOptions.Multiline);
             s = s.Replace("<head>", "");
@@ -183,18 +188,6 @@ namespace BusinessLogic
 
         }
 
-        #region IPostBackDataHandler Members
-
-        public bool LoadPostData(string postDataKey, System.Collections.Specialized.NameValueCollection postCollection)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RaisePostDataChangedEvent()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
+    
     }
 }

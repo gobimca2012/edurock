@@ -338,4 +338,10 @@ public partial class College_Ajaxer_Question : AjaxPage
         //}
     }
 
+    protected void SubmitAnswerAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        new UserExamController().Update(_ExamID, UserExamID, true);
+        JScripter.PopUp objPopup = new JScripter.PopUp(this.Page,false);
+        objPopup.PopUpClose("#examOpen");
+    }
 }

@@ -262,18 +262,15 @@ $.fn.PopUps = function(PopUpContainnerID, url, width, height)
 {
    $(this).click(function()
    {
+        $(PopUpContainnerID).LoadPage(url);
       $(PopUpContainnerID).dialog(
       {
          // autoOpen : false,
          height : height + 'px',
          width : width + 'px',
          modal : true,
-         position : 'center',
-         open : function()
-         {
-            $(PopUpContainnerID).LoadPage(url);
-         }
-         ,
+         position : ['center',20],
+         
          beforeclose : function()
          {
             $(this).dialog('hide');
