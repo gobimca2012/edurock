@@ -136,10 +136,10 @@ public partial class College_StartExam : BasePage
 
         }
         JScripter.Loader objLoad = new JScripter.Loader(this.Page, false);
-        string ScriptInj = objLoad.LoadPageScript("#time", ResolveUrl("~/CallBack.aspx") + "?tm=s&eid=" + _ExamID.ToString());
-        JScripter.JScripter.IncludeJavascriptFile("counter", ResolveUrl("~/Jscript/jquery.countdownTimer.1-0-1.js"), this.Page);
+        //string ScriptInj = objLoad.LoadPageScript("#time", ResolveUrl("~/CallBack.aspx") + "?tm=s&eid=" + _ExamID.ToString());
+        //JScripter.JScripter.IncludeJavascriptFile("counter", ResolveUrl("~/Jscript/jquery.countdownTimer.1-0-1.js"), this.Page);
 
-        objLoad.InjectScript(string.Format("Timmer('{0}','{1}','{2}');", "#time", ResolveUrl("~/CallBack.aspx") + "?tm=s&eid=" + _ExamID.ToString(), "15000"), this.Page);
+       // objLoad.InjectScript(string.Format("Timmer('{0}','{1}','{2}');", "#time", ResolveUrl("~/CallBack.aspx") + "?tm=s&eid=" + _ExamID.ToString(), "15000"), this.Page);
 
 
     }

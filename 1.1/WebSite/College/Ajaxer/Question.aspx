@@ -78,6 +78,12 @@
     <div style="clear: both">
         <asp:LinkButton ID="lnkSubmitAnswer" runat="server" OnClick="lnkSubmitAnswer_Click">Submit Answers</asp:LinkButton>
     </div>
+   
+
+    <script type="text/javascript">
+    Counter(0,6,60);
+    </script>
+
     </form>
 </body>
 </html>

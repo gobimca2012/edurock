@@ -290,3 +290,37 @@ $.fn.PopUps = function(PopUpContainnerID, url, width, height)
 
 
 }
+
+
+var Hours=0;
+var Minuts=0
+var Second=0;
+
+function Counter(hour,minut,second)
+{    
+    Hours=hour;
+    Minuts=minut;
+    Second=second;
+    setInterval(descreaseSecond,1000);    
+}
+function descreaseSecond()
+{
+    Second--;
+    if(Second==0)
+    {
+        Minuts--;
+        Second=60;
+    }
+    if(Minuts==0)
+    {
+        Hours--;
+        Minuts=60;
+    }
+    $("#divh").html(Hours);
+    $("#divm").html(Minuts);
+    $("#divs").html(Second);
+    if(Hours==0 && Minuts==5 && Second==60)
+    {
+        alert("You have 5 Minute Only");
+    }
+}
