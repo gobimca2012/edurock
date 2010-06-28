@@ -15,7 +15,9 @@ namespace JScripter
 		{
 			if (IsLoad)
 			{
-                JScripter.IncludeJavascriptFile("jquery", thisPage.ResolveUrl("~/JScript/jquery-1.3.2.js"),thisPage);
+                JScripter.IncludeJavascriptFile("jquery-1.3.2.js", thisPage.ResolveUrl("~/Jscript/jquery-1.3.2.js"), thisPage);
+                JScripter.IncludeJavascriptFile("jquery-ui.js", thisPage.ResolveUrl("~/Jscript/ui.core.js"), thisPage);
+                JScripter.IncludeJavascriptFile("ui.dialog.js", thisPage.ResolveUrl("~/Jscript/ui.dialog.js"), thisPage);
                 JScripter.IncludeJavascriptFile("encode", thisPage.ResolveUrl("~/JScript/encode.js"), thisPage);
                 //JScripter.IncludeJavascriptFile("ajax", thisPage.ResolveUrl("~/JScript/ajax.js"), thisPage);
                 JScripter.IncludeJavascriptFile("vtajax", thisPage.ResolveUrl("~/JScript/vtajax.js"), thisPage);
