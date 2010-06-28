@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="AvailableExam.ascx.cs"
     Inherits="User_UserControl_Exam_AvailableExam" %>
+<div id="examOpen">
+</div>
 <div class="contentbox">
     <asp:ListView ID="ListExam" runat="server" DataKeyNames="ExamID" OnItemDataBound="ListUserExamOnItemDataBound">
         <LayoutTemplate>

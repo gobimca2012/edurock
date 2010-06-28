@@ -9,7 +9,7 @@
     <form id="form1" runat="server">
     <div style="float: left; width: 800px">
         <div id="exami">
-            <asp:TextBox ID="txtaa" runat="server" Text="aa"></asp:TextBox>
+            
             <div class="contentbox">
                 <div id="DivSingleChoice" runat="server">
                     <div>

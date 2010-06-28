@@ -1,4 +1,5 @@
-﻿function loadobject(url, loadid, clickid)
+﻿// JavaScript Document
+function loadobject(url, loadid, clickid)
 {
    this.url = url;
    this.loadid = loadid;
@@ -11,7 +12,7 @@ $.fn.serializeNoViewState = function()
    return this.find("input,textarea,select")
    .not("[type=hidden][name^=__]")
    .serialize();
-   //return this.serialize();
+   // return this.serialize();
 
 }
 
@@ -32,7 +33,7 @@ $.fn.LoadPage = function(url)
       dataType : "html",
       success : function(message)
       {
-         HtmlPaste(message,ContainnerID);
+         HtmlPaste(message, ContainnerID);
          BuildLinks(ContainnerID);
          ProgressBar(false);
 
@@ -132,7 +133,7 @@ function NormalizeUrl(hypobj)
    }
    else  if($(hypobj).hasClass("ckh") == true)
    {
-   
+
       $(hypobj).clickLoadH();
    }
 
@@ -142,8 +143,8 @@ function HtmlPaste(obj, ContainnerID)
 {
    var htmldata = decHTMLifEnc(obj);
    $(ContainnerID).html(htmldata);
-   //alert($(ContainnerID).html());
-   
+   // alert($(ContainnerID).html());
+
 
 }
 
@@ -176,30 +177,27 @@ function isEncHTML(str)
    return false;
 }
 
-function Timmer(containnerid,url,Milisecond)
+function Timmer(containnerid, url, Milisecond)
 {
-$(containnerid).LoadPage(url);
-$("#aa").countdown(
-         {
-            interval : Milisecond,
-            onTick : function(control, day, hrs, min, sec)
-            {
-               $(containnerid).LoadPage(url);
-            }
-         }
-);
+   $(containnerid).LoadPage(url);
+   $("#aa").countdown(
+   {
+      interval : Milisecond,
+      onTick : function(control, day, hrs, min, sec)
+      {
+         $(containnerid).LoadPage(url);
+      }
+   }
+   );
 }
 
 
 
 $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
-{
-   //alert("hello");
+{   
    $(this).click(function()
    {
-      var data = $("form").serializeNoViewState();
-      //alert(data);
-      alert($("form").serialize());
+      var data = $("form").serializeNoViewState();            
       $.post(url, data,
       function(result)
       {
@@ -209,4 +207,42 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
       );
    }
    );
+}
+
+
+///// PopUp////////////////////////////////
+
+$.fn.PopUp = function(url, PopUpContainnerID)
+{
+   $(this).click(function()
+   {
+      $(PopUpContainnerID).show();
+      $(PopUpContainnerID).LoadPage(url);
+   }
+   );
+}
+$.fn.PopUps = function(PopUpContainnerID, url, width, height)
+{
+   $(this).click(function()
+   {
+      $(PopUpContainnerID).dialog(
+      {
+         autoOpen : false,
+         height : height + 'px',
+         width : width + 'px',
+         modal : true,
+         position : ['center',10],
+         open : function()
+         {
+            $(PopUpContainnerID).LoadPage(url);
+         }        
+
+      }
+      );
+
+      $(PopUpContainnerID).dialog('open');
+   }
+   );
+
+
 }
