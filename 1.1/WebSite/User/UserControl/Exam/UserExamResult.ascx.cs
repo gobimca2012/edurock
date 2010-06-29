@@ -64,6 +64,7 @@ public partial class User_UserControl_Exam_UserExamResult : System.Web.UI.UserCo
         {
             BindList();
             TotalPage = new UserExamController().GetExamResultByLoginUserID(new UserAuthontication().LoggedInUserID, ExamID).Count / PageSize;
+            PaggerLinkManager();
         }
 
     }

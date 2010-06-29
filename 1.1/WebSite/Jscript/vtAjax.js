@@ -230,8 +230,10 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
    // alert("hello");
    $(this).click(function()
    {
-      var data = $("form").serializeNoViewState();     
-      $.post(url, data,
+      var data = $(PostContainnerID).serializeNoViewState();
+      var urlparts = url.toString().split('?');
+      data += "&" + urlparts[1];
+      $.post(urlparts[0], data,
       function(result)
       {
          HtmlPaste(result, ContainnerID);
@@ -262,15 +264,15 @@ $.fn.PopUps = function(PopUpContainnerID, url, width, height)
 {
    $(this).click(function()
    {
-        $(PopUpContainnerID).LoadPage(url);
+      $(PopUpContainnerID).LoadPage(url);
       $(PopUpContainnerID).dialog(
       {
          // autoOpen : false,
          height : height + 'px',
          width : width + 'px',
          modal : true,
-         position : ['center',20],
-         
+         position : ['center', 20],
+
          beforeclose : function()
          {
             $(this).dialog('hide');
@@ -288,36 +290,61 @@ $.fn.PopUps = function(PopUpContainnerID, url, width, height)
 
 }
 
+//  ---------------------------------------
 
-var Hours=0;
-var Minuts=0
-var Second=0;
 
-function Counter(hour,minut,second)
-{    
-    Hours=hour;
-    Minuts=minut;
-    Second=second;
-    setInterval(descreaseSecond,1000);    
-}
-function descreaseSecond()
+
+
+
+var Hours = 0;
+var Minuts = 0
+var Second = 0;
+var timmer;
+var PopIDdiv, popCloseUrl;
+function Counter(hour, minut, second, PopupDivID, url)
 {
-    Second--;
-    if(Second==0)
-    {
-        Minuts--;
-        Second=60;
-    }
-    if(Minuts==0)
-    {
-        Hours--;
-        Minuts=60;
-    }
-    $("#divh").html(Hours);
-    $("#divm").html(Minuts);
-    $("#divs").html(Second);
-    if(Hours==0 && Minuts==5 && Second==60)
-    {
-        alert("You have 5 Minute Only");
-    }
+   Hours = hour;
+   Minuts = minut;
+   Second = second;
+   PopIDdiv = PopupDivID;
+   popCloseUrl = url;
+   timmer = setInterval(descreaseSecond, 1000);
+}
+
+//  ---------------------------------------
+
+function descreaseSecond(PopupDivID, url)
+{
+   Second -- ;
+   if(Second == 0)
+   {
+
+      Minuts -- ;
+      Second = 60;
+   }
+   if(Minuts == 0)
+   {
+      if(Hours > 0)
+      {
+         Hours -- ;
+         Minuts = 60;
+      }
+
+   }
+   $("#divh").html(Hours);
+   $("#divm").html(Minuts);
+   $("#divs").html(Second);
+   if(Hours == 0 && Minuts == 5 && Second == 60)
+   {
+      alert("You have 5 Minute Only");
+   }
+   if(Hours == 0 && Minuts == 0)
+   {
+      Second = 0;
+      // SubmitAnswer(PopupDivID, url)
+      alert(url, PopIDdiv);
+      $(PopIDdiv).LoadPage(popCloseUrl);
+      $(PopIDdiv).dialog('close');
+      clearInterval(timmer);
+   }
 }

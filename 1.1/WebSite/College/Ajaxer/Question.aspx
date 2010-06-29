@@ -77,17 +77,23 @@
     </div>
     <div style="clear: both">
         <%--<asp:LinkButton ID="lnkSubmitAnswer" runat="server" OnClick="lnkSubmitAnswer_Click">Submit Answers</asp:LinkButton>--%>
-        <aspajax:AjaxLinkButton ID="lnkSubmitAnswer" runat="server" RequestContainner="#exam"
+        <%--<aspajax:AjaxLinkButton ID="lnkSubmitAnswer" runat="server" RequestContainner="#exam"
             ResponseContainner="#exam" onajaxclick="SubmitAnswerAjaxClick">Submit Answers</aspajax:AjaxLinkButton>
-            <a href="#" onclick="SubmitAnswer();">aa</a>
+            <a href="#" onclick="SubmitAnswer();">aa</a>--%>
+            <asp:LinkButton ID="lnkSubmit" runat="server">Submit Answer</asp:LinkButton>
     </div>
 
     <script type="text/javascript">
-    Counter(0,6,60);
-    function SubmitAnswer()
-    {
-        $("#examOpen").dialog('close');
-    }
+//    Counter(0,6,60);
+    function SubmitAnswer(PopUpID, Url)
+{
+   
+   $(PopUpID).LoadPage(Url);
+   $(PopUpID).dialog('close');
+   clearInterval(timmer);
+   alert("aa");
+    false;
+}
     </script>
     
     </form>

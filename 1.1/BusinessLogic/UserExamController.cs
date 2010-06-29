@@ -497,6 +497,17 @@ namespace BusinessLogic
 	
 	
         #region UserExam
+        public static string GetExamStatus(bool IsFinish)
+        {
+            if (IsFinish)
+            {
+                return "Close";
+            }
+            else
+            {
+                return "Open";
+            }
+        }
         public List<UserExam> GetbyExamID(int ExamID, int LoginUserID)
         {
             try

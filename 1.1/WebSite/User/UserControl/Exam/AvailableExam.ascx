@@ -71,3 +71,31 @@
     <div style="clear: both">
     </div>
 </div>
+
+<script type="text/javascript">
+function PopUpExam(PopUpContainnerID, url, width, height, closeUrl)
+{
+   $(PopUpContainnerID).LoadPage(url);
+   $(PopUpContainnerID).dialog(
+   {
+      // autoOpen : false,
+      height : height + 'px',
+      width : width + 'px',
+      modal : true,
+      position : ['center', 20],
+      beforeclose : function()
+      {
+         SubmitAnswer(PopUpContainnerID, closeUrl)
+         
+      }
+
+   }
+   );
+   return false;
+}
+
+//  ---------------------------------------
+
+
+</script>
+

@@ -2220,6 +2220,7 @@ namespace DataAccess
             UserExam data = db.UserExams.Single(p => p.ExamID == ExamID && p.UserExamID==UserExamID);
             data.IsFinish = IsFinish;
             data.ModifiedDate = DateTime.Now;
+            data.EndDate = DateTime.Now;
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }

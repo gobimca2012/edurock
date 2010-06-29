@@ -32,35 +32,35 @@
         <elementListCompartment Id="ede91509-6dec-495b-aba0-a284156b329f" absoluteBounds="3.515, 4.335, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11 : 1.89644490559896); (11.75 : 1.89644490559896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 1.89644490559896); (11.75 : 1.89644490559896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/OnlineExaminationDataContext/LoginUser/LoginUser_UserExam" />
       <nodes>
         <classShapeMoniker Id="1b5e9bff-a6b6-403d-8596-cbf343bed2c7" />
         <classShapeMoniker Id="0f1675c1-d228-42a3-8584-e3971183f450" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 5.12677124023438); (9 : 5.12677124023438)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 5.12677124023438); (9 : 5.12677124023438)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/OnlineExaminationDataContext/EXM_Question/EXM_Question_EXM_Answer" />
       <nodes>
         <classShapeMoniker Id="796720b1-3e89-41e1-aae1-fe27620c8227" />
         <classShapeMoniker Id="15574ef0-3aa3-4179-b1a7-b79653f35077" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.5 : 3.875); (4.5 : 0.90625); (11.75 : 0.90625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.5 : 3.875); (4.5 : 0.90625); (11.75 : 0.90625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/OnlineExaminationDataContext/Exam/Exam_UserExam" />
       <nodes>
         <classShapeMoniker Id="7ba7cec3-5411-4b4d-9149-0ae8d2962587" />
         <classShapeMoniker Id="0f1675c1-d228-42a3-8584-e3971183f450" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 5.08046590169271); (6.25 : 5.08046590169271)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 5.08046590169271); (6.25 : 5.08046590169271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/OnlineExaminationDataContext/Exam/Exam_EXM_Question" />
       <nodes>
         <classShapeMoniker Id="7ba7cec3-5411-4b4d-9149-0ae8d2962587" />
         <classShapeMoniker Id="796720b1-3e89-41e1-aae1-fe27620c8227" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9 : 2.08394490559896); (5.0312525 : 2.08394490559896); (5.0312525 : 3.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9 : 2.08394490559896); (5.0312525 : 2.08394490559896); (5.0312525 : 3.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/OnlineExaminationDataContext/LoginUser/LoginUser_Exam" />
       <nodes>
         <classShapeMoniker Id="1b5e9bff-a6b6-403d-8596-cbf343bed2c7" />
@@ -73,14 +73,14 @@
         <elementListCompartment Id="187caafc-fbd0-42cd-b0ca-d8c1cdfb0815" absoluteBounds="14.89, 4.21, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11 : 4.95894490559896); (14.875 : 4.95894490559896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 4.95894490559896); (14.875 : 4.95894490559896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/OnlineExaminationDataContext/EXM_Answer/EXM_Answer_EXM_UserAnswer" />
       <nodes>
         <classShapeMoniker Id="15574ef0-3aa3-4179-b1a7-b79653f35077" />
         <classShapeMoniker Id="51ee3eaf-5f1a-4056-aa06-f7f3b28a04b7" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 2.88663981119792); (15.875 : 2.88663981119792); (15.875 : 3.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 2.88663981119792); (15.875 : 2.88663981119792); (15.875 : 3.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/OnlineExaminationDataContext/LoginUser/LoginUser_EXM_UserAnswer" />
       <nodes>
         <classShapeMoniker Id="1b5e9bff-a6b6-403d-8596-cbf343bed2c7" />

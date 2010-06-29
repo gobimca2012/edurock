@@ -118,6 +118,7 @@ namespace JScripter
                 //cs.RegisterClientScriptBlock(cstype, csname1, PopUpCloseScript, true);
             }
         }
+
         public void PopUpClose(string PopUpDivID)
         {
 

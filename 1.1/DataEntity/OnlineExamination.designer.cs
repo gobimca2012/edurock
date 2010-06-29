@@ -2145,6 +2145,8 @@ namespace DataEntity
 		
 		private System.DateTime _EndTime;
 		
+		private System.Nullable<bool> _IsFinish;
+		
 		public GetExamResultByLoginUserIDResult()
 		{
 		}
@@ -2257,6 +2259,22 @@ namespace DataEntity
 				if ((this._EndTime != value))
 				{
 					this._EndTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_IsFinish", DbType="Bit")]
+		public System.Nullable<bool> IsFinish
+		{
+			get
+			{
+				return this._IsFinish;
+			}
+			set
+			{
+				if ((this._IsFinish != value))
+				{
+					this._IsFinish = value;
 				}
 			}
 		}

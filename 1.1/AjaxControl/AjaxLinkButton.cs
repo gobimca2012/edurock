@@ -145,16 +145,16 @@ namespace AjaxControl
                 ResponseContainner = RequestContainner;
             }
             new JScripter.Loader(this.Page, false).PostData(RequestContainner, ResponseContainner, Url, this);
-            if (HttpContext.Current.Request.QueryString["k"] != null)
+            if (HttpContext.Current.Request.Params["k"] != null)
             {
-                if (HttpContext.Current.Request.QueryString["k"] == this.ClientID)
+                if (HttpContext.Current.Request.Params["k"] == this.ClientID)
                 {
                     AjaxEventArg objArg = new AjaxEventArg();
                     if (HttpContext.Current.Request.QueryString["id"] != "")
                     {
                         objArg.Id = HttpContext.Current.Request.QueryString["id"];
                     }
-                    if (HttpContext.Current.Request.QueryString["cmd"] != "")
+                    if (HttpContext.Current.Request.Params["cmd"] != "")
                     {
                         objArg.AjaxCommand = HttpContext.Current.Request.QueryString["cmd"];
                     }
