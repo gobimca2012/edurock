@@ -92,7 +92,7 @@
    $(PopUpID).dialog('close');
    clearInterval(timmer);
    alert("aa");
-    false;
+    return false;
 }
     </script>
     

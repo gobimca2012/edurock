@@ -1,12 +1,17 @@
-﻿body
+﻿*
+{
+    color:#424542;
+    
+}
+body
 {
     line-height: 18px;
-    font-family: Verdana,san-serif;
-    font-size: 12px;
+    font-family: arial,helvetica,clean,sans-serif;
+    font-size: 11px;
     text-align: center;
     margin:0px;
     padding:0px;
-    background:#D3E5F4;
+    background:#8C8E94;
 }
 .page
 {
@@ -15,7 +20,7 @@
     border:solid 0px;
     min-height:700px;
     padding:0px;
-    background:#fff;
+    background:#F7FBFF;
     border:5px solid #497BAC;
 }
 .header a
@@ -102,7 +107,7 @@ table
 {
     padding:5px;
     background:#fff;
-    border:solid 5px #D3E5F4;
+    border:solid 2px #DEDEDE;
     margin:5px;
     text-align:left;
 }

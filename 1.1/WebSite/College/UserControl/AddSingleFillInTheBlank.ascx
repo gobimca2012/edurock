@@ -5,36 +5,36 @@
 </div>
 <asp:Panel ID="panelSingleChoice" runat="server">
     <div id="EXM_Question">
-        <table>
-            <tr>
-                <td>
+        <div>
+            <div>
+                <div>
                     <span class="label">Question</span>
-                </td>
-                <td class="style1">
+                </div>
+                <div class="style1">
                     <asp:TextBox ID="txtQuestionPart1" runat="server" Width="579px"></asp:TextBox>
                     <span style="border-bottom: solid 1px">Fill in the Blank</span><br />
                     <asp:TextBox ID="txtQuestionPart2" runat="server" Width="579px"></asp:TextBox>
-                </td>
-            </tr>
+                </div>
+            </div>
            
-            <tr>
-                <td>
+            <div>
+                <div>
                     <span class="label">Description</span>
-                </td>
-                <td class="style1">
+                </div>
+                <div class="style1">
                     <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="329px"
                         Width="670px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+            </div>
+            <div>
+                <div>
                     <span class="label">Marks</span>
-                </td>
-                <td class="style1">
+                </div>
+                <div class="style1">
                     <asp:TextBox ID="txtMarks" runat="server" Width="62px"></asp:TextBox>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
         <div>
             <asp:LinkButton ID="lnkNextStep" runat="server" OnClick="lnkNextStep_Click">Next 
                 Step</asp:LinkButton>

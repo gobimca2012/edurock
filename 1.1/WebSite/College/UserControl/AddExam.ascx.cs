@@ -18,6 +18,9 @@ public partial class College_UserControl_AddExam : System.Web.UI.UserControl
     {
 
         JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"),this.Page);
+        JScripter.DatePicker objDate = new JScripter.DatePicker(this.Page, true);
+        objDate.DatePickerTextBox(TxtStart);
+        objDate.DatePickerTextBox(TxtEndDate);
         if (!this.IsPostBack)
         {
             if (Request.QueryString["eid"] != null)

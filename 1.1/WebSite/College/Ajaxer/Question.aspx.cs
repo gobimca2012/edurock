@@ -102,27 +102,31 @@ public partial class College_Ajaxer_Question : AjaxPage
             //}
             //else
             {
-                
-                BindQuestion();
-                LoadQuestionUI();
+                if (Request.Params["oid"] != null)
+                {
+                    int OrderID = Convert.ToInt32(Request.Params["oid"]);
+                    UpdateAnswer();
+                    GetCurrentQuestionByOrder(OrderID);
+
+                    LoadQuestionUI();
+                    BindQuestion();
+                }
+                else
+                {
+                    BindQuestion();
+                    LoadQuestionUI();
+                }
                 lnkSubmit.Attributes["onclick"]=string.Format("return SubmitAnswer('{0}','{1}');","#examOpen",ResolveUrl("~/College/Ajaxer/Question.aspx")+"?sb=aa");
             }
-            if (Request.Params["sb"] != null)
-            {
-                new UserExamController().Update(_ExamID, UserExamID, true);
-            }
+            
 
 
         }
-        else if (Request.Params["oid"] != null)
+        if (Request.Params["sb"] != null)
         {
-            int OrderID = Convert.ToInt32(Request.QueryString["oid"]);
-            UpdateAnswer();
-            GetCurrentQuestionByOrder(OrderID);
-           
-            LoadQuestionUI();
-            BindQuestion();
+            new UserExamController().Update(_ExamID, UserExamID, true);
         }
+       
 
     }
     private void BindQuestion()

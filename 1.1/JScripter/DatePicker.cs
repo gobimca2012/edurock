@@ -13,14 +13,14 @@ namespace JScripter
         Page _thisPage;
         public DatePicker(Page thisPage)
         {
-            JScripter.IncludeJavascriptFile("JqueryDate", thisPage.ResolveUrl("~/MusesterScript/ui.datepicker.js"), thisPage);
+            JScripter.IncludeJavascriptFile("ui.datepicker.js", thisPage.ResolveUrl("~/Jscript/ui.datepicker.js"), thisPage);
             _thisPage = thisPage;
         }
         public DatePicker(Page thisPage,bool IsScripRequer)
         {
             if (IsScripRequer)
             {
-                JScripter.IncludeJavascriptFile("JqueryDate", thisPage.ResolveUrl("~/MusesterScript/ui.datepicker.js"), thisPage);
+                JScripter.IncludeJavascriptFile("ui.datepicker.js", thisPage.ResolveUrl("~/Jscript/ui.datepicker.js"), thisPage);
             }
             _thisPage = thisPage;
         }

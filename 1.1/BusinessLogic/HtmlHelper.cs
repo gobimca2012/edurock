@@ -13,10 +13,13 @@ namespace BusinessLogic
             List<string> ItemValues = new List<string>();
             for (int i = 0; i < HttpContext.Current.Request.Params.Keys.Count; i++)
             {
-                if (HttpContext.Current.Request.Params.Keys[i].Contains(ClientID))
+                if (HttpContext.Current.Request.Params.Keys[i]!=null)
                 {
-                    string[] ValueSplit=HttpContext.Current.Request.Params.Keys[i].Split('$');
-                    ItemValues.Add(ValueSplit[1]);
+                    if (HttpContext.Current.Request.Params.Keys[i].Contains(ClientID))
+                    {
+                        string[] ValueSplit = HttpContext.Current.Request.Params.Keys[i].Split('$');
+                        ItemValues.Add(ValueSplit[1]);
+                    }
                 }
             }
             return ItemValues;

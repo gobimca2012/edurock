@@ -4,107 +4,107 @@
 </div>
 <fieldset>
     <legend>Institute</legend>
-    <table>
+    <div>
         
-        <tr>
-            <td>
+        
+            <div>
                 <span class="label">Name</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtName" runat="server" Width="129px"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">Address</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">CityName</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtCityName" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">StateName</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtStateName" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">CountryName</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtCountryName" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">TelePhone</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtTelePhone" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">Fax</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtFax" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">Email</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">WebSite</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtWebSite" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">CollegeType</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:DropDownList ID="ddCollegeType" runat="server">
                 </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">ShortName</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtShortName" runat="server"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            </div>
+        
+        
+            <div>
                 <span class="label">Description</span>
-            </td>
-            <td>
+            </div>
+            <div>
                 <asp:TextBox ID="txtDescription" runat="server" Height="192px" 
                     TextMode="MultiLine" Width="450px"></asp:TextBox>
-            </td>
-        </tr>
-    </table>
+            </div>
+        
+    </div>
 </fieldset>
 <div>
     <asp:LinkButton ID="lnkAdd" runat="server" onclick="lnkAdd_Click">Update</asp:LinkButton>
