@@ -299,8 +299,8 @@ $.fn.PopUps = function(PopUpContainnerID, url, width, height)
 var Hours = 0;
 var Minuts = 0
 var Second = 0;
-var timmer;
-var PopIDdiv, popCloseUrl;
+var timmer = null;
+var PopIDdiv = null, popCloseUrl = null;
 function Counter(hour, minut, second, PopupDivID, url)
 {
    Hours = hour;
@@ -308,22 +308,32 @@ function Counter(hour, minut, second, PopupDivID, url)
    Second = second;
    PopIDdiv = PopupDivID;
    popCloseUrl = url;
-   timmer = setInterval(descreaseSecond, 1000);
+   clearInterval();
+   // clearTimeout();
+//   alert("hello");
+//   setInterval(descreaseSecond, 60000);
+
 }
 
 //  ---------------------------------------
 
 function descreaseSecond(PopupDivID, url)
 {
-   Second -- ;
-   if(Second == 0)
-   {
+   //   Second -- ;
+   //   if(Second == 0)
+   //   {
 
+   //      Minuts -- ;
+   //      Second = 60;
+   //   }
+   clearInterval();
+   if(Minuts > 0)
+   {
       Minuts -- ;
-      Second = 60;
    }
    if(Minuts == 0)
    {
+
       if(Hours > 0)
       {
          Hours -- ;
@@ -334,6 +344,7 @@ function descreaseSecond(PopupDivID, url)
    $("#divh").html(Hours);
    $("#divm").html(Minuts);
    $("#divs").html(Second);
+   setTimeout(descreaseSecond, 1000);
    if(Hours == 0 && Minuts == 5 && Second == 60)
    {
       alert("You have 5 Minute Only");
@@ -342,9 +353,10 @@ function descreaseSecond(PopupDivID, url)
    {
       Second = 0;
       // SubmitAnswer(PopupDivID, url)
-      alert(url, PopIDdiv);
+      // alert(popCloseUrl, PopIDdiv);
       $(PopIDdiv).LoadPage(popCloseUrl);
       $(PopIDdiv).dialog('close');
-      clearInterval(timmer);
+      clearInterval();
+      //clearInterval(timmer);
    }
 }

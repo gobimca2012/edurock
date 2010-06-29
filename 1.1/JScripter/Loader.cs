@@ -20,7 +20,7 @@ namespace JScripter
                 JScripter.IncludeJavascriptFile("ui.dialog.js", thisPage.ResolveUrl("~/Jscript/ui.dialog.js"), thisPage);
                 JScripter.IncludeJavascriptFile("encode", thisPage.ResolveUrl("~/JScript/encode.js"), thisPage);
                 //JScripter.IncludeJavascriptFile("ajax", thisPage.ResolveUrl("~/JScript/ajax.js"), thisPage);
-                JScripter.IncludeJavascriptFile("vtajax", thisPage.ResolveUrl("~/JScript/vtajax.js"), thisPage);
+                JScripter.IncludeJavascriptFile("vtajax.js", thisPage.ResolveUrl("~/JScript/vtajax.js"), thisPage);
                 
 
 			}
