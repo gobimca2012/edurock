@@ -17,7 +17,7 @@ public partial class College_UserControl_AddExam : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"),this.Page);
+        JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"), this.Page);
         JScripter.DatePicker objDate = new JScripter.DatePicker(this.Page, true);
         objDate.DatePickerTextBox(TxtStart);
         objDate.DatePickerTextBox(TxtEndDate);
@@ -45,7 +45,8 @@ public partial class College_UserControl_AddExam : System.Web.UI.UserControl
 
         DateTime ModifiedDate; if (true) { ModifiedDate = DateTime.Now; }
         TimeSpan ExamTime = new TimeSpan(Convert.ToInt32(txtHour.Text), Convert.ToInt32(txtMinut.Text), 0);
-        new ExamController().Add(ExamName, SubjectName, LoginUserID, txtDescription.Text, ExamTime, ModifiedDate, Convert.ToDateTime(TxtStart.Text), Convert.ToDateTime(TxtEndDate.Text));
+        int Percent = Convert.ToInt32(txtRequiredPecent.Text);
+        new ExamController().Add(ExamName, SubjectName, LoginUserID, txtDescription.Text, ExamTime, ModifiedDate, Convert.ToDateTime(TxtStart.Text), Convert.ToDateTime(TxtEndDate.Text), Percent);
         Response.Redirect("~/College/ListExam.aspx");
     }
     private void EditData(int ID)
@@ -59,8 +60,8 @@ public partial class College_UserControl_AddExam : System.Web.UI.UserControl
         string SubjectName; if (true) { SubjectName = txtSubjectName.Text; }
 
         TimeSpan ExamTime = new TimeSpan(Convert.ToInt32(txtHour.Text), Convert.ToInt32(txtMinut.Text), 0);
-
-        new ExamController().UpdateByExamID(ExamID, ExamName, SubjectName,txtDescription.Text,ExamTime, new UserAuthontication().LoggedInUserID, DateTime.Now,Convert.ToDateTime(TxtStart.Text),Convert.ToDateTime(TxtEndDate.Text));
+        int Percent = Convert.ToInt32(txtRequiredPecent.Text);
+        new ExamController().UpdateByExamID(ExamID, ExamName, SubjectName, txtDescription.Text, ExamTime, new UserAuthontication().LoggedInUserID, DateTime.Now, Convert.ToDateTime(TxtStart.Text), Convert.ToDateTime(TxtEndDate.Text), Percent);
     }
     private void BindData(int ID)
     {
@@ -76,10 +77,12 @@ public partial class College_UserControl_AddExam : System.Web.UI.UserControl
             string[] ExamTimes = data.ExamTime.ToString().Split(':');
             txtHour.Text = ExamTimes[0];
             txtMinut.Text = ExamTimes[1];
-            if(data.StartDate!=null)
-            TxtStart.Text =Convert.ToDateTime(data.StartDate.ToString()).ToString("MM/dd/yyyy");
+            if (data.RequirePecentage != null)
+                txtRequiredPecent.Text = data.RequirePecentage.ToString();
+            if (data.StartDate != null)
+                TxtStart.Text = Convert.ToDateTime(data.StartDate.ToString()).ToString("MM/dd/yyyy");
             if (data.EndDate != null)
-            TxtEndDate.Text = Convert.ToDateTime(data.EndDate.ToString()).ToString("MM/dd/yyyy");
+                TxtEndDate.Text = Convert.ToDateTime(data.EndDate.ToString()).ToString("MM/dd/yyyy");
 
 
         }

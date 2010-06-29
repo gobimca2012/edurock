@@ -303,7 +303,11 @@ public partial class College_Ajaxer_Question : AjaxPage
 
             if (Request.Params[chkOption.ClientID] != null)
             {
-                new EXM_UserAnswerController().UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[chkOption.ClientID].ToString()), new UserAuthontication().LoggedInUserID, UserExamID);
+                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
+
+                new EXM_UserAnswerController().AddwithMark(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[chkOption.ClientID].ToString()), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
+
+                //new EXM_UserAnswerController().UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[chkOption.ClientID].ToString()), new UserAuthontication().LoggedInUserID, UserExamID);
             }
         }
         else if (CurrentQuestion.Q_Type == (int)QuestionType.MultipleChoice)
@@ -315,7 +319,7 @@ public partial class College_Ajaxer_Question : AjaxPage
 
                 for (int i = 0; i < SelectedItem.Count; i++)
                 {
-                    new EXM_UserAnswerController().Add(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(SelectedItem[i]), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
+                    new EXM_UserAnswerController().AddwithMark(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(SelectedItem[i]), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
                 }
             }
 
@@ -326,7 +330,7 @@ public partial class College_Ajaxer_Question : AjaxPage
             {
                 new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
 
-                new EXM_UserAnswerController().Add(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[ddAnswer.ClientID].ToString()), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
+                new EXM_UserAnswerController().AddwithMark(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[ddAnswer.ClientID].ToString()), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
 
             }
 

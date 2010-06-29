@@ -546,6 +546,24 @@ namespace BusinessLogic
                 return false;
             }
         }
+        public int AddwithMark(int UserExamID, int LoginUserID, int EXM_QuestionID, int EXM_AnswerID, string EXM_AnswerText, DateTime ModifiedDate)
+        {
+
+            try
+            {
+                int ID = new DataProvider().EXM_UserAnswerAddwithMarkCalculation(UserExamID, LoginUserID, EXM_QuestionID, EXM_AnswerID, EXM_AnswerText, ModifiedDate);
+                return ID;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return 0;
+            }
+        }
         #endregion
 
 

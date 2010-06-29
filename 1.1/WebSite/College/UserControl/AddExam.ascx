@@ -26,8 +26,14 @@
         </div>
         <div>
             <span>Hours :
-                <asp:TextBox ID="txtHour" runat="server"></asp:TextBox></span><span>Minuts
+                <asp:TextBox ID="txtHour" runat="server"></asp:TextBox></span><span>&nbsp;Minuts :
                     <asp:TextBox ID="txtMinut" runat="server"></asp:TextBox></span>
+        </div>
+        <div>
+            Required Percentage for Pass
+        </div>
+        <div>
+            <asp:TextBox ID="txtRequiredPecent" runat="server"></asp:TextBox>
         </div>
         <div>
             Start Date
