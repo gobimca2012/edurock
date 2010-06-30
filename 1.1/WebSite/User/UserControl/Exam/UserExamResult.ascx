@@ -16,6 +16,9 @@
                             Marks
                         </td>
                         <td>
+                            Result
+                        </td>
+                        <td>
                             StartDate
                         </td>
                         <td>
@@ -41,7 +44,10 @@
                     <%#Eval("SubjectName")%>
                 </td>
                 <td>
-                    <%#Eval("Marks")%>
+                    <%#Eval("Marks")%>/<%#Eval("ExamTotalMarks") %>
+                </td>
+                <td>
+                    <%#new BusinessLogic.UserExamController().GetExamPassorFail(Convert.ToDecimal(Eval("Marks").ToString()), Convert.ToInt32(Eval("RequirePecentage").ToString()), Convert.ToDecimal(Eval("ExamTotalMarks").ToString()))%>
                 </td>
                 <td>
                     <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("StartDate").ToString()))%>

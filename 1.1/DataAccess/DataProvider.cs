@@ -578,6 +578,16 @@ namespace DataAccess
 
         #endregion
         #region CustomExam
+        public Decimal GetExamTotalmark(int ExamID)
+        {
+
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return (Decimal) db.GetExamTotalmark(ExamID);
+
+        }
+       
         public int ExamAdd(string ExamName, string SubjectName, int LoginUserID, string Description, TimeSpan ExamTime, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate,int Percentage)
         {
             Exam ObjExam = new Exam();

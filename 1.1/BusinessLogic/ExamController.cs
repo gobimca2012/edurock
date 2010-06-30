@@ -365,6 +365,19 @@ namespace BusinessLogic
 
         #endregion
         #region Exam
+        public Decimal GetExamTotalmark(int ExamID)
+        {
+            try
+            {
+
+                return new DataProvider().GetExamTotalmark(ExamID);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        
         public bool UpdateByExamID(int ExamID, string ExamName, string SubjectName)
         {
 

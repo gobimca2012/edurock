@@ -497,6 +497,17 @@ namespace BusinessLogic
 	
 	
         #region UserExam
+        public string GetExamPassorFail(decimal Marks,int Pecentage,Decimal ExamTotalMark)
+        {
+            if ((100 * Marks) / ExamTotalMark >= Pecentage)
+            {
+                return "Pass";
+            }
+            else
+            {
+                return "Fail";
+            }
+        }
         public static string GetExamStatus(bool IsFinish)
         {
             if (IsFinish)
