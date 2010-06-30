@@ -92,15 +92,6 @@ public partial class College_Ajaxer_Question : AjaxPage
     {
         if (!this.IsAjaxPostBack)
         {
-            //if (Request.QueryString["oid"] != null)
-            //{
-            //    int OrderID = Convert.ToInt32(Request.QueryString["oid"]);
-            //    GetCurrentQuestionByOrder(OrderID);
-            //    UpdateAnswer();
-            //    LoadQuestionUI();
-            //    BindQuestion();
-            //}
-            //else
             {
                 if (Request.Params["oid"] != null)
                 {
@@ -116,12 +107,14 @@ public partial class College_Ajaxer_Question : AjaxPage
                     BindQuestion();
                     LoadQuestionUI();
                 }
-                lnkSubmit.Attributes["onclick"]=string.Format("return SubmitAnswer('{0}','{1}');","#examOpen",ResolveUrl("~/College/Ajaxer/Question.aspx")+"?sb=aa");
+                
             }
+           // StartTimmer();
             
 
 
         }
+        lnkSubmit.Attributes["onclick"] = string.Format("return SubmitAnswer('{0}','{1}');", "#examOpen", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa");
         if (Request.Params["sb"] != null)
         {
             new UserExamController().Update(_ExamID, UserExamID, true);

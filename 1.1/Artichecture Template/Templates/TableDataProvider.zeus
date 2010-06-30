@@ -227,24 +227,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		
 		}%>
 		
-		<%foreach (IColumn column in table.Columns)
-		{
-			if(column.IsInForeignKey && !column.IsInPrimaryKey)
-			{
-		%>
-		    public void <%=table.Alias%>UpdateBy<%=column.Alias%>(<%int columncol=0;foreach(IColumn Iicolumn in table.Columns){columncol++;if(columncol==table.Columns.Count){%><%=Iicolumn.LanguageType%> <%=Iicolumn.Alias%>)<%}else{%><%=Iicolumn.LanguageType%> <%=Iicolumn.Alias%>,<%}}%>			
-			{
-			if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-			<%=DataContextDBObject%>	
-			db.DeferredLoadingEnabled = false;
-			<%=table.Alias%> data = db.<%=GetTableDBSName(table.Alias)%>.Single(p => p.<%=column.Alias%> == <%=column.Alias%>);
-			db.SubmitChanges();
-			 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-			}
 		
-		<%	}
-		
-		}%>
 		
 		#endregion
 		#region Custom<%=table.Alias%>

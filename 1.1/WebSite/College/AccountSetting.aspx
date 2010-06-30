@@ -6,7 +6,21 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="contentbox">
-        <div id="accountsetting">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Personal Info</a></li>
+                <li><a href="#tabs-2">Education Info</a></li>
+            </ul>
+            <div id="tabs-1">
+                <div id="divMessage" runat="server">
+                </div>
+                <div id="accountsetting">
+                </div>
+            </div>
+            <div id="tabs-2">
+                <div id="courcecatagory">
+                </div>
+            </div>
         </div>
     </div>
 </asp:Content>

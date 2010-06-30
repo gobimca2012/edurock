@@ -49,6 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Institute.cs">
+      <DependentUpon>Institute.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Institute.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Institute.dbml</DependentUpon>
+    </Compile>
     <Compile Include="OnlineExamination.cs">
       <DependentUpon>OnlineExamination.dbml</DependentUpon>
     </Compile>
@@ -98,8 +106,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Institute.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Institute.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="User.dbml.layout">
       <DependentUpon>User.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Institute.dbml.layout">
+      <DependentUpon>Institute.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

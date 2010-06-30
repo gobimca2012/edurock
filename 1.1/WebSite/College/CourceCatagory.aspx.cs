@@ -12,13 +12,10 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class College_AccountSetting :BasePage
+public partial class College_CourceCatagory : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        JScripter.Tab objTab = new JScripter.Tab(this.Page, true);
-        objTab.TabUl("#tabs");
-        objLoader.LoadPage("#accountsetting", ResolveUrl("~/College/Ajaxer/InstituteInfoView.aspx"));
-        objLoader.LoadPage("#courcecatagory", ResolveUrl("~/College/Ajaxer/CourceCatagoryInfoView.aspx"));
+        
     }
 }

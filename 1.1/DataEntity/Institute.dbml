@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="edu" Class="InstituteDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Cource" Member="Cources">
+    <Type Name="Cource">
+      <Column Name="CourceID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CourceCatagoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CourceName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CourceType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Modifieddate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Cource_InstituteCource" Member="InstituteCources" OtherKey="CourceID" Type="InstituteCource" />
+      <Association Name="CourceCatagory_Cource" Member="CourceCatagory" ThisKey="CourceCatagoryID" Type="CourceCatagory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Institute" Member="Institutes">
+    <Type Name="Institute">
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CityName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="StateName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CountryName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TelePhone" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="WebSite" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CollegeType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ShortName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Institute_InstituteCource" Member="InstituteCources" OtherKey="InstituteID" Type="InstituteCource" />
+      <Association Name="InstituteLoginUser_Institute" Member="InstituteLoginUser" ThisKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InstituteCource" Member="InstituteCources">
+    <Type Name="InstituteCource">
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Modifieddate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Cource_InstituteCource" Member="Cource" ThisKey="CourceID" Type="Cource" IsForeignKey="true" />
+      <Association Name="Institute_InstituteCource" Member="Institute" ThisKey="InstituteID" Type="Institute" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoginUser" Member="InstituteLoginUsers">
+    <Type Name="InstituteLoginUser">
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="UserType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="InstituteLoginUser_Institute" Member="Institutes" OtherKey="LoginUserID" Type="Institute" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CourceCatagory" Member="CourceCatagories">
+    <Type Name="CourceCatagory">
+      <Column Name="CourceCatagoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CatagoryName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="CatagoryType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="CourceCatagory_Cource" Member="Cources" OtherKey="CourceCatagoryID" Type="Cource" />
+    </Type>
+  </Table>
+</Database>

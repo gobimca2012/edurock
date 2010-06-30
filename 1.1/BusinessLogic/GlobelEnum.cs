@@ -14,4 +14,9 @@ namespace BusinessLogic
         UserExamID=2
 
     }
+    public enum CatagoryTypeEnum
+    {
+        CollegeCourceCatagory=1,
+        BusinessIndustry=2
+    }
 }

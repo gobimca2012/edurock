@@ -173,40 +173,13 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		
 		protected void List<%=table.Alias%>OnItemDataBound(object sender, ListViewItemEventArgs e)
 		{
-			if (e.Item.ItemType == ListViewItemType.DataItem)
-			{
-				if (LoginUserController.IsLogin)
-				{
-					ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-					string <%=table.Alias%>ID = List<%=table.Alias%>.DataKeys[currentItem.DataItemIndex]["<%=table.Alias%>ID"].ToString();
-					string LoginUserID = List<%=table.Alias%>.DataKeys[currentItem.DataItemIndex]["LoginUserID"].ToString();
-					LinkButton lnkDelete = (LinkButton)currentItem.FindControl("lnkDelete");
-					if (LoginUserController.LoginID != new Guid(LoginUserID))
-					{
-					
-						lnkDelete.Visible = false;
-					}
-					else
-					{
-						JavascriptBuilder.PortalJavascriptController.DeleteOnClick(<%=table.Alias%>ID, "#<%=table.Alias%>", ResolveUrl("~/Modules/UserCollege/List.aspx") + "/Delete", ResolveUrl("~/Modules/UserCollege/List.aspx") + "?ID=" + UserAuthontication.LoginID.ToString(), lnkDelete);
-					}
-				}
-				//Do something   
-			}
+			i    ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+
 
 
 		}
-		private void Load()
-		{
-		   JavascriptBuilder.Loader objLoader=new JavascriptBuilder.Loader(this.Page,true);
-		   
-		}
-		private void DeleteData(Guid id)
-		{
-			<%=table.Alias%> obj<%=table.Alias%> = new <%=table.Alias%>Controller();
-			obj<%=table.Alias%>.<%=table.Alias%>Deleteby<%=table.Alias%>ID(id);
-		}
-
+	
 
 <%	}
 
