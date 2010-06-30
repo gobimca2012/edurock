@@ -1,0 +1,274 @@
+﻿##|TYPE Template
+##|UNIQUEID f743434a-c58e-4edf-af3b-3d527fe00c2b
+##|TITLE AddFormAjax
+##|NAMESPACE 
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE None
+##|GUI_ENGINE .Net Script
+##|GUI_LANGUAGE C#
+##|GUI_BEGIN
+
+public class GeneratedGui : DotNetScriptGui
+{
+	public GeneratedGui(ZeusContext context) : base(context) {}
+
+	//-----------------------------------------
+	// The User Interface Entry Point
+	//-----------------------------------------
+	public override void Setup()
+	{
+		// ** UNCOMMENT CODE BELOW TO SEE UI **
+
+		ui.Title = ".NetScript C# Sample: Java Class";
+		ui.Width = 340;
+		ui.Height = 300;
+
+		// Setup Database selection combobox.
+		GuiLabel label_d = ui.AddLabel("lblDatabases", "Select a database:", "Select a database in the dropdown below.");
+		GuiComboBox cmbDatabases = ui.AddComboBox("databaseName", "Select a database.");
+
+		// Setup Tables selection multi-select listbox.
+		GuiLabel label_t = ui.AddLabel("lblTables", "Select table:", "Select table from the combobox below.");
+		GuiComboBox cmbTables = ui.AddComboBox("tableName", "Select a table.");
+
+		// bind data to the controls
+		cmbDatabases.BindData(MyMeta.Databases);
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name;
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+		
+		
+		// Attach the onchange event to the cmbDatabases control.
+		cmbDatabases.AttachEvent("onchange", "cmbDatabases_onchange");
+
+		GuiTextBox txtPrefix=ui.AddTextBox("Prefix","","");
+		ui.ShowGui = true;ui.AddLabel("lblDemo", "Demo", "Demo Tooltip");
+		ui.ShowGui = true;
+	}
+	public void cmbDatabases_onchange(GuiComboBox control)
+	{
+		GuiComboBox cmbDatabases = ui["databaseName"] as GuiComboBox;
+		GuiComboBox cmbTables = ui["tableName"] as GuiComboBox;
+		
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+	}
+
+}
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE .Net Script
+##|BODY_LANGUAGE C#
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+public class GeneratedTemplate : DotNetScriptTemplate
+{
+	public GeneratedTemplate(ZeusContext context) : base(context) {}
+    public string PrintAspxControlAndgetId(IColumn column)
+	{
+	   string id="";
+		if(column.LanguageType=="Guid")
+		{
+		  id="dd"+column.Alias;%>
+		  <asp:DropDownList ID="<%=id%>" runat="server">
+                        </asp:DropDownList>
+		<%
+		}
+		else if(column.LanguageType=="string")
+		{
+		  id="txt"+column.Alias;%>
+		   <asp:TextBox ID="<%=id%>" runat="server"></asp:TextBox>
+		<%}
+		else if(column.LanguageType=="DateTime")
+		{
+		  id="txt"+column.Alias;%>
+		  <asp:TextBox ID="<%=id%>" runat="server"></asp:TextBox>
+		   <%
+		}
+		else if(column.LanguageType=="int")
+		{
+		  id="dd"+column.Alias;%>
+		  <asp:DropDownList ID="<%=id%>" runat="server">
+		  <asp:ListItem Selected="True" Text="Select" Value="0"></asp:ListItem>
+                        </asp:DropDownList>
+		   <%
+		}
+		else if(column.LanguageType=="bool" || column.LanguageType=="Boolean")
+		{
+		  id="chk"+column.Alias;%>
+		   <asp:CheckBox ID="<%=id%>" runat="server" />
+		<%}
+		return id;
+	}
+	public void PrintJavascriptValidation(ITable table,string Prefix)
+	{
+		foreach(IColumn column in table.Columns)
+		{
+			if(column.Alias.Trim().ToLower().Contains("email"))
+			{
+			%>$("#<%=Prefix%>txt<%=column.Alias%>").Email();  
+			<%}
+			else if(column.Alias.Trim().ToLower().Contains("website"))
+			{
+			%>$("#<%=Prefix%>txt<%=column.Alias%>").WebSite();  
+			<%}
+			else if(column.Alias.Trim().ToLower().Contains("mobile"))
+			{
+			%>$("#<%=Prefix%>txt<%=column.Alias%>").MinLength(10);  
+			$("#<%=Prefix%>txt<%=column.Alias%>").DigitOnly();  
+			<%}
+			else if(column.Alias.Trim().ToLower().Contains("landline"))
+			{
+			%>$("#<%=Prefix%>txt<%=column.Alias%>").DigitOnly();  			
+			<%}
+			else if(column.Alias.Trim().ToLower().Contains("username") || column.Alias.Trim().ToLower().Contains("password") || column.Alias.Trim().ToLower().Contains("name"))
+			{
+			%>$("#<%=Prefix%>txt<%=column.Alias%>").Mendatory();  			
+			<%}
+			else if(column.LanguageType.Trim().ToLower().Contains("DateTime"))
+			{
+			%>$("#<%=Prefix%>txt<%=column.Alias%>").datepicker({ altFormat: 'dd/mm/yyyy' });
+			<%}
+			else if(column.Alias.Trim().ToLower().Contains("country"))
+			{
+			%>$("#<%=Prefix%>txt<%=column.Alias%>").AlphabetOnly();  			
+			<%}
+		}
+	}
+	public ArrayList PrintAddNewHTML(ITable table)
+	{
+		ArrayList ControlIDS = new ArrayList();
+        
+		foreach(IColumn column in table.Columns)
+		{
+		   %>
+		   <tr>
+                    <td>
+                        <span class="label"><%=column.Alias%></span>
+                    </td>
+                    <td><%
+			ControlIDS.Add(PrintAspxControlAndgetId(column));
+			%>
+			</td></tr><%
+		}
+		return ControlIDS;
+	}
+	//---------------------------------------------------
+	// Render() is where you want to write your logic    
+	//---------------------------------------------------
+	public override void Render()
+	{
+		string databaseName = input["databaseName"].ToString();
+		string tableName = input["tableName"].ToString();
+		int columnCount=0;
+		IDatabase database = MyMeta.Databases[databaseName];
+		ITable table = database.Tables[tableName];
+		ArrayList ControlIDS = new ArrayList();
+		string Prefix = input["Prefix"].ToString();
+		%>
+		
+	
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+
+    <script type="text/javascript" src="../../JScript/jquery-1.3.2.js"></script>
+
+    <script type="text/javascript" src="../../JScript/ajax.js"></script>
+
+    <script type="text/javascript" src="../../JScript/Commond.js"></script>
+
+    <script type="text/javascript">
+	<%PrintJavascriptValidation(table,Prefix);%>
+    function AddNew()
+{
+   if(isRohanvaldate == true)
+   {
+      var data = $().serializeNoViewState();
+      $.post("Add.aspx?Action=AddNew",
+      data,
+      function(result)
+      {
+         result = $(result).find(".content").html();
+         
+         $("#<%=table.Alias%>").replaceWith(result);
+      }
+      );
+   }
+   return false;
+}
+function UpdateNew(id)
+{
+   if(isRohanvaldate == true)
+   {
+      var data = $().serializeNoViewState();
+      $.post("Add.aspx?Action=UpdateNew&ID=" + id,
+      data,
+      function(result)
+      {
+        result = $(result).find(".content").html();
+         $("#<%=table.Alias%>").replaceWith(result);
+      }
+      );
+   }
+   return false;
+}
+
+function <%=table.Alias%>Edit(id)
+{
+   if(isRohanvaldate == true)
+   {
+      $.post("Add.aspx?ID=" + id,
+      function(result)
+      {
+            result = $(result).find(".content").html();
+         $("#<%=table.Alias%>").html(result);
+      }
+      );
+   }
+   return false;
+
+}
+
+function LoadAddPage()
+{
+   if(isRohanvaldate == true)
+   {
+      
+      $.post("Add.aspx",
+      function(result)
+      {
+         result = $(result).find(".content").html();
+         
+         $("#<%=table.Alias%>").replaceWith(result);
+      }
+      );
+   }
+   return false;
+}
+        
+        
+    </script>
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <asp:HiddenField ID="Hidden<%=table.Alias%>" runat="server" />
+    <div id="<%=table.Alias%>">
+        <fieldset>
+            <legend><%=table.Alias%></legend>
+            <table>
+                <%ControlIDS=PrintAddNewHTML(table);%>
+                
+            </table>
+        </fieldset>
+        <asp:LinkButton ID="lnkAdd" runat="server" Text="Add"></asp:LinkButton>
+        <asp:LinkButton ID="lnkSave" runat="server" Text="Update"></asp:LinkButton>
+    </div>
+</asp:Content>
+
+
+		<%
+	}
+
+}
+%>
+##|BODY_END
