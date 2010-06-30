@@ -24,5 +24,17 @@ namespace BusinessLogic
             }
             return ItemValues;
         }
+
+        public static string ControlValue(string ClientID)
+        {
+            if (HttpContext.Current.Request.Params[ClientID] != null)
+            {
+                return HttpContext.Current.Request.Params[ClientID].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }

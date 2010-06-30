@@ -1855,12 +1855,12 @@ namespace DataAccess
 
         }
 
-        public void EXM_UserAnswerDelete(int EXM_QuestionID, int LoginUserId)
+        public void EXM_UserAnswerDelete(int EXM_QuestionID, int LoginUserId,int UserExamID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();
             db.DeferredLoadingEnabled = false;
-            var data = (from p in db.EXM_UserAnswers where p.EXM_QuestionID == EXM_QuestionID && p.LoginUserID == LoginUserId select p);
+            var data = (from p in db.EXM_UserAnswers where p.EXM_QuestionID == EXM_QuestionID && p.LoginUserID == LoginUserId && p.UserExamID == UserExamID select p);
             db.EXM_UserAnswers.DeleteAllOnSubmit(data);
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
@@ -2977,6 +2977,7 @@ namespace DataAccess
         public int UserAdd(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite)
         {
             UserDataContext db = new UserDataContext();
+            db.DeferredLoadingEnabled = false;
             var data = (from p in db.Users where p.LoginUserID == LoginUserID select p).ToList();
             User ObjUser = new User();
             if (data.Count > 0)
@@ -3020,7 +3021,7 @@ namespace DataAccess
 
 
 
-            db.DeferredLoadingEnabled = false;
+           
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             if (data.Count > 0)
             {
@@ -4174,7 +4175,31 @@ namespace DataAccess
 
         #endregion
         #region CustomInstitute
+        public void InstituteUpdateByLoginUserID(int LoginUserID, string Name, string Address, string CityName, string StateName, string CountryName, string TelePhone, string Fax, string Email, string WebSite, int CollegeType, string ShortName, string Description, DateTime ModifiedDate, bool IsDeleted)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            db.DeferredLoadingEnabled = false;
+            Institute data = db.Institutes.Single(p => p.LoginUserID == LoginUserID);
+            data.LoginUserID = LoginUserID;
+            data.Name = Name;
+            data.Address = Address;
+            data.CityName = CityName;
+            data.StateName = StateName;
+            data.CountryName = CountryName;
+            data.TelePhone = TelePhone;
+            data.Fax = Fax;
+            data.Email = Email;
+            data.WebSite = WebSite;
+            data.CollegeType = CollegeType;
+            data.ShortName = ShortName;
+            data.Description = Description;
+            data.ModifiedDate = ModifiedDate;
+            data.IsDeleted = IsDeleted;
 
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
         public int InstituteAdd(int LoginUserID, string Name, string Address, string CityName, string StateName, string CountryName, string TelePhone, string Fax, string Email, string WebSite, int CollegeType, string ShortName, string Description, DateTime ModifiedDate, bool IsDeleted, bool IsEdit)
         {
             UserDataContext db = new UserDataContext();

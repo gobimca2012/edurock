@@ -233,7 +233,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         {
             if (chkMulti.SelectedValue != "")
             {
-                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID,new UserAuthontication().LoggedInUserID);
+                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID,new UserAuthontication().LoggedInUserID,UserExamID);
                 for (int i = 0; i < chkMulti.Items.Count; i++)
                 {
                     if (chkMulti.Items[i].Selected)
@@ -246,7 +246,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         {
             if (ddAnswer.SelectedValue != "")
             {
-                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
+                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID, UserExamID);
                 for (int i = 0; i < ddAnswer.Items.Count; i++)
                 {
                     if (ddAnswer.Items[i].Selected)

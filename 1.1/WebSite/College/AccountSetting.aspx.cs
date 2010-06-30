@@ -16,6 +16,6 @@ public partial class College_AccountSetting :BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        objLoader.LoadPage("#accountsetting", ResolveUrl("~/College/Ajaxer/InstituteInfoView.aspx"));
     }
 }

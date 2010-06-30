@@ -61,9 +61,9 @@ namespace BusinessLogic
         {
             get
             {
-                if (Request.QueryString["ac"] != null)
+                if (Request.Params["ac"] != null)
                 {
-                    if (Request.QueryString["ac"] == "p")
+                    if (Request.Params["ac"] == "p")
                     {
                         return true;
                     }

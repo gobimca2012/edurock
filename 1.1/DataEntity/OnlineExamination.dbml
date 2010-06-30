@@ -84,19 +84,6 @@
       <Association Name="LoginUser_Exam" Member="LoginUser" ThisKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
     </Type>
   </Table>
-  <Function Name="dbo.ExamUserByExamID" Method="ExamUserByExamID">
-    <Parameter Name="ExamID" Parameter="examID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="ExamUserByExamIDResult">
-      <Column Name="UserExamID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ExamID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.GetExamResultByLoginUserID" Method="GetExamResultByLoginUserID">
     <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
     <Parameter Name="ExamID" Parameter="examID" Type="System.Int32" DbType="Int" />
@@ -109,6 +96,20 @@
       <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="IsFinish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ExamUserByExamID" Method="ExamUserByExamID">
+    <Parameter Name="ExamID" Parameter="examID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ExamUserByExamIDResult">
+      <Column Name="UserExamID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Marks" Type="System.Decimal" DbType="Decimal(0,0)" CanBeNull="true" />
+      <Column Name="ExamID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

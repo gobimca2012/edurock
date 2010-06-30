@@ -529,11 +529,11 @@ namespace BusinessLogic
             }
         }
 
-        public bool Delete(int EXM_QuestionID,int LoginUserID)
+        public bool Delete(int EXM_QuestionID,int LoginUserID,int UserExamID)
         {
             try
             {
-                new DataProvider().EXM_UserAnswerDelete(EXM_QuestionID,LoginUserID);
+                new DataProvider().EXM_UserAnswerDelete(EXM_QuestionID,LoginUserID,UserExamID);
                 return true;
             }
             catch (Exception ex)

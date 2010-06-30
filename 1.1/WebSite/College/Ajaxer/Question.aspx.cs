@@ -303,7 +303,7 @@ public partial class College_Ajaxer_Question : AjaxPage
 
             if (Request.Params[chkOption.ClientID] != null)
             {
-                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
+                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID,UserExamID);
 
                 new EXM_UserAnswerController().AddwithMark(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[chkOption.ClientID].ToString()), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
 
@@ -315,7 +315,7 @@ public partial class College_Ajaxer_Question : AjaxPage
             List<string> SelectedItem = HtmlHelper.CheckBox("chk");
             if (SelectedItem.Count > 0)
             {
-                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
+                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID, UserExamID);
 
                 for (int i = 0; i < SelectedItem.Count; i++)
                 {
@@ -328,7 +328,7 @@ public partial class College_Ajaxer_Question : AjaxPage
         {
             if (Request.Params[ddAnswer.ClientID] != null && Request.Params[ddAnswer.ClientID] != "0")
             {
-                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID);
+                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID, UserExamID);
 
                 new EXM_UserAnswerController().AddwithMark(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[ddAnswer.ClientID].ToString()), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
 
