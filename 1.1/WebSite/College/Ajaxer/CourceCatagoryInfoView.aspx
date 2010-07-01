@@ -57,6 +57,10 @@
                     <td>
                         <%#Eval("ModifiedDate") %>
                     </td>
+                    <td>
+                        <aspajax:AjaxLinkButton ID="lnkDelete" runat="server" RequestContainner="" ResponseContainner=""
+                            OnAjaxClick="DeleteajaxClick" QID='<%#Eval("CourceCatagoryID") %>'>Delete</aspajax:AjaxLinkButton>
+                    </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
@@ -73,7 +77,7 @@
             </div>
         </div>
         <div>
-            <aspajax:HyperLink ID="lnkAdd" runat="server" NavigateUrl="CourceCatagoryInfo.aspx"
+            <aspajax:HyperLink ID="lnkAddnew" runat="server" NavigateUrl="CourceCatagoryInfo.aspx"
                 ContainnerID="#courcecatagory">Add new</aspajax:HyperLink>
         </div>
     </div>

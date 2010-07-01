@@ -80,10 +80,10 @@ public partial class College_Ajaxer_Question : AjaxPage
     }
     private void StartTimmer()
     {
-        var data=new ExamController().GetbyExamID(_ExamID);
+        var data = new ExamController().GetbyExamID(_ExamID);
         if (data.Count > 0)
         {
-            string[] examTimePart=data[0].ExamTime.Split(':');
+            string[] examTimePart = data[0].ExamTime.Split(':');
 
             Response.Write(string.Format(" <script type='text/javascript'>Counter('{0}','{1}','{2}','{3}','{4}');   </script>", examTimePart[0], examTimePart[1], "1", "#examOpen", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa"));
         }
@@ -107,19 +107,29 @@ public partial class College_Ajaxer_Question : AjaxPage
                     BindQuestion();
                     LoadQuestionUI();
                 }
-                
+
             }
-           // StartTimmer();
-            
+            // StartTimmer();
+
 
 
         }
+        if (Request.Params["oid"] != null)
+        {
+            int OrderID = Convert.ToInt32(Request.Params["oid"]);
+            UpdateAnswer();
+            GetCurrentQuestionByOrder(OrderID);
+
+            LoadQuestionUI();
+            BindQuestion();
+        }
+        
         lnkSubmit.Attributes["onclick"] = string.Format("return SubmitAnswer('{0}','{1}');", "#examOpen", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa");
         if (Request.Params["sb"] != null)
         {
             new UserExamController().Update(_ExamID, UserExamID, true);
         }
-       
+
 
     }
     private void BindQuestion()
@@ -296,7 +306,7 @@ public partial class College_Ajaxer_Question : AjaxPage
 
             if (Request.Params[chkOption.ClientID] != null)
             {
-                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID,UserExamID);
+                new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID, UserExamID);
 
                 new EXM_UserAnswerController().AddwithMark(UserExamID, new UserAuthontication().LoggedInUserID, CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[chkOption.ClientID].ToString()), "", DateTime.Now);//  UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkMulti.Items[i].Value), new UserAuthontication().LoggedInUserID);
 
@@ -349,9 +359,9 @@ public partial class College_Ajaxer_Question : AjaxPage
     }
     protected void OrderAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
-        //if (Request.QueryString["oid"] != null)
+        //if (Request.Params["oid"] != null)
         //{
-        //    int OrderID = Convert.ToInt32(Request.QueryString["oid"]);
+        //    int OrderID = Convert.ToInt32(Request.Params["oid"]);
         //    GetCurrentQuestionByOrder(OrderID);
         //    UpdateAnswer();
         //    LoadQuestionUI();
@@ -362,7 +372,7 @@ public partial class College_Ajaxer_Question : AjaxPage
     protected void SubmitAnswerAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
         new UserExamController().Update(_ExamID, UserExamID, true);
-        JScripter.PopUp objPopup = new JScripter.PopUp(this.Page,false);
+        JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, false);
         objPopup.PopUpClose("#examOpen");
     }
 }

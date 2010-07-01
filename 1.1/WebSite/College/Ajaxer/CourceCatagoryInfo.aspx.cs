@@ -22,7 +22,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
     private void AddData()
     {
         try
-        {            
+        {
 
             string CatagoryName; if (false) { throw new Exception(""); } CatagoryName = HtmlHelper.ControlValue(txtCatagoryName.ClientID);
 
@@ -32,7 +32,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
 
             DateTime ModifiedDate = DateTime.Now;
 
-            new CourceCatagoryController().Add(CatagoryName,new UserAuthontication().LoggedInUserID, Description, CatagoryType, ModifiedDate);
+            new CourceCatagoryController().Add(CatagoryName, new UserAuthontication().LoggedInUserID, Description, CatagoryType, ModifiedDate);
         }
         catch (Exception ex)
         {
@@ -42,7 +42,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
 
     private void EditData()
     {
-        
+
         string CatagoryName; if (false) { throw new Exception(""); } CatagoryName = HtmlHelper.ControlValue(txtCatagoryName.ClientID);
 
         string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
@@ -51,7 +51,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
 
         DateTime ModifiedDate = DateTime.Now;
 
-        new CourceCatagoryController().UpdateByLoginUserID(CatagoryName,new UserAuthontication().LoggedInUserID, Description, CatagoryType, ModifiedDate);
+        new CourceCatagoryController().UpdateByLoginUserID(CatagoryName, new UserAuthontication().LoggedInUserID, Description, CatagoryType, ModifiedDate);
     }
 
     private void BindData(int ID)
@@ -117,5 +117,10 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
         }
 
     }
-   	
+
+    protected void AddAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        AddData();
+        Response.Redirect("~/College/Ajaxer/CourceCatagoryInfoView.aspx");
+    }
 }

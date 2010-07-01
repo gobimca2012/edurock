@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class College_Ajaxer_CourceCatagoryInfoView : System.Web.UI.Page
+public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -105,7 +105,14 @@ public partial class College_Ajaxer_CourceCatagoryInfoView : System.Web.UI.Page
 
 
     }
-
+    protected void DeleteajaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        string aaa = "aa";
+        string bb = aaa;
+        new CourceCatagoryController().DeletebyCourceCatagoryID(Convert.ToInt32(e.Id));
+        //BindList();
+        Response.Redirect(this.Request.RawUrl);
+    }
 
 
 

@@ -140,3 +140,10 @@ table
 {
     background:Transparent url(images/scv1.png);
 }
+.loading
+{
+    background:url(images/3.gif);
+    width:68px;
+    height:68px;
+    z-index:10001;
+}

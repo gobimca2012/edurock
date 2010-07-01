@@ -9,17 +9,11 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <div id="divMessage" runat="server"></div>
+        <div id="divMessage" runat="server">
+        </div>
         <fieldset>
             <legend>CourceCatagory</legend>
             <div>
-                <div>
-                    <div>
-                        <span class="label">CourceCatagoryID</span>
-                    </div>
-                    <div>
-                    </div>
-                </div>
                 <div>
                     <div>
                         <span class="label">CatagoryName</span>
@@ -36,20 +30,10 @@
                         <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <span class="label">CatagoryType</span>
-                    </div>
-                    <div>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">ModifiedDate</span>
-                    </div>
-                    <div>
-                    </div>
-                </div>
+            </div>
+            <div>
+                <aspajax:AjaxLinkButton ID="lnkAdd" runat="server" RequestContainner="#courcecatagory" 
+                    ResponseContainner="#courcecatagory" onajaxclick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
             </div>
         </fieldset>
     </div>

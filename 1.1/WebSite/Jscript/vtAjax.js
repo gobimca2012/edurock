@@ -25,7 +25,7 @@ $.fn.LoadPage = function(url)
    var ContainnerID = $(this).attr("id");
    ContainnerID = "#" + ContainnerID;
    // $(this).html("Loading...");
-   ProgressBar(true);
+   ProgressBar(true,ContainnerID);
 
    $.ajax(
    {
@@ -37,7 +37,7 @@ $.fn.LoadPage = function(url)
       {
          HtmlPaste(message, ContainnerID);
          BuildLinks(ContainnerID);
-         ProgressBar(false);
+         ProgressBar(false,ContainnerID);
 
       }
       ,
@@ -45,7 +45,7 @@ $.fn.LoadPage = function(url)
       {
          alert(errormessage);
          $(ContainnerID).removeClass("loading");
-         ProgressBar(false);
+         ProgressBar(false,ContainnerID);
       }
    }
    );
@@ -127,15 +127,27 @@ function SelectAllCheckBox(value)
 
 //  ---------------------------------------
 
-function ProgressBar(status)
+//function ProgressBar(status)
+//{
+//   if(status == true)
+//   {
+//      $("#progress").html("<div style='position:absolute;left:400px;top:200px;padding:10px 30px;background:#fff;border:solid 5px #1E4B81;color:#1E4B81;'>Loadding...</div>");
+//   }
+//   else
+//   {
+//      $("#progress").html("");
+//   }
+//}
+function ProgressBar(status,id)
 {
    if(status == true)
    {
-      $("#progress").html("<div style='position:absolute;left:400px;top:200px;padding:10px 30px;background:#fff;border:solid 5px #1E4B81;color:#1E4B81;'>Loadding...</div>");
+      //$("#progress").html("<div style='position:absolute;left:400px;top:200px;padding:10px 30px;background:#fff;border:solid 5px #1E4B81;color:#1E4B81;'>Loadding...</div>");
+      $(id).addClass("loading");
    }
    else
    {
-      $("#progress").html("");
+      $(id).removeClass("loading");
    }
 }
 
@@ -230,6 +242,7 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
    // alert("hello");
    $(this).click(function()
    {
+      ProgressBar(true,PostContainnerID);
       var data = $(PostContainnerID).serializeNoViewState();
       var urlparts = url.toString().split('?');
       data += "&" + urlparts[1];
@@ -238,6 +251,7 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
       {
          HtmlPaste(result, ContainnerID);
          BuildLinks(ContainnerID);
+         ProgressBar(false,PostContainnerID);
       }
       );
    }
@@ -272,18 +286,15 @@ $.fn.PopUps = function(PopUpContainnerID, url, width, height)
          width : width + 'px',
          modal : true,
          position : ['center', 20],
-
          beforeclose : function()
          {
             $(this).dialog('hide');
             // $(this).dialog('close');
-
          }
-
       }
       );
 
-      // $(PopUpContainnerID).dialog('open');
+      $(PopUpContainnerID).dialog('open');
    }
    );
 
