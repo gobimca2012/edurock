@@ -19,4 +19,9 @@ namespace BusinessLogic
         CollegeCourceCatagory=1,
         BusinessIndustry=2
     }
+    public enum CourceTypeEnum
+    {
+        Technology=1,
+        Business=2
+    }
 }

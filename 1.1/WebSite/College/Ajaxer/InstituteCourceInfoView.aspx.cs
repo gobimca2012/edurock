@@ -12,15 +12,10 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
+public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
 {
-    public HtmlHelper _htmlHelper;
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        _htmlHelper = new HtmlHelper();
-        TotalPage = new CourceCatagoryController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID).Count / PageSize;
-        BindList();
-    }
+
+
     private int PageNumber
     {
         get
@@ -57,11 +52,21 @@ public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
     }
     private int PageSize = 20;
 
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        
+       
+        {
+            BindList();
+            TotalPage = new InstituteCourceController().GetbyInstituteID(new UserAuthontication().InstituteID).Count / PageSize;
+        }
+       
 
+    }
     private void BindList()
     {
-        ListCourceCatagory.DataSource = new CourceCatagoryController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID,PageSize, PageNumber);
-        ListCourceCatagory.DataBind();
+        ListInstituteCource.DataSource = new InstituteCourceController().GetbyInstituteID(new UserAuthontication().InstituteID, PageSize, PageNumber);
+        ListInstituteCource.DataBind();
     }
     protected void Prev_Click(object sender, EventArgs e)
     {
@@ -99,29 +104,13 @@ public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
         BindList();
     }
 
-    protected void ListCourceCatagoryOnItemDataBound(object sender, ListViewItemEventArgs e)
+    protected void ListInstituteCourceOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+        string CourceCatagoryID = ListInstituteCource.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
 
 
-    }
-    protected void DeleteajaxClick(object sender, AjaxControl.AjaxEventArg e)
-    {
-        string aaa = "aa";
-        string bb = aaa;
-        new CourceCatagoryController().DeletebyCourceCatagoryID(Convert.ToInt32(e.Id));
-        //BindList();
-        Response.Redirect(this.Request.RawUrl);
-    }
-    protected override void OnAjaxListViewCommand(AjaxListViewCommandArg e)
-    {
-        if (e.Command == "delete")
-        {
-            new CourceCatagoryController().DeletebyCourceCatagoryID(Convert.ToInt32(e.Id));
-            BindList();
-        }
-        base.OnAjaxListViewCommand(e);
+
     }
 
 

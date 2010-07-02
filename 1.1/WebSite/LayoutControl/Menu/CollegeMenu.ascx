@@ -9,6 +9,5 @@
             <asp:MenuItem Text="Profesors"></asp:MenuItem>
             <asp:MenuItem Text="Students"></asp:MenuItem>
         </Items>
-        <StaticMenuItemStyle CssClass="menu" />
     </asp:Menu>
 </div>

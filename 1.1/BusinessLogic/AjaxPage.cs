@@ -50,13 +50,6 @@ namespace BusinessLogic
                 }
             }
         }
-        protected Dictionary<string, string> AjaxParam
-        {
-            get;
-            set;
-        }
-        public delegate void AjaxClickEventHandler(object sender, AjaxListViewCommandArg e);
-        public event AjaxClickEventHandler AjaxListViewCommand;
         protected bool IsAjaxPostBack
         {
             get
@@ -78,56 +71,35 @@ namespace BusinessLogic
                 }
             }
         }
+        public delegate void AjaxClickEventHandler(object sender, AjaxListViewCommandArg e);
+        public event AjaxClickEventHandler AjaxListViewCommand;        
         protected virtual void OnAjaxListViewCommand(AjaxListViewCommandArg e)
         {
             if (AjaxListViewCommand != null)
                 AjaxListViewCommand(this, e);
-        }
-        protected override void OnInitComplete(EventArgs e)
-        {
-            base.OnInitComplete(e);
-            base.LoadViewState(Request.Params["__VIEWSTATE"]);
-        }
+        }        
         protected override void OnLoad(EventArgs e)
         {
             objLoader = new JScripter.Loader(this.Page, false);
             this.Page.Header.Visible = false;
             base.OnLoad(e);
-            
-            if (Request.QueryString["cmd"] != null)
+
+            if (Request.Params["lcmd"] != null)
             {
                 AjaxListViewCommandArg objcommandevent = new AjaxListViewCommandArg();
-                objcommandevent.Command = Request.QueryString["cmd"];
-                objcommandevent.Id = Request.QueryString["id"];
+                objcommandevent.Command = Request.Params["lcmd"];
+                objcommandevent.Id = Request.Params["lid"];
                 OnAjaxListViewCommand(objcommandevent);
             }
-            
-            
-            
-        }
-        
-        private string GetStringFromDictionary()
-        {
-            string dataString = "";
-            foreach (KeyValuePair<string, string> kvp in AjaxParam)
-            {
-                if (dataString != "")
-                {
-                    dataString += "&" + kvp.Key + ";" + kvp.Value;
-                }
-                else
-                {
-                    dataString += kvp.Key + ";" + kvp.Value;
-                }
-            }
-            return dataString;
+
+
+
         }
         protected override void LoadViewState(object savedState)
         {
-            
+
             base.LoadViewState(savedState);
         }
-
         protected override void Render(HtmlTextWriter writer)
         {
 
@@ -175,7 +147,7 @@ namespace BusinessLogic
             //                           RegexOptions.Multiline);
             //<script\stype(.*\n)*(</script>).
             //s = Regex.Replace(s, "<script\\stype(.*\n)*(</script>).", string.Empty, RegexOptions.Compiled |
-          //RegexOptions.Multiline);
+            //RegexOptions.Multiline);
             s = Regex.Replace(s, "var\\stheForm.*;(.*\n)*theForm.*(?<submit>)\n.*\n.*", string.Empty, RegexOptions.Compiled |
             RegexOptions.Multiline);
             s = Regex.Replace(s, "<!--*.*?-->", string.Empty, RegexOptions.Compiled |
@@ -188,6 +160,6 @@ namespace BusinessLogic
 
         }
 
-    
+
     }
 }

@@ -10,6 +10,7 @@
             <ul>
                 <li><a href="#tabs-1">Personal Info</a></li>
                 <li><a href="#tabs-2">Education Info</a></li>
+                <li><a href="#tabs-3">Cources</a></li>
             </ul>
             <div id="tabs-1">
                 <div id="divMessage" runat="server">
@@ -19,6 +20,10 @@
             </div>
             <div id="tabs-2">
                 <div id="courcecatagory">
+                </div>
+            </div>
+            <div id="tabs-3">
+                <div id="Institutecource">
                 </div>
             </div>
         </div>

@@ -5,31 +5,57 @@
 <div class="contentbox">
     <asp:ListView ID="ListExam" runat="server" DataKeyNames="ExamID" OnItemDataBound="ListUserExamOnItemDataBound">
         <LayoutTemplate>
-            <table>
-                <thead>
-                    <tr>
-                        <td>
-                            ExamName
-                        </td>
-                        <td>
-                            SubjectName
-                        </td>
-                        <td>
-                            ModifiedDate
-                        </td>
-                        <td>
-                            Start Date
-                        </td>
-                        <td>
-                            End Date
-                        </td>
-                        <%--<td>
-                            Status
-                        </td>--%>
-                    </tr>
-                </thead>
-                <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-            </table>
+            <div>
+                <div class="tlist">
+                    <div class="thtl">
+                        <div class="thtr">
+                            <div class="thtc">
+                                <h3>Rohan</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thml">
+                        <div class="thmr">
+                            <div class="thmc">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                ExamName
+                                            </td>
+                                            <td>
+                                                SubjectName
+                                            </td>
+                                            <td>
+                                                ModifiedDate
+                                            </td>
+                                            <td>
+                                                Start Date
+                                            </td>
+                                            <td>
+                                                End Date
+                                            </td>
+                                            <td>
+                                                Action
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thbl">
+                        <div class="thbr">
+                            <div class="thbc">
+                                Hello
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </LayoutTemplate>
         <ItemTemplate>
             <tr>

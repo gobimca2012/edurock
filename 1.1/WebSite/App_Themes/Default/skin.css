@@ -1,7 +1,6 @@
 ﻿*
 {
-    color:#424542;
-    
+    color: #424542;
 }
 body
 {
@@ -9,36 +8,61 @@ body
     font-family: arial,helvetica,clean,sans-serif;
     font-size: 11px;
     text-align: center;
-    margin:0px;
-    padding:0px;
-    background:#8C8E94;
+    margin: 0px;
+    padding: 0px;
+    background: url(    'images/bg.png' ) repeat;
 }
 .page
 {
     width: 1000px;
     margin: 0 auto;
-    border:solid 0px;
-    min-height:700px;
-    padding:0px;
-    background:#F7FBFF;
-    border:5px solid #497BAC;
+    border: solid 0px;
+    min-height: 700px;
+    padding: 0px;
+    background: #F7FBFF;
+    background: url(    'images/pgbg.jpg' ) repeat;
 }
 .header a
 {
-    padding:0px;
-    border:0px;
-    background:transparent;
-    color:#fff;
-    font-weight:bold;
-    padding:2px;
-    
+    padding: 0px;
+    border: 0px;
+    background: transparent;
+    color: #fff;
+    font-weight: bold;
+    padding: 2px;
+}
+.header .btnl
+{
+    background: url(images/palat.png) repeat;
+    height: 30px;
+    width: 100px;
+    float: left;
+    line-height: 30px;
+    background-position: 0 -194px;
+    text-align: center;
+    padding-left: 4px;
+}
+.header .btnr
+{
+    background: url(images/palat.png) repeat;
+    height: 30px;
+    width: 5px;
+    float: left;
+    background-position: -742px -194px;
 }
 .header
 {
-    height: 100px;
     width: 100%;
-    background:#497BAC;
-    padding:0px 0px;
+    padding: 0px 0px;
+    background: url(    'images/header.png' ) repeat-x;
+}
+.headerbt
+{
+    height: 63px;
+    width: 100%;
+    padding: 0px 0px;
+    background: url(    'images/headerbt.jpg' ) repeat-x;
+    clear: both;
 }
 li
 {
@@ -46,104 +70,194 @@ li
 }
 .menu
 {
-    background-color:Transparent;    
-    padding:0px;
-    margin:0px;
+    background-color: Transparent;
+    padding: 0px;
+    width: 1000px;
+    margin: 0 auto;
 }
-.menu table ,.menu table tr
+.menu table, .menu table tr
 {
-    background-color:Transparent;
-    border:none;
+    background-color: Transparent;
+    border: none;
 }
 .menu tr
 {
-    background-color:Transparent;
+    background-color: Transparent;
 }
 .menu a
 {
-    padding:0px;
-    background-color:Transparent;
+    padding: 0px;
+    background-color: Transparent;
 }
-.contentbox a,a
+.contentbox a, a
 {
-    padding:2px 4px;
-    border:solid 1px #2867BE;
-    background-color:#538CDB;
-    -moz-border-radius:3px;
-    margin:1px;
-    text-decoration:none;
+    padding: 2px 4px;
+    border: solid 1px #2867BE;
+    background-color: #538CDB;
+    -moz-border-radius: 3px;
+    margin: 1px;
+    text-decoration: none;
 }
 thead tr
 {
-    background:#D3E5F4;
-    font-weight:bold;
-    border:solid 1px #A9AEB1;
-    
+    background: transparent url(images/palat.png) no-repeat scroll 0 -57px;
+    border: 1px solid #A9AEB1;
+    font-weight: bold;
+    height: 35px;
 }
-tr 
+tr
 {
-    background:#fff;
-    padding:2px 2px;
-    border-bottom :solid 1px #A9AEB1;
+    background: #fff;
+    padding: 2px 2px;
+    border-bottom: solid 1px #A9AEB1;
 }
 td
 {
-    text-align:left;
-    padding:5px;
-    vertical-align:top;
+    text-align: left;
+    padding: 5px;
+    vertical-align: top;
 }
 tr:hover
 {
-       
-       background:#FEFDE9;
+    background: #FEFDE9;
 }
 table
 {
-    border-collapse:collapse;
-    padding:5px;
-    border :solid 1px #A9AEB1;
+    border-collapse: collapse;
+    padding: 5px;
+    border: solid 1px #A9AEB1;
 }
 .contentbox
 {
-    padding:5px;
-    background:#fff;
-    border:solid 2px #DEDEDE;
-    margin:5px;
-    text-align:left;
+    padding: 5px;
+    background: #fff;
+    border: solid 2px #DEDEDE;
+    margin: 5px;
+    text-align: left;
 }
 .contentbox a
 {
-    color:#fff;
-    font-size:10px;
-    font-weight:bold;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
 }
 .label
 {
-    font-weight:bold;
+    font-weight: bold;
 }
 .tab
 {
-    background:#497BAC;
-    padding:5px;
-    border:solid 1px #325994;
-
+    background: #497BAC;
+    padding: 5px;
+    border: solid 1px #325994;
 }
 .qtxt
 {
-    width:400px;
+    width: 400px;
 }
 .qs .contentbox
 {
-    min-height:300px;
+    min-height: 300px;
 }
 .headx
 {
-    background:Transparent url(images/scv1.png);
+    background: url(images/scv1.png);
 }
+
+.tlist table
+{
+    width:100%;
+}
+.tlist h3
+{
+    color:#000;
+    font-weight:bold;
+    font-size:14px;
+    padding:10px;
+    margin:0px;
+}
+
+.thtl
+{
+    background: url(images/thl.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 6px;
+}
+.thtr
+{
+    background: url(images/thr.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 6px;
+}
+.thtc
+{
+    background: url(images/thc.png);
+    background-repeat: repeat-x;
+    background-position: left;
+}
+
+.thtl, .thtr, .thtc
+{
+    height: 62px;
+}
+
+.thbl
+{
+    background: url(images/thbl.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 6px;
+}
+.thbr
+{
+    background: url(images/thbr.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 6px;
+}
+.thbc
+{
+    background: url(images/thbc.png);
+    background-repeat: repeat-x;
+    background-position: left;
+}
+
+.thbl, .thbr, .thbc
+{
+    height: 61px;
+}
+.thml
+{
+    background: url(images/thml.png);
+    background-repeat: repeat-y;
+    background-position: left;
+    padding-left: 6px;
+}
+.thmr
+{
+    background: url(images/thmr.png);
+    background-repeat: repeat-y;
+    background-position: right;
+    padding-right: 6px;
+}
+.thmc
+{
+    background: #fff;
+    background-repeat: repeat;
+    background-position: left;
+}
+
+.thml, .thmr, .thmc
+{
+   
+}
+
 .loading
 {
-    background:url(images/3.gif);
-    width:68px;
-    height:68px;
+    background:url(images/3.gif);   
+   
     z-index:10001;
+    background-repeat:no-repeat;
 }

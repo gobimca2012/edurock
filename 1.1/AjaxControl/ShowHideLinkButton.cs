@@ -22,6 +22,13 @@ namespace AjaxControl
         }
         protected override void OnLoad(EventArgs e)
         {
+            if (PostBackUrl != "")
+            {
+                
+                JScripter.Loader objLoader = new JScripter.Loader((Page)HttpContext.Current.Handler, false);
+                objLoader.LoadPage(ContainnerID,ResolveUrl( PostBackUrl));
+                PostBackUrl = "";
+            }
             JScripter.Effect objEffect = new JScripter.Effect((Page)HttpContext.Current.Handler, false);
             if (Show)
                 objEffect.ShowonClick(this, ContainnerID);

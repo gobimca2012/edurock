@@ -46,6 +46,21 @@ namespace BusinessLogic
                 }
             }
         }
+        public int InstituteID
+        {
+            get
+            {
+                var data = new InstituteController().GetbyLoginUserID(LoggedInUserID);
+                if (data.Count > 0)
+                {
+                    return data[0].InstituteID;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
         public string LoggedInEmail
         {
             get

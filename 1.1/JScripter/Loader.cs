@@ -126,6 +126,22 @@ namespace JScripter
 			lnk.Attributes["href"] = "javascript:void(0);";
 			InjectScript(Injectscript, _thisPage);
 		}
+        public void PostData(string ContainerID, string PostContainnerID, string url, string lnkID)
+        {
+            if (url.Contains("?"))
+            {
+                url += "&ac=p";
+            }
+            else
+            {
+                url += "?ac=p";
+            }
+            url += "&k=" + lnkID;
+
+            string Injectscript = string.Format("$('#{0}').LinkPostH('{1}','{2}','{3}');", lnkID, url, PostContainnerID, ContainerID);
+            //lnk.Attributes["href"] = "javascript:void(0);";
+            InjectScript(Injectscript, _thisPage);
+        }
         public void PostData(string ContainerID, string PostContainnerID, string url, HyperLink lnk)
         {
             if (url.Contains("?"))

@@ -19,14 +19,14 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
         JScripter.Loader objLoader = new JScripter.Loader(this.Page, false);
         if (!new UserAuthontication().IsLoggedIn)
         {
-            lnkLogout.Visible = false;
-            lnkAccountSetting.Visible = false;
+            lilogout.Visible = false;
+            liAccountsetting.Visible = false;
         }
         else
         {
             lnkLogout.Visible = true;
-            
-            lnkCreate.Visible = false;
+            lilogout.Visible = false;
+            liCreate.Visible = false;
             lnkLogin.Text = new UserAuthontication().LoggedInUserName;
             if (new UserAuthontication().UserType == UserTypeEnum.College)
             {

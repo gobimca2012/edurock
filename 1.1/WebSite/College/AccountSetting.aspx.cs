@@ -20,5 +20,6 @@ public partial class College_AccountSetting :BasePage
         objTab.TabUl("#tabs");
         objLoader.LoadPage("#accountsetting", ResolveUrl("~/College/Ajaxer/InstituteInfoView.aspx"));
         objLoader.LoadPage("#courcecatagory", ResolveUrl("~/College/Ajaxer/CourceCatagoryInfoView.aspx"));
+        objLoader.LoadPage("#Institutecource", ResolveUrl("~/College/ajaxer/InstituteCourceInfoView.aspx"));
     }
 }

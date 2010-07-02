@@ -76,33 +76,8 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		IDatabase database = MyMeta.Databases[databaseName];
 		ITable table = database.Tables[tableName];
 		%>
-		<script type="text/javascript" src="../../JScript/jquery-1.3.2.js"></script>
-
-    <script type="text/javascript" src="../../JScript/ajax.js"></script>
-
-    <script type="text/javascript" src="../../JScript/Commond.js"></script>
-
-    <script type="text/javascript" src="../../JScript/Validation.js"></script>
-
-    <script type="text/javascript" src="JMan.js">
-
-
-    </script>
-		<script type="text/javascript">
-			function AddNew()
-				{
-				   var data = $().serializeNoViewState();
-				   $.post("Add.aspx?Action=AddNew",
-				   data,
-				   function(result)
-				   {
-					  $("#<%=table.Alias%>Add").replaceWith(result);
-				   }
-				   );
-				   return false;
-				}
-				
-			</script>
+		
+			<div id="divMessage" runat="server"></div>
 		<fieldset>
 <legend><%=table.Alias%></legend>
 <table>

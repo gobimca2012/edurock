@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CourceCatagoryInfoView.aspx.cs"
-    Inherits="College_Ajaxer_CourceCatagoryInfoView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="InstituteCourceInfoView.aspx.cs"
+    Inherits="College_Ajaxer_InstituteCourceInfoView" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,28 +9,22 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:ListView ID="ListCourceCatagory" runat="server">
+        <asp:ListView ID="ListInstituteCource" runat="server">
             <LayoutTemplate>
                 <table>
                     <thead>
                         <tr>
                             <td>
-                                CourceCatagoryID
+                                InstituteCourceID
                             </td>
                             <td>
-                                CatagoryName
+                                InstituteID
                             </td>
                             <td>
-                                LoginUserID
+                                CourceID
                             </td>
                             <td>
-                                Description
-                            </td>
-                            <td>
-                                CatagoryType
-                            </td>
-                            <td>
-                                ModifiedDate
+                                Modifieddate
                             </td>
                         </tr>
                     </thead>
@@ -40,27 +34,16 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <%#Eval("CourceCatagoryID") %>
+                        <%#Eval("InstituteCourceID") %>
                     </td>
                     <td>
-                        <%#Eval("CatagoryName") %>
+                        <%#Eval("InstituteID") %>
                     </td>
                     <td>
-                        <%#Eval("LoginUserID") %>
+                        <%#Eval("Cource.CourceName")%>
                     </td>
                     <td>
-                        <%#Eval("Description") %>
-                    </td>
-                    <td>
-                        <%#Eval("CatagoryType") %>
-                    </td>
-                    <td>
-                        <%#Eval("ModifiedDate") %>
-                    </td>
-                    <td>
-                        <aspajax:AjaxLinkButton ID="lnkDelete" runat="server" RequestContainner="" ResponseContainner=""
-                            OnAjaxClick="DeleteajaxClick" QID='<%#Eval("CourceCatagoryID") %>'>Delete</aspajax:AjaxLinkButton>
-                        <%#_htmlHelper.ListViewLinkButton("lnkd", "delete", Eval("CourceCatagoryID").ToString(), "#courcecatagory", "#courcecatagory")%>
+                        <%#Eval("Cource.CourceCatagory.CatagoryName")%>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -78,8 +61,7 @@
             </div>
         </div>
         <div>
-            <aspajax:HyperLink ID="lnkAddnew" runat="server" NavigateUrl="CourceCatagoryInfo.aspx"
-                ContainnerID="#courcecatagory">Add new</aspajax:HyperLink>
+            <aspajax:HyperLink ID="lnkAddiCo" runat="server" ContainnerID="#Institutecource" NavigateUrl="~/College/Ajaxer/InstituteCourceInfo.aspx">Add New</aspajax:HyperLink>
         </div>
     </div>
     </form>

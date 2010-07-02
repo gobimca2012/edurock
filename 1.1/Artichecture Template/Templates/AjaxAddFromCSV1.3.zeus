@@ -236,7 +236,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		}		
 		catch(Exception ex)
         {
-                divMessage="<div class='error'>"+ex.Message+"</div>";
+                divMessage.InnerHtml="<div class='error'>"+ex.Message+"</div>";
          }
 		 }
 		<%
@@ -297,54 +297,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	public void GenerateProperty()
 	{
 	%>
-	private Guid ID
-	{
-		get
-		{
-			if (Request.QueryString["type"] != null)
-			{
-				if (Request.QueryString["id"] != null)
-				{
-					return new Guid(Request.QueryString["id"]);
-				}
-				else
-				{
-					return Guid.Empty;
-				}
-			}
-			else
-			{
-				return Guid.Empty;
-			}
-		}
-
-
-
-	}
-	private bool IsEdit
-	{
-		get
-		{
-			if (Request.QueryString["type"] != null)
-			{
-				if (Request.QueryString["id"] != null)
-				{
-
-					//			ID = new Guid(Request.QueryString["id"]);
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			else
-			{
-				return false;
-			}
-		}
-
-	}
+	
    	<%
 	}
 	

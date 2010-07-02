@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="CommonController.cs" />
     <Compile Include="CourceCatagoryController.cs" />
+    <Compile Include="CourceController.cs" />
     <Compile Include="EmailController.cs" />
     <Compile Include="ExamController.cs" />
     <Compile Include="EXM_AnswerController.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="GlobelEnum.cs" />
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="InstituteController.cs" />
+    <Compile Include="InstituteCourceController.cs" />
     <Compile Include="IStartExam.cs" />
     <Compile Include="LoginUserController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
