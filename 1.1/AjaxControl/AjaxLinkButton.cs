@@ -32,7 +32,23 @@ namespace AjaxControl
             if (AjaxClick != null)
                 AjaxClick(this, e);
         }
-
+        private string _pageNumber="0";
+        public string PageNumber
+        {
+            get
+            {
+                return _pageNumber;
+            }
+            set
+            {
+                _pageNumber = value;
+            }
+        }
+        public bool Pagger
+        {
+            get;
+            set;
+        }
         public string Url
         {
             get
@@ -137,6 +153,18 @@ namespace AjaxControl
                 else
                 {
                     QuesryString += "?cmd=" + AjaxCommand;
+                }
+            }
+            if (Pagger)
+            {
+                if (Url.Contains("?"))
+                {
+
+                    QuesryString += "&pn=" + PageNumber;
+                }
+                else
+                {
+                    QuesryString += "?pn=" + PageNumber;
                 }
             }
             Url += QuesryString;

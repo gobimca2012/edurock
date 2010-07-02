@@ -85,7 +85,7 @@ public partial class College_UserControl_ListExamAttenders : System.Web.UI.UserC
     }
     protected void Prev_Click(object sender, EventArgs e)
     {
-        PageNumber = PageNumber - 1;
+         PageNumber = PageNumber - 1;
         BindList();
         PaggerLinkManager();
     }

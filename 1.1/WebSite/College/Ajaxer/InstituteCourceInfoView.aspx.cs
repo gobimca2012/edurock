@@ -15,42 +15,24 @@ using BusinessLogic;
 public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
 {
 
-
+    public HtmlHelper _HtmlHelper = new HtmlHelper();
     private int PageNumber
     {
         get
         {
-            if (ViewState["PageNumber"] != null)
-                return Convert.ToInt32(ViewState["PageNumber"].ToString());
+            if (Request.Params["pn"] != null)
+                return Convert.ToInt32(Request.Params["pn"].ToString());
             else
             {
                 lnkPrev.Visible = false;
                 return 0;
             }
         }
-        set
-        {
-            ViewState["PageNumber"] = value;
-        }
+       
     }
-    private int TotalPage
-    {
-        get
-        {
-            if (ViewState["TotalPage"] != null)
-                return Convert.ToInt32(ViewState["TotalPage"].ToString());
-            else
-            {
 
-                return 0;
-            }
-        }
-        set
-        {
-            ViewState["TotalPage"] = value;
-        }
-    }
-    private int PageSize = 20;
+    private int TotalPage;
+    private int PageSize = 1;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -68,42 +50,18 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
         ListInstituteCource.DataSource = new InstituteCourceController().GetbyInstituteID(new UserAuthontication().InstituteID, PageSize, PageNumber);
         ListInstituteCource.DataBind();
     }
-    protected void Prev_Click(object sender, EventArgs e)
+    
+    private void PaggerLinkManager()
     {
-        if (PageNumber > 0)
-        {
-            PageNumber = PageNumber - 1;
-            if (PageNumber == 0)
-            {
-                lnkPrev.Visible = false;
-            }
-        }
-        BindList();
-        if (PageNumber < TotalPage)
-        {
-            lnkNext.Visible = false;
-        }
-        else
-        {
-            lnkNext.Visible = true;
-        }
-        if (PageNumber < 1)
+        if (PageNumber == 0)
         {
             lnkPrev.Visible = false;
         }
-        else
+        if (TotalPage - 1 == PageNumber || TotalPage == 0)
         {
-            lnkPrev.Visible = true; ;
+            lnkNext.Visible = false;
         }
     }
-    protected void Next_Click(object sender, EventArgs e)
-    {
-
-        PageNumber = PageNumber + 1;
-
-        BindList();
-    }
-
     protected void ListInstituteCourceOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         ListViewDataItem currentItem = (ListViewDataItem)e.Item;
@@ -112,7 +70,28 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
 
 
     }
+    protected override void OnAjaxListViewCommand(AjaxListViewCommandArg e)
+    {
+        if (e.Command.Contains("delete"))
+        {
+            new InstituteCourceController().DeletebyInstituteCourceID(Convert.ToInt32(e.Id));
+            BindList();
+        }
+        base.OnAjaxListViewCommand(e);
+    }
 
 
 
+    protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        lnkPrev.PageNumber =( PageNumber - 1).ToString();
+        BindList();
+        PaggerLinkManager();
+    }
+    protected void PrevAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        lnkNext.PageNumber =( PageNumber + 1).ToString();
+        BindList();
+        PaggerLinkManager();
+    }
 }

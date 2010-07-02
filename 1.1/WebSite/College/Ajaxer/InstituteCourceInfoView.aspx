@@ -45,23 +45,27 @@
                     <td>
                         <%#Eval("Cource.CourceCatagory.CatagoryName")%>
                     </td>
+                    <td>
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteCourceID").ToString(), "#Institutecource", "#Institutecource")%>
+                    </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
         <div>
             <div style="float: right">
                 <div style="float: left">
-                    <asp:LinkButton ID="lnkPrev" runat="server" Text="Prev" OnClick="Prev_Click"></asp:LinkButton>
+                    <aspajax:AjaxLinkButton ID="lnkPrev" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick" Pagger="true" RequestContainner="#Institutecource" ResponseContainner="#Institutecource"></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
-                    <asp:LinkButton ID="lnkNext" runat="server" Text="Next" OnClick="Next_Click"></asp:LinkButton>
+                    <aspajax:AjaxLinkButton ID="lnkNext" runat="server" Text="Next" OnAjaxClick="NextAjaxClick"></aspajax:AjaxLinkButton>
                 </div>
             </div>
             <div style="clear: both">
             </div>
         </div>
         <div>
-            <aspajax:HyperLink ID="lnkAddiCo" runat="server" ContainnerID="#Institutecource" NavigateUrl="~/College/Ajaxer/InstituteCourceInfo.aspx">Add New</aspajax:HyperLink>
+            <aspajax:HyperLink ID="lnkAddiCo" runat="server" ContainnerID="#Institutecource"
+                NavigateUrl="~/College/Ajaxer/InstituteCourceInfo.aspx">Add New</aspajax:HyperLink>
         </div>
     </div>
     </form>
