@@ -371,3 +371,40 @@ function descreaseSecond(PopupDivID, url)
       //clearInterval(timmer);
    }
 }
+
+//popUp
+$.fn.PUIW = function(url, swidth, sheight,rurl,rid)
+{
+    alert("aa");
+   var id = $(this).attr("id");
+   id = "#" + id;
+   $(this).html("");
+   $(this).html("Loading................");
+
+   var str = "<iframe id='Ipopup' ALLOWTRANSPARENCY='true' frameborder='0' src='";
+   str += url;
+   str += "' style='width:" + swidth + "px;height:" + sheight + "px; background:none; overflow:auto;'></iframe>";
+   $(this).html(str);
+   $(this).dialog(
+   {      
+      position : 'center',
+      width : 'auto',
+      height : 'auto',
+      close : function(event, ui)
+      {
+         $(this).dialog('destroy');
+         $(rid).LoadPage(rurl);
+      }
+   }
+   );
+   $(this).dialog('open');
+   $("#Ipopup").css(
+   {
+      width : "'"+swidth+"'px",
+      height : "'"+sheight+"'px"
+   }
+   );
+   
+   return false;
+
+}

@@ -92,22 +92,22 @@ public partial class College_QuestionWizard_Step1 : BasePage
     }
     private void LoadQuestionBox(int Type)
     {
-        if (Type == (int)QuestionType.SingleChoice)
+        if (Type == (int)QuestionTypeEnum.SingleChoice)
         {
             College_UserControl_AddSingleChoiceQuestion AddSingleFillInTheBlankControl = (College_UserControl_AddSingleChoiceQuestion)CommonController.GetControl("~/College/UserControl/AddSingleChoiceQuestion.ascx");
             QuestionPlaceHolder.Controls.Add(AddSingleFillInTheBlankControl);
         }
-        else if (Type == (int)QuestionType.MultipleChoice)
+        else if (Type == (int)QuestionTypeEnum.MultipleChoice)
         {
             AddMultipleChoiceQuestionSubLayout AddSingleFillInTheBlankControl = (AddMultipleChoiceQuestionSubLayout)CommonController.GetControl("~/College/UserControl/AddMultipleChoiceQuestion.ascx");
             QuestionPlaceHolder.Controls.Add(AddSingleFillInTheBlankControl);
         }
-        else if (Type == (int)QuestionType.SingleFillintheBlanks)
+        else if (Type == (int)QuestionTypeEnum.SingleFillintheBlanks)
         {
             AddSingleFillInTheBlank AddSingleFillInTheBlankControl = (AddSingleFillInTheBlank)CommonController.GetControl("~/College/UserControl/AddSingleFillInTheBlank.ascx");
             QuestionPlaceHolder.Controls.Add(AddSingleFillInTheBlankControl);
         }
-        else if (Type == (int)QuestionType.Matchwords)
+        else if (Type == (int)QuestionTypeEnum.Matchwords)
         {
             AddMatchFollowing AddMatchFollowingControl = (AddMatchFollowing)CommonController.GetControl("~/College/UserControl/AddMatchFollowing.ascx");
             QuestionPlaceHolder.Controls.Add(AddMatchFollowingControl);

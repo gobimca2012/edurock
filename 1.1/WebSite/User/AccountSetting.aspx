@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div id="tabs-2">
-                <uc1:Education ID="Education1" runat="server" />
+                <div id="education"></div>
             </div>
         </div>
     </div>

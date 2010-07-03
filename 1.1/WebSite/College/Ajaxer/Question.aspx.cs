@@ -174,17 +174,17 @@ public partial class College_Ajaxer_Question : AjaxPage
         DivSingleChoice.Visible = false;
         DivMultipleChoice.Visible = false;
         divSingleFillIntheBlanck.Visible = false;
-        if (CurrentQuestion.Q_Type == (int)QuestionType.SingleChoice)
+        if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.SingleChoice)
         {
             DivSingleChoice.Visible = true;
             BindSingleChoiceQuestion();
         }
-        else if (CurrentQuestion.Q_Type == (int)QuestionType.MultipleChoice)
+        else if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.MultipleChoice)
         {
             DivMultipleChoice.Visible = true;
             BindMultiChoiceQuestion();
         }
-        else if (CurrentQuestion.Q_Type == (int)QuestionType.SingleFillintheBlanks)
+        else if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.SingleFillintheBlanks)
         {
             divSingleFillIntheBlanck.Visible = true;
             BindSingleFillIntheBlank();
@@ -301,7 +301,7 @@ public partial class College_Ajaxer_Question : AjaxPage
     }
     private void UpdateAnswer()
     {
-        if (CurrentQuestion.Q_Type == (int)QuestionType.SingleChoice)
+        if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.SingleChoice)
         {
 
             if (Request.Params[chkOption.ClientID] != null)
@@ -313,7 +313,7 @@ public partial class College_Ajaxer_Question : AjaxPage
                 //new EXM_UserAnswerController().UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(Request.Params[chkOption.ClientID].ToString()), new UserAuthontication().LoggedInUserID, UserExamID);
             }
         }
-        else if (CurrentQuestion.Q_Type == (int)QuestionType.MultipleChoice)
+        else if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.MultipleChoice)
         {
             List<string> SelectedItem = HtmlHelper.CheckBox("chk");
             if (SelectedItem.Count > 0)
@@ -327,7 +327,7 @@ public partial class College_Ajaxer_Question : AjaxPage
             }
 
         }
-        else if (CurrentQuestion.Q_Type == (int)QuestionType.SingleFillintheBlanks)
+        else if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.SingleFillintheBlanks)
         {
             if (Request.Params[ddAnswer.ClientID] != null && Request.Params[ddAnswer.ClientID] != "0")
             {

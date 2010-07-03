@@ -83,7 +83,7 @@ public partial class AddMatchFollowing : System.Web.UI.UserControl
             {
                 throw new Exception("Please enter All Questions");
             }
-            int QuestionID = new EXM_QuestionController().Add(txtQuestion1.Text.Trim() + ";" + txtQuestion2.Text.Trim() + ";" + txtQuestion3.Text.Trim() + ";" + txtQuestion4.Text.Trim(), new UserAuthontication().LoggedInUserID, _ExamId, (int)QuestionType.Matchwords, txtDescription.Text, Convert.ToInt32(txtMarks.Text), DateTime.Now);
+            int QuestionID = new EXM_QuestionController().Add(txtQuestion1.Text.Trim() + ";" + txtQuestion2.Text.Trim() + ";" + txtQuestion3.Text.Trim() + ";" + txtQuestion4.Text.Trim(), new UserAuthontication().LoggedInUserID, _ExamId, (int)QuestionTypeEnum.Matchwords, txtDescription.Text, Convert.ToInt32(txtMarks.Text), DateTime.Now);
             if (QuestionID > 0)
             {
                 divError.InnerHtml = "<div class='success'>Question has been successfully added</div>";
@@ -102,7 +102,7 @@ public partial class AddMatchFollowing : System.Web.UI.UserControl
             {
                 throw new Exception("Please enter All Questions");
             }
-            if (new EXM_QuestionController().UpdateByEXM_QuestionID(_QuestionID, txtQuestion1.Text.Trim() + ";" + txtQuestion2.Text.Trim() + ";" + txtQuestion3.Text.Trim() + ";" + txtQuestion4.Text.Trim(), new UserAuthontication().LoggedInUserID, _ExamId, Convert.ToInt32(txtMarks.Text), (int)QuestionType.Matchwords, txtDescription.Text, DateTime.Now))
+            if (new EXM_QuestionController().UpdateByEXM_QuestionID(_QuestionID, txtQuestion1.Text.Trim() + ";" + txtQuestion2.Text.Trim() + ";" + txtQuestion3.Text.Trim() + ";" + txtQuestion4.Text.Trim(), new UserAuthontication().LoggedInUserID, _ExamId, Convert.ToInt32(txtMarks.Text), (int)QuestionTypeEnum.Matchwords, txtDescription.Text, DateTime.Now))
             {
                 divError.InnerHtml = "<div class='success'>Question has been Updated</div>";
             }

@@ -115,17 +115,17 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
         DivSingleChoice.Visible = false;
         DivMultipleChoice.Visible = false;
         divSingleFillIntheBlanck.Visible = false;
-        if (CurrentQuestion.Q_Type == (int)QuestionType.SingleChoice)
+        if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.SingleChoice)
         {
             DivSingleChoice.Visible = true;
             BindSingleChoiceQuestion();
         }
-        else if (CurrentQuestion.Q_Type == (int)QuestionType.MultipleChoice)
+        else if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.MultipleChoice)
         {
             DivMultipleChoice.Visible = true;
             BindMultiChoiceQuestion();
         }
-        else if (CurrentQuestion.Q_Type == (int)QuestionType.SingleFillintheBlanks)
+        else if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.SingleFillintheBlanks)
         {
             divSingleFillIntheBlanck.Visible = true;
             BindSingleFillIntheBlank();
@@ -221,7 +221,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
     }
     private void UpdateAnswer()
     {
-        if (CurrentQuestion.Q_Type == (int)QuestionType.SingleChoice)
+        if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.SingleChoice)
         {
             
             if (chkOption.SelectedValue != "")
@@ -229,7 +229,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
                 new EXM_UserAnswerController().UpdateByQuestionID(CurrentQuestion.EXM_QuestionID, Convert.ToInt32(chkOption.SelectedValue), new UserAuthontication().LoggedInUserID,UserExamID);
             }
         }
-        else if (CurrentQuestion.Q_Type == (int)QuestionType.MultipleChoice)
+        else if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.MultipleChoice)
         {
             if (chkMulti.SelectedValue != "")
             {
@@ -242,7 +242,7 @@ public partial class College_UserControl_Question : System.Web.UI.UserControl
             }
 
         }
-        else if (CurrentQuestion.Q_Type == (int)QuestionType.SingleFillintheBlanks)
+        else if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.SingleFillintheBlanks)
         {
             if (ddAnswer.SelectedValue != "")
             {

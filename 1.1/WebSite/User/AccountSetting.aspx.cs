@@ -25,6 +25,7 @@ public partial class User_AccountSetting : BasePage
         JScripter.Tab objTab = new JScripter.Tab(this.Page,true);
         objTab.TabUl("#tabs");
         objLoader.LoadPage("#accountsetting", ResolveUrl("~/User/AjaxControl/UserInfoView.aspx"));
+        objLoader.LoadPage("#education", ResolveUrl("~/User/AjaxControl/EducationView.aspx"));
         
     }
    
