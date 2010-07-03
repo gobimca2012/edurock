@@ -10,10 +10,10 @@ function loadobject(url, loadid, clickid)
 
 $.fn.serializeNoViewState = function()
 {
-   return this.find("input,textarea,select")
-   .not("[type=hidden][name^=__]")
-   .serialize();
-   // return this.serialize();
+//   return this.find("input,textarea,select")
+//   .not("[type=hidden][name^=__]")
+//   .serialize();
+   return this.find("input,textarea,select").serialize();
 
 }
 
@@ -173,7 +173,7 @@ function NormalizeUrl(hypobj)
 function HtmlPaste(obj, ContainnerID)
 {
    var htmldata = decHTMLifEnc(obj);
-   $(ContainnerID).html(htmldata);
+   $(ContainnerID).html(obj);
    // alert($(ContainnerID).html());
 
 

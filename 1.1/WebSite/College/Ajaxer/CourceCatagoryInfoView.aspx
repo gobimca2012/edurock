@@ -67,20 +67,22 @@
         </asp:ListView>
         <div>
             <div style="float: right">
-                <div style="float: left">
-                    <asp:LinkButton ID="lnkPrev" runat="server" Text="Prev" OnClick="Prev_Click"></asp:LinkButton>
-                </div>
-                <div style="float: left">
-                    <asp:LinkButton ID="lnkNext" runat="server" Text="Next" OnClick="Next_Click"></asp:LinkButton>
-                </div>
+            <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkPrev" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
+                    Pagger="true" Increment="false" RequestContainner="#courcecatagory" ResponseContainner="#courcecatagory"></aspajax:AjaxLinkButton>
             </div>
-            <div style="clear: both">
+            <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkNext" runat="server" OnAjaxClick="NextAjaxClick"
+                    RequestContainner="#courcecatagory" Pagger="true" Increment="true" ResponseContainner="#courcecatagory">Next</aspajax:AjaxLinkButton>
             </div>
         </div>
-        <div>
-            <aspajax:HyperLink ID="lnkAddnew" runat="server" NavigateUrl="CourceCatagoryInfo.aspx"
-                ContainnerID="#courcecatagory">Add new</aspajax:HyperLink>
+        <div style="clear: both">
         </div>
+    </div>
+    <div>
+        <aspajax:HyperLink ID="lnkAddnew" runat="server" NavigateUrl="CourceCatagoryInfo.aspx"
+            ContainnerID="#courcecatagory">Add new</aspajax:HyperLink>
+    </div>
     </div>
     </form>
 </body>

@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <asp:Panel ID="InstituteCource" runat="server" >
         <asp:ListView ID="ListInstituteCource" runat="server">
             <LayoutTemplate>
                 <table>
@@ -54,10 +54,12 @@
         <div>
             <div style="float: right">
                 <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkPrev" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick" Pagger="true" RequestContainner="#Institutecource" ResponseContainner="#Institutecource"></aspajax:AjaxLinkButton>
+                    <aspajax:AjaxLinkButton ID="lnkPrevx" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick" Pagger="true" Increment="false"
+                         RequestContainner="#Institutecource" ResponseContainner="#Institutecource"></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkNext" runat="server" Text="Next" OnAjaxClick="NextAjaxClick"></aspajax:AjaxLinkButton>
+                    <aspajax:AjaxLinkButton ID="lnkNextx" runat="server" OnAjaxClick="NextAjaxClick" RequestContainner="#Institutecource" Pagger="true" Increment="true"
+                        ResponseContainner="#Institutecource">Next</aspajax:AjaxLinkButton>
                 </div>
             </div>
             <div style="clear: both">
@@ -67,7 +69,7 @@
             <aspajax:HyperLink ID="lnkAddiCo" runat="server" ContainnerID="#Institutecource"
                 NavigateUrl="~/College/Ajaxer/InstituteCourceInfo.aspx">Add New</aspajax:HyperLink>
         </div>
-    </div>
+    </asp:Panel>
     </form>
 </body>
 </html>

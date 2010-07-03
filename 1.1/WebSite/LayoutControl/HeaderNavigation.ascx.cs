@@ -25,15 +25,20 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
         else
         {
             lnkLogout.Visible = true;
-            lilogout.Visible = false;
+            lilogout.Visible = true;
             liCreate.Visible = false;
             lnkLogin.Text = new UserAuthontication().LoggedInUserName;
-            if (new UserAuthontication().UserType == UserTypeEnum.College)
+            if (new UserAuthontication().LoggedInUserName.Trim().ToLower() == "admin")
+            {
+                ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/AdminNavigation.ascx"));
+                lnkAccountSetting.NavigateUrl = "~/User/AccountSetting.aspx";
+            }
+            else if (new UserAuthontication().UserType == UserTypeEnum.College)
             {
                 ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/CollegeMenu.ascx"));
                 lnkAccountSetting.NavigateUrl = "~/College/AccountSetting.aspx";
             }
-            if (new UserAuthontication().UserType == UserTypeEnum.Student)
+            else if (new UserAuthontication().UserType == UserTypeEnum.Student)
             {
                 ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/UserMenu.ascx"));
                 lnkAccountSetting.NavigateUrl = "~/User/AccountSetting.aspx";

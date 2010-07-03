@@ -67,6 +67,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
 
 
         }
+        
     }
 
     private Guid ID

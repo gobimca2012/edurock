@@ -79,6 +79,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		EditFunction(table);
 		BindFunction(table);
 		GenerateProperty();
+		pageLoadFunction();
 	}
 	//Start function
 	public string GetFunctionAssignment(IColumn column)
@@ -213,13 +214,32 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	//End Function
 	
 	
+	//start function page Load
+	public void pageLoadFunction()
+	{
+	%>
+	protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Request.Params["<parameterName>"]!=null)
+        {
+            BindData(ID);
+        }
+        else
+        {
+            new CourceCatagoryController().BindCourceCatagory(ddCatagory);
+        }
+    }
+	<%
+	}
 	
+	///End of Function
 	
 	
 	//Start function	
 	public void AddFunction(ITable table)
 	{
 	    %>
+		
 		private void AddData()
 		{	
 		try
@@ -233,6 +253,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		}
 		%>
 		<%=GenerateAddFunction(table)%>
+		Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
 		}		
 		catch(Exception ex)
         {
@@ -249,9 +270,10 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	public void EditFunction(ITable table)
 	{
 	    %>
-		private void EditData(Guid ID)
+		private void EditData()
 		{		
-		Guid PID=ID;
+		try
+		{
 		<%
 		foreach(IColumn column in table.Columns)
 		{
@@ -261,6 +283,13 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		}
 		%>
 		<%=GenerateUpdateFunction(table)%>
+		}
+		Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
+		}		
+		catch(Exception ex)
+        {
+                divMessage.InnerHtml="<div class='error'>"+ex.Message+"</div>";
+         }
 		}
 		<%
 		
@@ -274,7 +303,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	    %>
 		private void BindData(Guid ID)
 		{
-		    var dataBunch = new <%=table.Alias%>Controller().Getby<%=table.Alias%>ID(ID);
+		    var dataBunch = new <%=table.Alias%>Controller().Getby<%=table.Alias%>(ID);
 			if (dataBunch.Count > 0)
 			{
 				var data=dataBunch[0];
@@ -297,11 +326,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	public void GenerateProperty()
 	{
 	%>
-	protected void AddAjaxClick(object sender, AjaxControl.AjaxEventArg e)
-    {
-        AddData();
-        Response.Redirect("~/College/Ajaxer/CourceCatagoryInfoView.aspx");
-    }
+	
    	<%
 	}
 	

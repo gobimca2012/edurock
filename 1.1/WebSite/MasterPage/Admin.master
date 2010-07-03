@@ -1,0 +1,89 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="MasterPage_Admin" %>
+
+<%@ Register Src="../Modules/Login/Create.ascx" TagName="Create" TagPrefix="uc1" %>
+<%@ Register Src="../Modules/Login/Login.ascx" TagName="Login" TagPrefix="uc2" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Untitled Page</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="header">
+        <div style="width: 1000px; margin: 0 auto; height: 100px">
+            <div style="float: right; margin-right: 4px;">
+                <ul>
+                    <li id="liHome" runat="server">
+                        <div class="btnl">
+                            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Home.aspx">Home</asp:HyperLink>
+                        </div>
+                        <div class="btnr">
+                        </div>
+                    </li>
+                    <li id="lilogin" runat="server">
+                        <div class="btnl">
+                            <aspajax:ShowHideLinkButton ID="lnkLogin" runat="server" Show="true" ContainnerID="#logindiv">Sign In</aspajax:ShowHideLinkButton>
+                        </div>
+                        <div class="btnr">
+                        </div>
+                    </li>
+                    <li id="liCreate" runat="server">
+                        <div class="btnl">
+                            <aspajax:ShowHideLinkButton ID="lnkCreate" runat="server" Show="true" ContainnerID="#creatediv">Sign Up</aspajax:ShowHideLinkButton>
+                        </div>
+                        <div class="btnr">
+                        </div>
+                    </li>
+                    <li id="liAccountsetting" runat="server">
+                        <div class="btnl">
+                            <asp:HyperLink ID="lnkAccountSetting" runat="server" NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
+                        </div>
+                        <div class="btnr">
+                        </div>
+                    </li>
+                    <li id="lilogout" runat="server">
+                        <div class="btnl">
+                            <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">LogOut</asp:LinkButton>
+                        </div>
+                        <div class="btnr">
+                        </div>
+                    </li>
+                </ul>
+                <div id="logindiv" style="display: none">
+                    <uc2:Login ID="Login1" runat="server" />
+                </div>
+                <div id="creatediv" style="display: none">
+                    <uc1:Create ID="Create1" runat="server" />
+                </div>
+            </div>
+        </div>
+        <div style="clear: both">
+        </div>
+        <div>
+            <div class="menu">
+                <asp:Menu ID="CollegeMenu" runat="server" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem Text="Dashboard"></asp:MenuItem>
+                        <asp:MenuItem Text="Assignments"></asp:MenuItem>
+                        <asp:MenuItem Text="Online Exams" NavigateUrl="~/College/ListExam.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Results"></asp:MenuItem>
+                        <asp:MenuItem Text="Profesors"></asp:MenuItem>
+                        <asp:MenuItem Text="Students"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both">
+    </div>
+    <div class="page">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

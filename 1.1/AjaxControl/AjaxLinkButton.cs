@@ -22,7 +22,7 @@ namespace AjaxControl
 
     }
 
-    public class AjaxLinkButton : System.Web.UI.WebControls.LinkButton
+    public class AjaxLinkButton : System.Web.UI.WebControls.HyperLink
     {
         private string _Url;
         public delegate void AjaxClickEventHandler(object sender, AjaxEventArg e);
@@ -32,24 +32,22 @@ namespace AjaxControl
             if (AjaxClick != null)
                 AjaxClick(this, e);
         }
-        private string _pageNumber="0";
-        public string PageNumber
+        public Dictionary<string, string> Parames
         {
-            get
-            {
-                return _pageNumber;
-            }
-            set
-            {
-                _pageNumber = value;
-            }
+            get;
+            set;
+        }
+        public bool Increment
+        {
+            get;
+            set;
         }
         public bool Pagger
         {
             get;
             set;
         }
-        public string Url
+        public string ExternameUrlParam
         {
             get
             {
@@ -95,8 +93,9 @@ namespace AjaxControl
 
         protected override void OnLoad(EventArgs e)
         {
+            Parames = new Dictionary<string, string>();
             base.OnLoad(e);
-            string Url = ResolveUrl(this.PostBackUrl);
+            string Url = ResolveUrl(this.NavigateUrl);
             string Questring = "", QueryStringStr = "";
             if (Url == "")
             {
@@ -157,14 +156,26 @@ namespace AjaxControl
             }
             if (Pagger)
             {
-                if (Url.Contains("?"))
+                if (Url.Contains("?") || QuesryString.Contains("?"))
                 {
-
-                    QuesryString += "&pn=" + PageNumber;
+                    if (HttpContext.Current.Request.Params["pn"] != null)
+                    {
+                        if (Increment)
+                            QuesryString += "&pn=" + (Convert.ToInt16(HttpContext.Current.Request.Params["pn"]) + 1).ToString();
+                        else
+                            QuesryString += "&pn=" + (Convert.ToInt16(HttpContext.Current.Request.Params["pn"]) - 1).ToString();
+                    }
+                    else
+                    {
+                        if (Increment)
+                            QuesryString += "&pn=" + " 1";
+                        else
+                            QuesryString += "&pn=" + "0";
+                    }
                 }
                 else
                 {
-                    QuesryString += "?pn=" + PageNumber;
+                    QuesryString += "?cmd=" + AjaxCommand;
                 }
             }
             Url += QuesryString;
@@ -172,15 +183,15 @@ namespace AjaxControl
             {
                 ResponseContainner = RequestContainner;
             }
-            new JScripter.Loader(this.Page, false).PostData(RequestContainner, ResponseContainner, Url, this);
+
             if (HttpContext.Current.Request.Params["k"] != null)
             {
                 if (HttpContext.Current.Request.Params["k"] == this.ClientID)
                 {
                     AjaxEventArg objArg = new AjaxEventArg();
-                    if (HttpContext.Current.Request.QueryString["id"] != "")
+                    if (HttpContext.Current.Request.Params["id"] != "")
                     {
-                        objArg.Id = HttpContext.Current.Request.QueryString["id"];
+                        objArg.Id = HttpContext.Current.Request.Params["id"];
                     }
                     if (HttpContext.Current.Request.Params["cmd"] != "")
                     {
@@ -189,14 +200,20 @@ namespace AjaxControl
                     OnAjaxClick(objArg);
                 }
             }
-            //string HidentControl = string.Format("<input type=\"hidden\" name=\"_DIMMER\" id=\"_DIMMER\" value=\"{0}\" />",QuesryString);
-            ////System.Web.UI.WebControls.HiddenField que = new System.Web.UI.WebControls.HiddenField();
-            ////que.Value = QuesryString;
-            ////que.ID = "dim";
-            ////System.Web.UI.Page currentPage = (System.Web.UI.Page)HttpContext.Current.Handler;
-            //HttpContext.Current.Response.Write(HidentControl);
-            ////currentPage.Controls.Add(que);
-            PostBackUrl = _Url;
+            if (Parames != null)
+            {
+                List<string> Keylist = new List<string>(Parames.Keys);
+                List<string> valuelist = new List<string>(Parames.Values);
+
+
+                for (int i = 0; i < Parames.Keys.Count; i++)
+                {
+                    Url += string.Format("&{0}={1}", Keylist[i], valuelist[i]);
+                }
+            }
+            new JScripter.Loader(this.Page, false).PostData(RequestContainner, ResponseContainner, Url + ExternameUrlParam, this);
+            NavigateUrl = "";
+
 
         }
 

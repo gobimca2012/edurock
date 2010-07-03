@@ -14,9 +14,11 @@ namespace AjaxControl
         }
         protected override void OnLoad(EventArgs e)
         {
-            new JScripter.Loader(this.Page, false).PostData(ContainnerID, ContainnerID, ResolveUrl(this.NavigateUrl), this);
+            //base.OnLoad(e);
+            this.Attributes["href"] = "javascript:void(0);";
+            new JScripter.Loader(this.Page, false).PostData(ContainnerID, ContainnerID, ResolveUrl(this.NavigateUrl), this.ClientID);
             this.NavigateUrl = "";
-            base.OnLoad(e);
+            
         }
     }
 }

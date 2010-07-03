@@ -71,13 +71,30 @@ namespace BusinessLogic
                 }
             }
         }
+        protected Dictionary<string, string> AjaxState = new Dictionary<string, string>();
         public delegate void AjaxClickEventHandler(object sender, AjaxListViewCommandArg e);
         public event AjaxClickEventHandler AjaxListViewCommand;        
         protected virtual void OnAjaxListViewCommand(AjaxListViewCommandArg e)
         {
             if (AjaxListViewCommand != null)
                 AjaxListViewCommand(this, e);
-        }        
+        }
+        public string AjaxStateName="__AjaxState";
+        protected override void OnInit(EventArgs e)
+        {
+            if (Request.Params[AjaxStateName] != null)
+            {
+                string AjaxStateValues = Request.Params[AjaxStateName].ToString();
+                string[] AjaxStatePart = AjaxStateValues.Split('&');
+                for (int i = 0; i < AjaxStatePart.Length; i++)
+                {
+                    string[] AjaxStatePartPart = AjaxStatePart[i].Split('=');
+                    //AjaxState.Add(AjaxStatePartPart[0], AjaxStatePartPart[1]);
+                    AjaxState[AjaxStatePartPart[0]] = AjaxStatePartPart[1];
+                }
+            }
+            base.OnInit(e);
+        }
         protected override void OnLoad(EventArgs e)
         {
             objLoader = new JScripter.Loader(this.Page, false);
@@ -95,9 +112,35 @@ namespace BusinessLogic
 
 
         }
+        protected override void OnLoadComplete(EventArgs e)
+        {
+            System.Web.UI.WebControls.HiddenField AjaxStateControl=(System.Web.UI.WebControls.HiddenField)FindControl("_AjaxState");
+            if (AjaxStateControl != null)
+            {
+                string AjaxStateString = "";
+                List<string> Keylist = new List<string>(AjaxState.Keys);
+                List<string> valuelist = new List<string>(AjaxState.Values);
+
+                
+                for (int i = 0; i < AjaxState.Keys.Count; i++)
+                {
+                    if (i > 1)
+                    {
+                        AjaxStateString += string.Format("&{0}={1}", Keylist[i], valuelist[i]);
+                    }
+                    else
+                    {
+                        AjaxStateString += string.Format("{0}={1}", Keylist[i], valuelist[i]);
+                    }
+                }
+                AjaxStateControl.Value = AjaxStateString;
+                AjaxStateControl.ID = AjaxStateName;                
+            }
+            //this.Page.Form.Controls.Add(AjaxStateControl);
+            base.OnLoadComplete(e);
+        }
         protected override void LoadViewState(object savedState)
         {
-
             base.LoadViewState(savedState);
         }
         protected override void Render(HtmlTextWriter writer)

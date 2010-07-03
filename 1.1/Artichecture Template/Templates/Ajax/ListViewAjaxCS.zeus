@@ -1,6 +1,6 @@
 ﻿##|TYPE Template
-##|UNIQUEID 30f63493-0910-474f-9e36-fa5a742513b8
-##|TITLE AddForm
+##|UNIQUEID 3062c59a-0684-4f72-a0be-bf2b978e4f2d
+##|TITLE ListViewCS
 ##|NAMESPACE 
 ##|SOURCE_TYPE Source
 ##|OUTPUT_LANGUAGE None
@@ -70,54 +70,101 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	//---------------------------------------------------
 	public override void Render()
 	{
-	    string databaseName = input["databaseName"].ToString();
+	string databaseName = input["databaseName"].ToString();
 		string tableName = input["tableName"].ToString();
 		int columnCount=0;
 		IDatabase database = MyMeta.Databases[databaseName];
 		ITable table = database.Tables[tableName];
-		%>
-		
-			<div id="divMessage" runat="server"></div>
-		<fieldset>
-<legend><%=table.Alias%></legend>
-<table>
-		<%foreach(IColumn column in table.Columns)
-		{%>
-		<tr>
-                <td>
-                    <span class="label"><%=column.Alias%></span>
-                </td>
-                <td>                    
-                    <%if (column.LanguageType == "string")
-                      {
-                    %>
-                    <asp:TextBox ID="txt<%=column.Alias%>" runat="server"></asp:TextBox>
-                    <%}
-                      else if (column.LanguageType == "bool" || column.LanguageType == "Boolean")
-                      {%>
-                    <asp:CheckBox ID="chk<%=column.Alias%>" runat="server" />
-                    <%}
-                      else if (column.LanguageType == "Guid")
-                      {
-					  
-                          if (column.IsInForeignKey)
-                          {                    
-                    %>
-                    <asp:DropDownList ID="dd<%=column.Alias%>" runat="server">
-                    </asp:DropDownList>
-					
-                    <%}
-                      } %>
-                </td>
-            </tr>
-			<%}%>
-			</table>
-</fieldset>
+	%>
+	public HtmlHelper _HtmlHelper = new HtmlHelper();
+		private int PageNumber
+    {
+        get
+        {
+            if (Request.Params["pn"] != null)
+                return Convert.ToInt32(Request.Params["pn"].ToString());
+            else
+            {
+                lnkPrevx.Visible = false;
+                return 0;
+            }
+        }
 
+
+    }
+
+    private int TotalPage;
+    private int PageSize = 1;
+
+		protected void Page_Load(object sender, EventArgs e)
+		{
 			
-		<%
+			{
+				BindList();
+				TotalPage = new <%=table.Alias%>Controller().<%=table.Alias%>Get().Count / PageSize;
+			}
+			
+		}
+		private void BindList()
+		{
+			List<%=table.Alias%>.DataSource = new <%=table.Alias%>Controller().<%=table.Alias%>Get(PageSize, PageNumber);
+			List<%=table.Alias%>.DataBind();
+		}
+		private void PaggerLinkManager()
+    {
+
+
+        if (PageNumber == 0)
+        {
+            lnkPrevx.Visible = false;
+        }
+        if (TotalPage - 1 == PageNumber || TotalPage == 0)
+        {
+            lnkNextx.Visible = false;
+        }
+        if (lnkNextx.Visible)
+        {
+            //lnkNextx.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
+        }
+
+        if (lnkPrevx.Visible)
+        {
+            //lnkPrevx.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
+        }
+    }
+    protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+
+        BindList();
+        PaggerLinkManager();
+    }
+    protected void PrevAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+
+        BindList();
+        PaggerLinkManager();
+    }
+	protected override void OnAjaxListViewCommand(AjaxListViewCommandArg e)
+    {
+        if (e.Command.Contains("delete"))
+        {
+            
+            BindList();
+        }
+        base.OnAjaxListViewCommand(e);
+    }
 		
-	}
+		protected void List<%=table.Alias%>OnItemDataBound(object sender, ListViewItemEventArgs e)
+		{
+			ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+
+
+
+		}
+	
+
+<%	}
 
 }
 %>

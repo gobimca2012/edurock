@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class College_Ajaxer_InstituteInfo : System.Web.UI.Page
+public partial class College_Ajaxer_InstituteInfo : AjaxPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
