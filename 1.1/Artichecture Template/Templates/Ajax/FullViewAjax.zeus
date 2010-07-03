@@ -1,6 +1,6 @@
 ﻿##|TYPE Template
-##|UNIQUEID 30f63493-0910-474f-9e36-fa5a742513b8
-##|TITLE AddForm
+##|UNIQUEID 5e41ac4a-54f6-4318-9cd2-ac1d98a1dcc3
+##|TITLE FulView
 ##|NAMESPACE 
 ##|SOURCE_TYPE Source
 ##|OUTPUT_LANGUAGE None
@@ -70,63 +70,33 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	//---------------------------------------------------
 	public override void Render()
 	{
-	    string databaseName = input["databaseName"].ToString();
+		string databaseName = input["databaseName"].ToString();
 		string tableName = input["tableName"].ToString();
 		int columnCount=0;
 		IDatabase database = MyMeta.Databases[databaseName];
-		ITable table = database.Tables[tableName];
-		%>
+		ITable table = database.Tables[tableName];%>
 		
-			<div id="divMessage" runat="server"></div>
-		<fieldset>
-<legend><%=table.Alias%></legend>
-<table>
-		<%foreach(IColumn column in table.Columns)
-		{%>
-		<tr>
-                <td>
-                    <span class="label"><%=column.Alias%></span>
-                </td>
-                <td>                    
-                    <%if (column.LanguageType == "string")
-                      {
-                    %>
-                    <asp:TextBox ID="txt<%=column.Alias%>" runat="server"></asp:TextBox>
-                    <%}
-                      else if (column.LanguageType == "bool" || column.LanguageType == "Boolean")
-                      {%>
-                    <asp:CheckBox ID="chk<%=column.Alias%>" runat="server" />
-                    <%}
-                      else if (column.LanguageType == "Guid")
-                      {
-					  
-                          if (column.IsInForeignKey)
-                          {                    
-                    %>
-                    <asp:DropDownList ID="dd<%=column.Alias%>" runat="server">
-                    </asp:DropDownList>
-					
-                    <%}
-                      } %>
-                </td>
-            </tr>
-			<%}%>
-			</table>
+		    <div id="<%=table.Alias%>">
 			<div>
-                <aspajax:AjaxLinkButton ID="lnkAdd<%=table.Alias%>" runat="server" RequestContainner="#<%=table.Alias%>"
-                    ResponseContainner="#<%=table.Alias%>" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
-            </div>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdate<%=table.Alias%>" runat="server" RequestContainner="#<%=table.Alias%>"
-                    ResponseContainner="#<%=table.Alias%>" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
-            </div>
-
-</fieldset>
-
+				<asp:HyperLink ID="lnkback" runat="server" Text="back to List" runat="server" NavigateUrl="~/Modules/<%=table.Alias%>/List.aspx"></asp:HyperLink>
+			</div>
 			
-		<%
-		
-	}
+		   <%foreach(IColumn column in table.Columns)
+		   {%>
+			<div>
+			<div>
+				<span class="label"><%=column.Alias%></span>
+			</div>
+			<div>
+				<span id="lbl<%=column.Alias%>" runat="server"></span>
+			</div>
+			</div>
+			<%}%>
+			<asp:LinkButton ID="lnkedit" runat="server" Text="Edit" CssClass="btnlnk"></asp:LinkButton>
+        <asp:LinkButton ID="lnkAddNew" runat="server" Text="Add" CssClass="btnlnk"></asp:LinkButton>
+			</div>
+	
+	<%}
 
 }
 %>

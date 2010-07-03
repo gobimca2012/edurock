@@ -87,13 +87,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
                             <--=column.Alias-->
                         </td>
 						<--}-->
-						<td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteCourceID").ToString(), "#Institutecource", "#Institutecource")%>
-                    </td>
-					 <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/CourceInfo.aspx") + "?cid=" + Eval("CourceID")%>'
-                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
-                    </td>
+						
                     </tr>
                 </thead>
                 <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
@@ -106,26 +100,33 @@ public class GeneratedTemplate : DotNetScriptTemplate
                      <%#Eval("<--=column.Alias-->") %>
                 </td>
 				<--}-->
+				<td>
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("<--=table.Alias-->ID").ToString(), "#<--=table.Alias-->", "#<--=table.Alias-->")%>
+                    </td>
+					 <td>
+                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/<--=table.Alias-->Info.aspx") + "?cid=" + Eval("<--=table.Alias-->ID")%>'
+                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
+                    </td>
             </tr>
         </ItemTemplate>
     </asp:ListView>
 	 <div>
             <div style="float: right">
                 <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkPrevx" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick" Pagger="true" Increment="false"
-                         RequestContainner="#Institutecource" ResponseContainner="#Institutecource"></aspajax:AjaxLinkButton>
+                    <aspajax:AjaxLinkButton ID="lnkPrev<--=table.Alias-->" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick" Pagger="true" Increment="false"
+                         RequestContainner="#<--=table.Alias-->" ResponseContainner="#<--=table.Alias-->"></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkNextx" runat="server" OnAjaxClick="NextAjaxClick" RequestContainner="#Institutecource" Pagger="true" Increment="true"
-                        ResponseContainner="#Institutecource">Next</aspajax:AjaxLinkButton>
+                    <aspajax:AjaxLinkButton ID="lnkNext<--=table.Alias-->" runat="server" OnAjaxClick="NextAjaxClick" RequestContainner="#<--=table.Alias-->" Pagger="true" Increment="true"
+                        ResponseContainner="#<--=table.Alias-->">Next</aspajax:AjaxLinkButton>
                 </div>
             </div>
             <div style="clear: both">
             </div>
         </div>
 	<div>
-            <aspajax:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/Admin/Ajaxer/CourceInfo.aspx"
-                ContainnerID="#courceinfo">Add New</aspajax:HyperLink>
+            <aspajax:HyperLink ID="hpAdd<--=table.Alias-->" runat="server" NavigateUrl="~/Admin/Ajaxer/<--=table.Alias-->Info.aspx"
+                ContainnerID="#<--=table.Alias-->">Add New</aspajax:HyperLink>
         </div>
 	
 	

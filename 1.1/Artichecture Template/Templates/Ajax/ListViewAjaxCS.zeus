@@ -85,7 +85,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
                 return Convert.ToInt32(Request.Params["pn"].ToString());
             else
             {
-                lnkPrevx.Visible = false;
+                lnkPrev<%=table.Alias%>.Visible = false;
                 return 0;
             }
         }
@@ -101,7 +101,8 @@ public class GeneratedTemplate : DotNetScriptTemplate
 			
 			{
 				BindList();
-				TotalPage = new <%=table.Alias%>Controller().<%=table.Alias%>Get().Count / PageSize;
+				TotalPage = Convert.ToInt32(Math.Ceiling((decimal) new <%=table.Alias%>Controller().Get().Count / PageSize));
+				PaggerLinkManager();
 			}
 			
 		}
@@ -116,20 +117,20 @@ public class GeneratedTemplate : DotNetScriptTemplate
 
         if (PageNumber == 0)
         {
-            lnkPrevx.Visible = false;
+            lnkPrev<%=table.Alias%>.Visible = false;
         }
         if (TotalPage - 1 == PageNumber || TotalPage == 0)
         {
-            lnkNextx.Visible = false;
+            lnkNext<%=table.Alias%>.Visible = false;
         }
-        if (lnkNextx.Visible)
+        if (lnkNext<%=table.Alias%>.Visible)
         {
-            //lnkNextx.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
+            //lnkNext<%=table.Alias%>.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
         }
 
-        if (lnkPrevx.Visible)
+        if (lnkPrev<%=table.Alias%>.Visible)
         {
-            //lnkPrevx.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
+            //lnkPrev<%=table.Alias%>.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
         }
     }
     protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)

@@ -1,9 +1,9 @@
 ﻿##|TYPE Template
-##|UNIQUEID 30f63493-0910-474f-9e36-fa5a742513b8
-##|TITLE AddForm
+##|UNIQUEID b30b4213-f767-4306-a2b9-9e8f994825af
+##|TITLE FullViewCS
 ##|NAMESPACE 
 ##|SOURCE_TYPE Source
-##|OUTPUT_LANGUAGE None
+##|OUTPUT_LANGUAGE C#
 ##|GUI_ENGINE .Net Script
 ##|GUI_LANGUAGE C#
 ##|GUI_BEGIN
@@ -21,7 +21,7 @@ public class GeneratedGui : DotNetScriptGui
 
 		ui.Title = ".NetScript C# Sample: Java Class";
 		ui.Width = 340;
-		ui.Height = 200;
+		ui.Height = 400;
 
 		// Setup Database selection combobox.
 		GuiLabel label_d = ui.AddLabel("lblDatabases", "Select a database:", "Select a database in the dropdown below.");
@@ -39,7 +39,11 @@ public class GeneratedGui : DotNetScriptGui
 		
 		// Attach the onchange event to the cmbDatabases control.
 		cmbDatabases.AttachEvent("onchange", "cmbDatabases_onchange");
-
+		GuiLabel label_ColumnName = ui.AddLabel("lblColumnName", "Enter ColumnName with is QueryString:", "Enter ColumnName with is QueryString:");
+		GuiTextBox txtFieldName= ui.AddTextBox("ColumnName","","");
+		
+		GuiLabel label_ColumnNameDataType = ui.AddLabel("lblColumnNameDataType", "Enter ColumnName with is QueryString DataType:", "Enter ColumnName with is QueryString DataType:");
+		GuiTextBox txtFieldNameDataType= ui.AddTextBox("ColumnNameDataType","","");
 	
 		ui.ShowGui = true;ui.AddLabel("lblDemo", "Demo", "Demo Tooltip");
 		ui.ShowGui = true;
@@ -70,64 +74,55 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	//---------------------------------------------------
 	public override void Render()
 	{
-	    string databaseName = input["databaseName"].ToString();
+		
+		string databaseName = input["databaseName"].ToString();
 		string tableName = input["tableName"].ToString();
+		string columnName=input["ColumnName"].ToString();
+		string ColumnNameDataType=input["ColumnNameDataType"].ToString();
 		int columnCount=0;
 		IDatabase database = MyMeta.Databases[databaseName];
 		ITable table = database.Tables[tableName];
-		%>
-		
-			<div id="divMessage" runat="server"></div>
-		<fieldset>
-<legend><%=table.Alias%></legend>
-<table>
-		<%foreach(IColumn column in table.Columns)
-		{%>
-		<tr>
-                <td>
-                    <span class="label"><%=column.Alias%></span>
-                </td>
-                <td>                    
-                    <%if (column.LanguageType == "string")
-                      {
-                    %>
-                    <asp:TextBox ID="txt<%=column.Alias%>" runat="server"></asp:TextBox>
-                    <%}
-                      else if (column.LanguageType == "bool" || column.LanguageType == "Boolean")
-                      {%>
-                    <asp:CheckBox ID="chk<%=column.Alias%>" runat="server" />
-                    <%}
-                      else if (column.LanguageType == "Guid")
-                      {
-					  
-                          if (column.IsInForeignKey)
-                          {                    
-                    %>
-                    <asp:DropDownList ID="dd<%=column.Alias%>" runat="server">
-                    </asp:DropDownList>
-					
-                    <%}
-                      } %>
-                </td>
-            </tr>
-			<%}%>
-			</table>
-			<div>
-                <aspajax:AjaxLinkButton ID="lnkAdd<%=table.Alias%>" runat="server" RequestContainner="#<%=table.Alias%>"
-                    ResponseContainner="#<%=table.Alias%>" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
-            </div>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdate<%=table.Alias%>" runat="server" RequestContainner="#<%=table.Alias%>"
-                    ResponseContainner="#<%=table.Alias%>" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
-            </div>
-
-</fieldset>
-
-			
-		<%
-		
+		GetDataAssingment(table);
 	}
-
-}
-%>
+	public void GetDataAssingment(ITable table)
+	{
+		string Script="";
+		%>
+		private void BindData(<insetType> data)
+		{
+		<%
+		foreach(IColumn col in table.Columns)
+		{
+			getColumnAssignment(col);
+			
+		}
+		%>
+		}
+		<%
+	}
+	private void getColumnAssignment(IColumn col)
+	{
+		%>
+		<%=string.Format("if(data.{0}!=null)",col.Alias) %>
+		
+		<%=string.Format("lbl{0}.InnerHtml=data.{0}.ToString();",col.Alias) %>
+		<%
+	}
+	%>
+	private int ID
+    {
+        get
+        {
+            return Convert.ToInt32(Request.Params["qid"]);
+        }
+    }
+	
+	 protected void Page_Load(object sender, EventArgs e)
+    {
+        BindData(ID);
+    }
+	
+	
+	<%
+ }	%>
 ##|BODY_END

@@ -79,7 +79,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		EditFunction(table);
 		BindFunction(table);
 		GenerateProperty();
-		pageLoadFunction();
+		pageLoadFunction(table);
 	}
 	//Start function
 	public string GetFunctionAssignment(IColumn column)
@@ -215,18 +215,21 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	
 	
 	//start function page Load
-	public void pageLoadFunction()
+	public void pageLoadFunction(ITable table)
 	{
 	%>
 	protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.Params["<parameterName>"]!=null)
         {
+		    AjaxState["<parameterName>"] = Request.Params["<parameterName>"];
             BindData(ID);
+			lnkAdd<%=table.Alias%>.Visible = false;
         }
         else
         {
             new CourceCatagoryController().BindCourceCatagory(ddCatagory);
+			lnkUpdate<%=table.Alias%>.Visible = false;
         }
     }
 	<%
@@ -283,7 +286,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		}
 		%>
 		<%=GenerateUpdateFunction(table)%>
-		}
+		
 		Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
 		}		
 		catch(Exception ex)
@@ -326,7 +329,23 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	public void GenerateProperty()
 	{
 	%>
-	
+	private int ID
+    {
+        get
+        {
+            return Convert.ToInt32(AjaxState[""<parameterName>"]);
+        }
+    }
+	protected void AddAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        AddData();
+        
+    }
+    protected void UpdateAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        EditData();
+        
+    }
    	<%
 	}
 	
