@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="QuestionInfoView.aspx.cs"
-    Inherits="User_AjaxControl_QuestionInfoView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AnswerInfoView.aspx.cs" Inherits="User_AjaxControl_AnswerInfoView" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,25 +8,31 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:ListView ID="ListQuestion" runat="server">
+        <asp:ListView ID="ListAnswer" runat="server">
             <LayoutTemplate>
                 <table>
                     <thead>
                         <tr>
                             <td>
+                                AnswerID
+                            </td>
+                            <td>
+                                AnswerText
+                            </td>
+                            <td>
+                                Description
+                            </td>
+                            <td>
                                 QuestionID
                             </td>
                             <td>
-                                QuestionText
+                                AnswerStateID
                             </td>
                             <td>
                                 LoginUserID
                             </td>
                             <td>
-                                QuestionTypeID
-                            </td>
-                            <td>
-                                QuestionStatusID
+                                AnswerRate
                             </td>
                             <td>
                                 ModifiedDate
@@ -40,28 +45,34 @@
             <ItemTemplate>
                 <tr>
                     <td>
+                        <%#Eval("AnswerID") %>
+                    </td>
+                    <td>
+                        <%#Eval("AnswerText") %>
+                    </td>
+                    <td>
+                        <%#Eval("Description") %>
+                    </td>
+                    <td>
                         <%#Eval("QuestionID") %>
                     </td>
                     <td>
-                        <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#Question" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("QuestionID")  %>'><%#Eval("QuestionText") %></aspajax:HyperLink>
+                        <%#Eval("AnswerStateID") %>
                     </td>
                     <td>
                         <%#Eval("LoginUserID") %>
                     </td>
                     <td>
-                        <%#Eval("QuestionTypeID") %>
-                    </td>
-                    <td>
-                        <%#Eval("QuestionStatusID") %>
+                        <%#Eval("AnswerRate") %>
                     </td>
                     <td>
                         <%#Eval("ModifiedDate") %>
                     </td>
                     <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionID").ToString(), "#Question", "#Question")%>
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("AnswerID").ToString(), "#Answer", "#Answer")%>
                     </td>
                     <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/QuestionInfo.aspx") + "?cid=" + Eval("QuestionID")%>'
+                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/AnswerInfo.aspx") + "?cid=" + Eval("AnswerID")%>'
                             ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
                     </td>
                 </tr>
@@ -70,20 +81,20 @@
         <div>
             <div style="float: right">
                 <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkPrevQuestion" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                        Pagger="true" Increment="false" RequestContainner="#Question" ResponseContainner="#Question"></aspajax:AjaxLinkButton>
+                    <aspajax:AjaxLinkButton ID="lnkPrevAnswer" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
+                        Pagger="true" Increment="false" RequestContainner="#Answer" ResponseContainner="#Answer"></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkNextQuestion" runat="server" OnAjaxClick="NextAjaxClick"
-                        RequestContainner="#Question" Pagger="true" Increment="true" ResponseContainner="#Question">Next</aspajax:AjaxLinkButton>
+                    <aspajax:AjaxLinkButton ID="lnkNextAnswer" runat="server" OnAjaxClick="NextAjaxClick"
+                        RequestContainner="#Answer" Pagger="true" Increment="true" ResponseContainner="#Answer">Next</aspajax:AjaxLinkButton>
                 </div>
             </div>
             <div style="clear: both">
             </div>
         </div>
         <div>
-            <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="~/User/AjaxControl/QuestionInfo.aspx"
-                ContainnerID="#Question">Add New</aspajax:HyperLink>
+            <aspajax:HyperLink ID="hpAddAnswer" runat="server" 
+                ContainnerID="#Answer">Add New</aspajax:HyperLink>
         </div>
     </div>
     </form>

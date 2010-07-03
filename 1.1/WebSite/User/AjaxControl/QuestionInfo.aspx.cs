@@ -28,13 +28,13 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
             int QuestionTypeID; if (false) { throw new Exception(""); } QuestionTypeID = Convert.ToInt32(HtmlHelper.ControlValue(ddQuestionType.ClientID));
-
+            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
             int QuestionStatusID = 0;
 
             DateTime ModifiedDate = DateTime.Now;
 
-            new QuestionController().Add(QuestionID, QuestionText, LoginUserID, QuestionTypeID, QuestionStatusID, ModifiedDate);
+            new QuestionController().Add(QuestionID, QuestionText,Description, LoginUserID, QuestionTypeID, QuestionStatusID, ModifiedDate);
             Response.Redirect("~/User/AjaxControl/QuestionInfoView.aspx");
         }
         catch (Exception ex)
@@ -55,12 +55,12 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
             int QuestionTypeID; if (false) { throw new Exception(""); } QuestionTypeID = Convert.ToInt32(HtmlHelper.ControlValue(ddQuestionType.ClientID));
-
+            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
             int QuestionStatusID = 0;
 
             DateTime ModifiedDate = DateTime.Now;
 
-            new QuestionController().UpdateByQuestionID(QuestionID, QuestionText, LoginUserID, QuestionTypeID, QuestionStatusID, ModifiedDate);
+            new QuestionController().UpdateByQuestionID(QuestionID, QuestionText,Description, LoginUserID, QuestionTypeID, QuestionStatusID, ModifiedDate);
 
             Response.Redirect("~/User/AjaxControl/QuestionInfoView.aspx");
         }
@@ -77,12 +77,11 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
         {
             var data = dataBunch[0];
 
-            ddQuestionID.SelectedValue = data.QuestionID.ToString();
-
-            txtQuestionText.Text = data.QuestionText;
-
-            new QuestionTypeController().BindQuestionType(ddQuestionType, data.QuestionTypeID.ToString());
             
+            txtQuestionText.Text = data.QuestionText;
+            txtDescription.Text = data.Description;
+            new QuestionTypeController().BindQuestionType(ddQuestionType, data.QuestionTypeID.ToString());
+
 
         }
     }

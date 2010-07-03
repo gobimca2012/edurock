@@ -82,9 +82,10 @@ namespace BusinessLogic
         public string AjaxStateName="__AjaxState";
         protected override void OnInit(EventArgs e)
         {
-            if (Request.Params[AjaxStateName] != null)
+            if (Request.Params[AjaxStateName] != null && Request.Params[AjaxStateName] != "")
             {
                 string AjaxStateValues = Request.Params[AjaxStateName].ToString();
+                
                 string[] AjaxStatePart = AjaxStateValues.Split('&');
                 for (int i = 0; i < AjaxStatePart.Length; i++)
                 {
@@ -114,7 +115,9 @@ namespace BusinessLogic
         }
         protected override void OnLoadComplete(EventArgs e)
         {
-            System.Web.UI.WebControls.HiddenField AjaxStateControl=(System.Web.UI.WebControls.HiddenField)FindControl("_AjaxState");
+            //System.Web.UI.WebControls.HiddenField AjaxStateControl=(System.Web.UI.WebControls.HiddenField)FindControl("_AjaxState");
+            System.Web.UI.WebControls.HiddenField AjaxStateControl = new System.Web.UI.WebControls.HiddenField();
+
             if (AjaxStateControl != null)
             {
                 string AjaxStateString = "";
@@ -134,9 +137,10 @@ namespace BusinessLogic
                     }
                 }
                 AjaxStateControl.Value = AjaxStateString;
-                AjaxStateControl.ID = AjaxStateName;                
+                AjaxStateControl.ID = AjaxStateName;
+                this.Page.Form.Controls.Add(AjaxStateControl);
             }
-            //this.Page.Form.Controls.Add(AjaxStateControl);
+            
             base.OnLoadComplete(e);
         }
         protected override void LoadViewState(object savedState)

@@ -518,7 +518,7 @@ namespace BusinessLogic
 
 
     }
-    public enum QuestionType
+    public enum QuestionTypeEnum
     {
         SingleChoice = 1,
         MultipleChoice = 2,

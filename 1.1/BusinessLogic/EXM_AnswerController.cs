@@ -383,7 +383,7 @@ namespace BusinessLogic
             try
             {
                 var data = new EXM_QuestionController().GetbyEXM_QuestionID(EXM_QuestionID);
-                if (data[0].Q_Type == (int)QuestionType.SingleChoice || data[0].Q_Type == (int)QuestionType.SingleFillintheBlanks)
+                if (data[0].Q_Type == (int)QuestionTypeEnum.SingleChoice || data[0].Q_Type == (int)QuestionTypeEnum.SingleFillintheBlanks)
                 {
                     if (IsRight && IsRightAnswerAdded(EXM_QuestionID))
                     {
@@ -399,7 +399,7 @@ namespace BusinessLogic
 
                     }
                 }
-                else if (data[0].Q_Type == (int)QuestionType.MultipleChoice || data[0].Q_Type == (int)QuestionType.MultipleFillintheBlanks)
+                else if (data[0].Q_Type == (int)QuestionTypeEnum.MultipleChoice || data[0].Q_Type == (int)QuestionTypeEnum.MultipleFillintheBlanks)
                 {
                     if (IsRight && IsRightAnswerAdded(EXM_QuestionID))
                     {

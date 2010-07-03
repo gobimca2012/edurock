@@ -71,6 +71,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="QuestionAnswer.cs">
+      <DependentUpon>QuestionAnswer.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionAnswer.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestionAnswer.dbml</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>User.dbml</DependentUpon>
     </Compile>
@@ -118,6 +126,16 @@
   <ItemGroup>
     <None Include="Institute.dbml.layout">
       <DependentUpon>Institute.dbml</DependentUpon>
+    </None>
+    <None Include="QuestionAnswer.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>QuestionAnswer.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="QuestionAnswer.dbml.layout">
+      <DependentUpon>QuestionAnswer.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

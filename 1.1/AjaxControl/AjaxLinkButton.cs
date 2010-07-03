@@ -125,7 +125,8 @@ namespace AjaxControl
                 {
                     if (QueryStringStr != "")
                     {
-                        Url = this.Page.Request.UrlReferrer + "?" + QueryStringStr;
+                        string[] aburl = this.Page.Request.RawUrl.Split('?');
+                        Url = aburl[0] + "?" + QueryStringStr;
                     }
 
                 }

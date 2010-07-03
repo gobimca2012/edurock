@@ -32,6 +32,7 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="InstituteLoginUser_Institute" Member="Institutes" OtherKey="LoginUserID" Type="Institute" />
+      <Association Name="InstituteLoginUser_Tutorial" Member="Tutorials" OtherKey="LoginUserID" Type="Tutorial" />
     </Type>
   </Table>
   <Table Name="dbo.CourceCatagory" Member="CourceCatagories">
@@ -65,6 +66,28 @@
       <Column Name="Modifieddate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Cource_InstituteCource" Member="Cource" ThisKey="CourceID" Type="Cource" IsForeignKey="true" />
       <Association Name="Institute_InstituteCource" Member="Institute" ThisKey="InstituteID" Type="Institute" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TutorialType" Member="TutorialTypes">
+    <Type Name="TutorialType">
+      <Column Name="TutorialTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TutorialType_Tutorial" Member="Tutorials" OtherKey="TutorialTypeID" Type="Tutorial" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tutorial" Member="Tutorials">
+    <Type Name="Tutorial">
+      <Column Name="TutorialID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TutorialTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="FilePath" Type="System.String" DbType="VarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="InstituteLoginUser_Tutorial" Member="InstituteLoginUser" ThisKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
+      <Association Name="TutorialType_Tutorial" Member="TutorialType" ThisKey="TutorialTypeID" Type="TutorialType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -45,6 +45,11 @@ namespace JScripter
             lnk.Attributes["onclick"] = string.Format("$('#{0}').PUIW('{1}','{2}','{3}');", popId, pageUrl, width, height);
             lnk.Attributes["href"] = "javascript:void(0);";
         }
+        public void IframePopUp(LinkButton lnk, string pageUrl, string popId, string width, string height,string ReturnUrl,string ReturnID)
+        {
+            lnk.Attributes["onclick"] = string.Format("$('#{0}').PUIW('{1}','{2}','{3}','{4}','{5}');", popId, pageUrl, width, height,ReturnUrl,ReturnID);
+            lnk.Attributes["href"] = "javascript:void(0);";
+        }
         public void IframePopUp(HyperLink lnk, string pageUrl, string popId, string width, string height)
         {
             lnk.Attributes["onclick"] = string.Format("$('#{0}').PUIW('{1}','{2}','{3}');", popId, pageUrl, width, height);

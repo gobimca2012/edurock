@@ -13,15 +13,7 @@
         <fieldset>
             <legend>Question</legend>
             <table>
-                <tr>
-                    <td>
-                        <span class="label">QuestionID</span>
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddQuestionID" runat="server">
-                        </asp:DropDownList>
-                    </td>
-                </tr>
+               
                 <tr>
                     <td>
                         <span class="label">QuestionText</span>
@@ -30,13 +22,15 @@
                         <asp:TextBox ID="txtQuestionText" runat="server"></asp:TextBox>
                     </td>
                 </tr>
-                <tr>
+                 <tr>
                     <td>
-                        <span class="label">LoginUserID</span>
+                        <span class="label">Description</span>
                     </td>
                     <td>
+                        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
+               
                 <tr>
                     <td>
                         <span class="label">QuestionTypeID</span>
@@ -46,13 +40,7 @@
                         </asp:DropDownList>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <span class="label">ModifiedDate</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+               
             </table>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddQuestion" runat="server" RequestContainner="#Question"
