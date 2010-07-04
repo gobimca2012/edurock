@@ -15,6 +15,9 @@
             <div>
                 <div>
                     <div>
+                        <asp:Image ID="imgProfilepic" runat="server" Width="100" />
+                    </div>
+                    <div>
                         <span class="label">FirstName</span>
                     </div>
                     <div>
@@ -110,8 +113,13 @@
                 <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" OnAjaxClick="AjaxUpdateClick"
                     RequestContainner="#accountsetting" ResponseContainner="#accountsetting">Update</aspajax:AjaxLinkButton>
             </div>
+            <div>
+                <aspajax:AjaxLinkButton ID="lnkAddUserInfo" runat="server" OnAjaxClick="AjaxAddClick"
+                    RequestContainner="#accountsetting" ResponseContainner="#accountsetting">Save</aspajax:AjaxLinkButton>
+            </div>
             <div style="float: left">
-                <aspajax:HyperLink ID="lnkAdd" runat="server" NavigateUrl="UserInfoView.aspx" ContainnerID="#accountsetting">Cancel</aspajax:HyperLink>
+                <aspajax:HyperLink ID="lnkCancel" runat="server" NavigateUrl="UserInfoView.aspx"
+                    ContainnerID="#accountsetting">Cancel</aspajax:HyperLink>
             </div>
         </div>
     </div>

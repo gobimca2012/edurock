@@ -55,15 +55,15 @@ public partial class User_AjaxControl_AnswerInfoView : AjaxPage
 
         {
             BindList();
-            hpAddAnswer.NavigateUrl =ResolveUrl("~/User/AjaxControl/AnswerInfo.aspx")+"?qid=" + _QuestionID.ToString();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new AnswerController().GetbyQuestionID(_QuestionID).Count / PageSize));
+            hpAddAnswer.NavigateUrl = ResolveUrl("~/User/AjaxControl/AnswerInfo.aspx") + "?qid=" + _QuestionID.ToString();
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new AnswerController().GetAnswerByQuestionID(_QuestionID, -1).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListAnswer.DataSource = new AnswerController().GetbyQuestionID(_QuestionID,PageSize, PageNumber);
+        ListAnswer.DataSource = new AnswerController().GetAnswerByQuestionID(_QuestionID, -1, PageSize, PageNumber);
         ListAnswer.DataBind();
     }
     private void PaggerLinkManager()
@@ -107,18 +107,47 @@ public partial class User_AjaxControl_AnswerInfoView : AjaxPage
 
             BindList();
         }
+        else if (e.Command.Contains("accept"))
+        {
+            new AnswerController().UpdateAnswerStateByAnswerID(new Guid(e.Id), Convert.ToInt32(HtmlHelper.ControlValue(e.customId1)));
+            BindList();
+        }
         base.OnAjaxListViewCommand(e);
     }
 
     protected void ListAnswerOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
-        //ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        //string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+        ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        string LoginUserID = ListAnswer.DataKeys[currentItem.DataItemIndex]["LoginUserID"].ToString();
+        string AnswerID = ListAnswer.DataKeys[currentItem.DataItemIndex]["AnswerID"].ToString();
+        HtmlGenericControl divUser = (HtmlGenericControl)currentItem.FindControl("UserAction");
+        HtmlGenericControl acceptAnswer = (HtmlGenericControl)currentItem.FindControl("acceptAnswer");
+        
+        DropDownList ddState = (DropDownList)currentItem.FindControl("ddState");
+        if (ddState != null)
+        {
+            new AnswerStateController().BindAnswerState(ddState);
+        }
+        if (acceptAnswer != null)
+        {
+            acceptAnswer.InnerHtml = _HtmlHelper.ListViewLinkButton("lnkd", "accept Answer", "accept", AnswerID, ddState.ClientID, "#Answer", "#Answer");
+        }
+        if (divUser != null)
+        {
+            if (new UserAuthontication().IsOwn(Convert.ToInt32(LoginUserID)))
+            {
+                divUser.Visible = true;
+            }
+            else
+            {
+                divUser.Visible = false;
+            }
+        }
 
 
 
     }
-	
+
 
 
 }

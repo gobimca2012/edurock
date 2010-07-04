@@ -326,6 +326,7 @@ namespace DataAccess
 
         #endregion
         #region CustomLoginUser
+
         #endregion
 
 
@@ -584,11 +585,11 @@ namespace DataAccess
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return (Decimal) db.GetExamTotalmark(ExamID);
+            return (Decimal)db.GetExamTotalmark(ExamID);
 
         }
-       
-        public int ExamAdd(string ExamName, string SubjectName, int LoginUserID, string Description, TimeSpan ExamTime, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate,int Percentage)
+
+        public int ExamAdd(string ExamName, string SubjectName, int LoginUserID, string Description, TimeSpan ExamTime, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate, int Percentage)
         {
             Exam ObjExam = new Exam();
 
@@ -635,7 +636,7 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
-        public void ExamUpdateByExamID(int ExamID, string ExamName, string SubjectName, int LoginUserID, string Description, TimeSpan ExamTime, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate,int Percent)
+        public void ExamUpdateByExamID(int ExamID, string ExamName, string SubjectName, int LoginUserID, string Description, TimeSpan ExamTime, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate, int Percent)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();
@@ -1802,7 +1803,7 @@ namespace DataAccess
             decimal questionMarks = 0;
             foreach (EXM_Answer rightAnswer in data)
             {
-                questionMarks =(decimal) rightAnswer.EXM_Question.Marks;
+                questionMarks = (decimal)rightAnswer.EXM_Question.Marks;
                 if (rightAnswer.EXM_AnswerID == EXM_AnswerID)
                 {
                     TempMark = (decimal)questionMarks;
@@ -1817,7 +1818,7 @@ namespace DataAccess
             }
             else
             {
-                ObjEXM_UserAnswer.RecieveMark = questionMarks*(-1);
+                ObjEXM_UserAnswer.RecieveMark = questionMarks * (-1);
                 ObjEXM_UserAnswer.IsRightMark = false;
             }
 
@@ -1865,7 +1866,7 @@ namespace DataAccess
 
         }
 
-        public void EXM_UserAnswerDelete(int EXM_QuestionID, int LoginUserId,int UserExamID)
+        public void EXM_UserAnswerDelete(int EXM_QuestionID, int LoginUserId, int UserExamID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();
@@ -2984,6 +2985,7 @@ namespace DataAccess
 
         #endregion
         #region CustomUser
+        
         public int UserAdd(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite)
         {
             UserDataContext db = new UserDataContext();
@@ -3031,7 +3033,7 @@ namespace DataAccess
 
 
 
-           
+
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             if (data.Count > 0)
             {
@@ -3044,6 +3046,16 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return ObjUser.UserID;
+        }
+        public void UpdateProfilePic(int LoginUserID, string FilePath)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            db.DeferredLoadingEnabled = false;
+            User data = db.Users.Single(p => p.LoginUserID == LoginUserID);
+            data.PhotoPath = FilePath;
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
         #endregion
 
@@ -5048,7 +5060,7 @@ namespace DataAccess
 
         }
 
-       
+
 
         public List<InstituteCource> InstituteCourceGetbyCourceID(int CourceID, int PageSize, int PageNumber)
         {
@@ -5317,7 +5329,7 @@ namespace DataAccess
 
         }
 
-       
+
         public List<Tutorial> TutorialGetbyTutorialTypeID(int TutorialTypeID, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -5575,6 +5587,24 @@ namespace DataAccess
 
         #endregion
         #region CustomTutorial
+        public List<GetTutorialResult> GetTutorial(string Keywork, int TutorialType)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetTutorial(Keywork, TutorialType).ToList();
+
+        }
+        public List<GetTutorialResult> GetTutorial(string Keywork, int TutorialType, int PageSize, int PageNumber)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetTutorial(Keywork, TutorialType).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         public List<Tutorial> TutorialGetbyLoginUserID(int LoginUserID, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -5590,8 +5620,8 @@ namespace DataAccess
         }
 
         #endregion
-	
-	
+
+
         #region TutorialType
 
         public void TutorialTypeAdd(int TutorialTypeID, string Name, int LoginUserID, DateTime ModifiedDate)
@@ -6212,9 +6242,63 @@ namespace DataAccess
 
         #endregion
         #region CustomQuestion
+        public List<GetQuestionByLoginUserIDResult> GetQuestionByLoginUserID(int LoginUserID, int QuestionTypeID, int QuestionStatusID)
+        {
+
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetQuestionByLoginUserID(LoginUserID, QuestionTypeID, QuestionStatusID).ToList();
+
+        }
+        public List<GetQuestionByLoginUserIDResult> GetQuestionByLoginUserID(int LoginUserID, int QuestionTypeID, int QuestionStatusID, int PageSize, int PageNumber)
+        {
+
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetQuestionByLoginUserID(LoginUserID, QuestionTypeID, QuestionStatusID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
+        public List<GetQuestionResult> GetQuestion(string Keyword, int QuestionTypeID, int QuestionStatusID)
+        {
+
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetQuestion(Keyword, QuestionTypeID, QuestionStatusID).ToList();
+
+        }
+        public List<GetQuestionResult> GetQuestion(string Keyword, int QuestionTypeID, int QuestionStatusID, int PageSize, int PageNumber)
+        {
+
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetQuestion(Keyword, QuestionTypeID, QuestionStatusID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
+        public List<GetQuestionByQuestionIDResult> GetQuestionByQuestionID(Guid QuestionID, int QuestionTypeID, int QuestionStatusID)
+        {
+
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID).ToList();
+
+        }
+        public List<GetQuestionByQuestionIDResult> GetQuestionByQuestionID(Guid QuestionID, int QuestionTypeID, int QuestionStatusID, int PageSize, int PageNumber)
+        {
+
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         #endregion
-	
-	
+
+
         #region CustomQuestion
         public void QuestionAdd(Guid QuestionID, string QuestionText, int LoginUserID, int QuestionTypeID, DateTime ModifiedDate)
         {
@@ -6228,7 +6312,7 @@ namespace DataAccess
 
             ObjQuestion.QuestionTypeID = QuestionTypeID;
 
-           
+
             ObjQuestion.ModifiedDate = ModifiedDate;
 
             QuestionAnswerDataContext db = new QuestionAnswerDataContext();
@@ -7154,9 +7238,40 @@ namespace DataAccess
 
 
         #endregion
-        
-	
+
+
         #region CustomAnswer
+        public void UpdateAnswerStateByAnswerID(Guid AnswerID, int AnswerStatus)
+        {
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Answers where p.AnswerID == AnswerID select p).ToList();
+            if (data.Count > 0)
+            {
+                data[0].AnswerStateID = AnswerStatus;
+                db.SubmitChanges();
+            }
+
+        }
+        public List<GetAnswerByQuestionIDResult> GetAnswerByQuestionID(Guid QuestionID, int AnswerStateID)
+        {
+
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetAnswerByQuestionID(QuestionID, AnswerStateID).ToList();
+
+        }
+        public List<GetAnswerByQuestionIDResult> GetAnswerByQuestionID(Guid QuestionID, int AnswerStateID, int PageSize, int PageNumber)
+        {
+
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetAnswerByQuestionID(QuestionID, AnswerStateID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         #endregion
 
 
@@ -7406,8 +7521,633 @@ namespace DataAccess
         #endregion
         #region CustomAnswerState
         #endregion
+
+
+
+
+        #region Message
+
+        public void MessageAdd(Guid MessageID, string Subject, string MessageText, int ToLoginUserID, int FromLoginUserID, int ReplyID, DateTime ReadTime, bool IsReaded, bool DeleteFromTo, bool DeleteFromFrom, DateTime ModifiedDate)
+        {
+            Message ObjMessage = new Message();
+
+            ObjMessage.MessageID = MessageID;
+
+            ObjMessage.Subject = Subject;
+
+            ObjMessage.MessageText = MessageText;
+
+            ObjMessage.ToLoginUserID = ToLoginUserID;
+
+            ObjMessage.FromLoginUserID = FromLoginUserID;
+
+            ObjMessage.ReplyID = ReplyID;
+
+            ObjMessage.ReadTime = ReadTime;
+
+            ObjMessage.IsReaded = IsReaded;
+
+            ObjMessage.DeleteFromTo = DeleteFromTo;
+
+            ObjMessage.DeleteFromFrom = DeleteFromFrom;
+
+            ObjMessage.ModifiedDate = ModifiedDate;
+
+            MessageDataContext db = new MessageDataContext();
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.Messages.InsertOnSubmit(ObjMessage);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public Guid MessageAdd(string Subject, string MessageText, int ToLoginUserID, int FromLoginUserID, int ReplyID, DateTime ReadTime, bool IsReaded, bool DeleteFromTo, bool DeleteFromFrom, DateTime ModifiedDate)
+        {
+            Message ObjMessage = new Message();
+
+
+
+            ObjMessage.Subject = Subject;
+
+
+            ObjMessage.MessageText = MessageText;
+
+
+            ObjMessage.ToLoginUserID = ToLoginUserID;
+
+
+            ObjMessage.FromLoginUserID = FromLoginUserID;
+
+
+            ObjMessage.ReplyID = ReplyID;
+
+
+            ObjMessage.ReadTime = ReadTime;
+
+
+            ObjMessage.IsReaded = IsReaded;
+
+
+            ObjMessage.DeleteFromTo = DeleteFromTo;
+
+
+            ObjMessage.DeleteFromFrom = DeleteFromFrom;
+
+
+            ObjMessage.ModifiedDate = ModifiedDate;
+
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.Messages.InsertOnSubmit(ObjMessage);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return ObjMessage.MessageID;
+        }
+
+
+
+        public List<Message> MessageGet(int PageSize, int PageNumber)
+        {
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.ObjectTrackingEnabled = false;
+            var data = (from p in db.Messages select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGet()
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            db.ObjectTrackingEnabled = false;
+            var data = (from p in db.Messages select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+
+        public List<Message> MessageGetbyMessageID(Guid MessageID, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.MessageID == MessageID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbySubject(string Subject, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.Subject == Subject select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyMessageText(string MessageText, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.MessageText == MessageText select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyToLoginUserID(int ToLoginUserID, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ToLoginUserID == ToLoginUserID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyFromLoginUserID(int FromLoginUserID, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.FromLoginUserID == FromLoginUserID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyReplyID(int ReplyID, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ReplyID == ReplyID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyReadTime(DateTime ReadTime, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ReadTime == ReadTime select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyIsReaded(bool IsReaded, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.IsReaded == IsReaded select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyDeleteFromTo(bool DeleteFromTo, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.DeleteFromTo == DeleteFromTo select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyDeleteFromFrom(bool DeleteFromFrom, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.DeleteFromFrom == DeleteFromFrom select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyModifiedDate(DateTime ModifiedDate, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ModifiedDate == ModifiedDate select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+
+
+        public List<Message> MessageGetbyMessageID(Guid MessageID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.MessageID == MessageID select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbySubject(string Subject)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.Subject == Subject select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyMessageText(string MessageText)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.MessageText == MessageText select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyToLoginUserID(int ToLoginUserID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ToLoginUserID == ToLoginUserID select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyFromLoginUserID(int FromLoginUserID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.FromLoginUserID == FromLoginUserID select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyReplyID(int ReplyID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ReplyID == ReplyID select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyReadTime(DateTime ReadTime)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ReadTime == ReadTime select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyIsReaded(bool IsReaded)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.IsReaded == IsReaded select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyDeleteFromTo(bool DeleteFromTo)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.DeleteFromTo == DeleteFromTo select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyDeleteFromFrom(bool DeleteFromFrom)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.DeleteFromFrom == DeleteFromFrom select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Message> MessageGetbyModifiedDate(DateTime ModifiedDate)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ModifiedDate == ModifiedDate select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+
+
+        public void MessageDeletebyMessageID(Guid MessageID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.MessageID == MessageID select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void MessageDeletebySubject(string Subject)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.Subject == Subject select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void MessageDeletebyMessageText(string MessageText)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.MessageText == MessageText select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void MessageDeletebyToLoginUserID(int ToLoginUserID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ToLoginUserID == ToLoginUserID select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void MessageDeletebyFromLoginUserID(int FromLoginUserID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.FromLoginUserID == FromLoginUserID select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void MessageDeletebyReplyID(int ReplyID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ReplyID == ReplyID select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void MessageDeletebyReadTime(DateTime ReadTime)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ReadTime == ReadTime select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void MessageDeletebyIsReaded(bool IsReaded)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.IsReaded == IsReaded select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void MessageDeletebyDeleteFromTo(bool DeleteFromTo)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.DeleteFromTo == DeleteFromTo select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void MessageDeletebyDeleteFromFrom(bool DeleteFromFrom)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.DeleteFromFrom == DeleteFromFrom select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void MessageDeletebyModifiedDate(DateTime ModifiedDate)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Messages where p.ModifiedDate == ModifiedDate select p);
+            db.Messages.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+
+
+        public void MessageUpdateByMessageID(Guid MessageID, string Subject, string MessageText, int ToLoginUserID, int FromLoginUserID, int ReplyID, DateTime ReadTime, bool IsReaded, bool DeleteFromTo, bool DeleteFromFrom, DateTime ModifiedDate)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            MessageDataContext db = new MessageDataContext();
+            db.DeferredLoadingEnabled = false;
+            Message data = db.Messages.Single(p => p.MessageID == MessageID);
+            data.Subject = Subject;
+            data.MessageText = MessageText;
+            data.ToLoginUserID = ToLoginUserID;
+            data.FromLoginUserID = FromLoginUserID;
+            data.ReplyID = ReplyID;
+            data.ReadTime = ReadTime;
+            data.IsReaded = IsReaded;
+            data.DeleteFromTo = DeleteFromTo;
+            data.DeleteFromFrom = DeleteFromFrom;
+            data.ModifiedDate = ModifiedDate;
+
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+
+
+
+
+        #endregion
+       
 	
-	
+        #region CustomMessage
+        public List<GetSentMessageResult> GetSentMessage(int LoginUserID)
+        {
+
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetSentMessage(LoginUserID).ToList();
+
+        }
+        public List<GetSentMessageResult> GetSentMessage(int LoginUserID, int PageSize, int PageNumber)
+        {
+
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetSentMessage(LoginUserID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
+        public List<GetInboxMessageResult> GetInboxMessage(int LoginUserID)
+        {
+
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInboxMessage(LoginUserID).ToList();
+
+        }
+        public List<GetInboxMessageResult> GetInboxMessage(int LoginUserID, int PageSize, int PageNumber)
+        {
+
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInboxMessage(LoginUserID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
+        public void MessageAdd(Guid MessageID, string Subject, string MessageText, int ToLoginUserID, int FromLoginUserID, DateTime ModifiedDate)
+        {
+            Message ObjMessage = new Message();
+
+            ObjMessage.MessageID = MessageID;
+
+            ObjMessage.Subject = Subject;
+
+            ObjMessage.MessageText = MessageText;
+
+            ObjMessage.ToLoginUserID = ToLoginUserID;
+
+            ObjMessage.FromLoginUserID = FromLoginUserID;
+
+            ObjMessage.IsReaded = false;
+
+            ObjMessage.ModifiedDate = ModifiedDate;
+
+            MessageDataContext db = new MessageDataContext();
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.Messages.InsertOnSubmit(ObjMessage);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public List<GetFullMessageResult> GetFullMessage(Guid MessageID)
+        {
+
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetFullMessage(MessageID).ToList();
+
+        }
+        public List<GetFullMessageResult> GetFullMessage(Guid MessageID, int PageSize, int PageNumber)
+        {
+
+            MessageDataContext db = new MessageDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetFullMessage(MessageID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
+        #endregion
+
 
 
 

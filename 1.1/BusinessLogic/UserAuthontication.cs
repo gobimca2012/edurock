@@ -10,6 +10,7 @@ namespace BusinessLogic
 {
     public class UserAuthontication
     {
+        
         public string LoggedInUserName
         {
             get
@@ -228,6 +229,18 @@ namespace BusinessLogic
                 }
             }
         }
+        public bool IsOwn(int LoginUserID)
+        {
+            if (LoggedInUserID == LoginUserID)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool LogOut()
         {
             try

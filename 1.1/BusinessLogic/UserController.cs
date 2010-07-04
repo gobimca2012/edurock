@@ -5,6 +5,10 @@ using System.Text;
 using System.Diagnostics;
 using DataAccess;
 using DataEntity;
+using System.Web.UI.WebControls;
+using System.Web;
+using System.IO;
+using System.Configuration;
 
 namespace BusinessLogic
 {
@@ -815,6 +819,24 @@ namespace BusinessLogic
 
         #endregion
         #region User
+        public bool UpdateProfilePic(int LoginUserID, FileUpload File)
+        {
+            try
+            {
+                string FilePath = Upload(File);
+                new DataProvider().UpdateProfilePic(LoginUserID, FilePath);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false ;
+            }
+        }
         public int Add(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite)
         {
 
@@ -832,6 +854,19 @@ namespace BusinessLogic
                 }
                 return 0;
             }
+        }
+        public string Upload(FileUpload fl)
+        {
+            string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["ProfilePic"]);
+            FolderPath += new UserAuthontication().LoggedInUserName + "/";
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+            string FilePath = FolderPath + "/" + fl.FileName;
+            string ReturnFilePath = ConfigurationSettings.AppSettings["ProfilePic"] + new UserAuthontication().LoggedInUserName  + "/" + fl.FileName;
+            fl.SaveAs(FilePath);
+            return ReturnFilePath;
         }
         #endregion
 				

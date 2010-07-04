@@ -16,6 +16,36 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 {
 
     public HtmlHelper _HtmlHelper = new HtmlHelper();
+    private int QuestionStatusID
+    {
+        get
+        {
+            string data = HtmlHelper.ControlValue(ddQuestionStatus.ClientID);
+            if (data == "0" || data=="")
+            {
+                return -1;
+            }
+            else
+            {
+                return Convert.ToInt32(data);
+            }
+        }
+    }
+    private int QuestionTypeID
+    {
+        get
+        {
+            string data = HtmlHelper.ControlValue(ddQuestionType.ClientID);
+            if (data == "0" || data == "")
+            {
+                return -1;
+            }
+            else
+            {
+                return Convert.ToInt32(data);
+            }
+        }
+    }
     private int PageNumber
     {
         get
@@ -33,21 +63,23 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
     }
 
     private int TotalPage;
-    private int PageSize = 1;
+    private int PageSize = 10;
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionController().Get().Count / PageSize));
+            new QuestionTypeController().BindQuestionType(ddQuestionType);
+            new QuestionStatusController().BindQuestionStatus(ddQuestionStatus);
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID),QuestionTypeID ,QuestionStatusID).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new QuestionController().Get(PageSize, PageNumber);
+        ListQuestion.DataSource = new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID),QuestionTypeID ,QuestionStatusID,PageSize, PageNumber);
         ListQuestion.DataBind();
     }
     private void PaggerLinkManager()
@@ -102,7 +134,11 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 
 
     }
-	
 
 
+
+    protected void SearchAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+
+    }
 }

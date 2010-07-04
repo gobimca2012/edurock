@@ -22,7 +22,7 @@ public partial class User_AjaxControl_UserInfo : AjaxPage
             if (data.Count > 0)
             {
                 BindData();
-                lnkAdd.Visible = false;
+                lnkAddUserInfo.Visible = false;
                 lnkUpdate.Visible = true;
             }
             else
@@ -30,7 +30,7 @@ public partial class User_AjaxControl_UserInfo : AjaxPage
                 CommonController.BindDay(ddDay);
                 CommonController.BindMonth(ddMonth);
                 CommonController.BindYear(ddYear);
-                lnkAdd.Visible = true;
+                lnkAddUserInfo.Visible = true;
                 lnkUpdate.Visible = false;
             }
         }
@@ -68,11 +68,11 @@ public partial class User_AjaxControl_UserInfo : AjaxPage
 
             int LoginUserID; LoginUserID = new UserAuthontication().LoggedInUserID;
 
-            string FirstName; if (txtFirstName.Text == "") { throw new Exception("First Name Mandatory"); } FirstName = HtmlHelper.ControlValue(txtFirstName.ClientID);
+            string FirstName; if (false) { throw new Exception("First Name Mandatory"); } FirstName = HtmlHelper.ControlValue(txtFirstName.ClientID);
 
-            string LastName; if (txtLastName.Text == "") { throw new Exception("Last Name Mandatory"); } LastName = HtmlHelper.ControlValue(txtLastName.ClientID);
+            string LastName; if (false) { throw new Exception("Last Name Mandatory"); } LastName = HtmlHelper.ControlValue(txtLastName.ClientID);
 
-            string MiddleName; if (txtMiddleName.Text == "") { throw new Exception("Middle Name Mandatory"); } MiddleName = HtmlHelper.ControlValue(txtMiddleName.ClientID);
+            string MiddleName; if (false) { throw new Exception("Middle Name Mandatory"); } MiddleName = HtmlHelper.ControlValue(txtMiddleName.ClientID);
 
             DateTime BirthDate; if (HtmlHelper.ControlValue(ddYear.ClientID) == "0" || HtmlHelper.ControlValue(ddMonth.ClientID) == "0" || HtmlHelper.ControlValue(ddDay.ClientID) == "0") { throw new Exception("Please Enter your BirthDate"); } BirthDate = CommonController.GetDate(Convert.ToInt32(HtmlHelper.ControlValue(ddDay.ClientID)), Convert.ToInt32(HtmlHelper.ControlValue(ddMonth.ClientID)), Convert.ToInt32(HtmlHelper.ControlValue(ddYear.ClientID)));
 
@@ -91,6 +91,7 @@ public partial class User_AjaxControl_UserInfo : AjaxPage
             DateTime ModifiedDate; if (false) { throw new Exception(""); } Convert.ToDateTime(ModifiedDate = DateTime.Now);
 
             new UserController().Add(LoginUserID, FirstName, LastName, MiddleName, BirthDate, Address1, Address2, City, State, Country, WebSite, ModifiedDate);
+            Response.Redirect("~/User/AjaxControl/UserInfoView.aspx");
         }
         catch (Exception ex)
         {
@@ -106,7 +107,7 @@ public partial class User_AjaxControl_UserInfo : AjaxPage
         if (dataBunch.Count > 0)
         {
             var data = dataBunch[0];
-
+            imgProfilepic.ImageUrl = ResolveUrl( data.PhotoPath);
             txtFirstName.Text = data.FirstName;
 
             txtLastName.Text = data.LastName;
@@ -138,5 +139,11 @@ public partial class User_AjaxControl_UserInfo : AjaxPage
         EditData();
         Response.Redirect("~/User/AjaxControl/UserInfoView.aspx");
         
+    }
+    protected void AjaxAddClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        AddData();
+        
+
     }
 }

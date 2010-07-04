@@ -520,6 +520,54 @@ namespace BusinessLogic
     
 	
         #region Question
+        public List<GetQuestionByLoginUserIDResult> GetQuestionByLoginUserID(int LoginUserID, int QuestionTypeID, int QuestionStatusID)
+        {
+            try
+            {
+
+                return new DataProvider().GetQuestionByLoginUserID(LoginUserID, QuestionTypeID, QuestionStatusID);
+            }
+            catch
+            {
+                return new List<GetQuestionByLoginUserIDResult>();
+            }
+        }
+        public List<GetQuestionByLoginUserIDResult> GetQuestionByLoginUserID(int LoginUserID, int QuestionTypeID, int QuestionStatusID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetQuestionByLoginUserID(LoginUserID, QuestionTypeID, QuestionStatusID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetQuestionByLoginUserIDResult>();
+            }
+        }
+        public List<GetQuestionResult> GetQuestion(string Keyword, int QuestionTypeID, int QuestionStatusID)
+        {
+            try
+            {
+
+                return new DataProvider().GetQuestion(Keyword, QuestionTypeID, QuestionStatusID);
+            }
+            catch
+            {
+                return new List<GetQuestionResult>();
+            }
+        }
+        public List<GetQuestionResult> GetQuestion(string Keyword, int QuestionTypeID, int QuestionStatusID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetQuestion(Keyword, QuestionTypeID, QuestionStatusID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetQuestionResult>();
+            }
+        }
         public bool Add(Guid QuestionID, string QuestionText, int LoginUserID, int QuestionTypeID, DateTime ModifiedDate)
         {
 
@@ -538,7 +586,30 @@ namespace BusinessLogic
                 return false;
             }
         }
+        public List<GetQuestionByQuestionIDResult> GetQuestionByQuestionID(Guid QuestionID, int QuestionTypeID, int QuestionStatusID)
+        {
+            try
+            {
 
+                return new DataProvider().GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID);
+            }
+            catch
+            {
+                return new List<GetQuestionByQuestionIDResult>();
+            }
+        }
+        public List<GetQuestionByQuestionIDResult> GetQuestionByQuestionID(Guid QuestionID, int QuestionTypeID, int QuestionStatusID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetQuestionByQuestionIDResult>();
+            }
+        }
         #endregion
 				
 	

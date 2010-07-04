@@ -132,6 +132,13 @@ namespace DataEntity
 				return this.GetTable<Tutorial>();
 			}
 		}
+		
+		[Function(Name="dbo.GetTutorial")]
+		public ISingleResult<GetTutorialResult> GetTutorial([Parameter(Name="Keywork", DbType="VarChar(1000)")] string keywork, [Parameter(Name="TutorialType", DbType="Int")] System.Nullable<int> tutorialType)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), keywork, tutorialType);
+			return ((ISingleResult<GetTutorialResult>)(result.ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.Institute")]
@@ -2010,6 +2017,230 @@ namespace DataEntity
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class GetTutorialResult
+	{
+		
+		private int _TutorialID;
+		
+		private int _TutorialTypeID;
+		
+		private int _LoginUserID;
+		
+		private string _Name;
+		
+		private string _Description;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private string _FilePath;
+		
+		private string _TutorialType;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _MiddleName;
+		
+		private string _PhotoPath;
+		
+		public GetTutorialResult()
+		{
+		}
+		
+		[Column(Storage="_TutorialID", DbType="Int NOT NULL")]
+		public int TutorialID
+		{
+			get
+			{
+				return this._TutorialID;
+			}
+			set
+			{
+				if ((this._TutorialID != value))
+				{
+					this._TutorialID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_TutorialTypeID", DbType="Int NOT NULL")]
+		public int TutorialTypeID
+		{
+			get
+			{
+				return this._TutorialTypeID;
+			}
+			set
+			{
+				if ((this._TutorialTypeID != value))
+				{
+					this._TutorialTypeID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this._LoginUserID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_FilePath", DbType="VarChar(2000) NOT NULL", CanBeNull=false)]
+		public string FilePath
+		{
+			get
+			{
+				return this._FilePath;
+			}
+			set
+			{
+				if ((this._FilePath != value))
+				{
+					this._FilePath = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_TutorialType", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
+		public string TutorialType
+		{
+			get
+			{
+				return this._TutorialType;
+			}
+			set
+			{
+				if ((this._TutorialType != value))
+				{
+					this._TutorialType = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstName", DbType="VarChar(1000)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LastName", DbType="VarChar(1000)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_MiddleName", DbType="VarChar(1000)")]
+		public string MiddleName
+		{
+			get
+			{
+				return this._MiddleName;
+			}
+			set
+			{
+				if ((this._MiddleName != value))
+				{
+					this._MiddleName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_PhotoPath", DbType="VarChar(2000)")]
+		public string PhotoPath
+		{
+			get
+			{
+				return this._PhotoPath;
+			}
+			set
+			{
+				if ((this._PhotoPath != value))
+				{
+					this._PhotoPath = value;
+				}
 			}
 		}
 	}

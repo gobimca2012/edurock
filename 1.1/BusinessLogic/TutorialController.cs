@@ -521,7 +521,30 @@ namespace BusinessLogic
         }
         #endregion
         #region Tutorial
+        public List<GetTutorialResult> GetTutorial(string Keywork, int TutorialType)
+        {
+            try
+            {
 
+                return new DataProvider().GetTutorial(Keywork, TutorialType);
+            }
+            catch
+            {
+                return new List<GetTutorialResult>();
+            }
+        }
+        public List<GetTutorialResult> GetTutorial(string Keywork, int TutorialType, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetTutorial(Keywork, TutorialType, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetTutorialResult>();
+            }
+        }
         public string UploadTutorial(FileUpload fl)
         {
             string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["TutorialPath"]);

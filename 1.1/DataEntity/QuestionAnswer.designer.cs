@@ -121,6 +121,34 @@ namespace DataEntity
 				return this.GetTable<Answer>();
 			}
 		}
+		
+		[Function(Name="dbo.GetQuestionByQuestionID")]
+		public ISingleResult<GetQuestionByQuestionIDResult> GetQuestionByQuestionID([Parameter(Name="QuestionID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> questionID, [Parameter(Name="QuestionTypeID", DbType="Int")] System.Nullable<int> questionTypeID, [Parameter(Name="QuestionStatusID", DbType="Int")] System.Nullable<int> questionStatusID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), questionID, questionTypeID, questionStatusID);
+			return ((ISingleResult<GetQuestionByQuestionIDResult>)(result.ReturnValue));
+		}
+		
+		[Function(Name="dbo.GetAnswerByQuestionID")]
+		public ISingleResult<GetAnswerByQuestionIDResult> GetAnswerByQuestionID([Parameter(Name="QuestionID", DbType="UniqueIdentifier")] System.Nullable<System.Guid> questionID, [Parameter(Name="AnswerStateID", DbType="Int")] System.Nullable<int> answerStateID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), questionID, answerStateID);
+			return ((ISingleResult<GetAnswerByQuestionIDResult>)(result.ReturnValue));
+		}
+		
+		[Function(Name="dbo.GetQuestionByLoginUserID")]
+		public ISingleResult<GetQuestionByLoginUserIDResult> GetQuestionByLoginUserID([Parameter(Name="LoginUserID", DbType="Int")] System.Nullable<int> loginUserID, [Parameter(Name="QuestionTypeID", DbType="Int")] System.Nullable<int> questionTypeID, [Parameter(Name="QuestionStatusID", DbType="Int")] System.Nullable<int> questionStatusID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID, questionTypeID, questionStatusID);
+			return ((ISingleResult<GetQuestionByLoginUserIDResult>)(result.ReturnValue));
+		}
+		
+		[Function(Name="dbo.GetQuestion")]
+		public ISingleResult<GetQuestionResult> GetQuestion([Parameter(Name="Keyword", DbType="VarChar(1000)")] string keyword, [Parameter(Name="QuestionTypeID", DbType="Int")] System.Nullable<int> questionTypeID, [Parameter(Name="QuestionStatusID", DbType="Int")] System.Nullable<int> questionStatusID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), keyword, questionTypeID, questionStatusID);
+			return ((ISingleResult<GetQuestionResult>)(result.ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.LoginUser")]
@@ -1577,6 +1605,974 @@ namespace DataEntity
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class GetQuestionByQuestionIDResult
+	{
+		
+		private string _QuestionText;
+		
+		private System.Guid _QuestionID;
+		
+		private string _Description;
+		
+		private int _LoginUserID;
+		
+		private int _QuestionTypeID;
+		
+		private string _QuestionStatus;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _MiddleName;
+		
+		private string _PhotoPath;
+		
+		private string _QuestionType;
+		
+		private int _QuestionStatusID;
+		
+		public GetQuestionByQuestionIDResult()
+		{
+		}
+		
+		[Column(Storage="_QuestionText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string QuestionText
+		{
+			get
+			{
+				return this._QuestionText;
+			}
+			set
+			{
+				if ((this._QuestionText != value))
+				{
+					this._QuestionText = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid QuestionID
+		{
+			get
+			{
+				return this._QuestionID;
+			}
+			set
+			{
+				if ((this._QuestionID != value))
+				{
+					this._QuestionID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this._LoginUserID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionTypeID", DbType="Int NOT NULL")]
+		public int QuestionTypeID
+		{
+			get
+			{
+				return this._QuestionTypeID;
+			}
+			set
+			{
+				if ((this._QuestionTypeID != value))
+				{
+					this._QuestionTypeID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionStatus", DbType="VarChar(1000)")]
+		public string QuestionStatus
+		{
+			get
+			{
+				return this._QuestionStatus;
+			}
+			set
+			{
+				if ((this._QuestionStatus != value))
+				{
+					this._QuestionStatus = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstName", DbType="VarChar(1000)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LastName", DbType="VarChar(1000)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_MiddleName", DbType="VarChar(1000)")]
+		public string MiddleName
+		{
+			get
+			{
+				return this._MiddleName;
+			}
+			set
+			{
+				if ((this._MiddleName != value))
+				{
+					this._MiddleName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_PhotoPath", DbType="VarChar(2000)")]
+		public string PhotoPath
+		{
+			get
+			{
+				return this._PhotoPath;
+			}
+			set
+			{
+				if ((this._PhotoPath != value))
+				{
+					this._PhotoPath = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionType", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
+		public string QuestionType
+		{
+			get
+			{
+				return this._QuestionType;
+			}
+			set
+			{
+				if ((this._QuestionType != value))
+				{
+					this._QuestionType = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionStatusID", DbType="Int NOT NULL")]
+		public int QuestionStatusID
+		{
+			get
+			{
+				return this._QuestionStatusID;
+			}
+			set
+			{
+				if ((this._QuestionStatusID != value))
+				{
+					this._QuestionStatusID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetAnswerByQuestionIDResult
+	{
+		
+		private System.Guid _AnswerID;
+		
+		private string _AnswerText;
+		
+		private string _Description;
+		
+		private System.Guid _QuestionID;
+		
+		private string _AnswerStatus;
+		
+		private System.Nullable<int> _AnswerStateID;
+		
+		private int _LoginUserID;
+		
+		private System.Nullable<int> _AnswerRate;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _MiddleName;
+		
+		private string _PhotoPath;
+		
+		public GetAnswerByQuestionIDResult()
+		{
+		}
+		
+		[Column(Storage="_AnswerID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid AnswerID
+		{
+			get
+			{
+				return this._AnswerID;
+			}
+			set
+			{
+				if ((this._AnswerID != value))
+				{
+					this._AnswerID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_AnswerText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string AnswerText
+		{
+			get
+			{
+				return this._AnswerText;
+			}
+			set
+			{
+				if ((this._AnswerText != value))
+				{
+					this._AnswerText = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid QuestionID
+		{
+			get
+			{
+				return this._QuestionID;
+			}
+			set
+			{
+				if ((this._QuestionID != value))
+				{
+					this._QuestionID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_AnswerStatus", DbType="VarChar(1000)")]
+		public string AnswerStatus
+		{
+			get
+			{
+				return this._AnswerStatus;
+			}
+			set
+			{
+				if ((this._AnswerStatus != value))
+				{
+					this._AnswerStatus = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_AnswerStateID", DbType="Int")]
+		public System.Nullable<int> AnswerStateID
+		{
+			get
+			{
+				return this._AnswerStateID;
+			}
+			set
+			{
+				if ((this._AnswerStateID != value))
+				{
+					this._AnswerStateID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this._LoginUserID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_AnswerRate", DbType="Int")]
+		public System.Nullable<int> AnswerRate
+		{
+			get
+			{
+				return this._AnswerRate;
+			}
+			set
+			{
+				if ((this._AnswerRate != value))
+				{
+					this._AnswerRate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstName", DbType="VarChar(1000)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LastName", DbType="VarChar(1000)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_MiddleName", DbType="VarChar(1000)")]
+		public string MiddleName
+		{
+			get
+			{
+				return this._MiddleName;
+			}
+			set
+			{
+				if ((this._MiddleName != value))
+				{
+					this._MiddleName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_PhotoPath", DbType="VarChar(2000)")]
+		public string PhotoPath
+		{
+			get
+			{
+				return this._PhotoPath;
+			}
+			set
+			{
+				if ((this._PhotoPath != value))
+				{
+					this._PhotoPath = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetQuestionByLoginUserIDResult
+	{
+		
+		private string _QuestionText;
+		
+		private System.Guid _QuestionID;
+		
+		private string _Description;
+		
+		private int _LoginUserID;
+		
+		private int _QuestionTypeID;
+		
+		private string _QuestionStatus;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _MiddleName;
+		
+		private string _PhotoPath;
+		
+		private string _QuestionType;
+		
+		private int _QuestionStatusID;
+		
+		public GetQuestionByLoginUserIDResult()
+		{
+		}
+		
+		[Column(Storage="_QuestionText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string QuestionText
+		{
+			get
+			{
+				return this._QuestionText;
+			}
+			set
+			{
+				if ((this._QuestionText != value))
+				{
+					this._QuestionText = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid QuestionID
+		{
+			get
+			{
+				return this._QuestionID;
+			}
+			set
+			{
+				if ((this._QuestionID != value))
+				{
+					this._QuestionID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this._LoginUserID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionTypeID", DbType="Int NOT NULL")]
+		public int QuestionTypeID
+		{
+			get
+			{
+				return this._QuestionTypeID;
+			}
+			set
+			{
+				if ((this._QuestionTypeID != value))
+				{
+					this._QuestionTypeID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionStatus", DbType="VarChar(1000)")]
+		public string QuestionStatus
+		{
+			get
+			{
+				return this._QuestionStatus;
+			}
+			set
+			{
+				if ((this._QuestionStatus != value))
+				{
+					this._QuestionStatus = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstName", DbType="VarChar(1000)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LastName", DbType="VarChar(1000)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_MiddleName", DbType="VarChar(1000)")]
+		public string MiddleName
+		{
+			get
+			{
+				return this._MiddleName;
+			}
+			set
+			{
+				if ((this._MiddleName != value))
+				{
+					this._MiddleName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_PhotoPath", DbType="VarChar(2000)")]
+		public string PhotoPath
+		{
+			get
+			{
+				return this._PhotoPath;
+			}
+			set
+			{
+				if ((this._PhotoPath != value))
+				{
+					this._PhotoPath = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionType", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
+		public string QuestionType
+		{
+			get
+			{
+				return this._QuestionType;
+			}
+			set
+			{
+				if ((this._QuestionType != value))
+				{
+					this._QuestionType = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionStatusID", DbType="Int NOT NULL")]
+		public int QuestionStatusID
+		{
+			get
+			{
+				return this._QuestionStatusID;
+			}
+			set
+			{
+				if ((this._QuestionStatusID != value))
+				{
+					this._QuestionStatusID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetQuestionResult
+	{
+		
+		private string _QuestionText;
+		
+		private System.Guid _QuestionID;
+		
+		private string _Description;
+		
+		private int _LoginUserID;
+		
+		private int _QuestionTypeID;
+		
+		private string _QuestionStatus;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _MiddleName;
+		
+		private string _PhotoPath;
+		
+		private string _QuestionType;
+		
+		private int _QuestionStatusID;
+		
+		public GetQuestionResult()
+		{
+		}
+		
+		[Column(Storage="_QuestionText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string QuestionText
+		{
+			get
+			{
+				return this._QuestionText;
+			}
+			set
+			{
+				if ((this._QuestionText != value))
+				{
+					this._QuestionText = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid QuestionID
+		{
+			get
+			{
+				return this._QuestionID;
+			}
+			set
+			{
+				if ((this._QuestionID != value))
+				{
+					this._QuestionID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this._LoginUserID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionTypeID", DbType="Int NOT NULL")]
+		public int QuestionTypeID
+		{
+			get
+			{
+				return this._QuestionTypeID;
+			}
+			set
+			{
+				if ((this._QuestionTypeID != value))
+				{
+					this._QuestionTypeID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionStatus", DbType="VarChar(1000)")]
+		public string QuestionStatus
+		{
+			get
+			{
+				return this._QuestionStatus;
+			}
+			set
+			{
+				if ((this._QuestionStatus != value))
+				{
+					this._QuestionStatus = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstName", DbType="VarChar(1000)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LastName", DbType="VarChar(1000)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_MiddleName", DbType="VarChar(1000)")]
+		public string MiddleName
+		{
+			get
+			{
+				return this._MiddleName;
+			}
+			set
+			{
+				if ((this._MiddleName != value))
+				{
+					this._MiddleName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_PhotoPath", DbType="VarChar(2000)")]
+		public string PhotoPath
+		{
+			get
+			{
+				return this._PhotoPath;
+			}
+			set
+			{
+				if ((this._PhotoPath != value))
+				{
+					this._PhotoPath = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionType", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
+		public string QuestionType
+		{
+			get
+			{
+				return this._QuestionType;
+			}
+			set
+			{
+				if ((this._QuestionType != value))
+				{
+					this._QuestionType = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionStatusID", DbType="Int NOT NULL")]
+		public int QuestionStatusID
+		{
+			get
+			{
+				return this._QuestionStatusID;
+			}
+			set
+			{
+				if ((this._QuestionStatusID != value))
+				{
+					this._QuestionStatusID = value;
+				}
 			}
 		}
 	}

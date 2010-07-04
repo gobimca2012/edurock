@@ -7,16 +7,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="contentbox">
         <div id="Question">
-            <div>
-                <div>
-                    <span class="label">QuestionID</span>
-                </div>
-                <div>
-                    <span id="lblQuestionID" runat="server"></span>
-                </div>
-            </div>
+            
             <div>
                 <div>
                     <span class="label">QuestionText</span>
@@ -34,32 +27,27 @@
                 </div>
             </div>
             <div>
+               
                 <div>
-                    <span class="label">LoginUserID</span>
+                  Post By &nbsp;  <span id="user" runat="server"></span>
                 </div>
+            </div>
+            <div>
+              
+               
                 <div>
-                    <span id="lblLoginUserID" runat="server"></span>
+                   Question Type : <span id="lblQuestionTypeID" runat="server"></span>
+                </div>
+            </div>
+            <div>
+                
+                <div>
+                  Question Status  <span id="lblQuestionStatusID" runat="server"></span>
                 </div>
             </div>
             <div>
                 <div>
-                    <span class="label">QuestionTypeID</span>
-                </div>
-                <div>
-                    <span id="lblQuestionTypeID" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">QuestionStatusID</span>
-                </div>
-                <div>
-                    <span id="lblQuestionStatusID" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">ModifiedDate</span>
+                    <span class="label">Post Date</span>
                 </div>
                 <div>
                     <span id="lblModifiedDate" runat="server"></span>

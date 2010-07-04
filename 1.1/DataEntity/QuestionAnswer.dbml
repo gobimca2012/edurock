@@ -70,4 +70,83 @@
       <Association Name="Question_Answer" Member="Question" ThisKey="QuestionID" Type="Question" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.GetQuestionByQuestionID" Method="GetQuestionByQuestionID">
+    <Parameter Name="QuestionID" Parameter="questionID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="QuestionTypeID" Parameter="questionTypeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="QuestionStatusID" Parameter="questionStatusID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetQuestionByQuestionIDResult">
+      <Column Name="QuestionText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionStatus" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="QuestionType" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionStatusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetAnswerByQuestionID" Method="GetAnswerByQuestionID">
+    <Parameter Name="QuestionID" Parameter="questionID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="AnswerStateID" Parameter="answerStateID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetAnswerByQuestionIDResult">
+      <Column Name="AnswerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="AnswerText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="QuestionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="AnswerStatus" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="AnswerStateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AnswerRate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetQuestionByLoginUserID" Method="GetQuestionByLoginUserID">
+    <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="QuestionTypeID" Parameter="questionTypeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="QuestionStatusID" Parameter="questionStatusID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetQuestionByLoginUserIDResult">
+      <Column Name="QuestionText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionStatus" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="QuestionType" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionStatusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetQuestion" Method="GetQuestion">
+    <Parameter Name="Keyword" Parameter="keyword" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="QuestionTypeID" Parameter="questionTypeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="QuestionStatusID" Parameter="questionStatusID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetQuestionResult">
+      <Column Name="QuestionText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionStatus" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="QuestionType" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionStatusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

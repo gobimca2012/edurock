@@ -12,7 +12,14 @@
             <div>
                 <asp:HyperLink ID="lnkback" runat="server" Text="back to List" runat="server" NavigateUrl="~/Modules/User/List.aspx"></asp:HyperLink>
             </div>
-            
+            <div>
+                <asp:Image ID="imgProfilepic" runat="server" Width="100" />
+            </div>
+            <div>
+                <asp:LinkButton ID="lnkChangeImage" runat="server">UpdatePic</asp:LinkButton>
+            </div>
+            <div id="propop">
+            </div>
             <div>
                 <div>
                     <span class="label">FirstName</span>
@@ -93,7 +100,6 @@
                     <span id="lblWebSite" runat="server"></span>
                 </div>
             </div>
-            
             <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#accountsetting" NavigateUrl="UserInfo.aspx">Edit</aspajax:HyperLink>
         </div>
     </div>

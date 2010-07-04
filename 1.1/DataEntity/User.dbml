@@ -1,23 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="edu" Class="UserDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="dbo.[User]" Member="Users">
-    <Type Name="User">
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="BirthDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Address1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Address2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="City" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="State" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="Country" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="WebSite" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="StudentLogin_User" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.LoginUser" Member="StudentLogins">
     <Type Name="StudentLogin">
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -27,8 +9,8 @@
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="StudentLogin_User" Member="Users" OtherKey="LoginUserID" Type="User" />
       <Association Name="StudentLogin_UserEducation" Member="UserEducations" OtherKey="LoginUserID" Type="UserEducation" />
+      <Association Name="StudentLogin_User" Member="Users" OtherKey="LoginUserID" Type="User" />
     </Type>
   </Table>
   <Table Name="dbo.UserEducation" Member="UserEducations">
@@ -40,6 +22,25 @@
       <Column Name="Year" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="StudentLogin_UserEducation" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="WebSite" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="StudentLogin_User" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

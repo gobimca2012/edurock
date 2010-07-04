@@ -12,6 +12,11 @@ namespace BusinessLogic
             get;
             set;
         }
+        public string customId1
+        {
+            get;
+            set;
+        }
         public string Command
         {
             get;
@@ -107,6 +112,10 @@ namespace BusinessLogic
                 AjaxListViewCommandArg objcommandevent = new AjaxListViewCommandArg();
                 objcommandevent.Command = Request.Params["lcmd"];
                 objcommandevent.Id = Request.Params["lid"];
+                if (Request.Params["lid1"] != null)
+                {
+                    objcommandevent.customId1 = Request.Params["lid1"];
+                }
                 OnAjaxListViewCommand(objcommandevent);
             }
 

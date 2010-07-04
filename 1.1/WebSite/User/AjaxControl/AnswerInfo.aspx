@@ -12,68 +12,28 @@
         </div>
         <fieldset>
             <legend>Answer</legend>
-            <table>
-                <tr>
-                    <td>
-                        <span class="label">AnswerID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+            <div>
+                
+                <div>
+                    <div>
                         <span class="label">AnswerText</span>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtAnswerText" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    </div>
+                    <div>
+                        <asp:TextBox ID="txtAnswerText" runat="server" Width="346px"></asp:TextBox>
+                    </div>
+                </div>
+                <div>
+                    <div>
                         <span class="label">Description</span>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">QuestionID</span>
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddQuestionID" runat="server">
-                        </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">AnswerStateID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">LoginUserID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">AnswerRate</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">ModifiedDate</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                    <div>
+                        <asp:TextBox ID="txtDescription" runat="server" Height="191px" 
+                            TextMode="MultiLine" Width="350px"></asp:TextBox>
+                    </div>
+                </div>
+               
+               
+            </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddAnswer" runat="server" RequestContainner="#Answer"
                     ResponseContainner="#Answer" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>

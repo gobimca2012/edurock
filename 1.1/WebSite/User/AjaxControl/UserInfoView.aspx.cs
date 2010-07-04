@@ -17,20 +17,33 @@ public partial class User_AjaxControl_UserInfoView : AjaxPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, false);
+        objPopup.IframePopUp(lnkChangeImage, ResolveUrl("~/User/UploadPhoto.aspx"), "propop", "500", "500", ResolveUrl("~/User/AjaxControl/UserInfoView.aspx"), "#accountsetting");
+            
         if (!this.IsAjaxPostBack)
         {
             var data = new UserController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID);
-            BindData(data[0]);
+            if (data.Count > 0)
+            {
+                BindData(data[0]);
+            }
+            else
+            {
+                Response.Redirect("~/User/AjaxControl/UserInfo.aspx");
+            }
         }
     }
 
     private void BindData(User data)
     {
 
-        
 
-        
 
+
+        if (data.PhotoPath != null)
+        {
+            imgProfilepic.ImageUrl = ResolveUrl(data.PhotoPath);
+        }
         if (data.FirstName != null)
 
             lblFirstName.InnerHtml = data.FirstName.ToString();
@@ -71,7 +84,7 @@ public partial class User_AjaxControl_UserInfoView : AjaxPage
 
             lblWebSite.InnerHtml = data.WebSite.ToString();
 
-        
+
 
     }
 

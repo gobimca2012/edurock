@@ -71,8 +71,7 @@ public partial class User_AjaxControl_AnswerInfo : AjaxPage
 
             string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
-            Guid QuestionID; if (false) { throw new Exception(""); } QuestionID = new Guid(HtmlHelper.ControlValue(ddQuestionID.ClientID));
-
+            
             int AnswerStateID = 0;
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
@@ -81,9 +80,9 @@ public partial class User_AjaxControl_AnswerInfo : AjaxPage
 
             DateTime ModifiedDate = DateTime.Now;
 
-            new AnswerController().UpdateByAnswerID(AnswerID, AnswerText, Description, QuestionID, AnswerStateID, LoginUserID, AnswerRate, ModifiedDate);
+            new AnswerController().UpdateByAnswerID(AnswerID, AnswerText, Description, _QuestionID, AnswerStateID, LoginUserID, AnswerRate, ModifiedDate);
 
-            Response.Redirect("~/User/AjaxControl/AnswerInfoView.aspx?qid="+QuestionID);
+            Response.Redirect("~/User/AjaxControl/AnswerInfoView.aspx?qid="+_QuestionID);
         }
         catch (Exception ex)
         {
@@ -104,7 +103,6 @@ public partial class User_AjaxControl_AnswerInfo : AjaxPage
 
             txtDescription.Text = data.Description;
 
-            ddQuestionID.SelectedValue = data.QuestionID.ToString();
 
 
 

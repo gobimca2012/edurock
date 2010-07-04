@@ -90,4 +90,22 @@
       <Association Name="TutorialType_Tutorial" Member="TutorialType" ThisKey="TutorialTypeID" Type="TutorialType" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.GetTutorial" Method="GetTutorial">
+    <Parameter Name="Keywork" Parameter="keywork" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="TutorialType" Parameter="tutorialType" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetTutorialResult">
+      <Column Name="TutorialID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TutorialTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FilePath" Type="System.String" DbType="VarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="TutorialType" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

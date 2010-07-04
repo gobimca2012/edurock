@@ -12,53 +12,34 @@
         </div>
         <fieldset>
             <legend>UserEducation</legend>
-            <table>
-                <tr>
-                    <td>
-                        <span class="label">UserEducationID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">LoginUserID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+            <div>
+                
+                <div>
+                    <div>
                         <span class="label">InstitueName</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <asp:TextBox ID="txtInstitueName" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    </div>
+                </div>
+                <div>
+                    <div>
                         <span class="label">SubjectName</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <asp:TextBox ID="txtSubjectName" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    </div>
+                </div>
+                <div>
+                    <div>
                         <span class="label">Year</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <asp:TextBox ID="txtYear" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">ModifiedDate</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+               
+            </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#education"
                     ResponseContainner="#education" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>

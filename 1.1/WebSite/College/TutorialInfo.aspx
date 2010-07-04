@@ -7,72 +7,50 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    <asp:Label ID="injectScript" runat="server"></asp:Label>
+    <div class="contentbox">
+        <asp:Label ID="injectScript" runat="server"></asp:Label>
         <div id="divMessage" runat="server">
         </div>
         <fieldset>
             <legend>Tutorial</legend>
-            <table>
-                <tr>
-                    <td>
-                        <span class="label">TutorialID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">LoginUserID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+            <div>
+                <div>
+                    <div>
                         <span class="label">Name</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    </div>
+                </div>
+                <div>
+                    <div>
                         <span class="label">Description</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    </div>
+                </div>
+                <div>
+                    <div>
                         <span class="label">TutorialType</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <asp:DropDownList ID="ddTutorialType" runat="server">
                         </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    </div>
+                </div>
+                <div>
+                    <div>
                         <span class="label">FilePath</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <asp:FileUpload ID="FileUploader" runat="server" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">ModifiedDate</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </table>
-            <div>
-                <asp:LinkButton ID="lnkAdd" runat="server" onclick="lnkAdd_Click">Add</asp:LinkButton>
+                    </div>
+                </div>
             </div>
-            
+            <div>
+                <asp:LinkButton ID="lnkAdd" runat="server" OnClick="lnkAdd_Click">Add</asp:LinkButton>
+            </div>
         </fieldset>
     </div>
     </form>

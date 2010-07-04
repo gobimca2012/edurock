@@ -99,7 +99,15 @@ public partial class College_Ajaxer_TutorialView : AjaxPage
     protected void ListTutorialOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        string CourceCatagoryID = ListTutorial.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+        string LoginUserID = ListTutorial.DataKeys[currentItem.DataItemIndex]["LoginUserID"].ToString();
+        HtmlGenericControl divMy = (HtmlGenericControl)currentItem.FindControl("divMy");
+        if (divMy != null)
+        {
+            if (!new UserAuthontication().IsOwn(Convert.ToInt32(LoginUserID)))
+            {
+                divMy.Visible = false;
+            }
+        }
 
 
 

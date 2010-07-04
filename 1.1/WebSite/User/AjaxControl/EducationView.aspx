@@ -13,12 +13,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>
-                                UserEducationID
-                            </td>
-                            <td>
-                                LoginUserID
-                            </td>
+                            
                             <td>
                                 InstitueName
                             </td>
@@ -38,12 +33,7 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr>
-                    <td>
-                        <%#Eval("UserEducationID") %>
-                    </td>
-                    <td>
-                        <%#Eval("LoginUserID") %>
-                    </td>
+                   
                     <td>
                         <%#Eval("InstitueName") %>
                     </td>

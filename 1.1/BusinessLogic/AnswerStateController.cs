@@ -332,7 +332,7 @@ namespace BusinessLogic
         {
             var data = Get();
             dd.DataSource = data;
-            dd.DataTextField = "CatagoryName";
+            dd.DataTextField = "AnswerStateText";
             dd.DataValueField = "AnswerStateID";
             dd.DataBind();
             ListItem noneItem = new ListItem();
@@ -344,7 +344,7 @@ namespace BusinessLogic
         {
             var data = Get();
             dd.DataSource = data;
-            dd.DataTextField = "CatagoryName";
+            dd.DataTextField = "AnswerStateText";
             dd.DataValueField = "AnswerStateID";
             dd.DataBind();
             ListItem noneItem = new ListItem();

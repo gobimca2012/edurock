@@ -6,7 +6,7 @@ body
 {
     line-height: 18px;
     font-family: arial,helvetica,clean,sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     text-align: center;
     margin: 0px;
     padding: 0px;
@@ -131,9 +131,10 @@ table
 {
     padding: 5px;
     background: #fff;
-    border: solid 2px #DEDEDE;
+    border: solid 5px #DEDEDE;
     margin: 5px;
     text-align: left;
+    -moz-border-radius: 6px;
 }
 .contentbox a
 {
@@ -265,4 +266,12 @@ table
 {
     color:#093F7C;
     font-size:13px;
+}
+img
+{
+    border:solid 5px #000;
+    margin:3px;
+    padding:3px;
+    background:#444;
+    -moz-border-radius: 6px;
 }

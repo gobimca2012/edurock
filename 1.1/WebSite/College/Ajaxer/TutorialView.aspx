@@ -7,54 +7,37 @@
 </head>
 <body>
     <form id="form1" runat="server">
-     <div id="tutpop"></div>
-    <div>
-        <asp:ListView ID="ListTutorial" runat="server">
+    <div id="tutpop">
+    </div>
+    <div class="contentbox">
+        <asp:ListView ID="ListTutorial" runat="server" OnItemDataBound="ListTutorialOnItemDataBound"
+            DataKeyNames="LoginUserID">
             <LayoutTemplate>
-                <table>
-                    <thead>
-                        <tr>
-                           
-                            <td>
-                                Name
-                            </td>
-                            <td>
-                                TutorialType
-                            </td>
-                            <td>
-                                FilePath
-                            </td>
-                            <td>
-                                ModifiedDate
-                            </td>
-                        </tr>
-                    </thead>
+                <div>
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                </table>
+                </div>
             </LayoutTemplate>
             <ItemTemplate>
-                <tr>
-                    <td>
+                <div>
+                    <div>
                         <%#Eval("Name") %>
-                    </td>
-                    
-                    <td>
+                    </div>
+                    <div>
                         <%#Eval("TutorialType.Name") %>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <%#Eval("FilePath") %>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <%#Eval("ModifiedDate") %>
-                    </td>
-                    <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("TutorialID").ToString(), "#tutorial", "#tutorial")%>
-                    </td>
-                    <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/CourceInfo.aspx") + "?cid=" + Eval("TutorialID")%>'
-                            ContainnerID="#tutorial">Edit</aspajax:HyperLink>
-                    </td>
-                </tr>
+                    </div>
+                    <div id="divMy" runat="server">
+                        <div>
+                            <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("TutorialID").ToString(), "#tutorial", "#tutorial")%>
+                        </div>
+                    </div>
+                </div>
+                <hr />
             </ItemTemplate>
         </asp:ListView>
         <div>
@@ -72,7 +55,7 @@
             </div>
         </div>
         <div>
-            <%--<aspajax:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/Admin/Ajaxer/CourceInfo.aspx"
+           <%-- <%--<aspajax:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/Admin/Ajaxer/CourceInfo.aspx"
                 ContainnerID="#tutorial">Add New</aspajax:HyperLink>--%>
             <asp:LinkButton ID="lnkAdd" runat="server">Add</asp:LinkButton>
         </div>

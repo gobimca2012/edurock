@@ -83,6 +83,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		IDatabase database = MyMeta.Databases[databaseName];
 		ITable table = database.Tables[tableName];
 		GetDataAssingment(table);
+		staticPrint();
 	}
 	public void GetDataAssingment(ITable table)
 	{
@@ -108,21 +109,19 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		<%=string.Format("lbl{0}.InnerHtml=data.{0}.ToString();",col.Alias) %>
 		<%
 	}
-	%>
+	private void staticPrint()
+	{%>
 	private int ID
     {
         get
         {
             return Convert.ToInt32(Request.Params["qid"]);
         }
-    }
-	
-	 protected void Page_Load(object sender, EventArgs e)
+    }	
+	protected void Page_Load(object sender, EventArgs e)
     {
         BindData(ID);
     }
-	
-	
-	<%
- }	%>
+	<%}
+	}%>
 ##|BODY_END

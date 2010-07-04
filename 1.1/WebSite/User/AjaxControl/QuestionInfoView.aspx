@@ -8,63 +8,64 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="contentbox">
+        <ul>
+            <li>
+                <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
+            </li>
+            <li>
+                <asp:DropDownList ID="ddQuestionType" runat="server">
+                </asp:DropDownList>
+            </li>
+            <li>
+                <asp:DropDownList ID="ddQuestionStatus" runat="server">
+                </asp:DropDownList>
+            </li>
+            <li>
+                <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#Question"
+                    ResponseContainner="#Question" EnableViewState="False" Increment="False" OnAjaxClick="SearchAjaxClick"
+                    Pagger="False">Search</aspajax:AjaxLinkButton>
+            </li>
+        </ul>
+    </div>
+    <div class="contentbox">
         <asp:ListView ID="ListQuestion" runat="server">
             <LayoutTemplate>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>
-                                QuestionID
-                            </td>
-                            <td>
-                                QuestionText
-                            </td>
-                            <td>
-                                LoginUserID
-                            </td>
-                            <td>
-                                QuestionTypeID
-                            </td>
-                            <td>
-                                QuestionStatusID
-                            </td>
-                            <td>
-                                ModifiedDate
-                            </td>
-                        </tr>
-                    </thead>
+                <div>
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                </table>
+                </div>
             </LayoutTemplate>
             <ItemTemplate>
-                <tr>
-                    <td>
-                        <%#Eval("QuestionID") %>
-                    </td>
-                    <td>
+                <div>
+                    <div>
                         <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#Question" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("QuestionID")  %>'><%#Eval("QuestionText") %></aspajax:HyperLink>
-                    </td>
-                    <td>
-                        <%#Eval("LoginUserID") %>
-                    </td>
-                    <td>
-                        <%#Eval("QuestionTypeID") %>
-                    </td>
-                    <td>
-                        <%#Eval("QuestionStatusID") %>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
+                        <div>
+                            <asp:Image ID="imgProf" runat="server" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>'
+                                Width="100" />
+                        </div>
+                        by
+                        <%#Eval("FirstName")%>&nbsp;<%#Eval("LastName")%>
+                    </div>
+                    <div>
+                        <%#Eval("QuestionStatus")%>
+                    </div>
+                    <div>
+                        <%#Eval("QuestionType")%>
+                    </div>
+                    <div>
                         <%#Eval("ModifiedDate") %>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionID").ToString(), "#Question", "#Question")%>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/QuestionInfo.aspx") + "?cid=" + Eval("QuestionID")%>'
                             ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
-                    </td>
-                </tr>
+                    </div>
+                </div>
+                <hr />
             </ItemTemplate>
         </asp:ListView>
         <div>
