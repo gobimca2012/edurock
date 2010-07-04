@@ -268,12 +268,12 @@ namespace BusinessLogic
                 return new List<LoginUser>();
             }
         }
-        public int Add( string Username, string Password, int UserType, Guid UserId, DateTime ModifiedDate, DateTime CreatedDate)
+        public int Add(string Username, string Password, int UserType, Guid UserId, DateTime ModifiedDate, DateTime CreatedDate)
         {
 
             try
             {
-                int ID=new DataProvider().LoginUserAdd( Username, Password, UserType, UserId, ModifiedDate, CreatedDate);
+                int ID = new DataProvider().LoginUserAdd(Username, Password, UserType, UserId, ModifiedDate, CreatedDate);
                 return ID;
             }
             catch (Exception ex)
@@ -425,7 +425,7 @@ namespace BusinessLogic
         }
         #endregion
         #region LoginUser
-        public bool CreateUser(string Username,string Password,string Email)
+        public bool CreateUser(string Username, string Password, string Email)
         {
             try
             {
@@ -455,11 +455,11 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public bool CreateUser(string Username, string Password, string Email,int UType)
+        public bool CreateUser(string Username, string Password, string Email, int UType)
         {
             try
             {
-                
+
                 MembershipCreateStatus status;
                 MembershipUser MemUser = Membership.CreateUser(Username, Password, Email, "No Question", "No Answer", true, out status);
                 if (status == MembershipCreateStatus.Success)
@@ -485,19 +485,53 @@ namespace BusinessLogic
                 return false;
             }
         }
+        public bool CreateUser(string Username, string Password, string Email, int UType, int InstituteUserType)
+        {
+            try
+            {
+
+                MembershipCreateStatus status;
+                int LoginUserID=0;
+                MembershipUser MemUser = Membership.CreateUser(Username, Password, Email, "No Question", "No Answer", true, out status);
+                if (status == MembershipCreateStatus.Success)
+                {
+                    try
+                    {
+                         LoginUserID = Add(Username, Password, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
+                        int id=new InstituteUserController().Add( new UserAuthontication().InstituteID,LoginUserID, InstituteUserType, "", DateTime.Now);
+                        if (LoginUserID == 0)
+                        {
+                            Membership.DeleteUser(MemUser.UserName);
+                            new InstituteUserController().DeletebyInstituteUserID(id);
+                        }
+                    }
+                    catch
+                    {
+                        DeletebyLoginUserID(LoginUserID);
+                        Membership.DeleteUser(MemUser.UserName);
+                    }
+
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         #endregion
-        
-	
-				
-	
-	
+
+
+
+
+
     }
     public enum UserTypeEnum
-        {
-            Student=1,
-            College=2,
-            Annoumus=0
-        }
-	
+    {
+        Student = 1,
+        College = 2,
+        Annoumus = 0
+    }
+
 }

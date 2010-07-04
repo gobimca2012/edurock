@@ -978,6 +978,42 @@ namespace BusinessLogic
 
         #endregion
         #region Institute
+        public List<Institute> Search(string Keyword, int PageSize, int PageNumber)
+        {
+            try
+            {
+                var data=new DataProvider().InstituteSearch(Keyword, PageSize, PageNumber);
+                return data;
+
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return new List<Institute>();
+            }
+        }
+        public List<Institute> Search(string Keyword)
+        {
+            try
+            {
+                var data = new DataProvider().InstituteSearch(Keyword);
+                return data;
+
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return new List<Institute>();
+            }
+        }
         public bool UpdateByLoginUserID(int LoginUserID, string Name, string Address, string CityName, string StateName, string CountryName, string TelePhone, string Fax, string Email, string WebSite, int CollegeType, string ShortName, string Description, DateTime ModifiedDate, bool IsDeleted)
         {
 

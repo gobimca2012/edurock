@@ -1,0 +1,89 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="InstituteUserInfoView.aspx.cs"
+    Inherits="College_Ajaxer_InstituteUserInfoView" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Untitled Page</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <ul>
+    <li>
+    <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
+    </li>
+    <li>
+    <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#User" ResponseContainner="#User" OnAjaxClick="SearchAjaxClick">Search</aspajax:AjaxLinkButton>
+    </li>
+    </ul>
+    </div>
+    <div>
+        <asp:ListView ID="ListInstituteUser" runat="server">
+            <LayoutTemplate>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>
+                                Username
+                            </td>
+                            <td>
+                                Password
+                            </td>
+                            <td>
+                                InstituteUserType
+                            </td>
+                            <td>
+                                ModifiedDate
+                            </td>
+                        </tr>
+                    </thead>
+                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <%#Eval("InstituteLoginUser.Username")%>
+                    </td>
+                    <td>
+                        <%#Eval("InstituteLoginUser.Password")%>
+                    </td>
+                    <td>
+                        <%#Eval("InstituteUserType.Name")%>
+                    </td>
+                    <td>
+                        <%#Eval("ModifiedDate") %>
+                    </td>
+                    <td>
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteUserID").ToString(), "#User", "#User")%>
+                    </td>
+                    <td>
+                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteUserInfo.aspx") + "?cid=" + Eval("InstituteUserID")%>'
+                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </asp:ListView>
+        <div>
+            <div style="float: right">
+                <div style="float: left">
+                    <aspajax:AjaxLinkButton ID="lnkPrevInstituteUser" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
+                        Pagger="true" Increment="false" RequestContainner="#User" ResponseContainner="#User"></aspajax:AjaxLinkButton>
+                </div>
+                <div style="float: left">
+                    <aspajax:AjaxLinkButton ID="lnkNextInstituteUser" runat="server" OnAjaxClick="NextAjaxClick"
+                        RequestContainner="#User" Pagger="true" Increment="true" ResponseContainner="#User">Next</aspajax:AjaxLinkButton>
+                </div>
+            </div>
+            <div style="clear: both">
+            </div>
+        </div>
+        <div>
+            <aspajax:HyperLink ID="hpAddInstituteUser" runat="server" NavigateUrl="~/College/Ajaxer/InstituteUserInfo.aspx"
+                ContainnerID="#User">Add New</aspajax:HyperLink>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

@@ -13,7 +13,6 @@
         <fieldset>
             <legend>UserEducation</legend>
             <div>
-                
                 <div>
                     <div>
                         <span class="label">InstitueName</span>
@@ -38,7 +37,6 @@
                         <asp:TextBox ID="txtYear" runat="server"></asp:TextBox>
                     </div>
                 </div>
-               
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#education"

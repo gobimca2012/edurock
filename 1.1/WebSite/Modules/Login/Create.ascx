@@ -2,50 +2,50 @@
 <div class="contentbox">
     <fieldset>
         <legend>LoginUser</legend>
-        <table>
-            <tr>
-                <td>
+        <div>
+            <div>
+                <div>
                     <span class="label">LoginUserID</span>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+                <div>
+                </div>
+            </div>
+            <div>
+                <div>
                     <span class="label">Username</span>
-                </td>
-                <td>
+                </div>
+                <div>
                     <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+            </div>
+            <div>
+                <div>
                     <span class="label">Password</span>
-                </td>
-                <td>
+                </div>
+                <div>
                     <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+            </div>
+            <div>
+                <div>
                     Email:
-                </td>
-                <td>
+                </div>
+                <div>
                     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
+                </div>
+            </div>
+            <div>
+                <div>
                     <span class="label">UserType</span>
-                </td>
-                <td>
+                </div>
+                <div>
                     <asp:RadioButtonList ID="RdbType" runat="server">
                         <asp:ListItem Text="College" Value="2"></asp:ListItem>
                         <asp:ListItem Text="Student" Value="1"></asp:ListItem>
                     </asp:RadioButtonList>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
         <div>
             <asp:LinkButton ID="lnkRegister" runat="server" OnClick="lnkRegister_Click">Register</asp:LinkButton>
             <br />
