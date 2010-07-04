@@ -92,11 +92,14 @@ namespace BusinessLogic
                 string AjaxStateValues = Request.Params[AjaxStateName].ToString();
                 
                 string[] AjaxStatePart = AjaxStateValues.Split('&');
-                for (int i = 0; i < AjaxStatePart.Length; i++)
+                if (AjaxStatePart.Length > 1)
                 {
-                    string[] AjaxStatePartPart = AjaxStatePart[i].Split('=');
-                    //AjaxState.Add(AjaxStatePartPart[0], AjaxStatePartPart[1]);
-                    AjaxState[AjaxStatePartPart[0]] = AjaxStatePartPart[1];
+                    for (int i = 0; i < AjaxStatePart.Length; i++)
+                    {
+                        string[] AjaxStatePartPart = AjaxStatePart[i].Split('=');
+                        //AjaxState.Add(AjaxStatePartPart[0], AjaxStatePartPart[1]);
+                        AjaxState[AjaxStatePartPart[0]] = AjaxStatePartPart[1];
+                    }
                 }
             }
             base.OnInit(e);

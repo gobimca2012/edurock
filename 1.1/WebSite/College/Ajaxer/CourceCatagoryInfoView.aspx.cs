@@ -14,13 +14,8 @@ using BusinessLogic;
 
 public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
 {
-    public HtmlHelper _htmlHelper;
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        _htmlHelper = new HtmlHelper();
-        TotalPage = new CourceCatagoryController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID).Count / PageSize;
-        BindList();
-    }
+
+    public HtmlHelper _HtmlHelper = new HtmlHelper();
     private int PageNumber
     {
         get
@@ -29,7 +24,7 @@ public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
                 return Convert.ToInt32(Request.Params["pn"].ToString());
             else
             {
-                lnkPrev.Visible = false;
+                lnkPrevx.Visible = false;
                 return 0;
             }
         }
@@ -38,12 +33,21 @@ public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
     }
 
     private int TotalPage;
-    private int PageSize = 1;
+    private int PageSize = 3;
 
+    protected void Page_Load(object sender, EventArgs e)
+    {
 
+        {
+            BindList();
+            TotalPage =Convert.ToInt32(Math.Ceiling((decimal)new CourceCatagoryController().Get().Count / PageSize));
+            PaggerLinkManager();
+        }
+
+    }
     private void BindList()
     {
-        ListCourceCatagory.DataSource = new CourceCatagoryController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID, PageSize, PageNumber);
+        ListCourceCatagory.DataSource = new CourceCatagoryController().Get(PageSize, PageNumber);
         ListCourceCatagory.DataBind();
     }
     private void PaggerLinkManager()
@@ -52,13 +56,21 @@ public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
 
         if (PageNumber == 0)
         {
-            lnkPrev.Visible = false;
+            lnkPrevx.Visible = false;
         }
         if (TotalPage - 1 == PageNumber || TotalPage == 0)
         {
-            lnkNext.Visible = false;
+            lnkNextx.Visible = false;
         }
-        
+        if (lnkNextx.Visible)
+        {
+            //lnkNextx.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
+        }
+
+        if (lnkPrevx.Visible)
+        {
+            //lnkPrevx.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
+        }
     }
     protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
@@ -72,24 +84,9 @@ public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
         BindList();
         PaggerLinkManager();
     }
-    protected void ListCourceCatagoryOnItemDataBound(object sender, ListViewItemEventArgs e)
-    {
-        ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
-
-
-    }
-    protected void DeleteajaxClick(object sender, AjaxControl.AjaxEventArg e)
-    {
-        string aaa = "aa";
-        string bb = aaa;
-        new CourceCatagoryController().DeletebyCourceCatagoryID(Convert.ToInt32(e.Id));
-        //BindList();
-        Response.Redirect(this.Request.RawUrl);
-    }
     protected override void OnAjaxListViewCommand(AjaxListViewCommandArg e)
     {
-        if (e.Command == "delete")
+        if (e.Command.Contains("delete"))
         {
             new CourceCatagoryController().DeletebyCourceCatagoryID(Convert.ToInt32(e.Id));
             BindList();
@@ -97,6 +94,15 @@ public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
         base.OnAjaxListViewCommand(e);
     }
 
+    protected void ListCourceCatagoryOnItemDataBound(object sender, ListViewItemEventArgs e)
+    {
+        ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+
+
+
+    }
+	
 
 
 }

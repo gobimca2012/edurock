@@ -14,26 +14,41 @@
         <fieldset>
             <legend>CourceCatagory</legend>
             <div>
+                
                 <div>
                     <div>
                         <span class="label">CatagoryName</span>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtCatagoryName" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtCatagoryName" runat="server" Width="385px"></asp:TextBox>
                     </div>
                 </div>
+                
                 <div>
                     <div>
                         <span class="label">Description</span>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtDescription" runat="server" Height="143px" 
+                            TextMode="MultiLine" Width="387px"></asp:TextBox>
                     </div>
                 </div>
+                <div>
+                    <div>
+                        <span class="label">CatagoryType</span>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+                
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAdd" runat="server" RequestContainner="#courcecatagory" 
-                    ResponseContainner="#courcecatagory" onajaxclick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#courceinfo"
+                    ResponseContainner="#courceinfo" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+            </div>
+            <div>
+                <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#courceinfo"
+                    ResponseContainner="#courceinfo" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
         </fieldset>
     </div>

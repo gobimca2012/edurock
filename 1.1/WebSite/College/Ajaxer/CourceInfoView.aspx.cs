@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogic;
+using System;
+
 using System.Collections;
 using System.Configuration;
 using System.Data;
@@ -12,9 +14,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class Admin_Ajaxer_CourceCatagoryInfoView : AjaxPage
+public partial class College_Ajaxer_CourceInfoView : AjaxPage
 {
-
     public HtmlHelper _HtmlHelper = new HtmlHelper();
     private int PageNumber
     {
@@ -33,22 +34,21 @@ public partial class Admin_Ajaxer_CourceCatagoryInfoView : AjaxPage
     }
 
     private int TotalPage;
-    private int PageSize = 3;
+    private int PageSize = 1;
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
         {
             BindList();
-            TotalPage =Convert.ToInt32(Math.Ceiling((decimal)new CourceCatagoryController().Get().Count / PageSize));
-            PaggerLinkManager();
+            TotalPage = new InstituteController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID).Count / PageSize;
         }
 
     }
     private void BindList()
     {
-        ListCourceCatagory.DataSource = new CourceCatagoryController().Get(PageSize, PageNumber);
-        ListCourceCatagory.DataBind();
+        ListCource.DataSource = new InstituteController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID,PageSize, PageNumber);
+        ListCource.DataBind();
     }
     private void PaggerLinkManager()
     {
@@ -88,21 +88,21 @@ public partial class Admin_Ajaxer_CourceCatagoryInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-            new CourceCatagoryController().DeletebyCourceCatagoryID(Convert.ToInt32(e.Id));
+            new CourceController().DeletebyCourceID(Convert.ToInt32(e.Id));
             BindList();
         }
         base.OnAjaxListViewCommand(e);
     }
 
-    protected void ListCourceCatagoryOnItemDataBound(object sender, ListViewItemEventArgs e)
+    protected void ListCourceOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+        string CourceCatagoryID = ListCource.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
 
 
 
     }
-	
+
 
 
 }

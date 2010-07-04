@@ -41,7 +41,9 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
         {
             
             BindList();
-            TotalPage = new InstituteCourceController().GetbyInstituteID(new UserAuthontication().InstituteID).Count / PageSize;
+            TotalPage=Convert.ToInt32(Math.Ceiling((decimal)new InstituteCourceController().GetbyInstituteID(new UserAuthontication().InstituteID).Count / PageSize));
+            //TotalPage = new InstituteCourceController().GetbyInstituteID(new UserAuthontication().InstituteID).Count / PageSize;
+            PaggerLinkManager();
         }
        
 

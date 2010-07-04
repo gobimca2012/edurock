@@ -14,17 +14,18 @@ using BusinessLogic;
 
 public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
 {
-    protected void Page_Load(object sender, EventArgs e)
-    {
 
-    }
 
     private void AddData()
     {
         try
         {
 
+
+
             string CatagoryName; if (false) { throw new Exception(""); } CatagoryName = HtmlHelper.ControlValue(txtCatagoryName.ClientID);
+
+            int LoginUserID; if (false) { throw new Exception(""); } LoginUserID = new UserAuthontication().LoggedInUserID;
 
             string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
@@ -32,7 +33,8 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
 
             DateTime ModifiedDate = DateTime.Now;
 
-            new CourceCatagoryController().Add(CatagoryName, new UserAuthontication().LoggedInUserID, Description, CatagoryType, ModifiedDate);
+            new CourceCatagoryController().Add(CatagoryName, LoginUserID, Description, CatagoryType, ModifiedDate);
+            Response.Redirect("~/College/Ajaxer/CourceCatagoryInfoView.aspx");
         }
         catch (Exception ex)
         {
@@ -42,86 +44,78 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
 
     private void EditData()
     {
+        try
+        {
 
-        string CatagoryName; if (false) { throw new Exception(""); } CatagoryName = HtmlHelper.ControlValue(txtCatagoryName.ClientID);
 
-        string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string CatagoryName; if (false) { throw new Exception(""); } CatagoryName = HtmlHelper.ControlValue(txtCatagoryName.ClientID);
 
-        int CatagoryType = (int)CatagoryTypeEnum.CollegeCourceCatagory;
+            int LoginUserID; if (false) { throw new Exception(""); } LoginUserID = new UserAuthontication().LoggedInUserID;
 
-        DateTime ModifiedDate = DateTime.Now;
+            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
-        new CourceCatagoryController().UpdateByLoginUserID(CatagoryName, new UserAuthontication().LoggedInUserID, Description, CatagoryType, ModifiedDate);
+            int CatagoryType = (int)CatagoryTypeEnum.CollegeCourceCatagory;
+
+            DateTime ModifiedDate = DateTime.Now;
+
+            new CourceCatagoryController().UpdateByCourceCatagoryID(ID, CatagoryName, LoginUserID, Description, CatagoryType, ModifiedDate);
+
+            Response.Redirect("~/College/Ajaxer/CourceCatagoryInfoView.aspx");
+        }
+        catch (Exception ex)
+        {
+            divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
+        }
     }
 
-    private void BindData(int ID)
+    private void BindData()
     {
         var dataBunch = new CourceCatagoryController().GetbyCourceCatagoryID(ID);
         if (dataBunch.Count > 0)
         {
             var data = dataBunch[0];
 
+
+
             txtCatagoryName.Text = data.CatagoryName;
+
 
             txtDescription.Text = data.Description;
 
-
         }
-        
     }
 
-    private Guid ID
+    private int ID
     {
         get
         {
-            if (Request.QueryString["type"] != null)
-            {
-                if (Request.QueryString["id"] != null)
-                {
-                    return new Guid(Request.QueryString["id"]);
-                }
-                else
-                {
-                    return Guid.Empty;
-                }
-            }
-            else
-            {
-                return Guid.Empty;
-            }
+            return Convert.ToInt32(AjaxState["ccid"]);
         }
-
-
-
     }
-    private bool IsEdit
-    {
-        get
-        {
-            if (Request.QueryString["type"] != null)
-            {
-                if (Request.QueryString["id"] != null)
-                {
-
-                    //			ID = new Guid(Request.QueryString["id"]);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-    }
-
     protected void AddAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
         AddData();
-        Response.Redirect("~/College/Ajaxer/CourceCatagoryInfoView.aspx");
+
     }
+    protected void UpdateAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        EditData();
+
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Request.Params["ccid"] != null)
+        {
+            AjaxState["ccid"] = Request.Params["ccid"];
+            BindData();
+            lnkAddcource.Visible = false;
+        }
+        else
+        {
+            //new CourceCatagoryController().BindCourceCatagory(ddCatagory);
+            lnkUpdate.Visible = false;
+        }
+    }
+
 }

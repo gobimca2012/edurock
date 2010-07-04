@@ -9,7 +9,7 @@
             <asp:MenuItem Text="Profesors"></asp:MenuItem>
             <asp:MenuItem Text="Students"></asp:MenuItem>
             <asp:MenuItem Text="Tutorial" NavigateUrl="~/College/Tutorial.aspx"></asp:MenuItem>
-            <asp:MenuItem Text="Cources" NavigateUrl="~/Admin/Cource.aspx"></asp:MenuItem>
+            <asp:MenuItem Text="Cources" NavigateUrl="~/College/Cource.aspx"></asp:MenuItem>
         </Items>
     </asp:Menu>
 </div>

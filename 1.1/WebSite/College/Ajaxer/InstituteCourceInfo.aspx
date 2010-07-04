@@ -37,9 +37,8 @@
                 </div>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddIcource" runat="server" RequestContainner="#Institutecource"
-                    ResponseContainner="#Institutecource"
-                    onajaxclick="AddICourceAjaxClick" >Add</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkAddIcource" runat="server" RequestContainner="#courceinfo"
+                    ResponseContainner="#courceinfo" OnAjaxClick="AddICourceAjaxClick">Add</aspajax:AjaxLinkButton>
             </div>
         </fieldset>
     </div>

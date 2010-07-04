@@ -24,6 +24,7 @@ public partial class College_Ajaxer_InstituteCourceInfo :AjaxPage
     protected void Page_Load(object sender, EventArgs e)
     {
         new CourceController().BindCource(ddCourceID);
+        
     }
 
     private void AddData()

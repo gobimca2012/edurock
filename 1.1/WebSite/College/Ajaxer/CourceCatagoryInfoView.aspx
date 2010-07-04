@@ -14,15 +14,11 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>
-                                CourceCatagoryID
-                            </td>
+                           
                             <td>
                                 CatagoryName
                             </td>
-                            <td>
-                                LoginUserID
-                            </td>
+                            
                             <td>
                                 Description
                             </td>
@@ -39,15 +35,11 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr>
-                    <td>
-                        <%#Eval("CourceCatagoryID") %>
-                    </td>
+                   
                     <td>
                         <%#Eval("CatagoryName") %>
                     </td>
-                    <td>
-                        <%#Eval("LoginUserID") %>
-                    </td>
+                    
                     <td>
                         <%#Eval("Description") %>
                     </td>
@@ -58,31 +50,33 @@
                         <%#Eval("ModifiedDate") %>
                     </td>
                     <td>
-                        <aspajax:AjaxLinkButton ID="lnkDelete" runat="server" RequestContainner="" ResponseContainner=""
-                            OnAjaxClick="DeleteajaxClick" QID='<%#Eval("CourceCatagoryID") %>'>Delete</aspajax:AjaxLinkButton>
-                        <%#_htmlHelper.ListViewLinkButton("lnkd", "delete", Eval("CourceCatagoryID").ToString(), "#courcecatagory", "#courcecatagory")%>
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("CourceCatagoryID").ToString(), "#courceinfo", "#courceinfo")%>
+                    </td>
+                    <td>
+                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/CourceCatagoryInfo.aspx") + "?ccid=" + Eval("CourceCatagoryID")%>'
+                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
                     </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
         <div>
             <div style="float: right">
-            <div style="float: left">
-                <aspajax:AjaxLinkButton ID="lnkPrev" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                    Pagger="true" Increment="false" RequestContainner="#courcecatagory" ResponseContainner="#courcecatagory"></aspajax:AjaxLinkButton>
+                <div style="float: left">
+                    <aspajax:AjaxLinkButton ID="lnkPrevx" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
+                        Pagger="true" Increment="false" RequestContainner="#courceinfo" ResponseContainner="#courceinfo"></aspajax:AjaxLinkButton>
+                </div>
+                <div style="float: left">
+                    <aspajax:AjaxLinkButton ID="lnkNextx" runat="server" OnAjaxClick="NextAjaxClick"
+                        RequestContainner="#courceinfo" Pagger="true" Increment="true" ResponseContainner="#courceinfo">Next</aspajax:AjaxLinkButton>
+                </div>
             </div>
-            <div style="float: left">
-                <aspajax:AjaxLinkButton ID="lnkNext" runat="server" OnAjaxClick="NextAjaxClick"
-                    RequestContainner="#courcecatagory" Pagger="true" Increment="true" ResponseContainner="#courcecatagory">Next</aspajax:AjaxLinkButton>
+            <div style="clear: both">
             </div>
         </div>
-        <div style="clear: both">
+        <div>
+            <aspajax:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/College/Ajaxer/CourceCatagoryInfo.aspx"
+                ContainnerID="#courceinfo">Add New</aspajax:HyperLink>
         </div>
-    </div>
-    <div>
-        <aspajax:HyperLink ID="lnkAddnew" runat="server" NavigateUrl="CourceCatagoryInfo.aspx"
-            ContainnerID="#courcecatagory">Add new</aspajax:HyperLink>
-    </div>
     </div>
     </form>
 </body>
