@@ -31,10 +31,10 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
             int QuestionStatusID = 0;
-
+            string tags = ""; if (false) { throw new Exception(""); } tags = HtmlHelper.ControlValue(txtTags.ClientID);
             DateTime ModifiedDate = DateTime.Now;
 
-            new QuestionController().Add(QuestionID, QuestionText,Description, LoginUserID, QuestionTypeID, QuestionStatusID, ModifiedDate);
+            new QuestionController().Add(QuestionID, QuestionText, Description, LoginUserID, ICID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
             Response.Redirect("~/User/AjaxControl/QuestionInfoView.aspx");
         }
         catch (Exception ex)
@@ -59,8 +59,8 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             int QuestionStatusID = 0;
 
             DateTime ModifiedDate = DateTime.Now;
-
-            new QuestionController().UpdateByQuestionID(QuestionID, QuestionText,Description, LoginUserID, QuestionTypeID, QuestionStatusID, ModifiedDate);
+            string tags; if (false) { throw new Exception(""); } tags = HtmlHelper.ControlValue(txtTags.ClientID);
+            new QuestionController().UpdateByQuestionID(QuestionID, QuestionText, Description, LoginUserID, ICID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
 
             Response.Redirect("~/User/AjaxControl/QuestionInfoView.aspx");
         }
@@ -77,10 +77,10 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
         {
             var data = dataBunch[0];
 
-            
+
             txtQuestionText.Text = data.QuestionText;
             txtDescription.Text = data.Description;
-            new QuestionTypeController().BindQuestionType(ddQuestionType, data.QuestionTypeID.ToString());
+            new QuestionTypeController().BindQuestionType(ddQuestionType, data.QuestionTypeID.ToString(), new UserAuthontication().UserInstituteLoginID);
 
 
         }
@@ -91,6 +91,13 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
         get
         {
             return new Guid(AjaxState["qid"]);
+        }
+    }
+    private int ICID
+    {
+        get
+        {
+            return Convert.ToInt32(AjaxState["icid"]);
         }
     }
     protected void AddAjaxClick(object sender, AjaxControl.AjaxEventArg e)
@@ -114,8 +121,13 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
         }
         else
         {
-            new QuestionTypeController().BindQuestionType(ddQuestionType);
+            new QuestionTypeController().BindQuestionType(ddQuestionType, new UserAuthontication().UserInstituteLoginID);
             lnkUpdateQuestion.Visible = false;
+        }
+        if (Request.Params["icid"] != null)
+        {
+            AjaxState["icid"] = Request.Params["icid"];
+            
         }
     }
 

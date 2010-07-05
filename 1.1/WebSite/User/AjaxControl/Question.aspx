@@ -9,7 +9,6 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div id="Question">
-            
             <div>
                 <div>
                     <span class="label">QuestionText</span>
@@ -27,22 +26,18 @@
                 </div>
             </div>
             <div>
-               
                 <div>
-                  Post By &nbsp;  <span id="user" runat="server"></span>
+                    Post By &nbsp; <span id="user" runat="server"></span>
                 </div>
             </div>
             <div>
-              
-               
                 <div>
-                   Question Type : <span id="lblQuestionTypeID" runat="server"></span>
+                    Question Type : <span id="lblQuestionTypeID" runat="server"></span>
                 </div>
             </div>
             <div>
-                
                 <div>
-                  Question Status  <span id="lblQuestionStatusID" runat="server"></span>
+                    Question Status <span id="lblQuestionStatusID" runat="server"></span>
                 </div>
             </div>
             <div>
@@ -53,8 +48,7 @@
                     <span id="lblModifiedDate" runat="server"></span>
                 </div>
             </div>
-            <asp:LinkButton ID="lnkedit" runat="server" Text="Edit" CssClass="btnlnk"></asp:LinkButton>
-            <asp:LinkButton ID="lnkAddNew" runat="server" Text="Add" CssClass="btnlnk"></asp:LinkButton>
+           
         </div>
     </div>
     <div>

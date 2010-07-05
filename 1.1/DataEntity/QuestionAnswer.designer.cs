@@ -42,12 +42,12 @@ namespace DataEntity
     partial void InsertQuestionStatus(QuestionStatus instance);
     partial void UpdateQuestionStatus(QuestionStatus instance);
     partial void DeleteQuestionStatus(QuestionStatus instance);
-    partial void InsertQuestion(Question instance);
-    partial void UpdateQuestion(Question instance);
-    partial void DeleteQuestion(Question instance);
     partial void InsertAnswer(Answer instance);
     partial void UpdateAnswer(Answer instance);
     partial void DeleteAnswer(Answer instance);
+    partial void InsertQuestion(Question instance);
+    partial void UpdateQuestion(Question instance);
+    partial void DeleteQuestion(Question instance);
     #endregion
 		
 		public QuestionAnswerDataContext(string connection) : 
@@ -106,19 +106,19 @@ namespace DataEntity
 			}
 		}
 		
-		public System.Data.Linq.Table<Question> Questions
-		{
-			get
-			{
-				return this.GetTable<Question>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Answer> Answers
 		{
 			get
 			{
 				return this.GetTable<Answer>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Question> Questions
+		{
+			get
+			{
+				return this.GetTable<Question>();
 			}
 		}
 		
@@ -171,9 +171,9 @@ namespace DataEntity
 		
 		private System.DateTime _CreatedDate;
 		
-		private EntitySet<Question> _Questions;
-		
 		private EntitySet<Answer> _Answers;
+		
+		private EntitySet<Question> _Questions;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -197,8 +197,8 @@ namespace DataEntity
 		
 		public QALoginUser()
 		{
-			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
 			this._Answers = new EntitySet<Answer>(new Action<Answer>(this.attach_Answers), new Action<Answer>(this.detach_Answers));
+			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
 			OnCreated();
 		}
 		
@@ -342,19 +342,6 @@ namespace DataEntity
 			}
 		}
 		
-		[Association(Name="QALoginUser_Question", Storage="_Questions", OtherKey="LoginUserID")]
-		public EntitySet<Question> Questions
-		{
-			get
-			{
-				return this._Questions;
-			}
-			set
-			{
-				this._Questions.Assign(value);
-			}
-		}
-		
 		[Association(Name="QALoginUser_Answer", Storage="_Answers", OtherKey="LoginUserID")]
 		public EntitySet<Answer> Answers
 		{
@@ -365,6 +352,19 @@ namespace DataEntity
 			set
 			{
 				this._Answers.Assign(value);
+			}
+		}
+		
+		[Association(Name="QALoginUser_Question", Storage="_Questions", OtherKey="LoginUserID")]
+		public EntitySet<Question> Questions
+		{
+			get
+			{
+				return this._Questions;
+			}
+			set
+			{
+				this._Questions.Assign(value);
 			}
 		}
 		
@@ -388,18 +388,6 @@ namespace DataEntity
 			}
 		}
 		
-		private void attach_Questions(Question entity)
-		{
-			this.SendPropertyChanging();
-			entity.QALoginUser = this;
-		}
-		
-		private void detach_Questions(Question entity)
-		{
-			this.SendPropertyChanging();
-			entity.QALoginUser = null;
-		}
-		
 		private void attach_Answers(Answer entity)
 		{
 			this.SendPropertyChanging();
@@ -407,6 +395,18 @@ namespace DataEntity
 		}
 		
 		private void detach_Answers(Answer entity)
+		{
+			this.SendPropertyChanging();
+			entity.QALoginUser = null;
+		}
+		
+		private void attach_Questions(Question entity)
+		{
+			this.SendPropertyChanging();
+			entity.QALoginUser = this;
+		}
+		
+		private void detach_Questions(Question entity)
 		{
 			this.SendPropertyChanging();
 			entity.QALoginUser = null;
@@ -751,8 +751,6 @@ namespace DataEntity
 		
 		private System.DateTime _ModifiedDate;
 		
-		private EntitySet<Question> _Questions;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -769,7 +767,6 @@ namespace DataEntity
 		
 		public QuestionStatus()
 		{
-			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
 			OnCreated();
 		}
 		
@@ -853,19 +850,6 @@ namespace DataEntity
 			}
 		}
 		
-		[Association(Name="QuestionStatus_Question", Storage="_Questions", OtherKey="QuestionStatusID")]
-		public EntitySet<Question> Questions
-		{
-			get
-			{
-				return this._Questions;
-			}
-			set
-			{
-				this._Questions.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -884,375 +868,6 @@ namespace DataEntity
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Questions(Question entity)
-		{
-			this.SendPropertyChanging();
-			entity.QuestionStatus = this;
-		}
-		
-		private void detach_Questions(Question entity)
-		{
-			this.SendPropertyChanging();
-			entity.QuestionStatus = null;
-		}
-	}
-	
-	[Table(Name="dbo.Question")]
-	public partial class Question : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _QuestionID;
-		
-		private string _QuestionText;
-		
-		private string _Description;
-		
-		private int _LoginUserID;
-		
-		private int _QuestionTypeID;
-		
-		private int _QuestionStatusID;
-		
-		private System.DateTime _ModifiedDate;
-		
-		private EntitySet<Answer> _Answers;
-		
-		private EntityRef<QALoginUser> _QALoginUser;
-		
-		private EntityRef<QuestionStatus> _QuestionStatus;
-		
-		private EntityRef<QuestionType> _QuestionType;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnQuestionIDChanging(System.Guid value);
-    partial void OnQuestionIDChanged();
-    partial void OnQuestionTextChanging(string value);
-    partial void OnQuestionTextChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnLoginUserIDChanging(int value);
-    partial void OnLoginUserIDChanged();
-    partial void OnQuestionTypeIDChanging(int value);
-    partial void OnQuestionTypeIDChanged();
-    partial void OnQuestionStatusIDChanging(int value);
-    partial void OnQuestionStatusIDChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public Question()
-		{
-			this._Answers = new EntitySet<Answer>(new Action<Answer>(this.attach_Answers), new Action<Answer>(this.detach_Answers));
-			this._QALoginUser = default(EntityRef<QALoginUser>);
-			this._QuestionStatus = default(EntityRef<QuestionStatus>);
-			this._QuestionType = default(EntityRef<QuestionType>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_QuestionID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid QuestionID
-		{
-			get
-			{
-				return this._QuestionID;
-			}
-			set
-			{
-				if ((this._QuestionID != value))
-				{
-					this.OnQuestionIDChanging(value);
-					this.SendPropertyChanging();
-					this._QuestionID = value;
-					this.SendPropertyChanged("QuestionID");
-					this.OnQuestionIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_QuestionText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string QuestionText
-		{
-			get
-			{
-				return this._QuestionText;
-			}
-			set
-			{
-				if ((this._QuestionText != value))
-				{
-					this.OnQuestionTextChanging(value);
-					this.SendPropertyChanging();
-					this._QuestionText = value;
-					this.SendPropertyChanged("QuestionText");
-					this.OnQuestionTextChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Description", DbType="VarChar(MAX)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
-		public int LoginUserID
-		{
-			get
-			{
-				return this._LoginUserID;
-			}
-			set
-			{
-				if ((this._LoginUserID != value))
-				{
-					if (this._QALoginUser.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLoginUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._LoginUserID = value;
-					this.SendPropertyChanged("LoginUserID");
-					this.OnLoginUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_QuestionTypeID", DbType="Int NOT NULL")]
-		public int QuestionTypeID
-		{
-			get
-			{
-				return this._QuestionTypeID;
-			}
-			set
-			{
-				if ((this._QuestionTypeID != value))
-				{
-					if (this._QuestionType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQuestionTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._QuestionTypeID = value;
-					this.SendPropertyChanged("QuestionTypeID");
-					this.OnQuestionTypeIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_QuestionStatusID", DbType="Int NOT NULL")]
-		public int QuestionStatusID
-		{
-			get
-			{
-				return this._QuestionStatusID;
-			}
-			set
-			{
-				if ((this._QuestionStatusID != value))
-				{
-					if (this._QuestionStatus.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQuestionStatusIDChanging(value);
-					this.SendPropertyChanging();
-					this._QuestionStatusID = value;
-					this.SendPropertyChanged("QuestionStatusID");
-					this.OnQuestionStatusIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Question_Answer", Storage="_Answers", OtherKey="QuestionID")]
-		public EntitySet<Answer> Answers
-		{
-			get
-			{
-				return this._Answers;
-			}
-			set
-			{
-				this._Answers.Assign(value);
-			}
-		}
-		
-		[Association(Name="QALoginUser_Question", Storage="_QALoginUser", ThisKey="LoginUserID", IsForeignKey=true)]
-		public QALoginUser QALoginUser
-		{
-			get
-			{
-				return this._QALoginUser.Entity;
-			}
-			set
-			{
-				QALoginUser previousValue = this._QALoginUser.Entity;
-				if (((previousValue != value) 
-							|| (this._QALoginUser.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._QALoginUser.Entity = null;
-						previousValue.Questions.Remove(this);
-					}
-					this._QALoginUser.Entity = value;
-					if ((value != null))
-					{
-						value.Questions.Add(this);
-						this._LoginUserID = value.LoginUserID;
-					}
-					else
-					{
-						this._LoginUserID = default(int);
-					}
-					this.SendPropertyChanged("QALoginUser");
-				}
-			}
-		}
-		
-		[Association(Name="QuestionStatus_Question", Storage="_QuestionStatus", ThisKey="QuestionStatusID", IsForeignKey=true)]
-		public QuestionStatus QuestionStatus
-		{
-			get
-			{
-				return this._QuestionStatus.Entity;
-			}
-			set
-			{
-				QuestionStatus previousValue = this._QuestionStatus.Entity;
-				if (((previousValue != value) 
-							|| (this._QuestionStatus.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._QuestionStatus.Entity = null;
-						previousValue.Questions.Remove(this);
-					}
-					this._QuestionStatus.Entity = value;
-					if ((value != null))
-					{
-						value.Questions.Add(this);
-						this._QuestionStatusID = value.QuestionStatusID;
-					}
-					else
-					{
-						this._QuestionStatusID = default(int);
-					}
-					this.SendPropertyChanged("QuestionStatus");
-				}
-			}
-		}
-		
-		[Association(Name="QuestionType_Question", Storage="_QuestionType", ThisKey="QuestionTypeID", IsForeignKey=true)]
-		public QuestionType QuestionType
-		{
-			get
-			{
-				return this._QuestionType.Entity;
-			}
-			set
-			{
-				QuestionType previousValue = this._QuestionType.Entity;
-				if (((previousValue != value) 
-							|| (this._QuestionType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._QuestionType.Entity = null;
-						previousValue.Questions.Remove(this);
-					}
-					this._QuestionType.Entity = value;
-					if ((value != null))
-					{
-						value.Questions.Add(this);
-						this._QuestionTypeID = value.QuestionTypeID;
-					}
-					else
-					{
-						this._QuestionTypeID = default(int);
-					}
-					this.SendPropertyChanged("QuestionType");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Answers(Answer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Question = this;
-		}
-		
-		private void detach_Answers(Answer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Question = null;
 		}
 	}
 	
@@ -1606,6 +1221,370 @@ namespace DataEntity
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="dbo.Question")]
+	public partial class Question : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _QuestionID;
+		
+		private string _QuestionText;
+		
+		private string _Description;
+		
+		private int _LoginUserID;
+		
+		private System.Nullable<int> _InstituteCourceID;
+		
+		private string _tag;
+		
+		private int _QuestionTypeID;
+		
+		private int _QuestionStatusID;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntitySet<Answer> _Answers;
+		
+		private EntityRef<QALoginUser> _QALoginUser;
+		
+		private EntityRef<QuestionType> _QuestionType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQuestionIDChanging(System.Guid value);
+    partial void OnQuestionIDChanged();
+    partial void OnQuestionTextChanging(string value);
+    partial void OnQuestionTextChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnInstituteCourceIDChanging(System.Nullable<int> value);
+    partial void OnInstituteCourceIDChanged();
+    partial void OntagChanging(string value);
+    partial void OntagChanged();
+    partial void OnQuestionTypeIDChanging(int value);
+    partial void OnQuestionTypeIDChanged();
+    partial void OnQuestionStatusIDChanging(int value);
+    partial void OnQuestionStatusIDChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public Question()
+		{
+			this._Answers = new EntitySet<Answer>(new Action<Answer>(this.attach_Answers), new Action<Answer>(this.detach_Answers));
+			this._QALoginUser = default(EntityRef<QALoginUser>);
+			this._QuestionType = default(EntityRef<QuestionType>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_QuestionID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid QuestionID
+		{
+			get
+			{
+				return this._QuestionID;
+			}
+			set
+			{
+				if ((this._QuestionID != value))
+				{
+					this.OnQuestionIDChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionID = value;
+					this.SendPropertyChanged("QuestionID");
+					this.OnQuestionIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string QuestionText
+		{
+			get
+			{
+				return this._QuestionText;
+			}
+			set
+			{
+				if ((this._QuestionText != value))
+				{
+					this.OnQuestionTextChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionText = value;
+					this.SendPropertyChanged("QuestionText");
+					this.OnQuestionTextChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					if (this._QALoginUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteCourceID", DbType="Int")]
+		public System.Nullable<int> InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this.OnInstituteCourceIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteCourceID = value;
+					this.SendPropertyChanged("InstituteCourceID");
+					this.OnInstituteCourceIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_tag", DbType="VarChar(MAX)")]
+		public string tag
+		{
+			get
+			{
+				return this._tag;
+			}
+			set
+			{
+				if ((this._tag != value))
+				{
+					this.OntagChanging(value);
+					this.SendPropertyChanging();
+					this._tag = value;
+					this.SendPropertyChanged("tag");
+					this.OntagChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionTypeID", DbType="Int NOT NULL")]
+		public int QuestionTypeID
+		{
+			get
+			{
+				return this._QuestionTypeID;
+			}
+			set
+			{
+				if ((this._QuestionTypeID != value))
+				{
+					if (this._QuestionType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionTypeID = value;
+					this.SendPropertyChanged("QuestionTypeID");
+					this.OnQuestionTypeIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionStatusID", DbType="Int NOT NULL")]
+		public int QuestionStatusID
+		{
+			get
+			{
+				return this._QuestionStatusID;
+			}
+			set
+			{
+				if ((this._QuestionStatusID != value))
+				{
+					this.OnQuestionStatusIDChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionStatusID = value;
+					this.SendPropertyChanged("QuestionStatusID");
+					this.OnQuestionStatusIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Question_Answer", Storage="_Answers", OtherKey="QuestionID")]
+		public EntitySet<Answer> Answers
+		{
+			get
+			{
+				return this._Answers;
+			}
+			set
+			{
+				this._Answers.Assign(value);
+			}
+		}
+		
+		[Association(Name="QALoginUser_Question", Storage="_QALoginUser", ThisKey="LoginUserID", IsForeignKey=true)]
+		public QALoginUser QALoginUser
+		{
+			get
+			{
+				return this._QALoginUser.Entity;
+			}
+			set
+			{
+				QALoginUser previousValue = this._QALoginUser.Entity;
+				if (((previousValue != value) 
+							|| (this._QALoginUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._QALoginUser.Entity = null;
+						previousValue.Questions.Remove(this);
+					}
+					this._QALoginUser.Entity = value;
+					if ((value != null))
+					{
+						value.Questions.Add(this);
+						this._LoginUserID = value.LoginUserID;
+					}
+					else
+					{
+						this._LoginUserID = default(int);
+					}
+					this.SendPropertyChanged("QALoginUser");
+				}
+			}
+		}
+		
+		[Association(Name="QuestionType_Question", Storage="_QuestionType", ThisKey="QuestionTypeID", IsForeignKey=true)]
+		public QuestionType QuestionType
+		{
+			get
+			{
+				return this._QuestionType.Entity;
+			}
+			set
+			{
+				QuestionType previousValue = this._QuestionType.Entity;
+				if (((previousValue != value) 
+							|| (this._QuestionType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._QuestionType.Entity = null;
+						previousValue.Questions.Remove(this);
+					}
+					this._QuestionType.Entity = value;
+					if ((value != null))
+					{
+						value.Questions.Add(this);
+						this._QuestionTypeID = value.QuestionTypeID;
+					}
+					else
+					{
+						this._QuestionTypeID = default(int);
+					}
+					this.SendPropertyChanged("QuestionType");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Answers(Answer entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = this;
+		}
+		
+		private void detach_Answers(Answer entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = null;
 		}
 	}
 	

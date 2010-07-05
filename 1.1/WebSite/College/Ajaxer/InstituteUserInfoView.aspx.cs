@@ -41,19 +41,34 @@ public partial class College_Ajaxer_InstituteUserInfoView : AjaxPage
             return HtmlHelper.ControlValue(txtKeyword.ClientID);
         }
     }
+    private int _Type
+    {
+        get
+        {
+            if (HtmlHelper.ControlValue(ddType.ClientID) != "" && HtmlHelper.ControlValue(ddType.ClientID) != "0")
+            {
+                return Convert.ToInt32(HtmlHelper.ControlValue(ddType.ClientID));
+            }
+            else
+            {
+                return -1;
+            }
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
 
         {
+            new InstituteUserTypeController().BindInstituteUserType(ddType);
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new InstituteUserController().Search(_Keyword, new UserAuthontication().InstituteID).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new InstituteUserController().Search(_Keyword,_Type, new UserAuthontication().InstituteID).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListInstituteUser.DataSource = new InstituteUserController().Search(_Keyword, new UserAuthontication().InstituteID, PageSize, PageNumber);
+        ListInstituteUser.DataSource = new InstituteUserController().Search(_Keyword,_Type, new UserAuthontication().InstituteID, PageSize, PageNumber);
         ListInstituteUser.DataBind();
     }
     private void PaggerLinkManager()
@@ -93,7 +108,7 @@ public partial class College_Ajaxer_InstituteUserInfoView : AjaxPage
     protected void SearchAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
 
-       // BindList();
+        // BindList();
         PaggerLinkManager();
     }
     protected override void OnAjaxListViewCommand(AjaxListViewCommandArg e)

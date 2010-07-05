@@ -87,6 +87,7 @@ namespace BusinessLogic
         public string AjaxStateName="__AjaxState";
         protected override void OnInit(EventArgs e)
         {
+            objLoader = new JScripter.Loader(this.Page, false);
             if (Request.Params[AjaxStateName] != null && Request.Params[AjaxStateName] != "")
             {
                 string AjaxStateValues = Request.Params[AjaxStateName].ToString();
@@ -109,7 +110,7 @@ namespace BusinessLogic
         }
         protected override void OnLoad(EventArgs e)
         {
-            objLoader = new JScripter.Loader(this.Page, false);
+            
             this.Page.Header.Visible = false;
             base.OnLoad(e);
 

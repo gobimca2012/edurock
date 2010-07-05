@@ -463,11 +463,11 @@ namespace BusinessLogic
         }
         #endregion
         #region InstituteUser
-        public List<InstituteUser> Search(string Keyword, int InstituteID, int PageSize, int PageNumber)
+        public List<InstituteUser> Search(string Keyword,int InstituteUserTypeID, int InstituteID, int PageSize, int PageNumber)
         {
             try
             {
-                var data=new DataProvider().InstituteUserSearch(Keyword, InstituteID, PageSize, PageNumber);
+                var data=new DataProvider().InstituteUserSearch(Keyword,InstituteUserTypeID, InstituteID, PageSize, PageNumber);
                 return data;
             }
             catch (Exception ex)
@@ -480,11 +480,11 @@ namespace BusinessLogic
                 return new List<InstituteUser> ();
             }
         }
-        public List<InstituteUser> Search(string Keyword, int InstituteID)
+        public List<InstituteUser> Search(string Keyword,int InstituteUserTypeID, int InstituteID)
         {
             try
             {
-                var data = new DataProvider().InstituteUserSearch(Keyword, InstituteID);
+                var data = new DataProvider().InstituteUserSearch(Keyword,InstituteUserTypeID, InstituteID);
                 return data;
             }
             catch (Exception ex)

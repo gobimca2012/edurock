@@ -116,11 +116,11 @@
                 </div>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#accountsetting"
-                    ResponseContainner="#accountsetting" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#courceinfo"
+                    ResponseContainner="#courceinfo" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:HyperLink ID="lnkCancel" runat="server" ContainnerID="#accountsetting" NavigateUrl="InstituteInfoView.aspx">Cancel</aspajax:HyperLink>
+                <aspajax:HyperLink ID="lnkCancel" runat="server" ContainnerID="#courceinfo" NavigateUrl="InstituteInfoView.aspx">Cancel</aspajax:HyperLink>
             </div>
         </fieldset>
     </div>

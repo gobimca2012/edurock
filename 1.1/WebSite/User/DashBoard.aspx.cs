@@ -16,6 +16,6 @@ public partial class User_DashBoard : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        objLoader.LoadPage("#icource", ResolveUrl("~/User/AjaxControl/InstituteCourceInfoView.aspx"));
     }
 }

@@ -44,7 +44,7 @@
         </div>
     </div>
     <div>
-        <aspajax:AjaxLinkButton ID="lnkUserAdd" runat="server" RequestContainner="#User" ResponseContainner="#User" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+        <aspajax:AjaxLinkButton ID="lnkUserAdd" runat="server" RequestContainner="#courceinfo" ResponseContainner="#courceinfo" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
     </div>
     </form>
 </body>

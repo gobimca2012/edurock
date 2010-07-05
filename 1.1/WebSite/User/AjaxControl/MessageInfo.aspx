@@ -40,12 +40,12 @@
                 </div>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddMessage" runat="server" RequestContainner="#Message"
-                    ResponseContainner="#Message" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkAddMessage" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateMessage" runat="server" RequestContainner="#Message"
-                    ResponseContainner="#Message" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkUpdateMessage" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
         </fieldset>
     </div>

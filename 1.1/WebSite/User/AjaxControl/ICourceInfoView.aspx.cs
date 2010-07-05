@@ -10,12 +10,11 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using BusinessLogic;
 
-public partial class College_User : BasePage    
+public partial class User_AjaxControl_ICourceInfoView : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        objLoader.LoadPage("#User", ResolveUrl("~/College/Ajaxer/InstituteUserInfoView.aspx"));
+
     }
 }

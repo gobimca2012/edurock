@@ -4,9 +4,7 @@
         <Items>
             <asp:MenuItem Text="Dashboard" NavigateUrl="~/User/DashBoard.aspx"></asp:MenuItem>
             <asp:MenuItem Text="Available Exams" NavigateUrl="~/User/Exam.aspx"></asp:MenuItem>
-            <asp:MenuItem Text="Tutorial" NavigateUrl="~/College/Tutorial.aspx"></asp:MenuItem>
-            <asp:MenuItem Text="Question" NavigateUrl="~/User/Question.aspx"></asp:MenuItem>
-            <asp:MenuItem Text="Message" NavigateUrl="~/User/Message.aspx"></asp:MenuItem>
+            
             <asp:MenuItem Text="Institute" NavigateUrl="~/All/Institute.aspx"></asp:MenuItem>
         </Items>
     </asp:Menu>

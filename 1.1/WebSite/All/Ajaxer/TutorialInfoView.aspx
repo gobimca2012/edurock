@@ -19,8 +19,8 @@
                     </asp:DropDownList>
                 </li>
                 <li>
-                    <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#tutorial"
-                        ResponseContainner="#tutorial" EnableViewState="False" Increment="False" OnAjaxClick="SearchAjaxClick"
+                    <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#contentBox"
+                        ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SearchAjaxClick"
                         Pagger="False">Search</aspajax:AjaxLinkButton>
                 </li>
             </ul>
@@ -49,7 +49,7 @@
                         </div>
                         <div id="divMy" runat="server">
                             <div>
-                                <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("TutorialID").ToString(), "#tutorial", "#tutorial")%>
+                                <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("TutorialID").ToString(), "#contentBox", "#contentBox")%>
                             </div>
                         </div>
                     </div>
@@ -60,11 +60,11 @@
                 <div style="float: right">
                     <div style="float: left">
                         <aspajax:AjaxLinkButton ID="lnkPrevx" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                            Pagger="true" Increment="false" RequestContainner="#tutorial" ResponseContainner="#tutorial"></aspajax:AjaxLinkButton>
+                            Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
                     </div>
                     <div style="float: left">
                         <aspajax:AjaxLinkButton ID="lnkNextx" runat="server" OnAjaxClick="NextAjaxClick"
-                            RequestContainner="#tutorial" Pagger="true" Increment="true" ResponseContainner="#tutorial">Next</aspajax:AjaxLinkButton>
+                            RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                     </div>
                 </div>
                 <div style="clear: both">

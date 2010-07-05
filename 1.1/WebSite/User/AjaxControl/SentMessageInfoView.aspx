@@ -41,13 +41,13 @@
                         <%#Eval("FromFullName") %>
                     <td>
                     <td>
-                        <aspajax:HyperLink ID="lnkFullView" runat="server" ContainnerID="#Message" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Message.aspx")+"?mid="+Eval("MessageID").ToString() %>'> <%#Eval("Subject") %></aspajax:HyperLink>
+                        <aspajax:HyperLink ID="lnkFullView" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Message.aspx")+"?mid="+Eval("MessageID").ToString() %>'> <%#Eval("Subject") %></aspajax:HyperLink>
                     </td>
                     
                         <%#Eval("ModifiedDate") %>
                     </td>
                     <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("MessageID").ToString(), "#Message", "#Message")%>
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("MessageID").ToString(), "#contentBox", "#contentBox")%>
                     </td>
                     
                 </div>
@@ -57,11 +57,11 @@
             <div style="float: right">
                 <div style="float: left">
                     <aspajax:AjaxLinkButton ID="lnkPrevMessage" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                        Pagger="true" Increment="false" RequestContainner="#Message" ResponseContainner="#Message"></aspajax:AjaxLinkButton>
+                        Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
                     <aspajax:AjaxLinkButton ID="lnkNextMessage" runat="server" OnAjaxClick="NextAjaxClick"
-                        RequestContainner="#Message" Pagger="true" Increment="true" ResponseContainner="#Message">Next</aspajax:AjaxLinkButton>
+                        RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                 </div>
             </div>
             <div style="clear: both">
@@ -69,7 +69,7 @@
         </div>
         <div>
             <aspajax:HyperLink ID="hpAddMessage" runat="server" NavigateUrl="~/Admin/Ajaxer/MessageInfo.aspx"
-                ContainnerID="#Message">Add New</aspajax:HyperLink>
+                ContainnerID="#contentBox">Add New</aspajax:HyperLink>
         </div>
     </div>
     </div>

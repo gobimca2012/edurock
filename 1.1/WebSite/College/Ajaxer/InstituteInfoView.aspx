@@ -107,7 +107,7 @@
                 </div>
             </div>
             <aspajax:HyperLink ID="lnkedit" runat="server" Text="Edit" CssClass="btnlnk" NavigateUrl="InstituteInfo.aspx"
-                ContainnerID="#accountsetting"></aspajax:HyperLink>
+                ContainnerID="#courceinfo"></aspajax:HyperLink>
         </div>
     </div>
     </form>

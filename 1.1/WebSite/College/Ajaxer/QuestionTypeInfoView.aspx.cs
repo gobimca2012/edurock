@@ -12,9 +12,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
+public partial class Admin_Ajaxer_QuestionTypeInfoView : AjaxPage
 {
-
 
     public HtmlHelper _HtmlHelper = new HtmlHelper();
     private int PageNumber
@@ -25,7 +24,7 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
                 return Convert.ToInt32(Request.Params["pn"].ToString());
             else
             {
-                lnkPrevInstituteCource.Visible = false;
+                lnkPrevQuestionType.Visible = false;
                 return 0;
             }
         }
@@ -34,22 +33,22 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
     }
 
     private int TotalPage;
-    private int PageSize = 100;
+    private int PageSize = 10;
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new InstituteCourceController().GetbyInstituteID(new UserAuthontication().InstituteID).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionTypeController().Get().Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListInstituteCource.DataSource = new InstituteCourceController().GetbyInstituteID(new UserAuthontication().InstituteID, PageSize, PageNumber);
-        ListInstituteCource.DataBind();
+        ListQuestionType.DataSource = new QuestionTypeController().Get(PageSize, PageNumber);
+        ListQuestionType.DataBind();
     }
     private void PaggerLinkManager()
     {
@@ -57,20 +56,20 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
 
         if (PageNumber == 0)
         {
-            lnkPrevInstituteCource.Visible = false;
+            lnkPrevQuestionType.Visible = false;
         }
         if (TotalPage - 1 == PageNumber || TotalPage == 0)
         {
-            lnkNextInstituteCource.Visible = false;
+            lnkNextQuestionType.Visible = false;
         }
-        if (lnkNextInstituteCource.Visible)
+        if (lnkNextQuestionType.Visible)
         {
-            //lnkNextInstituteCource.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
+            //lnkNextQuestionType.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
         }
 
-        if (lnkPrevInstituteCource.Visible)
+        if (lnkPrevQuestionType.Visible)
         {
-            //lnkPrevInstituteCource.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
+            //lnkPrevQuestionType.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
         }
     }
     protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
@@ -89,13 +88,13 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-            new InstituteCourceController().DeletebyInstituteCourceID(Convert.ToInt32(e.Id));
+            new QuestionTypeController().DeletebyQuestionTypeID(Convert.ToInt32(e.Id));
             BindList();
         }
         base.OnAjaxListViewCommand(e);
     }
 
-    protected void ListInstituteCourceOnItemDataBound(object sender, ListViewItemEventArgs e)
+    protected void ListQuestionTypeOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         //ListViewDataItem currentItem = (ListViewDataItem)e.Item;
         //string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
@@ -103,7 +102,7 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
 
 
     }
-
+	
 
 
 }

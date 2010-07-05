@@ -40,26 +40,6 @@
         <classShapeMoniker Id="b527ebbb-9733-46e1-b70f-fb8a97a37496" />
       </nodes>
     </associationConnector>
-    <classShape Id="ab33cc55-39cc-41bb-a8bd-be5001fc9eaa" absoluteBounds="6.25, 10, 2, 1.4248478190104166">
-      <DataClassMoniker Name="/InstituteDataContext/InstituteCource" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3918bd38-5363-4640-b1a5-07b497208e40" absoluteBounds="6.265, 10.46, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(5.5 : 14.7517712402344); (7.25 : 14.7517712402344); (7.25 : 11.4248478190104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/InstituteDataContext/Cource/Cource_InstituteCource" />
-      <nodes>
-        <classShapeMoniker Id="b527ebbb-9733-46e1-b70f-fb8a97a37496" />
-        <classShapeMoniker Id="ab33cc55-39cc-41bb-a8bd-be5001fc9eaa" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 10.7124239095052); (6.25 : 10.7124239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/InstituteDataContext/Institute/Institute_InstituteCource" />
-      <nodes>
-        <classShapeMoniker Id="c885c353-1476-4c37-9b7e-ddba49e75383" />
-        <classShapeMoniker Id="ab33cc55-39cc-41bb-a8bd-be5001fc9eaa" />
-      </nodes>
-    </associationConnector>
     <classShape Id="b3d7044e-0e66-4642-aecc-e50b75e87dd6" absoluteBounds="0.75, 7.875, 2, 1.4248478190104166">
       <DataClassMoniker Name="/InstituteDataContext/TutorialType" />
       <nestedChildShapes>
@@ -92,13 +72,6 @@
         <elementListCompartment Id="f29ad732-46fa-4760-ba0e-7a21b5357425" absoluteBounds="9.015, 10.21, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.25 : 10.7124239095052); (9 : 10.7124239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/InstituteDataContext/InstituteCource/InstituteCource_Instructor" />
-      <nodes>
-        <classShapeMoniker Id="ab33cc55-39cc-41bb-a8bd-be5001fc9eaa" />
-        <classShapeMoniker Id="530e3d5e-40bf-47f1-a813-04dcdf408050" />
-      </nodes>
-    </associationConnector>
     <classShape Id="96c3198f-1008-4142-a826-bbf94c5e2c07" absoluteBounds="3.5, 1.75, 2, 1.7535424804687503">
       <DataClassMoniker Name="/InstituteDataContext/InstituteUser" />
       <nestedChildShapes>
@@ -123,6 +96,33 @@
       <nodes>
         <classShapeMoniker Id="c0905446-3e49-4c07-afce-f212f9e2f537" />
         <classShapeMoniker Id="96c3198f-1008-4142-a826-bbf94c5e2c07" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8141f9e8-3356-4f34-bdf5-22f168c5cb58" absoluteBounds="6.375, 10.25, 2, 3.23266845703125">
+      <DataClassMoniker Name="/InstituteDataContext/InstituteCource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="94bf8eb7-838a-4c5f-8cc9-c3635b9dc3d9" absoluteBounds="6.39, 10.71, 1.9700000000000002, 2.67266845703125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.375 : 10.958944905599); (9 : 10.958944905599)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/InstituteDataContext/InstituteCource/InstituteCource_Instructor" />
+      <nodes>
+        <classShapeMoniker Id="8141f9e8-3356-4f34-bdf5-22f168c5cb58" />
+        <classShapeMoniker Id="530e3d5e-40bf-47f1-a813-04dcdf408050" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 14.7517712402344); (7.375 : 14.7517712402344); (7.375 : 13.4826684570313)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/InstituteDataContext/Cource/Cource_InstituteCource" />
+      <nodes>
+        <classShapeMoniker Id="b527ebbb-9733-46e1-b70f-fb8a97a37496" />
+        <classShapeMoniker Id="8141f9e8-3356-4f34-bdf5-22f168c5cb58" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 11.3235078938802); (6.375 : 11.3235078938802)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/InstituteDataContext/Institute/Institute_InstituteCource" />
+      <nodes>
+        <classShapeMoniker Id="c885c353-1476-4c37-9b7e-ddba49e75383" />
+        <classShapeMoniker Id="8141f9e8-3356-4f34-bdf5-22f168c5cb58" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

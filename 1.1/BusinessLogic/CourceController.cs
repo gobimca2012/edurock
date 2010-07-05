@@ -450,7 +450,19 @@ namespace BusinessLogic
             noneItem.Value = "0";
             dd.Items.Insert(0, noneItem);
         }
-
+        public void BindCource(DropDownList dd, string SelectedValue)
+        {
+            var data = Get();
+            dd.DataSource = data;
+            dd.DataTextField = "CourceName";
+            dd.DataValueField = "CourceID";
+            dd.DataBind();
+            ListItem noneItem = new ListItem();
+            noneItem.Text = "select";
+            noneItem.Value = "0";
+            dd.Items.Insert(0, noneItem);
+            dd.SelectedValue = SelectedValue;
+        }
         #endregion
 				
 	

@@ -16,6 +16,14 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 {
 
     public HtmlHelper _HtmlHelper = new HtmlHelper();
+    private int ICID
+    {
+        get
+        {
+            AjaxState["icid"] = Request.Params["icid"];
+            return Convert.ToInt32(Request.Params["icid"]);
+        }
+    }
     private int QuestionStatusID
     {
         get
@@ -67,7 +75,7 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?icid=" + ICID;
         {
             BindList();
             new QuestionTypeController().BindQuestionType(ddQuestionType);

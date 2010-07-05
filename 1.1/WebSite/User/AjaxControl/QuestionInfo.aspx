@@ -12,43 +12,46 @@
         </div>
         <fieldset>
             <legend>Question</legend>
-            <table>
-               
-                <tr>
-                    <td>
+            <div>
+                <div>
+                    <div>
                         <span class="label">QuestionText</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <asp:TextBox ID="txtQuestionText" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                 <tr>
-                    <td>
+                    </div>
+                </div>
+                <div>
+                    <div>
                         <span class="label">Description</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
-                    </td>
-                </tr>
-               
-                <tr>
-                    <td>
+                    </div>
+                </div>
+                <div>
+                    <div>
                         <span class="label">QuestionTypeID</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                         <asp:DropDownList ID="ddQuestionType" runat="server">
                         </asp:DropDownList>
-                    </td>
-                </tr>
-               
-            </table>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkAddQuestion" runat="server" RequestContainner="#Question"
-                    ResponseContainner="#Question" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                    </div>
+                </div>
+                <div>
+                    <span class="label">Tags</span>
+                </div>
+                <div>
+                    <asp:TextBox ID="txtTags" runat="server"></asp:TextBox>
+                </div>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateQuestion" runat="server" RequestContainner="#Question"
-                    ResponseContainner="#Question" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkAddQuestion" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+            </div>
+            <div>
+                <aspajax:AjaxLinkButton ID="lnkUpdateQuestion" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
         </fieldset>
     </div>

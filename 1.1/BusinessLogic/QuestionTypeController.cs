@@ -353,6 +353,31 @@ namespace BusinessLogic
             dd.Items.Insert(0, noneItem);
             dd.SelectedValue = SelectedValue;
         }
+        public void BindQuestionType(DropDownList dd,int UserInstituteLoginId)
+        {
+            var data = GetbyLoginUserID(UserInstituteLoginId);
+            dd.DataSource = data;
+            dd.DataTextField = "QuestionTypeTnext";
+            dd.DataValueField = "QuestionTypeID";
+            dd.DataBind();
+            ListItem noneItem = new ListItem();
+            noneItem.Text = "select";
+            noneItem.Value = "0";
+            dd.Items.Insert(0, noneItem);
+        }
+        public void BindQuestionType(DropDownList dd, string SelectedValue, int UserInstituteLoginId)
+        {
+            var data = GetbyLoginUserID(UserInstituteLoginId);
+            dd.DataSource = data;
+            dd.DataTextField = "QuestionTypeTnext";
+            dd.DataValueField = "QuestionTypeID";
+            dd.DataBind();
+            ListItem noneItem = new ListItem();
+            noneItem.Text = "select";
+            noneItem.Value = "0";
+            dd.Items.Insert(0, noneItem);
+            dd.SelectedValue = SelectedValue;
+        }
         #endregion
         #region QuestionType
         #endregion

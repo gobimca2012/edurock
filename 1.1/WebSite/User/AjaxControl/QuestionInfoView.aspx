@@ -22,8 +22,8 @@
                 </asp:DropDownList>
             </li>
             <li>
-                <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#Question"
-                    ResponseContainner="#Question" EnableViewState="False" Increment="False" OnAjaxClick="SearchAjaxClick"
+                <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SearchAjaxClick"
                     Pagger="False">Search</aspajax:AjaxLinkButton>
             </li>
         </ul>
@@ -37,14 +37,16 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <div>
+                    <%--<div>
+                    </div>--%>
                     <div>
-                        <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#Question" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("QuestionID")  %>'><%#Eval("QuestionText") %></aspajax:HyperLink>
-                    </div>
-                    <div>
-                        <div>
+                        <%--<div>
                             <asp:Image ID="imgProf" runat="server" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>'
                                 Width="100" />
-                        </div>
+                        </div>--%>
+                        <span>
+                            <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#contentBox"
+                                NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("QuestionID")  %>'><%#Eval("QuestionText") %></aspajax:HyperLink></span>
                         by
                         <%#Eval("FirstName")%>&nbsp;<%#Eval("LastName")%>
                     </div>
@@ -55,10 +57,10 @@
                         <%#Eval("QuestionType")%>
                     </div>
                     <div>
-                        <%#Eval("ModifiedDate") %>
+                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                     </div>
                     <div>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionID").ToString(), "#Question", "#Question")%>
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionID").ToString(), "#contentBox", "#contentBox")%>
                     </div>
                     <div>
                         <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/QuestionInfo.aspx") + "?cid=" + Eval("QuestionID")%>'
@@ -72,19 +74,18 @@
             <div style="float: right">
                 <div style="float: left">
                     <aspajax:AjaxLinkButton ID="lnkPrevQuestion" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                        Pagger="true" Increment="false" RequestContainner="#Question" ResponseContainner="#Question"></aspajax:AjaxLinkButton>
+                        Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
                     <aspajax:AjaxLinkButton ID="lnkNextQuestion" runat="server" OnAjaxClick="NextAjaxClick"
-                        RequestContainner="#Question" Pagger="true" Increment="true" ResponseContainner="#Question">Next</aspajax:AjaxLinkButton>
+                        RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                 </div>
             </div>
             <div style="clear: both">
             </div>
         </div>
         <div>
-            <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="~/User/AjaxControl/QuestionInfo.aspx"
-                ContainnerID="#Question">Add New</aspajax:HyperLink>
+            <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox">Add New</aspajax:HyperLink>
         </div>
     </div>
     </form>
