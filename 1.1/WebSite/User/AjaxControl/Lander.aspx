@@ -14,7 +14,8 @@
             <li>Exam</li>
             <li>
                 <aspajax:HyperLink ID="lnktut" runat="server" ContainnerID="#contentBox" NavigateUrl="~/All/Ajaxer/TutorialInfoView.aspx">Tutorials</aspajax:HyperLink></li>
-            <li>Users</li>
+            <li>
+                <aspajax:HyperLink ID="lnkUsers" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ICUserInfoView.aspx">Users</aspajax:HyperLink></li>
             <li>Home Work</li>
             <li>Blog</li>
             <li>Image</li>

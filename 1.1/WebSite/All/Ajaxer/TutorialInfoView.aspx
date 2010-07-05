@@ -23,7 +23,11 @@
                         ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SearchAjaxClick"
                         Pagger="False">Search</aspajax:AjaxLinkButton>
                 </li>
+                <li>
+                <aspajax:HyperLink ID="lnkMyTut" runat="server" ContainnerID="#contentBox" NavigateUrl="~/College/Ajaxer/TutorialView.aspx">My Tutorials</aspajax:HyperLink>
+                </li>
             </ul>
+            
         </div>
         <div class="contentbox">
             <asp:ListView ID="ListTutorial" runat="server" OnItemDataBound="ListTutorialOnItemDataBound"
@@ -71,8 +75,7 @@
                 </div>
             </div>
             <div>
-                
-               <%-- <asp:LinkButton ID="lnkAdd" runat="server">Add</asp:LinkButton>--%>
+                <%-- <asp:LinkButton ID="lnkAdd" runat="server">Add</asp:LinkButton>--%>
             </div>
         </div>
     </div>

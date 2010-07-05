@@ -134,8 +134,20 @@
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Modifieddate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="InstituteCource_Instructor" Member="Instructors" OtherKey="InstituteCourceID" Type="Instructor" />
+      <Association Name="InstituteCource_InstituteSubject" Member="InstituteSubjects" OtherKey="InstituteCourceID" Type="InstituteSubject" />
       <Association Name="Cource_InstituteCource" Member="Cource" ThisKey="CourceID" Type="Cource" IsForeignKey="true" />
       <Association Name="Institute_InstituteCource" Member="Institute" ThisKey="InstituteID" Type="Institute" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InstituteSubject" Member="InstituteSubjects">
+    <Type Name="InstituteSubject">
+      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubjectText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="InstituteCource_InstituteSubject" Member="InstituteCource" ThisKey="InstituteCourceID" Type="InstituteCource" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetTutorial" Method="GetTutorial">

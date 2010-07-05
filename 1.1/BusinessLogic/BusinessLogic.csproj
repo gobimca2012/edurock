@@ -79,6 +79,7 @@
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="InstituteController.cs" />
     <Compile Include="InstituteCourceController.cs" />
+    <Compile Include="InstituteSubjectController.cs" />
     <Compile Include="InstituteUserController.cs" />
     <Compile Include="InstituteUserTypeController.cs" />
     <Compile Include="IStartExam.cs" />

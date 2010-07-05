@@ -281,7 +281,7 @@ li
     margin: 1px;
     text-decoration: none;
 }
-#sidemenu li a,ul
+#sidemenu li a,ul,.header li
 {
     border: none;
     background-color: Transparent;

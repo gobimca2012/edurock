@@ -60,6 +60,9 @@ namespace DataEntity
     partial void InsertInstituteCource(InstituteCource instance);
     partial void UpdateInstituteCource(InstituteCource instance);
     partial void DeleteInstituteCource(InstituteCource instance);
+    partial void InsertInstituteSubject(InstituteSubject instance);
+    partial void UpdateInstituteSubject(InstituteSubject instance);
+    partial void DeleteInstituteSubject(InstituteSubject instance);
     #endregion
 		
 		public InstituteDataContext(string connection) : 
@@ -163,6 +166,14 @@ namespace DataEntity
 			get
 			{
 				return this.GetTable<InstituteCource>();
+			}
+		}
+		
+		public System.Data.Linq.Table<InstituteSubject> InstituteSubjects
+		{
+			get
+			{
+				return this.GetTable<InstituteSubject>();
 			}
 		}
 		
@@ -2625,6 +2636,8 @@ namespace DataEntity
 		
 		private EntitySet<Instructor> _Instructors;
 		
+		private EntitySet<InstituteSubject> _InstituteSubjects;
+		
 		private EntityRef<Cource> _Cource;
 		
 		private EntityRef<Institute> _Institute;
@@ -2668,6 +2681,7 @@ namespace DataEntity
 		public InstituteCource()
 		{
 			this._Instructors = new EntitySet<Instructor>(new Action<Instructor>(this.attach_Instructors), new Action<Instructor>(this.detach_Instructors));
+			this._InstituteSubjects = new EntitySet<InstituteSubject>(new Action<InstituteSubject>(this.attach_InstituteSubjects), new Action<InstituteSubject>(this.detach_InstituteSubjects));
 			this._Cource = default(EntityRef<Cource>);
 			this._Institute = default(EntityRef<Institute>);
 			OnCreated();
@@ -2994,6 +3008,19 @@ namespace DataEntity
 			}
 		}
 		
+		[Association(Name="InstituteCource_InstituteSubject", Storage="_InstituteSubjects", OtherKey="InstituteCourceID")]
+		public EntitySet<InstituteSubject> InstituteSubjects
+		{
+			get
+			{
+				return this._InstituteSubjects;
+			}
+			set
+			{
+				this._InstituteSubjects.Assign(value);
+			}
+		}
+		
 		[Association(Name="Cource_InstituteCource", Storage="_Cource", ThisKey="CourceID", IsForeignKey=true)]
 		public Cource Cource
 		{
@@ -3092,6 +3119,241 @@ namespace DataEntity
 		{
 			this.SendPropertyChanging();
 			entity.InstituteCource = null;
+		}
+		
+		private void attach_InstituteSubjects(InstituteSubject entity)
+		{
+			this.SendPropertyChanging();
+			entity.InstituteCource = this;
+		}
+		
+		private void detach_InstituteSubjects(InstituteSubject entity)
+		{
+			this.SendPropertyChanging();
+			entity.InstituteCource = null;
+		}
+	}
+	
+	[Table(Name="dbo.InstituteSubject")]
+	public partial class InstituteSubject : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _InstituteSubjectID;
+		
+		private int _LoginUserID;
+		
+		private string _SubjectText;
+		
+		private string _Description;
+		
+		private int _InstituteCourceID;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntityRef<InstituteCource> _InstituteCource;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnInstituteSubjectIDChanging(int value);
+    partial void OnInstituteSubjectIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnSubjectTextChanging(string value);
+    partial void OnSubjectTextChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnInstituteCourceIDChanging(int value);
+    partial void OnInstituteCourceIDChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public InstituteSubject()
+		{
+			this._InstituteCource = default(EntityRef<InstituteCource>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_InstituteSubjectID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int InstituteSubjectID
+		{
+			get
+			{
+				return this._InstituteSubjectID;
+			}
+			set
+			{
+				if ((this._InstituteSubjectID != value))
+				{
+					this.OnInstituteSubjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteSubjectID = value;
+					this.SendPropertyChanged("InstituteSubjectID");
+					this.OnInstituteSubjectIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SubjectText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string SubjectText
+		{
+			get
+			{
+				return this._SubjectText;
+			}
+			set
+			{
+				if ((this._SubjectText != value))
+				{
+					this.OnSubjectTextChanging(value);
+					this.SendPropertyChanging();
+					this._SubjectText = value;
+					this.SendPropertyChanged("SubjectText");
+					this.OnSubjectTextChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteCourceID", DbType="Int NOT NULL")]
+		public int InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					if (this._InstituteCource.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnInstituteCourceIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteCourceID = value;
+					this.SendPropertyChanged("InstituteCourceID");
+					this.OnInstituteCourceIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="InstituteCource_InstituteSubject", Storage="_InstituteCource", ThisKey="InstituteCourceID", IsForeignKey=true)]
+		public InstituteCource InstituteCource
+		{
+			get
+			{
+				return this._InstituteCource.Entity;
+			}
+			set
+			{
+				InstituteCource previousValue = this._InstituteCource.Entity;
+				if (((previousValue != value) 
+							|| (this._InstituteCource.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._InstituteCource.Entity = null;
+						previousValue.InstituteSubjects.Remove(this);
+					}
+					this._InstituteCource.Entity = value;
+					if ((value != null))
+					{
+						value.InstituteSubjects.Add(this);
+						this._InstituteCourceID = value.InstituteCourceID;
+					}
+					else
+					{
+						this._InstituteCourceID = default(int);
+					}
+					this.SendPropertyChanged("InstituteCource");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

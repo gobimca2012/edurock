@@ -143,7 +143,7 @@ namespace BusinessLogic
                 
                 for (int i = 0; i < AjaxState.Keys.Count; i++)
                 {
-                    if (i > 1)
+                    if (i >0)
                     {
                         AjaxStateString += string.Format("&{0}={1}", Keylist[i], valuelist[i]);
                     }
