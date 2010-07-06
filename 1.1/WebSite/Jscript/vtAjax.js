@@ -408,3 +408,25 @@ $.fn.PUIW = function(url, swidth, sheight,rurl,rid)
    return false;
 
 }
+
+
+$.fn.shower=function(ShowBlockID)
+{
+    $(this).click(function()
+    {
+      
+        if($(ShowBlockID).hasClass('vis'))
+        {
+            $(ShowBlockID).addClass('invis');
+            $(ShowBlockID).removeClass('vis');
+            $(ShowBlockID).hide('slow');
+        }
+        else
+        {
+            $(ShowBlockID).addClass('vis');
+            $(ShowBlockID).removeClass('invis');
+            $(ShowBlockID).show('slow');
+        }
+    }
+    );
+}
