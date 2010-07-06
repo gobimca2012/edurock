@@ -8,7 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="contentbox">
+        <div class="gray">
+        </div>
         <div id="divMessage" runat="server">
         </div>
         <fieldset>
@@ -16,7 +18,8 @@
             <div>
                 <div>
                     <div>
-                        <span class="label">CourceID</span><span><aspajax:HyperLink ID="lnkAddCat" runat="server" ContainnerID="#courceinfo" NavigateUrl="~/College/Ajaxer/CourceInfo.aspx">Add New Catagory</aspajax:HyperLink></span>
+                        <span class="label">CourceID</span><span><aspajax:HyperLink ID="lnkAddCat" runat="server"
+                            ContainnerID="#contentBox" NavigateUrl="~/College/Ajaxer/CourceInfo.aspx">Add New Catagory</aspajax:HyperLink></span>
                     </div>
                     <div>
                         <asp:DropDownList ID="ddCource" runat="server">
@@ -28,8 +31,8 @@
                         <span class="label">MetaDescription</span>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtMetaDescription" runat="server" Height="203px" 
-                            TextMode="MultiLine" Width="670px"></asp:TextBox>
+                        <asp:TextBox ID="txtMetaDescription" runat="server" Height="203px" TextMode="MultiLine"
+                            Width="670px"></asp:TextBox>
                     </div>
                 </div>
                 <div>
@@ -37,8 +40,8 @@
                         <span class="label">MetaKeyword</span>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtMetaKeyword" runat="server" Height="106px" 
-                            TextMode="MultiLine" Width="667px"></asp:TextBox>
+                        <asp:TextBox ID="txtMetaKeyword" runat="server" Height="106px" TextMode="MultiLine"
+                            Width="667px"></asp:TextBox>
                     </div>
                 </div>
                 <div>
@@ -114,15 +117,19 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkAddInstituteCource" runat="server" RequestContainner="#courceinfo"
-                    ResponseContainner="#courceinfo" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
-            </div>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateInstituteCource" runat="server" RequestContainner="#courceinfo"
-                    ResponseContainner="#courceinfo" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
-            </div>
         </fieldset>
+        <div class="gray">
+            <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkAddInstituteCource" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
+            </div>
+            <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkUpdateInstituteCource" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn">Update</div></aspajax:AjaxLinkButton>
+            </div>
+            <div style="clear: both">
+            </div>
+        </div>
     </div>
     </form>
 </body>

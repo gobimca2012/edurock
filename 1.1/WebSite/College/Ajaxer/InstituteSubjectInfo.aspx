@@ -8,40 +8,47 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <div id="divMessage" runat="server">
+    <div class="contentbox">
+        <div class="gray">
+            Subject
         </div>
-        <fieldset>
-            <legend>InstituteSubject</legend>
-            <div>
-                
+        <div >
+            <div id="divMessage" runat="server">
+            </div>
+            <fieldset>
+                <legend>InstituteSubject</legend>
                 <div>
                     <div>
-                        <span class="label">SubjectText</span>
+                        <div>
+                            <span class="label">SubjectText</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtSubjectText" runat="server"></asp:TextBox>
+                        </div>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtSubjectText" runat="server"></asp:TextBox>
+                        <div>
+                            <span class="label">Description</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <span class="label">Description</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
-                    </div>
-                </div>
-                
+            </fieldset>
+        </div>
+        <div class="gray">
+            <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkAddInstituteSubject" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
             </div>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkAddInstituteSubject" runat="server" RequestContainner="#courceinfo"
-                    ResponseContainner="#courceinfo" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+            <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkUpdateInstituteSubject" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn"> Update</div></aspajax:AjaxLinkButton>
             </div>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateInstituteSubject" runat="server" RequestContainner="#courceinfo"
-                    ResponseContainner="#courceinfo" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+            <div style="clear: both">
             </div>
-        </fieldset>
+        </div>
     </div>
     </form>
 </body>

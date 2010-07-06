@@ -8,13 +8,14 @@
 <body>
     <form id="form1" runat="server">
     <div class="contentbox">
-        <div id="Question">
+        <div class="gray">
+            <h3>
+                Question View</h3>
+        </div>
+        <div id="Question" style="padding: 5px;">
             <div>
                 <div>
-                    <span class="label">QuestionText</span>
-                </div>
-                <div>
-                    <span id="lblQuestionText" runat="server"></span>
+                    <span id="lblQuestionText" runat="server" class="btext"></span>
                 </div>
             </div>
             <div>
@@ -27,7 +28,7 @@
             </div>
             <div>
                 <div>
-                    Post By &nbsp; <span id="user" runat="server"></span>
+                    Post By &nbsp; <span id="user" runat="server" class="btext"></span>
                 </div>
             </div>
             <div>
@@ -48,11 +49,14 @@
                     <span id="lblModifiedDate" runat="server"></span>
                 </div>
             </div>
-           
         </div>
-    </div>
-    <div>
-        <div id="Answer">
+        <div>
+            <div class="graycontent roundedall">
+                <div id="Answer">
+                </div>
+            </div>
+        </div>
+        <div class="gray">
         </div>
     </div>
     </form>

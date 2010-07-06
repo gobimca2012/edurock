@@ -32,16 +32,20 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
             {
                 ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/AdminNavigation.ascx"));
                 lnkAccountSetting.NavigateUrl = "~/User/AccountSetting.aspx";
+                lnkAccountSetting.Visible = false;
+                liAccountsetting.Visible = false;
             }
             else if (new UserAuthontication().UserType == UserTypeEnum.College)
             {
                 ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/CollegeMenu.ascx"));
-                lnkAccountSetting.NavigateUrl = "~/College/AccountSetting.aspx";
+                lnkAccountSetting.NavigateUrl = "~/College/Admin.aspx";
             }
             else if (new UserAuthontication().UserType == UserTypeEnum.Student)
             {
-                ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/UserMenu.ascx"));
+                //ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/UserMenu.ascx"));
                 lnkAccountSetting.NavigateUrl = "~/User/AccountSetting.aspx";
+                lnkAccountSetting.Visible = false;
+                liAccountsetting.Visible = false;
             }
             
         }

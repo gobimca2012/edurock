@@ -8,49 +8,52 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <div id="divMessage" runat="server">
+    <div class="contentbox">
+        <div class="gray">
         </div>
-        <fieldset>
-            <legend>CourceCatagory</legend>
-            <div>
-                
+        <div style="padding: 5px;">
+            <div id="divMessage" runat="server">
+            </div>
+            <fieldset>
+                <legend>CourceCatagory</legend>
                 <div>
                     <div>
-                        <span class="label">CatagoryName</span>
+                        <div>
+                            <span class="label">CatagoryName</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtCatagoryName" runat="server" Width="385px"></asp:TextBox>
+                        </div>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtCatagoryName" runat="server" Width="385px"></asp:TextBox>
+                        <div>
+                            <span class="label">Description</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtDescription" runat="server" Height="143px" TextMode="MultiLine"
+                                Width="387px"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">CatagoryType</span>
+                        </div>
+                        <div>
+                        </div>
                     </div>
                 </div>
-                
-                <div>
-                    <div>
-                        <span class="label">Description</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtDescription" runat="server" Height="143px" 
-                            TextMode="MultiLine" Width="387px"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">CatagoryType</span>
-                    </div>
-                    <div>
-                    </div>
-                </div>
-                
+            </fieldset>
+        </div>
+        <div class="gray">
+            <div>
+                <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#courceinfo"
-                    ResponseContainner="#courceinfo" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#courceinfo"
-                    ResponseContainner="#courceinfo" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
-            </div>
-        </fieldset>
+        </div>
     </div>
     </form>
 </body>

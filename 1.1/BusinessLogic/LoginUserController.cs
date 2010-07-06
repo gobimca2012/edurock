@@ -498,7 +498,7 @@ namespace BusinessLogic
                     try
                     {
                          LoginUserID = Add(Username, Password, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
-                        int id=new InstituteUserController().Add( new UserAuthontication().InstituteID,LoginUserID, InstituteUserType, "", DateTime.Now);
+                        int id=new InstituteUserController().Add( new UserAuthontication().InstituteID,LoginUserID, "", DateTime.Now);
                         if (LoginUserID == 0)
                         {
                             Membership.DeleteUser(MemUser.UserName);

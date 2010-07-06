@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="InstituteInfoView.aspx.cs"
-    Inherits="College_Ajaxer_CollegeInfo" %>
+    Inherits="College_Ajaxer_CollegeInfo" Theme="Default" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,8 +8,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <div id="Institute">
+    <div class="contentbox">
+        <div class="gray ">
+            Personal Info
+        </div>
+        <div id="Institute" style="padding: 5px;">
             <div>
                 <div>
                     <span class="label">Name</span>
@@ -106,8 +109,9 @@
                     <span id="lblDescription" runat="server"></span>
                 </div>
             </div>
-            <aspajax:HyperLink ID="lnkedit" runat="server" Text="Edit" CssClass="btnlnk" NavigateUrl="InstituteInfo.aspx"
-                ContainnerID="#courceinfo"></aspajax:HyperLink>
+        </div>
+        <div class="gray ">
+            <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl="InstituteInfo.aspx" ContainnerID="#contentBox"><div class="btn">Edit</div></aspajax:HyperLink>
         </div>
     </div>
     </form>

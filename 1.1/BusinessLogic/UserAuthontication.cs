@@ -10,7 +10,7 @@ namespace BusinessLogic
 {
     public class UserAuthontication
     {
-        
+
         public string LoggedInUserName
         {
             get
@@ -70,6 +70,11 @@ namespace BusinessLogic
                 if (data.Count > 0)
                 {
                     return data[0].InstituteID;
+                }
+                var Idata = new InstituteController().GetbyLoginUserID(LoggedInUserID);
+                if (Idata.Count > 0)
+                {
+                    return Idata[0].InstituteID;
                 }
                 else
                 {
@@ -225,7 +230,7 @@ namespace BusinessLogic
         {
             get
             {
-                var data=new LoginUserController().GetbyLoginUserID(LoggedInUserID);
+                var data = new LoginUserController().GetbyLoginUserID(LoggedInUserID);
                 if (data.Count > 0)
                 {
                     if (data[0].UserType == (int)UserTypeEnum.College)
@@ -353,7 +358,7 @@ namespace BusinessLogic
                 var data = new LoginUserController().GetbyLoginUserID(LoginUserID);
                 if (data.Count > 0)
                 {
-                    string UName =  data[0].Username;
+                    string UName = data[0].Username;
                     System.Web.Security.MembershipUser MemUser = System.Web.Security.Membership.GetUser(UName);
                     MemUser.IsApproved = true;
                     System.Web.Security.Membership.UpdateUser(MemUser);
@@ -390,7 +395,7 @@ namespace BusinessLogic
 
 
 
-        public  LoginUser ValidateUser(string Username, string Password)
+        public LoginUser ValidateUser(string Username, string Password)
         {
             try
             {
@@ -402,7 +407,7 @@ namespace BusinessLogic
                     HttpContext.Current.Response.Cookies.Add(loginCookie);
                     loginCookie.Expires = DateTime.Now.AddYears(1);
                     loginCookie.Value = Username;// GetLoginByUsername(userName);
-                    LoginUser logindata= Login(Username, false);
+                    LoginUser logindata = Login(Username, false);
                     return logindata;
                 }
                 else

@@ -9,42 +9,57 @@
     <form id="form1" runat="server">
     <div>
         <div class="contentbox">
+            <div class="gray ">
+                <h3>
+                    Your Questions</h3>
+            </div>
             <asp:ListView ID="ListQuestion" runat="server">
                 <LayoutTemplate>
-                    <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>
+                                    Question
+                                </td>
+                                <td>
+                                    Status
+                                </td>
+                                <td>
+                                    Type
+                                </td>
+                                <td>
+                                    Date
+                                </td>
+                            </tr>
+                        </thead>
                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                    </div>
+                    </table>
                 </LayoutTemplate>
                 <ItemTemplate>
-                    <div>
-                        <div>
-                            <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("QuestionID")  %>'><%#Eval("QuestionText") %></aspajax:HyperLink>
-                        </div>
-                        <div>
-                            <div>
-                                <asp:Image ID="imgProf" runat="server" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>'
-                                    Width="100" />
-                            </div>
-                            by
-                            <%#Eval("FirstName")%>&nbsp;<%#Eval("LastName")%>
-                        </div>
-                        <div>
+                    <tr>
+                        <td>
+                            <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#contentBox"
+                                NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("QuestionID")  %>'><%#Eval("QuestionText") %></aspajax:HyperLink>
+                        </td>
+                        <td>
                             <%#Eval("QuestionStatus")%>
-                        </div>
-                        <div>
+                        </td>
+                        <td>
                             <%#Eval("QuestionType")%>
-                        </div>
-                        <div>
-                            <%#Eval("ModifiedDate") %>
-                        </div>
-                        <div>
+                        </td>
+                        <td>
+                            <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionID").ToString(), "#contentBox", "#contentBox")%>
-                        </div>
-                        <div>
+                        </td>
+                        <td>
                             <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/QuestionInfo.aspx") + "?cid=" + Eval("QuestionID")%>'
                                 ContainnerID="#contentBox">Edit</aspajax:HyperLink>
-                        </div>
-                    </div>
+                        </td>
+                    </tr>
                 </ItemTemplate>
             </asp:ListView>
             <div>
@@ -61,9 +76,11 @@
                 <div style="clear: both">
                 </div>
             </div>
-            <div>
-                <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="~/User/AjaxControl/QuestionInfo.aspx"
-                    ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+            <div class="gray ">
+                <div>
+                    <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="~/User/AjaxControl/QuestionInfo.aspx"
+                        ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                </div>
             </div>
         </div>
     </div>

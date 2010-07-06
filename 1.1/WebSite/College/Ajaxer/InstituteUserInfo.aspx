@@ -8,43 +8,48 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <div>
+    <div class="contentbox">
+        <div class="gray">
+            New User</div>
+        <div style="padding: 5px;">
             <div>
-                <span class="label">Username</span>
+                <div>
+                    <span class="label">Username</span>
+                </div>
+                <div>
+                    <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+                </div>
             </div>
             <div>
-                <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+                <div>
+                    <span class="label">Password</span>
+                </div>
+                <div>
+                    <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div>
+                <div>
+                    Email:
+                </div>
+                <div>
+                    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div>
+                <div>
+                    User Type
+                </div>
+                <div>
+                    <asp:DropDownList ID="ddUserType" runat="server">
+                    </asp:DropDownList>
+                </div>
             </div>
         </div>
-        <div>
-            <div>
-                <span class="label">Password</span>
-            </div>
-            <div>
-                <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
-            </div>
+        <div class="gray">
+            <aspajax:AjaxLinkButton ID="lnkUserAdd" runat="server" RequestContainner="#contentBox"
+                ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
         </div>
-        <div>
-            <div>
-                Email:
-            </div>
-            <div>
-                <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-            </div>
-        </div>
-        <div>
-            <div>
-                User Type
-            </div>
-            <div>
-                <asp:DropDownList ID="ddUserType" runat="server">
-                </asp:DropDownList>
-            </div>
-        </div>
-    </div>
-    <div>
-        <aspajax:AjaxLinkButton ID="lnkUserAdd" runat="server" RequestContainner="#courceinfo" ResponseContainner="#courceinfo" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
     </div>
     </form>
 </body>

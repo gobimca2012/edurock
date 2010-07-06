@@ -93,29 +93,6 @@
       <Association Name="InstituteCource_Instructor" Member="InstituteCource" ThisKey="InstituteCourceID" Type="InstituteCource" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.InstituteUser" Member="InstituteUsers">
-    <Type Name="InstituteUser">
-      <Column Name="InstituteUserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="InstituteUserTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteLoginUser_InstituteUser" Member="InstituteLoginUser" ThisKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
-      <Association Name="InstituteUserType_InstituteUser" Member="InstituteUserType" ThisKey="InstituteUserTypeID" Type="InstituteUserType" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.InstituteUserType" Member="InstituteUserTypes">
-    <Type Name="InstituteUserType">
-      <Column Name="InstituteUserTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteUserType_InstituteUser" Member="InstituteUsers" OtherKey="InstituteUserTypeID" Type="InstituteUser" />
-    </Type>
-  </Table>
   <Table Name="dbo.InstituteCource" Member="InstituteCources">
     <Type Name="InstituteCource">
       <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -148,6 +125,26 @@
       <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="InstituteCource_InstituteSubject" Member="InstituteCource" ThisKey="InstituteCourceID" Type="InstituteCource" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InstituteUser" Member="InstituteUsers">
+    <Type Name="InstituteUser">
+      <Column Name="InstituteUserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="InstituteLoginUser_InstituteUser" Member="InstituteLoginUser" ThisKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InstituteUserType" Member="InstituteUserTypes">
+    <Type Name="InstituteUserType">
+      <Column Name="InstituteUserTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.GetTutorial" Method="GetTutorial">

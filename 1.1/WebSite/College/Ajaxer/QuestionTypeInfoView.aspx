@@ -8,7 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="contentbox">
+        <div class="gray">
+            Question Type</div>
         <asp:ListView ID="ListQuestionType" runat="server">
             <LayoutTemplate>
                 <table>
@@ -46,32 +48,32 @@
                         <%#Eval("ModifiedDate") %>
                     </td>
                     <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionTypeID").ToString(), "#courceinfo", "#courceinfo")%>
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionTypeID").ToString(), "#contentBox", "#contentBox")%>
                     </td>
                     <td>
                         <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/QuestionTypeInfo.aspx") + "?qtypeid=" + Eval("QuestionTypeID")%>'
-                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
+                            ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                     </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
-        <div>
+        <div class="gray">
             <div style="float: right">
                 <div style="float: left">
                     <aspajax:AjaxLinkButton ID="lnkPrevQuestionType" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                        Pagger="true" Increment="false" RequestContainner="#courceinfo" ResponseContainner="#courceinfo"></aspajax:AjaxLinkButton>
+                        Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
                     <aspajax:AjaxLinkButton ID="lnkNextQuestionType" runat="server" OnAjaxClick="NextAjaxClick"
-                        RequestContainner="#courceinfo" Pagger="true" Increment="true" ResponseContainner="#courceinfo">Next</aspajax:AjaxLinkButton>
+                        RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                 </div>
+            </div>
+            <div style="float:left">
+                <aspajax:HyperLink ID="hpAddQuestionType" runat="server" NavigateUrl="~/College/Ajaxer/QuestionTypeInfo.aspx"
+                    ContainnerID="#contentBox">Add New</aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>
-        </div>
-        <div>
-            <aspajax:HyperLink ID="hpAddQuestionType" runat="server" NavigateUrl="~/Admin/Ajaxer/QuestionTypeInfo.aspx"
-                ContainnerID="#courceinfo">Add New</aspajax:HyperLink>
         </div>
     </div>
     </form>

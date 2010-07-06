@@ -8,84 +8,87 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <ul>
-            <li>
-                <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
-            </li>
-            <li>
-                <asp:DropDownList ID="ddType" runat="server"></asp:DropDownList>
-            </li>
-            <li>
-                <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#courceinfo" ResponseContainner="#courceinfo"
-                    OnAjaxClick="SearchAjaxClick">Search</aspajax:AjaxLinkButton>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <asp:ListView ID="ListInstituteUser" runat="server">
-            <LayoutTemplate>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>
-                                Username
-                            </td>
-                            <td>
-                                Password
-                            </td>
-                            <td>
-                                InstituteUserType
-                            </td>
-                            <td>
-                                ModifiedDate
-                            </td>
-                        </tr>
-                    </thead>
-                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                </table>
-            </LayoutTemplate>
-            <ItemTemplate>
-                <tr>
-                    <td>
-                        <%#Eval("InstituteLoginUser.Username")%>
-                    </td>
-                    <td>
-                        <%#Eval("InstituteLoginUser.Password")%>
-                    </td>
-                    <td>
-                        <%#Eval("InstituteUserType.Name")%>
-                    </td>
-                    <td>
-                        <%#Eval("ModifiedDate") %>
-                    </td>
-                    <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteUserID").ToString(), "#courceinfo", "#courceinfo")%>
-                    </td>
-                   <%-- <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteUserInfo.aspx") + "?cid=" + Eval("InstituteUserID")%>'
-                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
-                    </td>--%>
-                </tr>
-            </ItemTemplate>
-        </asp:ListView>
+    <div class="contentbox">
+        <div class="gray">
+            <ul>
+                <li>
+                    <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
+                </li>
+                <li>
+                    <asp:DropDownList ID="ddType" runat="server">
+                    </asp:DropDownList>
+                </li>
+                <li>
+                    <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#contentBox"
+                        ResponseContainner="#contentBox" OnAjaxClick="SearchAjaxClick">Search</aspajax:AjaxLinkButton>
+                </li>
+            </ul>
+        </div>
         <div>
+            <asp:ListView ID="ListInstituteUser" runat="server">
+                <LayoutTemplate>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>
+                                    Username
+                                </td>
+                                <td>
+                                    Password
+                                </td>
+                                <td>
+                                    InstituteUserType
+                                </td>
+                                <td>
+                                    ModifiedDate
+                                </td>
+                            </tr>
+                        </thead>
+                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                    </table>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <%#Eval("InstituteLoginUser.Username")%>
+                        </td>
+                        <td>
+                            <%#Eval("InstituteLoginUser.Password")%>
+                        </td>
+                        <td>
+                            <%#Eval("InstituteUserType.Name")%>
+                        </td>
+                        <td>
+                            <%#Eval("ModifiedDate") %>
+                        </td>
+                        <td>
+                            <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteUserID").ToString(), "#contentBox", "#contentBox")%>
+                        </td>
+                        <%-- <td>
+                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteUserInfo.aspx") + "?cid=" + Eval("InstituteUserID")%>'
+                            ContainnerID="#contentBox">Edit</aspajax:HyperLink>
+                    </td>--%>
+                    </tr>
+                </ItemTemplate>
+            </asp:ListView>
+        </div>
+        <div class="gray">
             <div style="float: right">
                 <div style="float: left">
                     <aspajax:AjaxLinkButton ID="lnkPrevInstituteUser" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                        Pagger="true" Increment="false" RequestContainner="#courceinfo" ResponseContainner="#courceinfo"></aspajax:AjaxLinkButton>
+                        Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
                     <aspajax:AjaxLinkButton ID="lnkNextInstituteUser" runat="server" OnAjaxClick="NextAjaxClick"
-                        RequestContainner="#courceinfo" Pagger="true" Increment="true" ResponseContainner="#courceinfo">Next</aspajax:AjaxLinkButton>
+                        RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                 </div>
+            </div>
+            <div style="float: left">
+                <aspajax:HyperLink ID="hpAddInstituteUser" runat="server" NavigateUrl="~/College/Ajaxer/InstituteUserInfo.aspx"
+                    ContainnerID="#contentBox">Add New</aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>
-        </div>
-        <div>
-            <aspajax:HyperLink ID="hpAddInstituteUser" runat="server" NavigateUrl="~/College/Ajaxer/InstituteUserInfo.aspx"
-                ContainnerID="#courceinfo">Add New</aspajax:HyperLink>
         </div>
     </div>
     </form>

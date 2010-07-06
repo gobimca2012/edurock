@@ -22,10 +22,14 @@
                     <asp:DropDownList ID="ddQuestionStatus" runat="server">
                     </asp:DropDownList>
                 </li>
-                <li>
+                <li class="btn roundedall">
                     <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#contentBox"
                         ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SearchAjaxClick"
                         Pagger="False">Search</aspajax:AjaxLinkButton>
+                </li>
+                <li class="btn roundedall">
+                    <aspajax:HyperLink ID="lnkMyQuestion" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/MyQuestion.aspx"
+                        >Your Questions</aspajax:HyperLink>
                 </li>
             </ul>
         </div>
@@ -98,7 +102,7 @@
                 <div style="clear: both">
                 </div>
             </div>
-            <div>
+            <div class="btn roundedall">
                 <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox">Add New</aspajax:HyperLink>
             </div>
         </div>

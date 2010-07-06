@@ -8,29 +8,35 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <div id="divMessage" runat="server">
-        </div>
-        <fieldset>
-            <legend>InstituteUserType</legend>
-            <div>
-                <div>
-                    <div>
-                        <span class="label">Name</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">Description</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
-                    </div>
-                </div>
+    <div class="contentbox">
+        <div class="gray">
+            User Type</div>
+        <div style="padding: 5px;">
+            <div id="divMessage" runat="server">
             </div>
+            <fieldset>
+                <legend>InstituteUserType</legend>
+                <div>
+                    <div>
+                        <div>
+                            <span class="label">Name</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">Description</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddInstituteUserType" runat="server" RequestContainner="#courceinfo"
                     ResponseContainner="#courceinfo" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
@@ -39,7 +45,7 @@
                 <aspajax:AjaxLinkButton ID="lnkUpdateInstituteUserType" runat="server" RequestContainner="#courceinfo"
                     ResponseContainner="#courceinfo" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
-        </fieldset>
+        </div>
     </div>
     </form>
 </body>

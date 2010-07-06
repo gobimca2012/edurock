@@ -30,14 +30,16 @@ public partial class Modules_Login_Login : System.Web.UI.UserControl
                 if (loginData.UserType == 1)
                 {
                     JScripter.Loader.RedirectPage(ResolveUrl("~/User/DashBoard.aspx"), this.Page);
+                  
                 }
                 else
                 {
-                    JScripter.Loader.RedirectPage(ResolveUrl("~/Home.aspx"), this.Page);
+                    JScripter.Loader.RedirectPage(ResolveUrl("~/College/DashBoard.aspx"), this.Page);
+                    
                 }
-                
+                Response.Redirect("~/User/DashBoard.aspx");
             }
-            Response.Redirect("~/Home.aspx");
+            
         }
     }
 }

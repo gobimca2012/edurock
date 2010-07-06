@@ -9,19 +9,19 @@
     <form id="form1" runat="server">
     <div style="display:block;padding:10px 0px;">
         <ul>
-            <li class="gray roundedall">
+            <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">Questions</aspajax:HyperLink></li>
-            <li class="gray roundedall">Exam</li>
-            <li class="gray roundedall">
+            <li class="btn roundedall">Exam</li>
+            <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnktut" runat="server" ContainnerID="#contentBox" NavigateUrl="~/All/Ajaxer/TutorialInfoView.aspx">Tutorials</aspajax:HyperLink></li>
-            <li class="gray roundedall">
+            <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkUsers" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ICUserInfoView.aspx">Users</aspajax:HyperLink></li>
-            <li class="gray roundedall">Home Work</li>
-            <li class="gray roundedall">Blog</li>
-            <li class="gray roundedall">Image</li>
-            <li class="gray roundedall">Audio</li>
-            <li class="gray roundedall">video</li>
-            <li class="gray roundedall">Document</li>
+            <li class="btn roundedall">Home Work</li>
+            <li class="btn roundedall">Blog</li>
+            <li class="btn roundedall">Image</li>
+            <li class="btn roundedall">Audio</li>
+            <li class="btn roundedall">video</li>
+            <li class="btn roundedall">Document</li>
         </ul>
     </div>
     </form>
