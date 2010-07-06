@@ -7,21 +7,21 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div style="display:block;padding:10px 0px;">
         <ul>
-            <li>
+            <li class="gray roundedall">
                 <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">Questions</aspajax:HyperLink></li>
-            <li>Exam</li>
-            <li>
+            <li class="gray roundedall">Exam</li>
+            <li class="gray roundedall">
                 <aspajax:HyperLink ID="lnktut" runat="server" ContainnerID="#contentBox" NavigateUrl="~/All/Ajaxer/TutorialInfoView.aspx">Tutorials</aspajax:HyperLink></li>
-            <li>
+            <li class="gray roundedall">
                 <aspajax:HyperLink ID="lnkUsers" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ICUserInfoView.aspx">Users</aspajax:HyperLink></li>
-            <li>Home Work</li>
-            <li>Blog</li>
-            <li>Image</li>
-            <li>Audio</li>
-            <li>video</li>
-            <li>Document</li>
+            <li class="gray roundedall">Home Work</li>
+            <li class="gray roundedall">Blog</li>
+            <li class="gray roundedall">Image</li>
+            <li class="gray roundedall">Audio</li>
+            <li class="gray roundedall">video</li>
+            <li class="gray roundedall">Document</li>
         </ul>
     </div>
     </form>

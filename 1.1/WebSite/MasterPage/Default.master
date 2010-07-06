@@ -11,14 +11,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="header">
+    <div class="header roundedb">
         <uc1:HeaderNavigation ID="HeaderNavigation1" runat="server" />
     </div>
     <div style="clear: both">
     </div>
-    <div class="page">
-        <div style="clear:both;height:20px;">
-        </div>
+    <div class="page roundedall">
+        
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

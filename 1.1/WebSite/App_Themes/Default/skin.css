@@ -10,17 +10,17 @@ body
     text-align: center;
     margin: 0px;
     padding: 0px;
-    background: url(      'images/bg.png' ) repeat;
+    background: url(           'images/bg.png' ) repeat;
 }
 .page
 {
     width: 1000px;
     margin: 0 auto;
-    border: solid 0px;
+    border: solid 1px #848689;
     min-height: 700px;
     padding: 0px;
-    background: #F7FBFF;
-    background: url(      'images/pgbg.jpg' ) repeat;
+    background: #FFF;
+    margin-top: 5px;
 }
 .header a
 {
@@ -52,16 +52,18 @@ body
 }
 .header
 {
-    width: 100%;
+    width: 1000px;
     padding: 0px 0px;
-    background: url(      'images/header.png' ) repeat-x;
+    background: #fff;
+    margin: 0 auto;
+    border: solid #848689 1px;
 }
 .headerbt
 {
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(      'images/headerbt.jpg' ) repeat-x;
+    background: url(           'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -92,10 +94,11 @@ li
 }
 thead tr
 {
-    background: transparent url(images/palat.png) no-repeat scroll 0 -57px;
-    border: 1px solid #A9AEB1;
+    /*background: transparent url(images/palat.png) no-repeat scroll 0 -57px;*/
+    border-bottom: 1px dashed #A9AEB1;
     font-weight: bold;
     height: 35px;
+    color: #093F7C;
 }
 tr
 {
@@ -113,21 +116,7 @@ tr:hover
 {
     background: #FEFDE9;
 }
-table
-{
-    border-collapse: collapse;
-    padding: 5px;
-    border: solid 1px #A9AEB1;
-}
-.contentbox
-{
-    padding: 5px;
-    background: #fff;
-    border: solid 5px #DEDEDE;
-    margin: 5px;
-    text-align: left;
-    -moz-border-radius: 6px;
-}
+
 .label
 {
     font-weight: bold;
@@ -259,25 +248,11 @@ img
     background: #444;
     -moz-border-radius: 6px;
 }
-#sidemenu li, h5
-{
-    display: block;
-    text-align: left;
-    padding: 6px 10px;
-    border: solid 1px #2867BE;
-    background-color: #538CDB;
-    -moz-border-radius: 3px;
-    margin: 1px;
-    text-decoration: none;
-}
 li
 {
     display: inline;
     text-align: left;
     padding: 6px 10px;
-    border: solid 1px #2867BE;
-    background-color: #538CDB;
-    -moz-border-radius: 3px;
     margin: 1px;
     text-decoration: none;
 }
@@ -293,6 +268,9 @@ li input, li select, li textarea, select
 {
     width: 20%;
 }
+
+/*  New -------------------------------------*/
+
 input, textarea
 {
     -moz-border-radius: 4px;
@@ -309,4 +287,111 @@ input, textarea
 {
     text-align: left;
     display: none;
+}
+.roundedall, .cin:hover, .contentbox
+{
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+.roundedb
+{
+    -moz-border-radius: 0px 0px 5px 5px;
+    -webkit-border-radius: 0px 0px 5px 5px;
+    -khtml-border-radius: 0px 0px 5px 5px;
+    border-radius: 0px 0px 5px 5px;
+}
+.roundedt, .bksl .btn
+{
+    -moz-border-radius: 5px 5px 0px 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    -khtml-border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 0px 0px;
+}
+.roundedl
+{
+    -moz-border-radius: 5px 0px 0px 5px;
+    -webkit-border-radius: 5px 0px 0px 5px;
+    -khtml-border-radius: 5px 0px 0px 5px;
+    border-radius: 5px 0px 0px 5px;
+}
+.bksl
+{
+    background-image: url(images/bks.png);
+    height: 100px;
+    background-repeat: repeat-x;
+    vertical-align: bottom;
+}
+.bksl .btn
+{
+    background-image: url(images/bgrsl.png);
+    float: left;
+    height: 33px;
+    padding: 0px 10px;
+    margin: 0px 5px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 32px;
+}
+.gray, h5
+{
+    background-image: url(images/gsl.png);
+    border: solid 1px #C5C8C9;
+}
+h5
+{
+    padding: 4px 5px;
+    margin: 0px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.gbg
+{
+    background: #ECECEC;
+}
+.leftmenu
+{
+    margin: 5px 0px 5px 5px;
+    padding: 15px 1px;
+}
+.cin
+{
+    padding: 5px;
+    border-bottom: dashed 1px #424542;
+    margin: 1px;
+}
+.cin a
+{
+    color: #424542;
+}
+.cin:hover a
+{
+    color: #fff;
+}
+.cin:hover
+{
+    background: #424542;
+}
+.contentbox
+{
+    background: #fff;
+    border: solid 1px #C5C8C9;
+    margin: 5px;
+}
+.contentbox .gray
+{
+    border: none 0px;
+    padding: 5px;
+}
+.rgray
+{
+    background-image: url(images/bgrsl.png);
+    border: solid 1px #C5C8C9;
+}
+table
+{
+    border-collapse: collapse;
+    padding: 5px;
+    width: 100%;
 }
