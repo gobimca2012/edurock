@@ -62,16 +62,17 @@
     </div>
     <div style="float: left; width: 800px">
         <div class="bksl roundedt">
-            <div style="padding-top: 67px;">
+            <div style="padding-top: 65px;">
                 <div class="btn">
-                    DashBoard</div>
+                    <asp:HyperLink ID="lnkDashBoard" runat="server" NavigateUrl="~/User/DashBoard.aspx">Dashboard</asp:HyperLink></div>
                 <div class="btn">
-                    Account Setting</div>
+                    <asp:HyperLink ID="lnkAcountsetting" runat="server" NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
+                </div>
                 <div class="btn">
                     Activity Stream</div>
             </div>
         </div>
-        <div class="gbg roundedall" style="clear:both;min-height:500px;margin:5px;">
+        <div class="gbg roundedall" style="clear: both; min-height: 500px; margin: 5px;">
             <div id="lander">
             </div>
             <div id="contentBox">
