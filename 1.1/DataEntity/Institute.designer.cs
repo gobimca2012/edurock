@@ -63,6 +63,9 @@ namespace DataEntity
     partial void InsertInstituteUserType(InstituteUserType instance);
     partial void UpdateInstituteUserType(InstituteUserType instance);
     partial void DeleteInstituteUserType(InstituteUserType instance);
+    partial void InsertInstituteUserInUserType(InstituteUserInUserType instance);
+    partial void UpdateInstituteUserInUserType(InstituteUserInUserType instance);
+    partial void DeleteInstituteUserInUserType(InstituteUserInUserType instance);
     #endregion
 		
 		public InstituteDataContext(string connection) : 
@@ -174,6 +177,14 @@ namespace DataEntity
 			get
 			{
 				return this.GetTable<InstituteUserType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<InstituteUserInUserType> InstituteUserInUserTypes
+		{
+			get
+			{
+				return this.GetTable<InstituteUserInUserType>();
 			}
 		}
 		
@@ -2899,6 +2910,8 @@ namespace DataEntity
 		
 		private System.DateTime _ModifiedDate;
 		
+		private EntitySet<InstituteUserInUserType> _InstituteUserInUserTypes;
+		
 		private EntityRef<InstituteLoginUser> _InstituteLoginUser;
 		
     #region Extensibility Method Definitions
@@ -2919,6 +2932,7 @@ namespace DataEntity
 		
 		public InstituteUser()
 		{
+			this._InstituteUserInUserTypes = new EntitySet<InstituteUserInUserType>(new Action<InstituteUserInUserType>(this.attach_InstituteUserInUserTypes), new Action<InstituteUserInUserType>(this.detach_InstituteUserInUserTypes));
 			this._InstituteLoginUser = default(EntityRef<InstituteLoginUser>);
 			OnCreated();
 		}
@@ -3027,6 +3041,19 @@ namespace DataEntity
 			}
 		}
 		
+		[Association(Name="InstituteUser_InstituteUserInUserType", Storage="_InstituteUserInUserTypes", OtherKey="InstituteUserID")]
+		public EntitySet<InstituteUserInUserType> InstituteUserInUserTypes
+		{
+			get
+			{
+				return this._InstituteUserInUserTypes;
+			}
+			set
+			{
+				this._InstituteUserInUserTypes.Assign(value);
+			}
+		}
+		
 		[Association(Name="InstituteLoginUser_InstituteUser", Storage="_InstituteLoginUser", ThisKey="LoginUserID", IsForeignKey=true)]
 		public InstituteLoginUser InstituteLoginUser
 		{
@@ -3080,6 +3107,18 @@ namespace DataEntity
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_InstituteUserInUserTypes(InstituteUserInUserType entity)
+		{
+			this.SendPropertyChanging();
+			entity.InstituteUser = this;
+		}
+		
+		private void detach_InstituteUserInUserTypes(InstituteUserInUserType entity)
+		{
+			this.SendPropertyChanging();
+			entity.InstituteUser = null;
+		}
 	}
 	
 	[Table(Name="dbo.InstituteUserType")]
@@ -3099,6 +3138,8 @@ namespace DataEntity
 		private string _Description;
 		
 		private System.DateTime _ModifiedDate;
+		
+		private EntitySet<InstituteUserInUserType> _InstituteUserInUserTypes;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3120,6 +3161,7 @@ namespace DataEntity
 		
 		public InstituteUserType()
 		{
+			this._InstituteUserInUserTypes = new EntitySet<InstituteUserInUserType>(new Action<InstituteUserInUserType>(this.attach_InstituteUserInUserTypes), new Action<InstituteUserInUserType>(this.detach_InstituteUserInUserTypes));
 			OnCreated();
 		}
 		
@@ -3239,6 +3281,271 @@ namespace DataEntity
 					this._ModifiedDate = value;
 					this.SendPropertyChanged("ModifiedDate");
 					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="InstituteUserType_InstituteUserInUserType", Storage="_InstituteUserInUserTypes", OtherKey="InstituteUserTypeID")]
+		public EntitySet<InstituteUserInUserType> InstituteUserInUserTypes
+		{
+			get
+			{
+				return this._InstituteUserInUserTypes;
+			}
+			set
+			{
+				this._InstituteUserInUserTypes.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_InstituteUserInUserTypes(InstituteUserInUserType entity)
+		{
+			this.SendPropertyChanging();
+			entity.InstituteUserType = this;
+		}
+		
+		private void detach_InstituteUserInUserTypes(InstituteUserInUserType entity)
+		{
+			this.SendPropertyChanging();
+			entity.InstituteUserType = null;
+		}
+	}
+	
+	[Table(Name="dbo.InstituteUserInUserType")]
+	public partial class InstituteUserInUserType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _InstituteUserInUserTypeID;
+		
+		private int _LoginUserID;
+		
+		private int _InstituteUserID;
+		
+		private int _InstituteUserTypeID;
+		
+		private System.DateTime _Modifieddate;
+		
+		private EntityRef<InstituteUser> _InstituteUser;
+		
+		private EntityRef<InstituteUserType> _InstituteUserType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnInstituteUserInUserTypeIDChanging(int value);
+    partial void OnInstituteUserInUserTypeIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnInstituteUserIDChanging(int value);
+    partial void OnInstituteUserIDChanged();
+    partial void OnInstituteUserTypeIDChanging(int value);
+    partial void OnInstituteUserTypeIDChanged();
+    partial void OnModifieddateChanging(System.DateTime value);
+    partial void OnModifieddateChanged();
+    #endregion
+		
+		public InstituteUserInUserType()
+		{
+			this._InstituteUser = default(EntityRef<InstituteUser>);
+			this._InstituteUserType = default(EntityRef<InstituteUserType>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_InstituteUserInUserTypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int InstituteUserInUserTypeID
+		{
+			get
+			{
+				return this._InstituteUserInUserTypeID;
+			}
+			set
+			{
+				if ((this._InstituteUserInUserTypeID != value))
+				{
+					this.OnInstituteUserInUserTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteUserInUserTypeID = value;
+					this.SendPropertyChanged("InstituteUserInUserTypeID");
+					this.OnInstituteUserInUserTypeIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteUserID", DbType="Int NOT NULL")]
+		public int InstituteUserID
+		{
+			get
+			{
+				return this._InstituteUserID;
+			}
+			set
+			{
+				if ((this._InstituteUserID != value))
+				{
+					if (this._InstituteUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnInstituteUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteUserID = value;
+					this.SendPropertyChanged("InstituteUserID");
+					this.OnInstituteUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteUserTypeID", DbType="Int NOT NULL")]
+		public int InstituteUserTypeID
+		{
+			get
+			{
+				return this._InstituteUserTypeID;
+			}
+			set
+			{
+				if ((this._InstituteUserTypeID != value))
+				{
+					if (this._InstituteUserType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnInstituteUserTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteUserTypeID = value;
+					this.SendPropertyChanged("InstituteUserTypeID");
+					this.OnInstituteUserTypeIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Modifieddate", DbType="DateTime NOT NULL")]
+		public System.DateTime Modifieddate
+		{
+			get
+			{
+				return this._Modifieddate;
+			}
+			set
+			{
+				if ((this._Modifieddate != value))
+				{
+					this.OnModifieddateChanging(value);
+					this.SendPropertyChanging();
+					this._Modifieddate = value;
+					this.SendPropertyChanged("Modifieddate");
+					this.OnModifieddateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="InstituteUser_InstituteUserInUserType", Storage="_InstituteUser", ThisKey="InstituteUserID", IsForeignKey=true)]
+		public InstituteUser InstituteUser
+		{
+			get
+			{
+				return this._InstituteUser.Entity;
+			}
+			set
+			{
+				InstituteUser previousValue = this._InstituteUser.Entity;
+				if (((previousValue != value) 
+							|| (this._InstituteUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._InstituteUser.Entity = null;
+						previousValue.InstituteUserInUserTypes.Remove(this);
+					}
+					this._InstituteUser.Entity = value;
+					if ((value != null))
+					{
+						value.InstituteUserInUserTypes.Add(this);
+						this._InstituteUserID = value.InstituteUserID;
+					}
+					else
+					{
+						this._InstituteUserID = default(int);
+					}
+					this.SendPropertyChanged("InstituteUser");
+				}
+			}
+		}
+		
+		[Association(Name="InstituteUserType_InstituteUserInUserType", Storage="_InstituteUserType", ThisKey="InstituteUserTypeID", IsForeignKey=true)]
+		public InstituteUserType InstituteUserType
+		{
+			get
+			{
+				return this._InstituteUserType.Entity;
+			}
+			set
+			{
+				InstituteUserType previousValue = this._InstituteUserType.Entity;
+				if (((previousValue != value) 
+							|| (this._InstituteUserType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._InstituteUserType.Entity = null;
+						previousValue.InstituteUserInUserTypes.Remove(this);
+					}
+					this._InstituteUserType.Entity = value;
+					if ((value != null))
+					{
+						value.InstituteUserInUserTypes.Add(this);
+						this._InstituteUserTypeID = value.InstituteUserTypeID;
+					}
+					else
+					{
+						this._InstituteUserTypeID = default(int);
+					}
+					this.SendPropertyChanged("InstituteUserType");
 				}
 			}
 		}

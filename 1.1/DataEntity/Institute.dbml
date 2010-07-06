@@ -134,6 +134,7 @@
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="InstituteUser_InstituteUserInUserType" Member="InstituteUserInUserTypes" OtherKey="InstituteUserID" Type="InstituteUserInUserType" />
       <Association Name="InstituteLoginUser_InstituteUser" Member="InstituteLoginUser" ThisKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
     </Type>
   </Table>
@@ -145,6 +146,18 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="InstituteUserType_InstituteUserInUserType" Member="InstituteUserInUserTypes" OtherKey="InstituteUserTypeID" Type="InstituteUserInUserType" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InstituteUserInUserType" Member="InstituteUserInUserTypes">
+    <Type Name="InstituteUserInUserType">
+      <Column Name="InstituteUserInUserTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteUserTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Modifieddate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="InstituteUser_InstituteUserInUserType" Member="InstituteUser" ThisKey="InstituteUserID" Type="InstituteUser" IsForeignKey="true" />
+      <Association Name="InstituteUserType_InstituteUserInUserType" Member="InstituteUserType" ThisKey="InstituteUserTypeID" Type="InstituteUserType" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetTutorial" Method="GetTutorial">

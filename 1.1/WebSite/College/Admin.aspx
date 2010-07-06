@@ -94,6 +94,9 @@
                     <li class="btn roundedall">
                         <aspajax:HyperLink ID="lnkQuestionType" runat="server" NavigateUrl="~/College/Ajaxer/QuestionTypeInfoView.aspx"
                             ContainnerID="#contentBox">Question Type</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>
+                    <li class="btn roundedall">
+                        <aspajax:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/College/Ajaxer/InstituteUserInUserTypeInfo.aspx"
+                            ContainnerID="#contentBox">User Role</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>
                 </ul>
             </div>
             <div class="gbg roundedall" style="clear: both; min-height: 500px; margin: 5px;">
