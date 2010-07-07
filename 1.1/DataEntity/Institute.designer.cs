@@ -205,6 +205,13 @@ namespace DataEntity
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), keywork, tutorialType);
 			return ((ISingleResult<GetTutorialResult>)(result.ReturnValue));
 		}
+		
+		[Function(Name="dbo.GetCourceByInstituteID")]
+		public ISingleResult<GetCourceByInstituteIDResult> GetCourceByInstituteID([Parameter(Name="InstituteID", DbType="Int")] System.Nullable<int> instituteID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteID);
+			return ((ISingleResult<GetCourceByInstituteIDResult>)(result.ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.Institute")]
@@ -4031,6 +4038,86 @@ namespace DataEntity
 				if ((this._PhotoPath != value))
 				{
 					this._PhotoPath = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetCourceByInstituteIDResult
+	{
+		
+		private string _CourceName;
+		
+		private int _InstituteCourceID;
+		
+		private int _InstituteID;
+		
+		private int _CourceID;
+		
+		public GetCourceByInstituteIDResult()
+		{
+		}
+		
+		[Column(Storage="_CourceName", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string CourceName
+		{
+			get
+			{
+				return this._CourceName;
+			}
+			set
+			{
+				if ((this._CourceName != value))
+				{
+					this._CourceName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteCourceID", DbType="Int NOT NULL")]
+		public int InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this._InstituteCourceID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteID", DbType="Int NOT NULL")]
+		public int InstituteID
+		{
+			get
+			{
+				return this._InstituteID;
+			}
+			set
+			{
+				if ((this._InstituteID != value))
+				{
+					this._InstituteID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CourceID", DbType="Int NOT NULL")]
+		public int CourceID
+		{
+			get
+			{
+				return this._CourceID;
+			}
+			set
+			{
+				if ((this._CourceID != value))
+				{
+					this._CourceID = value;
 				}
 			}
 		}

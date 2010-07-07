@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExamViewInfo.aspx.cs" Inherits="College_Ajaxer_ExamViewInfo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExamInfo.aspx.cs" Inherits="College_Ajaxer_ExamViewInfo" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -33,7 +33,7 @@
                     <div>
                         <span class="label">InstituteCourceID</span>
                     </div>
-                    <div>
+                    <div id="ddin">
                         <asp:DropDownList ID="ddInstituteCource" runat="server">
                         </asp:DropDownList>
                     </div>

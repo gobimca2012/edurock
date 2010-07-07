@@ -6076,6 +6076,24 @@ namespace DataAccess
         #endregion
         
         #region CustomInstituteCource
+        public List<GetCourceByInstituteIDResult> GetCourceByInstituteID(int InstituteID)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetCourceByInstituteID(InstituteID).ToList();
+
+        }
+        public List<GetCourceByInstituteIDResult> GetCourceByInstituteID(int InstituteID, int PageSize, int PageNumber)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetCourceByInstituteID(InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         public List<InstituteCource> InstituteCourceGetbyInstituteID(int InstituteID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }

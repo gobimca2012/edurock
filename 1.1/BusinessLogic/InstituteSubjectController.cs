@@ -440,7 +440,7 @@ namespace BusinessLogic
         {
             var data = Get();
             dd.DataSource = data;
-            dd.DataTextField = "CatagoryName";
+            dd.DataTextField = "SubjectText";
             dd.DataValueField = "InstituteSubjectID";
             dd.DataBind();
             ListItem noneItem = new ListItem();
@@ -452,7 +452,7 @@ namespace BusinessLogic
         {
             var data = Get();
             dd.DataSource = data;
-            dd.DataTextField = "CatagoryName";
+            dd.DataTextField = "SubjectText";
             dd.DataValueField = "InstituteSubjectID";
             dd.DataBind();
             ListItem noneItem = new ListItem();
@@ -463,9 +463,34 @@ namespace BusinessLogic
         }
         #endregion
         #region InstituteSubject
+        public void BindInstituteSubject(DropDownList dd, int InstituteCourceID)
+        {
+            var data = GetbyInstituteCourceID(InstituteCourceID);
+            dd.DataSource = data;
+            dd.DataTextField = "SubjectText";
+            dd.DataValueField = "InstituteSubjectID";
+            dd.DataBind();
+            ListItem noneItem = new ListItem();
+            noneItem.Text = "select";
+            noneItem.Value = "0";
+            dd.Items.Insert(0, noneItem);
+        }
+        public void BindInstituteSubject(DropDownList dd,int InstituteCourceID, string SelectedValue)
+        {
+            var data = GetbyInstituteCourceID(InstituteCourceID); 
+            dd.DataSource = data;
+            dd.DataTextField = "SubjectText";
+            dd.DataValueField = "InstituteSubjectID";
+            dd.DataBind();
+            ListItem noneItem = new ListItem();
+            noneItem.Text = "select";
+            noneItem.Value = "0";
+            dd.Items.Insert(0, noneItem);
+            dd.SelectedValue = SelectedValue;
+        }
         #endregion
-				
-	
-	
+
+
+
     }
 }

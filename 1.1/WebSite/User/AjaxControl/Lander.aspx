@@ -7,11 +7,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="display:block;padding:10px 0px;">
+    <div style="display: block; padding: 10px 0px;">
         <ul>
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">Questions</aspajax:HyperLink></li>
-            <li class="btn roundedall">Exam</li>
+            <li class="btn roundedall">
+                <aspajax:HyperLink ID="lnkExam" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ExamInfoView.aspx">Exam</aspajax:HyperLink>
+            </li>
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnktut" runat="server" ContainnerID="#contentBox" NavigateUrl="~/All/Ajaxer/TutorialInfoView.aspx">Tutorials</aspajax:HyperLink></li>
             <li class="btn roundedall">

@@ -190,4 +190,13 @@
       <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetCourceByInstituteID" Method="GetCourceByInstituteID">
+    <Parameter Name="InstituteID" Parameter="instituteID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetCourceByInstituteIDResult">
+      <Column Name="CourceName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

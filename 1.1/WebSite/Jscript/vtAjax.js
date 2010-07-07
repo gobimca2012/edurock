@@ -430,3 +430,25 @@ $.fn.shower=function(ShowBlockID)
     }
     );
 }
+
+$.fn.dropdownPostback=function(url,PostContainnerID,ContainnerID)
+{   
+      var id = $(this).attr("id");
+    
+      url+="?ddp="+id;
+      alert(url);
+      ProgressBar(true,PostContainnerID);
+      var data = $(PostContainnerID).serializeNoViewState();
+      var urlparts = url.toString().split('?');
+      data += "&" + urlparts[1];
+      $.post(urlparts[0], data,
+      function(result)
+      {
+         HtmlPaste(result, ContainnerID);
+         BuildLinks(ContainnerID);
+         ProgressBar(false,PostContainnerID);
+      }
+      );
+    
+    
+}

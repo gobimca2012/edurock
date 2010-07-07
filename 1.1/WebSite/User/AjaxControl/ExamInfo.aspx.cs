@@ -21,7 +21,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
         try
         {
 
-            
+
 
             string ExamName; if (false) { throw new Exception(""); } ExamName = HtmlHelper.ControlValue(txtExamName.ClientID);
 
@@ -50,7 +50,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
             DateTime EndDate; if (false) { throw new Exception(""); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
-            new ExamController().Add( ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
+            new ExamController().Add(ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
             Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
         }
         catch (Exception ex)
@@ -110,22 +110,22 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
         {
             var data = dataBunch[0];
 
-            
+
 
             txtExamName.Text = data.ExamName;
 
             txtSubjectName.Text = data.SubjectName;
 
-            new InstituteCourceController().BindInstituteCource(ddInstituteCource, data.InstituteCourceID.ToString());
-            new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject,data.InstituteSubjectID.ToString());
-            
+            new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().InstituteID, data.InstituteCourceID.ToString());
+            new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, data.InstituteSubjectID.ToString());
+
             txtDescription.Text = data.Description;
 
-            
+
 
             txtExamTime.Text = data.ExamTime;
 
-            chkIsActive.Checked = (bool) data.IsActive;
+            chkIsActive.Checked = (bool)data.IsActive;
 
             txtRequirePecentage.Text = data.RequirePecentage.ToString();
 
@@ -153,9 +153,22 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
         EditData();
 
     }
-
+    private int _InstituteCourceID
+    {
+        get
+        {
+            Convert.ToInt32(AjaxState["icid"]);
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.DatePicker objDatePicker = new JScripter.DatePicker(this.Page, true);
+        objDatePicker.DatePickerTextBox(txtStartDate);
+        objDatePicker.DatePickerTextBox(txtEndDate);
+        if (Request.Params["icid"] != null)
+        {
+            AjaxState["icid"] = Request.Params["icid"];
+        }
         if (Request.Params["eid"] != null)
         {
             AjaxState["eid"] = Request.Params["eid"];
@@ -164,9 +177,25 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
         }
         else
         {
-            new InstituteCourceController().BindInstituteCource(ddInstituteCource);
-            new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject);
-            
+
+            new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject,_InstituteCourceID);
+            new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID,_InstituteCourceID);
+            if (Request.Params["ddp"] != null)
+            {
+                if (Request.Params["ddp"] == ddInstituteCource.ClientID)
+                {
+
+                    //new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID)));
+                    //new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, HtmlHelper.ControlValue(ddInstituteCource.ClientID));
+                }
+            }
+            else
+            {
+                new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID);
+
+                new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject);
+            }
+            ddInstituteCource.Attributes["onchange"] = string.Format("$('#{0}').dropdownPostback('{1}','{2}','{3}');", ddInstituteCource.ClientID, this.Request.Url.AbsolutePath, "#ddin", "#contentBox");
             lnkUpdateExam.Visible = false;
         }
     }

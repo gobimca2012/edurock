@@ -927,7 +927,7 @@ namespace BusinessLogic
         {
             var data = Get();
             dd.DataSource = data;
-            dd.DataTextField = "CatagoryName";
+            dd.DataTextField = "Cource.CourceName";
             dd.DataValueField = "InstituteCourceID";
             dd.DataBind();
             ListItem noneItem = new ListItem();
@@ -939,7 +939,7 @@ namespace BusinessLogic
         {
             var data = Get();
             dd.DataSource = data;
-            dd.DataTextField = "CatagoryName";
+            dd.DataTextField = "Cource.CourceName";
             dd.DataValueField = "InstituteCourceID";
             dd.DataBind();
             ListItem noneItem = new ListItem();
@@ -952,6 +952,56 @@ namespace BusinessLogic
       
 	
         #region InstituteCource
+        public void BindInstituteCource(DropDownList dd, int InstituteID)
+        {
+            var data = GetCourceByInstituteID(InstituteID);
+           
+            dd.DataSource = data;
+            dd.DataTextField = "CourceName";
+            dd.DataValueField = "InstituteCourceID";
+            dd.DataBind();
+            ListItem noneItem = new ListItem();
+            noneItem.Text = "select";
+            noneItem.Value = "0";
+            dd.Items.Insert(0, noneItem);
+        }
+        public void BindInstituteCource(DropDownList dd,int InstituteID, string SelectedValue)
+        {
+            var data = GetCourceByInstituteID(InstituteID);
+            dd.DataSource = data;
+            dd.DataTextField = "CourceName";
+            dd.DataValueField = "InstituteCourceID";
+            dd.DataBind();
+            ListItem noneItem = new ListItem();
+            noneItem.Text = "select";
+            noneItem.Value = "0";
+            dd.Items.Insert(0, noneItem);
+            dd.SelectedValue = SelectedValue;
+        }
+        public List<GetCourceByInstituteIDResult> GetCourceByInstituteID(int InstituteID)
+        {
+            try
+            {
+
+                return new DataProvider().GetCourceByInstituteID(InstituteID);
+            }
+            catch
+            {
+                return new List<GetCourceByInstituteIDResult>();
+            }
+        }
+        public List<GetCourceByInstituteIDResult> GetCourceByInstituteID(int InstituteID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetCourceByInstituteID(InstituteID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetCourceByInstituteIDResult>();
+            }
+        }
         #endregion
 				
 	
