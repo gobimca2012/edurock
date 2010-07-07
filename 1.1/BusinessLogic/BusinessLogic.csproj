@@ -76,6 +76,7 @@
     <Compile Include="EXM_QuestionController.cs" />
     <Compile Include="EXM_UserAnswerController.cs" />
     <Compile Include="GlobelEnum.cs" />
+    <Compile Include="HomeWorkController.cs" />
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="InstituteController.cs" />
     <Compile Include="InstituteCourceController.cs" />

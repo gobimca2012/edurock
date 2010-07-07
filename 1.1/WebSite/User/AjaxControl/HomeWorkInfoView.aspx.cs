@@ -11,10 +11,10 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
-using DataEntity;
 
-public partial class User_AjaxControl_MyQuestion : AjaxPage
+public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
 {
+
     public HtmlHelper _HtmlHelper = new HtmlHelper();
     private int PageNumber
     {
@@ -24,34 +24,40 @@ public partial class User_AjaxControl_MyQuestion : AjaxPage
                 return Convert.ToInt32(Request.Params["pn"].ToString());
             else
             {
-                lnkPrevQuestion.Visible = false;
+                lnkPrevHomeWork.Visible = false;
                 return 0;
             }
         }
 
 
     }
-
+    private int _InstituteCourceID
+    {
+        get
+        {
+            return Convert.ToInt32(AjaxState["icid"]);
+        }
+    }
     private int TotalPage;
-    private int PageSize = 10;
+    private int PageSize = 1;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.Params["icid"] != null)
         {
-            hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?icid=" + Request.Params["icid"];
+            AjaxState["icid"] = Request.Params["icid"];
         }
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionController().GetQuestionByLoginUserID(new UserAuthontication().LoggedInUserID, -1, -1).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new HomeWorkController().GetbyInstituteCourceID(_InstituteCourceID).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new QuestionController().GetQuestionByLoginUserID(new UserAuthontication().LoggedInUserID, -1, -1, PageSize, PageNumber);
-        ListQuestion.DataBind();
+        ListHomeWork.DataSource = new HomeWorkController().GetbyInstituteCourceID(_InstituteCourceID, PageSize, PageNumber);
+        ListHomeWork.DataBind();
     }
     private void PaggerLinkManager()
     {
@@ -59,20 +65,20 @@ public partial class User_AjaxControl_MyQuestion : AjaxPage
 
         if (PageNumber == 0)
         {
-            lnkPrevQuestion.Visible = false;
+            lnkPrevHomeWork.Visible = false;
         }
         if (TotalPage - 1 == PageNumber || TotalPage == 0)
         {
-            lnkNextQuestion.Visible = false;
+            lnkNextHomeWork.Visible = false;
         }
-        if (lnkNextQuestion.Visible)
+        if (lnkNextHomeWork.Visible)
         {
-            //lnkNextQuestion.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
+            //lnkNextHomeWork.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
         }
 
-        if (lnkPrevQuestion.Visible)
+        if (lnkPrevHomeWork.Visible)
         {
-            //lnkPrevQuestion.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
+            //lnkPrevHomeWork.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
         }
     }
     protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
@@ -97,7 +103,7 @@ public partial class User_AjaxControl_MyQuestion : AjaxPage
         base.OnAjaxListViewCommand(e);
     }
 
-    protected void ListQuestionOnItemDataBound(object sender, ListViewItemEventArgs e)
+    protected void ListHomeWorkOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         //ListViewDataItem currentItem = (ListViewDataItem)e.Item;
         //string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
@@ -105,5 +111,7 @@ public partial class User_AjaxControl_MyQuestion : AjaxPage
 
 
     }
+
+
 
 }

@@ -172,6 +172,18 @@
       <Association Name="InstituteUserType_InstituteUserTypeAccess" Member="InstituteUserType" ThisKey="InstituteUserTypeID" Type="InstituteUserType" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.HomeWork" Member="HomeWorks">
+    <Type Name="HomeWork">
+      <Column Name="HomeWorkID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ShortDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetTutorial" Method="GetTutorial">
     <Parameter Name="Keywork" Parameter="keywork" Type="System.String" DbType="VarChar(1000)" />
     <Parameter Name="TutorialType" Parameter="tutorialType" Type="System.Int32" DbType="Int" />

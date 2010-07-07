@@ -56,7 +56,7 @@
                             <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionID").ToString(), "#contentBox", "#contentBox")%>
                         </td>
                         <td>
-                            <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/QuestionInfo.aspx") + "?cid=" + Eval("QuestionID")%>'
+                            <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?qid=" + Eval("QuestionID")%>'
                                 ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                         </td>
                     </tr>
