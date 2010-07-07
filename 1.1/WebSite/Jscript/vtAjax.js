@@ -431,20 +431,20 @@ $.fn.shower=function(ShowBlockID)
     );
 }
 
-$.fn.dropdownPostback=function(url,PostContainnerID,ContainnerID)
+$.fn.dropdownPostback=function(url,PostContainnerID,ContainnerID,ResponseID)
 {   
       var id = $(this).attr("id");
     
       url+="?ddp="+id;
-      alert(url);
+      
       ProgressBar(true,PostContainnerID);
       var data = $(PostContainnerID).serializeNoViewState();
       var urlparts = url.toString().split('?');
       data += "&" + urlparts[1];
       $.post(urlparts[0], data,
       function(result)
-      {
-         HtmlPaste(result, ContainnerID);
+      {         
+         HtmlPaste($(result).find(ResponseID).html(), ResponseID);
          BuildLinks(ContainnerID);
          ProgressBar(false,PostContainnerID);
       }

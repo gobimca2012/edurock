@@ -46,7 +46,7 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
-            hpAddExam.NavigateUr =ResolveUrl( "~/User/AjaxControl/ExamInfo.aspx")+"?icid="+_InstituteCourceID;
+            hpAddExam.NavigateUrl =ResolveUrl( "~/User/AjaxControl/ExamInfo.aspx")+"?icid="+_InstituteCourceID;
         }
 
         {
@@ -99,7 +99,7 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-
+            new ExamController().DeletebyExamID(Convert.ToInt32(e.Id));
             BindList();
         }
         base.OnAjaxListViewCommand(e);
@@ -108,7 +108,8 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
     protected void ListExamOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         //ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        //string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+        //string ExamID = ListExam.DataKeys[currentItem.DataItemIndex]["ExamID"].ToString();
+        //new ExamController().de
 
 
 
