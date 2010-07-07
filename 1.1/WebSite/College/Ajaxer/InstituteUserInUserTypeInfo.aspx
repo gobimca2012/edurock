@@ -8,34 +8,49 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <div>
-            <div>
-                <span class="label">UserRole</span>
-            </div>
-            <div>
-                <asp:DropDownList ID="ddRoles" runat="server">
-                </asp:DropDownList>
-            </div>
-        </div>
-        <div>
-            <div>
-                <%--<asp:ListView ID="ListUser" runat="server">
-                    <LayoutTemplate>
-                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                    </LayoutTemplate>
-                    <ItemTemplate>
-                        <div>
-                            <asp:CheckBox ID="chk" runat="server" Text='<%#Eval("InstituteLoginUser.Username") %>'  />
-                        </div>
-                    </ItemTemplate>
-                </asp:ListView>--%>
-                
-            </div>
+    <div class="contentbox">
+        <div class="gray">
+            User roles</div>
+        <asp:ListView ID="ListUserRoles" runat="server" DataKeyNames="InstituteUserInUserTypeID">
+            <LayoutTemplate>
+                <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <div>
+                    <%#Eval("InstituteUserType.Name") %>
+                </div>
+                <div>
+                    <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteUserInUserTypeID").ToString(), "#contentBox", "#contentBox")%>
+                </div>
+            </ItemTemplate>
+        </asp:ListView>
+        <div class="gray">
         </div>
     </div>
-    <aspajax:AjaxLinkButton ID="lnkP"  runat="server" EnableViewState="False" RequestContainner="#contentBox" ResponseContainner="#contentBox"
-        Increment="False" onajaxclick="AddAjaxClick" Pagger="False">Send</aspajax:AjaxLinkButton>
+    <div class="contentbox">
+        <div class="gray">
+            User roles</div>
+        <div>
+            <div>
+                <div>
+                    <span class="label">UserRole</span>
+                </div>
+                <div>
+                    <asp:DropDownList ID="ddRoles" runat="server">
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div>
+                <div>
+                </div>
+            </div>
+        </div>
+        <div class="gray">
+            <aspajax:AjaxLinkButton ID="lnkP" runat="server" EnableViewState="False" RequestContainner="#contentBox"
+                ResponseContainner="#contentBox" Increment="False" OnAjaxClick="AddAjaxClick"
+                Pagger="False">Add</aspajax:AjaxLinkButton>
+        </div>
+    </div>
     </form>
 </body>
 </html>

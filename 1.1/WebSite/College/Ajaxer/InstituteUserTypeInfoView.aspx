@@ -49,6 +49,10 @@
                             <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteUserTypeInfo.aspx") + "?cid=" + Eval("InstituteUserTypeID")%>'
                                 ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                         </td>
+                        <td>
+                            <aspajax:HyperLink ID="lnkAccess" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteTypeAccessInfo.aspx") + "?iutid=" + Eval("InstituteUserTypeID")%>'
+                                ContainnerID="#contentBox">Access</aspajax:HyperLink>
+                        </td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>

@@ -115,11 +115,15 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		}
 		else if(column.LanguageType.ToLower()=="boolean" || column.LanguageType.ToLower()=="bool")
 		{
-			script+="bool "+column.Alias+";";
+			script+="bool "+column.Alias+"=false;";
 			script+="if(false){";
 			script+="throw new Exception(\"\");";
 			script+="}";				
-			script+=string.Format("{0} = Convert.ToBoolean(HtmlHelper.ControlValue(chk{0}.ClientID));",column.Alias);
+			script+=string.Format(" if (HtmlHelper.ControlValue(chk{0}.ClientID) != \"\")\n",column.Alias);
+			script+=string.Format("if (HtmlHelper.ControlValue(chk{0}.ClientID) == \"on\")\n",column.Alias);
+            script+=string.Format("{0} = true;\n",column.Alias);
+                    
+			//script+=string.Format("{0} = Convert.ToBoolean(HtmlHelper.ControlValue(chk{0}.ClientID));",column.Alias);
 		
 		}
 		else if(column.LanguageType.ToLower()=="int" )

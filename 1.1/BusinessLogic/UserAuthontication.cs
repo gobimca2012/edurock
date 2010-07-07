@@ -421,6 +421,18 @@ namespace BusinessLogic
                 return null;
             }
         }
+        public int InstituteIDByLoginUserID(int LoginUserID)
+        {
+            var data = new InstituteUserController().GetbyLoginUserID(LoginUserID);
+            if (data.Count > 0)
+            {
+                return data[0].InstituteID;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
     }
 }

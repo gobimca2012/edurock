@@ -95,7 +95,7 @@
                         <aspajax:HyperLink ID="lnkQuestionType" runat="server" NavigateUrl="~/College/Ajaxer/QuestionTypeInfoView.aspx"
                             ContainnerID="#contentBox">Question Type</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>
                     <li class="btn roundedall">
-                        <aspajax:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/College/Ajaxer/InstituteUserInUserTypeInfo.aspx"
+                        <aspajax:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/College/Ajaxer/InstituteUserTypeInfoView.aspx"
                             ContainnerID="#contentBox">User Role</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>
                 </ul>
             </div>

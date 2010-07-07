@@ -12,10 +12,17 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class College_Ajaxer_InstituteUserTypeInfoView : AjaxPage
+public partial class College_Ajaxer_InstituteTypeAccessInfoView : AjaxPage
 {
 
     public HtmlHelper _HtmlHelper = new HtmlHelper();
+    private int _InstituteUserTypeID
+    {
+        get
+        {
+            return Convert.ToInt32(AjaxState["iuyid"]);
+        }
+    }
     private int PageNumber
     {
         get
@@ -24,7 +31,7 @@ public partial class College_Ajaxer_InstituteUserTypeInfoView : AjaxPage
                 return Convert.ToInt32(Request.Params["pn"].ToString());
             else
             {
-                lnkPrevInstituteUserType.Visible = false;
+                lnkPrevInstituteTypeAccess.Visible = false;
                 return 0;
             }
         }
@@ -33,22 +40,25 @@ public partial class College_Ajaxer_InstituteUserTypeInfoView : AjaxPage
     }
 
     private int TotalPage;
-    private int PageSize = 10;
+    private int PageSize = 1;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Request.Params["iuyid"] != null)
+        {
+            AjaxState["iuyid"] = Request.Params["iuyid"];
+        }
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new InstituteUserTypeController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new InstituteUserTypeAccessController().GetbyInstituteUserTypeID(_InstituteUserTypeID).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListInstituteUserType.DataSource = new InstituteUserTypeController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID, PageSize, PageNumber);
-        ListInstituteUserType.DataBind();
+        ListInstituteTypeAccess.DataSource = new InstituteUserTypeAccessController().GetbyInstituteUserTypeID(_InstituteUserTypeID, PageSize, PageNumber);
+        ListInstituteTypeAccess.DataBind();
     }
     private void PaggerLinkManager()
     {
@@ -56,20 +66,20 @@ public partial class College_Ajaxer_InstituteUserTypeInfoView : AjaxPage
 
         if (PageNumber == 0)
         {
-            lnkPrevInstituteUserType.Visible = false;
+            lnkPrevInstituteTypeAccess.Visible = false;
         }
         if (TotalPage - 1 == PageNumber || TotalPage == 0)
         {
-            lnkNextInstituteUserType.Visible = false;
+            lnkNextInstituteTypeAccess.Visible = false;
         }
-        if (lnkNextInstituteUserType.Visible)
+        if (lnkNextInstituteTypeAccess.Visible)
         {
-            //lnkNextInstituteUserType.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
+            //lnkNextInstituteTypeAccess.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
         }
 
-        if (lnkPrevInstituteUserType.Visible)
+        if (lnkPrevInstituteTypeAccess.Visible)
         {
-            //lnkPrevInstituteUserType.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
+            //lnkPrevInstituteTypeAccess.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
         }
     }
     protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
@@ -88,16 +98,16 @@ public partial class College_Ajaxer_InstituteUserTypeInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-            new InstituteUserTypeController().DeletebyInstituteUserTypeID(Convert.ToInt32(e.Id));
+
             BindList();
         }
         base.OnAjaxListViewCommand(e);
     }
 
-    protected void ListInstituteUserTypeOnItemDataBound(object sender, ListViewItemEventArgs e)
+    protected void ListInstituteTypeAccessOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
-        ////ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        ////string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+        //ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        //string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
 
 
 

@@ -36,9 +36,9 @@
                                 <td>
                                     Password
                                 </td>
-                                <td>
+                                <%-- <td>
                                     InstituteUserType
-                                </td>
+                                </td>--%>
                                 <td>
                                     ModifiedDate
                                 </td>
@@ -55,19 +55,18 @@
                         <td>
                             <%#Eval("InstituteLoginUser.Password")%>
                         </td>
-                        <td>
+                        <%--<td>
                             <%#Eval("InstituteUserType.Name")%>
-                        </td>
+                        </td>--%>
                         <td>
                             <%#Eval("ModifiedDate") %>
                         </td>
                         <td>
                             <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteUserID").ToString(), "#contentBox", "#contentBox")%>
                         </td>
-                        <%-- <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteUserInfo.aspx") + "?cid=" + Eval("InstituteUserID")%>'
-                            ContainnerID="#contentBox">Edit</aspajax:HyperLink>
-                    </td>--%>
+                        <td>
+                            <aspajax:HyperLink ID="lnkRole" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteUserInUserTypeInfo.aspx") + "?uid=" + Eval("LoginUserID")%>'>Roles</aspajax:HyperLink>
+                        </td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>

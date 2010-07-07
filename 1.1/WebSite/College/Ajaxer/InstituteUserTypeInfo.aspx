@@ -38,12 +38,12 @@
         </div>
         <div class="gray">
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddInstituteUserType" runat="server" RequestContainner="#courceinfo"
-                    ResponseContainner="#courceinfo" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkAddInstituteUserType" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateInstituteUserType" runat="server" RequestContainner="#courceinfo"
-                    ResponseContainner="#courceinfo" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkUpdateInstituteUserType" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
         </div>
     </div>

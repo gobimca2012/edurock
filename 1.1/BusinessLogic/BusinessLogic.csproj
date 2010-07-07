@@ -80,6 +80,7 @@
     <Compile Include="InstituteController.cs" />
     <Compile Include="InstituteCourceController.cs" />
     <Compile Include="InstituteSubjectController.cs" />
+    <Compile Include="InstituteUserTypeAccessController.cs" />
     <Compile Include="InstituteUserController.cs" />
     <Compile Include="InstituteUserInUserTypeController.cs" />
     <Compile Include="InstituteUserTypeController.cs" />
