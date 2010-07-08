@@ -8,67 +8,71 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <asp:ListView ID="ListMessage" runat="server">
-            <LayoutTemplate>
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
+    <div class="contentbox">
+        <div class="gray">
+            Message Inbox</div>
+        <div class="whitecont">
+            <asp:ListView ID="ListMessage" runat="server">
+                <LayoutTemplate>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>
+                                        To
+                                    </td>
+                                    <td>
+                                        Subject
+                                    </td>
+                                    <td>
+                                        Date
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                        </table>
+                    </div>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <%#Eval("FromFullName") %>
+                            <td>
                                 <td>
-                                    To
+                                    <aspajax:HyperLink ID="lnkFullView" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Message.aspx")+"?mid="+Eval("MessageID").ToString() %>'> <%#Eval("Subject") %></aspajax:HyperLink>
                                 </td>
-                                <td>
-                                    Subject
-                                </td>
-                                <td>
-                                    Date
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </thead>
-                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                    </table>
+                                <%#Eval("ModifiedDate") %>
+                            </td>
+                            <td>
+                                <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("MessageID").ToString(), "#contentBox", "#contentBox")%>
+                            </td>
+                    </div>
+                </ItemTemplate>
+            </asp:ListView>
+            <div>
+                <div style="float: right">
+                    <div style="float: left">
+                        <aspajax:AjaxLinkButton ID="lnkPrevMessage" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
+                            Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
+                    </div>
+                    <div style="float: left">
+                        <aspajax:AjaxLinkButton ID="lnkNextMessage" runat="server" OnAjaxClick="NextAjaxClick"
+                            RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
+                    </div>
                 </div>
-            </LayoutTemplate>
-            <ItemTemplate>
-                <tr>
-                <td>
-                        <%#Eval("FromFullName") %>
-                    <td>
-                    <td>
-                        <aspajax:HyperLink ID="lnkFullView" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Message.aspx")+"?mid="+Eval("MessageID").ToString() %>'> <%#Eval("Subject") %></aspajax:HyperLink>
-                    </td>
-                    
-                        <%#Eval("ModifiedDate") %>
-                    </td>
-                    <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("MessageID").ToString(), "#contentBox", "#contentBox")%>
-                    </td>
-                    
+                <div style="clear: both">
                 </div>
-            </ItemTemplate>
-        </asp:ListView>
-        <div>
-            <div style="float: right">
-                <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkPrevMessage" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                        Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
-                </div>
-                <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkNextMessage" runat="server" OnAjaxClick="NextAjaxClick"
-                        RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
-                </div>
-            </div>
-            <div style="clear: both">
             </div>
         </div>
-        <div>
-            <aspajax:HyperLink ID="hpAddMessage" runat="server" NavigateUrl="~/Admin/Ajaxer/MessageInfo.aspx"
-                ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+        <div class="gray">
+            <div>
+                <aspajax:HyperLink ID="hpAddMessage" runat="server" NavigateUrl="~/Admin/Ajaxer/MessageInfo.aspx"
+                    ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+            </div>
         </div>
     </div>
     </form>

@@ -38,5 +38,7 @@ public partial class User_AjaxControl_Lander : AjaxPage
             lnkHomeWork.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWorkInfoView.aspx") + "?icid=" + ICID.ToString();
 
         }
+        string Script="$('#contentBox').html('');";
+        JScripter.JScripter.InjectScript(Script, this.Page);
     }
 }

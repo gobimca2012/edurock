@@ -41,7 +41,8 @@ public partial class User_AjaxControl_MessageInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new MessageController().MessageAdd(MessageID, Subject, MessageText, ToLoginUserID, FromLoginUserID, ModifiedDate);
-            Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
+            //Response.Redirect("~/User/AjaxControl/CourceInfoView.aspx");
+            divMessage.InnerHtml = "<div class='success'>Message has been sent</div>";
         }
         catch (Exception ex)
         {
