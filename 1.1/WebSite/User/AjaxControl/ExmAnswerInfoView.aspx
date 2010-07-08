@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExamInfoView.aspx.cs" Inherits="College_Ajaxer_ExamInfoView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExmAnswerInfoView.aspx.cs"
+    Inherits="User_AjaxControl_ExmAnswerInfoView" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,33 +10,30 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Exams
+            Answers
         </div>
-        <asp:ListView ID="ListExam" runat="server">
+        <asp:ListView ID="ListEXM_Answer" runat="server">
             <LayoutTemplate>
                 <table>
                     <thead>
                         <tr>
                             <td>
-                                ExamName
+                                EXM_AnswerID
                             </td>
                             <td>
-                                SubjectName
+                                EXM_QuestionID
                             </td>
                             <td>
-                                InstituteCourceID
+                                Answer
                             </td>
                             <td>
-                                InstituteSubjectID
+                                IsRight
+                            </td>
+                            <td>
+                                Marks
                             </td>
                             <td>
                                 ModifiedDate
-                            </td>
-                            <td>
-                                StartDate
-                            </td>
-                            <td>
-                                EndDate
                             </td>
                         </tr>
                     </thead>
@@ -45,32 +43,28 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Exam.aspx") + "?eid=" + Eval("ExamID").ToString()%>'>
-                        <%#Eval("ExamName") %></aspajax:HyperLink>
+                        <%#Eval("EXM_AnswerID") %>
                     </td>
                     <td>
-                        <%#Eval("SubjectName") %>
+                        <%#Eval("EXM_QuestionID") %>
                     </td>
                     <td>
-                        <%#Eval("InstituteCourceID") %>
+                        <%#Eval("Answer") %>
                     </td>
                     <td>
-                        <%#Eval("InstituteSubjectID") %>
+                        <%#Eval("IsRight") %>
+                    </td>
+                    <td>
+                        <%#Eval("Marks") %>
                     </td>
                     <td>
                         <%#Eval("ModifiedDate") %>
                     </td>
                     <td>
-                        <%#Eval("StartDate") %>
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("EXM_AnswerID").ToString(), "#contentBox", "#contentBox")%>
                     </td>
                     <td>
-                        <%#Eval("EndDate") %>
-                    </td>
-                    <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("ExamID").ToString(), "#contentBox", "#contentBox")%>
-                    </td>
-                    <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/ExamInfo.aspx") + "?eid=" + Eval("ExamID")%>'
+                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/ExmAnswerInfoView.aspx") + "?eaid=" + Eval("EXM_AnswerID")%>'
                             ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                     </td>
                 </tr>
@@ -79,16 +73,16 @@
         <div class="gray">
             <div style="float: right">
                 <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkPrevExam" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
+                    <aspajax:AjaxLinkButton ID="lnkPrevEXM_Answer" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
                         Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkNextExam" runat="server" OnAjaxClick="NextAjaxClick"
+                    <aspajax:AjaxLinkButton ID="lnkNextEXM_Answer" runat="server" OnAjaxClick="NextAjaxClick"
                         RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                 </div>
             </div>
-            <div style="float: left">
-                <aspajax:HyperLink ID="hpAddExam" runat="server" NavigateUrl="~/User/AjaxControl/ExamInfo.aspx"
+            <div style="float:left">
+                <aspajax:HyperLink ID="hpAddEXM_Answer" runat="server" NavigateUrl="~/User/Ajaxer/EXMAnswerInfo.aspx"
                     ContainnerID="#contentBox">Add New</aspajax:HyperLink>
             </div>
             <div style="clear: both">

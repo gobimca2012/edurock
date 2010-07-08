@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class College_Ajaxer_ExamInfoView : AjaxPage
+public partial class User_AjaxControl_ExmAnswerInfoView : AjaxPage
 {
 
     public HtmlHelper _HtmlHelper = new HtmlHelper();
@@ -24,7 +24,7 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
                 return Convert.ToInt32(Request.Params["pn"].ToString());
             else
             {
-                lnkPrevExam.Visible = false;
+                lnkPrevEXM_Answer.Visible = false;
                 return 0;
             }
         }
@@ -33,33 +33,32 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
     }
 
     private int TotalPage;
-    private int PageSize = 1;
-    private int _InstituteCourceID
+    private int PageSize = 100;
+    private int _QuestionID
     {
         get
         {
-            return Convert.ToInt32(AjaxState["icid"]);
+            return Convert.ToInt32(AjaxState["qid"]);
         }
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Params["icid"] != null)
+        if (Request.Params["qid"] != null)
         {
-            AjaxState["icid"] = Request.Params["icid"];
-            hpAddExam.NavigateUrl =ResolveUrl( "~/User/AjaxControl/ExamInfo.aspx")+"?icid="+_InstituteCourceID;
+            AjaxState["qid"] = Request.Params["qid"];
         }
 
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new ExamController().GetbyInstituteCourceID(_InstituteCourceID).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new EXM_AnswerController().GetbyEXM_QuestionID(_QuestionID).Count / PageSize));
             PaggerLinkManager();
         }
-
+        MakeLink();
     }
     private void BindList()
     {
-        ListExam.DataSource = new ExamController().GetbyInstituteCourceID(_InstituteCourceID, PageSize, PageNumber);
-        ListExam.DataBind();
+        ListEXM_Answer.DataSource = new EXM_AnswerController().GetbyEXM_QuestionID(_QuestionID, PageSize, PageNumber);
+        ListEXM_Answer.DataBind();
     }
     private void PaggerLinkManager()
     {
@@ -67,20 +66,20 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
 
         if (PageNumber == 0)
         {
-            lnkPrevExam.Visible = false;
+            lnkPrevEXM_Answer.Visible = false;
         }
         if (TotalPage - 1 == PageNumber || TotalPage == 0)
         {
-            lnkNextExam.Visible = false;
+            lnkNextEXM_Answer.Visible = false;
         }
-        if (lnkNextExam.Visible)
+        if (lnkNextEXM_Answer.Visible)
         {
-            //lnkNextExam.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
+            //lnkNextEXM_Answer.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
         }
 
-        if (lnkPrevExam.Visible)
+        if (lnkPrevEXM_Answer.Visible)
         {
-            //lnkPrevExam.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
+            //lnkPrevEXM_Answer.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
         }
     }
     protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
@@ -99,24 +98,24 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-            new ExamController().DeletebyExamID(Convert.ToInt32(e.Id));
+            new EXM_AnswerController().GetbyEXM_AnswerID(Convert.ToInt32(e.Id));
             BindList();
         }
         base.OnAjaxListViewCommand(e);
     }
 
-    protected void ListExamOnItemDataBound(object sender, ListViewItemEventArgs e)
+    protected void ListEXM_AnswerOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
-        //ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        //string ExamID = ListExam.DataKeys[currentItem.DataItemIndex]["ExamID"].ToString();
-        //new ExamController().de
+        ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        //string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
 
 
 
     }
-
-    
-
+    private void MakeLink()
+    {
+        hpAddEXM_Answer.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExmAnswerInfo.aspx") + "?qid=" + _QuestionID.ToString();
+    }
 
 
 }
