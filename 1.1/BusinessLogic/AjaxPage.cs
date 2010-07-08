@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
 
 namespace BusinessLogic
 {
@@ -27,6 +28,11 @@ namespace BusinessLogic
     public class AjaxPage : System.Web.UI.Page
     {
         public JScripter.Loader objLoader;
+        public bool IsEventChange
+        {
+            get;
+            set;
+        }
         public int LoginUserID
         {
             get
@@ -77,23 +83,25 @@ namespace BusinessLogic
             }
         }
         protected Dictionary<string, string> AjaxState = new Dictionary<string, string>();
+
         public delegate void AjaxClickEventHandler(object sender, AjaxListViewCommandArg e);
-        public event AjaxClickEventHandler AjaxListViewCommand;        
+        public event AjaxClickEventHandler AjaxListViewCommand;
         protected virtual void OnAjaxListViewCommand(AjaxListViewCommandArg e)
         {
             if (AjaxListViewCommand != null)
                 AjaxListViewCommand(this, e);
         }
-        public string AjaxStateName="__AjaxState";
+
+        public string AjaxStateName = "__AjaxState";
         protected override void OnInit(EventArgs e)
         {
             objLoader = new JScripter.Loader(this.Page, false);
             if (Request.Params[AjaxStateName] != null && Request.Params[AjaxStateName] != "")
             {
                 string AjaxStateValues = Request.Params[AjaxStateName].ToString();
-                
+
                 string[] AjaxStatePart = AjaxStateValues.Split('&');
-                
+
                 {
                     for (int i = 0; i < AjaxStatePart.Length; i++)
                     {
@@ -110,7 +118,7 @@ namespace BusinessLogic
         }
         protected override void OnLoad(EventArgs e)
         {
-            
+            IsEventChange = false;
             this.Page.Header.Visible = false;
             base.OnLoad(e);
 
@@ -124,6 +132,10 @@ namespace BusinessLogic
                     objcommandevent.customId1 = Request.Params["lid1"];
                 }
                 OnAjaxListViewCommand(objcommandevent);
+            }
+            if (Request.Params["ddp"]!=null)
+            {
+                OnAjaxDropDownChange("");
             }
 
 
@@ -140,10 +152,10 @@ namespace BusinessLogic
                 List<string> Keylist = new List<string>(AjaxState.Keys);
                 List<string> valuelist = new List<string>(AjaxState.Values);
 
-                
+
                 for (int i = 0; i < AjaxState.Keys.Count; i++)
                 {
-                    if (i >0)
+                    if (i > 0)
                     {
                         AjaxStateString += string.Format("&{0}={1}", Keylist[i], valuelist[i]);
                     }
@@ -156,7 +168,7 @@ namespace BusinessLogic
                 AjaxStateControl.ID = AjaxStateName;
                 this.Page.Form.Controls.Add(AjaxStateControl);
             }
-            
+
             base.OnLoadComplete(e);
         }
         protected override void LoadViewState(object savedState)
@@ -223,6 +235,21 @@ namespace BusinessLogic
 
         }
 
+
+        protected void DropDownPostBack(DropDownList dd, string PostContainnerID, string ResponseContainnerID)
+        {
+            dd.Attributes["onchange"] = string.Format("$('#{0}').dropdownPostback('{1}','{2}','{3}');", dd.ClientID, this.Request.Url.AbsolutePath, PostContainnerID, ResponseContainnerID);
+        }
+        public delegate void AjaxDropDownChangeEventHandler(object sender, string e);
+        public event AjaxDropDownChangeEventHandler AjaxDropDownChange;
+        protected virtual void OnAjaxDropDownChange(string e)
+        {
+            if (AjaxDropDownChange != null)
+            {
+                IsEventChange = true;
+                AjaxDropDownChange(this, e);
+            }
+        }
 
     }
 }

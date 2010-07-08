@@ -193,7 +193,8 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
                 new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject);
             }
-            ddInstituteCource.Attributes["onchange"] = string.Format("$('#{0}').dropdownPostback('{1}','{2}','{3}','{4}');", ddInstituteCource.ClientID, this.Request.Url.AbsolutePath, "#ddin", "#contentBox", "#SubjectDrop");
+            //ddInstituteCource.Attributes["onchange"] = string.Format("$('#{0}').dropdownPostback('{1}','{2}','{3}','{4}');", ddInstituteCource.ClientID, this.Request.Url.AbsolutePath, "#ddin", "#contentBox", "#SubjectDrop");
+            this.DropDownPostBack(ddInstituteCource, "#ddin", "#SubjectDrop");
             lnkUpdateExam.Visible = false;
         }
     }

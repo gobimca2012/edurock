@@ -38,7 +38,7 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new HomeWorkController().Add(LoginUserID, Title, Description, ShortDescription, InstituteCourceID, InstituteSubjectID, ModifiedDate);
-            Response.Redirect("~/College/AjaxControl/HomeWorkInfo.aspx");
+            Response.Redirect("~/User/AjaxControl/HomeWorkInfo.aspx");
         }
         catch (Exception ex)
         {
@@ -69,7 +69,7 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 
             new HomeWorkController().UpdateByHomeWorkID(ID, LoginUserID, Title, Description, ShortDescription, InstituteCourceID, InstituteSubjectID, ModifiedDate);
 
-            Response.Redirect("~/College/AjaxControl/HomeWorkInfo.aspx");
+            Response.Redirect("~/User/AjaxControl/HomeWork.aspx?hwid="+ID.ToString() );
         }
         catch (Exception ex)
         {
@@ -92,10 +92,9 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 
             txtShortDescription.Text = data.ShortDescription;
 
-            ddInstituteCource.SelectedValue = data.InstituteCourceID.ToString();
-
-            ddInstituteSubject.SelectedValue = data.InstituteSubjectID.ToString();
-
+            new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject,Convert.ToInt32( data.InstituteCourceID.ToString()),data.InstituteSubjectID.ToString());
+            new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, data.InstituteCourceID.ToString());
+            
             
         }
     }
@@ -126,21 +125,34 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Params["hwid"] != null)
+        if (!IsEventChange)
         {
-            AjaxState["hwid"] = Request.Params["hwid"];
-            BindData();
-            lnkAddHomeWork.Visible = false;
+            if (Request.Params["icid"] != null)
+            {
+                AjaxState["icid"] = Request.Params["icid"];
+            }
+            if (Request.Params["hwid"] != null)
+            {
+                AjaxState["hwid"] = Request.Params["hwid"];
+                BindData();
+                lnkAddHomeWork.Visible = false;
+            }
+            else
+            {
+                new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID);
+
+                lnkUpdateHomeWork.Visible = false;
+            }
+
+            this.DropDownPostBack(ddInstituteCource, "#ddInsti", "#ddSub");
         }
-        else
-        {
-            new InstituteCourceController().BindInstituteCource(ddInstituteCource);            
-            lnkUpdateHomeWork.Visible = false;
-        }
-        if (Request.Params["icid"] != null)
-        {
-            AjaxState["icid"] = Request.Params["icid"];
-        }
+        
+    }
+    protected override void OnAjaxDropDownChange(string e)
+    {
+        new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID)));
+        new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, HtmlHelper.ControlValue(ddInstituteCource.ClientID));
+        base.OnAjaxDropDownChange(e);
     }
 
 }

@@ -11,6 +11,8 @@
         <div class="gray">
             <h3>
                 Question View</h3>
+            <span >
+                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink></span>
         </div>
         <div id="Question" style="padding: 5px;">
             <div>

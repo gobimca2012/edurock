@@ -431,7 +431,7 @@ $.fn.shower=function(ShowBlockID)
     );
 }
 
-$.fn.dropdownPostback=function(url,PostContainnerID,ContainnerID,ResponseID)
+$.fn.dropdownPostback=function(url,PostContainnerID,ResponseID)
 {   
       var id = $(this).attr("id");
     
@@ -445,7 +445,7 @@ $.fn.dropdownPostback=function(url,PostContainnerID,ContainnerID,ResponseID)
       function(result)
       {         
          HtmlPaste($(result).find(ResponseID).html(), ResponseID);
-         BuildLinks(ContainnerID);
+         //BuildLinks(ContainnerID);
          ProgressBar(false,PostContainnerID);
       }
       );

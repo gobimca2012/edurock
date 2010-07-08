@@ -19,11 +19,16 @@ public partial class User_AjaxControl_Question : AjaxPage
     {
         get
         {
-            return new Guid(Request.Params["qid"]);
+            return new Guid(AjaxState["qid"]);
         }
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.Params["qid"] != null)
+        {
+            AjaxState["qid"] = Request.Params["qid"];
+            MakeLinks();
+        }
         var data = new QuestionController().GetQuestionByQuestionID(ID,-1,-1);
         if (data.Count > 0)
         {
@@ -62,5 +67,10 @@ public partial class User_AjaxControl_Question : AjaxPage
             lblModifiedDate.InnerHtml = data.ModifiedDate.ToString();
 
     }
+    private void MakeLinks()
+    {
+        lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?qid=" + ID.ToString();
+    }
+
 
 }

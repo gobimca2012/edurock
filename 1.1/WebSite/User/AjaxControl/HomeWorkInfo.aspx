@@ -13,20 +13,7 @@
         <fieldset>
             <legend>HomeWork</legend>
             <div>
-                <div>
-                    <div>
-                        <span class="label">HomeWorkID</span>
-                    </div>
-                    <div>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">LoginUserID</span>
-                    </div>
-                    <div>
-                    </div>
-                </div>
+                
                 <div>
                     <div>
                         <span class="label">Title</span>
@@ -40,7 +27,8 @@
                         <span class="label">Description</span>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtDescription" runat="server" Height="187px" 
+                            TextMode="MultiLine"></asp:TextBox>
                     </div>
                 </div>
                 <div>
@@ -48,10 +36,11 @@
                         <span class="label">ShortDescription</span>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtShortDescription" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtShortDescription" runat="server" Height="292px" 
+                            TextMode="MultiLine"></asp:TextBox>
                     </div>
                 </div>
-                <div>
+                <div id="ddInsti">
                     <div>
                         <span class="label">InstituteCourceID</span>
                     </div>
@@ -60,7 +49,7 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                <div>
+                <div id="ddSub">
                     <div>
                         <span class="label">InstituteSubjectID</span>
                     </div>

@@ -17,19 +17,7 @@
                     <thead>
                         <tr>
                             <td>
-                                HomeWorkID
-                            </td>
-                            <td>
-                                LoginUserID
-                            </td>
-                            <td>
                                 Title
-                            </td>
-                            <td>
-                                Description
-                            </td>
-                            <td>
-                                ShortDescription
                             </td>
                             <td>
                                 InstituteCourceID
@@ -48,19 +36,8 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <%#Eval("HomeWorkID") %>
-                    </td>
-                    <td>
-                        <%#Eval("LoginUserID") %>
-                    </td>
-                    <td>
-                        <%#Eval("Title") %>
-                    </td>
-                    <td>
-                        <%#Eval("Description") %>
-                    </td>
-                    <td>
-                        <%#Eval("ShortDescription") %>
+                        <aspajax:HyperLink ID="lnkFull" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWork.aspx")+"?hid="+Eval("HomeWorkID").ToString()%>'
+                            ContainnerID="#contentBox"><%#Eval("Title") %></aspajax:HyperLink>
                     </td>
                     <td>
                         <%#Eval("InstituteCourceID") %>
@@ -75,8 +52,8 @@
                         <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("HomeWorkID").ToString(), "#contentBox", "#contentBox")%>
                     </td>
                     <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWorkInfo.aspx") + "?cid=" + Eval("HomeWorkID")%>'
-                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
+                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWorkInfo.aspx") + "?hwid=" + Eval("HomeWorkID")%>'
+                            ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -92,7 +69,7 @@
                         RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                 </div>
             </div>
-            <div style="float:left">
+            <div style="float: left">
                 <aspajax:HyperLink ID="hpAddHomeWork" runat="server" NavigateUrl="~/User/AjaxControl/HomeWorkInfo.aspx"
                     ContainnerID="#contentBox">Add New</aspajax:HyperLink>
             </div>
