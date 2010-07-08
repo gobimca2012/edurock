@@ -49,4 +49,30 @@ public partial class User_AjaxControl_EXMQuestionList : AjaxPage
         }
         base.OnAjaxListViewCommand(e);
     }
+    protected void ItemdataBound(object sender, ListViewItemEventArgs e)
+    {
+        ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        string Q_Type = ListEXM_Question.DataKeys[currentItem.DataItemIndex]["Q_Type"].ToString();
+        string EXM_QuestionID = ListEXM_Question.DataKeys[currentItem.DataItemIndex]["EXM_QuestionID"].ToString();
+        AjaxControl.HyperLink lnkEdit = (AjaxControl.HyperLink)currentItem.FindControl("lnkEdit");
+        if (lnkEdit != null)
+        {
+            if (Q_Type == "1")
+            {
+                lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/SingleChoiceInfo.aspx") + "?qid=" + EXM_QuestionID;
+            }
+            else if (Q_Type == "2")
+            {
+                lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/MultiChoiceInfo.aspx") + "?qid=" + EXM_QuestionID;
+            }
+            else if (Q_Type == "3")
+            {
+                lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/SingleFillIntheBlankInfo.aspx") + "?qid=" + EXM_QuestionID;
+            }
+            else if (Q_Type == "1")
+            {
+                lnkEdit.NavigateUrl = ResolveUrl("") + "?qid=" + EXM_QuestionID;
+            }
+        }
+    }
 }

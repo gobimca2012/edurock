@@ -112,8 +112,8 @@ public partial class User_AjaxControl_SingleChoiceInfo : AjaxPage
             
             txtQuestion.Text = data.Question;
 
-            
 
+            txtMarks.Text = data.Marks.ToString();
 
             txtDescription.Text = data.Description;
 

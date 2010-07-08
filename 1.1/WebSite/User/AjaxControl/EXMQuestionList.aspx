@@ -15,7 +15,8 @@
             </span>
         </div>
         <div>
-            <asp:ListView ID="ListEXM_Question" runat="server" DataKeyNames="EXM_QuestionID">
+            <asp:ListView ID="ListEXM_Question" runat="server" 
+                DataKeyNames="EXM_QuestionID,Q_Type" onitemdatabound="ItemdataBound">
                 <LayoutTemplate>
                     <table id="ListQuestion">
                         <thead>
@@ -56,7 +57,7 @@
                             <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("ModifiedDate"))) %>
                         </td>
                         <td>
-                            <asp:HyperLink ID="lnkEdit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/QuestionWizard/Step1.aspx")+"?qid="+Eval("EXM_QuestionID")%>'>Edit</asp:HyperLink>
+                            <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                         </td>
                         <td>
                             <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("EXM_QuestionID").ToString(), "#contentBox", "#contentBox")%>

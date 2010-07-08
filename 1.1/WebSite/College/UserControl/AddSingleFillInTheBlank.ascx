@@ -16,7 +16,6 @@
                     <asp:TextBox ID="txtQuestionPart2" runat="server" Width="579px"></asp:TextBox>
                 </div>
             </div>
-           
             <div>
                 <div>
                     <span class="label">Description</span>

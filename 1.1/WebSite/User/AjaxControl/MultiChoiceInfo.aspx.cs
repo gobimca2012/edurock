@@ -94,7 +94,7 @@ public partial class User_AjaxControl_MultiChoiceInfo : AjaxPage
             int Order = 0;
             new EXM_QuestionController().UpdateByEXM_QuestionID(EXM_QuestionID, Question, LoginUserID, ExamID, Convert.ToInt32(marks), Q_Type, Description, ModifiedDate);
 
-            Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
+            Response.Redirect("~/User/AjaxControl/EXMQuestionList.aspx?eid=" + _ExamID.ToString());
         }
         catch (Exception ex)
         {

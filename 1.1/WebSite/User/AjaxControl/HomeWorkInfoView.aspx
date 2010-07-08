@@ -36,7 +36,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <aspajax:HyperLink ID="lnkFull" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWork.aspx")+"?hid="+Eval("HomeWorkID").ToString()%>'
+                        <aspajax:HyperLink ID="lnkFull" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWork.aspx")+"?hwid="+Eval("HomeWorkID").ToString()%>'
                             ContainnerID="#contentBox"><%#Eval("Title") %></aspajax:HyperLink>
                     </td>
                     <td>

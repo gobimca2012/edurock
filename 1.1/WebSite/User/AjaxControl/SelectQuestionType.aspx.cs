@@ -34,6 +34,7 @@ public partial class User_AjaxControl_SelectQuestionType : AjaxPage
     {
         lnkSingleChoice.NavigateUrl = ResolveUrl("~/User/AjaxControl/SingleChoiceInfo.aspx") + "?eid=" + _ExamID.ToString();
         lnkMultiChoice.NavigateUrl = ResolveUrl("~/User/AjaxControl/MultiChoiceInfo.aspx") + "?eid=" + _ExamID.ToString();
+        lnksingleFillinTheBlank.NavigateUrl = ResolveUrl("~/User/AjaxControl/SingleFillIntheBlankInfo.aspx") + "?eid=" + _ExamID.ToString();
     }
     protected override void OnAjaxDropDownChange(string e)
     {

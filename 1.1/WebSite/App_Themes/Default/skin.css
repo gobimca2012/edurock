@@ -423,3 +423,10 @@ h3
     padding: 0px;
     margin: 0px;
 }
+.error
+{
+    padding:3px;
+    background:#C72127;
+    margin:3px;
+    color:#fff;
+}
