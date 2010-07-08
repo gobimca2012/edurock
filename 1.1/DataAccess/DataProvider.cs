@@ -1556,7 +1556,10 @@ namespace DataAccess
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();
             db.ObjectTrackingEnabled = false;
             var data = (from p in db.EXM_Answers where p.EXM_AnswerID == EXM_AnswerID select p).ToList();
+            db.EXM_Answers.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+
             return data;
 
         }
