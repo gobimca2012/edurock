@@ -21,15 +21,18 @@
             <div style="float: left; width: 200px" id="sidemenu">
                 <div style="height: 100px">
                 </div>
-                <div class="gbg roundedl leftmenu">
+                <div class="leftmenu">
                     <div id="courcel">
-                        <h5>
-                            Cources</h5>
+                        <div class="btn"><span class="sub" style="float:left"></span><span style="float:left">
+                            
+                                Cources
+                        </span>
+                        <div style="clear:both"></div></div>
                     </div>
                     <div id="icource" class="invis">
                     </div>
                 </div>
-                <div class="gbg roundedl leftmenu">
+                <div class="leftmenu">
                     <div id="questiontrg">
                         <h5>
                             Question</h5>

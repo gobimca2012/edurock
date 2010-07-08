@@ -63,7 +63,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(            'images/headerbt.jpg' ) repeat-x;
+    background: url(              'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -281,7 +281,7 @@ input, textarea
     text-align: left;
     display: none;
 }
-.roundedall,.btn, .cin:hover, .contentbox
+.roundedall, .btn, .cin:hover, .contentbox
 {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -318,7 +318,7 @@ input, textarea
 }
 .bksl .btn
 {
-    background-image: url(images/bgrsl.png);
+    background-image: url(images/blackbtn.jpg);
     float: left;
     height: 33px;
     padding: 0px 10px;
@@ -326,13 +326,32 @@ input, textarea
     color: #fff;
     font-weight: bold;
     line-height: 32px;
-    border:1px solid #171717;
+    border: 1px solid #171717;
 }
 .btn
 {
-    padding:6px 10px;
+    padding: 6px 10px;
+    background: url(images/graybtn.gif);
+    background-repeat: repeat-x;
+    height: 24px;
+    border: solid 1px #c4c7c8;
+    padding: 5px 5px;
 }
-.gray, h5, .btn
+.btn:hover, .cin:hover
+{
+    background: url(images/bluebtn.gif);
+    border: solid 1px #267bc4;
+}
+.btn:hover a, .cin:hover a
+{
+    color: #fff;
+}
+.btn a
+{
+    color: #323232;
+    font-weight: bold;
+}
+.gray, h5
 {
     background-image: url(images/gsl.png);
     border: solid 1px #C5C8C9;
@@ -360,28 +379,11 @@ h5
     padding: 5px;
     margin: 5px;
 }
-.leftmenu
-{
-    margin: 5px 0px 5px 5px;
-    padding: 15px 1px;
-}
 .cin
 {
     padding: 5px;
     border-bottom: dashed 1px #424542;
     margin: 1px;
-}
-.cin a
-{
-    color: #424542;
-}
-.cin:hover a
-{
-    color: #fff;
-}
-.cin:hover
-{
-    background: #424542;
 }
 .contentbox
 {
@@ -425,13 +427,85 @@ h3
 }
 .error
 {
-    padding:3px;
-    background:#C72127;
-    margin:3px;
-    color:#fff;
+    padding: 3px;
+    background: #C72127;
+    margin: 3px;
+    color: #fff;
 }
 .whitecont
 {
-    padding:5px;
-    background:#fff;
+    padding: 5px;
+    background: #fff;
 }
+/* Icons */
+
+.edit
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+}
+.delete
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+}
+.dash
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+}
+.acco
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+}
+.img
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+}
+.doc
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+}
+.aud
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+}
+.vid
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+}
+.ques
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+}
+.us
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+}
+.sub
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+    background-position: -108px 0px;
+    padding: 14px 14px;
+}
+
+/* end Account*/
