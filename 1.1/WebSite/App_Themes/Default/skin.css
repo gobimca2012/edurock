@@ -1,6 +1,6 @@
 ﻿*
 {
-    color: #424542;
+    color: #626262;
 }
 body
 {
@@ -63,7 +63,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(              'images/headerbt.jpg' ) repeat-x;
+    background: url(                'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -255,6 +255,7 @@ li
     background-color: Transparent;
     padding: 0px;
     margin: 0px;
+    text-align: left;
 }
 
 li input, li select, li textarea, select
@@ -309,6 +310,13 @@ input, textarea
     -khtml-border-radius: 5px 0px 0px 5px;
     border-radius: 5px 0px 0px 5px;
 }
+.roundedright
+{
+    -moz-border-radius: 0px 5px 0px 0px;
+    -webkit-border-radius: 0px 5px 0px 0px;
+    -khtml-border-radius: 0px 5px 0px 0px;
+    border-radius: 0px 5px 0px 0px;
+}
 .bksl
 {
     background-image: url(images/bks.png);
@@ -321,11 +329,11 @@ input, textarea
     background-image: url(images/blackbtn.jpg);
     float: left;
     height: 33px;
-    padding: 0px 10px;
+    padding: 0px 10px 0px 0px;
     margin: 0px 5px;
     color: #fff;
     font-weight: bold;
-    line-height: 32px;
+    line-height: 33px;
     border: 1px solid #171717;
 }
 .btn
@@ -410,7 +418,7 @@ table
 }
 table thead td, .btext, a
 {
-    color: #083C7B;
+    color: #497ec1;
 }
 .btext, a
 {
@@ -437,6 +445,27 @@ h3
     padding: 5px;
     background: #fff;
 }
+
+.grayhead
+{
+    background: url(images/grayHead.gif);
+    height: 28px;
+    background-repeat: repeat-x;
+    border: solid 1px #C5C8C9;
+    line-height: 28px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px;
+}
+.graylg
+{
+    background: url(images/braylg.jpg);
+    height: 73px;
+    background-repeat: repeat-x;
+    border: solid 1px #C5C8C9;
+    line-height: 28px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px;
+}
 /* Icons */
 
 .edit
@@ -444,60 +473,80 @@ h3
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
+    background-position: -108px 0px;
+    padding: 14px 14px;
 }
 .delete
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
+    background-position: -108px 0px;
+    padding: 14px 14px;
 }
 .dash
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
+    background-position: -108px 0px;
+    padding: 14px 14px;
 }
 .acco
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
+    background-position: -108px 0px;
+    padding: 14px 14px;
 }
 .img
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
+    background-position: -191px 0;
+    padding: 8px;
 }
 .doc
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
+    background-position: -191px 0;
+    padding: 8px;
 }
 .aud
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
+    background-position: -191px 0;
+    padding: 8px;
 }
 .vid
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
+    background-position: -191px 0;
+    padding: 8px;
 }
 .ques
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
+    background-position: -191px 0;
+    padding: 8px;
 }
 .us
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
+    background-position: -191px 0;
+    padding: 8px;
 }
 .sub
 {

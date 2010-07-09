@@ -23,11 +23,11 @@
                 </div>
                 <div class="leftmenu">
                     <div id="courcel">
-                        <div class="btn"><span class="sub" style="float:left"></span><span style="float:left">
-                            
-                                Cources
-                        </span>
-                        <div style="clear:both"></div></div>
+                        <div class="grayhead">
+                            <span class="sub" style="float: left"></span><span style="float: left">Cources </span>
+                            <div style="clear: both">
+                            </div>
+                        </div>
                     </div>
                     <div id="icource" class="invis">
                     </div>
@@ -78,20 +78,32 @@
                 </div>
             </div>
             <div style="float: left; width: 800px">
-                <div class="bksl roundedt">
+                <div class="bksl roundedright">
                     <div style="padding-top: 65px;">
                         <div class="btn">
-                            <asp:HyperLink ID="lnkDashBoard" runat="server" NavigateUrl="~/User/DashBoard.aspx">Dashboard</asp:HyperLink></div>
-                        <div class="btn">
-                            <asp:HyperLink ID="lnkAcountsetting" runat="server" NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
+                            <div class="dash" style="float: left">
+                            </div>
+                            <div style="float: left">
+                                <asp:HyperLink ID="lnkDashBoard" runat="server" NavigateUrl="~/User/DashBoard.aspx">Dashboard</asp:HyperLink></div>
                         </div>
                         <div class="btn">
-                            Activity Stream</div>
+                            <div class="dash" style="float: left">
+                            </div>
+                            <div style="float: left">
+                                <asp:HyperLink ID="lnkAcountsetting" runat="server" NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
+                            </div>
+                        </div>
+                        <div class="btn">
+                            <div class="dash" style="float: left">
+                            </div>
+                            <div style="float: left">
+                                Activity Stream</div>
+                        </div>
                     </div>
                 </div>
-                <div class="gbg roundedall" style="clear: both; min-height: 500px; margin: 5px;">
-                    <div id="lander">
-                    </div>
+                <div id="lander"  class="graylg">
+                </div>
+                <div style="clear: both; min-height: 500px; margin: 5px;">
                     <div id="contentBox">
                     </div>
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

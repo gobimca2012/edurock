@@ -7,10 +7,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="display: block; padding: 10px 0px;">
+    <div style="padding: 5px;">
         <ul>
-            <li class="btn roundedall">
-                <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">Questions</aspajax:HyperLink></li>
+            <li class="btn roundedall"><span class="ques"></span><span>
+                <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">Questions</aspajax:HyperLink></span></li>
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkExam" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ExamInfoView.aspx">Exams</aspajax:HyperLink>
             </li>
