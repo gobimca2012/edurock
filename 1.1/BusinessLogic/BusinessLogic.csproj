@@ -70,6 +70,7 @@
     <Compile Include="CommonController.cs" />
     <Compile Include="CourceCatagoryController.cs" />
     <Compile Include="CourceController.cs" />
+    <Compile Include="DocumentController.cs" />
     <Compile Include="EmailController.cs" />
     <Compile Include="ExamController.cs" />
     <Compile Include="EXM_AnswerController.cs" />

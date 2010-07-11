@@ -6,7 +6,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
-     
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -17,9 +16,11 @@
     </div>
     <div style="clear: both">
     </div>
+    <div id="ipop">
+    </div>
     <div class="page roundedall">
         <div>
-            <div style="float: left; width: 198px;border-right:1px solid #848689;" id="sidemenu">
+            <div style="float: left; width: 198px; border-right: 1px solid #848689;" id="sidemenu">
                 <div style="height: 100px">
                 </div>
                 <div class="leftmenu">

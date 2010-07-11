@@ -11,6 +11,7 @@ namespace BusinessLogic
         QuestionList,
         ExamStartTime,
         ExamTime,
-        QuestionMark
+        QuestionMark,
+        FileUploader
     }
 }

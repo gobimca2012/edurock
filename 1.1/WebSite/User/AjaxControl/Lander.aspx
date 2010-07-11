@@ -22,7 +22,7 @@
                 <aspajax:HyperLink ID="lnkHomeWork" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/HomeWorkInfoView.aspx">HomeWorks</aspajax:HyperLink></li>
             <li class="btn roundedall">Blog</li>
             <li class="btn roundedall">
-                <aspajax:HyperLink ID="HyperLink1" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/Image.aspx">Images</aspajax:HyperLink></li>
+                <aspajax:HyperLink ID="lnkImage" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/DocumentInfoView.aspx?dtype=1">Images</aspajax:HyperLink></li>
             <li class="btn roundedall">Audio</li>
             <li class="btn roundedall">video</li>
             <li class="btn roundedall">Document</li>

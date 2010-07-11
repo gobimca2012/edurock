@@ -14,12 +14,28 @@ using BusinessLogic;
 
 public partial class User_UploadPhoto : BasePage
 {
+    private int UploadType
+    {
+        get
+        {
+            return Convert.ToInt16(Request.Params["uptype"]);
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
     protected void lnkUpload_Click(object sender, EventArgs e)
     {
-        new UserController().UpdateProfilePic(new UserAuthontication().LoggedInUserID, fileUploader);
+        if (UploadType == 0)
+        {
+            new UserController().UpdateProfilePic(new UserAuthontication().LoggedInUserID, fileUploader);
+        }
+        else if (UploadType == 1)
+        {
+            string Path=new CommonController().UploadImage(fileUploader);
+            Session[SessionName.FileUploader.ToString()] = Path;
+            injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+        }
     }
 }

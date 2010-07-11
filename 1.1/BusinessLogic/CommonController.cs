@@ -7,13 +7,15 @@ using DataEntity;
 using System.Web.UI;
 using System.Web;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.IO;
 namespace BusinessLogic
 {
     public class CommonController
     {
         public static Control GetControl(string VirtualPath)
         {
-            Page page =(Page)HttpContext.Current.Handler;
+            Page page = (Page)HttpContext.Current.Handler;
             Control uc =
       (Control)page.LoadControl(page.ResolveUrl(VirtualPath));
             return uc;
@@ -25,7 +27,7 @@ namespace BusinessLogic
         }
         public static void BindQuestionType(System.Web.UI.WebControls.DropDownList dd)
         {
-            
+
             ListItem newItem1 = new ListItem();
             newItem1.Text = "Single Choice";
             newItem1.Value = "1";
@@ -130,6 +132,19 @@ namespace BusinessLogic
         public static DateTime GetDate(int day, int month, int Year)
         {
             return new DateTime(Year, month, day);
+        }
+        public string UploadImage(FileUpload fl)
+        {
+            string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["Repository"] + "/Image/");
+            FolderPath += new UserAuthontication().LoggedInUserName + "/";
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+            string FilePath = FolderPath + "/" + fl.FileName;
+            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Image/" + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            fl.SaveAs(FilePath);
+            return ReturnFilePath;
         }
     }
 }

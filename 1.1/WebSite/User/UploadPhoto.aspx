@@ -15,8 +15,9 @@
             <asp:FileUpload ID="fileUploader" runat="server" />
         </div>
         <div>
-            <asp:LinkButton ID="lnkUpload" runat="server" onclick="lnkUpload_Click">Upload</asp:LinkButton>
+            <asp:LinkButton ID="lnkUpload" runat="server" OnClick="lnkUpload_Click">Upload</asp:LinkButton>
         </div>
+        <asp:Label ID="injectScript" runat="server"></asp:Label>
     </div>
     </form>
 </body>

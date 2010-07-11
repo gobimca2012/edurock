@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Login.ascx.cs" Inherits="Modules_Login_Login" %>
-<div class="contentbox">
+<div class="contentbox" style="position: absolute">
     <table>
         <tr>
             <td>
@@ -19,6 +19,6 @@
         </tr>
     </table>
     <div>
-        <asp:LinkButton ID="lnkLogin" runat="server" OnClick="lnkLogin_Click">Login</asp:LinkButton>
+        <asp:LinkButton ID="lnkLogin" runat="server" OnClick="lnkLogin_Click"><div class="btn"> Login</div></asp:LinkButton>
     </div>
 </div>

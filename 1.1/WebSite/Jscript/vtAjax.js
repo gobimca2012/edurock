@@ -452,3 +452,10 @@ $.fn.dropdownPostback=function(url,PostContainnerID,ResponseID)
     
     
 }
+
+function closePop()
+{
+alert('close popup');
+  $("#ipop").dialog('close');
+  $("#ipop").dialog('destroy');
+}

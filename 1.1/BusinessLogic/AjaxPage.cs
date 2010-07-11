@@ -29,6 +29,7 @@ namespace BusinessLogic
     {
         public JScripter.Loader objLoader;
         public bool IsFileUpload = false;
+        public bool EnableAjaxState = true;
 
         public bool IsEventChange
         {
@@ -168,7 +169,10 @@ namespace BusinessLogic
                 }
                 AjaxStateControl.Value = AjaxStateString;
                 AjaxStateControl.ID = AjaxStateName;
-                this.Page.Form.Controls.Add(AjaxStateControl);
+                if (EnableAjaxState)
+                {
+                    this.Page.Form.Controls.Add(AjaxStateControl);
+                }
             }
 
             base.OnLoadComplete(e);
