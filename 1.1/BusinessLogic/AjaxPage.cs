@@ -28,6 +28,8 @@ namespace BusinessLogic
     public class AjaxPage : System.Web.UI.Page
     {
         public JScripter.Loader objLoader;
+        public bool IsFileUpload = false;
+
         public bool IsEventChange
         {
             get;
@@ -207,9 +209,12 @@ namespace BusinessLogic
                               RegexOptions.Multiline);
             s = Regex.Replace(s, @"<link.*?>", string.Empty, RegexOptions.Compiled |
                               RegexOptions.Multiline);
-            s = Regex.Replace(s, @"<form.*?>", string.Empty, RegexOptions.Compiled |
-                              RegexOptions.Multiline);
-            s = s.Replace("</form>", "");
+            if (!IsFileUpload)
+            {
+                s = Regex.Replace(s, @"<form.*?>", string.Empty, RegexOptions.Compiled |
+                                  RegexOptions.Multiline);
+                s = s.Replace("</form>", "");
+            }
             s = Regex.Replace(s, @"<html.*>", string.Empty, RegexOptions.Compiled |
                               RegexOptions.Multiline);
             s = s.Replace("</html>", "");

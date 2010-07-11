@@ -6,11 +6,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+     
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" enctype="multipart/form-data">
     <div class="header roundedb">
         <uc1:HeaderNavigation ID="HeaderNavigation1" runat="server" />
     </div>
@@ -18,7 +19,7 @@
     </div>
     <div class="page roundedall">
         <div>
-            <div style="float: left; width: 200px" id="sidemenu">
+            <div style="float: left; width: 198px;border-right:1px solid #848689;" id="sidemenu">
                 <div style="height: 100px">
                 </div>
                 <div class="leftmenu">
@@ -87,7 +88,7 @@
                                 <asp:HyperLink ID="lnkDashBoard" runat="server" NavigateUrl="~/User/DashBoard.aspx">Dashboard</asp:HyperLink></div>
                         </div>
                         <div class="btn">
-                            <div class="dash" style="float: left">
+                            <div class="acco" style="float: left">
                             </div>
                             <div style="float: left">
                                 <asp:HyperLink ID="lnkAcountsetting" runat="server" NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
@@ -101,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="lander"  class="graylg">
+                <div id="lander" class="graylg">
                 </div>
                 <div style="clear: both; min-height: 500px; margin: 5px;">
                     <div id="contentBox">

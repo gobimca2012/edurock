@@ -1,6 +1,6 @@
 ﻿*
 {
-    color: #626262;
+    color: #323232;
 }
 body
 {
@@ -349,6 +349,8 @@ input, textarea
 {
     background: url(images/bluebtn.gif);
     border: solid 1px #267bc4;
+    height:23px;
+    
 }
 .btn:hover a, .cin:hover a
 {
@@ -489,16 +491,16 @@ h3
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -108px 0px;
-    padding: 14px 14px;
+    background-position: 0px -33px;
+    padding: 14px 18px;
 }
 .acco
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -108px 0px;
-    padding: 14px 14px;
+   background-position: -33px -33px;
+    padding: 14px 22px;
 }
 .img
 {
@@ -553,7 +555,7 @@ h3
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -108px 0px;
+    background-position: -111px 0px;
     padding: 14px 14px;
 }
 

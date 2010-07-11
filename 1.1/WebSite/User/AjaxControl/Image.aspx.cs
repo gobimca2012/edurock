@@ -12,10 +12,13 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class User_DashBoard : BasePage
+public partial class User_AjaxControl_Image : AjaxPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        JScripter.JScripter.IncludeJavascriptFile("file", ResolveUrl("~/Jscript/jquery.iframe-post-form.js"), this.Page);
+        int a=this.Request.Files.Count;
+        IsFileUpload = false;
+        string aaa = "aaa";
+        string bb = aaa;
     }
 }

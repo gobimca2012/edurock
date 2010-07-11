@@ -15,7 +15,8 @@ public partial class Default :BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-       
+
+        string aa = "";
+        string bb = aa;
     }
 }
