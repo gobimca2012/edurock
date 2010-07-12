@@ -17,9 +17,6 @@
                     <thead>
                         <tr>
                             <td>
-                                DocumentID
-                            </td>
-                            <td>
                                 Name
                             </td>
                             <td>
@@ -30,9 +27,6 @@
                             </td>
                             <td>
                                 Tag
-                            </td>
-                            <td>
-                                LoginUserID
                             </td>
                             <td>
                                 Rating
@@ -54,10 +48,8 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <%#Eval("DocumentID") %>
-                    </td>
-                    <td>
-                        <%#Eval("Name") %>
+                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("DocumentID").ToString()%>'>
+                        <%#Eval("Name") %></aspajax:HyperLink>
                     </td>
                     <td>
                         <%#Eval("Description") %>
@@ -67,9 +59,6 @@
                     </td>
                     <td>
                         <%#Eval("Tag") %>
-                    </td>
-                    <td>
-                        <%#Eval("LoginUserID") %>
                     </td>
                     <td>
                         <%#Eval("Rating") %>

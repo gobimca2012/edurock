@@ -27,7 +27,7 @@
         <elementListCompartment Id="12f7d94e-d910-4a17-8d18-618d418301da" absoluteBounds="3.5149999999999997, 1.71, 1.9700000000000002, 2.508321126302083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.75 : 4.625); (1.75 : 2.78416056315104); (3.5 : 2.78416056315104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.75 : 4.625); (1.75 : 2.78416056315104); (3.5 : 2.78416056315104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/UserDataContext/StudentLogin/StudentLogin_User" />
       <nodes>
         <classShapeMoniker Id="fb440ba4-a657-444e-88e3-79b8176a53bf" />
@@ -47,17 +47,17 @@
         <classShapeMoniker Id="3bf84549-a1bb-41cd-94ca-df0faebb5659" />
       </nodes>
     </associationConnector>
-    <classShape Id="0fc54286-74e1-47e5-9062-b8a7d2595974" absoluteBounds="6.375, 2, 2, 1.26050048828125">
+    <classShape Id="237c5249-a64a-4121-8c51-6037a510de66" absoluteBounds="7.25, 2.25, 2, 1.5891951497395831">
       <DataClassMoniker Name="/UserDataContext/DocumentCource" />
       <nestedChildShapes>
-        <elementListCompartment Id="fa771f64-ea80-4a18-a403-47c198c0aafb" absoluteBounds="6.39, 2.46, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9e3b7656-9efe-4001-9485-d6fb0a57085a" absoluteBounds="7.265, 2.71, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 6.33046590169271); (7.375 : 6.33046590169271); (7.375 : 3.26050048828125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 6.33046590169271); (8.25 : 6.33046590169271); (8.25 : 3.83919514973958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/UserDataContext/Document/Document_DocumentCource" />
       <nodes>
         <classShapeMoniker Id="3bf84549-a1bb-41cd-94ca-df0faebb5659" />
-        <classShapeMoniker Id="0fc54286-74e1-47e5-9062-b8a7d2595974" />
+        <classShapeMoniker Id="237c5249-a64a-4121-8c51-6037a510de66" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

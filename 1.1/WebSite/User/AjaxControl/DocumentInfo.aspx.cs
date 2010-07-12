@@ -22,6 +22,13 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             return Convert.ToInt16(AjaxState["dtype"]);
         }
     }
+    private int InstituteCourceID
+    {
+        get
+        {
+            return Convert.ToInt32(AjaxState["icid"]);
+        }
+    }
     private void AddData()
     {
         try
@@ -48,7 +55,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new DocumentController().Add(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, ModifiedDate);
-            Response.Redirect("~/User/AjaxControl/DocumentInfoView.aspx");
+            Response.Redirect("~/User/AjaxControl/Document.aspx?did=" + DocumentID.ToString());
         }
         catch (Exception ex)
         {
@@ -83,7 +90,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
             new DocumentController().UpdateByDocumentID(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, ModifiedDate);
 
-            Response.Redirect("~/User/AjaxControl/DocumentInfoView.aspx");
+            Response.Redirect("~/User/AjaxControl/Document.aspx?did=" + DocumentID.ToString());
         }
         catch (Exception ex)
         {
@@ -98,7 +105,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
         {
             var data = dataBunch[0];
 
-            
+
             txtName.Text = data.Name;
 
             txtDescription.Text = data.Description;
@@ -108,11 +115,11 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             txtTag.Text = data.Tag;
             img.ImageUrl = ResolveUrl(data.FilePath);
             filePath.Value = data.FilePath;
-            
-            
 
-            
-            
+
+
+
+
         }
     }
 
@@ -137,6 +144,12 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
     protected void Page_Load(object sender, EventArgs e)
     {
         JScripter.PopUp objPopUp = new JScripter.PopUp(this.Page, false);
+
+        if (Request.Params["icid"] != null)
+        {
+            AjaxState["icid"] = Request.Params["icid"];
+            
+        }
         
         if (Request.Params["dtype"] != null)
         {
@@ -149,13 +162,23 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             AjaxState["did"] = Request.Params["did"];
             BindData();
             lnkAddDocument.Visible = false;
+            
         }
         else
         {
             //new CourceCatagoryController().BindCourceCatagory(ddCatagory);
             lnkUpdateDocument.Visible = false;
             newAdd.Visible = false;
+            new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
+            
         }
+        this.DropDownPostBack(ddCource, "#dropdownP", "#dropdownP");
     }
+    protected override void OnAjaxDropDownChange(string e)
+    {
+
+        base.OnAjaxDropDownChange(e);
+    }
+
 
 }

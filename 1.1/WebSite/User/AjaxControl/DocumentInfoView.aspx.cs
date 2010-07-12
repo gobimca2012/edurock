@@ -33,21 +33,31 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
     }
 
     private int TotalPage;
-    private int PageSize = 1;
-
+    private int PageSize = 100;
+    private int _DocumentType
+    {
+        get
+        {
+            return Convert.ToInt16(AjaxState["dtype"]);
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Request.Params["dtype"] != null)
+        {
+            AjaxState["dtype"] = Request.Params["dtype"];
+        }
+        hpAddDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?dtype=" + _DocumentType.ToString();
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new DocumentController().Get().Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new DocumentController().GetbyDocumentType(_DocumentType).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListDocument.DataSource = new DocumentController().Get(PageSize, PageNumber);
+        ListDocument.DataSource = new DocumentController().GetbyDocumentType(_DocumentType, PageSize, PageNumber);
         ListDocument.DataBind();
     }
     private void PaggerLinkManager()
@@ -88,7 +98,7 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-
+            new DocumentController().DeletebyDocumentID(new Guid(e.Id));
             BindList();
         }
         base.OnAjaxListViewCommand(e);

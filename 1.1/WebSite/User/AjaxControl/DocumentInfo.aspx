@@ -30,7 +30,7 @@
                             <span class="label">Description</span>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
                         </div>
                     </div>
                     <div>
@@ -38,7 +38,7 @@
                             <span class="label">MetaDescription</span>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtMetaDescription" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtMetaDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
                         </div>
                     </div>
                     <div>
@@ -47,6 +47,26 @@
                         </div>
                         <div>
                             <asp:TextBox ID="txtTag" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div id="dropdownP">
+                        <div>
+                            <div>
+                                <span class="label">Select your Cource</span>
+                            </div>
+                            <div>
+                                <asp:DropDownList ID="ddCource" runat="server">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <span class="label">Select your Subject</span>
+                            </div>
+                            <div>
+                                <asp:DropDownList ID="ddSubject" runat="server">
+                                </asp:DropDownList>
+                            </div>
                         </div>
                     </div>
                     <div>

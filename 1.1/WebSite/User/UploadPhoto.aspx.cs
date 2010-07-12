@@ -37,5 +37,11 @@ public partial class User_UploadPhoto : BasePage
             Session[SessionName.FileUploader.ToString()] = Path;
             injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
         }
+        else if (UploadType == 4)
+        {
+            string Path = new CommonController().UploadImage(fileUploader);
+            Session[SessionName.FileUploader.ToString()] = Path;
+            injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+        }
     }
 }

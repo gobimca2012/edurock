@@ -9,10 +9,13 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            <h3>
-                Question View</h3>
-            <span >
-                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink></span>
+            <div style="float: left">
+                Question View
+            </div>
+            <div style="float: right">
+                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink></div>
+            <div style="clear: both">
+            </div>
         </div>
         <div id="Question" style="padding: 5px;">
             <div>

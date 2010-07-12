@@ -10,13 +10,11 @@
     <form id="form1" runat="server">
     <asp:ListView ID="ListInstituteCource" runat="server">
         <LayoutTemplate>
-           
-                <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-            
+            <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
         </LayoutTemplate>
         <ItemTemplate>
-            <div class="cin">
-                <aspajax:HyperLink ID="lnkFullvIew" runat="server" ContainnerID="#lander" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'>    <%#Eval("Cource.CourceName")%></aspajax:HyperLink>
+            <div>
+                <aspajax:HyperLink ID="lnkFullvIew" runat="server" ContainnerID="#lander" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'> <div class="cin">   <%#Eval("Cource.CourceName")%></div></aspajax:HyperLink>
             </div>
         </ItemTemplate>
     </asp:ListView>

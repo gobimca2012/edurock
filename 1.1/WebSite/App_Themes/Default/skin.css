@@ -231,6 +231,7 @@ tr:hover
     background: url(images/3.gif);
     z-index: 10001;
     background-repeat: no-repeat;
+    background-position:center;
 }
 
 img
@@ -338,18 +339,16 @@ input, textarea
 }
 .btn
 {
-    padding: 6px 10px;
+    padding: 4px 10px;
     background: url(images/graybtn.gif);
     background-repeat: repeat-x;
-    height: 24px;
-    border: solid 1px #c4c7c8;
-    padding: 5px 5px;
+    border: solid 1px #c4c7c8;    
 }
 .btn:hover, .cin:hover
 {
     background: url(images/bluebtn.gif);
     border: solid 1px #267bc4;
-    height:23px;
+    
     
 }
 .btn:hover a, .cin:hover a
@@ -467,6 +466,12 @@ h3
     line-height: 28px;
     padding: 0px 0px 0px 0px;
     margin: 0px;
+}
+.trans
+{
+    background:Transparent url(images/trans.png);
+    background-repeat:repeat;
+    padding:10px;
 }
 /* Icons */
 
