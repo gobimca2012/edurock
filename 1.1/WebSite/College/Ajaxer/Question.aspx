@@ -7,80 +7,89 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="float: left; width: 750px">
-        <div id="exami">
-            <div class="contentbox">
-                <div id="DivSingleChoice" runat="server">
-                    <div>
-                        <span id="lblQuestion" runat="server" class="label"></span>
-                    </div>
-                    <div>
-                        <asp:RadioButtonList ID="chkOption" runat="server">
-                        </asp:RadioButtonList>
-                    </div>
-                </div>
-                <div id="DivMultipleChoice" runat="server">
-                    <div>
-                        <span id="lblMultiQustion" runat="server" class="label"></span>
-                    </div>
-                    <div>
-                        <asp:CheckBoxList ID="chkMulti" runat="server" />
-                        <div id="multiCheck" runat="server">
+    <div class="contentbox">
+        <div class="gray">
+            Exam Start
+        </div>
+        <div style="float: left; width: 570px">
+            <div id="exami">
+                <div class="whitecont">
+                    <div id="DivSingleChoice" runat="server">
+                        <div>
+                            <span id="lblQuestion" runat="server" class="label"></span>
+                        </div>
+                        <div>
+                            <asp:RadioButtonList ID="chkOption" runat="server">
+                            </asp:RadioButtonList>
                         </div>
                     </div>
-                </div>
-                <div id="divSingleFillIntheBlanck" runat="server">
-                    <div>
-                        <span id="lblPrefixText" runat="server"></span><span>
-                            <asp:DropDownList ID="ddAnswer" runat="server">
-                            </asp:DropDownList>
-                        </span><span id="lblsufixText" runat="server"></span>
+                    <div id="DivMultipleChoice" runat="server">
+                        <div>
+                            <span id="lblMultiQustion" runat="server" class="label"></span>
+                        </div>
+                        <div>
+                            <asp:CheckBoxList ID="chkMulti" runat="server" />
+                            <div id="multiCheck" runat="server">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div style="clear: both">
-                    Marks : <span id="lblMarks" runat="server" class="label"></span>
-                </div>
-                <div style="clear: both">
-                    <div style="float: left; padding: 5px;">
-                        <aspajax:AjaxLinkButton ID="lnkPrev" runat="server" Text="Prev" RequestContainner="#exam"
-                            ResponseContainner="#exam" PostBackUrl="Question.aspx" OnAjaxClick="PrevAjaxClick"></aspajax:AjaxLinkButton></div>
-                    <div style="float: left; padding: 5px;">
-                        <aspajax:AjaxLinkButton ID="lnkNext" runat="server" Text="Next" RequestContainner="#exam"
-                            PostBackUrl="Question.aspx" ResponseContainner="#exam" OnAjaxClick="NextAjaxClick"></aspajax:AjaxLinkButton></div>
+                    <div id="divSingleFillIntheBlanck" runat="server">
+                        <div>
+                            <span id="lblPrefixText" runat="server"></span><span>
+                                <asp:DropDownList ID="ddAnswer" runat="server">
+                                </asp:DropDownList>
+                            </span><span id="lblsufixText" runat="server"></span>
+                        </div>
+                    </div>
                     <div style="clear: both">
+                        Marks : <span id="lblMarks" runat="server" class="label"></span>
+                    </div>
+                    <div style="clear: both">
+                        <div style="float: left; padding: 5px;">
+                            <aspajax:AjaxLinkButton ID="lnkPrev" runat="server" Text="Prev" RequestContainner="#exam"
+                                ResponseContainner="#exam" PostBackUrl="Question.aspx" OnAjaxClick="PrevAjaxClick"></aspajax:AjaxLinkButton></div>
+                        <div style="float: left; padding: 5px;">
+                            <aspajax:AjaxLinkButton ID="lnkNext" runat="server" Text="Next" RequestContainner="#exam"
+                                PostBackUrl="Question.aspx" ResponseContainner="#exam" OnAjaxClick="NextAjaxClick"></aspajax:AjaxLinkButton></div>
+                        <div style="clear: both">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div style="float: right; width: 200px;">
-        <div class="contentbox">
-            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="EXM_QuestionID" OnItemCommand="QuestionList_ItemCommand">
-                <LayoutTemplate>
-                    <div>
-                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                    </div>
-                </LayoutTemplate>
-                <ItemTemplate>
-                    <div>
+        <div style="float: right; width: 200px;">
+            <div class="contentbox">
+                <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="EXM_QuestionID" OnItemCommand="QuestionList_ItemCommand">
+                    <LayoutTemplate>
                         <div>
+                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                         </div>
-                        <div class="tab">
-                            <%--<asp:LinkButton ID="lnkOrder" runat="server" CommandName="LoadQuestion"><%#Eval("Order") %></asp:LinkButton>--%>
-                            <aspajax:AjaxLinkButton ID="lnkOrder" runat="server" PostBackUrl='<%#ResolveUrl("~/College/Ajaxer/Question.aspx")+"?oid="+Eval("Order") %>'
-                                RequestContainner="#exam" ResponseContainner="#exam" OnAjaxClick="OrderAjaxClick"><%#Eval("Order") %></aspajax:AjaxLinkButton>
+                    </LayoutTemplate>
+                    <ItemTemplate>
+                        <div>
+                            <div>
+                            </div>
+                            <div class="gbg">
+                                <%--<asp:LinkButton ID="lnkOrder" runat="server" CommandName="LoadQuestion"><%#Eval("Order") %></asp:LinkButton>--%>
+                                <h5>
+                                    <aspajax:AjaxLinkButton ID="lnkOrder" runat="server" PostBackUrl='<%#ResolveUrl("~/College/Ajaxer/Question.aspx")+"?oid="+Eval("Order") %>'
+                                        RequestContainner="#exam" ResponseContainner="#exam" OnAjaxClick="OrderAjaxClick"><%#Eval("Order") %></aspajax:AjaxLinkButton></h5>
+                            </div>
                         </div>
-                    </div>
-                </ItemTemplate>
-            </asp:ListView>
+                    </ItemTemplate>
+                </asp:ListView>
+            </div>
         </div>
-    </div>
-    <div style="clear: both">
-        <%--<asp:LinkButton ID="lnkSubmitAnswer" runat="server" OnClick="lnkSubmitAnswer_Click">Submit Answers</asp:LinkButton>--%>
-        <%--<aspajax:AjaxLinkButton ID="lnkSubmitAnswer" runat="server" RequestContainner="#exam"
+        <div style="clear: both">
+            <%--<asp:LinkButton ID="lnkSubmitAnswer" runat="server" OnClick="lnkSubmitAnswer_Click">Submit Answers</asp:LinkButton>--%>
+            <%--<aspajax:AjaxLinkButton ID="lnkSubmitAnswer" runat="server" RequestContainner="#exam"
             ResponseContainner="#exam" onajaxclick="SubmitAnswerAjaxClick">Submit Answers</aspajax:AjaxLinkButton>
             <a href="#" onclick="SubmitAnswer();">aa</a>--%>
             <asp:LinkButton ID="lnkSubmit" runat="server">Submit Answer</asp:LinkButton>
+        </div>
+        <div class="gray">
+            Exam Start
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -95,7 +104,7 @@
     return false;
 }
     </script>
-    
+
     </form>
 </body>
 </html>

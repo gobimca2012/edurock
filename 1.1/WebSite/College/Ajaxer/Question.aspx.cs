@@ -85,7 +85,7 @@ public partial class College_Ajaxer_Question : AjaxPage
         {
             string[] examTimePart = data[0].ExamTime.Split(':');
 
-            Response.Write(string.Format(" <script type='text/javascript'>Counter('{0}','{1}','{2}','{3}','{4}');   </script>", examTimePart[0], examTimePart[1], "1", "#examOpen", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa"));
+           /// Response.Write(string.Format(" <script type='text/javascript'>Counter('{0}','{1}','{2}','{3}','{4}');   </script>", examTimePart[0], examTimePart[1], "1", "#examOpen", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa"));
         }
     }
     protected void Page_Load(object sender, EventArgs e)

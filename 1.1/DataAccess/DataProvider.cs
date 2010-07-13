@@ -1388,6 +1388,7 @@ namespace DataAccess
                     NextOrder = (int)data[0].Order++;
                 }
             }
+            ObjEXM_Question.Order = NextOrder;
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return ObjEXM_Question.EXM_QuestionID;

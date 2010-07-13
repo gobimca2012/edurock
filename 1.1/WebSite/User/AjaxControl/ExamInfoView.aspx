@@ -73,6 +73,10 @@
                         <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/ExamInfo.aspx") + "?eid=" + Eval("ExamID")%>'
                             ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                     </td>
+                    <td>
+                    
+                        <aspajax:HyperLink ID="lnkExmStart" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + Eval("ExamID").ToString()%>'>Start Exam</aspajax:HyperLink>
+                    </td>
                 </tr>
             </ItemTemplate>
         </asp:ListView>
