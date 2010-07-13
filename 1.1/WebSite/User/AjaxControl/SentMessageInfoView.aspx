@@ -46,7 +46,7 @@
                                 <td>
                                     <aspajax:HyperLink ID="lnkFullView" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Message.aspx")+"?mid="+Eval("MessageID").ToString() %>'> <%#Eval("Subject") %></aspajax:HyperLink>
                                 </td>
-                                <%#Eval("ModifiedDate") %>
+                                <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                             </td>
                             <td>
                                 <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("MessageID").ToString(), "#contentBox", "#contentBox")%>

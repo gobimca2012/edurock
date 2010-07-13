@@ -44,7 +44,7 @@
                         <%#Eval("Year") %>
                     </td>
                     <td>
-                        <%#Eval("ModifiedDate") %>
+                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                     </td>
                     <td>
                         <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("UserEducationID").ToString(), "#education", "#education")%>

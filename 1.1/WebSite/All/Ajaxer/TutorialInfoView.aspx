@@ -49,7 +49,7 @@
                             <%#Eval("FilePath") %>
                         </div>
                         <div>
-                            <%#Eval("ModifiedDate") %>
+                            <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                         </div>
                         <div id="divMy" runat="server">
                             <div>

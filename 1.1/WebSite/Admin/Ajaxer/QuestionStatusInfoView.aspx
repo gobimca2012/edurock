@@ -43,7 +43,7 @@
                         <%#Eval("LoginUserID") %>
                     </td>
                     <td>
-                        <%#Eval("ModifiedDate") %>
+                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                     </td>
                     <td>
                         <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionStatusID").ToString(), "#QuestionStatus", "#QuestionStatus")%>

@@ -40,7 +40,7 @@
                         <%#Eval("AnswerRate") %>
                     </div>
                     <div>
-                        <%#Eval("ModifiedDate") %>
+                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                     </div>
                     <div id="UserAction" runat="server">
                         <div id="stateDiv" runat="server">

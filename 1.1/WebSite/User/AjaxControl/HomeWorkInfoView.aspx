@@ -46,7 +46,7 @@
                         <%#Eval("InstituteSubjectID") %>
                     </td>
                     <td>
-                        <%#Eval("ModifiedDate") %>
+                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                     </td>
                     <td>
                         <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("HomeWorkID").ToString(), "#contentBox", "#contentBox")%>
