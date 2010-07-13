@@ -76,7 +76,7 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
     protected void Page_Load(object sender, EventArgs e)
     {
         hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?icid=" + ICID;
-        hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/MyQuestion.aspx") + "?icid=" + ICID;
+        //hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/MyQuestion.aspx") + "?icid=" + ICID;
         {
             BindList();
             new QuestionTypeController().BindQuestionType(ddQuestionType);
@@ -129,7 +129,7 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-
+            new QuestionController().DeletebyQuestionID(new Guid(e.Id));
             BindList();
         }
         base.OnAjaxListViewCommand(e);

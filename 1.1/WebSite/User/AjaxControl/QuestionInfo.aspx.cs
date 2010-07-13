@@ -35,7 +35,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new QuestionController().Add(QuestionID, QuestionText, Description, LoginUserID, ICID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
-            Response.Redirect("~/User/AjaxControl/QuestionInfoView.aspx");
+            Response.Redirect("~/User/AjaxControl/Question.aspx?qid=" + QuestionID.ToString() + "&icid=" + ICID.ToString());
         }
         catch (Exception ex)
         {
@@ -62,7 +62,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             string tags; if (false) { throw new Exception(""); } tags = HtmlHelper.ControlValue(txtTags.ClientID);
             new QuestionController().UpdateByQuestionID(QuestionID, QuestionText, Description, LoginUserID, ICID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
 
-            Response.Redirect("~/User/AjaxControl/QuestionInfoView.aspx");
+            Response.Redirect("~/User/AjaxControl/Question.aspx?qid=" + QuestionID.ToString()+"&icid="+ICID.ToString()) ;
         }
         catch (Exception ex)
         {
@@ -113,6 +113,11 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.Params["icid"] != null)
+        {
+            AjaxState["icid"] = Request.Params["icid"];
+
+        }
         if (Request.Params["qid"] != null)
         {
             AjaxState["qid"] = Request.Params["qid"];
@@ -124,11 +129,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             new QuestionTypeController().BindQuestionType(ddQuestionType, new UserAuthontication().UserInstituteLoginID);
             lnkUpdateQuestion.Visible = false;
         }
-        if (Request.Params["icid"] != null)
-        {
-            AjaxState["icid"] = Request.Params["icid"];
-            
-        }
+       
     }
 
 }

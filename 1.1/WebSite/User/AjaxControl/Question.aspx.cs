@@ -22,8 +22,19 @@ public partial class User_AjaxControl_Question : AjaxPage
             return new Guid(AjaxState["qid"]);
         }
     }
+    private int _InstituteCourceID
+    {
+        get
+        {
+            return Convert.ToInt32(AjaxState["icid"]);
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.Params["icid"] != null)
+        {
+            AjaxState["icid"] = Request.Params["icid"];
+        }
         if (Request.Params["qid"] != null)
         {
             AjaxState["qid"] = Request.Params["qid"];
@@ -69,7 +80,7 @@ public partial class User_AjaxControl_Question : AjaxPage
     }
     private void MakeLinks()
     {
-        lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?qid=" + ID.ToString();
+        lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?icid="+_InstituteCourceID.ToString()+"&qid=" + ID.ToString();
     }
 
 
