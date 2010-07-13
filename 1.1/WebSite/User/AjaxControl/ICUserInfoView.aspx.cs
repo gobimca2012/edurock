@@ -33,7 +33,7 @@ public partial class User_AjaxControl_ICUserInfoView : AjaxPage
     }
 
     private int TotalPage;
-    private int PageSize = 1;
+    private int PageSize = 100;
     private int ICID
     {
         get

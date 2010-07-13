@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Login.ascx.cs" Inherits="Modules_Login_Login" %>
-<div class="contentbox" style="position: absolute">
+<div class="contentbox" style="position: absolute;padding:5px;">
     <table>
         <tr>
             <td>

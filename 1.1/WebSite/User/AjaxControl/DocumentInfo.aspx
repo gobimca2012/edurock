@@ -49,7 +49,7 @@
                             <asp:TextBox ID="txtTag" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <div id="dropdownP">
+                    <div >
                         <div>
                             <div>
                                 <span class="label">Select your Cource</span>
@@ -63,7 +63,7 @@
                             <div>
                                 <span class="label">Select your Subject</span>
                             </div>
-                            <div>
+                            <div id="ddrep">
                                 <asp:DropDownList ID="ddSubject" runat="server">
                                 </asp:DropDownList>
                             </div>

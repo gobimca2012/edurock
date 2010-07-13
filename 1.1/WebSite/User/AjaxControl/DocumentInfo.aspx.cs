@@ -52,9 +52,11 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
             int DocumentType = _DocumentType;
 
+            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
             DateTime ModifiedDate = DateTime.Now;
 
-            new DocumentController().Add(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, ModifiedDate);
+            new DocumentController().Add(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceID, InstituteSubjectID, ModifiedDate);
             Response.Redirect("~/User/AjaxControl/Document.aspx?did=" + DocumentID.ToString());
         }
         catch (Exception ex)
@@ -105,7 +107,6 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
         {
             var data = dataBunch[0];
 
-
             txtName.Text = data.Name;
 
             txtDescription.Text = data.Description;
@@ -115,11 +116,15 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             txtTag.Text = data.Tag;
             img.ImageUrl = ResolveUrl(data.FilePath);
             filePath.Value = data.FilePath;
-
-
-
-
-
+            if (data.DocumentCources.Count > 0)
+            {
+                new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID, data.DocumentCources[0].InstituteCourceID.ToString());
+                new InstituteSubjectController().BindInstituteSubject(ddSubject, data.DocumentCources[0].InstituteCourceID, data.DocumentCources[0].SubjectID.ToString());
+            }
+            else
+            {
+                new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
+            }
         }
     }
 
@@ -143,36 +148,47 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        JScripter.PopUp objPopUp = new JScripter.PopUp(this.Page, false);
+        if (IsEventChange)
+        {
 
-        if (Request.Params["icid"] != null)
-        {
-            AjaxState["icid"] = Request.Params["icid"];
-            
-        }
-        
-        if (Request.Params["dtype"] != null)
-        {
-            AjaxState["dtype"] = Request.Params["dtype"];
-        }
-        objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx") + "?uptype=" + _DocumentType.ToString(), "ipop", "500", "500", ResolveUrl("~/User/AjaxControl/UploadResponse.aspx"), "#popupresponce");
-        //objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx")+"?uptype="+_DocumentType.ToString(), "#ipop");
-        if (Request.Params["did"] != null)
-        {
-            AjaxState["did"] = Request.Params["did"];
-            BindData();
-            lnkAddDocument.Visible = false;
-            
         }
         else
         {
-            //new CourceCatagoryController().BindCourceCatagory(ddCatagory);
-            lnkUpdateDocument.Visible = false;
-            newAdd.Visible = false;
-            new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
-            
+            JScripter.PopUp objPopUp = new JScripter.PopUp(this.Page, false);
+
+            if (Request.Params["icid"] != null)
+            {
+                AjaxState["icid"] = Request.Params["icid"];
+
+            }
+
+            if (Request.Params["dtype"] != null)
+            {
+                AjaxState["dtype"] = Request.Params["dtype"];
+            }
+            objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx") + "?uptype=" + _DocumentType.ToString(), "ipop", "500", "500", ResolveUrl("~/User/AjaxControl/UploadResponse.aspx"), "#popupresponce");
+            //objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx")+"?uptype="+_DocumentType.ToString(), "#ipop");
+            if (Request.Params["did"] != null)
+            {
+                AjaxState["did"] = Request.Params["did"];
+                BindData();
+                lnkAddDocument.Visible = false;
+
+            }
+            else
+            {
+                //new CourceCatagoryController().BindCourceCatagory(ddCatagory);
+                lnkUpdateDocument.Visible = false;
+                newAdd.Visible = false;
+                new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
+
+            }
+
         }
-        this.DropDownPostBack(ddCource, "#dropdownP", "#dropdownP");
+        //this.DropDownPostBack(ddCource, "#contentbox", "#dropdownP");
+        ddCource.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddCource.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?icid="));
+        //string script = string.Format("$('#{0}').BindDD('#{1}','{2}');", ddCource.ClientID, ddSubject.ClientID,( ResolveUrl("~/User/Service.aspx") + "/GetSubject").Replace(".aspx",""));
+        //JScripter.JScripter.InjectScript(script, this.Page);
     }
     protected override void OnAjaxDropDownChange(string e)
     {

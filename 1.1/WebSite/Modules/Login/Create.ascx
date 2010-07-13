@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Create.ascx.cs" Inherits="Modules_Login_Create" %>
-<div class="contentbox" style="position:absolute">
+<div class="contentbox" style="position: absolute; padding: 5px">
     <fieldset>
         <legend>LoginUser</legend>
         <div>
@@ -47,9 +47,9 @@
             </div>
         </div>
         <div>
-            <asp:LinkButton ID="lnkRegister" runat="server" OnClick="lnkRegister_Click">Register</asp:LinkButton>
+            <asp:LinkButton ID="lnkRegister" runat="server" OnClick="lnkRegister_Click"><div class="btn"> Register</div></asp:LinkButton>
             <br />
-            <asp:LinkButton ID="lnkCancel" runat="server">Cancel</asp:LinkButton>
+            <%--<asp:LinkButton ID="lnkCancel" runat="server">Cancel</asp:LinkButton>--%>
         </div>
 </div>
 </fieldset> 

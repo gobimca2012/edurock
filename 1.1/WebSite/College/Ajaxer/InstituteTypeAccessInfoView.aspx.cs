@@ -40,7 +40,7 @@ public partial class College_Ajaxer_InstituteTypeAccessInfoView : AjaxPage
     }
 
     private int TotalPage;
-    private int PageSize = 1;
+    private int PageSize = 100;
 
     protected void Page_Load(object sender, EventArgs e)
     {

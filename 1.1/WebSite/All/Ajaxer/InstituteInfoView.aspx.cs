@@ -39,7 +39,7 @@ public partial class All_Ajaxer_InstituteInfoViewaspx : AjaxPage
         }
     }
     private int TotalPage;
-    private int PageSize = 1;
+    private int PageSize = 100;
 
     protected void Page_Load(object sender, EventArgs e)
     {

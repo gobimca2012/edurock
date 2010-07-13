@@ -22,13 +22,13 @@
                 <aspajax:HyperLink ID="lnkHomeWork" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/HomeWorkInfoView.aspx">HomeWorks</aspajax:HyperLink></li>
             <li class="btn roundedall">Blog</li>
             <li class="btn roundedall">
-                <aspajax:HyperLink ID="lnkImage" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/DocumentInfoView.aspx?dtype=1">Images</aspajax:HyperLink></li>
+                <aspajax:HyperLink ID="lnkImage" runat="server" ContainnerID="#contentBox" >Images</aspajax:HyperLink></li>
             <li class="btn roundedall">
-                <aspajax:HyperLink ID="lnkAudio" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/DocumentInfoView.aspx?dtype=2">Audios</aspajax:HyperLink></li>
+                <aspajax:HyperLink ID="lnkAudio" runat="server" ContainnerID="#contentBox" >Audios</aspajax:HyperLink></li>
             <li class="btn roundedall">
-                <aspajax:HyperLink ID="lnkVideo" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/DocumentInfoView.aspx?dtype=3">Videos</aspajax:HyperLink></li>
+                <aspajax:HyperLink ID="lnkVideo" runat="server" ContainnerID="#contentBox" >Videos</aspajax:HyperLink></li>
             <li class="btn roundedall">
-                <aspajax:HyperLink ID="lnkDocument" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/DocumentInfoView.aspx?dtype=4">Documents</aspajax:HyperLink></li>
+                <aspajax:HyperLink ID="lnkDocument" runat="server" ContainnerID="#contentBox" >Documents</aspajax:HyperLink></li>
         </ul>
     </div>
     </form>

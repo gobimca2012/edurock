@@ -41,8 +41,19 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
             return Convert.ToInt16(AjaxState["dtype"]);
         }
     }
+    private int _InstituteCourceID
+    {
+        get
+        {
+            return Convert.ToInt16(AjaxState["icid"]);
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.Params["icid"] != null)
+        {
+            AjaxState["icid"] = Request.Params["icid"];
+        }
         if (Request.Params["dtype"] != null)
         {
             AjaxState["dtype"] = Request.Params["dtype"];
@@ -50,14 +61,14 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
         hpAddDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?dtype=" + _DocumentType.ToString();
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new DocumentController().GetbyDocumentType(_DocumentType).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new DocumentController().GetByInstituetCourceID(_DocumentType,_InstituteCourceID).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListDocument.DataSource = new DocumentController().GetbyDocumentType(_DocumentType, PageSize, PageNumber);
+        ListDocument.DataSource = new DocumentController().GetByInstituetCourceID(_DocumentType, _InstituteCourceID, PageSize, PageNumber);
         ListDocument.DataBind();
     }
     private void PaggerLinkManager()

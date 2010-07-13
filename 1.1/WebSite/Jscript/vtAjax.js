@@ -1,4 +1,5 @@
 ﻿// JavaScript Document
+// JavaScript Document
 function loadobject(url, loadid, clickid)
 {
    this.url = url;
@@ -10,9 +11,9 @@ function loadobject(url, loadid, clickid)
 
 $.fn.serializeNoViewState = function()
 {
-//   return this.find("input,textarea,select")
-//   .not("[type=hidden][name^=__]")
-//   .serialize();
+   //   return this.find("input,textarea,select")
+   //   .not("[type=hidden][name^=__]")
+   //   .serialize();
    return this.find("input,textarea,select").serialize();
 
 }
@@ -25,7 +26,7 @@ $.fn.LoadPage = function(url)
    var ContainnerID = $(this).attr("id");
    ContainnerID = "#" + ContainnerID;
    // $(this).html("Loading...");
-   ProgressBar(true,ContainnerID);
+   ProgressBar(true, ContainnerID);
 
    $.ajax(
    {
@@ -37,7 +38,7 @@ $.fn.LoadPage = function(url)
       {
          HtmlPaste(message, ContainnerID);
          BuildLinks(ContainnerID);
-         ProgressBar(false,ContainnerID);
+         ProgressBar(false, ContainnerID);
 
       }
       ,
@@ -45,7 +46,7 @@ $.fn.LoadPage = function(url)
       {
          alert(errormessage);
          $(ContainnerID).removeClass("loading");
-         ProgressBar(false,ContainnerID);
+         ProgressBar(false, ContainnerID);
       }
    }
    );
@@ -127,8 +128,8 @@ function SelectAllCheckBox(value)
 
 //  ---------------------------------------
 
-//function ProgressBar(status)
-//{
+// function ProgressBar(status)
+// {
 //   if(status == true)
 //   {
 //      $("#progress").html("<div style='position:absolute;left:400px;top:200px;padding:10px 30px;background:#fff;border:solid 5px #1E4B81;color:#1E4B81;'>Loadding...</div>");
@@ -137,12 +138,12 @@ function SelectAllCheckBox(value)
 //   {
 //      $("#progress").html("");
 //   }
-//}
-function ProgressBar(status,id)
+// }
+function ProgressBar(status, id)
 {
    if(status == true)
    {
-      //$("#progress").html("<div style='position:absolute;left:400px;top:200px;padding:10px 30px;background:#fff;border:solid 5px #1E4B81;color:#1E4B81;'>Loadding...</div>");
+      // $("#progress").html("<div style='position:absolute;left:400px;top:200px;padding:10px 30px;background:#fff;border:solid 5px #1E4B81;color:#1E4B81;'>Loadding...</div>");
       $(id).addClass("loading");
    }
    else
@@ -242,7 +243,7 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
    // alert("hello");
    $(this).click(function()
    {
-      ProgressBar(true,PostContainnerID);
+      ProgressBar(true, PostContainnerID);
       var data = $(PostContainnerID).serializeNoViewState();
       var urlparts = url.toString().split('?');
       data += "&" + urlparts[1];
@@ -251,7 +252,7 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
       {
          HtmlPaste(result, ContainnerID);
          BuildLinks(ContainnerID);
-         ProgressBar(false,PostContainnerID);
+         ProgressBar(false, PostContainnerID);
       }
       );
    }
@@ -321,8 +322,8 @@ function Counter(hour, minut, second, PopupDivID, url)
    popCloseUrl = url;
    clearInterval();
    // clearTimeout();
-//   alert("hello");
-//   setInterval(descreaseSecond, 60000);
+   //   alert("hello");
+   //   setInterval(descreaseSecond, 60000);
 
 }
 
@@ -368,14 +369,16 @@ function descreaseSecond(PopupDivID, url)
       $(PopIDdiv).LoadPage(popCloseUrl);
       $(PopIDdiv).dialog('close');
       clearInterval();
-      //clearInterval(timmer);
+      // clearInterval(timmer);
    }
 }
 
-//popUp
-$.fn.PUIW = function(url, swidth, sheight,rurl,rid)
+//  ---------------------------------------
+
+// popUp
+$.fn.PUIW = function(url, swidth, sheight, rurl, rid)
 {
-    alert("aa");
+   alert("aa");
    var id = $(this).attr("id");
    id = "#" + id;
    $(this).html("");
@@ -386,7 +389,7 @@ $.fn.PUIW = function(url, swidth, sheight,rurl,rid)
    str += "' style='width:" + swidth + "px;height:" + sheight + "px; background:none; overflow:auto;'></iframe>";
    $(this).html(str);
    $(this).dialog(
-   {      
+   {
       position : 'center',
       width : 'auto',
       height : 'auto',
@@ -404,58 +407,91 @@ $.fn.PUIW = function(url, swidth, sheight,rurl,rid)
       height : "'"+sheight+"'px"
    }
    );
-   
+
    return false;
 
 }
 
+//  ---------------------------------------
 
-$.fn.shower=function(ShowBlockID)
+$.fn.shower = function(ShowBlockID)
 {
-    $(this).click(function()
-    {
-      
-        if($(ShowBlockID).hasClass('vis'))
-        {
-            $(ShowBlockID).addClass('invis');
-            $(ShowBlockID).removeClass('vis');
-            $(ShowBlockID).hide('slow');
-        }
-        else
-        {
-            $(ShowBlockID).addClass('vis');
-            $(ShowBlockID).removeClass('invis');
-            $(ShowBlockID).show('slow');
-        }
-    }
-    );
+   $(this).click(function()
+   {
+
+      if($(ShowBlockID).hasClass('vis'))
+      {
+         $(ShowBlockID).addClass('invis');
+         $(ShowBlockID).removeClass('vis');
+         $(ShowBlockID).hide('slow');
+      }
+      else
+      {
+         $(ShowBlockID).addClass('vis');
+         $(ShowBlockID).removeClass('invis');
+         $(ShowBlockID).show('slow');
+      }
+   }
+   );
 }
 
-$.fn.dropdownPostback=function(url,PostContainnerID,ResponseID)
-{   
-      var id = $(this).attr("id");
-    
-      url+="?ddp="+id;
-      
-      ProgressBar(true,PostContainnerID);
-      var data = $(PostContainnerID).serializeNoViewState();
-      var urlparts = url.toString().split('?');
-      data += "&" + urlparts[1];
-      $.post(urlparts[0], data,
-      function(result)
-      {         
-         HtmlPaste($(result).find(ResponseID).html(), ResponseID);
-         //BuildLinks(ContainnerID);
-         ProgressBar(false,PostContainnerID);
-      }
-      );
-    
-    
+//  ---------------------------------------
+
+$.fn.dropdownPostback = function(url, PostContainnerID, ResponseID)
+{
+   var id = $(this).attr("id");
+
+   url += "?ddp=" + id;
+
+   ProgressBar(true, PostContainnerID);
+   var data = $(PostContainnerID).serializeNoViewState();
+   var urlparts = url.toString().split('?');
+   data += "&" + urlparts[1];
+   $.post(urlparts[0], data,
+   function(result)
+   {
+      HtmlPaste($(result).find(ResponseID).html(), ResponseID);
+      // BuildLinks(ContainnerID);
+      ProgressBar(false, PostContainnerID);
+   }
+   );
+
+
 }
+
+//  ---------------------------------------
 
 function closePop()
 {
-alert('close popup');
-  $("#ipop").dialog('close');
-  $("#ipop").dialog('destroy');
+   alert('close popup');
+   $("#ipop").dialog('close');
+   $("#ipop").dialog('destroy');
+}
+
+//  ---------------------------------------
+
+function ddChange(ddbase,replacediv,url)
+{
+   //alert("aa");
+   $.ajax(
+   {
+      type : "GET",
+      url : url+$(ddbase).val(),      
+      contentType : "application/json; charset=utf-8",
+      dataType : "html",
+      success : function(data)
+      {
+        // alert(data)
+         $(replacediv).html(data);
+      }
+      ,
+      error : function(errormessage)
+      {
+         alert(errormessage);
+         $(ContainnerID).removeClass("loading");
+         ProgressBar(false, ContainnerID);
+      }
+   }
+   );
+
 }
