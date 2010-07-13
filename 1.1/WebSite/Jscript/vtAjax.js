@@ -145,6 +145,7 @@ function ProgressBar(status, id)
    {
       // $("#progress").html("<div style='position:absolute;left:400px;top:200px;padding:10px 30px;background:#fff;border:solid 5px #1E4B81;color:#1E4B81;'>Loadding...</div>");
       $(id).addClass("loading");
+      $(id).html("");
    }
    else
    {

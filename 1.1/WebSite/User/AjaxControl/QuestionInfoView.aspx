@@ -33,7 +33,7 @@
             </ul>
         </div>
         <div>
-            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="LoginUserID" OnItemDataBound="ListQuestionOnItemDataBound">
+            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="LoginUserID,QuestionID" OnItemDataBound="ListQuestionOnItemDataBound">
                 <LayoutTemplate>
                     <table>
                         <thead>

@@ -7,7 +7,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="contentbox">
+        <div class="gray">
+            Users
+        </div>
         <asp:ListView ID="ListUser" runat="server">
             <LayoutTemplate>
                 <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
@@ -23,21 +26,23 @@
                     </div>
             </ItemTemplate>
         </asp:ListView>
-        <div>
-            <div style="float: right">
-                <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkPrevUser" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                        Pagger="true" Increment="false" RequestContainner="#User" ResponseContainner="#User"></aspajax:AjaxLinkButton>
+        <div class="gray">
+            <div>
+                <div style="float: right">
+                    <div style="float: left">
+                        <aspajax:AjaxLinkButton ID="lnkPrevUser" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
+                            Pagger="true" Increment="false" RequestContainner="#User" ResponseContainner="#User"></aspajax:AjaxLinkButton>
+                    </div>
+                    <div style="float: left">
+                        <aspajax:AjaxLinkButton ID="lnkNextUser" runat="server" OnAjaxClick="NextAjaxClick"
+                            RequestContainner="#User" Pagger="true" Increment="true" ResponseContainner="#User">Next</aspajax:AjaxLinkButton>
+                    </div>
                 </div>
-                <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkNextUser" runat="server" OnAjaxClick="NextAjaxClick"
-                        RequestContainner="#User" Pagger="true" Increment="true" ResponseContainner="#User">Next</aspajax:AjaxLinkButton>
+                Isers
+                <div style="clear: both">
                 </div>
-            </div>
-            <div style="clear: both">
             </div>
         </div>
-       
     </div>
     </form>
 </body>

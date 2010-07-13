@@ -7,7 +7,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="contentbox">
+        <div class="gray">
+            Users
+        </div>
         <div id="User">
             <div>
                 <asp:HyperLink ID="lnkback" runat="server" Text="back to List" runat="server" NavigateUrl="~/Modules/User/List.aspx"></asp:HyperLink>
@@ -101,6 +104,9 @@
                 </div>
             </div>
             <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#accountsetting" NavigateUrl="UserInfo.aspx">Edit</aspajax:HyperLink>
+        </div>
+        <div class="gray">
+            Users
         </div>
     </div>
     </form>

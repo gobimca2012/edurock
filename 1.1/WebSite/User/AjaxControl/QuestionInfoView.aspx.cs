@@ -145,7 +145,12 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
             string Script = string.Format("$('#{0}').ajaxToolTip('#{1}','{2}');", lnkTool.ClientID, "acont", ResolveUrl("~/User/AjaxControl/Upop.aspx") + "?lid=" + LoginUserID);
             JScripter.JScripter.InjectScript(Script, this.Page);
         }
-
+        AjaxControl.HyperLink lnkQuestionFull = (AjaxControl.HyperLink)currentItem.FindControl("lnkQuestionFull");
+        string QuestionID = ListQuestion.DataKeys[currentItem.DataItemIndex]["QuestionID"].ToString();
+        if (lnkQuestionFull != null)
+        {
+            lnkQuestionFull.NavigateUrl = ResolveUrl("~/User/AjaxControl/Question.aspx") + "?icid=" + ICID.ToString() + "&qid=" + QuestionID.ToString();
+        }
 
 
     }
