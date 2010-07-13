@@ -11,7 +11,7 @@
         <asp:ListView ID="ListAnswer" runat="server" DataKeyNames="LoginUserID,AnswerID"
             OnItemDataBound="ListAnswerOnItemDataBound">
             <LayoutTemplate>
-                <div >
+                <div>
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                 </div>
             </LayoutTemplate>

@@ -955,8 +955,8 @@ namespace DataAccess
         #endregion
         #region CustomExam
         #endregion
-	
-	
+
+
         #region CustomExam
         public Decimal GetExamTotalmark(int ExamID)
         {
@@ -3023,18 +3023,7 @@ namespace DataAccess
 
         }
 
-        public List<User> UserGetbyLoginUserID(int LoginUserID)
-        {
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-            UserDataContext db = new UserDataContext();
-            db.ObjectTrackingEnabled = false;
-            db.DeferredLoadingEnabled = false;
-            var data = (from p in db.Users where p.LoginUserID == LoginUserID select p).ToList();
-            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-            return data;
-
-        }
-
+       
         public List<User> UserGetbyFirstName(string FirstName)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -3439,6 +3428,21 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
+        public List<User> UserGetbyLoginUserID(int LoginUserID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            option.LoadWith<User>(p => p.StudentLogin);
+            db.LoadOptions = option;
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Users where p.LoginUserID == LoginUserID select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
         #endregion
 
 
@@ -5534,7 +5538,7 @@ namespace DataAccess
 
         }
 
-        
+
         public List<InstituteCource> InstituteCourceGetbyCourceID(int CourceID, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -5705,7 +5709,7 @@ namespace DataAccess
 
         }
 
-       
+
 
         public List<InstituteCource> InstituteCourceGetbyCourceID(int CourceID)
         {
@@ -6077,7 +6081,7 @@ namespace DataAccess
 
 
         #endregion
-        
+
         #region CustomInstituteCource
         public List<GetCourceByInstituteIDResult> GetCourceByInstituteID(int InstituteID)
         {
@@ -7095,18 +7099,7 @@ namespace DataAccess
 
 
 
-        public void QuestionDeletebyQuestionID(Guid QuestionID)
-        {
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
-
-            db.DeferredLoadingEnabled = false;
-            var data = (from p in db.Questions where p.QuestionID == QuestionID select p);
-            db.Questions.DeleteAllOnSubmit(data);
-            db.SubmitChanges();
-            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-        }
-
+       
         public void QuestionDeletebyQuestionText(string QuestionText)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -7229,9 +7222,23 @@ namespace DataAccess
 
 
         #endregion
-        
-	
+
+
         #region CustomQuestion
+        public void QuestionDeletebyQuestionID(Guid QuestionID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Questions where p.QuestionID == QuestionID select p);
+            var answerdata = (from p in db.Answers where p.QuestionID == QuestionID select p);
+            db.Answers.DeleteAllOnSubmit(answerdata);
+            db.Questions.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
         public List<GetQuestionByLoginUserIDResult> GetQuestionByLoginUserID(int LoginUserID, int QuestionTypeID, int QuestionStatusID)
         {
 
@@ -7286,7 +7293,7 @@ namespace DataAccess
             return db.GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
-        
+
         public void QuestionAdd(Guid QuestionID, string QuestionText, int LoginUserID, int QuestionTypeID, DateTime ModifiedDate)
         {
             Question ObjQuestion = new Question();
@@ -9230,7 +9237,7 @@ namespace DataAccess
 
         }
 
-        
+
 
         public List<InstituteUser> InstituteUserGetbyLoginUserID(int LoginUserID, int PageSize, int PageNumber)
         {
@@ -9282,7 +9289,7 @@ namespace DataAccess
 
         }
 
-       
+
         public List<InstituteUser> InstituteUserGetbyLoginUserID(int LoginUserID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -9403,9 +9410,9 @@ namespace DataAccess
 
 
         #endregion
-       
-	
-	
+
+
+
         #region CustomInstituteUser
         public List<InstituteUser> InstituteUserGetbyInstituteID(int InstituteID)
         {
@@ -9430,7 +9437,7 @@ namespace DataAccess
             db.DeferredLoadingEnabled = false;
             DataLoadOptions option = new DataLoadOptions();
             option.LoadWith<InstituteUser>(p => p.InstituteLoginUser);
-           
+
             db.LoadOptions = option;
             var data = (from p in db.InstituteUsers where p.InstituteID == InstituteID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
@@ -9445,12 +9452,12 @@ namespace DataAccess
             db.DeferredLoadingEnabled = false;
             DataLoadOptions option = new DataLoadOptions();
             option.LoadWith<InstituteUser>(p => p.InstituteLoginUser);
-            
+
             db.LoadOptions = option;
             List<InstituteUser> data = new List<InstituteUser>();
             if (InstituteUserTypeID != -1)
             {
-                data = (from p in db.InstituteUsers where  p.InstituteID == InstituteID && p.InstituteLoginUser.Username.ToLower().Contains(Keyword.Trim().ToLower()) select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                data = (from p in db.InstituteUsers where p.InstituteID == InstituteID && p.InstituteLoginUser.Username.ToLower().Contains(Keyword.Trim().ToLower()) select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
             }
             else
             {
@@ -9468,16 +9475,16 @@ namespace DataAccess
             db.DeferredLoadingEnabled = false;
             DataLoadOptions option = new DataLoadOptions();
             option.LoadWith<InstituteUser>(p => p.InstituteLoginUser);
-            
+
             db.LoadOptions = option;
             List<InstituteUser> data = new List<InstituteUser>();
             if (InstituteUserTypeID != -1)
             {
-                 data = (from p in db.InstituteUsers where  p.InstituteID == InstituteID && p.InstituteLoginUser.Username.ToLower().Contains(Keyword.Trim().ToLower()) select p).ToList();
+                data = (from p in db.InstituteUsers where p.InstituteID == InstituteID && p.InstituteLoginUser.Username.ToLower().Contains(Keyword.Trim().ToLower()) select p).ToList();
             }
             else
             {
-                 data = (from p in db.InstituteUsers where p.InstituteID == InstituteID && p.InstituteLoginUser.Username.ToLower().Contains(Keyword.Trim().ToLower()) select p).ToList();
+                data = (from p in db.InstituteUsers where p.InstituteID == InstituteID && p.InstituteLoginUser.Username.ToLower().Contains(Keyword.Trim().ToLower()) select p).ToList();
             }
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;
@@ -9511,7 +9518,7 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
 
-        
+
 
 
 
@@ -9690,7 +9697,7 @@ namespace DataAccess
 
 
 
-        
+
 
         public void InstituteUserTypeDeletebyLoginUserID(int LoginUserID)
         {
@@ -9820,13 +9827,13 @@ namespace DataAccess
             InstituteUserTypeAccess objInstituteUserTypeAccess = new InstituteUserTypeAccess();
             objInstituteUserTypeAccess.CanAddCource = false;
             objInstituteUserTypeAccess.CanAddExam = false;
-            objInstituteUserTypeAccess.CanAddQuestion = true ;
+            objInstituteUserTypeAccess.CanAddQuestion = true;
             objInstituteUserTypeAccess.CanAddSubject = false;
             objInstituteUserTypeAccess.CanAddUser = false;
             objInstituteUserTypeAccess.InstituteUserTypeID = ObjInstituteUserType.InstituteUserTypeID;
             objInstituteUserTypeAccess.ModifiedDate = DateTime.Now;
             db.InstituteUserTypeAccesses.InsertOnSubmit(objInstituteUserTypeAccess);
-            
+
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return ObjInstituteUserType.InstituteUserTypeID;
@@ -10192,7 +10199,7 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
 
-        
+
 
 
 
@@ -10297,7 +10304,7 @@ namespace DataAccess
 
         }
 
-       
+
 
         public List<InstituteUserInUserType> InstituteUserInUserTypeGetbyInstituteUserID(int InstituteUserID)
         {
@@ -11351,7 +11358,7 @@ namespace DataAccess
 
             ObjDocument.ModifiedDate = ModifiedDate;
 
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.DeferredLoadingEnabled = false;
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             db.Documents.InsertOnSubmit(ObjDocument);
@@ -11391,7 +11398,7 @@ namespace DataAccess
 
             ObjDocument.ModifiedDate = ModifiedDate;
 
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
 
             db.DeferredLoadingEnabled = false;
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -11405,7 +11412,7 @@ namespace DataAccess
 
         public List<Document> DocumentGet(int PageSize, int PageNumber)
         {
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -11419,7 +11426,7 @@ namespace DataAccess
         public List<Document> DocumentGet()
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             db.ObjectTrackingEnabled = false;
@@ -11433,7 +11440,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyDocumentID(Guid DocumentID, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.DocumentID == DocumentID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
@@ -11445,7 +11452,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyName(string Name, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Name == Name select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
@@ -11457,7 +11464,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyDescription(string Description, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Description == Description select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
@@ -11469,7 +11476,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyMetaDescription(string MetaDescription, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.MetaDescription == MetaDescription select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
@@ -11481,7 +11488,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyTag(string Tag, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Tag == Tag select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
@@ -11493,7 +11500,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyLoginUserID(int LoginUserID, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.LoginUserID == LoginUserID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
@@ -11505,7 +11512,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyRating(int Rating, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Rating == Rating select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
@@ -11517,7 +11524,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyFilePath(string FilePath, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.FilePath == FilePath select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
@@ -11529,7 +11536,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyDocumentType(int DocumentType, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.DocumentType == DocumentType select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
@@ -11541,7 +11548,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyModifiedDate(DateTime ModifiedDate, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.ModifiedDate == ModifiedDate select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
@@ -11555,7 +11562,10 @@ namespace DataAccess
         public List<Document> DocumentGetbyDocumentID(Guid DocumentID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            option.LoadWith<Document>(p => p.DocumentCources);
+            db.LoadOptions = option;
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.DocumentID == DocumentID select p).ToList();
@@ -11567,7 +11577,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyName(string Name)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Name == Name select p).ToList();
@@ -11579,7 +11589,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyDescription(string Description)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Description == Description select p).ToList();
@@ -11591,7 +11601,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyMetaDescription(string MetaDescription)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.MetaDescription == MetaDescription select p).ToList();
@@ -11603,7 +11613,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyTag(string Tag)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Tag == Tag select p).ToList();
@@ -11615,7 +11625,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyLoginUserID(int LoginUserID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.LoginUserID == LoginUserID select p).ToList();
@@ -11627,7 +11637,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyRating(int Rating)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Rating == Rating select p).ToList();
@@ -11639,7 +11649,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyFilePath(string FilePath)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.FilePath == FilePath select p).ToList();
@@ -11651,7 +11661,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyDocumentType(int DocumentType)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.DocumentType == DocumentType select p).ToList();
@@ -11663,7 +11673,7 @@ namespace DataAccess
         public List<Document> DocumentGetbyModifiedDate(DateTime ModifiedDate)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.ModifiedDate == ModifiedDate select p).ToList();
@@ -11674,22 +11684,12 @@ namespace DataAccess
 
 
 
-        public void DocumentDeletebyDocumentID(Guid DocumentID)
-        {
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
-
-            db.DeferredLoadingEnabled = false;
-            var data = (from p in db.Documents where p.DocumentID == DocumentID select p);
-            db.Documents.DeleteAllOnSubmit(data);
-            db.SubmitChanges();
-            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-        }
+        
 
         public void DocumentDeletebyName(string Name)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
 
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Name == Name select p);
@@ -11701,7 +11701,7 @@ namespace DataAccess
         public void DocumentDeletebyDescription(string Description)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
 
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Description == Description select p);
@@ -11713,7 +11713,7 @@ namespace DataAccess
         public void DocumentDeletebyMetaDescription(string MetaDescription)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
 
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.MetaDescription == MetaDescription select p);
@@ -11725,7 +11725,7 @@ namespace DataAccess
         public void DocumentDeletebyTag(string Tag)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
 
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Tag == Tag select p);
@@ -11737,7 +11737,7 @@ namespace DataAccess
         public void DocumentDeletebyLoginUserID(int LoginUserID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
 
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.LoginUserID == LoginUserID select p);
@@ -11749,7 +11749,7 @@ namespace DataAccess
         public void DocumentDeletebyRating(int Rating)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
 
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.Rating == Rating select p);
@@ -11761,7 +11761,7 @@ namespace DataAccess
         public void DocumentDeletebyFilePath(string FilePath)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
 
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.FilePath == FilePath select p);
@@ -11773,7 +11773,7 @@ namespace DataAccess
         public void DocumentDeletebyDocumentType(int DocumentType)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
 
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.DocumentType == DocumentType select p);
@@ -11785,7 +11785,7 @@ namespace DataAccess
         public void DocumentDeletebyModifiedDate(DateTime ModifiedDate)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-           UserDataContext db = new UserDataContext();
+            UserDataContext db = new UserDataContext();
 
             db.DeferredLoadingEnabled = false;
             var data = (from p in db.Documents where p.ModifiedDate == ModifiedDate select p);
@@ -11822,9 +11822,91 @@ namespace DataAccess
 
         #endregion
         #region CustomDocument
+        public void DocumentAdd(Guid DocumentID, string Name, string Description, string MetaDescription, string Tag, int LoginUserID, int Rating, string FilePath, int DocumentType, int InstituteCourceID, int InstituteSubjectID, DateTime ModifiedDate)
+        {
+            Document ObjDocument = new Document();
+
+            ObjDocument.DocumentID = DocumentID;
+
+            ObjDocument.Name = Name;
+
+            ObjDocument.Description = Description;
+
+            ObjDocument.MetaDescription = MetaDescription;
+
+            ObjDocument.Tag = Tag;
+
+            ObjDocument.LoginUserID = LoginUserID;
+
+            ObjDocument.Rating = Rating;
+
+            ObjDocument.FilePath = FilePath;
+
+            ObjDocument.DocumentType = DocumentType;
+
+            ObjDocument.ModifiedDate = ModifiedDate;
+
+            DocumentCource objDcource = new DocumentCource();
+            objDcource.DocumentCourceID = Guid.NewGuid();
+            objDcource.DocumentID = DocumentID;
+            objDcource.InstituteCourceID = InstituteCourceID;
+            objDcource.ModifiedDate = DateTime.Now;
+            objDcource.SubjectID = InstituteSubjectID;
+
+            UserDataContext db = new UserDataContext();
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.DocumentCources.InsertOnSubmit(objDcource);
+            db.Documents.InsertOnSubmit(ObjDocument);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+        public void DocumentDeletebyDocumentID(Guid DocumentID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Documents where p.DocumentID == DocumentID select p);
+            db.DocumentCources.DeleteAllOnSubmit((from p in db.DocumentCources where p.DocumentID == DocumentID select p));
+            db.Documents.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+        public List<Document> DocumentGetByInstituetCourceID(int DocumentType, int InstituteCourceID, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            option.LoadWith<DocumentCource>(p => p.Document);
+            db.LoadOptions = option;
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.DocumentCources where p.InstituteCourceID == InstituteCourceID && p.Document.DocumentType == DocumentType select p.Document).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            //var data = (from p in db.Documents where p.DocumentType == DocumentType && p.DocumentCources select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+        public List<Document> DocumentGetByInstituetCourceID(int DocumentType, int InstituteCourceID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            option.LoadWith<DocumentCource>(p => p.Document);
+            db.LoadOptions = option;
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.DocumentCources where p.InstituteCourceID == InstituteCourceID && p.Document.DocumentType == DocumentType select p.Document).ToList();
+            //var data = (from p in db.Documents where p.DocumentType == DocumentType && p.DocumentCources select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
         #endregion
-	
-	
+
+
 
 
 

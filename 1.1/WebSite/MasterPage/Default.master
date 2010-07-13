@@ -11,6 +11,10 @@
 </head>
 <body>
     <form id="form1" runat="server" enctype="multipart/form-data">
+    <div id="atool">
+        <div id="acont">
+        </div>
+    </div>
     <div class="header roundedb">
         <uc1:HeaderNavigation ID="HeaderNavigation1" runat="server" />
     </div>

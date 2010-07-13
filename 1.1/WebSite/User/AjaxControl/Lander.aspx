@@ -11,24 +11,27 @@
         <ul>
             <li class="btn roundedall"><span class="ques"></span><span>
                 <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">Questions</aspajax:HyperLink></span></li>
-            <li class="btn roundedall">
+            <li class="btn roundedall"><span class="exm"></span><span>
                 <aspajax:HyperLink ID="lnkExam" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ExamInfoView.aspx">Exams</aspajax:HyperLink>
             </li>
-            <li class="btn roundedall">
+            <li class="btn roundedall"><span class="ques"></span><span>
                 <aspajax:HyperLink ID="lnktut" runat="server" ContainnerID="#contentBox" NavigateUrl="~/All/Ajaxer/TutorialInfoView.aspx">Tutorials</aspajax:HyperLink></li>
-            <li class="btn roundedall">
+            <li class="btn roundedall"><span class="us"></span><span>
                 <aspajax:HyperLink ID="lnkUsers" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ICUserInfoView.aspx">Users</aspajax:HyperLink></li>
-            <li class="btn roundedall">
+            <li class="btn roundedall"><span class="ques"></span><span>
                 <aspajax:HyperLink ID="lnkHomeWork" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/HomeWorkInfoView.aspx">HomeWorks</aspajax:HyperLink></li>
-            <li class="btn roundedall">Blog</li>
-            <li class="btn roundedall">
-                <aspajax:HyperLink ID="lnkImage" runat="server" ContainnerID="#contentBox" >Images</aspajax:HyperLink></li>
-            <li class="btn roundedall">
-                <aspajax:HyperLink ID="lnkAudio" runat="server" ContainnerID="#contentBox" >Audios</aspajax:HyperLink></li>
-            <li class="btn roundedall">
-                <aspajax:HyperLink ID="lnkVideo" runat="server" ContainnerID="#contentBox" >Videos</aspajax:HyperLink></li>
-            <li class="btn roundedall">
-                <aspajax:HyperLink ID="lnkDocument" runat="server" ContainnerID="#contentBox" >Documents</aspajax:HyperLink></li>
+            <li class="btn roundedall"><span class="ques"></span><span>Blog</li>
+        
+            <li class="btn roundedall"><span class="img"></span><span>
+                <aspajax:HyperLink ID="lnkImage" runat="server" ContainnerID="#contentBox">Images</aspajax:HyperLink></li>
+            <li class="btn roundedall"><span class="ques"></span><span>
+                <aspajax:HyperLink ID="lnkAudio" runat="server" ContainnerID="#contentBox">Audios</aspajax:HyperLink></li>
+                </ul>
+        <ul>
+            <li class="btn roundedall"><span class="vid"></span><span>
+                <aspajax:HyperLink ID="lnkVideo" runat="server" ContainnerID="#contentBox">Videos</aspajax:HyperLink></li>
+            <li class="btn roundedall"><span class="doc"></span><span>
+                <aspajax:HyperLink ID="lnkDocument" runat="server" ContainnerID="#contentBox">Documents</aspajax:HyperLink></li>
         </ul>
     </div>
     </form>

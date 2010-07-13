@@ -469,8 +469,7 @@ h3
 }
 .trans
 {
-    background:Transparent url(images/trans.png);
-    background-repeat:repeat;
+    background:url('images/trans.png');
     padding:10px;
 }
 /* Icons */
@@ -512,15 +511,15 @@ h3
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -191px 0;
-    padding: 8px;
+    background-position: -35px 0;
+    padding: 8px 12px;
 }
 .doc
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -191px 0;
+    background-position: -64px 0;
     padding: 8px;
 }
 .aud
@@ -536,8 +535,8 @@ h3
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -191px 0;
-    padding: 8px;
+    background-position: -0px 0;
+    padding: 11px 14px;
 }
 .ques
 {
@@ -547,13 +546,21 @@ h3
     background-position: -191px 0;
     padding: 8px;
 }
+.exm
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+    background-position: -85px 0;
+    padding: 8px 12px;
+}
 .us
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -191px 0;
-    padding: 8px;
+    background-position: -142px 0;
+    padding: 11px 19px 0px 0px;
 }
 .sub
 {

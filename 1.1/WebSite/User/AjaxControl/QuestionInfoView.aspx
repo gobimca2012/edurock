@@ -28,13 +28,12 @@
                         Pagger="False">Search</aspajax:AjaxLinkButton>
                 </li>
                 <li class="btn roundedall">
-                    <aspajax:HyperLink ID="lnkMyQuestion" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/MyQuestion.aspx"
-                        >Your Questions</aspajax:HyperLink>
+                    <aspajax:HyperLink ID="lnkMyQuestion" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/MyQuestion.aspx">Your Questions</aspajax:HyperLink>
                 </li>
             </ul>
         </div>
         <div>
-            <asp:ListView ID="ListQuestion" runat="server">
+            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="LoginUserID" OnItemDataBound="ListQuestionOnItemDataBound">
                 <LayoutTemplate>
                     <table>
                         <thead>
@@ -63,7 +62,7 @@
                                 <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#contentBox"
                                     NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("QuestionID")  %>'><%#Eval("QuestionText") %></aspajax:HyperLink></span>
                             by
-                            <%#Eval("FirstName")%>&nbsp;<%#Eval("LastName")%>
+                            <asp:HyperLink ID="lnkTool" runat="server">     <%#Eval("FirstName")%>&nbsp;<%#Eval("LastName")%></asp:HyperLink>
                         </td>
                         <td>
                             <%#Eval("QuestionStatus")%>

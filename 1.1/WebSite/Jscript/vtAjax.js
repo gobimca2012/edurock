@@ -470,18 +470,18 @@ function closePop()
 
 //  ---------------------------------------
 
-function ddChange(ddbase,replacediv,url)
+function ddChange(ddbase, replacediv, url)
 {
-   //alert("aa");
+   // alert("aa");
    $.ajax(
    {
       type : "GET",
-      url : url+$(ddbase).val(),      
+      url : url + $(ddbase).val(),
       contentType : "application/json; charset=utf-8",
       dataType : "html",
       success : function(data)
       {
-        // alert(data)
+         // alert(data)
          $(replacediv).html(data);
       }
       ,
@@ -495,3 +495,41 @@ function ddChange(ddbase,replacediv,url)
    );
 
 }
+
+//  ---------------------------------------
+
+$.fn.ajaxToolTip = function(url, containnerid)
+{
+
+   $(containnerid).LoadPage(url);
+}
+
+//  ---------------------------------------
+
+$.fn.ajaxToolTip = function(ContainnerID, url)
+{
+   $("#atool").addClass("loading");
+
+   $(this).click(function()
+   {
+
+      var pos = $(this).offset();
+      var width = $(this).width();
+      $("#atool").css(
+      {
+         left : (pos.left+20) + 'px',
+         top : (pos.top-20) + 'px',
+         width : '300px',
+         height : '300px',
+         position:'absolute'
+      }
+      );
+      $(ContainnerID).LoadPage(url);
+
+   }
+   );
+   $("#atool").removeClass("loading");
+   return false;
+}
+
+//  ---------------------------------------

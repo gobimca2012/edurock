@@ -679,6 +679,56 @@ namespace BusinessLogic
         }
         #endregion
         #region Document
+        public bool Add(Guid DocumentID, string Name, string Description, string MetaDescription, string Tag, int LoginUserID, int Rating, string FilePath, int DocumentType,int InstituteCourceiD,int InstituteSubjectID, DateTime ModifiedDate)
+        {
+
+            try
+            {
+                new DataProvider().DocumentAdd(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType,InstituteCourceiD,InstituteSubjectID, ModifiedDate);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false;
+            }
+        }
+        public List<Document> GetByInstituetCourceID(int DocumentType, int InstituteCourceID, int PageSize, int PageNumber)
+        {
+            try
+            {
+                return new DataProvider().DocumentGetByInstituetCourceID(DocumentType, InstituteCourceID, PageSize, PageNumber);
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return new List<Document>();
+            }
+        }
+        public List<Document> GetByInstituetCourceID(int DocumentType, int InstituteCourceID)
+        {
+            try
+            {
+                return new DataProvider().DocumentGetByInstituetCourceID(DocumentType, InstituteCourceID);
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return new List<Document>();
+            }
+        }
         #endregion
 
 

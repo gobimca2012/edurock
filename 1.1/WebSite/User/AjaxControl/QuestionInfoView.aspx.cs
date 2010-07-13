@@ -29,7 +29,7 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
         get
         {
             string data = HtmlHelper.ControlValue(ddQuestionStatus.ClientID);
-            if (data == "0" || data=="")
+            if (data == "0" || data == "")
             {
                 return -1;
             }
@@ -81,14 +81,14 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
             BindList();
             new QuestionTypeController().BindQuestionType(ddQuestionType);
             new QuestionStatusController().BindQuestionStatus(ddQuestionStatus);
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID),QuestionTypeID ,QuestionStatusID).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID), QuestionTypeID, QuestionStatusID).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID),QuestionTypeID ,QuestionStatusID,PageSize, PageNumber);
+        ListQuestion.DataSource = new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID), QuestionTypeID, QuestionStatusID, PageSize, PageNumber);
         ListQuestion.DataBind();
     }
     private void PaggerLinkManager()
@@ -137,8 +137,14 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 
     protected void ListQuestionOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
-        //ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        //string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+        ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        string LoginUserID = ListQuestion.DataKeys[currentItem.DataItemIndex]["LoginUserID"].ToString();
+        HyperLink lnkTool = (HyperLink)currentItem.FindControl("lnkTool");
+        if (lnkTool != null)
+        {
+            string Script = string.Format("$('#{0}').ajaxToolTip('#{1}','{2}');", lnkTool.ClientID, "acont", ResolveUrl("~/User/AjaxControl/Upop.aspx") + "?lid=" + LoginUserID);
+            JScripter.JScripter.InjectScript(Script, this.Page);
+        }
 
 
 

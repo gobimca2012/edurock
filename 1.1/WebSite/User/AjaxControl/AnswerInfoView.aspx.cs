@@ -104,7 +104,7 @@ public partial class User_AjaxControl_AnswerInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-
+            new AnswerController().DeletebyAnswerID(new Guid(e.Id));
             BindList();
         }
         else if (e.Command.Contains("accept"))
