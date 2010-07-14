@@ -81,6 +81,7 @@ public partial class User_AjaxControl_Question : AjaxPage
     private void MakeLinks()
     {
         lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?icid="+_InstituteCourceID.ToString()+"&qid=" + ID.ToString();
+        lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx")  + "?qid=" + ID.ToString();
     }
 
 

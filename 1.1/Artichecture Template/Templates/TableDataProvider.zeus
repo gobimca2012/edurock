@@ -101,7 +101,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		int columnCount=0;
 		IDatabase database = MyMeta.Databases[databaseName];
 		ITable table = database.Tables[tableName];
-		string DataContextDBObject="CollegeDataBaseDataContext db = new CollegeDataBaseDataContext();";
+		string DataContextDBObject="CollegeDataBaseDataContext db = new CollegeDataBaseDataContext();\nDataLoadOptions option = new DataLoadOptions();\ndb.LoadOptions = option;\n";
 		%>
 		#region <%=table.Alias%>		
 		
@@ -142,6 +142,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		public List<<%=table.Alias%>> <%=table.Alias%>Get(int PageSize, int PageNumber)
 		{
 			<%=DataContextDBObject%>
+			
 			db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
 			if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }

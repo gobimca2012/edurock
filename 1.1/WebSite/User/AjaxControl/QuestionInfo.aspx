@@ -26,7 +26,7 @@
                         <span class="label">Description</span>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="400px"></asp:TextBox>
                     </div>
                 </div>
                 <div>

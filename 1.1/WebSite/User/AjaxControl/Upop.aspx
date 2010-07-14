@@ -7,8 +7,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="trans">
+    <div class="trans" style="float: left">
         <div class="whitecont">
+            <asp:HyperLink ID="lnkclose" runat="server">Close</asp:HyperLink>
             <div>
                 <div>
                     <div style="float: left">
@@ -27,8 +28,13 @@
                     </div>
                 </div>
             </div>
-            <div style="clear:both"></div>
+            <div style="clear: both">
+            </div>
         </div>
+    </div>
+    <div class="tarrow" style="float: left">
+    </div>
+    <div style="clear: both">
     </div>
     </form>
 </body>

@@ -12,15 +12,17 @@
             <div style="float: left">
                 Question View
             </div>
-            <div style="float: right">
-                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink></div>
+            <div style="float: right" class="btn">
+                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit Question</aspajax:HyperLink></div>
+            <div style="float: right" class="btn">
+                <aspajax:HyperLink ID="lnkShare" runat="server" ContainnerID="#contentBox">Share Question</aspajax:HyperLink></div>
             <div style="clear: both">
             </div>
         </div>
         <div id="Question" style="padding: 5px;">
             <div>
                 <div>
-                    <span id="lblQuestionText" runat="server" class="btext"></span>
+                    <span id="lblQuestionText" runat="server" class="btitle"></span>
                 </div>
             </div>
             <div>

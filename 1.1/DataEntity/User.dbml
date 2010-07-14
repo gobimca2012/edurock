@@ -12,6 +12,7 @@
       <Association Name="StudentLogin_UserEducation" Member="UserEducations" OtherKey="LoginUserID" Type="UserEducation" />
       <Association Name="StudentLogin_User" Member="Users" OtherKey="LoginUserID" Type="User" />
       <Association Name="StudentLogin_Document" Member="Documents" OtherKey="LoginUserID" Type="Document" />
+      <Association Name="StudentLogin_ShareUser" Member="ShareUsers" OtherKey="LoginUserID" Type="ShareUser" />
     </Type>
   </Table>
   <Table Name="dbo.UserEducation" Member="UserEducations">
@@ -70,4 +71,58 @@
       <Association Name="Document_DocumentCource" Member="Document" ThisKey="DocumentID" Type="Document" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Share" Member="Shares">
+    <Type Name="Share">
+      <Column Name="ShareID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ObjectType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ObjectID" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Share_ShareGroup" Member="ShareGroups" OtherKey="ShareID" Type="ShareGroup" />
+      <Association Name="Share_ShareUser" Member="ShareUsers" OtherKey="ShareID" Type="ShareUser" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShareGroup" Member="ShareGroups">
+    <Type Name="ShareGroup">
+      <Column Name="ShareGroupID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="InstituteUserTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ShareID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="EnableEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Share_ShareGroup" Member="Share" ThisKey="ShareID" Type="Share" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShareUser" Member="ShareUsers">
+    <Type Name="ShareUser">
+      <Column Name="ShareUserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ShareID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="EnableEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="StudentLogin_ShareUser" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+      <Association Name="Share_ShareUser" Member="Share" ThisKey="ShareID" Type="Share" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetShareUser" Method="GetShareUser">
+    <Parameter Name="ObjectType" Parameter="objectType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ObjectID" Parameter="objectID" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="GetShareUserResult">
+      <Column Name="ObjectID" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ObjectType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="EnableEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

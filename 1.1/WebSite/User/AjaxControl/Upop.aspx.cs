@@ -20,6 +20,8 @@ public partial class User_AjaxControl_Upop : AjaxPage
         {
             Binddata();
         }
+        string aaa = string.Format("$('#{0}').ajaxToolTipclose();", lnkclose.ClientID);
+        JScripter.JScripter.InjectScript(aaa, this.Page);
     }
     private void Binddata()
     {

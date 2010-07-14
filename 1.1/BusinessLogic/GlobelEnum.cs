@@ -24,4 +24,9 @@ namespace BusinessLogic
         Technology=1,
         Business=2
     }
+    public enum ObjectEnum
+    {
+        Question=1
+
+    }
 }

@@ -8,55 +8,63 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:ListView ID="ListAnswer" runat="server" DataKeyNames="LoginUserID,AnswerID"
+        <asp:ListView ID="ListAnswer" runat="server" DataKeyNames="LoginUserID,AnswerID" 
             OnItemDataBound="ListAnswerOnItemDataBound">
             <LayoutTemplate>
-                <div>
+                <div style="width:500px">
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                 </div>
             </LayoutTemplate>
             <ItemTemplate>
                 <div>
-                    <div>
-                        <%#Eval("AnswerText") %>
-                    </div>
-                    <div>
-                        <div>
-                            <asp:Image ID="imgProf" runat="server" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>'
-                                Width="100" />
-                        </div>
-                        Post By
-                        <%#Eval("FirstName") %>
-                        &nbsp;<%#Eval("LastName") %>
-                    </div>
-                    <div>
-                        <%#Eval("Description") %>
-                    </div>
-                    <div>
-                        <%#Eval("AnswerStatus") %>
-                    </div>
-                    <div>
-                        Answer Rate
-                        <%#Eval("AnswerRate") %>
-                    </div>
-                    <div>
-                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
-                    </div>
-                    <div id="UserAction" runat="server">
-                        <div id="stateDiv" runat="server">
-                            <asp:DropDownList ID="ddState" runat="server">
-                            </asp:DropDownList>
+                    <div style="float: left; width: 400px;">
+                        <div class="btitle">
+                            <%#Eval("AnswerText") %>
                         </div>
                         <div>
-                            <%# _HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("AnswerID").ToString(), "#Answer", "#Answer")%>
+                            <div>
+                                <asp:Image ID="imgProf" runat="server" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>'
+                                    Width="100" />
+                            </div>
+                            Post By
+                            <%#Eval("FirstName") %>
+                            &nbsp;<%#Eval("LastName") %>
                         </div>
                         <div>
-                            <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/AnswerInfo.aspx") + "?cid=" + Eval("AnswerID")%>'
-                                ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
+                            <%#Eval("Description") %>
                         </div>
-                        <div id="acceptAnswer" runat="server">
-                            <%#_HtmlHelper.ListViewLinkButton("lnkd", "accept Answer","accept", Eval("AnswerID").ToString(), "#Answer", "#Answer")%>
+                        <div class="btitle">
+                           Answer Status <%#Eval("AnswerStatus") %>
                         </div>
+                        <div class="btitle">
+                            Answer Rate
+                            <%#Eval("AnswerRate") %>
+                        </div>
+                        <div>
+                            <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
+                        </div>
+                    </div>
+                    <div style="float: right">
+                        <div id="UserAction" runat="server">
+                            <div id="stateDiv" runat="server">
+                                <asp:DropDownList ID="ddState" runat="server" Visible="false">
+                                </asp:DropDownList>
+                            </div>
+                            <div>
+                                <div class="btn">
+                                    <%# _HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("AnswerID").ToString(), "#Answer", "#Answer")%></div>
+                            </div>
+                           <%-- <div>
+                                <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/AnswerInfo.aspx") + "?cid=" + Eval("AnswerID")%>'
+                                    ContainnerID="#courceinfo"><div class="btn"> Edit</div></aspajax:HyperLink>
+                            </div>--%>
+                            <div id="acceptAnswer" runat="server">
+                                <div class="btn">
+                                    <%#_HtmlHelper.ListViewLinkButton("lnkd", "accept Answer","accept", Eval("AnswerID").ToString(), "#Answer", "#Answer")%></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear: both">
                     </div>
                 </div>
             </ItemTemplate>
@@ -76,7 +84,8 @@
             </div>
         </div>
         <div>
-            <aspajax:HyperLink ID="hpAddAnswer" runat="server" ContainnerID="#Answer">Add New</aspajax:HyperLink>
+            <div class="btn">
+                <aspajax:HyperLink ID="hpAddAnswer" runat="server" ContainnerID="#Answer">Give new Answer</aspajax:HyperLink></div>
         </div>
     </div>
     </form>

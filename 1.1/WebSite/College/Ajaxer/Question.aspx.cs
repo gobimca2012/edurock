@@ -315,7 +315,7 @@ public partial class College_Ajaxer_Question : AjaxPage
         }
         else if (CurrentQuestion.Q_Type == (int)QuestionTypeEnum.MultipleChoice)
         {
-            List<string> SelectedItem = HtmlHelper.CheckBox("chk");
+            List<string> SelectedItem = HtmlHelper.CheckBoxList("chk");
             if (SelectedItem.Count > 0)
             {
                 new EXM_UserAnswerController().Delete(CurrentQuestion.EXM_QuestionID, new UserAuthontication().LoggedInUserID, UserExamID);

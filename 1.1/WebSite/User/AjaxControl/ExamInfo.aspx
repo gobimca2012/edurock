@@ -7,7 +7,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="contentbox">
+        <div class="gray">
+            Exam
+        </div>
         <div id="divMessage" runat="server">
         </div>
         <fieldset>
@@ -54,21 +57,7 @@
                         <span class="label">Description</span>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">LoginUserID</span>
-                    </div>
-                    <div>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">ModifiedDate</span>
-                    </div>
-                    <div>
+                        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="400px"></asp:TextBox>
                     </div>
                 </div>
                 <div>
@@ -112,15 +101,17 @@
                     </div>
                 </div>
             </div>
+        </fieldset>
+        <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddExam" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdateExam" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn"> Update</div></aspajax:AjaxLinkButton>
             </div>
-        </fieldset>
+        </div>
     </div>
     </form>
 </body>

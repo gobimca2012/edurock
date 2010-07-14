@@ -95,6 +95,9 @@
     <Compile Include="QuestionTypeController.cs" />
     <Compile Include="SessionName.cs" />
     <Compile Include="SettingProvider.cs" />
+    <Compile Include="ShareController.cs" />
+    <Compile Include="ShareGroupController.cs" />
+    <Compile Include="ShareUserController.cs" />
     <Compile Include="StartExam.cs" />
     <Compile Include="TutorialController.cs" />
     <Compile Include="TutorialTypeController.cs" />

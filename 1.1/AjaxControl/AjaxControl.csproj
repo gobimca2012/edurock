@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AjaxLinkButton.cs" />
+    <Compile Include="CheckBox.cs" />
     <Compile Include="HyperLink.cs" />
     <Compile Include="Panel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

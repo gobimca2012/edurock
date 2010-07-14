@@ -13,7 +13,7 @@ namespace BusinessLogic
         {
 
         }
-        public static List<string> CheckBox(string ClientID)
+        public static List<string> CheckBoxList(string ClientID)
         {
             List<string> ItemValues = new List<string>();
             for (int i = 0; i < HttpContext.Current.Request.Params.Keys.Count; i++)

@@ -4,7 +4,6 @@
 }
 body
 {
-    
     font-family: arial,helvetica,clean,sans-serif;
     font-size: 12px;
     text-align: center;
@@ -63,7 +62,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(                'images/headerbt.jpg' ) repeat-x;
+    background: url(                     'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -231,7 +230,7 @@ tr:hover
     background: url(images/3.gif);
     z-index: 10001;
     background-repeat: no-repeat;
-    background-position:center;
+    background-position: center;
 }
 
 img
@@ -263,9 +262,9 @@ li input, li select, li textarea, select
 {
     width: 20%;
 }
-input[type=radio],input[type=checkbox]
+input[type=radio], input[type=checkbox]
 {
-    width:10px;
+    width: 10px;
 }
 
 /*  New -------------------------------------*/
@@ -287,7 +286,7 @@ input, textarea
     text-align: left;
     display: none;
 }
-.roundedall, .btn, .cin:hover, .contentbox,.trans
+.roundedall, .btn, .cin:hover, .contentbox, .trans
 {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -346,14 +345,14 @@ input, textarea
     padding: 4px 10px;
     background: url(images/graybtn.gif);
     background-repeat: repeat-x;
-    border: solid 1px #c4c7c8;    
+    border: solid 1px #c4c7c8;
+    max-width: 200px;
+    text-align: center;
 }
 .btn:hover, .cin:hover
 {
     background: url(images/bluebtn.gif);
     border: solid 1px #267bc4;
-    
-    
 }
 .btn:hover a, .cin:hover a
 {
@@ -421,9 +420,13 @@ table
     padding: 5px;
     width: 100%;
 }
-table thead td, .btext, a
+table thead td, .btext, a, .btitle
 {
     color: #497ec1;
+}
+.btitle
+{
+    font-weight: bold;
 }
 .btext, a
 {
@@ -473,8 +476,8 @@ h3
 }
 .trans
 {
-    background:url('images/trans.png');
-    padding:10px;
+    background: url(     'images/trans.png' );
+    padding: 10px;
 }
 /* Icons */
 
@@ -507,7 +510,7 @@ h3
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-   background-position: -33px -33px;
+    background-position: -33px -33px;
     padding: 14px 22px;
 }
 .img
@@ -515,69 +518,121 @@ h3
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -35px 0;
-    padding: 8px 12px;
+    background-position: -35px -6px;
+    padding: 0px 20px 0px 0px;
+    line-height: 12px;
+    empty-cells: show;
 }
 .doc
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -64px 0;
-    padding: 8px;
+    background-position: -64px -5px;
+    padding: 1px 16px 0px 0px;
+    line-height: 12px;
+    empty-cells: show;
 }
 .aud
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -191px 0;
-    padding: 8px;
+    background-position: -191px -5px;
+    padding: 1px 16px 0px 0px;
+    line-height: 12px;
+    empty-cells: show;
 }
 .vid
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -0px 0;
-    padding: 11px 14px;
+    background-position: -0px -10px;
+    padding: 0px 25px 0px 0px;
+    line-height: 12px;
+    empty-cells: show;
 }
 .ques
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -191px 0;
-    padding: 8px;
+    background-position: -191px -6px;
+    padding: 1px 16px 0px 0px;
+    line-height: 12px;
+    empty-cells: show;
 }
 .exm
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -85px 0;
-    padding: 8px 12px;
+    background-position: -85px -9px;
+    padding: 0px 16px 0px 0px;
+    line-height: 12px;
+    empty-cells: show;
 }
 .us
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -142px 0;
-    padding: 11px 19px 0px 0px;
+    background-position: -142px -11px;
+    padding: 0px 16px 0px 0px;
+    line-height: 12px;
+    empty-cells: show;
 }
 .sub
 {
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -111px 0px;
-    padding: 14px 14px;
+    background-position: -111px -5px;
+    padding: 1px 16px 0px 0px;
+    line-height: 12px;
+    empty-cells: show;
 }
 
 /* end Account*/
 
 fieldset
 {
-    text-align:left;
+    text-align: left;
+}
+.tarrow
+{
+    background: transparent url(images/toolarrow.png);
+    height: 37px;
+    width: 127px;
+    background-repeat: no-repeat;
+    margin-top: 20px;
+}
+a
+{
+    cursor: pointer;
+}
+.checked .unchecked input,.unchecked input
+{
+   background: transparent url(images/unchecked.png);
+    width: 16px;
+    height: 16px;
+    background-repeat:no-repeat;
+}
+.unchecked input, .checked input
+{
+    padding-left:16px;
+    margin: 0px;
+    border: none 0px;
+    cursor:pointer;
+    color:#fff;
+    
+    
+}
+.checked input
+{
+    background: transparent url(images/checked.png);
+    width: 16px;
+    height: 16px;
+    background-repeat:no-repeat;
 }

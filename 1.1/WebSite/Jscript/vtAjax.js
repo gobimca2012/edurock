@@ -145,7 +145,7 @@ function ProgressBar(status, id)
    {
       // $("#progress").html("<div style='position:absolute;left:400px;top:200px;padding:10px 30px;background:#fff;border:solid 5px #1E4B81;color:#1E4B81;'>Loadding...</div>");
       $(id).addClass("loading");
-      $(id).html("");
+      //$(id).html("");
    }
    else
    {
@@ -518,8 +518,8 @@ $.fn.ajaxToolTip = function(ContainnerID, url)
       var width = $(this).width();
       $("#atool").css(
       {
-         left : (pos.left+20) + 'px',
-         top : (pos.top-20) + 'px',
+         left : (pos.left-260) + 'px',
+         top : (pos.top-45) + 'px',
          width : '300px',
          height : '300px',
          position:'absolute'
@@ -533,4 +533,27 @@ $.fn.ajaxToolTip = function(ContainnerID, url)
    return false;
 }
 
+$.fn.ajaxToolTipclose=function()
+{
+   $(this).click(function()
+   {
+    $("#acont").html("");
+    
+    }
+    );
+}
+$.fn.CheckBox=function(className)
+{
+    $(this).toggleClass("unchecked");
+    $(this).toggleClass("checked");    
+    if($(this).hasClass("checked"))
+    {    
+        $(this).find('input').val('1');
+    }
+    else
+    {
+    $(this).find('input').val('0');
+    }
+    
+}
 //  ---------------------------------------
