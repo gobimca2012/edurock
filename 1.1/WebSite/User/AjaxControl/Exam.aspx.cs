@@ -23,7 +23,7 @@ public partial class User_AjaxControl_Exam : AjaxPage
             var data = dataBunch[0];
             if (data.ExamID != null)
 
-                lblExamID.InnerHtml = data.ExamID.ToString();
+               // lblExamID.InnerHtml = data.ExamID.ToString();
 
             if (data.ExamName != null)
 
@@ -35,11 +35,11 @@ public partial class User_AjaxControl_Exam : AjaxPage
 
             if (data.InstituteCourceID != null)
 
-                lblInstituteCourceID.InnerHtml = data.InstituteCourceID.ToString();
+                //lblInstituteCourceID.InnerHtml = data.InstituteCourceID.ToString();
 
             if (data.InstituteSubjectID != null)
 
-                lblInstituteSubjectID.InnerHtml = data.InstituteSubjectID.ToString();
+                //lblInstituteSubjectID.InnerHtml = data.InstituteSubjectID.ToString();
 
             if (data.Description != null)
 
@@ -47,11 +47,11 @@ public partial class User_AjaxControl_Exam : AjaxPage
 
             if (data.LoginUserID != null)
 
-                lblLoginUserID.InnerHtml = data.LoginUserID.ToString();
+                lblLoginUserID.InnerHtml = data.LoginUser.Username;
 
             if (data.ModifiedDate != null)
 
-                lblModifiedDate.InnerHtml = data.ModifiedDate.ToString();
+                lblModifiedDate.InnerHtml =  CommonController.GetDate(Convert.ToDateTime(data.ModifiedDate.ToString()));
 
             if (data.ExamTime != null)
 
@@ -67,11 +67,11 @@ public partial class User_AjaxControl_Exam : AjaxPage
 
             if (data.StartDate != null)
 
-                lblStartDate.InnerHtml = data.StartDate.ToString();
+                lblStartDate.InnerHtml = CommonController.GetDate(Convert.ToDateTime(data.StartDate.ToString()));
 
             if (data.EndDate != null)
 
-                lblEndDate.InnerHtml = data.EndDate.ToString();
+                lblEndDate.InnerHtml =  CommonController.GetDate(Convert.ToDateTime(data.EndDate.ToString()));
         }
 
     }

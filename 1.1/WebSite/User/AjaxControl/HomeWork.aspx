@@ -9,36 +9,30 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Home Work <span class="btn">
-                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink>
-            </span>
+            <div style="float: left">
+                Home Work
+            </div>
+            <div style="float: right">
+                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox"><div class="btn">Edit</div> </aspajax:HyperLink>
+            </div>
+            <div style="clear: both">
+            </div>
         </div>
         <div id="HomeWork" style="padding: 5px;">
-            <div>
-                <asp:HyperLink ID="lnkback" runat="server" Text="back to List" runat="server" NavigateUrl="~/Modules/HomeWork/List.aspx"></asp:HyperLink>
-            </div>
-            <div>
+            <%-- <div>
                 <div>
                     <span class="label">HomeWorkID</span>
                 </div>
                 <div>
                     <span id="lblHomeWorkID" runat="server"></span>
                 </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">LoginUserID</span>
-                </div>
-                <div>
-                    <span id="lblLoginUserID" runat="server"></span>
-                </div>
-            </div>
+            </div>--%>
             <div>
                 <div>
                     <span class="label">Title</span>
                 </div>
                 <div>
-                    <span id="lblTitle" runat="server"></span>
+                    <span id="lblTitle" runat="server" class="btitle"></span>
                 </div>
             </div>
             <div>
@@ -46,7 +40,8 @@
                     <span class="label">Description</span>
                 </div>
                 <div>
-                    <span id="lblDescription" runat="server"></span>
+                    <p id="lblDescription" runat="server">
+                    </p>
                 </div>
             </div>
             <div>
@@ -54,12 +49,13 @@
                     <span class="label">ShortDescription</span>
                 </div>
                 <div>
-                    <span id="lblShortDescription" runat="server"></span>
+                    <p id="lblShortDescription" runat="server">
+                    </p>
                 </div>
             </div>
             <div>
                 <div>
-                    <span class="label">InstituteCourceID</span>
+                    <span class="label">Cource</span>
                 </div>
                 <div>
                     <span id="lblInstituteCourceID" runat="server"></span>
@@ -67,7 +63,7 @@
             </div>
             <div>
                 <div>
-                    <span class="label">InstituteSubjectID</span>
+                    <span class="label">Subject</span>
                 </div>
                 <div>
                     <span id="lblInstituteSubjectID" runat="server"></span>
@@ -75,10 +71,8 @@
             </div>
             <div>
                 <div>
-                    <span class="label">ModifiedDate</span>
-                </div>
-                <div>
-                    <span id="lblModifiedDate" runat="server"></span>
+                    POST BY &nbsp;<asp:HyperLink ID="lnkTool" runat="server"></asp:HyperLink>&nbsp;on
+                    &nbsp;<span id="lblModifiedDate" runat="server"></span>
                 </div>
             </div>
         </div>

@@ -223,6 +223,18 @@ namespace DataEntity
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteID);
 			return ((ISingleResult<GetCourceByInstituteIDResult>)(result.ReturnValue));
 		}
+		
+		[Function(Name="dbo.GetInstituteCourceName", IsComposable=true)]
+		public string GetInstituteCourceName([Parameter(Name="InstituteCourceID", DbType="Int")] System.Nullable<int> instituteCourceID)
+		{
+			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteCourceID).ReturnValue));
+		}
+		
+		[Function(Name="dbo.GetInstituteSubjectName", IsComposable=true)]
+		public string GetInstituteSubjectName([Parameter(Name="InstituteSubjectID", DbType="Int")] System.Nullable<int> instituteSubjectID)
+		{
+			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteSubjectID).ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.Institute")]

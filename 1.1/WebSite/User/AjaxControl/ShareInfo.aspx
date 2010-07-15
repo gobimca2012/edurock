@@ -45,7 +45,7 @@
                         </td>
                         <td>
                             <aspajax:CheckBox CustomID='<%#"chkAdd$"+Eval("LoginUserID").ToString()%>' ID="chkA"
-                                runat="server"></aspajax:CheckBox>
+                                runat="server" Checked='<%#Eval("EnableAdd") %>'></aspajax:CheckBox>
                         </td>
                         <td>
                             <aspajax:CheckBox CustomID='<%#"chkEdit$"+Eval("LoginUserID").ToString() %>' ID="chkE"
@@ -53,11 +53,11 @@
                         </td>
                         <td>
                             <aspajax:CheckBox CustomID='<%#"chkView$"+Eval("LoginUserID").ToString() %>' ID="chkV"
-                                runat="server"></aspajax:CheckBox>
+                                runat="server" Checked='<%#Eval("EnableView") %>'></aspajax:CheckBox>
                         </td>
                         <td>
                             <aspajax:CheckBox CustomID='<%#"chkDelete$"+Eval("LoginUserID").ToString() %>' ID="chkD"
-                                runat="server"></aspajax:CheckBox>
+                                runat="server" Checked='<%#Eval("EnableDelete") %>'></aspajax:CheckBox>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -67,7 +67,7 @@
             <aspajax:AjaxLinkButton ID="lnkSave" runat="server" RequestContainner="#contentBox"
                 ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SaveAjaxClick"
                 Pagger="False"><div class="btn">Save</div> </aspajax:AjaxLinkButton>
-            Share</div>
+        </div>
     </div>
     </form>
 </body>

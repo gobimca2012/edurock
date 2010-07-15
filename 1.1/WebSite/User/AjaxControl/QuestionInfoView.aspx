@@ -107,15 +107,7 @@
             </div>
         </div>
     </div>
-    <div>
-        <aspajax:CheckBox ID="chkTest" runat="server" Checked="true"></aspajax:CheckBox>
-    </div>
-    <div>
-        <asp:TextBox ID="tt" ReadOnly="true" Enabled="false" runat="server"></asp:TextBox>
-    </div>
-    <div>
-        <asp:HiddenField ID="ttt" runat="server" Value="aa" />
-    </div>
+  
     </form>
 </body>
 </html>

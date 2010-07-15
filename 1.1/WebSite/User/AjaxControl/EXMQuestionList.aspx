@@ -10,13 +10,18 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Questions <span>
-                <aspajax:HyperLink ID="lnkAddnew" runat="server" ContainnerID="#contentBox">Add new</aspajax:HyperLink>
-            </span>
+            <div style="float: left">
+            Question List
+            </div>
+            <div style="float: right">
+                <aspajax:HyperLink ID="lnkAddnew" runat="server" ContainnerID="#contentBox"><div class="btn"> Add new Question</div></aspajax:HyperLink>
+            </div>
+            <div style="clear: both">
+            </div>
         </div>
         <div>
-            <asp:ListView ID="ListEXM_Question" runat="server" 
-                DataKeyNames="EXM_QuestionID,Q_Type" onitemdatabound="ItemdataBound">
+            <asp:ListView ID="ListEXM_Question" runat="server" DataKeyNames="EXM_QuestionID,Q_Type"
+                OnItemDataBound="ItemdataBound">
                 <LayoutTemplate>
                     <table id="ListQuestion">
                         <thead>

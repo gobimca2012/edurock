@@ -49,7 +49,7 @@
                             <asp:TextBox ID="txtTag" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <div >
+                    <div>
                         <div>
                             <div>
                                 <span class="label">Select your Cource</span>
@@ -91,11 +91,11 @@
         <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddDocument" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdateDocument" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn"> Update</div></aspajax:AjaxLinkButton>
             </div>
         </div>
     </div>

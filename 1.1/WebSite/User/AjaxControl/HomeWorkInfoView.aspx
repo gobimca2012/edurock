@@ -13,7 +13,7 @@
             Homeworks</div>
         <asp:ListView ID="ListHomeWork" runat="server">
             <LayoutTemplate>
-                <table>
+                <%-- <table>
                     <thead>
                         <tr>
                             <td>
@@ -29,12 +29,14 @@
                                 ModifiedDate
                             </td>
                         </tr>
-                    </thead>
+                    </thead>--%>
+                <div class="whitecont">
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                </table>
+                </div>
+                <%--</table>--%>
             </LayoutTemplate>
             <ItemTemplate>
-                <tr>
+                <%--<tr>
                     <td>
                         <aspajax:HyperLink ID="lnkFull" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWork.aspx")+"?hwid="+Eval("HomeWorkID").ToString()%>'
                             ContainnerID="#contentBox"><%#Eval("Title") %></aspajax:HyperLink>
@@ -55,7 +57,19 @@
                         <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWorkInfo.aspx") + "?hwid=" + Eval("HomeWorkID")%>'
                             ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                     </td>
-                </tr>
+                </tr>--%>
+                <div style="clear:both">
+                    <div style="float: left" class="btitle">
+                        <aspajax:HyperLink ID="lnkFull" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWork.aspx")+"?hwid="+Eval("HomeWorkID").ToString()%>'
+                            ContainnerID="#contentBox"><%#Eval("Title") %></aspajax:HyperLink>
+                    </div>
+                    <div style="float: right">
+                        Post on &nbsp;<%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
+                    </div>
+                    <div style="clear:both">
+                    </div>
+                </div>
+                <hr />
             </ItemTemplate>
         </asp:ListView>
         <div class="gray">
@@ -71,7 +85,7 @@
             </div>
             <div style="float: left">
                 <aspajax:HyperLink ID="hpAddHomeWork" runat="server" NavigateUrl="~/User/AjaxControl/HomeWorkInfo.aspx"
-                    ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                    ContainnerID="#contentBox"><div class="btn">Add new Homework</div></aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

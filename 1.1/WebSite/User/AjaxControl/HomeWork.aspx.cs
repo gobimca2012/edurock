@@ -23,12 +23,20 @@ public partial class User_AjaxControl_HomeWork : AjaxPage
         {
             HomeWork data = dataBunch[0];
             if (data.HomeWorkID != null)
-
-                lblHomeWorkID.InnerHtml = data.HomeWorkID.ToString();
+            {
+                //lblHomeWorkID.InnerHtml = data.HomeWorkID.ToString();
+            }
 
             if (data.LoginUserID != null)
-
-                lblLoginUserID.InnerHtml = data.LoginUserID.ToString();
+            {
+                //lblLoginUserID.InnerHtml = data.LoginUserID.ToString();
+                var dataUser = new UserController().GetbyLoginUserID(data.LoginUserID);
+                if (dataUser.Count > 0)
+                {
+                    lnkTool.Text = dataUser[0].FirstName + " " + dataUser[0].LastName;
+                    new JScripter.ToolTip(this.Page).AjaxToolTip(lnkTool, ResolveUrl("~/User/AjaxControl/Upop.aspx") + "?lid=" + data.LoginUserID.ToString(), "acont");
+                }
+            }
 
             if (data.Title != null)
 
@@ -44,15 +52,15 @@ public partial class User_AjaxControl_HomeWork : AjaxPage
 
             if (data.InstituteCourceID != null)
 
-                lblInstituteCourceID.InnerHtml = data.InstituteCourceID.ToString();
+                lblInstituteCourceID.InnerHtml =new InstituteCourceController().GetInstituteCourceName((int)data.InstituteCourceID);
 
             if (data.InstituteSubjectID != null)
 
-                lblInstituteSubjectID.InnerHtml = data.InstituteSubjectID.ToString();
+                lblInstituteSubjectID.InnerHtml =new InstituteSubjectController().GetInstituteSubjectName((int)data.InstituteSubjectID);
 
             if (data.ModifiedDate != null)
 
-                lblModifiedDate.InnerHtml = data.ModifiedDate.ToString();
+                lblModifiedDate.InnerHtml =CommonController.GetDate(Convert.ToDateTime( data.ModifiedDate.ToString()));
         }
 
     }

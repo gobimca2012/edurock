@@ -11,39 +11,15 @@
         <div class="gray">
             Exams
         </div>
-        <asp:ListView ID="ListExam" runat="server">
-            <LayoutTemplate>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>
-                                ExamName
-                            </td>
-                            <td>
-                                SubjectName
-                            </td>
-                            <td>
-                                InstituteCourceID
-                            </td>
-                            <td>
-                                InstituteSubjectID
-                            </td>
-                            <td>
-                                ModifiedDate
-                            </td>
-                            <td>
-                                StartDate
-                            </td>
-                            <td>
-                                EndDate
-                            </td>
-                        </tr>
-                    </thead>
-                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                </table>
-            </LayoutTemplate>
-            <ItemTemplate>
-                <tr>
+        <div class="whitecont">
+            <asp:ListView ID="ListExam" runat="server">
+                <LayoutTemplate>
+                    <div>
+                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                    </div>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <%--<tr>
                     <td>
                         <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Exam.aspx") + "?eid=" + Eval("ExamID").ToString()%>'>
                         <%#Eval("ExamName") %></aspajax:HyperLink>
@@ -74,12 +50,21 @@
                             ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                     </td>
                     <td>
-                    
                         <aspajax:HyperLink ID="lnkExmStart" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + Eval("ExamID").ToString()%>'>Start Exam</aspajax:HyperLink>
                     </td>
-                </tr>
-            </ItemTemplate>
-        </asp:ListView>
+                </tr>--%>
+                    <div style="float: left">
+                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Exam.aspx") + "?eid=" + Eval("ExamID").ToString()%>'>
+                        <%#Eval("ExamName") %></aspajax:HyperLink>
+                    </div>
+                    <div style="float: right">
+                        <span>
+                            <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %></span>
+                    </div>
+                    <div style="clear:both"></div>
+                </ItemTemplate>
+            </asp:ListView>
+        </div>
         <div class="gray">
             <div style="float: right">
                 <div style="float: left">

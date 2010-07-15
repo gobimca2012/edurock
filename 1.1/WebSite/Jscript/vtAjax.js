@@ -1,6 +1,4 @@
-﻿// JavaScript Document
-// JavaScript Document
-function loadobject(url, loadid, clickid)
+﻿function loadobject(url, loadid, clickid)
 {
    this.url = url;
    this.loadid = loadid;
@@ -144,12 +142,11 @@ function ProgressBar(status, id)
    if(status == true)
    {
       // $("#progress").html("<div style='position:absolute;left:400px;top:200px;padding:10px 30px;background:#fff;border:solid 5px #1E4B81;color:#1E4B81;'>Loadding...</div>");
-      $(id).addClass("loading");
-      //$(id).html("");
+      $("#progress").addClass("loading");      
    }
    else
    {
-      $(id).removeClass("loading");
+      $("#progress").removeClass("loading");
    }
 }
 
@@ -518,11 +515,11 @@ $.fn.ajaxToolTip = function(ContainnerID, url)
       var width = $(this).width();
       $("#atool").css(
       {
-         left : (pos.left-260) + 'px',
-         top : (pos.top-45) + 'px',
+         left : (pos.left - 260) + 'px',
+         top : (pos.top - 45) + 'px',
          width : '300px',
          height : '300px',
-         position:'absolute'
+         position : 'absolute'
       }
       );
       $(ContainnerID).LoadPage(url);
@@ -533,27 +530,33 @@ $.fn.ajaxToolTip = function(ContainnerID, url)
    return false;
 }
 
-$.fn.ajaxToolTipclose=function()
+//  ---------------------------------------
+
+$.fn.ajaxToolTipclose = function()
 {
    $(this).click(function()
    {
-    $("#acont").html("");
-    
-    }
-    );
+      $("#acont").html("");
+
+   }
+   );
 }
-$.fn.CheckBox=function(className)
+
+//  ---------------------------------------
+
+$.fn.CheckBox = function(className)
 {
-    $(this).toggleClass("unchecked");
-    $(this).toggleClass("checked");    
-    if($(this).hasClass("checked"))
-    {    
-        $(this).find('input').val('true');
-    }
-    else
-    {
-    $(this).find('input').val('false');
-    }
-    
+   $(this).toggleClass("unchecked");
+   $(this).toggleClass("checked");
+   if($(this).hasClass("checked"))
+   {
+      $(this).find('input').val('true');
+   }
+   else
+   {
+      $(this).find('input').val('false');
+   }
+
 }
+
 //  ---------------------------------------

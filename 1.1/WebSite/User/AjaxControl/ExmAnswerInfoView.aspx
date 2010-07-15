@@ -10,7 +10,16 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Answers
+            <div style="float: left">
+            Answers 
+            </div>
+            <div style="float: right">
+                <aspajax:HyperLink ID="hpAddEXM_Answer" runat="server" NavigateUrl="~/User/Ajaxer/EXMAnswerInfo.aspx"
+                    ContainnerID="#contentBox"><div class="btn">Add new Answer</div></aspajax:HyperLink>
+            </div>
+            <div style="clear: both">
+            </div>
+            
         </div>
         <asp:ListView ID="ListEXM_Answer" runat="server">
             <LayoutTemplate>
@@ -81,9 +90,7 @@
                         RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                 </div>
             </div>
-            <div style="float:left">
-                <aspajax:HyperLink ID="hpAddEXM_Answer" runat="server" NavigateUrl="~/User/Ajaxer/EXMAnswerInfo.aspx"
-                    ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+            <div style="float: left">
             </div>
             <div style="clear: both">
             </div>

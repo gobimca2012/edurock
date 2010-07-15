@@ -610,17 +610,7 @@ namespace DataAccess
 
 
 
-        public List<Exam> ExamGetbyExamID(int ExamID)
-        {
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
-            db.ObjectTrackingEnabled = false;
-            db.DeferredLoadingEnabled = false;
-            var data = (from p in db.Exams where p.ExamID == ExamID select p).ToList();
-            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-            return data;
-
-        }
+        
 
         public List<Exam> ExamGetbyExamName(string ExamName)
         {
@@ -955,6 +945,20 @@ namespace DataAccess
 
         #endregion
         #region CustomExam
+        public List<Exam> ExamGetbyExamID(int ExamID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            option.LoadWith<Exam>(p => p.LoginUser);
+            db.LoadOptions = option;
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Exams where p.ExamID == ExamID select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
         #endregion
 
 
@@ -6085,6 +6089,16 @@ namespace DataAccess
         #endregion
 
         #region CustomInstituteCource
+        public string GetInstituteCourceName(int InstituteCourceID)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInstituteCourceName(InstituteCourceID);
+
+        }
+        
         public List<GetCourceByInstituteIDResult> GetCourceByInstituteID(int InstituteID)
         {
 
@@ -6783,7 +6797,7 @@ namespace DataAccess
 
         #region Question
 
-        
+
 
         public Guid QuestionAdd(string QuestionText, string Description, int LoginUserID, int InstituteCourceID, string tag, int QuestionTypeID, int QuestionStatusID, DateTime ModifiedDate)
         {
@@ -10197,6 +10211,15 @@ namespace DataAccess
 
         #endregion
         #region CustomInstituteSubject
+        public string GetInstituteSubjectName(int InstituteSubjectID)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInstituteSubjectName(InstituteSubjectID);
+
+        }
         #endregion
 
 
@@ -12788,7 +12811,7 @@ namespace DataAccess
 
         #endregion
         #region CustomShareUser
-        public void UpdateShareUser(int LoginUserID,string QuestionID,bool EnableEdit)
+        public void UpdateShareUser(int LoginUserID, string QuestionID, int ObjectType, bool EnableEdit)
         {
             UserDataContext db = new UserDataContext();
             var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == (int)ObjectEnum.Question select p).ToList();
@@ -12797,6 +12820,78 @@ namespace DataAccess
                 var data = dataBunch[0];
                 data.EnableEdit = EnableEdit;
                 db.SubmitChanges();
+            }
+            else
+            {
+                var data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                if (data.Count > 0)
+                {
+                    ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, EnableEdit, false, true, false, false, DateTime.Now);
+                }
+
+            }
+
+        }
+        public void UpdateShareUserEnableView(int LoginUserID, string QuestionID, int ObjectType, bool EnableView)
+        {
+            UserDataContext db = new UserDataContext();
+            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == (int)ObjectEnum.Question select p).ToList();
+            if (dataBunch.Count > 0)
+            {
+                var data = dataBunch[0];
+                data.EnableView = EnableView;
+                db.SubmitChanges();
+            }
+            else
+            {
+                var data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                if (data.Count > 0)
+                {
+                    ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, false, EnableView, false, false, DateTime.Now);
+                }
+
+            }
+
+        }
+        public void UpdateShareUserEnableAdd(int LoginUserID, string QuestionID, int ObjectType, bool EnableAdd)
+        {
+            UserDataContext db = new UserDataContext();
+            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == (int)ObjectEnum.Question select p).ToList();
+            if (dataBunch.Count > 0)
+            {
+                var data = dataBunch[0];
+                data.EnableAdd = EnableAdd;
+                db.SubmitChanges();
+            }
+            else
+            {
+                var data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                if (data.Count > 0)
+                {
+                    ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, EnableAdd, true, false, false, DateTime.Now);
+                }
+
+            }
+
+        }
+        public void UpdateShareUserEnableDelete(int LoginUserID, string QuestionID, int ObjectType, bool EnableDelete)
+        {
+            UserDataContext db = new UserDataContext();
+            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == (int)ObjectEnum.Question select p).ToList();
+            if (dataBunch.Count > 0)
+            {
+                var data = dataBunch[0];
+                data.EnableDelete = EnableDelete;
+                db.SubmitChanges();
+            }
+            else
+            {
+                var data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                if (data.Count > 0)
+                {
+                    ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, false, true, EnableDelete, false, DateTime.Now);
+                }
+
             }
 
         }
@@ -13374,8 +13469,8 @@ namespace DataAccess
         #endregion
         #region CustomShareGroup
         #endregion
-	
-	
+
+
 
 
 

@@ -231,6 +231,10 @@ tr:hover
     z-index: 10001;
     background-repeat: no-repeat;
     background-position: center;
+    position:fixed;
+    left:500px;
+    top:100px;
+    padding:10px;
 }
 
 img

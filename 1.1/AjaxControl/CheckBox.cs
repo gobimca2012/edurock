@@ -25,9 +25,11 @@ namespace AjaxControl
         
         protected override void OnLoad(EventArgs e)
         {
+            string ControlValue = "false";
             if (Checked)
             {
                 this.CssClass = "checked";
+                ControlValue = "true";
             }
             else
             {
@@ -45,7 +47,8 @@ namespace AjaxControl
             {
                 CustomID = ID;
             }
-            this.Text = string.Format("<input id='{0}' type='text' value='0' name='{0}'></input>", this.CustomID);
+
+            this.Text = string.Format("<input id='{0}' type='text' value='{1}' name='{0}'></input>", this.CustomID, ControlValue);
             base.OnLoad(e);
         }
     }

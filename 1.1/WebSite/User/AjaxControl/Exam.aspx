@@ -9,29 +9,38 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Exam <span>
-                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink></span>
-            <span>
-                <aspajax:HyperLink ID="lnkQuestion" runat="server" ContainnerID="#contentBox">Questions</aspajax:HyperLink></span>
+            <div style="float: left">
+                Exam
+            </div>
+            <div style="float: right">
+                <span style="float: left">
+                    <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox"><div class="btn"> Edit</div></aspajax:HyperLink></span>
+                <span style="float: left">
+                    <aspajax:HyperLink ID="lnkQuestion" runat="server" ContainnerID="#contentBox"><div class="btn"> Questions</div></aspajax:HyperLink></span></span>
+                <div style="clear: both">
+                </div>
+            </div>
+            <div style="clear: both">
+            </div>
         </div>
         <div id="Exam" style="padding: 5px;">
-            <div>
+            <%--<div>
                 <asp:HyperLink ID="lnkback" runat="server" Text="back to List" runat="server" NavigateUrl="~/Modules/Exam/List.aspx"></asp:HyperLink>
-            </div>
-            <div>
+            </div>--%>
+            <%--<div>
                 <div>
                     <span class="label">ExamID</span>
                 </div>
                 <div>
                     <span id="lblExamID" runat="server"></span>
                 </div>
-            </div>
+            </div>--%>
             <div>
                 <div>
-                    <span class="label">ExamName</span>
+                    <span class="label">Exam Name</span>
                 </div>
                 <div>
-                    <span id="lblExamName" runat="server"></span>
+                    <span id="lblExamName" runat="server" class="btitle"></span>
                 </div>
             </div>
             <div>
@@ -39,47 +48,38 @@
                     <span class="label">SubjectName</span>
                 </div>
                 <div>
-                    <span id="lblSubjectName" runat="server"></span>
+                    <span id="lblSubjectName" runat="server" class="btext"></span>
+                </div>
+            </div>
+            <%-- <div>
+                <div>
+                    <span class="label">Cource</span>
+                </div>
+                <div>
+                    <span id="lblInstituteCourceID" runat="server" class="btext"></span>
                 </div>
             </div>
             <div>
                 <div>
-                    <span class="label">InstituteCourceID</span>
+                    <span class="label">Subject</span>
                 </div>
                 <div>
-                    <span id="lblInstituteCourceID" runat="server"></span>
+                    <span id="lblInstituteSubjectID" runat="server" class="btext"></span>
                 </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">InstituteSubjectID</span>
-                </div>
-                <div>
-                    <span id="lblInstituteSubjectID" runat="server"></span>
-                </div>
-            </div>
+            </div>--%>
             <div>
                 <div>
                     <span class="label">Description</span>
                 </div>
                 <div>
-                    <span id="lblDescription" runat="server"></span>
+                    <p id="lblDescription" runat="server">
+                    </p>
                 </div>
             </div>
             <div>
-                <div>
-                    <span class="label">LoginUserID</span>
-                </div>
-                <div>
-                    <span id="lblLoginUserID" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">ModifiedDate</span>
-                </div>
-                <div>
-                    <span id="lblModifiedDate" runat="server"></span>
+                <div class="btitle">
+                    Add by &nbsp;<span id="lblLoginUserID" runat="server"></span>&nbsp;on <span id="lblModifiedDate"
+                        runat="server"></span>
                 </div>
             </div>
             <div>
