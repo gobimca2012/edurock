@@ -15,10 +15,10 @@ body
 {
     width: 1000px;
     margin: 0 auto;
-    border: solid 1px #848689;
+    /*border: solid 1px #848689;*/
     min-height: 700px;
     padding: 0px;
-    background: #FFF;
+    background: transparent;
     margin-top: 5px;
 }
 .header
@@ -62,7 +62,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(                     'images/headerbt.jpg' ) repeat-x;
+    background: url(                      'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -231,10 +231,10 @@ tr:hover
     z-index: 10001;
     background-repeat: no-repeat;
     background-position: center;
-    position:fixed;
-    left:500px;
-    top:100px;
-    padding:10px;
+    position: fixed;
+    left: 500px;
+    top: 100px;
+    padding: 10px;
 }
 
 img
@@ -328,7 +328,7 @@ input, textarea
 .bksl
 {
     background-image: url(images/bks.png);
-    height: 100px;
+    height: 90px;
     background-repeat: repeat-x;
     vertical-align: bottom;
 }
@@ -371,6 +371,10 @@ input, textarea
 {
     background-image: url(images/gsl.png);
     border: solid 1px #C5C8C9;
+}
+.gray
+{
+    min-height:30px;
 }
 .bksl .btn a
 {
@@ -480,7 +484,7 @@ h3
 }
 .trans
 {
-    background: url(     'images/trans.png' );
+    background: url(      'images/trans.png' );
     padding: 10px;
 }
 /* Icons */
@@ -616,27 +620,90 @@ a
 {
     cursor: pointer;
 }
-.checked .unchecked input,.unchecked input
+.checked .unchecked input, .unchecked input
 {
-   background: transparent url(images/unchecked.png);
+    background: transparent url(images/unchecked.png);
     width: 16px;
     height: 16px;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
 }
 .unchecked input, .checked input
 {
-    padding-left:16px;
+    padding-left: 16px;
     margin: 0px;
     border: none 0px;
-    cursor:pointer;
-    color:#fff;
-    
-    
+    cursor: pointer;
+    color: #fff;
 }
 .checked input
 {
     background: transparent url(images/checked.png);
     width: 16px;
     height: 16px;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
+}
+.bgtl
+{
+    background: transparent url(images/bgtl.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    height:20px;
+}
+.bgtll
+{
+    background: transparent url(images/bgtll.png);
+    background-repeat: repeat-x;
+    background-position: left;
+    height:20px;
+    margin:0px 0 0 20px;
+}
+.bgtr
+{
+    background: transparent url(images/bgtr.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    height:20px;
+}
+.bgtc
+{
+    background: transparent url(images/bgtc.png);
+    height:20px;
+    margin:0px 20px 0 0;
+}
+.bgbl
+{
+    background: transparent url(images/bgbl.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    height:20px;
+}
+.bgbr
+{
+    background: transparent url(images/bgbr.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    height:20px;
+}
+.bgbc
+{
+    background: transparent url(images/bgbc.png);
+    height:20px;
+    margin:0px 20px;
+}
+.bgml
+{
+    background: transparent url(images/bgml.png);
+    background-repeat: repeat-y;
+    background-position: left;
+}
+.bgmr
+{
+    background: transparent url(images/bgmr.png);
+    background-repeat: repeat-y;
+    background-position: right;
+}
+.bgmc
+{
+    margin:0px 10px;
+    background:#fff;
 }

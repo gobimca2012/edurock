@@ -978,6 +978,30 @@ namespace BusinessLogic
 
         #endregion
         #region Institute
+        public List<GetInstituteByLoginUserIDResult> GetInstituteByLoginUserID(int LoginUserID)
+        {
+            try
+            {
+
+                return new DataProvider().GetInstituteByLoginUserID(LoginUserID);
+            }
+            catch
+            {
+                return new List<GetInstituteByLoginUserIDResult>();
+            }
+        }
+        public List<GetInstituteByLoginUserIDResult> GetInstituteByLoginUserID(int LoginUserID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetInstituteByLoginUserID(LoginUserID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetInstituteByLoginUserIDResult>();
+            }
+        }
         public List<Institute> Search(string Keyword, int PageSize, int PageNumber)
         {
             try

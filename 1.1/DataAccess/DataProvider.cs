@@ -4569,6 +4569,24 @@ namespace DataAccess
 
         #endregion
         #region CustomInstitute
+        public List<GetInstituteByLoginUserIDResult> GetInstituteByLoginUserID(int LoginUserID)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInstituteByLoginUserID(LoginUserID).ToList();
+
+        }
+        public List<GetInstituteByLoginUserIDResult> GetInstituteByLoginUserID(int LoginUserID, int PageSize, int PageNumber)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInstituteByLoginUserID(LoginUserID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         public List<Institute> InstituteSearch(string Keyword, int PageSize, int PageNumber)
         {
             InstituteDataContext db = new InstituteDataContext();

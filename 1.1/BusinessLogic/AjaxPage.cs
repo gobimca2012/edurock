@@ -121,27 +121,33 @@ namespace BusinessLogic
         }
         protected override void OnLoad(EventArgs e)
         {
-            IsEventChange = false;
-            this.Page.Header.Visible = false;
-            base.OnLoad(e);
-
-            if (Request.Params["lcmd"] != null)
+            if (new UserAuthontication().IsLoggedIn)
             {
-                AjaxListViewCommandArg objcommandevent = new AjaxListViewCommandArg();
-                objcommandevent.Command = Request.Params["lcmd"];
-                objcommandevent.Id = Request.Params["lid"];
-                if (Request.Params["lid1"] != null)
+                IsEventChange = false;
+                this.Page.Header.Visible = false;
+                base.OnLoad(e);
+
+                if (Request.Params["lcmd"] != null)
                 {
-                    objcommandevent.customId1 = Request.Params["lid1"];
+                    AjaxListViewCommandArg objcommandevent = new AjaxListViewCommandArg();
+                    objcommandevent.Command = Request.Params["lcmd"];
+                    objcommandevent.Id = Request.Params["lid"];
+                    if (Request.Params["lid1"] != null)
+                    {
+                        objcommandevent.customId1 = Request.Params["lid1"];
+                    }
+                    OnAjaxListViewCommand(objcommandevent);
                 }
-                OnAjaxListViewCommand(objcommandevent);
+                if (Request.Params["ddp"] != null)
+                {
+                    OnAjaxDropDownChange("");
+                }
+
             }
-            if (Request.Params["ddp"]!=null)
+            else
             {
-                OnAjaxDropDownChange("");
+                
             }
-
-
 
         }
         protected override void OnLoadComplete(EventArgs e)
