@@ -11,15 +11,23 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using Common;
 
 public partial class User_AjaxControl_UploadResponse : AjaxPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        EnableAjaxState = false;        
-        img.ImageUrl = ResolveUrl(Session[SessionName.FileUploader.ToString()].ToString());
-        filePath.Value = Session[SessionName.FileUploader.ToString()].ToString();
-        lblFileName.InnerText = Session[SessionName.FileUploaderFileName.ToString()].ToString();
-        Session.Remove(SessionName.FileUploader.ToString());
+        try
+        {
+            EnableAjaxState = false;
+            img.ImageUrl = ResolveUrl(Session[SessionName.FileUploaderDefaultImage.ToString()].ToString());
+
+            filePath.Value = Session[SessionName.FileUploader.ToString()].ToString();
+            lblFileName.InnerText = Session[SessionName.FileUploaderFileName.ToString()].ToString();
+            Session.Remove(SessionName.FileUploader.ToString());
+        }
+        catch
+        {
+        }
     }
 }

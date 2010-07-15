@@ -38,7 +38,9 @@ public partial class User_UploadPhoto : BasePage
             {
                 string Path = new CommonController().UploadImage(fileUploader);
                 Session[SessionName.FileUploader.ToString()] = Path;
+                Session[SessionName.FileUploaderDefaultImage.ToString()] = Path;
                 Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
+                Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;
                 injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
             }
             else
@@ -52,7 +54,9 @@ public partial class User_UploadPhoto : BasePage
             {
                 string Path = new CommonController().UploadImage(fileUploader);
                 Session[SessionName.FileUploader.ToString()] = Path;
+                Session[SessionName.FileUploaderDefaultImage.ToString()] = ConfigurationSettings.AppSettings["AudioIcon"].ToLower();
                 Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
+                Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Document;
                 injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
             }
             else
@@ -64,9 +68,11 @@ public partial class User_UploadPhoto : BasePage
         {
             if (FileInformation.IsAudio(FileInformation.getFileExtention(fileUploader.FileName)))
             {
-                string Path = new CommonController().UploadImage(fileUploader);
+                string Path = new CommonController().UploadAudio(fileUploader);
                 Session[SessionName.FileUploader.ToString()] = Path;
+                Session[SessionName.FileUploaderDefaultImage.ToString()] = ConfigurationSettings.AppSettings["AudioIcon"].ToLower();
                 Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
+                Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Audio;
                 injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
             }
             else
@@ -80,7 +86,9 @@ public partial class User_UploadPhoto : BasePage
             {
                 string Path = new CommonController().UploadImage(fileUploader);
                 Session[SessionName.FileUploader.ToString()] = Path;
+                Session[SessionName.FileUploaderDefaultImage.ToString()] = ConfigurationSettings.AppSettings["VideoIcon"].ToLower();
                 Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
+                Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Video;
                 injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
             }
             else

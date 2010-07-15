@@ -560,3 +560,49 @@ $.fn.CheckBox = function(className)
 }
 
 //  ---------------------------------------
+
+function CreateVideoPlayer(aFile,  VideoContainnerID,PlayerPath)
+{
+   try
+   {
+
+      var s = new SWFObject(PlayerPath, VideoContainnerID, "580px", "434px", "7");
+      s.addParam("allowfullscreen", "true");
+      s.addParam("bufferlength", "7");      
+      s.addVariable("width", "580px");
+      s.addVariable("height", "434px");
+      s.addVariable("displayheight", "300");
+      s.addVariable("file", aFile);
+      s.addVariable("autostart", false);
+//      s.addVariable("image", ImageURL);
+      s.write(VideoContainnerID);
+      return false;
+   }
+   catch(Err)
+   {
+   }
+}
+
+//function CreateVideoPlayer(aFile, ImageURL, VideoContainnerID)
+//{
+//   try
+//   {
+
+//      var s = new SWFObject("/VideoFile/player.swf", "MusesterTVFull", "580px", "434px", "7");
+//      s.addParam("allowfullscreen", "true");
+//      s.addParam("bufferlength", "7");
+//      s.addVariable("skin", "/VideoFile/traganja.swf");
+//      s.addVariable("width", "580px");
+//      s.addVariable("height", "434px");
+//      s.addVariable("displayheight", "300");
+
+//      s.addVariable("file", aFile);
+//      s.addVariable("autostart", false);
+//      s.addVariable("image", ImageURL);
+//      s.write(VideoContainnerID);
+//      return false;
+//   }
+//   catch(Err)
+//   {
+//   }
+//}

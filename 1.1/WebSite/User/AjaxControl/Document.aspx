@@ -31,11 +31,10 @@
             </div>--%>
             <div>
                 <div>
-                    <span class="label">FilePath</span>
-                </div>
-                <div>
                     <asp:Image ID="img" runat="server" Visible="false" Width="300" />
                     <span id="lblFilePath" runat="server"></span>
+                </div>
+                <div id="videoPlayer">
                 </div>
             </div>
             <div>
@@ -51,7 +50,8 @@
                     <span class="label">Description</span>
                 </div>
                 <div>
-                    <p id="lblDescription" runat="server"></p>
+                    <p id="lblDescription" runat="server">
+                    </p>
                 </div>
             </div>
             <div>
@@ -59,7 +59,8 @@
                     <span class="label">MetaDescription</span>
                 </div>
                 <div>
-                    <p id="lblMetaDescription" runat="server"></p>
+                    <p id="lblMetaDescription" runat="server">
+                    </p>
                 </div>
             </div>
             <div>
@@ -72,13 +73,13 @@
             </div>
             <div>
                 <div>
-                   <%-- <span class="label">LoginUserID</span>--%>
+                    <%-- <span class="label">LoginUserID</span>--%>
                 </div>
                 <div>
-                   <div>
-                    POST BY &nbsp;<asp:HyperLink ID="lnkTool" runat="server"></asp:HyperLink>&nbsp;on
-                    &nbsp;<span id="lblModifiedDate" runat="server"></span>
-                </div>
+                    <div>
+                        POST BY &nbsp;<asp:HyperLink ID="lnkTool" runat="server"></asp:HyperLink>&nbsp;on
+                        &nbsp;<span id="lblModifiedDate" runat="server"></span>
+                    </div>
                 </div>
             </div>
             <div>
@@ -89,7 +90,7 @@
                     <span id="lblRating" runat="server"></span>
                 </div>
             </div>
-           <%-- <div>
+            <%-- <div>
                 <div>
                     <span class="label">DocumentType</span>
                 </div>
@@ -97,7 +98,6 @@
                     <span id="lblDocumentType" runat="server"></span>
                 </div>
             </div>--%>
-           
         </div>
         <div class="gray">
             Image

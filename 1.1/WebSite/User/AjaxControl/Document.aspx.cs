@@ -68,6 +68,12 @@ public partial class User_AjaxControl_Document : AjaxPage
                 {
                     lblFilePath.InnerHtml = data.FilePath.ToString();
                 }
+                else if (data.DocumentType == (int)DocumentTypeEnum.Audio || data.DocumentType == (int)DocumentTypeEnum.Video)
+                {
+                    //lblFilePath.InnerHtml = data.FilePath.ToString();
+                    new JScripter.Player(this.Page).CreatePlayer(ResolveUrl(data.FilePath.ToString()), "videoPlayer");
+                }
+                
             }
             if (data.DocumentType != null)
             {
