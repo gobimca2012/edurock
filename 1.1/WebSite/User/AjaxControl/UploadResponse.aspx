@@ -10,8 +10,11 @@
     <div>
         <asp:Image ID="img" runat="server" Width="100" />
     </div>
+    <div >
+    <span id="lblFileName" runat="server"></span>
+    </div>
     <div>
-    <asp:HiddenField ID="filePath" runat="server" />
+        <asp:HiddenField ID="filePath" runat="server" />
     </div>
     </form>
 </body>

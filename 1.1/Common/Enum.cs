@@ -29,4 +29,56 @@ namespace Common
         Question=1
 
     }
+    public enum DocumentTypeEnum
+    {
+        Document=4,
+        Image=1,
+        Audio=3,
+        Video=2,
+    }
+    public class FileInformation
+    {
+        public static string getFileExtention(string path)
+        {
+            string[] parts = path.Split('.');
+            string ext = parts[parts.Length - 1];
+            return ext;
+        }
+        public static bool IsImage(string ext)
+        {
+            bool result = false;
+            if (ext.ToLower() == "jpeg" || ext.ToLower() == "jpg" || ext.ToLower() == "png" || ext.ToLower() == "gif")
+            {
+                result = true;
+            }
+            return result;
+        }
+        public static bool IsAudio(string ext)
+        {
+            bool result = false;
+            if (ext.ToLower() == "mp3" )
+            {
+                result = true;
+            }
+            return result;
+        }
+        public static bool IsVideo(string ext)
+        {
+            bool result = false;
+            if (ext.ToLower() == "flv")
+            {
+                result = true;
+            }
+            return result;
+        }
+        public static bool IsDocument(string ext)
+        {
+            bool result = false;
+            if (ext.ToLower() == "pdf" || ext.ToLower() == "txt" || ext.ToLower() == ".doc" || ext.ToLower() == "docx")
+            {
+                result = true;
+            }
+            return result;
+        }
+    }
 }

@@ -107,6 +107,10 @@
     <Compile Include="UserExamController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{DA82B465-2DF2-4D7C-81A9-1E617420A69C}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{8A0AE474-D87D-415B-A5D4-7AC5461431FE}</Project>
       <Name>DataAccess</Name>

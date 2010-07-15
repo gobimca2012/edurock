@@ -376,7 +376,7 @@ function descreaseSecond(PopupDivID, url)
 // popUp
 $.fn.PUIW = function(url, swidth, sheight, rurl, rid)
 {
-   alert("aa");
+   //alert("aa");
    var id = $(this).attr("id");
    id = "#" + id;
    $(this).html("");
@@ -461,7 +461,7 @@ $.fn.dropdownPostback = function(url, PostContainnerID, ResponseID)
 
 function closePop()
 {
-   alert('close popup');
+   //alert('close popup');
    $("#ipop").dialog('close');
    $("#ipop").dialog('destroy');
 }

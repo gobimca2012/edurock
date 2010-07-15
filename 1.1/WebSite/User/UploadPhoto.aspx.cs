@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using Common;
 
 public partial class User_UploadPhoto : BasePage
 {
@@ -31,29 +32,61 @@ public partial class User_UploadPhoto : BasePage
         {
             new UserController().UpdateProfilePic(new UserAuthontication().LoggedInUserID, fileUploader);
         }
-        else if (UploadType == 1)
+        else if (UploadType == (int)DocumentTypeEnum.Image)
         {
-            string Path=new CommonController().UploadImage(fileUploader);
-            Session[SessionName.FileUploader.ToString()] = Path;
-            injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+            if (FileInformation.IsImage(FileInformation.getFileExtention(fileUploader.FileName)))
+            {
+                string Path = new CommonController().UploadImage(fileUploader);
+                Session[SessionName.FileUploader.ToString()] = Path;
+                Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
+                injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+            }
+            else
+            {
+                divMessage.InnerHtml = "<div class='error'>Please upload right extention file</div>";
+            }
         }
-        else if (UploadType == 2)
+        else if (UploadType == (int)DocumentTypeEnum.Document)
         {
-            string Path = new CommonController().UploadImage(fileUploader);
-            Session[SessionName.FileUploader.ToString()] = Path;
-            injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+            if (FileInformation.IsDocument(FileInformation.getFileExtention(fileUploader.FileName)))
+            {
+                string Path = new CommonController().UploadImage(fileUploader);
+                Session[SessionName.FileUploader.ToString()] = Path;
+                Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
+                injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+            }
+            else
+            {
+                divMessage.InnerHtml = "<div class='error'>Please upload right extention file</div>";
+            }
         }
-        else if (UploadType == 3)
+        else if (UploadType == (int)DocumentTypeEnum.Audio)
         {
-            string Path = new CommonController().UploadImage(fileUploader);
-            Session[SessionName.FileUploader.ToString()] = Path;
-            injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+            if (FileInformation.IsAudio(FileInformation.getFileExtention(fileUploader.FileName)))
+            {
+                string Path = new CommonController().UploadImage(fileUploader);
+                Session[SessionName.FileUploader.ToString()] = Path;
+                Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
+                injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+            }
+            else
+            {
+                divMessage.InnerHtml = "<div class='error'>Please upload right extention file</div>";
+            }
         }
-        else if (UploadType == 4)
+        else if (UploadType == (int)DocumentTypeEnum.Video)
         {
-            string Path = new CommonController().UploadImage(fileUploader);
-            Session[SessionName.FileUploader.ToString()] = Path;
-            injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+            if (FileInformation.IsVideo(FileInformation.getFileExtention(fileUploader.FileName)))
+            {
+                string Path = new CommonController().UploadImage(fileUploader);
+                Session[SessionName.FileUploader.ToString()] = Path;
+                Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
+                injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+            }
+            else
+            {
+                divMessage.InnerHtml = "<div class='error'>Please upload right extention file</div>";
+            }
         }
     }
 }

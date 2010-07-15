@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.IO;
+using Common;
 namespace BusinessLogic
 {
     public class CommonController
@@ -135,6 +136,7 @@ namespace BusinessLogic
         }
         public string UploadImage(FileUpload fl)
         {
+            
             string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["Repository"] + "/Image/");
             FolderPath += new UserAuthontication().LoggedInUserName + "/";
             if (!Directory.Exists(FolderPath))
@@ -143,6 +145,48 @@ namespace BusinessLogic
             }
             string FilePath = FolderPath + "/" + fl.FileName;
             string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Image/" + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            fl.SaveAs(FilePath);
+            return ReturnFilePath;
+        }
+        public string UploadAudio(FileUpload fl)
+        {
+            
+            string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["Repository"] + "/Audio/");
+            FolderPath += new UserAuthontication().LoggedInUserName + "/";
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+            string FilePath = FolderPath + "/" + fl.FileName;
+            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Audio/" + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            fl.SaveAs(FilePath);
+            return ReturnFilePath;
+        }
+        public string UploadVideo(FileUpload fl)
+        {
+
+            string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["Repository"] + "/Video/");
+            FolderPath += new UserAuthontication().LoggedInUserName + "/";
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+            string FilePath = FolderPath + "/" + fl.FileName;
+            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Video/" + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            fl.SaveAs(FilePath);
+            return ReturnFilePath;
+        }
+        public string UploadDocument(FileUpload fl)
+        {
+
+            string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["Repository"] + "/Document/");
+            FolderPath += new UserAuthontication().LoggedInUserName + "/";
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+            string FilePath = FolderPath + "/" + fl.FileName;
+            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Document/" + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
             fl.SaveAs(FilePath);
             return ReturnFilePath;
         }
