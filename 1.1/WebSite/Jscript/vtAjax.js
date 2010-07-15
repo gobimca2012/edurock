@@ -548,11 +548,11 @@ $.fn.CheckBox=function(className)
     $(this).toggleClass("checked");    
     if($(this).hasClass("checked"))
     {    
-        $(this).find('input').val('1');
+        $(this).find('input').val('true');
     }
     else
     {
-    $(this).find('input').val('0');
+    $(this).find('input').val('false');
     }
     
 }

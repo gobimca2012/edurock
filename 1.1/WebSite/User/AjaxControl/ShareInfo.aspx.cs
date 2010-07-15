@@ -39,6 +39,12 @@ public partial class User_ShareInfo : AjaxPage
     }
     protected void SaveAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
-        List<string> EditValue = HtmlHelper.CheckBoxList("chkEdit");
+        List<CheckBoxDoubleValue> EditValue = HtmlHelper.CheckBoxDoubleList("chkEdit");
+        for (int i = 0; i < EditValue.Count; i++)
+        {
+            new ShareUserController().UpdateEnableEdit(Convert.ToInt32(EditValue[i].SecondValue), QuestionID.ToString(), Convert.ToBoolean(EditValue[i].FirstValue));
+        }
+       // new ShareUserController().UpdateEnableEdit(
+        
     }
 }

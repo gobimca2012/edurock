@@ -7,6 +7,7 @@ using System.Data.Linq;
 using System.Diagnostics;
 using Logger;
 using System.Data;
+using Common;
 namespace DataAccess
 {
     public class DataProvider
@@ -6782,35 +6783,7 @@ namespace DataAccess
 
         #region Question
 
-        public void QuestionAdd(Guid QuestionID, string QuestionText, string Description, int LoginUserID, int InstituteCourceID, string tag, int QuestionTypeID, int QuestionStatusID, DateTime ModifiedDate)
-        {
-            Question ObjQuestion = new Question();
-
-            ObjQuestion.QuestionID = QuestionID;
-
-            ObjQuestion.QuestionText = QuestionText;
-
-            ObjQuestion.Description = Description;
-
-            ObjQuestion.LoginUserID = LoginUserID;
-
-            ObjQuestion.InstituteCourceID = InstituteCourceID;
-
-            ObjQuestion.tag = tag;
-
-            ObjQuestion.QuestionTypeID = QuestionTypeID;
-
-            ObjQuestion.QuestionStatusID = QuestionStatusID;
-
-            ObjQuestion.ModifiedDate = ModifiedDate;
-
-            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
-            db.DeferredLoadingEnabled = false;
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-            db.Questions.InsertOnSubmit(ObjQuestion);
-            db.SubmitChanges();
-            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-        }
+        
 
         public Guid QuestionAdd(string QuestionText, string Description, int LoginUserID, int InstituteCourceID, string tag, int QuestionTypeID, int QuestionStatusID, DateTime ModifiedDate)
         {
@@ -7226,6 +7199,59 @@ namespace DataAccess
 
 
         #region CustomQuestion
+        public void QuestionAdd(Guid QuestionID, string QuestionText, string Description, int LoginUserID, int InstituteCourceID, string tag, int QuestionTypeID, int QuestionStatusID, DateTime ModifiedDate)
+        {
+            Question ObjQuestion = new Question();
+
+            ObjQuestion.QuestionID = QuestionID;
+
+            ObjQuestion.QuestionText = QuestionText;
+
+            ObjQuestion.Description = Description;
+
+            ObjQuestion.LoginUserID = LoginUserID;
+
+            ObjQuestion.InstituteCourceID = InstituteCourceID;
+
+            ObjQuestion.tag = tag;
+
+            ObjQuestion.QuestionTypeID = QuestionTypeID;
+
+            ObjQuestion.QuestionStatusID = QuestionStatusID;
+
+            ObjQuestion.ModifiedDate = ModifiedDate;
+
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+
+            db.Questions.InsertOnSubmit(ObjQuestion);
+            db.SubmitChanges();
+            UserDataContext dbuser = new UserDataContext();
+            Share objShare = new Share();
+            objShare.ModifiedDate = DateTime.Now;
+            objShare.ObjectID = QuestionID.ToString();
+            objShare.ObjectType = (int)ObjectEnum.Question;
+            objShare.ShareID = Guid.NewGuid();
+            dbuser.Shares.InsertOnSubmit(objShare);
+
+
+            ShareUser objShareUser = new ShareUser();
+            objShareUser.EnableAdd = false;
+            objShareUser.EnableDelete = false;
+            objShareUser.EnableEdit = false;
+            objShareUser.EnableEditByLoggedIn = false;
+            objShareUser.EnableView = false;
+            objShareUser.LoginUserID = LoginUserID;
+            objShareUser.ModifiedDate = DateTime.Now;
+            objShareUser.ShareID = objShare.ShareID;
+            objShareUser.ShareUserID = Guid.NewGuid();
+            dbuser.ShareUsers.InsertOnSubmit(objShareUser);
+
+            dbuser.SubmitChanges();
+
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
         public void QuestionDeletebyQuestionID(Guid QuestionID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -12762,6 +12788,18 @@ namespace DataAccess
 
         #endregion
         #region CustomShareUser
+        public void UpdateShareUser(int LoginUserID,string QuestionID,bool EnableEdit)
+        {
+            UserDataContext db = new UserDataContext();
+            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == (int)ObjectEnum.Question select p).ToList();
+            if (dataBunch.Count > 0)
+            {
+                var data = dataBunch[0];
+                data.EnableEdit = EnableEdit;
+                db.SubmitChanges();
+            }
+
+        }
         public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID)
         {
 

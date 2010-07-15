@@ -6,6 +6,10 @@ using System.Web;
 
 namespace BusinessLogic
 {
+    public class CheckBoxDoubleValue
+    {
+        public string FirstValue, SecondValue;
+    }
     public class HtmlHelper
     {
         int ListViewID = 0;
@@ -29,6 +33,27 @@ namespace BusinessLogic
             }
             return ItemValues;
         }
+        public static List<CheckBoxDoubleValue> CheckBoxDoubleList(string ClientID)
+        {
+            List<CheckBoxDoubleValue> ItemValues = new List<CheckBoxDoubleValue>();
+            for (int i = 0; i < HttpContext.Current.Request.Params.Keys.Count; i++)
+            {
+                if (HttpContext.Current.Request.Params.Keys[i] != null)
+                {
+                    if (HttpContext.Current.Request.Params.Keys[i].Contains(ClientID))
+                    {
+                        CheckBoxDoubleValue newVal = new CheckBoxDoubleValue();
+                        
+                        string[] ValueSplit = HttpContext.Current.Request.Params.Keys[i].Split('$');
+                        newVal.FirstValue =HttpContext.Current.Request.Params[i];
+                        newVal.SecondValue=ValueSplit[1];
+                        ItemValues.Add(newVal);
+                    }
+                }
+            }
+            return ItemValues;
+        }
+
 
         public static string ControlValue(string ClientID)
         {

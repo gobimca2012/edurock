@@ -44,19 +44,19 @@
                             <%#Eval("Username") %>
                         </td>
                         <td>
-                            <aspajax:CheckBox CustomID='<%#"chkAdd"+Eval("LoginUserID").ToString()%>' ID="chkA"
+                            <aspajax:CheckBox CustomID='<%#"chkAdd$"+Eval("LoginUserID").ToString()%>' ID="chkA"
                                 runat="server"></aspajax:CheckBox>
                         </td>
                         <td>
-                            <aspajax:CheckBox CustomID='<%#"chkEdit"+Eval("LoginUserID").ToString() %>' ID="chkE"
+                            <aspajax:CheckBox CustomID='<%#"chkEdit$"+Eval("LoginUserID").ToString() %>' ID="chkE"
+                                runat="server" Checked='<%#Eval("EnableEdit") %>'></aspajax:CheckBox>
+                        </td>
+                        <td>
+                            <aspajax:CheckBox CustomID='<%#"chkView$"+Eval("LoginUserID").ToString() %>' ID="chkV"
                                 runat="server"></aspajax:CheckBox>
                         </td>
                         <td>
-                            <aspajax:CheckBox CustomID='<%#"chkView"+Eval("LoginUserID").ToString() %>' ID="chkV"
-                                runat="server"></aspajax:CheckBox>
-                        </td>
-                        <td>
-                            <aspajax:CheckBox CustomID='<%#"chkDelete"+Eval("LoginUserID").ToString() %>' ID="chkD"
+                            <aspajax:CheckBox CustomID='<%#"chkDelete$"+Eval("LoginUserID").ToString() %>' ID="chkD"
                                 runat="server"></aspajax:CheckBox>
                         </td>
                     </tr>

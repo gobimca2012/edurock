@@ -45,7 +45,7 @@ namespace AjaxControl
             {
                 CustomID = ID;
             }
-            this.Text = string.Format("<input id='{0}' type='text' value='111'></input>", this.CustomID);
+            this.Text = string.Format("<input id='{0}' type='text' value='0' name='{0}'></input>", this.CustomID);
             base.OnLoad(e);
         }
     }

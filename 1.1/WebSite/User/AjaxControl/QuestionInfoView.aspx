@@ -75,7 +75,7 @@
                             <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                         </td>
                     </tr>
-                    <%--  <tr>
+                    <tr>
                         <td>
                             <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionID").ToString(), "#contentBox", "#contentBox")%>
                         </td>
@@ -83,7 +83,7 @@
                             <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/QuestionInfo.aspx") + "?cid=" + Eval("QuestionID")%>'
                                 ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
                         </td>
-                    </tr>--%>
+                    </tr>
                 </ItemTemplate>
             </asp:ListView>
         </div>
@@ -114,7 +114,7 @@
         <asp:TextBox ID="tt" ReadOnly="true" Enabled="false" runat="server"></asp:TextBox>
     </div>
     <div>
-    <asp:HiddenField ID="ttt" runat="server" Value="aa" />
+        <asp:HiddenField ID="ttt" runat="server" Value="aa" />
     </div>
     </form>
 </body>
