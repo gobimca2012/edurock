@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="DocumentInfoView.aspx.cs"
-    Inherits="User_AjaxControl_DocumentInfoView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="VideoInfoView.aspx.cs" Inherits="User_AjaxControl_VideoInfoView" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,8 +12,8 @@
             Images</div>
         <asp:ListView ID="ListDocument" runat="server" DataKeyNames="DocumentID" OnItemDataBound="ListDocumentOnItemDataBound">
             <LayoutTemplate>
-                <%--<table>--%>
-                <%--<thead>
+                <table>
+                    <%--  <thead>
                         <tr>
                             <td>
                                 Name
@@ -42,13 +41,13 @@
                             </td>
                         </tr>
                     </thead>--%>
-                <div class="whitecont">
-                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                </div>
-                <%--   </table>--%>
+                    <div class="whitecont">
+                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                    </div>
+                </table>
             </LayoutTemplate>
             <ItemTemplate>
-                <%-- <tr>
+                <%--<tr>
                     <td>
                         <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("DocumentID").ToString()%>'>
                         <%#Eval("Name") %></aspajax:HyperLink>
@@ -83,15 +82,15 @@
                     </td>
                 </tr>--%>
                 <div>
+                    <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("DocumentID").ToString()%>'>
                     <div style="float: left">
-                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("DocumentID").ToString()%>'>
-                        <%#Eval("Name") %></aspajax:HyperLink>
+                        <%#Eval("Name") %>
                     </div>
                     <div style="float: right">
                         <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                     </div>
-                    <div style="clear: both">
-                    </div>
+                    <div style="clear:both"></div>
+                    </aspajax:HyperLink>
                 </div>
             </ItemTemplate>
         </asp:ListView>

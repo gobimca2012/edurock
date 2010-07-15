@@ -513,12 +513,11 @@ $.fn.ajaxToolTip = function(ContainnerID, url)
 
       var pos = $(this).offset();
       var width = $(this).width();
+      
       $("#atool").css(
       {
-         left : (pos.left - 260) + 'px',
+         left : (pos.left - (300+121)) + 'px',
          top : (pos.top - 45) + 'px',
-         width : '300px',
-         height : '300px',
          position : 'absolute'
       }
       );

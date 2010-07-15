@@ -8,27 +8,32 @@
 <body>
     <form id="form1" runat="server">
     <div class="trans" style="float: left">
-        <div class="whitecont">
-            <asp:HyperLink ID="lnkclose" runat="server">Close</asp:HyperLink>
+        <div class="whitecont" style="text-align:left">
+            <div style="float: right">
+                <asp:HyperLink ID="lnkclose" runat="server">Close</asp:HyperLink>
+            </div>
             <div>
                 <div>
                     <div style="float: left">
                         <asp:Image ID="propic" runat="server" Width="100" />
                     </div>
-                    <div>
+                    <div style="float: left; text-align: left" class="btitle">
                         <div>
-                            <span id="lblName" runat="server"></span>
+                            Real Name : <span id="lblName" runat="server"></span>
                         </div>
                         <div>
-                            <span id="Span1" runat="server"></span>
+                            Username :<span id="lblUserName" runat="server"></span>
                         </div>
                         <div>
                             <span id="Span2" runat="server"></span>
                         </div>
                     </div>
+                    <div style="clear: both">
+                    </div>
+                    <div>
+                        User Institute:&nbsp;<span id="lblGroup" runat="server"></span>
+                    </div>
                 </div>
-            </div>
-            <div style="clear: both">
             </div>
         </div>
     </div>

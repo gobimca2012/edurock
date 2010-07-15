@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using DataEntity;
 
 public partial class User_AjaxControl_Upop : AjaxPage
 {
@@ -29,8 +30,20 @@ public partial class User_AjaxControl_Upop : AjaxPage
         if (dataBunch.Count > 0)
         {
             var data = dataBunch[0];
-            lblName.InnerText = data.StudentLogin.Username;
+            lblName.InnerHtml = data.FirstName + " " + data.LastName;
             propic.ImageUrl = ResolveUrl(data.PhotoPath);
+            lblUserName.InnerText = data.StudentLogin.Username;
+            var usergroup = new InstituteController().GetInstituteByLoginUserID(data.LoginUserID);
+            string ugo = "";
+            foreach (GetInstituteByLoginUserIDResult du in usergroup)
+            {
+                if (ugo != "")
+                    ugo += ", " + du.InstituteName;
+                else
+                    ugo += " " + du.InstituteName;
+            }
+            lblGroup.InnerHtml = ugo;
+
         }
     }
 }
