@@ -70,6 +70,12 @@ body
 li
 {
     display: inline;
+    list-style:none;
+}
+#mylander li
+{
+    display:block;
+    text-align:left;
 }
 .menu
 {

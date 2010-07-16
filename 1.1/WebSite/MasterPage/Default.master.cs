@@ -32,10 +32,12 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
     {
         new JScripter.Loader(this.Page, true).LoadPage("#icource", ResolveUrl("~/User/AjaxControl/InstituteCourceInfoView.aspx"));
         new JScripter.Loader(this.Page, true).LoadPage("#st", ResolveUrl("~/User/AjaxControl/Status.aspx"));
+        new JScripter.Loader(this.Page, true).LoadPage("#mylander", ResolveUrl("~/User/AjaxControl/MyLander.aspx"));
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#questiontrg", "#questiontrgbox");
         objEffect.Collapspanel("#messageHead", "#messagepn");
         objEffect.Collapspanel("#tut", "#tutbox");
+        objEffect.Collapspanel("#mymenu", "#mymenupanel");
         objEffect.Collapspanel("#courcel", "#icource");
         if (new UserAuthontication().IsLoggedIn)
         {

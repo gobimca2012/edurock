@@ -24,7 +24,6 @@
     </div>
     <div id="ipop">
     </div>
-    
     <div class="page">
         <div class="bgtl">
             <div class="bgtr">
@@ -40,15 +39,14 @@
             <div class="bgmr">
                 <div class="bgmc">
                     <div style="float: left; width: 198px; border-right: 1px solid #848689;" id="sidemenu">
-                        <div style="text-align:center;padding:2px">
+                        <div style="text-align: center; padding: 2px">
                             <div>
                                 <asp:Image ID="img" runat="server" Width="100" />
                             </div>
                             <div id="st">
-                            
                             </div>
-                            <div style="clear:both"></div>
-                            <br />
+                            <div style="clear: both">
+                            </div>
                         </div>
                         <div class="leftmenu">
                             <div id="courcel">
@@ -62,7 +60,6 @@
                             </div>
                         </div>
                         <div class="leftmenu">
-                           
                             <div id="messageHead">
                                 <div class="grayhead">
                                     <span class="sub" style="float: left"></span><span style="float: left">Messages
@@ -82,16 +79,28 @@
                                     <aspajax:HyperLink ID="lnkSent" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/SentMessageInfoView.aspx">Sent Message</aspajax:HyperLink>
                                 </div>
                             </div>
-                        
+                        </div>
+                        <div class="leftmenu">
+                        <div id="mymenu">
+                                <div class="grayhead">
+                                    <span class="sub" style="float: left"></span><span style="float: left">My Stuff                                   </span>
+                                    <div style="clear: both">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="mymenupanel" class="vis">
+                            <div id="mylander">
+                            </div>
+                            </div>
                         </div>
                     </div>
                     <div style="float: left; width: 780px; border-left: solid 1px #444;">
                         <div class="bksl">
-                        <div >
-                        <h1 style="color:#fff;margin:0 0 0 30px">Learning Management System</h1>
-                        </div>
+                            <div>
+                                <h1 style="color: #fff; margin: 0 0 0 30px">
+                                    Learning Management System</h1>
+                            </div>
                             <div style="padding-top: 25px;">
-                            
                                 <div class="btn">
                                     <div class="dash" style="float: left">
                                     </div>
