@@ -44,13 +44,9 @@ public partial class User_AjaxControl_Document : AjaxPage
 
             if (data.LoginUserID != null)
             {
-//                lblLoginUserID.InnerHtml = data.LoginUserID.ToString(); var dataUser = new UserController().GetbyLoginUserID(data.LoginUserID);
-                var dataUser = new UserController().GetbyLoginUserID(data.LoginUserID);
-                if (dataUser.Count > 0)
-                {
-                    lnkTool.Text = dataUser[0].FirstName + " " + dataUser[0].LastName;
-                    new JScripter.ToolTip(this.Page).AjaxToolTip(lnkTool, ResolveUrl("~/User/AjaxControl/Upop.aspx") + "?lid=" + data.LoginUserID.ToString(), "acont");
-                }
+               
+                
+                
             }
 
             if (data.Rating != null)
@@ -80,10 +76,16 @@ public partial class User_AjaxControl_Document : AjaxPage
                 //lblDocumentType.InnerHtml = data.DocumentType.ToString();
                 lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?did=" + ID.ToString()+"&dtype="+data.DocumentType.ToString();
             }
+            if (data.DocumentCources.Count > 0)
+            {
+                FullViewSideInfo1.CourceID =data.DocumentCources[0].InstituteCourceID;
+                FullViewSideInfo1.SubjectID = (int)data.DocumentCources[0].SubjectID;
+                FullViewSideInfo1.LoginUserID = data.LoginUserID;
+                FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
+            }
+            //if (data.ModifiedDate != null)
 
-            if (data.ModifiedDate != null)
-
-                lblModifiedDate.InnerHtml =CommonController.GetDate(Convert.ToDateTime( data.ModifiedDate.ToString()));
+            //    lblModifiedDate.InnerHtml =CommonController.GetDate(Convert.ToDateTime( data.ModifiedDate.ToString()));
         }
 
     }

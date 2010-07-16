@@ -842,9 +842,9 @@ namespace BusinessLogic
             dd.SelectedValue = SelectedValue;
         }
         #endregion
-       
-	
-	
+
+
+
         #region Exam
         public Decimal GetExamTotalmark(int ExamID)
         {
@@ -858,7 +858,7 @@ namespace BusinessLogic
                 return 0;
             }
         }
-        
+
         public bool UpdateByExamID(int ExamID, string ExamName, string SubjectName)
         {
 
@@ -889,12 +889,12 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public bool UpdateByExamID(int ExamID, string ExamName, string SubjectName, string Description, TimeSpan ExamTime, int LoginUserID, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate,int percent)
+        public bool UpdateByExamID(int ExamID, string ExamName, string SubjectName, string Description, TimeSpan ExamTime, int LoginUserID, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate, int percent)
         {
 
             try
             {
-                new DataProvider().ExamUpdateByExamID(ExamID, ExamName, SubjectName, LoginUserID, Description,ExamTime, ModifiedDate,StartDate,EndDate,percent);
+                new DataProvider().ExamUpdateByExamID(ExamID, ExamName, SubjectName, LoginUserID, Description, ExamTime, ModifiedDate, StartDate, EndDate, percent);
                 return true;
             }
             catch (Exception ex)
@@ -907,12 +907,12 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public int Add(string ExamName, string SubjectName, int LoginUserID, string Description, TimeSpan ExamTime, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate,int Percentage)
+        public int Add(string ExamName, string SubjectName, int LoginUserID, string Description, TimeSpan ExamTime, DateTime ModifiedDate, DateTime StartDate, DateTime EndDate, int Percentage)
         {
 
             try
             {
-                return new DataProvider().ExamAdd(ExamName, SubjectName, LoginUserID, Description, ExamTime, ModifiedDate, StartDate, EndDate,Percentage);
+                return new DataProvider().ExamAdd(ExamName, SubjectName, LoginUserID, Description, ExamTime, ModifiedDate, StartDate, EndDate, Percentage);
 
             }
             catch (Exception ex)
@@ -925,15 +925,49 @@ namespace BusinessLogic
                 return 0;
             }
         }
+        public List<Exam> GetRecentExam(int PageSize, int PageNumber, DateTime Date)
+        {
+            try
+            {
+                return new DataProvider().RecentExamGet(PageSize, PageNumber, Date);
+
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" SaveAnswer: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return new List<Exam>();
+            }
+        }
+        public List<Exam> GetRecentExam(DateTime Date)
+        {
+            try
+            {
+                return new DataProvider().RecentExamGet(Date);
+
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" SaveAnswer: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return new List<Exam>();
+            }
+        }
         #endregion
-				
-	
-	
-				
-	
-	
-				
-	
-	
+
+
+
+
+
+
+
+
+
     }
 }

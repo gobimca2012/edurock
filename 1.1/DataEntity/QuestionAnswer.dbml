@@ -60,7 +60,8 @@
       <Column Name="QuestionText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="tag" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="QuestionTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="QuestionStatusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -70,26 +71,6 @@
       <Association Name="QuestionType_Question" Member="QuestionType" ThisKey="QuestionTypeID" Type="QuestionType" IsForeignKey="true" />
     </Type>
   </Table>
-  <Function Name="dbo.GetQuestionByQuestionID" Method="GetQuestionByQuestionID">
-    <Parameter Name="QuestionID" Parameter="questionID" Type="System.Guid" DbType="UniqueIdentifier" />
-    <Parameter Name="QuestionTypeID" Parameter="questionTypeID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="QuestionStatusID" Parameter="questionStatusID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="GetQuestionByQuestionIDResult">
-      <Column Name="QuestionText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="QuestionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="QuestionTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="QuestionStatus" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="QuestionType" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
-      <Column Name="QuestionStatusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.GetAnswerByQuestionID" Method="GetAnswerByQuestionID">
     <Parameter Name="QuestionID" Parameter="questionID" Type="System.Guid" DbType="UniqueIdentifier" />
     <Parameter Name="AnswerStateID" Parameter="answerStateID" Type="System.Int32" DbType="Int" />
@@ -129,10 +110,40 @@
       <Column Name="QuestionStatusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetQuestionByQuestionID" Method="GetQuestionByQuestionID">
+    <Parameter Name="QuestionID" Parameter="questionID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="QuestionTypeID" Parameter="questionTypeID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="QuestionStatusID" Parameter="questionStatusID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstituteSubjectID" Parameter="instituteSubjectID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstituteCourceID" Parameter="instituteCourceID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetQuestionByQuestionIDResult">
+      <Column Name="QuestionText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionStatus" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="QuestionType" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionStatusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetQuestionStatus" Method="GetQuestionStatus" IsComposable="true">
+    <Parameter Name="status" Type="System.Int32" DbType="Int" />
+    <Return Type="System.String" />
+  </Function>
   <Function Name="dbo.GetQuestion" Method="GetQuestion">
     <Parameter Name="Keyword" Parameter="keyword" Type="System.String" DbType="VarChar(1000)" />
     <Parameter Name="QuestionTypeID" Parameter="questionTypeID" Type="System.Int32" DbType="Int" />
     <Parameter Name="QuestionStatusID" Parameter="questionStatusID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstituteCourceID" Parameter="instituteCourceID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstituteSubjectID" Parameter="instituteSubjectID" Type="System.Int32" DbType="Int" />
     <ElementType Name="GetQuestionResult">
       <Column Name="QuestionText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="QuestionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />

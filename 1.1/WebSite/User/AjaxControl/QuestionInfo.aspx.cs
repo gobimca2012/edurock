@@ -26,7 +26,8 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             string QuestionText; if (false) { throw new Exception(""); } QuestionText = HtmlHelper.ControlValue(txtQuestionText.ClientID);
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
-
+            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue("ddCource"));
+            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
             int QuestionTypeID; if (false) { throw new Exception(""); } QuestionTypeID = Convert.ToInt32(HtmlHelper.ControlValue(ddQuestionType.ClientID));
             string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
@@ -34,7 +35,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             string tags = ""; if (false) { throw new Exception(""); } tags = HtmlHelper.ControlValue(txtTags.ClientID);
             DateTime ModifiedDate = DateTime.Now;
 
-            new QuestionController().Add(QuestionID, QuestionText, Description, LoginUserID, ICID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
+            new QuestionController().Add(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID, InstituteSubjectID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
             Response.Redirect("~/User/AjaxControl/Question.aspx?qid=" + QuestionID.ToString() + "&icid=" + ICID.ToString());
         }
         catch (Exception ex)
@@ -53,14 +54,16 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             string QuestionText; if (false) { throw new Exception(""); } QuestionText = HtmlHelper.ControlValue(txtQuestionText.ClientID);
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
-
+            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue("ddCource"));
+            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
+            
             int QuestionTypeID; if (false) { throw new Exception(""); } QuestionTypeID = Convert.ToInt32(HtmlHelper.ControlValue(ddQuestionType.ClientID));
             string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
             int QuestionStatusID = 0;
 
             DateTime ModifiedDate = DateTime.Now;
             string tags; if (false) { throw new Exception(""); } tags = HtmlHelper.ControlValue(txtTags.ClientID);
-            new QuestionController().UpdateByQuestionID(QuestionID, QuestionText, Description, LoginUserID, ICID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
+            new QuestionController().UpdateByQuestionID(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID,InstituteSubjectID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
 
             Response.Redirect("~/User/AjaxControl/Question.aspx?qid=" + QuestionID.ToString()+"&icid="+ICID.ToString()) ;
         }
@@ -81,6 +84,8 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             txtQuestionText.Text = data.QuestionText;
             txtDescription.Text = data.Description;
             new QuestionTypeController().BindQuestionType(ddQuestionType, data.QuestionTypeID.ToString(), new UserAuthontication().UserInstituteLoginID);
+            new InstituteSubjectController().BindInstituteSubject(ddSubject, Convert.ToInt32(data.InstituteCourceID.ToString()), data.InstituteSubjectID.ToString());
+            new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID, data.InstituteCourceID.ToString());
 
 
         }
@@ -128,7 +133,9 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
         {
             new QuestionTypeController().BindQuestionType(ddQuestionType, new UserAuthontication().UserInstituteLoginID);
             lnkUpdateQuestion.Visible = false;
+            new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
         }
+        ddCource.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddCource.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?icid="));
        
     }
 

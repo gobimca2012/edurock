@@ -359,12 +359,12 @@ namespace BusinessLogic
 
 
 
-        public bool Add(Guid QuestionID, string QuestionText, string Description, int LoginUserID, int InstituteCourceID, string tag, int QuestionTypeID, int QuestionStatusID, DateTime ModifiedDate)
+        public bool Add(Guid QuestionID, string QuestionText, string Description, int LoginUserID, int InstituteCourceID,int InstituteSubjectID, string tag, int QuestionTypeID, int QuestionStatusID, DateTime ModifiedDate)
         {
 
             try
             {
-                new DataProvider().QuestionAdd(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID, tag, QuestionTypeID, QuestionStatusID, ModifiedDate);
+                new DataProvider().QuestionAdd(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID,InstituteSubjectID, tag, QuestionTypeID, QuestionStatusID, ModifiedDate);
                 return true;
             }
             catch (Exception ex)
@@ -572,25 +572,7 @@ namespace BusinessLogic
 
 
 
-        public bool UpdateByQuestionID(Guid QuestionID, string QuestionText, string Description, int LoginUserID, int InstituteCourceID, string tag, int QuestionTypeID, int QuestionStatusID, DateTime ModifiedDate)
-        {
-
-            try
-            {
-                new DataProvider().QuestionUpdateByQuestionID(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID, tag, QuestionTypeID, QuestionStatusID, ModifiedDate);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                if (SettingProvider.IsLoggerEnable())
-                {
-                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
-                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
-                }
-                return false;
-            }
-        }
-
+        
 
 
 
@@ -626,14 +608,47 @@ namespace BusinessLogic
             dd.SelectedValue = SelectedValue;
         }
         #endregion
-        #region Question
-        #endregion
-				
-	
+      
 	
     
 	
         #region Question
+        public string GetQuestionStatus(int status)
+        {
+            try
+            {
+                var data=new DataProvider().GetQuestionStatus(status);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return "";
+            }
+        }
+        public bool UpdateByQuestionID(Guid QuestionID, string QuestionText, string Description, int LoginUserID, int InstituteCourceID, int InstituteSubjectID, string tag, int QuestionTypeID, int QuestionStatusID, DateTime ModifiedDate)
+        {
+
+            try
+            {
+                new DataProvider().QuestionUpdateByQuestionID(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID, InstituteSubjectID, tag, QuestionTypeID, QuestionStatusID, ModifiedDate);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false;
+            }
+        }
+
         public List<GetQuestionByLoginUserIDResult> GetQuestionByLoginUserID(int LoginUserID, int QuestionTypeID, int QuestionStatusID)
         {
             try
@@ -658,24 +673,24 @@ namespace BusinessLogic
                 return new List<GetQuestionByLoginUserIDResult>();
             }
         }
-        public List<GetQuestionResult> GetQuestion(string Keyword, int QuestionTypeID, int QuestionStatusID)
+        public List<GetQuestionResult> GetQuestion(string Keyword, int QuestionTypeID, int QuestionStatusID, int InstituteCourceID, int InstituteSubjectID)
         {
             try
             {
 
-                return new DataProvider().GetQuestion(Keyword, QuestionTypeID, QuestionStatusID);
+                return new DataProvider().GetQuestion(Keyword, QuestionTypeID, QuestionStatusID, InstituteCourceID,  InstituteSubjectID);
             }
             catch
             {
                 return new List<GetQuestionResult>();
             }
         }
-        public List<GetQuestionResult> GetQuestion(string Keyword, int QuestionTypeID, int QuestionStatusID, int PageSize, int PageNumber)
+        public List<GetQuestionResult> GetQuestion(string Keyword, int QuestionTypeID, int QuestionStatusID, int InstituteCourceID, int InstituteSubjectID, int PageSize, int PageNumber)
         {
             try
             {
 
-                return new DataProvider().GetQuestion(Keyword, QuestionTypeID, QuestionStatusID, PageSize, PageNumber);
+                return new DataProvider().GetQuestion(Keyword, QuestionTypeID, QuestionStatusID, InstituteCourceID,  InstituteSubjectID, PageSize, PageNumber);
             }
             catch
             {
@@ -700,24 +715,24 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public List<GetQuestionByQuestionIDResult> GetQuestionByQuestionID(Guid QuestionID, int QuestionTypeID, int QuestionStatusID)
+        public List<GetQuestionByQuestionIDResult> GetQuestionByQuestionID(Guid QuestionID, int QuestionTypeID, int QuestionStatusID, int InstituteSubjectID, int InstituteCourceID)
         {
             try
             {
 
-                return new DataProvider().GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID);
+                return new DataProvider().GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID,InstituteSubjectID,InstituteCourceID);
             }
             catch
             {
                 return new List<GetQuestionByQuestionIDResult>();
             }
         }
-        public List<GetQuestionByQuestionIDResult> GetQuestionByQuestionID(Guid QuestionID, int QuestionTypeID, int QuestionStatusID, int PageSize, int PageNumber)
+        public List<GetQuestionByQuestionIDResult> GetQuestionByQuestionID(Guid QuestionID, int QuestionTypeID, int QuestionStatusID, int InstituteSubjectID, int InstituteCourceID, int PageSize, int PageNumber)
         {
             try
             {
 
-                return new DataProvider().GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID, PageSize, PageNumber);
+                return new DataProvider().GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID,InstituteSubjectID,InstituteCourceID, PageSize, PageNumber);
             }
             catch
             {

@@ -819,6 +819,64 @@ namespace BusinessLogic
 
         #endregion
         #region User
+        public List<GetUserContentResult> GetUserContent(int LoginUserID)
+		{
+			try
+			{
+			   
+			   return new DataProvider().GetUserContent(LoginUserID);
+			}
+			catch
+			{
+				return new List<GetUserContentResult>();
+			}
+		}public List<GetUserContentResult> GetUserContent(int LoginUserID,int PageSize, int PageNumber)
+		{
+			try
+			{
+			   
+			   return new DataProvider().GetUserContent(LoginUserID,PageSize,PageNumber);
+			}
+			catch
+			{
+				return new List<GetUserContentResult>();
+			}
+		}
+
+        public bool UpdateUserStatus(int LoginUserID, string Status)
+        {
+            try
+            {
+                new DataProvider().UpdateUserStatus( LoginUserID,  Status);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false;
+            }
+        }
+        public string GetUserStatus(int LoginUserID)
+        {
+            try
+            {
+                string data=new DataProvider().GetUserStatus( LoginUserID);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return "";
+            }
+        }
         public bool UpdateProfilePic(int LoginUserID, FileUpload File)
         {
             try

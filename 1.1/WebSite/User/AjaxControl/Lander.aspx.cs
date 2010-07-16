@@ -33,7 +33,7 @@ public partial class User_AjaxControl_Lander : AjaxPage
         if (ICID > 0)
         {
             lnkQ.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx") + "?icid=" + ICID.ToString();
-            lnktut.NavigateUrl = ResolveUrl("~/All/Ajaxer/TutorialInfoView.aspx") + "?icid=" + ICID.ToString();
+            //lnktut.NavigateUrl = ResolveUrl("~/All/Ajaxer/TutorialInfoView.aspx") + "?icid=" + ICID.ToString();
             lnkExam.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfoView.aspx") + "?icid=" + ICID.ToString();
             lnkHomeWork.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWorkInfoView.aspx") + "?icid=" + ICID.ToString();
             lnkImage.NavigateUrl = ResolveUrl("~/User/AjaxControl/ImageInfoView.aspx") + "?dtype=1&icid=" + ICID.ToString();
@@ -42,18 +42,21 @@ public partial class User_AjaxControl_Lander : AjaxPage
             lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=2&icid=" + ICID.ToString();
             string Script = "$('#contentBox').html('');";
             JScripter.JScripter.InjectScript(Script, this.Page);
+            new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx") + "?icid=" + ICID.ToString());
+
 
         }
         else
         {
             lnkQ.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx");
-            lnktut.NavigateUrl = ResolveUrl("~/All/Ajaxer/TutorialInfoView.aspx");
+            //lnktut.NavigateUrl = ResolveUrl("~/All/Ajaxer/TutorialInfoView.aspx");
             lnkExam.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfoView.aspx");
             lnkHomeWork.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWorkInfoView.aspx");
             lnkImage.NavigateUrl = ResolveUrl("~/User/AjaxControl/ImageInfoView.aspx") + "?dtype=1";
             lnkDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfoView.aspx") + "?dtype=4";
             lnkAudio.NavigateUrl = ResolveUrl("~/User/AjaxControl/AudioInfoView.aspx") + "?dtype=3";
             lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=2";
+            //new JScripter.Loader(this.Page, false).LoadPage("contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx"));
         }
        
        

@@ -40,7 +40,7 @@ public partial class User_AjaxControl_Question : AjaxPage
             AjaxState["qid"] = Request.Params["qid"];
             MakeLinks();
         }
-        var data = new QuestionController().GetQuestionByQuestionID(ID,-1,-1);
+        var data = new QuestionController().GetbyQuestionID(ID);
         if (data.Count > 0)
         {
             BindData(data[0]);
@@ -49,7 +49,7 @@ public partial class User_AjaxControl_Question : AjaxPage
         objLoader.LoadPage("#Answer", ResolveUrl("~/User/AjaxControl/AnswerInfoView.aspx")+"?qid="+ID.ToString());
     }
 
-    private void BindData(GetQuestionByQuestionIDResult data)
+    private void BindData(Question data)
     {
 
 
@@ -61,21 +61,24 @@ public partial class User_AjaxControl_Question : AjaxPage
 
             lblDescription.InnerHtml = data.Description.ToString();
 
-        if (data.FirstName != null)
-
-            user.InnerHtml = data.FirstName.ToString();
-
+        
         if (data.QuestionType != null)
 
             lblQuestionTypeID.InnerHtml = data.QuestionType.ToString();
 
-        if (data.QuestionStatus != null)
+        
 
-            lblQuestionStatusID.InnerHtml = data.QuestionStatus.ToString();
+            lblQuestionStatusID.InnerHtml = new QuestionController().GetQuestionStatus(data.QuestionStatusID);
 
         if (data.ModifiedDate != null)
-
+        {
             lblModifiedDate.InnerHtml = data.ModifiedDate.ToString();
+        }
+        FullViewSideInfo1.LoginUserID = data.LoginUserID;
+        FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
+        FullViewSideInfo1.CourceID = (int)data.InstituteCourceID;
+        FullViewSideInfo1.SubjectID = (int)data.InstituteSubjectID;
+        
 
     }
     private void MakeLinks()

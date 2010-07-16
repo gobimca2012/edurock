@@ -34,25 +34,27 @@ public partial class User_AjaxControl_Exam : AjaxPage
                 lblSubjectName.InnerHtml = data.SubjectName.ToString();
 
             if (data.InstituteCourceID != null)
-
+            {
                 //lblInstituteCourceID.InnerHtml = data.InstituteCourceID.ToString();
+                FullViewSideInfo1.CourceID = (int)data.InstituteCourceID;
+            }
 
             if (data.InstituteSubjectID != null)
+            {
 
                 //lblInstituteSubjectID.InnerHtml = data.InstituteSubjectID.ToString();
-
+                FullViewSideInfo1.SubjectID =(int) data.InstituteSubjectID;
+            }
             if (data.Description != null)
 
                 lblDescription.InnerHtml = data.Description.ToString();
 
             if (data.LoginUserID != null)
-
-                lblLoginUserID.InnerHtml = data.LoginUser.Username;
-
-            if (data.ModifiedDate != null)
-
-                lblModifiedDate.InnerHtml =  CommonController.GetDate(Convert.ToDateTime(data.ModifiedDate.ToString()));
-
+            {
+                FullViewSideInfo1.LoginUserID = data.LoginUserID;
+                FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
+            }
+            
             if (data.ExamTime != null)
 
                 lblExamTime.InnerHtml = data.ExamTime.ToString();

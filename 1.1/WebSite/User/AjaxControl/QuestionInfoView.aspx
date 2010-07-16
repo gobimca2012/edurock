@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="QuestionInfoView.aspx.cs"
     Inherits="User_AjaxControl_QuestionInfoView" %>
 
+<%@ Register Src="../UserControl/UserToolTipLink.ascx" TagName="UserToolTipLink"
+    TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -32,11 +34,11 @@
                 </li>
             </ul>
         </div>
-        <div>
+        <div class="whitecont">
             <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="LoginUserID,QuestionID"
                 OnItemDataBound="ListQuestionOnItemDataBound">
                 <LayoutTemplate>
-                    <table>
+                    <%-- <table>
                         <thead>
                             <tr>
                                 <td>
@@ -52,12 +54,14 @@
                                     Date
                                 </td>
                             </tr>
-                        </thead>
+                        </thead>--%>
+                    <div>
                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                    </table>
+                    </div>
+                    <%--</table>--%>
                 </LayoutTemplate>
                 <ItemTemplate>
-                    <tr>
+                    <%--<tr>
                         <td>
                             <span>
                                 <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#contentBox"
@@ -83,7 +87,16 @@
                             <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/QuestionInfo.aspx") + "?cid=" + Eval("QuestionID")%>'
                                 ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
                         </td>
-                    </tr>
+                    </tr>--%>
+                    <div class="dasbo">
+                        <div class="btitle">
+                            <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#contentBox"
+                                NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("QuestionID")  %>'><%#Eval("QuestionText") %></aspajax:HyperLink>
+                        </div>
+                        <div>
+                            <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>' ModifiedDate='<%#Eval("ModifiedDate") %>' />
+                        </div>
+                    </div>
                 </ItemTemplate>
             </asp:ListView>
         </div>
@@ -107,7 +120,6 @@
             </div>
         </div>
     </div>
-  
     </form>
 </body>
 </html>

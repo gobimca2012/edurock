@@ -39,6 +39,26 @@
                     </div>
                 </div>
                 <div>
+                    <div>
+                        <div>
+                            <span class="label">Select your Cource</span>
+                        </div>
+                        <div>
+                            <asp:DropDownList ID="ddCource" runat="server">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">Select your Subject</span>
+                        </div>
+                        <div id="ddrep">
+                            <asp:DropDownList ID="ddSubject" runat="server">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+                <div>
                     <span class="label">Tags</span>
                 </div>
                 <div>

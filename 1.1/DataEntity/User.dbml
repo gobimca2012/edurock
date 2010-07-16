@@ -10,9 +10,9 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="StudentLogin_UserEducation" Member="UserEducations" OtherKey="LoginUserID" Type="UserEducation" />
-      <Association Name="StudentLogin_User" Member="Users" OtherKey="LoginUserID" Type="User" />
       <Association Name="StudentLogin_Document" Member="Documents" OtherKey="LoginUserID" Type="Document" />
       <Association Name="StudentLogin_ShareUser" Member="ShareUsers" OtherKey="LoginUserID" Type="ShareUser" />
+      <Association Name="StudentLogin_User" Member="Users" OtherKey="LoginUserID" Type="User" />
     </Type>
   </Table>
   <Table Name="dbo.UserEducation" Member="UserEducations">
@@ -24,25 +24,6 @@
       <Column Name="Year" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="StudentLogin_UserEducation" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.[User]" Member="Users">
-    <Type Name="User">
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="BirthDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Address1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Address2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="City" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="State" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="Country" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="WebSite" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="StudentLogin_User" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Document" Member="Documents">
@@ -110,6 +91,27 @@
       <Association Name="Share_ShareUser" Member="Share" ThisKey="ShareID" Type="Share" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="WebSite" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="AboutMe" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="StudentLogin_User" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetShareUser" Method="GetShareUser">
     <Parameter Name="ObjectType" Parameter="objectType" Type="System.Int32" DbType="Int" />
     <Parameter Name="ObjectID" Parameter="objectID" Type="System.String" DbType="VarChar(100)" />
@@ -123,6 +125,18 @@
       <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetUserContent" Method="GetUserContent">
+    <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetUserContentResult">
+      <Column Name="ID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ContentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

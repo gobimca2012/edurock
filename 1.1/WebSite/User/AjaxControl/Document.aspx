@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Document.aspx.cs" Inherits="User_AjaxControl_Document" %>
 
+<%@ Register Src="../UserControl/FullViewSideInfo.ascx" TagName="FullViewSideInfo"
+    TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -21,7 +23,8 @@
             </div>
         </div>
         <div class="whitecont">
-            <%--<div>
+            <div style="float: left;width:550px">
+                <%--<div>
                 <div>
                     <span class="label">DocumentID</span>
                 </div>
@@ -29,75 +32,73 @@
                     <span id="lblDocumentID" runat="server"></span>
                 </div>
             </div>--%>
-            <div>
                 <div>
-                    <asp:Image ID="img" runat="server" Visible="false" Width="300" />
-                    <span id="lblFilePath" runat="server"></span>
-                </div>
-                <div id="videoPlayer">
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">Name</span>
-                </div>
-                <div>
-                    <span id="lblName" runat="server" class="btitle"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">Description</span>
-                </div>
-                <div>
-                    <p id="lblDescription" runat="server">
-                    </p>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">MetaDescription</span>
-                </div>
-                <div>
-                    <p id="lblMetaDescription" runat="server">
-                    </p>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">Tag</span>
-                </div>
-                <div>
-                    <span id="lblTag" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <%-- <span class="label">LoginUserID</span>--%>
+                    <div>
+                        <asp:Image ID="img" runat="server" Visible="false" Width="300" />
+                        <span id="lblFilePath" runat="server"></span>
+                    </div>
+                    <div id="videoPlayer">
+                    </div>
                 </div>
                 <div>
                     <div>
-                        POST BY &nbsp;<asp:HyperLink ID="lnkTool" runat="server"></asp:HyperLink>&nbsp;on
-                        &nbsp;<span id="lblModifiedDate" runat="server"></span>
+                        <span class="label">Name</span>
+                    </div>
+                    <div>
+                        <span id="lblName" runat="server" class="btitle"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">Description</span>
+                    </div>
+                    <div>
+                        <p id="lblDescription" runat="server">
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">MetaDescription</span>
+                    </div>
+                    <div>
+                        <p id="lblMetaDescription" runat="server">
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">Tag</span>
+                    </div>
+                    <div>
+                        <span id="lblTag" runat="server"></span>
+                    </div>
+                </div>
+                <%-- <div>
+                    <div>
+                     
+                    </div>
+                    <div>
+                        <div>
+                            POST BY &nbsp;<asp:HyperLink ID="lnkTool" runat="server"></asp:HyperLink>&nbsp;on
+                            &nbsp;<span id="lblModifiedDate" runat="server"></span>
+                        </div>
+                    </div>
+                </div>--%>
+                <div>
+                    <div>
+                        <span class="label">Rating</span>
+                    </div>
+                    <div>
+                        <span id="lblRating" runat="server"></span>
                     </div>
                 </div>
             </div>
-            <div>
-                <div>
-                    <span class="label">Rating</span>
-                </div>
-                <div>
-                    <span id="lblRating" runat="server"></span>
-                </div>
+            <div style="float: right; width: 160px;">
+                <uc1:FullViewSideInfo ID="FullViewSideInfo1" runat="server" />
             </div>
-            <%-- <div>
-                <div>
-                    <span class="label">DocumentType</span>
-                </div>
-                <div>
-                    <span id="lblDocumentType" runat="server"></span>
-                </div>
-            </div>--%>
+            <div style="clear: both">
+            </div>
         </div>
         <div class="gray">
             Image

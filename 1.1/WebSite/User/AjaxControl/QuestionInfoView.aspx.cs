@@ -31,6 +31,21 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
             }
         }
     }
+    private int ISID
+    {
+        get
+        {
+            if (AjaxState.ContainsKey("isid"))
+            {
+                AjaxState["isid"] = Request.Params["isid"];
+                return Convert.ToInt32(Request.Params["isid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
     private int QuestionStatusID
     {
         get
@@ -82,20 +97,24 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.Params["icid"] != null)
+        {
+            AjaxState["icid"] = Request.Params["icid"];
+        }
         hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?icid=" + ICID;
         //hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/MyQuestion.aspx") + "?icid=" + ICID;
         {
             BindList();
             new QuestionTypeController().BindQuestionType(ddQuestionType);
             new QuestionStatusController().BindQuestionStatus(ddQuestionStatus);
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID), QuestionTypeID, QuestionStatusID).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID), QuestionTypeID, QuestionStatusID,ICID,ISID ).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID), QuestionTypeID, QuestionStatusID, PageSize, PageNumber);
+        ListQuestion.DataSource = new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID), QuestionTypeID, QuestionStatusID,ICID,ISID, PageSize, PageNumber);
         ListQuestion.DataBind();
     }
     private void PaggerLinkManager()

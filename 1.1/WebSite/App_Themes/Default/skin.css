@@ -462,9 +462,9 @@ h3
     padding: 10px;
     background: #fff;
     line-height:22px;
-    border-bottom:dashed 1px #cfcfcf;
+
 }
-.dasbo,.whitecont
+.dasbo
 {
        border-bottom:dashed 1px #cfcfcf;
 }
@@ -602,8 +602,8 @@ h3
     background-color: Transparent;
     background-image: url(images/icons.png);
     background-position: 0 0;
-    background-position: -111px -5px;
-    padding: 1px 16px 0px 0px;
+    background-position: -111px -0px;
+    padding:13px;
     line-height: 12px;
     empty-cells: show;
 }
@@ -717,4 +717,21 @@ a
 {
     float:right;
     border-bottom:dashed 1px #cfcfcf;
+}
+.fuleft
+{
+    float:left;
+    width:550px;
+}
+.furight
+{
+    float:right;
+    width:160px;
+}
+ul
+{
+    clear:both;
+    
+    display:block;
+    
 }
