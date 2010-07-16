@@ -50,8 +50,8 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
             DateTime EndDate; if (false) { throw new Exception(""); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
-            new ExamController().Add(ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
-            Response.Redirect("~/User/AjaxControl/ExamInfoView.aspx?icid="+InstituteCourceID.ToString());
+            int ExamID=new ExamController().Add(ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
+            Response.Redirect("~/User/AjaxControl/Exam.aspx?eid=" + ExamID.ToString());
         }
         catch (Exception ex)
         {
@@ -95,7 +95,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
             new ExamController().UpdateByExamID(ExamID, ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
 
-            Response.Redirect("~/User/AjaxControl/ExamInfoView.aspx?icid=" + InstituteCourceID.ToString());
+            Response.Redirect("~/User/AjaxControl/Exam.aspx?eid=" + ExamID.ToString());
         }
         catch (Exception ex)
         {

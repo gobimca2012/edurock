@@ -20,7 +20,7 @@ public partial class User_AjaxControl_UserInfoView : AjaxPage
         JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, false);
         objPopup.IframePopUp(lnkChangeImage, ResolveUrl("~/User/UploadPhoto.aspx"), "propop", "500", "500", ResolveUrl("~/User/AjaxControl/UserInfoView.aspx"), "#accountsetting");
             
-        if (!this.IsAjaxPostBack)
+       // if (!this.IsAjaxPostBack)
         {
             var data = new UserController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID);
             if (data.Count > 0)

@@ -22,10 +22,10 @@ public partial class User_AccountSetting : BasePage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        JScripter.Tab objTab = new JScripter.Tab(this.Page,true);
-        objTab.TabUl("#tabs");
-        objLoader.LoadPage("#accountsetting", ResolveUrl("~/User/AjaxControl/UserInfoView.aspx"));
-        objLoader.LoadPage("#education", ResolveUrl("~/User/AjaxControl/EducationView.aspx"));
+        //JScripter.Tab objTab = new JScripter.Tab(this.Page,true);
+        //objTab.TabUl("#tabs");
+        objLoader.LoadPage("#lander", ResolveUrl("~/User/AjaxControl/AccountSettingMenu.aspx"));
+        //objLoader.LoadPage("#education", ResolveUrl("~/User/AjaxControl/EducationView.aspx"));
         
     }
    

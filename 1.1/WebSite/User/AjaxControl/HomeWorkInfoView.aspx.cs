@@ -35,7 +35,14 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
     {
         get
         {
-            return Convert.ToInt32(AjaxState["icid"]);
+            if (AjaxState.ContainsKey("icid"))
+            {
+                return Convert.ToInt32(AjaxState["icid"]);
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
     private int TotalPage;
@@ -49,14 +56,23 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
         }
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new HomeWorkController().GetbyInstituteCourceID(_InstituteCourceID).Count / PageSize));
+         
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListHomeWork.DataSource = new HomeWorkController().GetbyInstituteCourceID(_InstituteCourceID, PageSize, PageNumber);
+        if (_InstituteCourceID > 0)
+        {
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new HomeWorkController().GetbyInstituteCourceID(_InstituteCourceID).Count / PageSize));
+            ListHomeWork.DataSource = new HomeWorkController().GetbyInstituteCourceID(_InstituteCourceID, PageSize, PageNumber);
+        }
+        else
+        {
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new HomeWorkController().GetRecentHomeWork(DateTime.Now.AddDays(-2)).Count / PageSize));
+            ListHomeWork.DataSource = new HomeWorkController().GetRecentHomeWork( PageSize, PageNumber,DateTime.Now.AddDays(-2));
+        }
         ListHomeWork.DataBind();
     }
     private void PaggerLinkManager()

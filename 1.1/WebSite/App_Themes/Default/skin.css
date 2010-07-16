@@ -352,6 +352,7 @@ input, textarea
     border: solid 1px #c4c7c8;
     max-width: 200px;
     text-align: center;
+    line-height:12px;
 }
 .btn:hover, .cin:hover
 {
@@ -458,10 +459,15 @@ h3
 }
 .whitecont
 {
-    padding: 5px;
+    padding: 10px;
     background: #fff;
+    line-height:22px;
+    border-bottom:dashed 1px #cfcfcf;
 }
-
+.dasbo,.whitecont
+{
+       border-bottom:dashed 1px #cfcfcf;
+}
 .grayhead
 {
     background: url(images/grayHead.gif);
@@ -706,4 +712,9 @@ a
 {
     margin:0px 10px;
     background:#fff;
+}
+.udate
+{
+    float:right;
+    border-bottom:dashed 1px #cfcfcf;
 }

@@ -11,10 +11,7 @@
         <div class="gray">
             Users
         </div>
-        <div id="User">
-            <div>
-                <asp:HyperLink ID="lnkback" runat="server" Text="back to List" runat="server" NavigateUrl="~/Modules/User/List.aspx"></asp:HyperLink>
-            </div>
+        <div id="User" class="whitecont">
             <div>
                 <asp:Image ID="imgProfilepic" runat="server" Width="100" />
             </div>
@@ -103,10 +100,9 @@
                     <span id="lblWebSite" runat="server"></span>
                 </div>
             </div>
-            <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#accountsetting" NavigateUrl="UserInfo.aspx">Edit</aspajax:HyperLink>
         </div>
         <div class="gray">
-            Users
+            <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox" NavigateUrl="UserInfo.aspx"><div class="btn"> Edit</div></aspajax:HyperLink>
         </div>
     </div>
     </form>

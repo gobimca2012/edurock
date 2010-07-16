@@ -38,7 +38,14 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
     {
         get
         {
-            return Convert.ToInt32(AjaxState["icid"]);
+            if (AjaxState.ContainsKey("icid"))
+            {
+                return Convert.ToInt32(AjaxState["icid"]);
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
     protected void Page_Load(object sender, EventArgs e)
@@ -46,20 +53,34 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
-            hpAddExam.NavigateUrl =ResolveUrl( "~/User/AjaxControl/ExamInfo.aspx")+"?icid="+_InstituteCourceID;
+            hpAddExam.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfo.aspx") + "?icid=" + _InstituteCourceID;
+        }
+        else
+        {
+            hpAddExam.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfo.aspx");
         }
 
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new ExamController().GetbyInstituteCourceID(_InstituteCourceID).Count / PageSize));
+            
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListExam.DataSource = new ExamController().GetbyInstituteCourceID(_InstituteCourceID, PageSize, PageNumber);
-        ListExam.DataBind();
+        if (_InstituteCourceID > 0)
+        {
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new ExamController().GetbyInstituteCourceID(_InstituteCourceID).Count / PageSize));
+            ListExam.DataSource = new ExamController().GetbyInstituteCourceID(_InstituteCourceID, PageSize, PageNumber);
+            ListExam.DataBind();
+        }
+        else
+        {
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new ExamController().GetRecentExam(DateTime.Now.AddDays(-2)).Count / PageSize));
+            ListExam.DataSource = new ExamController().GetRecentExam(PageSize, PageNumber,DateTime.Now.AddDays(-2));
+            ListExam.DataBind();
+        }
     }
     private void PaggerLinkManager()
     {
@@ -115,7 +136,7 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
 
     }
 
-    
+
 
 
 

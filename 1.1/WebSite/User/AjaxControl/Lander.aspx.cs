@@ -40,9 +40,22 @@ public partial class User_AjaxControl_Lander : AjaxPage
             lnkDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfoView.aspx") + "?dtype=4&icid=" + ICID.ToString();
             lnkAudio.NavigateUrl = ResolveUrl("~/User/AjaxControl/AudioInfoView.aspx") + "?dtype=3&icid=" + ICID.ToString();
             lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=2&icid=" + ICID.ToString();
+            string Script = "$('#contentBox').html('');";
+            JScripter.JScripter.InjectScript(Script, this.Page);
 
         }
-        string Script="$('#contentBox').html('');";
-        JScripter.JScripter.InjectScript(Script, this.Page);
+        else
+        {
+            lnkQ.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx");
+            lnktut.NavigateUrl = ResolveUrl("~/All/Ajaxer/TutorialInfoView.aspx");
+            lnkExam.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfoView.aspx");
+            lnkHomeWork.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWorkInfoView.aspx");
+            lnkImage.NavigateUrl = ResolveUrl("~/User/AjaxControl/ImageInfoView.aspx") + "?dtype=1";
+            lnkDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfoView.aspx") + "?dtype=4";
+            lnkAudio.NavigateUrl = ResolveUrl("~/User/AjaxControl/AudioInfoView.aspx") + "?dtype=3";
+            lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=2";
+        }
+       
+       
     }
 }

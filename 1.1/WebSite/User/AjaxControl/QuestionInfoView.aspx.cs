@@ -20,8 +20,15 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
     {
         get
         {
-            AjaxState["icid"] = Request.Params["icid"];
-            return Convert.ToInt32(Request.Params["icid"]);
+            if (AjaxState.ContainsKey("icid"))
+            {
+                AjaxState["icid"] = Request.Params["icid"];
+                return Convert.ToInt32(Request.Params["icid"]);
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
     private int QuestionStatusID

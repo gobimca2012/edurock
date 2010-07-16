@@ -7,119 +7,126 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div id="divMessage" runat="server">
+    <div class="contentbox">
+    <div class="gray">
+    Edit User Info
     </div>
-    <div>
-        <fieldset>
-            <legend>User</legend>
-            <div>
-                <div>
-                    <div>
-                        <asp:Image ID="imgProfilepic" runat="server" Width="100" />
-                    </div>
-                    <div>
-                        <span class="label">FirstName</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">LastName</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">MiddleName</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtMiddleName" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">BirthDate</span>
-                    </div>
-                    <div>
-                        <span>
-                            <asp:DropDownList ID="ddDay" runat="server">
-                            </asp:DropDownList>
-                        </span><span>
-                            <asp:DropDownList ID="ddMonth" runat="server">
-                            </asp:DropDownList>
-                        </span><span>
-                            <asp:DropDownList ID="ddYear" runat="server">
-                            </asp:DropDownList>
-                        </span>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">Address1</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtAddress1" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">Address2</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtAddress2" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">City</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">State</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtState" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">Country</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">WebSite</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtWebSite" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
+        <div id="divMessage" runat="server">
+        </div>
         <div>
-            <div style="float: left">
-                <%--<asp:LinkButton ID="lnkUpdate" runat="server" OnClick="lnkUpdate_Click">Update</asp:LinkButton>--%>
-                <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" OnAjaxClick="AjaxUpdateClick"
-                    RequestContainner="#accountsetting" ResponseContainner="#accountsetting">Update</aspajax:AjaxLinkButton>
-            </div>
+            <fieldset>
+                <legend>User</legend>
+                <div>
+                    <div>
+                        <div>
+                            <asp:Image ID="imgProfilepic" runat="server" Width="100" />
+                        </div>
+                        <div>
+                            <span class="label">FirstName</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">LastName</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">MiddleName</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtMiddleName" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">BirthDate</span>
+                        </div>
+                        <div>
+                            <span>
+                                <asp:DropDownList ID="ddDay" runat="server">
+                                </asp:DropDownList>
+                            </span><span>
+                                <asp:DropDownList ID="ddMonth" runat="server">
+                                </asp:DropDownList>
+                            </span><span>
+                                <asp:DropDownList ID="ddYear" runat="server">
+                                </asp:DropDownList>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">Address1</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtAddress1" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">Address2</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtAddress2" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">City</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">State</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtState" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">Country</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">WebSite</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtWebSite" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="gray">
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddUserInfo" runat="server" OnAjaxClick="AjaxAddClick"
-                    RequestContainner="#accountsetting" ResponseContainner="#accountsetting">Save</aspajax:AjaxLinkButton>
-            </div>
-            <div style="float: left">
-                <aspajax:HyperLink ID="lnkCancel" runat="server" NavigateUrl="UserInfoView.aspx"
-                    ContainnerID="#accountsetting">Cancel</aspajax:HyperLink>
+                <div style="float: left">
+                    <%--<asp:LinkButton ID="lnkUpdate" runat="server" OnClick="lnkUpdate_Click">Update</asp:LinkButton>--%>
+                    <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" OnAjaxClick="AjaxUpdateClick"
+                        RequestContainner="#contentBox" ResponseContainner="#contentBox"><div class="btn">Update</div> </aspajax:AjaxLinkButton>
+                </div>
+                <div>
+                    <aspajax:AjaxLinkButton ID="lnkAddUserInfo" runat="server" OnAjaxClick="AjaxAddClick"
+                        RequestContainner="#contentBox" ResponseContainner="#contentBox"><div class="btn">Add</div> </aspajax:AjaxLinkButton>
+                </div>
+                <div style="float: left">
+                    <aspajax:HyperLink ID="lnkCancel" runat="server" NavigateUrl="UserInfoView.aspx"
+                        ContainnerID="#contentBox"><div class="btn">Cancel</div> </aspajax:HyperLink>
+                </div>
             </div>
         </div>
     </div>

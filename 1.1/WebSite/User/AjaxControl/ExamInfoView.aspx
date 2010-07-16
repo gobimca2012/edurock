@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExamInfoView.aspx.cs" Inherits="College_Ajaxer_ExamInfoView" %>
 
+<%@ Register Src="../UserControl/UserToolTipLink.ascx" TagName="UserToolTipLink"
+    TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -53,15 +55,19 @@
                         <aspajax:HyperLink ID="lnkExmStart" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + Eval("ExamID").ToString()%>'>Start Exam</aspajax:HyperLink>
                     </td>
                 </tr>--%>
-                    <div style="float: left">
-                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Exam.aspx") + "?eid=" + Eval("ExamID").ToString()%>'>
-                        <%#Eval("ExamName") %></aspajax:HyperLink>
+                    <div class="dasbo">
+                        <div style="float: left">
+                            <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Exam.aspx") + "?eid=" + Eval("ExamID").ToString()%>'>
+                        &nbsp;<%#Eval("ExamName") %></aspajax:HyperLink>
+                        </div>
+                        <div style="float: right">
+                            <span>
+                                <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>'
+                                    ModifiedDate='<%#Eval("ModifiedDate") %>' />
+                        </div>
+                        <div style="clear: both">
+                        </div>
                     </div>
-                    <div style="float: right">
-                        <span>
-                            <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %></span>
-                    </div>
-                    <div style="clear:both"></div>
                 </ItemTemplate>
             </asp:ListView>
         </div>
@@ -78,7 +84,7 @@
             </div>
             <div style="float: left">
                 <aspajax:HyperLink ID="hpAddExam" runat="server" NavigateUrl="~/User/AjaxControl/ExamInfo.aspx"
-                    ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                    ContainnerID="#contentBox"><div class="btn"> Add New Exam</div></aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

@@ -45,7 +45,14 @@ public partial class User_AjaxControl_AudioInfoView : AjaxPage
     {
         get
         {
-            return Convert.ToInt16(AjaxState["icid"]);
+            if (AjaxState.ContainsKey("icid"))
+            {
+                return Convert.ToInt16(AjaxState["icid"]);
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
     protected void Page_Load(object sender, EventArgs e)
@@ -61,14 +68,23 @@ public partial class User_AjaxControl_AudioInfoView : AjaxPage
         hpAddDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?dtype=" + _DocumentType.ToString();
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new DocumentController().GetByInstituetCourceID(_DocumentType,_InstituteCourceID).Count / PageSize));
+            
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListDocument.DataSource = new DocumentController().GetByInstituetCourceID(_DocumentType, _InstituteCourceID, PageSize, PageNumber);
+        if (_InstituteCourceID > 0)
+        {
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new DocumentController().GetByInstituetCourceID(_DocumentType, _InstituteCourceID).Count / PageSize));
+            ListDocument.DataSource = new DocumentController().GetByInstituetCourceID(_DocumentType, _InstituteCourceID, PageSize, PageNumber);
+        }
+        else
+        {
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new DocumentController().GetRecentDocument(_DocumentType, DateTime.Now.AddDays(-2)).Count / PageSize));
+            ListDocument.DataSource = new DocumentController().GetRecentDocument(PageSize, PageNumber, _DocumentType, DateTime.Now.AddDays(-2));
+        }
         ListDocument.DataBind();
     }
     private void PaggerLinkManager()

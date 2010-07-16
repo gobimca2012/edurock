@@ -13,95 +13,97 @@
         </div>
         <div id="divMessage" runat="server">
         </div>
-        <fieldset>
-            <legend>Exam</legend>
-            <div>
+        <div class="whitecont">
+            <fieldset>
+                <legend>Exam</legend>
                 <div>
                     <div>
-                        <span class="label">InstituteCourceID</span>
-                    </div>
-                    <div id="ddin">
-                        <asp:DropDownList ID="ddInstituteCource" runat="server">
-                        </asp:DropDownList>
-                    </div>
-                </div>
-                <div id="SubjectDrop">
-                    <div>
-                        <span class="label">InstituteSubjectID</span>
-                    </div>
-                    <div>
                         <div>
-                            <asp:DropDownList ID="ddInstituteSubject" runat="server">
+                            <span class="label">InstituteCourceID</span>
+                        </div>
+                        <div id="ddin">
+                            <asp:DropDownList ID="ddInstituteCource" runat="server">
                             </asp:DropDownList>
                         </div>
                     </div>
+                    <div id="SubjectDrop">
+                        <div>
+                            <span class="label">InstituteSubjectID</span>
+                        </div>
+                        <div>
+                            <div>
+                                <asp:DropDownList ID="ddInstituteSubject" runat="server">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">ExamName</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtExamName" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">SubjectName</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtSubjectName" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">Description</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="400px"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">ExamTime</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtExamTime" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">IsActive</span>
+                        </div>
+                        <div>
+                            <asp:CheckBox ID="chkIsActive" runat="server" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">RequirePecentage</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtRequirePecentage" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">StartDate</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">EndDate</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <div>
-                        <span class="label">ExamName</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtExamName" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">SubjectName</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtSubjectName" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">Description</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="400px"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">ExamTime</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtExamTime" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">IsActive</span>
-                    </div>
-                    <div>
-                        <asp:CheckBox ID="chkIsActive" runat="server" />
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">RequirePecentage</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtRequirePecentage" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">StartDate</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">EndDate</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
+            </fieldset>
+        </div>
         <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddExam" runat="server" RequestContainner="#contentBox"

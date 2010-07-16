@@ -38,22 +38,22 @@ public partial class User_AjaxControl_SelectQuestionType : AjaxPage
     }
     protected override void OnAjaxDropDownChange(string e)
     {
-        if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "1")
-        {
-            Response.Redirect("~/User/AjaxControl/SingleChoiceInfo.aspx" + "?eid=" + _ExamID.ToString());
-        }
-        else if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "2")
-        {
-        }
-        else if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "3")
-        {
-        }
-        else if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "4")
-        {
-        }
-        else if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "5")
-        {
-        }
+        //if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "1")
+        //{
+        //    Response.Redirect("~/User/AjaxControl/SingleChoiceInfo.aspx" + "?eid=" + _ExamID.ToString());
+        //}
+        //else if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "2")
+        //{
+        //}
+        //else if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "3")
+        //{
+        //}
+        //else if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "4")
+        //{
+        //}
+        //else if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "5")
+        //{
+        //}
         base.OnAjaxDropDownChange(e);
     }
     

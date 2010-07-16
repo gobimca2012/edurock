@@ -23,7 +23,7 @@
             <div style="clear: both">
             </div>
         </div>
-        <div id="Exam" style="padding: 5px;">
+        <div id="Exam"  class="whitecont">
             <%--<div>
                 <asp:HyperLink ID="lnkback" runat="server" Text="back to List" runat="server" NavigateUrl="~/Modules/Exam/List.aspx"></asp:HyperLink>
             </div>--%>

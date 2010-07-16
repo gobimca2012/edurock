@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AudioInfoView.aspx.cs" Inherits="User_AjaxControl_AudioInfoView" %>
 
+<%@ Register Src="../UserControl/UserToolTipLink.ascx" TagName="UserToolTipLink"
+    TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -81,18 +83,18 @@
                             ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                     </td>
                 </tr>--%>
-                <div>
+                <div class="dasbo">
                     <div style="float: left">
                         <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("DocumentID").ToString()%>'>
-                        <%#Eval("Name") %></aspajax:HyperLink>
+                        &nbsp;<%#Eval("Name") %></aspajax:HyperLink>
                     </div>
                     <div style="float: right">
-                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
+                        <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" ModifiedDate='<%#Eval("ModifiedDate") %>'
+                            LoginUserID='<%#Eval("LoginUserID") %>' />
                     </div>
                     <div style="clear: both">
                     </div>
                 </div>
-                <hr />
             </ItemTemplate>
         </asp:ListView>
         <div class="gray">
@@ -108,7 +110,7 @@
             </div>
             <div>
                 <aspajax:HyperLink ID="hpAddDocument" runat="server" NavigateUrl="~/User/AjaxControl/DocumentInfo.aspx?dtype=1"
-                    ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                    ContainnerID="#contentBox"><div class="btn"> Add New Audio</div></aspajax:HyperLink>
             </div>
         </div>
         <div style="clear: both">

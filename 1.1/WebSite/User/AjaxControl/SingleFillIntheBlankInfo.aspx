@@ -11,7 +11,7 @@
     <div class="contentbox">
         <div class="gray">
             Question</div>
-        <div id="EXM_Question">
+        <div id="EXM_Question" class="whitecont">
             <div id="divMessage" runat="server">
             </div>
             <div>
