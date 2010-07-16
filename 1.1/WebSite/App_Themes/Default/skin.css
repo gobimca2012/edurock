@@ -1,15 +1,17 @@
 ﻿*
 {
-    color: #323232;
+    color: #626262;
 }
 body
 {
-    font-family: arial,helvetica,clean,sans-serif;
+    /*font-family: arial,helvetica,clean,sans-serif;*/
+    font-family:"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Tahoma,"DejaVu Sans","Bitstream Vera Sans",Arial,Verdana,"Verdana Ref",sans-serif;
     font-size: 12px;
     text-align: center;
     margin: 0px;
     padding: 0px;
-    background: #ECECEC;
+    background:url("http://demo.cyn.in/bodybg.png") repeat-x scroll left top #D9D9D9;
+    text-align:left;
 }
 .page
 {
@@ -234,7 +236,7 @@ tr:hover
     position: fixed;
     left: 500px;
     top: 100px;
-    padding: 10px;
+    padding: 30px;
 }
 
 img
@@ -433,6 +435,14 @@ table thead td, .btext, a, .btitle
 {
     color: #497ec1;
 }
+.btn a:hover
+{
+    background:transparent;
+}
+a:hover
+{
+    background:#CEE3FF;
+}
 .btitle
 {
     font-weight: bold;
@@ -607,7 +617,15 @@ h3
     line-height: 12px;
     empty-cells: show;
 }
-
+.close
+{
+     background-color:Transparent;
+background-image:url("images/icons.png");
+background-position:-209px -10px;
+empty-cells:show;
+line-height:12px;
+padding:9px;
+}
 /* end Account*/
 
 fieldset

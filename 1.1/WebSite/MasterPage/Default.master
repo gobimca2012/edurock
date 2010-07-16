@@ -24,7 +24,7 @@
     </div>
     <div id="ipop">
     </div>
-    <%--<div class="page roundedall">--%>
+    
     <div class="page">
         <div class="bgtl">
             <div class="bgtr">
@@ -40,9 +40,9 @@
             <div class="bgmr">
                 <div class="bgmc">
                     <div style="float: left; width: 198px; border-right: 1px solid #848689;" id="sidemenu">
-                        <div >
+                        <div style="text-align:center;padding:2px">
                             <div>
-                                <asp:Image ID="img" runat="server" Width="100" ImageUrl="~/Repository/Image/rohan/120547121_f5a7bd33de_o.jpg"/>
+                                <asp:Image ID="img" runat="server" Width="100" />
                             </div>
                             <div id="st">
                             
@@ -62,23 +62,7 @@
                             </div>
                         </div>
                         <div class="leftmenu">
-                            <%--<div id="questiontrg">
-                                <div class="grayhead">
-                                    <span class="sub" style="float: left"></span><span style="float: left">Question
-                                    </span>
-                                    <div style="clear: both">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="questiontrgbox" class="invis">
-                                <div class="cin">
-                                    <aspajax:HyperLink ID="lnkMyQuestion" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/MyQuestion.aspx">My Questions</aspajax:HyperLink>
-                                </div>
-                                <div class="cin">
-                                    <aspajax:HyperLink ID="lnkAllQuestion" runat="server" ContainnerID="#contentBox"
-                                        NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">All Question</aspajax:HyperLink>
-                                </div>
-                            </div>--%>
+                           
                             <div id="messageHead">
                                 <div class="grayhead">
                                     <span class="sub" style="float: left"></span><span style="float: left">Messages
@@ -98,29 +82,16 @@
                                     <aspajax:HyperLink ID="lnkSent" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/SentMessageInfoView.aspx">Sent Message</aspajax:HyperLink>
                                 </div>
                             </div>
-                         <%--   <div id="tut">
-                                <div class="grayhead">
-                                    <span class="sub" style="float: left"></span><span style="float: left">Tutorials
-                                    </span>
-                                    <div style="clear: both">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tutbox" class="invis">
-                                <div class="cin">
-                                    <aspajax:HyperLink ID="lnkMyTutorials" runat="server" ContainnerID="#contentBox"
-                                        NavigateUrl="~/College/Ajaxer/TutorialView.aspx">My Tutorials</aspajax:HyperLink>
-                                </div>
-                                <div class="cin">
-                                    <aspajax:HyperLink ID="lnkAllTutorials" runat="server" ContainnerID="#contentBox"
-                                        NavigateUrl="~/All/Ajaxer/TutorialInfoView.aspx">All Tutorials</aspajax:HyperLink>
-                                </div>
-                            </div>--%>
+                        
                         </div>
                     </div>
                     <div style="float: left; width: 780px; border-left: solid 1px #444;">
                         <div class="bksl">
-                            <div style="padding-top: 55px;">
+                        <div >
+                        <h1 style="color:#fff;margin:0 0 0 30px">Learning Management System</h1>
+                        </div>
+                            <div style="padding-top: 25px;">
+                            
                                 <div class="btn">
                                     <div class="dash" style="float: left">
                                     </div>

@@ -50,7 +50,7 @@
                 <div style="float: left">
                     <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
                     <div>
-                        <asp:Image ID="img" runat="server" ImageUrl='<%#ResolveUrl(Eval("FilePath").ToString()) %>' Width="100" />
+                        <asp:Image ID="img" runat="server" ImageUrl='<%#ResolveUrl(Eval("Param1").ToString()) %>' Width="100" />
                     </div>
                     <div>
                       

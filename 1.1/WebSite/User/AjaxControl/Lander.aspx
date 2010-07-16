@@ -32,7 +32,7 @@
             <li class="btn roundedall"><span class="vid">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkVideo" runat="server" ContainnerID="#contentBox">Videos</aspajax:HyperLink></li>
             <li class="btn roundedall"><span class="doc">&nbsp;</span>
-                <aspajax:HyperLink ID="lnkDocument" runat="server" ContainnerID="#contentBox">Documents</aspajax:HyperLink></li>
+                <aspajax:HyperLink ID="lnkDocument" runat="server" ContainnerID="#contentBox">Library</aspajax:HyperLink></li>
         </ul>
     </div>
     </form>

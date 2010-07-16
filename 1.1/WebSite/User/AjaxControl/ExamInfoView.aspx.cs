@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using Common;
 
 public partial class College_Ajaxer_ExamInfoView : AjaxPage
 {
@@ -34,6 +35,20 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
 
     private int TotalPage;
     private int PageSize = 100;
+    private int _LoginUserID
+    {
+        get
+        {
+            if (AjaxState.ContainsKey("usid"))
+            {
+                return Convert.ToInt32(AjaxState["usid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
     private int _InstituteCourceID
     {
         get
@@ -48,8 +63,34 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
             }
         }
     }
+    private int _InstituteSubjectID
+    {
+        get
+        {
+            if (AjaxState.ContainsKey("isid"))
+            {
+                return Convert.ToInt32(AjaxState["isid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.Params["isid"] != null)
+        {
+            AjaxState["isid"] = Request.Params["isid"];
+        }
+        if (Request.Params["icid"] != null)
+        {
+            AjaxState["icid"] = Request.Params["icid"];
+        }
+        if (Request.Params["usid"] != null)
+        {
+            AjaxState["usid"] = Request.Params["usid"];
+        }
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
@@ -69,18 +110,10 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
     }
     private void BindList()
     {
-        if (_InstituteCourceID > 0)
-        {
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new ExamController().GetbyInstituteCourceID(_InstituteCourceID).Count / PageSize));
-            ListExam.DataSource = new ExamController().GetbyInstituteCourceID(_InstituteCourceID, PageSize, PageNumber);
-            ListExam.DataBind();
-        }
-        else
-        {
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new ExamController().GetRecentExam(DateTime.Now.AddDays(-2)).Count / PageSize));
-            ListExam.DataSource = new ExamController().GetRecentExam(PageSize, PageNumber,DateTime.Now.AddDays(-2));
-            ListExam.DataBind();
-        }
+        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Exam).Count / PageSize));
+        ListExam.DataSource = new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Exam, PageSize, PageNumber);
+        ListExam.DataBind();
+
     }
     private void PaggerLinkManager()
     {

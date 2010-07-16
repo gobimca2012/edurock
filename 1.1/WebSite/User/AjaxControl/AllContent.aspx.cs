@@ -171,6 +171,14 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         {
             CssClass = "ques";
         }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.HomeWork)
+        {
+            CssClass = "ques";
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Exam)
+        {
+            CssClass = "exm";
+        }
         return CssClass;
     }
     public string getURL(string ContentType,string ID)
@@ -196,6 +204,14 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Audio)
         {
             URL = ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + ID;
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.HomeWork)
+        {
+            URL = ResolveUrl("~/User/AjaxControl/HomeWork.aspx") + "?hwid=" + ID;
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Exam)
+        {
+            URL = ResolveUrl("~/User/AjaxControl/exam.aspx") + "?eid=" + ID;
         }
         return URL;
     }

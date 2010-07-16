@@ -152,6 +152,7 @@
       <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="ContentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Param1" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

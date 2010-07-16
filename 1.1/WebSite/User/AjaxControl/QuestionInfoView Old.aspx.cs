@@ -11,33 +11,19 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
-using Common;
 
 public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 {
 
     public HtmlHelper _HtmlHelper = new HtmlHelper();
-    private int _LoginUserID
-    {
-        get
-        {
-            if (AjaxState.ContainsKey("usid"))
-            {
-                return Convert.ToInt32(AjaxState["usid"]);
-            }
-            else
-            {
-                return 0;
-            }
-        }
-    }
-    private int _InstituteCourceID
+    private int ICID
     {
         get
         {
             if (AjaxState.ContainsKey("icid"))
             {
-                return Convert.ToInt32(AjaxState["icid"]);
+                AjaxState["icid"] = Request.Params["icid"];
+                return Convert.ToInt32(Request.Params["icid"]);
             }
             else
             {
@@ -45,13 +31,14 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
             }
         }
     }
-    private int _InstituteSubjectID
+    private int ISID
     {
         get
         {
             if (AjaxState.ContainsKey("isid"))
             {
-                return Convert.ToInt32(AjaxState["isid"]);
+                AjaxState["isid"] = Request.Params["isid"];
+                return Convert.ToInt32(Request.Params["isid"]);
             }
             else
             {
@@ -110,32 +97,24 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Params["isid"] != null)
-        {
-            AjaxState["isid"] = Request.Params["isid"];
-        }
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
         }
-        if (Request.Params["usid"] != null)
-        {
-            AjaxState["usid"] = Request.Params["usid"];
-        }
-        hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?icid=" + _InstituteCourceID;
+        hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?icid=" + ICID;
         //hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/MyQuestion.aspx") + "?icid=" + ICID;
         {
             BindList();
             new QuestionTypeController().BindQuestionType(ddQuestionType);
             new QuestionStatusController().BindQuestionStatus(ddQuestionStatus);
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Question).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID), QuestionTypeID, QuestionStatusID,ICID,ISID ).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Question, PageSize, PageNumber);
+        ListQuestion.DataSource = new QuestionController().GetQuestion(HtmlHelper.ControlValue(txtKeyword.ClientID), QuestionTypeID, QuestionStatusID,ICID,ISID, PageSize, PageNumber);
         ListQuestion.DataBind();
     }
     private void PaggerLinkManager()
@@ -193,10 +172,10 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
             JScripter.JScripter.InjectScript(Script, this.Page);
         }
         AjaxControl.HyperLink lnkQuestionFull = (AjaxControl.HyperLink)currentItem.FindControl("lnkQuestionFull");
-        string QuestionID = ListQuestion.DataKeys[currentItem.DataItemIndex]["ID"].ToString();
+        string QuestionID = ListQuestion.DataKeys[currentItem.DataItemIndex]["QuestionID"].ToString();
         if (lnkQuestionFull != null)
         {
-            lnkQuestionFull.NavigateUrl = ResolveUrl("~/User/AjaxControl/Question.aspx") + "?icid=" + _InstituteCourceID.ToString() + "&qid=" + QuestionID.ToString();
+            lnkQuestionFull.NavigateUrl = ResolveUrl("~/User/AjaxControl/Question.aspx") + "?icid=" + ICID.ToString() + "&qid=" + QuestionID.ToString();
         }
 
 

@@ -37,8 +37,8 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 
             DateTime ModifiedDate = DateTime.Now;
 
-            new HomeWorkController().Add(LoginUserID, Title, Description, ShortDescription, InstituteCourceID, InstituteSubjectID, ModifiedDate);
-            Response.Redirect("~/User/AjaxControl/HomeWorkInfo.aspx");
+            int HomeworkID=new HomeWorkController().Add(LoginUserID, Title, Description, ShortDescription, InstituteCourceID, InstituteSubjectID, ModifiedDate);
+            Response.Redirect("~/User/AjaxControl/HomeWork.aspx?hwid=" + HomeworkID.ToString());
         }
         catch (Exception ex)
         {

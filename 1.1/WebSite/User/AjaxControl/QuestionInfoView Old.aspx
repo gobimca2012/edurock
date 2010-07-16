@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="QuestionInfoView.aspx.cs"
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="QuestionInfoView Old.aspx.cs"
     Inherits="User_AjaxControl_QuestionInfoView" %>
 
 <%@ Register Src="../UserControl/UserToolTipLink.ascx" TagName="UserToolTipLink"
@@ -12,32 +12,30 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray ">
-            <div id="dumi" runat="server" visible="false">
-                <ul>
-                    <li>
-                        <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
-                    </li>
-                    <li>
-                        <asp:DropDownList ID="ddQuestionType" runat="server">
-                        </asp:DropDownList>
-                    </li>
-                    <li>
-                        <asp:DropDownList ID="ddQuestionStatus" runat="server">
-                        </asp:DropDownList>
-                    </li>
-                    <li class="btn roundedall">
-                        <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#contentBox"
-                            ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SearchAjaxClick"
-                            Pagger="False">Search</aspajax:AjaxLinkButton>
-                    </li>
-                    <li class="btn roundedall">
-                        <aspajax:HyperLink ID="lnkMyQuestion" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/MyQuestion.aspx">Your Questions</aspajax:HyperLink>
-                    </li>
-                </ul>
-            </div>
+            <ul>
+                <li>
+                    <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
+                </li>
+                <li>
+                    <asp:DropDownList ID="ddQuestionType" runat="server">
+                    </asp:DropDownList>
+                </li>
+                <li>
+                    <asp:DropDownList ID="ddQuestionStatus" runat="server">
+                    </asp:DropDownList>
+                </li>
+                <li class="btn roundedall">
+                    <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#contentBox"
+                        ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SearchAjaxClick"
+                        Pagger="False">Search</aspajax:AjaxLinkButton>
+                </li>
+                <li class="btn roundedall">
+                    <aspajax:HyperLink ID="lnkMyQuestion" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/MyQuestion.aspx">Your Questions</aspajax:HyperLink>
+                </li>
+            </ul>
         </div>
         <div class="whitecont">
-            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="LoginUserID,ID"
+            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="LoginUserID,QuestionID"
                 OnItemDataBound="ListQuestionOnItemDataBound">
                 <LayoutTemplate>
                     <%-- <table>
@@ -93,11 +91,10 @@
                     <div class="dasbo">
                         <div class="btitle">
                             <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#contentBox"
-                                NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("ID")  %>'><%#Eval("Title") %></aspajax:HyperLink>
+                                NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("QuestionID")  %>'><%#Eval("QuestionText") %></aspajax:HyperLink>
                         </div>
                         <div>
-                            <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>'
-                                ModifiedDate='<%#Eval("ModifiedDate") %>' />
+                            <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>' ModifiedDate='<%#Eval("ModifiedDate") %>' />
                         </div>
                     </div>
                 </ItemTemplate>

@@ -62,7 +62,7 @@ public partial class User_AjaxControl_Document : AjaxPage
                 }
                 else if (data.DocumentType == (int)DocumentTypeEnum.Document)
                 {
-                    lblFilePath.InnerHtml = data.FilePath.ToString();
+                    lblFilePath.HRef =ResolveUrl( data.FilePath.ToString());
                 }
                 else if (data.DocumentType == (int)DocumentTypeEnum.Audio || data.DocumentType == (int)DocumentTypeEnum.Video)
                 {

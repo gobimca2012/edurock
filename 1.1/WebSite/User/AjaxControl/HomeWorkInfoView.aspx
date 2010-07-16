@@ -60,7 +60,7 @@
                 </tr>--%>
                 <div style="clear:both">
                     <div style="float: left" class="btitle">
-                        <aspajax:HyperLink ID="lnkFull" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWork.aspx")+"?hwid="+Eval("HomeWorkID").ToString()%>'
+                        <aspajax:HyperLink ID="lnkFull" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWork.aspx")+"?hwid="+Eval("ID").ToString()%>'
                             ContainnerID="#contentBox"><%#Eval("Title") %></aspajax:HyperLink>
                     </div>
                     <div style="float: right">

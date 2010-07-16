@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="whitecont">
-            <div style="float: left;width:550px">
+            <div style="float: left; width: 550px">
                 <%--<div>
                 <div>
                     <span class="label">DocumentID</span>
@@ -35,9 +35,14 @@
                 <div>
                     <div>
                         <asp:Image ID="img" runat="server" Visible="false" Width="300" />
-                        <span id="lblFilePath" runat="server"></span>
                     </div>
                     <div id="videoPlayer">
+                    </div>
+                    <div>
+                        <a id="lblFilePath" runat="server" target="_blank">
+                            <div class="btn">
+                                Download</div>
+                        </a>
                     </div>
                 </div>
                 <div>

@@ -20,6 +20,7 @@ public partial class User_AjaxControl_Upop : AjaxPage
         if (Request.Params["lid"] != null)
         {
             Binddata();
+            lnkUserProfile.NavigateUrl = ResolveUrl("~/User/User.aspx") + "?usid=" + Request.Params["lid"];
         }
         string aaa = string.Format("$('#{0}').ajaxToolTipclose();", lnkclose.ClientID);
         JScripter.JScripter.InjectScript(aaa, this.Page);
@@ -30,6 +31,7 @@ public partial class User_AjaxControl_Upop : AjaxPage
         if (dataBunch.Count > 0)
         {
             var data = dataBunch[0];
+            lblStatus.InnerText = data.Status;
             lblName.InnerHtml = data.FirstName + " " + data.LastName;
             propic.ImageUrl = ResolveUrl(data.PhotoPath);
             lblUserName.InnerText = data.StudentLogin.Username;

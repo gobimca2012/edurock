@@ -57,8 +57,8 @@
                 </tr>--%>
                     <div class="dasbo">
                         <div style="float: left">
-                            <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Exam.aspx") + "?eid=" + Eval("ExamID").ToString()%>'>
-                        &nbsp;<%#Eval("ExamName") %></aspajax:HyperLink>
+                            <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Exam.aspx") + "?eid=" + Eval("ID").ToString()%>'>
+                        &nbsp;<%#Eval("Title") %></aspajax:HyperLink>
                         </div>
                         <div style="float: right">
                             <span>

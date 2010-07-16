@@ -43,7 +43,9 @@ namespace Common
         Image = 1,
         Audio = 3,
         Video = 2,
-        Question=5
+        Question=5,
+        HomeWork=6,
+        Exam=7
     }
     public class FileInformation
     {
