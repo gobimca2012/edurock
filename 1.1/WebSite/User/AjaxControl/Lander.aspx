@@ -10,6 +10,8 @@
     <div>
         <ul>
             <li class="btn roundedall"><span class="ques">&nbsp;</span>
+                <aspajax:HyperLink ID="lnkAll" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">All</aspajax:HyperLink></li>
+            <li class="btn roundedall"><span class="ques">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">Questions</aspajax:HyperLink></li>
             <li class="btn roundedall"><span class="exm">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkExam" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ExamInfoView.aspx">Exams</aspajax:HyperLink>
@@ -26,7 +28,6 @@
             <li class="btn roundedall"><span class="ques">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkAudio" runat="server" ContainnerID="#contentBox">Audios</aspajax:HyperLink></li>
         </ul>
-    
         <ul>
             <li class="btn roundedall"><span class="vid">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkVideo" runat="server" ContainnerID="#contentBox">Videos</aspajax:HyperLink></li>

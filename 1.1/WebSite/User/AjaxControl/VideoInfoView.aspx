@@ -12,7 +12,7 @@
     <div class="contentbox">
         <div class="gray">
             Images</div>
-        <asp:ListView ID="ListDocument" runat="server" DataKeyNames="DocumentID" OnItemDataBound="ListDocumentOnItemDataBound">
+        <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
             <LayoutTemplate>
                 <table>
                     <%--  <thead>
@@ -84,9 +84,9 @@
                     </td>
                 </tr>--%>
                 <div class="dasbo">
-                    <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("DocumentID").ToString()%>'>
+                    <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
                     <div style="float: left">
-                        <%#Eval("Name") %>
+                        <%#Eval("Title") %>
                     </div>
                     </aspajax:HyperLink>
                     <div style="float: right">

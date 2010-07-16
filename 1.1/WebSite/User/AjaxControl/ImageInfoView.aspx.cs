@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using Common;
 
 public partial class User_AjaxControl_ImageInfoView : AjaxPage
 {
@@ -41,13 +42,41 @@ public partial class User_AjaxControl_ImageInfoView : AjaxPage
             return Convert.ToInt16(AjaxState["dtype"]);
         }
     }
+    private int _LoginUserID
+    {
+        get
+        {
+            if (AjaxState.ContainsKey("usid"))
+            {
+                return Convert.ToInt32(AjaxState["usid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
     private int _InstituteCourceID
     {
         get
         {
             if (AjaxState.ContainsKey("icid"))
             {
-                return Convert.ToInt16(AjaxState["icid"]);
+                return Convert.ToInt32(AjaxState["icid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+    private int _InstituteSubjectID
+    {
+        get
+        {
+            if (AjaxState.ContainsKey("isid"))
+            {
+                return Convert.ToInt32(AjaxState["isid"]);
             }
             else
             {
@@ -57,10 +86,19 @@ public partial class User_AjaxControl_ImageInfoView : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.Params["isid"] != null)
+        {
+            AjaxState["isid"] = Request.Params["isid"];
+        }
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
         }
+        if (Request.Params["usid"] != null)
+        {
+            AjaxState["usid"] = Request.Params["usid"];
+        }
+
         if (Request.Params["dtype"] != null)
         {
             AjaxState["dtype"] = Request.Params["dtype"];
@@ -75,17 +113,10 @@ public partial class User_AjaxControl_ImageInfoView : AjaxPage
     }
     private void BindList()
     {
-        if (_InstituteCourceID > 0)
-        {
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new DocumentController().GetByInstituetCourceID(_DocumentType, _InstituteCourceID).Count / PageSize));
-            ListDocument.DataSource = new DocumentController().GetByInstituetCourceID(_DocumentType, _InstituteCourceID, PageSize, PageNumber);
-        }
-        else
-        {
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new DocumentController().GetRecentDocument(_DocumentType, DateTime.Now.AddDays(-2)).Count / PageSize));
-            ListDocument.DataSource = new DocumentController().GetRecentDocument(PageSize, PageNumber, _DocumentType, DateTime.Now.AddDays(-2));
-        }
+        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Image).Count / PageSize));
+        ListDocument.DataSource = new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Image, PageSize, PageNumber);
         ListDocument.DataBind();
+
     }
     private void PaggerLinkManager()
     {

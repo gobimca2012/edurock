@@ -38,6 +38,7 @@ namespace Common
     }
     public enum ContentTypeEnum
     {
+        All=0,
         Document = 4,
         Image = 1,
         Audio = 3,

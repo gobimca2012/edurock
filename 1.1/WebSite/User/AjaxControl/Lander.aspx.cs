@@ -61,6 +61,7 @@ public partial class User_AjaxControl_Lander : AjaxPage
         if (ICID > 0)
         {
             lnkQ.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx") + "?icid=" + ICID.ToString();
+            lnkAll.NavigateUrl = ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString();
             //lnktut.NavigateUrl = ResolveUrl("~/All/Ajaxer/TutorialInfoView.aspx") + "?icid=" + ICID.ToString();
             lnkExam.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfoView.aspx") + "?icid=" + ICID.ToString();
             lnkHomeWork.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWorkInfoView.aspx") + "?icid=" + ICID.ToString();
@@ -76,6 +77,7 @@ public partial class User_AjaxControl_Lander : AjaxPage
         }
         else
         {
+            lnkAll.NavigateUrl = ResolveUrl("~/User/AjaxControl/AllContent.aspx");
             lnkQ.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx");
             //lnktut.NavigateUrl = ResolveUrl("~/All/Ajaxer/TutorialInfoView.aspx");
             lnkExam.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfoView.aspx");
@@ -86,6 +88,7 @@ public partial class User_AjaxControl_Lander : AjaxPage
             lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=2";
             //new JScripter.Loader(this.Page, false).LoadPage("contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx"));
         }
+        lnkAll.NavigateUrl = ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString();
         new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString());
 
     }

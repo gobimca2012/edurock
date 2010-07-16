@@ -159,9 +159,9 @@ namespace DataEntity
 		}
 		
 		[Function(Name="dbo.GetContent")]
-		public ISingleResult<GetContentResult> GetContent([Parameter(Name="LoginUserID", DbType="Int")] System.Nullable<int> loginUserID, [Parameter(Name="InstituteCourceID", DbType="Int")] System.Nullable<int> instituteCourceID, [Parameter(Name="InstituteSubjectID", DbType="Int")] System.Nullable<int> instituteSubjectID)
+		public ISingleResult<GetContentResult> GetContent([Parameter(Name="LoginUserID", DbType="Int")] System.Nullable<int> loginUserID, [Parameter(Name="InstituteCourceID", DbType="Int")] System.Nullable<int> instituteCourceID, [Parameter(Name="InstituteSubjectID", DbType="Int")] System.Nullable<int> instituteSubjectID, [Parameter(Name="ContentType", DbType="Int")] System.Nullable<int> contentType)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID, instituteCourceID, instituteSubjectID);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID, instituteCourceID, instituteSubjectID, contentType);
 			return ((ISingleResult<GetContentResult>)(result.ReturnValue));
 		}
 	}

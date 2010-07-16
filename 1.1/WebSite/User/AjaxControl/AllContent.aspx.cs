@@ -94,14 +94,14 @@ public partial class User_AjaxControl_AllContent : AjaxPage
 
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.All).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, PageSize, PageNumber);
+        ListQuestion.DataSource = new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID,(int)ContentTypeEnum.All, PageSize, PageNumber);
         ListQuestion.DataBind();
     }
     private void PaggerLinkManager()

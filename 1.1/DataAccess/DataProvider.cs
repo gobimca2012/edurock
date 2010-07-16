@@ -3386,22 +3386,22 @@ namespace DataAccess
 
         #endregion
         #region CustomUser
-        public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID)
+        public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID,int ContentType)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetContent(LoginUserID, InstituteCourceID, InstituteSubjectID).ToList();
+            return db.GetContent(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType).ToList();
 
         }
-        public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int PageSize, int PageNumber)
+        public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID,int ContentType, int PageSize, int PageNumber)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data=db.GetContent(LoginUserID, InstituteCourceID, InstituteSubjectID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            var data = db.GetContent(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType).Skip(PageNumber * PageSize).Take(PageSize).ToList();
             var fdata = (from p in data orderby p.ModifiedDate descending select p).ToList();
             return fdata;
 
