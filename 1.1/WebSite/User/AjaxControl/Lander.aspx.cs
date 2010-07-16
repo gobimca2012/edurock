@@ -28,6 +28,34 @@ public partial class User_AjaxControl_Lander : AjaxPage
             }
         }
     }
+    private int ISID
+    {
+        get
+        {
+            if (Request.Params["isid"] != null)
+            {
+                return Convert.ToInt32(Request.Params["isid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+    private int LoginUserID
+    {
+        get
+        {
+            if (Request.Params["usid"] != null)
+            {
+                return Convert.ToInt32(Request.Params["usid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (ICID > 0)
@@ -40,9 +68,9 @@ public partial class User_AjaxControl_Lander : AjaxPage
             lnkDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfoView.aspx") + "?dtype=4&icid=" + ICID.ToString();
             lnkAudio.NavigateUrl = ResolveUrl("~/User/AjaxControl/AudioInfoView.aspx") + "?dtype=3&icid=" + ICID.ToString();
             lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=2&icid=" + ICID.ToString();
-            string Script = "$('#contentBox').html('');";
-            JScripter.JScripter.InjectScript(Script, this.Page);
-            new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx") + "?icid=" + ICID.ToString());
+            //string Script = "$('#contentBox').html('');";
+            //JScripter.JScripter.InjectScript(Script, this.Page);
+
 
 
         }
@@ -58,7 +86,7 @@ public partial class User_AjaxControl_Lander : AjaxPage
             lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=2";
             //new JScripter.Loader(this.Page, false).LoadPage("contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx"));
         }
-       
-       
+        new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString());
+
     }
 }

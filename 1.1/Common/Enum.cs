@@ -36,6 +36,14 @@ namespace Common
         Audio=3,
         Video=2,
     }
+    public enum ContentTypeEnum
+    {
+        Document = 4,
+        Image = 1,
+        Audio = 3,
+        Video = 2,
+        Question=5
+    }
     public class FileInformation
     {
         public static string getFileExtention(string path)

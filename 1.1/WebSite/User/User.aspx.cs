@@ -12,12 +12,11 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class User_DashBoard : BasePage
+public partial class User_Content : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
-    {
-        //JScripter.JScripter.IncludeJavascriptFile("file", ResolveUrl("~/Jscript/jquery.iframe-post-form.js"), this.Page);
+    {        
         objLoader.LoadPage("#lander", ResolveUrl("~/User/AjaxControl/Lander.aspx"));
-    //    objLoader.LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx"));
+        objLoader.LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx"));
     }
 }

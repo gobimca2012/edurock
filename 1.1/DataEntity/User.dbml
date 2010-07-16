@@ -139,4 +139,18 @@
       <Column Name="ContentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetContent" Method="GetContent">
+    <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstituteCourceID" Parameter="instituteCourceID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstituteSubjectID" Parameter="instituteSubjectID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetContentResult">
+      <Column Name="ID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ContentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

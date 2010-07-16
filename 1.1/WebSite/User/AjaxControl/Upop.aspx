@@ -8,7 +8,7 @@
 <body>
     <form id="form1" runat="server">
     <div class="trans" style="float: left">
-        <div class="whitecont" style="text-align:left">
+        <div class="whitecont" style="text-align: left">
             <div style="float: right">
                 <asp:HyperLink ID="lnkclose" runat="server">Close</asp:HyperLink>
             </div>
@@ -32,6 +32,9 @@
                     </div>
                     <div>
                         User Institute:&nbsp;<span id="lblGroup" runat="server"></span>
+                    </div>
+                    <div>
+                        <asp:HyperLink ID="lnkUserProfile" runat="server">Full Profile</asp:HyperLink>
                     </div>
                 </div>
             </div>

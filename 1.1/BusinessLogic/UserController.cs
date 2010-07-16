@@ -819,6 +819,30 @@ namespace BusinessLogic
 
         #endregion
         #region User
+        public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID)
+        {
+            try
+            {
+
+                return new DataProvider().GetContent(LoginUserID, InstituteCourceID, InstituteSubjectID);
+            }
+            catch
+            {
+                return new List<GetContentResult>();
+            }
+        }
+        public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetContent(LoginUserID, InstituteCourceID, InstituteSubjectID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetContentResult>();
+            }
+        }
         public List<GetUserContentResult> GetUserContent(int LoginUserID)
 		{
 			try
