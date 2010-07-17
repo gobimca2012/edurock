@@ -263,13 +263,13 @@ public partial class College_Ajaxer_Question : AjaxPage
             {
                 if (answerData.EXM_AnswerID == exmAns.EXM_AnswerID)
                 {
-                    CheckBoxListString += string.Format(" <input type='checkbox' name='chk${0}' id='chk${0}'checked='checked'/><label for='chk${0}'>{1}</label>", exmAns.EXM_AnswerID, exmAns.Answer);
+                    CheckBoxListString += string.Format(" <input type='checkbox' name='chk${0}' id='chk${0}'checked='checked'/><label for='chk${0}'>{1}</label><br/>", exmAns.EXM_AnswerID, exmAns.Answer);
                     IsApply = true;
                 }
             }
             if (!IsApply)
             {
-                CheckBoxListString += string.Format(" <input type='checkbox' name='chk${0}' id='chk${0}'/><label for='chk${0}'>{1}</label>", exmAns.EXM_AnswerID, exmAns.Answer);
+                CheckBoxListString += string.Format(" <input type='checkbox' name='chk${0}' id='chk${0}'/><label for='chk${0}'>{1}</label><br/>", exmAns.EXM_AnswerID, exmAns.Answer);
             }
         }
         multiCheck.InnerHtml = CheckBoxListString;

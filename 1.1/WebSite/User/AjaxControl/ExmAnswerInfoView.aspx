@@ -11,15 +11,17 @@
     <div class="contentbox">
         <div class="gray">
             <div style="float: left">
-            Answers 
+                Answers
             </div>
             <div style="float: right">
                 <aspajax:HyperLink ID="hpAddEXM_Answer" runat="server" NavigateUrl="~/User/Ajaxer/EXMAnswerInfo.aspx"
                     ContainnerID="#contentBox"><div class="btn">Add new Answer</div></aspajax:HyperLink>
             </div>
+            <div style="float: right">
+                <aspajax:HyperLink ID="lnkbackToQuestion" runat="server" ContainnerID="#contentBox"><div class="btn">Back to Question</div></aspajax:HyperLink>
+            </div>
             <div style="clear: both">
             </div>
-            
         </div>
         <asp:ListView ID="ListEXM_Answer" runat="server">
             <LayoutTemplate>

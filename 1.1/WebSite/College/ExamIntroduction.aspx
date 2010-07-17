@@ -11,7 +11,9 @@
     <div>
         <div id="examStart">
             <div class="contentbox">
-                <div id="Exam">
+                <div class="gray">
+                </div>
+                <div id="Exam" class="whitecont">
                     <div>
                         <div>
                             <span class="label">ExamName</span>
@@ -37,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="gray">
                     <%--<asp:HyperLink ID="lnkStartExam" runat="server" NavigateUrl="~/College/StartExam.aspx">Start Exam</asp:HyperLink>--%>
                     <aspajax:HyperLink ID="lnkStart" runat="server" NavigateUrl="~/College/StartExam.aspx"
                         ContainnerID="#examStart">Start</aspajax:HyperLink>

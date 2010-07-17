@@ -11,7 +11,7 @@
         <div class="gray">
             Exam Start
         </div>
-        <div style="float: left; width: 570px">
+        <div style="float: left; width: 555px">
             <div id="exami">
                 <div class="whitecont">
                     <div id="DivSingleChoice" runat="server">
@@ -72,8 +72,9 @@
                             <div class="gbg">
                                 <%--<asp:LinkButton ID="lnkOrder" runat="server" CommandName="LoadQuestion"><%#Eval("Order") %></asp:LinkButton>--%>
                                 <h5>
-                                    <aspajax:AjaxLinkButton ID="lnkOrder" runat="server" PostBackUrl='<%#ResolveUrl("~/College/Ajaxer/Question.aspx")+"?oid="+Eval("Order") %>'
-                                        RequestContainner="#exam" ResponseContainner="#exam" OnAjaxClick="OrderAjaxClick"><%#Eval("Order") %></aspajax:AjaxLinkButton></h5>
+                                    <%--<aspajax:AjaxLinkButton ID="lnkOrder" runat="server" PostBackUrl='<%#ResolveUrl("~/College/Ajaxer/Question.aspx")+"?oid="+Eval("Order") %>'
+                                        RequestContainner="#exam" ResponseContainner="#exam" OnAjaxClick="OrderAjaxClick"><%#Eval("Order") %></aspajax:AjaxLinkButton></h5>--%>
+                                        <aspajax:HyperLink ID="lnkOrder" runat="server" ContainnerID="#exam" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/Question.aspx")+"?oid="+Eval("Order") %>'><%#Eval("Order") %></aspajax:HyperLink>
                             </div>
                         </div>
                     </ItemTemplate>

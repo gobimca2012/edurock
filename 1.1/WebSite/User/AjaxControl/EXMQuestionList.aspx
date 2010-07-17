@@ -68,7 +68,8 @@
                             <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("EXM_QuestionID").ToString(), "#contentBox", "#contentBox")%>
                         </td>
                         <td>
-                            <aspajax:HyperLink ID="lnkAnswer" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/ExmAnswerInfoView.aspx") + "?qid=" + Eval("EXM_QuestionID").ToString()%>'>Answer</aspajax:HyperLink>
+                        
+                            <aspajax:HyperLink ID="lnkAnswer" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/ExmAnswerInfoView.aspx") + "?qid=" + Eval("EXM_QuestionID").ToString()%>'><%#"Answer("+Eval("EXM_Answers.Count").ToString()+")" %></aspajax:HyperLink>
                         </td>
                     </tr>
                 </ItemTemplate>

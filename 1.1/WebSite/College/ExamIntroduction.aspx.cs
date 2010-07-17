@@ -17,7 +17,7 @@ public partial class College_ExamIntroduction : AjaxPage
     {
         get
         {
-            return Convert.ToInt32(Request.QueryString["eid"]);
+            return Convert.ToInt32(Request.Params["eid"]);
         }
     }
     protected void Page_Load(object sender, EventArgs e)

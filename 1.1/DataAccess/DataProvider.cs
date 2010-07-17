@@ -1228,20 +1228,7 @@ namespace DataAccess
 
         }
 
-        public List<EXM_Question> EXM_QuestionGetbyExamID(int ExamID)
-        {
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
-            db.ObjectTrackingEnabled = false;
-            //LoadOption option = new LoadOption();
-            DataLoadOptions option = new DataLoadOptions();
-            option.LoadWith<EXM_Question>(p => p.EXM_Answers);
-            db.LoadOptions = option;
-            var data = (from p in db.EXM_Questions where p.ExamID == ExamID orderby p.Order select p).ToList();
-            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-            return data;
-
-        }
+        
 
         public List<EXM_Question> EXM_QuestionGetbyQ_Type(int Q_Type)
         {
@@ -1384,6 +1371,20 @@ namespace DataAccess
 
         #endregion
         #region CustomEXM_Question
+        public List<EXM_Question> EXM_QuestionGetbyExamID(int ExamID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            db.ObjectTrackingEnabled = false;
+            //LoadOption option = new LoadOption();
+            DataLoadOptions option = new DataLoadOptions();
+            option.LoadWith<EXM_Question>(p => p.EXM_Answers);
+            db.LoadOptions = option;
+            var data = (from p in db.EXM_Questions where p.ExamID == ExamID orderby p.Order select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
         public int EXM_QuestionAdd(string Question, int LoginUserID, int ExamID, int Q_Type, string Description, int Marks, DateTime ModifiedDate)
         {
             EXM_Question ObjEXM_Question = new EXM_Question();
@@ -1534,16 +1535,7 @@ namespace DataAccess
 
         }
 
-        public List<EXM_Answer> EXM_AnswerGetbyEXM_QuestionID(int EXM_QuestionID, int PageSize, int PageNumber)
-        {
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
-            db.ObjectTrackingEnabled = false;
-            var data = (from p in db.EXM_Answers where p.EXM_QuestionID == EXM_QuestionID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
-            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-            return data;
-
-        }
+        
 
         public List<EXM_Answer> EXM_AnswerGetbyAnswer(string Answer, int PageSize, int PageNumber)
         {
@@ -1722,6 +1714,16 @@ namespace DataAccess
 
         #endregion
         #region CustomEXM_Answer
+        public List<EXM_Answer> EXM_AnswerGetbyEXM_QuestionID(int EXM_QuestionID, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            
+            var data = (from p in db.EXM_Answers where p.EXM_QuestionID == EXM_QuestionID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
         public int EXM_AnswerAdd(int EXM_QuestionID, string Answer, bool IsRight, decimal Marks, DateTime ModifiedDate)
         {
             EXM_Answer ObjEXM_Answer = new EXM_Answer();

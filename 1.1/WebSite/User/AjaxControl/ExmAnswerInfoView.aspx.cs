@@ -38,6 +38,7 @@ public partial class User_AjaxControl_ExmAnswerInfoView : AjaxPage
     {
         get
         {
+
             return Convert.ToInt32(AjaxState["qid"]);
         }
     }
@@ -57,7 +58,11 @@ public partial class User_AjaxControl_ExmAnswerInfoView : AjaxPage
     }
     private void BindList()
     {
-        ListEXM_Answer.DataSource = new EXM_AnswerController().GetbyEXM_QuestionID(_QuestionID, PageSize, PageNumber);
+
+        var data = new EXM_AnswerController().GetbyEXM_QuestionID(_QuestionID, PageSize, PageNumber);
+        if (data.Count>0)
+            lnkbackToQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/EXMQuestionList.aspx") + "?eid=" + data[0].EXM_Question.ExamID.ToString();
+        ListEXM_Answer.DataSource = data;
         ListEXM_Answer.DataBind();
     }
     private void PaggerLinkManager()
