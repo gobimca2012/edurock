@@ -15,7 +15,14 @@ using Common;
 
 public partial class User_AjaxControl_Document : AjaxPage
 {
-
+    private void ControlManager(int LoginUserID)
+    {
+        if (new UserAuthontication().IsOwn(LoginUserID))
+        {
+            lnkDelete.Visible = true;
+            lnkEdit.Visible = true;
+        }
+    }
     private void BindData()
     {
         var dataBunch = new DocumentController().GetbyDocumentID(ID);
@@ -44,8 +51,8 @@ public partial class User_AjaxControl_Document : AjaxPage
 
             if (data.LoginUserID != null)
             {
-               
-                
+
+                ControlManager(data.LoginUserID);
                 
             }
 

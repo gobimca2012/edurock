@@ -29,6 +29,15 @@ public partial class User_AjaxControl_Question : AjaxPage
             return Convert.ToInt32(AjaxState["icid"]);
         }
     }
+    private void ControlManager(int LoginUserID)
+    {
+        if (new UserAuthontication().IsOwn(LoginUserID))
+        {
+            lnkEdit.Visible = true;
+            lnkShare.Visible = true;
+
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.Params["icid"] != null)
@@ -78,7 +87,7 @@ public partial class User_AjaxControl_Question : AjaxPage
         FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
         FullViewSideInfo1.CourceID = (int)data.InstituteCourceID;
         FullViewSideInfo1.SubjectID = (int)data.InstituteSubjectID;
-        
+        ControlManager(data.LoginUserID);
 
     }
     private void MakeLinks()

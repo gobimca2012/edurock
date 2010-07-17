@@ -65,6 +65,7 @@ public partial class User_AjaxControl_MyLander : AjaxPage
             lnkMyDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfoView.aspx") + "?dtype=4&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
             lnkMyAudio.NavigateUrl = ResolveUrl("~/User/AjaxControl/AudioInfoView.aspx") + "?dtype=3&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
             lnkMyVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=2&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
+            lnkMyResult.NavigateUrl = ResolveUrl("~/User/AjaxControl/UserExamResult.aspx");
             //string Script = "$('#contentBox').html('');";
             //JScripter.JScripter.InjectScript(Script, this.Page);
 

@@ -14,7 +14,14 @@ using BusinessLogic;
 
 public partial class User_AjaxControl_Exam : AjaxPage
 {
-
+    private void ControlManager(int LoginUserID)
+    {
+        if (new UserAuthontication().IsOwn(LoginUserID))
+        {
+            lnkEdit.Visible = true;
+            lnkQuestion.Visible = true;
+        }
+    }
     private void BindData()
     {
         var dataBunch = new ExamController().GetbyExamID(ID);
@@ -53,6 +60,7 @@ public partial class User_AjaxControl_Exam : AjaxPage
             {
                 FullViewSideInfo1.LoginUserID = data.LoginUserID;
                 FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
+                ControlManager(data.LoginUserID);
             }
             
             if (data.ExamTime != null)

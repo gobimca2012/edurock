@@ -15,7 +15,14 @@ using DataEntity;
 
 public partial class User_AjaxControl_HomeWork : AjaxPage
 {
-
+    private void ControlManager(int LoginUserID)
+    {
+        if (new UserAuthontication().IsOwn(LoginUserID))
+        {
+            lnkEdit.Visible = true;
+            
+        }
+    }
     private void BindData()
     {
         var dataBunch = new HomeWorkController().GetbyHomeWorkID(ID);
@@ -30,6 +37,7 @@ public partial class User_AjaxControl_HomeWork : AjaxPage
             if (data.LoginUserID != null)
             {
                 //lblLoginUserID.InnerHtml = data.LoginUserID.ToString();
+                ControlManager(data.LoginUserID);
                 var dataUser = new UserController().GetbyLoginUserID(data.LoginUserID);
                 if (dataUser.Count > 0)
                 {

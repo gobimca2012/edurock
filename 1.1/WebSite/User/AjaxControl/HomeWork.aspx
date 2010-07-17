@@ -13,7 +13,7 @@
                 Home Work
             </div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox"><div class="btn">Edit</div> </aspajax:HyperLink>
+                <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn">Edit</div> </aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

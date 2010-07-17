@@ -14,10 +14,10 @@
             <div style="float: left">
                 Image</div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox"><div class="btn"> Edit</div> </aspajax:HyperLink>
+                <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn"> Edit</div> </aspajax:HyperLink>
             </div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkDelete" runat="server"><div class="btn">Delete</div> </aspajax:HyperLink>
+                <aspajax:HyperLink ID="lnkDelete" runat="server" Visible="false"><div class="btn">Delete</div> </aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

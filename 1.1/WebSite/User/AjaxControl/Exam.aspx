@@ -16,9 +16,9 @@
             </div>
             <div style="float: right">
                 <span style="float: left">
-                    <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox"><div class="btn"> Edit</div></aspajax:HyperLink></span>
+                    <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn"> Edit</div></aspajax:HyperLink></span>
                 <span style="float: left">
-                    <aspajax:HyperLink ID="lnkQuestion" runat="server" ContainnerID="#contentBox"><div class="btn"> Questions</div></aspajax:HyperLink></span></span>
+                    <aspajax:HyperLink ID="lnkQuestion" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn"> Questions</div></aspajax:HyperLink></span></span>
                 <div style="clear: both">
                 </div>
             </div>
