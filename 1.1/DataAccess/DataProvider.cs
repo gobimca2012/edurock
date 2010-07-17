@@ -945,6 +945,24 @@ namespace DataAccess
 
         #endregion
         #region CustomExam
+        public List<GetExamsResultByLoginUserIDResult> GetExamsResultByLoginUserID(int LoginUserID)
+        {
+
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetExamsResultByLoginUserID(LoginUserID).ToList();
+
+        }
+        public List<GetExamsResultByLoginUserIDResult> GetExamsResultByLoginUserID(int LoginUserID, int PageSize, int PageNumber)
+        {
+
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetExamsResultByLoginUserID(LoginUserID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         public List<Exam> RecentExamGet(int PageSize, int PageNumber,DateTime Date)
         {
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();

@@ -846,6 +846,30 @@ namespace BusinessLogic
 
 
         #region Exam
+        public List<GetExamsResultByLoginUserIDResult> GetExamsResultByLoginUserID(int LoginUserID)
+        {
+            try
+            {
+
+                return new DataProvider().GetExamsResultByLoginUserID(LoginUserID);
+            }
+            catch
+            {
+                return new List<GetExamsResultByLoginUserIDResult>();
+            }
+        }
+        public List<GetExamsResultByLoginUserIDResult> GetExamsResultByLoginUserID(int LoginUserID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetExamsResultByLoginUserID(LoginUserID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetExamsResultByLoginUserIDResult>();
+            }
+        }
         public Decimal GetExamTotalmark(int ExamID)
         {
             try

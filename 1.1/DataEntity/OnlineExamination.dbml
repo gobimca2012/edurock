@@ -86,6 +86,26 @@
       <Association Name="LoginUser_Exam" Member="LoginUser" ThisKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.GetExamTotalmark" Method="GetExamTotalmark" IsComposable="true">
+    <Parameter Name="ExamID" Parameter="examID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Decimal" />
+  </Function>
+  <Function Name="dbo.GetExamResultByLoginUserID" Method="GetExamResultByLoginUserID">
+    <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ExamID" Parameter="examID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetExamResultByLoginUserIDResult">
+      <Column Name="Marks" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExamName" Type="System.String" DbType="VarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="SubjectName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsFinish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RequirePecentage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExamTotalMarks" Type="System.Decimal" DbType="Decimal(0,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.ExamUserByExamID" Method="ExamUserByExamID">
     <Parameter Name="ExamID" Parameter="examID" Type="System.Int32" DbType="Int" />
     <ElementType Name="ExamUserByExamIDResult">
@@ -98,16 +118,14 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ExamTotalMarks" Type="System.Decimal" DbType="Decimal(0,0)" CanBeNull="true" />
+      <Column Name="RequirePecentage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsFinish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.GetExamTotalmark" Method="GetExamTotalmark" IsComposable="true">
-    <Parameter Name="ExamID" Parameter="examID" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Decimal" />
-  </Function>
-  <Function Name="dbo.GetExamResultByLoginUserID" Method="GetExamResultByLoginUserID">
+  <Function Name="dbo.GetExamsResultByLoginUserID" Method="GetExamsResultByLoginUserID">
     <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ExamID" Parameter="examID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="GetExamResultByLoginUserIDResult">
+    <ElementType Name="GetExamsResultByLoginUserIDResult">
       <Column Name="Marks" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ExamName" Type="System.String" DbType="VarChar(2000) NOT NULL" CanBeNull="false" />
       <Column Name="SubjectName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
