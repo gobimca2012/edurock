@@ -901,13 +901,31 @@ namespace BusinessLogic
                 return "";
             }
         }
-        public bool UpdateProfilePic(int LoginUserID, FileUpload File)
+        //public bool UpdateProfilePic(int LoginUserID, FileUpload File)
+        //{
+        //    try
+        //    {
+        //        string FilePath = Upload(File);
+        //        new DataProvider().UpdateProfilePic(LoginUserID, FilePath);
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (SettingProvider.IsLoggerEnable())
+        //        {
+        //            StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+        //            Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+        //        }
+        //        return false ;
+        //    }
+        //}
+        public string UpdateProfilePic(int LoginUserID, FileUpload File)
         {
             try
             {
                 string FilePath = Upload(File);
                 new DataProvider().UpdateProfilePic(LoginUserID, FilePath);
-                return true;
+                return FilePath;
             }
             catch (Exception ex)
             {
@@ -916,7 +934,7 @@ namespace BusinessLogic
                     StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
                     Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
                 }
-                return false ;
+                return "";
             }
         }
         public int Add(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite)

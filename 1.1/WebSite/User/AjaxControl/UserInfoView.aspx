@@ -12,7 +12,7 @@
             Users
         </div>
         <div id="User" class="whitecont">
-            <div>
+            <div id="popupresponce">
                 <asp:Image ID="imgProfilepic" runat="server" Width="100" />
             </div>
             <div>

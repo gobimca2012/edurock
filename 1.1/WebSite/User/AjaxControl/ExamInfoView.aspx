@@ -67,6 +67,12 @@
                         </div>
                         <div style="clear: both">
                         </div>
+                        <div>
+                            <aspajax:HyperLink ID="lnkExmStart" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + Eval("ID").ToString()%>'>Start Exam</aspajax:HyperLink>
+                        </div>
+                        <div>
+                            <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
+                        </div>
                     </div>
                 </ItemTemplate>
             </asp:ListView>

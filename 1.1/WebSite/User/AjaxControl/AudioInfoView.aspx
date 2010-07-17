@@ -94,6 +94,9 @@
                     </div>
                     <div style="clear: both">
                     </div>
+                    <div>
+                        <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
+                    </div>
                 </div>
             </ItemTemplate>
         </asp:ListView>

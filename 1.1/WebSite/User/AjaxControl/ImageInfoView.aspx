@@ -57,6 +57,9 @@
                         <%#Eval("Title") %>
                     </div>
                     </aspajax:HyperLink>
+                    <div>
+                        <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
+                    </div>
                 </div>
                 <%--  <tr>
                     <td>

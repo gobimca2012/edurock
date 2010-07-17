@@ -18,7 +18,8 @@ public partial class User_AjaxControl_UserInfoView : AjaxPage
     protected void Page_Load(object sender, EventArgs e)
     {
         JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, false);
-        objPopup.IframePopUp(lnkChangeImage, ResolveUrl("~/User/UploadPhoto.aspx"), "propop", "500", "500", ResolveUrl("~/User/AjaxControl/UserInfoView.aspx"), "#accountsetting");
+        //objPopup.IframePopUp(lnkChangeImage, ResolveUrl("~/User/UploadPhoto.aspx")+"?uptype=0", "propop", "500", "500", ResolveUrl("~/User/AjaxControl/UserInfoView.aspx"), "#accountsetting");
+        objPopup.IframePopUp(lnkChangeImage, ResolveUrl("~/User/UploadPhoto.aspx") + "?uptype=0", "ipop", "500", "500", ResolveUrl("~/User/AjaxControl/UploadResponse.aspx"), "#popupresponce");
             
        // if (!this.IsAjaxPostBack)
         {

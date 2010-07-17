@@ -30,7 +30,12 @@ public partial class User_UploadPhoto : BasePage
     {
         if (UploadType == 0)
         {
-            new UserController().UpdateProfilePic(new UserAuthontication().LoggedInUserID, fileUploader);
+            string Path=new UserController().UpdateProfilePic(new UserAuthontication().LoggedInUserID, fileUploader);
+            Session[SessionName.FileUploader.ToString()] = Path;
+            Session[SessionName.FileUploaderDefaultImage.ToString()] = Path;
+            Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
+            Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;
+            injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
         }
         else if (UploadType == (int)DocumentTypeEnum.Image)
         {

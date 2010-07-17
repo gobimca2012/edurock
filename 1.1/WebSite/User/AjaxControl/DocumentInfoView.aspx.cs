@@ -166,9 +166,9 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
     protected void ListDocumentOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         //ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        //string CourceCatagoryID = ListDocument.DataKeys[currentItem.DataItemIndex]["DocumentID"].ToString();
+        //string CourceCatagoryID = ListDocument.DataKeys[currentItem.DataItemIndex]["ID"].ToString();
         //new DocumentController().DeletebyDocumentID(new Guid(CourceCatagoryID));
-
+        //BindList();
 
 
     }

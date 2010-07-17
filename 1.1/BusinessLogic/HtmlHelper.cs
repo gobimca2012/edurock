@@ -87,6 +87,30 @@ namespace BusinessLogic
             new JScripter.Loader((System.Web.UI.Page)HttpContext.Current.Handler, false).PostData(RequestContainner, ResponseContainner, Url, CID);
             return string.Format("<a href='javascript:void(0);' id='{0}'>Delete</a>",CID);
         }
+        public string ListViewLinkButtonDelete(string ControlID, string Command, string ParameterID,string LoginUserID, string RequestContainner, string ResponseContainner)
+        {
+            if (new UserAuthontication().IsOwn(Convert.ToInt32(LoginUserID)))
+            {
+                ListViewID++;
+                string CID = ControlID + "_" + ListViewID.ToString();
+                string Url = HttpContext.Current.Request.Url.AbsoluteUri;
+                if (!Url.Contains("?"))
+                {
+                    Url += "?lcmd=" + Command;
+                }
+                else
+                {
+                    Url += "&lcmd=" + Command;
+                }
+                Url += "&lid=" + ParameterID;
+                new JScripter.Loader((System.Web.UI.Page)HttpContext.Current.Handler, false).PostData(RequestContainner, ResponseContainner, Url, CID);
+                return string.Format("<a href='javascript:void(0);' id='{0}'>Delete</a>", CID);
+            }
+            else
+            {
+                return "";
+            }
+        }
         public string ListViewLinkButton(string ControlID,string ControlLabel, string Command, string ParameterID, string RequestContainner, string ResponseContainner)
         {
             ListViewID++;
