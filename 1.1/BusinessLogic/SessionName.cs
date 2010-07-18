@@ -17,7 +17,8 @@ namespace BusinessLogic
         FileUploaderType,
         FileUploaderDefaultImage,
         SucessMessage,
-        ErrorMessage
+        ErrorMessage,
+        InstituteAccess
 
     }
 }

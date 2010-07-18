@@ -253,6 +253,13 @@ namespace DataEntity
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID);
 			return ((ISingleResult<GetInstituteByLoginUserIDResult>)(result.ReturnValue));
 		}
+		
+		[Function(Name="dbo.GetInstituteUserFeatureAccess")]
+		public ISingleResult<GetInstituteUserFeatureAccessResult> GetInstituteUserFeatureAccess([Parameter(Name="LoginUserID", DbType="Int")] System.Nullable<int> loginUserID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID);
+			return ((ISingleResult<GetInstituteUserFeatureAccessResult>)(result.ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.Institute")]
@@ -5191,6 +5198,302 @@ namespace DataEntity
 				if ((this._InstituteID != value))
 				{
 					this._InstituteID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetInstituteUserFeatureAccessResult
+	{
+		
+		private int _InstituteUserTypeAccessID;
+		
+		private int _InstituteUserTypeID;
+		
+		private bool _CanAddExam;
+		
+		private bool _CanAddQuestion;
+		
+		private bool _CanAddUser;
+		
+		private bool _CanAddCource;
+		
+		private bool _CanAddSubject;
+		
+		private System.Nullable<bool> _CanAddAudio;
+		
+		private System.Nullable<bool> _CanAddImage;
+		
+		private System.Nullable<bool> _CanAddDocument;
+		
+		private System.Nullable<bool> _CanAddVideo;
+		
+		private System.Nullable<bool> _CanAddHomeWork;
+		
+		private System.Nullable<bool> _CanAddEvent;
+		
+		private System.Nullable<bool> _CanAddArticle;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private int _LoginUserID;
+		
+		public GetInstituteUserFeatureAccessResult()
+		{
+		}
+		
+		[Column(Storage="_InstituteUserTypeAccessID", DbType="Int NOT NULL")]
+		public int InstituteUserTypeAccessID
+		{
+			get
+			{
+				return this._InstituteUserTypeAccessID;
+			}
+			set
+			{
+				if ((this._InstituteUserTypeAccessID != value))
+				{
+					this._InstituteUserTypeAccessID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteUserTypeID", DbType="Int NOT NULL")]
+		public int InstituteUserTypeID
+		{
+			get
+			{
+				return this._InstituteUserTypeID;
+			}
+			set
+			{
+				if ((this._InstituteUserTypeID != value))
+				{
+					this._InstituteUserTypeID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddExam", DbType="Bit NOT NULL")]
+		public bool CanAddExam
+		{
+			get
+			{
+				return this._CanAddExam;
+			}
+			set
+			{
+				if ((this._CanAddExam != value))
+				{
+					this._CanAddExam = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddQuestion", DbType="Bit NOT NULL")]
+		public bool CanAddQuestion
+		{
+			get
+			{
+				return this._CanAddQuestion;
+			}
+			set
+			{
+				if ((this._CanAddQuestion != value))
+				{
+					this._CanAddQuestion = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddUser", DbType="Bit NOT NULL")]
+		public bool CanAddUser
+		{
+			get
+			{
+				return this._CanAddUser;
+			}
+			set
+			{
+				if ((this._CanAddUser != value))
+				{
+					this._CanAddUser = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddCource", DbType="Bit NOT NULL")]
+		public bool CanAddCource
+		{
+			get
+			{
+				return this._CanAddCource;
+			}
+			set
+			{
+				if ((this._CanAddCource != value))
+				{
+					this._CanAddCource = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddSubject", DbType="Bit NOT NULL")]
+		public bool CanAddSubject
+		{
+			get
+			{
+				return this._CanAddSubject;
+			}
+			set
+			{
+				if ((this._CanAddSubject != value))
+				{
+					this._CanAddSubject = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddAudio", DbType="Bit")]
+		public System.Nullable<bool> CanAddAudio
+		{
+			get
+			{
+				return this._CanAddAudio;
+			}
+			set
+			{
+				if ((this._CanAddAudio != value))
+				{
+					this._CanAddAudio = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddImage", DbType="Bit")]
+		public System.Nullable<bool> CanAddImage
+		{
+			get
+			{
+				return this._CanAddImage;
+			}
+			set
+			{
+				if ((this._CanAddImage != value))
+				{
+					this._CanAddImage = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddDocument", DbType="Bit")]
+		public System.Nullable<bool> CanAddDocument
+		{
+			get
+			{
+				return this._CanAddDocument;
+			}
+			set
+			{
+				if ((this._CanAddDocument != value))
+				{
+					this._CanAddDocument = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddVideo", DbType="Bit")]
+		public System.Nullable<bool> CanAddVideo
+		{
+			get
+			{
+				return this._CanAddVideo;
+			}
+			set
+			{
+				if ((this._CanAddVideo != value))
+				{
+					this._CanAddVideo = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddHomeWork", DbType="Bit")]
+		public System.Nullable<bool> CanAddHomeWork
+		{
+			get
+			{
+				return this._CanAddHomeWork;
+			}
+			set
+			{
+				if ((this._CanAddHomeWork != value))
+				{
+					this._CanAddHomeWork = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddEvent", DbType="Bit")]
+		public System.Nullable<bool> CanAddEvent
+		{
+			get
+			{
+				return this._CanAddEvent;
+			}
+			set
+			{
+				if ((this._CanAddEvent != value))
+				{
+					this._CanAddEvent = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CanAddArticle", DbType="Bit")]
+		public System.Nullable<bool> CanAddArticle
+		{
+			get
+			{
+				return this._CanAddArticle;
+			}
+			set
+			{
+				if ((this._CanAddArticle != value))
+				{
+					this._CanAddArticle = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this._LoginUserID = value;
 				}
 			}
 		}

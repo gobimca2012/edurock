@@ -60,6 +60,9 @@ namespace DataEntity
     partial void InsertEvent(Event instance);
     partial void UpdateEvent(Event instance);
     partial void DeleteEvent(Event instance);
+    partial void InsertComment(Comment instance);
+    partial void UpdateComment(Comment instance);
+    partial void DeleteComment(Comment instance);
     #endregion
 		
 		public UserDataContext(string connection) : 
@@ -166,6 +169,14 @@ namespace DataEntity
 			}
 		}
 		
+		public System.Data.Linq.Table<Comment> Comments
+		{
+			get
+			{
+				return this.GetTable<Comment>();
+			}
+		}
+		
 		[Function(Name="dbo.GetShareUser")]
 		public ISingleResult<GetShareUserResult> GetShareUser([Parameter(Name="ObjectType", DbType="Int")] System.Nullable<int> objectType, [Parameter(Name="ObjectID", DbType="VarChar(100)")] string objectID)
 		{
@@ -220,6 +231,8 @@ namespace DataEntity
 		
 		private EntitySet<Event> _Events;
 		
+		private EntitySet<Comment> _Comments;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -248,6 +261,7 @@ namespace DataEntity
 			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			this._Articles = new EntitySet<Article>(new Action<Article>(this.attach_Articles), new Action<Article>(this.detach_Articles));
 			this._Events = new EntitySet<Event>(new Action<Event>(this.attach_Events), new Action<Event>(this.detach_Events));
+			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
 			OnCreated();
 		}
 		
@@ -469,6 +483,19 @@ namespace DataEntity
 			}
 		}
 		
+		[Association(Name="StudentLogin_Comment", Storage="_Comments", OtherKey="LoginUserID")]
+		public EntitySet<Comment> Comments
+		{
+			get
+			{
+				return this._Comments;
+			}
+			set
+			{
+				this._Comments.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -556,6 +583,18 @@ namespace DataEntity
 		}
 		
 		private void detach_Events(Event entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentLogin = null;
+		}
+		
+		private void attach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentLogin = this;
+		}
+		
+		private void detach_Comments(Comment entity)
 		{
 			this.SendPropertyChanging();
 			entity.StudentLogin = null;
@@ -3317,6 +3356,229 @@ namespace DataEntity
 					if ((value != null))
 					{
 						value.Events.Add(this);
+						this._LoginUserID = value.LoginUserID;
+					}
+					else
+					{
+						this._LoginUserID = default(int);
+					}
+					this.SendPropertyChanged("StudentLogin");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Comment")]
+	public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _CommentID;
+		
+		private string _ContentID;
+		
+		private int _ContentType;
+		
+		private int _LoginUserID;
+		
+		private string _CommentText;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntityRef<StudentLogin> _StudentLogin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCommentIDChanging(System.Guid value);
+    partial void OnCommentIDChanged();
+    partial void OnContentIDChanging(string value);
+    partial void OnContentIDChanged();
+    partial void OnContentTypeChanging(int value);
+    partial void OnContentTypeChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnCommentTextChanging(string value);
+    partial void OnCommentTextChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public Comment()
+		{
+			this._StudentLogin = default(EntityRef<StudentLogin>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_CommentID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid CommentID
+		{
+			get
+			{
+				return this._CommentID;
+			}
+			set
+			{
+				if ((this._CommentID != value))
+				{
+					this.OnCommentIDChanging(value);
+					this.SendPropertyChanging();
+					this._CommentID = value;
+					this.SendPropertyChanged("CommentID");
+					this.OnCommentIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ContentID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ContentID
+		{
+			get
+			{
+				return this._ContentID;
+			}
+			set
+			{
+				if ((this._ContentID != value))
+				{
+					this.OnContentIDChanging(value);
+					this.SendPropertyChanging();
+					this._ContentID = value;
+					this.SendPropertyChanged("ContentID");
+					this.OnContentIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ContentType", DbType="Int NOT NULL")]
+		public int ContentType
+		{
+			get
+			{
+				return this._ContentType;
+			}
+			set
+			{
+				if ((this._ContentType != value))
+				{
+					this.OnContentTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ContentType = value;
+					this.SendPropertyChanged("ContentType");
+					this.OnContentTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					if (this._StudentLogin.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CommentText", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string CommentText
+		{
+			get
+			{
+				return this._CommentText;
+			}
+			set
+			{
+				if ((this._CommentText != value))
+				{
+					this.OnCommentTextChanging(value);
+					this.SendPropertyChanging();
+					this._CommentText = value;
+					this.SendPropertyChanged("CommentText");
+					this.OnCommentTextChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="StudentLogin_Comment", Storage="_StudentLogin", ThisKey="LoginUserID", IsForeignKey=true)]
+		public StudentLogin StudentLogin
+		{
+			get
+			{
+				return this._StudentLogin.Entity;
+			}
+			set
+			{
+				StudentLogin previousValue = this._StudentLogin.Entity;
+				if (((previousValue != value) 
+							|| (this._StudentLogin.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StudentLogin.Entity = null;
+						previousValue.Comments.Remove(this);
+					}
+					this._StudentLogin.Entity = value;
+					if ((value != null))
+					{
+						value.Comments.Add(this);
 						this._LoginUserID = value.LoginUserID;
 					}
 					else

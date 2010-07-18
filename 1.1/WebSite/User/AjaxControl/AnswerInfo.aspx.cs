@@ -37,7 +37,7 @@ public partial class User_AjaxControl_AnswerInfo : AjaxPage
 
             Guid AnswerID = Guid.NewGuid();
 
-            string AnswerText; if (false) { throw new Exception(""); } AnswerText = HtmlHelper.ControlValue(txtAnswerText.ClientID);
+            string AnswerText; if (HtmlHelper.ControlValue(txtAnswerText.ClientID) == "") { throw new Exception("Please enter Answer"); } AnswerText = HtmlHelper.ControlValue(txtAnswerText.ClientID);
 
             string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
@@ -56,8 +56,16 @@ public partial class User_AjaxControl_AnswerInfo : AjaxPage
         }
         catch (Exception ex)
         {
+            PreventData();
             divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
         }
+    }
+    private void PreventData()
+    {
+
+        txtAnswerText.Text = HtmlHelper.ControlValue(txtAnswerText.ClientID);
+        txtDescription.Text = HtmlHelper.ControlValue(txtDescription.ClientID);
+
     }
 
     private void EditData()
@@ -71,7 +79,7 @@ public partial class User_AjaxControl_AnswerInfo : AjaxPage
 
             string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
-            
+
             int AnswerStateID = 0;
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
@@ -82,7 +90,7 @@ public partial class User_AjaxControl_AnswerInfo : AjaxPage
 
             new AnswerController().UpdateByAnswerID(AnswerID, AnswerText, Description, _QuestionID, AnswerStateID, LoginUserID, AnswerRate, ModifiedDate);
 
-            Response.Redirect("~/User/AjaxControl/AnswerInfoView.aspx?qid="+_QuestionID);
+            Response.Redirect("~/User/AjaxControl/AnswerInfoView.aspx?qid=" + _QuestionID);
         }
         catch (Exception ex)
         {
@@ -129,7 +137,7 @@ public partial class User_AjaxControl_AnswerInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Params["qid"]!=null)
+        if (Request.Params["qid"] != null)
         {
             AjaxState["qid"] = Request.Params["qid"];
         }

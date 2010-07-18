@@ -25,19 +25,19 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
-            string Title; if (false) { throw new Exception(""); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
+            string Title; if (HtmlHelper.ControlValue(txtTitle.ClientID)=="") { throw new Exception("Please enter title"); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
 
-            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID)=="") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
             string MetaDescription; if (false) { throw new Exception(""); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
 
-            DateTime StartDate; if (false) { throw new Exception(""); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
+            DateTime StartDate; if (HtmlHelper.ControlValue(txtStartDate.ClientID)=="") { throw new Exception("Please enter start date"); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
 
-            DateTime EndDate; if (false) { throw new Exception(""); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
+            DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID)=="") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
-            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "" || HtmlHelper.ControlValue(ddCource.ClientID)=="0") { throw new Exception("Please enter cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
-            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
+            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddSubject.ClientID) == "" || HtmlHelper.ControlValue(ddSubject.ClientID)=="0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
             string Tag; if (false) { throw new Exception(""); } Tag = HtmlHelper.ControlValue(txtTag.ClientID);
 
@@ -54,10 +54,37 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
         }
         catch (Exception ex)
         {
+            PreventData();
             divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
         }
     }
+    public void PreventData()
+    {
 
+        txtTitle.Text = HtmlHelper.ControlValue(txtTitle.ClientID);
+
+        txtDescription.Text = HtmlHelper.ControlValue(txtDescription.ClientID);
+
+        txtMetaDescription.Text = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
+
+        txtStartDate.Text = HtmlHelper.ControlValue(txtStartDate.ClientID);
+
+        txtEndDate.Text = HtmlHelper.ControlValue(txtEndDate.ClientID);
+
+        new InstituteSubjectController().BindInstituteSubject(ddSubject, Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID)), HtmlHelper.ControlValue(ddSubject.ClientID));
+        new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID, HtmlHelper.ControlValue(ddCource.ClientID));
+
+        txtTag.Text = HtmlHelper.ControlValue(txtTag.ClientID);
+
+        txtContactPerson.Text = HtmlHelper.ControlValue(txtContactPerson.ClientID);
+
+        txtContactEmail.Text = HtmlHelper.ControlValue(txtContactEmail.ClientID);
+
+        txtContactPhone.Text = HtmlHelper.ControlValue(txtContactPhone.ClientID);
+
+
+    }
+		
     private void EditData()
     {
         try
@@ -67,19 +94,19 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
-            string Title; if (false) { throw new Exception(""); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
+            string Title; if (HtmlHelper.ControlValue(txtTitle.ClientID) == "") { throw new Exception("Please enter title"); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
 
-            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID) == "") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
             string MetaDescription; if (false) { throw new Exception(""); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
 
-            DateTime StartDate; if (false) { throw new Exception(""); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
+            DateTime StartDate; if (HtmlHelper.ControlValue(txtStartDate.ClientID) == "") { throw new Exception("Please enter start date"); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
 
-            DateTime EndDate; if (false) { throw new Exception(""); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
+            DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID) == "") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
-            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "" || HtmlHelper.ControlValue(ddCource.ClientID) == "0") { throw new Exception("Please enter cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
-            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
+            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddSubject.ClientID) == "" || HtmlHelper.ControlValue(ddSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
             string Tag; if (false) { throw new Exception(""); } Tag = HtmlHelper.ControlValue(txtTag.ClientID);
 
@@ -97,6 +124,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
         }
         catch (Exception ex)
         {
+            PreventData();
             divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
         }
     }

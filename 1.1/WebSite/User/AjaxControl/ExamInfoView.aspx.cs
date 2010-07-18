@@ -79,6 +79,7 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        hpAddExam.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddExam;
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];

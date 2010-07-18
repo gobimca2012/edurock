@@ -61,6 +61,10 @@
             </div>
             <div style="clear: both">
             </div>
+            <div id="comment">
+            </div>
+            <div id="newcommentbox">
+            </div>
         </div>
         <div class="gray">
         </div>

@@ -37,8 +37,7 @@
             </div>
         </div>
         <div class="whitecont">
-            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="LoginUserID,ID"
-                OnItemDataBound="ListQuestionOnItemDataBound">
+            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="LoginUserID,ID" OnItemDataBound="ListQuestionOnItemDataBound">
                 <LayoutTemplate>
                     <%-- <table>
                         <thead>
@@ -118,8 +117,8 @@
                 <div style="clear: both">
                 </div>
             </div>
-            <div class="btn roundedall">
-                <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+            <div>
+                <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox"><div class="btn">Add New Question</div></aspajax:HyperLink>
             </div>
         </div>
     </div>

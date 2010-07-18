@@ -110,6 +110,7 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        hpAddQuestion.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddQuestion;
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];

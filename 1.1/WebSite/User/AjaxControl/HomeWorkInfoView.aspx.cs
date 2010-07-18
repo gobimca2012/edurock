@@ -79,6 +79,7 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        hpAddHomeWork.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddHomeWork;
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];

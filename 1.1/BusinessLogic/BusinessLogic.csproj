@@ -65,9 +65,11 @@
     <Compile Include="BaseUserControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="ButtonVisibilityHelper.cs" />
     <Compile Include="CollegeBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="CommentController.cs" />
     <Compile Include="CommonController.cs" />
     <Compile Include="CourceCatagoryController.cs" />
     <Compile Include="CourceController.cs" />

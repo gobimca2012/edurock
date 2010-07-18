@@ -23,6 +23,11 @@ public partial class User_AjaxControl_Document : AjaxPage
             lnkEdit.Visible = true;
         }
     }
+    private int _ContentType
+    {
+        get;
+        set;
+    }
     private void BindData()
     {
         var dataBunch = new DocumentController().GetbyDocumentID(ID);
@@ -62,6 +67,7 @@ public partial class User_AjaxControl_Document : AjaxPage
 
             if (data.FilePath != null)
             {
+                _ContentType = data.DocumentType;
                 if (data.DocumentType == (int)DocumentTypeEnum.Image)
                 {
                     img.Visible = true;
@@ -108,6 +114,7 @@ public partial class User_AjaxControl_Document : AjaxPage
     {
         
         BindData();
+        objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + (_ContentType).ToString());
     }
 
 }

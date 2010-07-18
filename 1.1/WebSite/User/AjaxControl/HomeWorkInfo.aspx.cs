@@ -25,27 +25,42 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
-            string Title; if (false) { throw new Exception(""); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
+            string Title; if (HtmlHelper.ControlValue(txtTitle.ClientID)=="") { throw new Exception("Please enter title"); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
 
-            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID)=="") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
-            string ShortDescription; if (false) { throw new Exception(""); } ShortDescription = HtmlHelper.ControlValue(txtShortDescription.ClientID);
+            string ShortDescription; if (HtmlHelper.ControlValue(txtShortDescription.ClientID)=="") { throw new Exception("Please enter Short description"); } ShortDescription = HtmlHelper.ControlValue(txtShortDescription.ClientID);
 
-            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteCource.ClientID)=="0") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
 
-            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID)=="0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
 
             DateTime ModifiedDate = DateTime.Now;
 
-            int HomeworkID=new HomeWorkController().Add(LoginUserID, Title, Description, ShortDescription, InstituteCourceID, InstituteSubjectID, ModifiedDate);
+            int HomeworkID = new HomeWorkController().Add(LoginUserID, Title, Description, ShortDescription, InstituteCourceID, InstituteSubjectID, ModifiedDate);
             Response.Redirect("~/User/AjaxControl/HomeWork.aspx?hwid=" + HomeworkID.ToString());
         }
         catch (Exception ex)
         {
+            PreventData();
             divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
         }
     }
+    public void PreventData()
+    {
 
+
+        txtTitle.Text = HtmlHelper.ControlValue(txtTitle.ClientID);
+
+        txtDescription.Text = HtmlHelper.ControlValue(txtDescription.ClientID);
+
+        txtShortDescription.Text = HtmlHelper.ControlValue(txtShortDescription.ClientID);
+
+        new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID)), HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+        new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, HtmlHelper.ControlValue(ddInstituteCource.ClientID));
+
+
+    }
     private void EditData()
     {
         try
@@ -55,24 +70,25 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
-            string Title; if (false) { throw new Exception(""); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
+            string Title; if (HtmlHelper.ControlValue(txtTitle.ClientID) == "") { throw new Exception("Please enter title"); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
 
-            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID) == "") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
-            string ShortDescription; if (false) { throw new Exception(""); } ShortDescription = HtmlHelper.ControlValue(txtShortDescription.ClientID);
+            string ShortDescription; if (HtmlHelper.ControlValue(txtShortDescription.ClientID) == "") { throw new Exception("Please enter Short description"); } ShortDescription = HtmlHelper.ControlValue(txtShortDescription.ClientID);
 
-            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "0") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
 
-            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
 
             DateTime ModifiedDate = DateTime.Now;
 
             new HomeWorkController().UpdateByHomeWorkID(ID, LoginUserID, Title, Description, ShortDescription, InstituteCourceID, InstituteSubjectID, ModifiedDate);
 
-            Response.Redirect("~/User/AjaxControl/HomeWork.aspx?hwid="+ID.ToString() );
+            Response.Redirect("~/User/AjaxControl/HomeWork.aspx?hwid=" + ID.ToString());
         }
         catch (Exception ex)
         {
+            PreventData();
             divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
         }
     }
@@ -84,18 +100,18 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
         {
             var data = dataBunch[0];
 
-           
-           
+
+
             txtTitle.Text = data.Title;
 
             txtDescription.Text = data.Description;
 
             txtShortDescription.Text = data.ShortDescription;
 
-            new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject,Convert.ToInt32( data.InstituteCourceID.ToString()),data.InstituteSubjectID.ToString());
+            new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(data.InstituteCourceID.ToString()), data.InstituteSubjectID.ToString());
             new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, data.InstituteCourceID.ToString());
-            
-            
+
+
         }
     }
 
@@ -146,7 +162,7 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 
             this.DropDownPostBack(ddInstituteCource, "#ddInsti", "#ddSub");
         }
-        
+
     }
     protected override void OnAjaxDropDownChange(string e)
     {

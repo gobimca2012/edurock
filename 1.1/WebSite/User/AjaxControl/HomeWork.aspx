@@ -75,6 +75,10 @@
                     &nbsp;<span id="lblModifiedDate" runat="server"></span>
                 </div>
             </div>
+             <div id="comment">
+            </div>
+            <div id="newcommentbox">
+            </div>
         </div>
         <div class="gray">
             Home Work</div>

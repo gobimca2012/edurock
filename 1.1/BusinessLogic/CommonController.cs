@@ -52,7 +52,7 @@ namespace BusinessLogic
         }
         public static string GetDate(DateTime Date)
         {
-            return Date.ToString("MM.dd.yyyy");
+            return Date.ToString(" dddd, dd MMMM yyyy");
         }
         public static string GetQuestionType(int QuestionType)
         {

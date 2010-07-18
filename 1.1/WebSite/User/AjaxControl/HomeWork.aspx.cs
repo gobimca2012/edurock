@@ -12,6 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 using DataEntity;
+using Common;
 
 public partial class User_AjaxControl_HomeWork : AjaxPage
 {
@@ -88,6 +89,7 @@ public partial class User_AjaxControl_HomeWork : AjaxPage
         }
         BindData();
         MakeLinks();
+        objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + ((int)ContentTypeEnum.HomeWork).ToString());
     }
     private void MakeLinks()
     {

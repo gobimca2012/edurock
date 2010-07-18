@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using Common;
 
 public partial class User_AjaxControl_Event : AjaxPage
 {
@@ -103,7 +104,7 @@ public partial class User_AjaxControl_Event : AjaxPage
     protected void Page_Load(object sender, EventArgs e)
     {
         BindData();
-        
+        objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + ((int)ContentTypeEnum.Event).ToString());
     }
 
 }

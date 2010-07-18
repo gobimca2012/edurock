@@ -80,6 +80,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		BindFunction(table);
 		GenerateProperty();
 		pageLoadFunction(table);
+		GeneratePreventDataFunction(table);
 	}
 	//Start function
 	public string GetFunctionAssignment(IColumn column)
@@ -188,6 +189,60 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		script+=");";
 		
 		return script;
+	}
+	
+	//End Function
+	
+	//Start function
+	public string GetPreventDataControlAssignment(IColumn column)
+	{
+		string script="";
+		if(column.LanguageType.ToLower()=="string" || column.LanguageType.ToLower()=="datetime")
+		{		   
+		    script+=string.Format("txt{0}.Text = HtmlHelper.ControlValue(txt{0}.ClientID);",column.Alias);
+			
+		}
+		else if(column.LanguageType.ToLower()=="guid")
+		{
+			script+=string.Format("dd{0}.SelectedValue = HtmlHelper.ControlValue(dd{0}.ClientID);",column.Alias);
+			
+		}
+		else if(column.LanguageType.ToLower()=="boolean" || column.LanguageType.ToLower()=="bool")
+		{
+		script+=string.Format("chk{0}.Checked =(bool) HtmlHelper.ControlValue(chk{0}.ClientID);",column.Alias);
+					
+		}
+		else if(column.LanguageType.ToLower()=="int" )
+		{
+			script+=string.Format("dd{0}.SelectedValue = HtmlHelper.ControlValue(dd{0}.ClientID);",column.Alias);
+			
+		}
+		
+		return script;			
+			
+	}
+	//End Function
+	
+	
+	//Start function
+	public void GeneratePreventDataFunction(ITable table)
+	{
+		
+		%>
+		public void PreventData()
+		{
+		<%
+		foreach(IColumn column in table.Columns)
+		{
+			%>
+			<%=GetPreventDataControlAssignment(column)%>
+		<%	
+		}
+		%>
+		}
+		<%
+		
+		
 	}
 	
 	//End Function

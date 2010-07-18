@@ -25,15 +25,15 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
-            string Title; if (false) { throw new Exception(""); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
+            string Title; if (HtmlHelper.ControlValue(txtTitle.ClientID) == "") { throw new Exception("Please Enter Title"); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
 
-            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID) == "") { throw new Exception("Please enter Description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
-            string MetaDescription; if (false) { throw new Exception(""); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
+            string MetaDescription; if (HtmlHelper.ControlValue(txtMetaDescription.ClientID) == "") { throw new Exception("Please Enter Meta Description"); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
 
-            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select Cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
-            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
+            int InstituteSubjectID; if ((HtmlHelper.ControlValue(ddSubject.ClientID)) == "" || (HtmlHelper.ControlValue(ddSubject.ClientID)) == "0") { throw new Exception("Please Select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
             string Tag; if (false) { throw new Exception(""); } Tag = HtmlHelper.ControlValue(txtTag.ClientID);
 
@@ -42,14 +42,31 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new ArticleController().Add(ArticleID, LoginUserID, Title, Description, MetaDescription, InstituteCourceID, InstituteSubjectID, Tag, Rating, ModifiedDate);
-            Response.Redirect("~/User/AjaxControl/Article.aspx?arid="+ArticleID.ToString());
+            Response.Redirect("~/User/AjaxControl/Article.aspx?arid=" + ArticleID.ToString());
         }
         catch (Exception ex)
         {
+            PreventData();
             divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
         }
     }
+    public void PreventData()
+    {
 
+
+        txtTitle.Text = HtmlHelper.ControlValue(txtTitle.ClientID);
+
+        txtDescription.Text = HtmlHelper.ControlValue(txtDescription.ClientID);
+
+        txtMetaDescription.Text = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
+
+        new InstituteSubjectController().BindInstituteSubject(ddSubject, Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID)), HtmlHelper.ControlValue(ddSubject.ClientID));
+        new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID, HtmlHelper.ControlValue(ddCource.ClientID));
+
+        txtTag.Text = HtmlHelper.ControlValue(txtTag.ClientID);
+
+
+    }
     private void EditData()
     {
         try
@@ -59,15 +76,16 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
-            string Title; if (false) { throw new Exception(""); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
 
-            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string Title; if (HtmlHelper.ControlValue(txtTitle.ClientID) == "") { throw new Exception("Please Enter Title"); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
 
-            string MetaDescription; if (false) { throw new Exception(""); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
+            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID) == "") { throw new Exception("Please enter Description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
-            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            string MetaDescription; if (HtmlHelper.ControlValue(txtMetaDescription.ClientID) == "") { throw new Exception("Please Enter Meta Description"); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
 
-            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select Cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+
+            int InstituteSubjectID; if ((HtmlHelper.ControlValue(ddSubject.ClientID)) == "" || (HtmlHelper.ControlValue(ddSubject.ClientID)) == "0") { throw new Exception("Please Select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
             string Tag; if (false) { throw new Exception(""); } Tag = HtmlHelper.ControlValue(txtTag.ClientID);
 
@@ -75,12 +93,13 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
 
             DateTime ModifiedDate = DateTime.Now;
 
-            new ArticleController().UpdateByArticleID(ArticleID, LoginUserID, Title, Description, MetaDescription, InstituteCourceID, InstituteSubjectID, Tag,  ModifiedDate);
+            new ArticleController().UpdateByArticleID(ArticleID, LoginUserID, Title, Description, MetaDescription, InstituteCourceID, InstituteSubjectID, Tag, ModifiedDate);
 
             Response.Redirect("~/User/AjaxControl/Article.aspx?arid=" + ArticleID.ToString());
         }
         catch (Exception ex)
         {
+            PreventData();
             divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
         }
     }
@@ -92,7 +111,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
         {
             var data = dataBunch[0];
 
-          
+
 
             txtTitle.Text = data.Title;
 
@@ -137,7 +156,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
         }
         else
         {
-            
+
             lnkUpdateArticle.Visible = false;
             new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
         }

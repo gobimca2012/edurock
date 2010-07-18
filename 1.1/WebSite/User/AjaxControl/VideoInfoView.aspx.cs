@@ -86,6 +86,7 @@ public partial class User_AjaxControl_VideoInfoView : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        hpAddDocument.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddVideo;
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];

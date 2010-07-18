@@ -9,13 +9,22 @@ body
     text-align: center;
     margin: 0px;
     padding: 0px;
-    background: url( "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;
+    background: url(  "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;
     text-align: left;
 }
-.page
+.page, #msgstate div
 {
     width: 1000px;
     margin: 0 auto; /*border: solid 1px #848689;*/
+    background:#008000;
+}
+#msgstate div,.success
+{
+    padding:5px;
+    color:#fff;
+}
+.page
+{
     min-height: 700px;
     padding: 0px;
     background: transparent;
@@ -62,7 +71,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(                       'images/headerbt.jpg' ) repeat-x;
+    background: url(                        'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -119,10 +128,8 @@ tr:hover
     background: #FEFDE9;
 }
 
-.label
-{
-    font-weight: bold;
-}
+
+
 .tab
 {
     background: #497BAC;
@@ -296,7 +303,7 @@ input, textarea
     text-align: left;
     display: none;
 }
-.roundedall, .btn, .cin:hover, .contentbox, .trans
+.roundedall, .btn, .cin:hover, .contentbox, .trans,#msgstate div,.success
 {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -359,14 +366,14 @@ input, textarea
     max-width: 200px;
     text-align: center;
     line-height: 12px;
-    margin:2px;
+    margin: 2px;
 }
 .btn:hover, .cin:hover
 {
     background: url(images/bluebtn.gif);
     border: solid 1px #267bc4;
 }
-.btn:hover,.cin:hover
+.btn:hover, .cin:hover
 {
     color: #fff;
 }
@@ -374,7 +381,7 @@ input, textarea
 {
     color: #323232;
 }
-a, .grayhead, .btn a,.gray
+a, .grayhead, .btn a, .gray,#msgstate div,.success,.label
 {
     font-weight: bold;
     font-family: Tahoma;
@@ -386,15 +393,15 @@ a, .grayhead, .btn a,.gray
 }
 .gray
 {
-    min-height: 30px;    
+    min-height: 30px;
 }
 .gray
 {
-    font-size:13px;
+    font-size: 13px;
 }
-.btn,body
+.btn, body
 {
-    font-size:11px;
+    font-size: 11px;
 }
 .bksl .btn a
 {
@@ -515,7 +522,7 @@ h3
 }
 .trans
 {
-    background: url(       'images/trans.png' );
+    background: url(        'images/trans.png' );
     padding: 10px;
 }
 /* Icons */
@@ -635,7 +642,7 @@ h3
 .close
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -209px -10px;
     empty-cells: show;
     line-height: 12px;
@@ -646,6 +653,7 @@ h3
 fieldset
 {
     text-align: left;
+    border: none;
 }
 .tarrow
 {

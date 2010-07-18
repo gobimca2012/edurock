@@ -23,15 +23,15 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
 
 
-            string ExamName; if (false) { throw new Exception(""); } ExamName = HtmlHelper.ControlValue(txtExamName.ClientID);
+            string ExamName; if (HtmlHelper.ControlValue(txtExamName.ClientID)=="") { throw new Exception("Please enter Exam Name"); } ExamName = HtmlHelper.ControlValue(txtExamName.ClientID);
 
-            string SubjectName; if (false) { throw new Exception(""); } SubjectName = HtmlHelper.ControlValue(txtSubjectName.ClientID);
+            string SubjectName; if (HtmlHelper.ControlValue(txtSubjectName.ClientID)=="") { throw new Exception("Please enter Subject Name"); } SubjectName = HtmlHelper.ControlValue(txtSubjectName.ClientID);
 
-            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteCource.ClientID)=="0") { throw new Exception("Please enter Cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
 
-            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID)=="0") { throw new Exception("Please enter Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
 
-            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID)=="") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
@@ -44,21 +44,45 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
                     IsActive = true;
 
 
-            int RequirePecentage; if (false) { throw new Exception(""); } RequirePecentage = Convert.ToInt32(HtmlHelper.ControlValue(txtRequirePecentage.ClientID));
+            int RequirePecentage; if (HtmlHelper.ControlValue(txtRequirePecentage.ClientID)=="") { throw new Exception("Please enter require percentage"); } RequirePecentage = Convert.ToInt32(HtmlHelper.ControlValue(txtRequirePecentage.ClientID));
 
-            DateTime StartDate; if (false) { throw new Exception(""); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
+            DateTime StartDate; if (HtmlHelper.ControlValue(txtStartDate.ClientID)=="") { throw new Exception("Please enter Start date"); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
 
-            DateTime EndDate; if (false) { throw new Exception(""); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
+            DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID)=="") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
-            int ExamID=new ExamController().Add(ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
+            int ExamID = new ExamController().Add(ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
             Response.Redirect("~/User/AjaxControl/Exam.aspx?eid=" + ExamID.ToString());
         }
         catch (Exception ex)
         {
+            PreventData();
             divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
         }
     }
+    public void PreventData()
+    {
 
+
+        txtExamName.Text = HtmlHelper.ControlValue(txtExamName.ClientID);
+
+        txtSubjectName.Text = HtmlHelper.ControlValue(txtSubjectName.ClientID);
+
+        new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID)), HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+        new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, HtmlHelper.ControlValue(ddInstituteCource.ClientID));
+        txtDescription.Text = HtmlHelper.ControlValue(txtDescription.ClientID);
+
+
+
+        txtExamTime.Text = HtmlHelper.ControlValue(txtExamTime.ClientID);
+
+        chkIsActive.Checked = Convert.ToBoolean( HtmlHelper.ControlValue(chkIsActive.ClientID));
+
+        txtRequirePecentage.Text = HtmlHelper.ControlValue(txtRequirePecentage.ClientID);
+        txtStartDate.Text = HtmlHelper.ControlValue(txtStartDate.ClientID);
+
+        txtEndDate.Text = HtmlHelper.ControlValue(txtEndDate.ClientID);
+
+    }
     private void EditData()
     {
         try
@@ -66,15 +90,15 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
             int ExamID = ID;
 
-            string ExamName; if (false) { throw new Exception(""); } ExamName = HtmlHelper.ControlValue(txtExamName.ClientID);
+            string ExamName; if (HtmlHelper.ControlValue(txtExamName.ClientID) == "") { throw new Exception("Please enter Exam Name"); } ExamName = HtmlHelper.ControlValue(txtExamName.ClientID);
 
-            string SubjectName; if (false) { throw new Exception(""); } SubjectName = HtmlHelper.ControlValue(txtSubjectName.ClientID);
+            string SubjectName; if (HtmlHelper.ControlValue(txtSubjectName.ClientID) == "") { throw new Exception("Please enter Subject Name"); } SubjectName = HtmlHelper.ControlValue(txtSubjectName.ClientID);
 
-            int InstituteCourceID; if (false) { throw new Exception(""); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "0") { throw new Exception("Please enter Cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
 
-            int InstituteSubjectID; if (false) { throw new Exception(""); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "0") { throw new Exception("Please enter Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
 
-            string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID) == "") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
@@ -87,11 +111,11 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
                     IsActive = true;
 
 
-            int RequirePecentage; if (false) { throw new Exception(""); } RequirePecentage = Convert.ToInt32(HtmlHelper.ControlValue(txtRequirePecentage.ClientID));
+            int RequirePecentage; if (HtmlHelper.ControlValue(txtRequirePecentage.ClientID) == "") { throw new Exception("Please enter require percentage"); } RequirePecentage = Convert.ToInt32(HtmlHelper.ControlValue(txtRequirePecentage.ClientID));
 
-            DateTime StartDate; if (false) { throw new Exception(""); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
+            DateTime StartDate; if (HtmlHelper.ControlValue(txtStartDate.ClientID) == "") { throw new Exception("Please enter Start date"); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
 
-            DateTime EndDate; if (false) { throw new Exception(""); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
+            DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID) == "") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
             new ExamController().UpdateByExamID(ExamID, ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
 
@@ -99,6 +123,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
         }
         catch (Exception ex)
         {
+            PreventData();
             divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
         }
     }

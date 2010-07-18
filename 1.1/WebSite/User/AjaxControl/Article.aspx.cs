@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using Common;
 
 public partial class User_AjaxControl_Article : AjaxPage
 {
@@ -24,11 +25,11 @@ public partial class User_AjaxControl_Article : AjaxPage
 
             if (data.LoginUserID != null)
             {
-                
+
                 FullViewSideInfo1.LoginUserID = data.LoginUserID;
                 FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
                 FullViewSideInfo1.CourceID = data.InstituteCourceID;
-                FullViewSideInfo1.SubjectID =(int) data.InstituteSubjectID;
+                FullViewSideInfo1.SubjectID = (int)data.InstituteSubjectID;
             }
 
             if (data.Title != null)
@@ -43,7 +44,7 @@ public partial class User_AjaxControl_Article : AjaxPage
 
                 lblMetaDescription.InnerHtml = data.MetaDescription.ToString();
 
-            
+
             if (data.Tag != null)
 
                 lblTag.InnerHtml = data.Tag.ToString();
@@ -70,7 +71,9 @@ public partial class User_AjaxControl_Article : AjaxPage
         {
             AjaxState["arid"] = Request.Params["arid"];
         }
+        
         BindData();
+        objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + ((int)ContentTypeEnum.Article).ToString());
     }
 
 }

@@ -86,7 +86,7 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        hpAddDocument.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddDocument;
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];
