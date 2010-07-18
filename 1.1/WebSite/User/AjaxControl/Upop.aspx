@@ -44,6 +44,9 @@
                             User Institute:&nbsp;<span id="lblGroup" runat="server"></span>
                         </div>
                         <div>
+                            User Cource:&nbsp;<span id="lblCource" runat="server"></span>
+                        </div>
+                        <div>
                             <asp:HyperLink ID="lnkUserProfile" runat="server">Full Profile</asp:HyperLink>
                         </div>
                     </div>

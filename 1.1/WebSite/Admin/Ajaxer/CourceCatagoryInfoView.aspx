@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CourceCatagoryInfoView.aspx.cs"
     Inherits="Admin_Ajaxer_CourceCatagoryInfoView" %>
 
+<%@ Register Src="~/User/UserControl/UserNameToolTipLink.ascx" TagName="UserNameToolTipLink"
+    TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -46,7 +48,7 @@
                         <%#Eval("CatagoryName") %>
                     </td>
                     <td>
-                        <%#Eval("LoginUserID") %>
+                        <uc1:UserNameToolTipLink ID="UserNameToolTipLink1" runat="server" LoginUserID='<%# Eval("LoginUserID") %>' />
                     </td>
                     <td>
                         <%#Eval("Description") %>

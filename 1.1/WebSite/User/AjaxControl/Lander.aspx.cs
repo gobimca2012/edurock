@@ -61,6 +61,8 @@ public partial class User_AjaxControl_Lander : AjaxPage
 //        if (ICID > 0)
         {
             lnkQ.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx") + "?icid=" + ICID.ToString()+"&usid="+LoginUserID.ToString();
+            lnkEvent.NavigateUrl = ResolveUrl("~/User/AjaxControl/EventInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
+            lnkArticle.NavigateUrl = ResolveUrl("~/User/AjaxControl/ArticleInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
             lnkAll.NavigateUrl = ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
             //lnktut.NavigateUrl = ResolveUrl("~/All/Ajaxer/TutorialInfoView.aspx") + "?icid=" + ICID.ToString();
             lnkExam.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();

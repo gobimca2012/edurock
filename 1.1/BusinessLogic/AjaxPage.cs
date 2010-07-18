@@ -121,8 +121,21 @@ namespace BusinessLogic
         }
         protected override void OnLoad(EventArgs e)
         {
+            objLoader = new JScripter.Loader(this.Page, false);
             if (new UserAuthontication().IsLoggedIn)
             {
+                if (Session[SessionName.SucessMessage.ToString()] != null)
+                {
+                    string MessageInjectScript = string.Format("alert('aa');$('#msgstate').html('<div class='success'>{0}</div>');", Session[SessionName.SucessMessage.ToString()].ToString());
+                    objLoader.InjectScript(MessageInjectScript, this.Page);
+                    Session.Remove(SessionName.SucessMessage.ToString());
+                }
+                if (Session[SessionName.ErrorMessage.ToString()] != null)
+                {
+                    string MessageInjectScript = string.Format("$('#msgstate').html('<div class='error'>{0}</div>');", Session[SessionName.ErrorMessage.ToString()].ToString());
+                    objLoader.InjectScript(MessageInjectScript, this.Page);
+                    Session.Remove(SessionName.ErrorMessage.ToString());
+                }
                 IsEventChange = false;
                 this.Page.Header.Visible = false;
                 base.OnLoad(e);

@@ -22,7 +22,8 @@
                 <aspajax:HyperLink ID="lnkUsers" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ICUserInfoView.aspx">Users</aspajax:HyperLink></li>
             <li class="btn roundedall"><span class="ques">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkHomeWork" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/HomeWorkInfoView.aspx">HomeWorks</aspajax:HyperLink></li>
-            <li class="btn roundedall"><span class="ques"></span>Blog</li>
+             <li class="btn roundedall"><span class="ques">&nbsp;</span>
+                <aspajax:HyperLink ID="lnkArticle" runat="server" ContainnerID="#contentBox" >Articles</aspajax:HyperLink></li>
             <li class="btn roundedall"><span class="img">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkImage" runat="server" ContainnerID="#contentBox">Images</aspajax:HyperLink></li>
             <li class="btn roundedall"><span class="ques">&nbsp;</span>
@@ -33,6 +34,9 @@
                 <aspajax:HyperLink ID="lnkVideo" runat="server" ContainnerID="#contentBox">Videos</aspajax:HyperLink></li>
             <li class="btn roundedall"><span class="doc">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkDocument" runat="server" ContainnerID="#contentBox">Library</aspajax:HyperLink></li>
+                <li class="btn roundedall"><span class="doc">&nbsp;</span>
+                <aspajax:HyperLink ID="lnkEvent" runat="server" ContainnerID="#contentBox">Event</aspajax:HyperLink></li>
+                
         </ul>
     </div>
     </form>

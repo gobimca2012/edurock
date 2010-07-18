@@ -15,9 +15,9 @@
                 Question View
             </div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="gray"> Edit Question</div></aspajax:HyperLink></div>
+                <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn"> Edit Question</div></aspajax:HyperLink></div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="gray">  Share Question</div></aspajax:HyperLink></div>
+                <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn">  Share Question</div></aspajax:HyperLink></div>
             <div style="clear: both">
             </div>
         </div>

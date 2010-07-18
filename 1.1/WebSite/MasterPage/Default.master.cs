@@ -42,7 +42,15 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
         if (new UserAuthontication().IsLoggedIn)
         {
             var UserData = new UserController().GetbyLoginUserID(LoginUserID);
-            img.ImageUrl = ResolveUrl(UserData[0].PhotoPath);
+            if (UserData.Count > 0)
+            {
+                if (UserData[0].PhotoPath != null)
+                    img.ImageUrl = ResolveUrl(UserData[0].PhotoPath);
+            }
+            if (new UserAuthontication().UserType == UserTypeEnum.College)
+            {
+                divAdmin.Visible = true;
+            }
         }
 
     }

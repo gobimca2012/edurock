@@ -37,8 +37,8 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
             }
             else if (new UserAuthontication().UserType == UserTypeEnum.College)
             {
-                ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/CollegeMenu.ascx"));
-                lnkAccountSetting.NavigateUrl = "~/College/Admin.aspx";
+                //ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/CollegeMenu.ascx"));
+                //lnkAccountSetting.NavigateUrl = "~/College/Admin.aspx";
             }
             else if (new UserAuthontication().UserType == UserTypeEnum.Student)
             {

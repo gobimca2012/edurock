@@ -22,6 +22,8 @@
     </div>
     <div style="clear: both">
     </div>
+    <div id="msgstate">
+    </div>
     <div id="ipop">
     </div>
     <div class="page">
@@ -38,7 +40,7 @@
         <div class="bgml">
             <div class="bgmr">
                 <div class="bgmc">
-                    <div style="float: left; width: 198px; border-right: 1px solid #848689;" id="sidemenu">
+                    <div style="float: left; width: 198px;" id="sidemenu">
                         <div style="text-align: center; padding: 2px">
                             <div>
                                 <asp:Image ID="img" runat="server" Width="100" />
@@ -81,16 +83,17 @@
                             </div>
                         </div>
                         <div class="leftmenu">
-                        <div id="mymenu">
+                            <div id="mymenu">
                                 <div class="grayhead">
-                                    <span class="sub" style="float: left"></span><span style="float: left">My Stuff                                   </span>
+                                    <span class="sub" style="float: left"></span><span style="float: left">My Stuff
+                                    </span>
                                     <div style="clear: both">
                                     </div>
                                 </div>
                             </div>
                             <div id="mymenupanel" class="vis">
-                            <div id="mylander">
-                            </div>
+                                <div id="mylander">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,11 +117,11 @@
                                         <asp:HyperLink ID="lnkAcountsetting" runat="server" NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
                                     </div>
                                 </div>
-                                <div class="btn">
+                                <div class="btn" id="divAdmin" runat="server" visible="false">
                                     <div class="dash" style="float: left">
                                     </div>
                                     <div style="float: left">
-                                        Activity Stream</div>
+                                        <asp:HyperLink ID="lnkAdmin" runat="server" NavigateUrl="~/College/Admin.aspx">Administrator</asp:HyperLink></div>
                                 </div>
                             </div>
                         </div>

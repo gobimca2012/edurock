@@ -12,52 +12,54 @@
         <div class="gray">
             Cource Catagory
         </div>
-        <asp:ListView ID="ListCourceCatagory" runat="server">
-            <LayoutTemplate>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>
-                                CatagoryName
-                            </td>
-                            <td>
-                                Description
-                            </td>
-                            <td>
-                                CatagoryType
-                            </td>
-                            <td>
-                                ModifiedDate
-                            </td>
-                        </tr>
-                    </thead>
-                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                </table>
-            </LayoutTemplate>
-            <ItemTemplate>
-                <tr>
-                    <td>
-                        <%#Eval("CatagoryName") %>
-                    </td>
-                    <td>
-                        <%#Eval("Description") %>
-                    </td>
-                    <td>
-                        <%#Eval("CatagoryType") %>
-                    </td>
-                    <td>
-                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
-                    </td>
-                    <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("CourceCatagoryID").ToString(), "#contentBox", "#contentBox")%>
-                    </td>
-                    <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/CourceCatagoryInfo.aspx") + "?ccid=" + Eval("CourceCatagoryID")%>'
-                            ContainnerID="#contentBox">Edit</aspajax:HyperLink>
-                    </td>
-                </tr>
-            </ItemTemplate>
-        </asp:ListView>
+        <div class="whitecont">
+            <asp:ListView ID="ListCourceCatagory" runat="server">
+                <LayoutTemplate>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>
+                                    CatagoryName
+                                </td>
+                                <td>
+                                    Description
+                                </td>
+                                <td>
+                                    CatagoryType
+                                </td>
+                                <td>
+                                    ModifiedDate
+                                </td>
+                            </tr>
+                        </thead>
+                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                    </table>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <%#Eval("CatagoryName") %>
+                        </td>
+                        <td>
+                            <%#Eval("Description") %>
+                        </td>
+                        <td>
+                            <%#Eval("CatagoryType") %>
+                        </td>
+                        <td>
+                            <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
+                        </td>
+                        <td>
+                            <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("CourceCatagoryID").ToString(), "#contentBox", "#contentBox")%>
+                        </td>
+                        <td>
+                            <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/CourceCatagoryInfo.aspx") + "?ccid=" + Eval("CourceCatagoryID")%>'
+                                ContainnerID="#contentBox">Edit</aspajax:HyperLink>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:ListView>
+        </div>
         <div class="gray">
             <div style="float: right">
                 <div style="float: left">
@@ -71,7 +73,7 @@
             </div>
             <div style="float: left">
                 <aspajax:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/College/Ajaxer/CourceCatagoryInfo.aspx"
-                    ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                    ContainnerID="#contentBox"><div class="btn">Add New</div></aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

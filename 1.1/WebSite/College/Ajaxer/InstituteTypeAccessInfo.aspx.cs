@@ -54,9 +54,43 @@ public partial class College_Ajaxer_InstituteTypeAccessInfo : AjaxPage
             bool CanAddSubject = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddSubject.ClientID) != "")
                 if (HtmlHelper.ControlValue(chkCanAddSubject.ClientID) == "on")
                     CanAddSubject = true;
+
+            bool CanAddAudio = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddAudio.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddAudio.ClientID) == "on")
+                    CanAddAudio = true;
+
+
+            bool CanAddImage = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddImage.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddImage.ClientID) == "on")
+                    CanAddImage = true;
+
+
+            bool CanAddDocument = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddDocument.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddDocument.ClientID) == "on")
+                    CanAddDocument = true;
+
+
+            bool CanAddVideo = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddVideo.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddVideo.ClientID) == "on")
+                    CanAddVideo = true;
+
+
+            bool CanAddHomeWork = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddHomeWork.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddHomeWork.ClientID) == "on")
+                    CanAddHomeWork = true;
+
+
+            bool CanAddEvent = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddEvent.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddEvent.ClientID) == "on")
+                    CanAddEvent = true;
+
+
+            bool CanAddArticle = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddArticle.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddArticle.ClientID) == "on")
+                    CanAddArticle = true;
             DateTime ModifiedDate = DateTime.Now;
 
-            new InstituteUserTypeAccessController().Add(InstituteUserTypeID, CanAddExam, CanAddQuestion, CanAddUser, CanAddCource, CanAddSubject, ModifiedDate);
+            new InstituteUserTypeAccessController().Add(InstituteUserTypeID, CanAddExam, CanAddQuestion, CanAddUser, CanAddCource, CanAddSubject, CanAddAudio, CanAddImage, CanAddDocument, CanAddVideo, CanAddHomeWork, CanAddEvent, CanAddArticle, ModifiedDate);
             Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
         }
         catch (Exception ex)
@@ -98,9 +132,43 @@ public partial class College_Ajaxer_InstituteTypeAccessInfo : AjaxPage
                 if (HtmlHelper.ControlValue(chkCanAddSubject.ClientID) == "on")
                     CanAddSubject = true;
 
+            bool CanAddAudio = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddAudio.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddAudio.ClientID) == "on")
+                    CanAddAudio = true;
+
+
+            bool CanAddImage = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddImage.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddImage.ClientID) == "on")
+                    CanAddImage = true;
+
+
+            bool CanAddDocument = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddDocument.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddDocument.ClientID) == "on")
+                    CanAddDocument = true;
+
+
+            bool CanAddVideo = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddVideo.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddVideo.ClientID) == "on")
+                    CanAddVideo = true;
+
+
+            bool CanAddHomeWork = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddHomeWork.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddHomeWork.ClientID) == "on")
+                    CanAddHomeWork = true;
+
+
+            bool CanAddEvent = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddEvent.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddEvent.ClientID) == "on")
+                    CanAddEvent = true;
+
+
+            bool CanAddArticle = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkCanAddArticle.ClientID) != "")
+                if (HtmlHelper.ControlValue(chkCanAddArticle.ClientID) == "on")
+                    CanAddArticle = true;
+
             DateTime ModifiedDate = DateTime.Now;
 
-            new InstituteUserTypeAccessController().UpdateByInstituteUserTypeID(InstituteUserTypeID, CanAddExam, CanAddQuestion, CanAddUser, CanAddCource, CanAddSubject, ModifiedDate);
+            new InstituteUserTypeAccessController().UpdateByInstituteUserTypeID(InstituteUserTypeID, CanAddExam, CanAddQuestion, CanAddUser, CanAddCource, CanAddSubject, CanAddAudio, CanAddImage, CanAddDocument, CanAddVideo, CanAddHomeWork, CanAddEvent, CanAddArticle, ModifiedDate);
 
             Response.Redirect("~/College/Ajaxer/InstituteUserTypeInfoView.aspx");
         }
@@ -117,17 +185,30 @@ public partial class College_Ajaxer_InstituteTypeAccessInfo : AjaxPage
         {
             var data = dataBunch[0];
 
-
-            chkCanAddExam.Checked = Convert.ToBoolean(data.CanAddExam.ToString());
-
-            chkCanAddQuestion.Checked = data.CanAddQuestion;
-
-            chkCanAddUser.Checked = data.CanAddUser;
-
-            chkCanAddCource.Checked = data.CanAddCource;
-
-            chkCanAddSubject.Checked = data.CanAddSubject;
-
+            if (data.CanAddExam != null)
+                chkCanAddExam.Checked = Convert.ToBoolean(data.CanAddExam.ToString());
+            if (data.CanAddQuestion != null)
+                chkCanAddQuestion.Checked = data.CanAddQuestion;
+            if (data.CanAddUser != null)
+                chkCanAddUser.Checked = data.CanAddUser;
+            if (data.CanAddCource != null)
+                chkCanAddCource.Checked = data.CanAddCource;
+            if (data.CanAddSubject != null)
+                chkCanAddSubject.Checked = data.CanAddSubject;
+            if (data.CanAddAudio != null)
+                chkCanAddAudio.Checked = (bool)data.CanAddAudio;
+            if (data.CanAddImage != null)
+                chkCanAddImage.Checked = (bool)data.CanAddImage;
+            if (data.CanAddDocument != null)
+                chkCanAddDocument.Checked = (bool)data.CanAddDocument;
+            if (data.CanAddVideo != null)
+                chkCanAddVideo.Checked = (bool)data.CanAddVideo;
+            if (data.CanAddHomeWork != null)
+                chkCanAddHomeWork.Checked = (bool)data.CanAddHomeWork;
+            if (data.CanAddEvent != null)
+                chkCanAddEvent.Checked = (bool)data.CanAddEvent;
+            if (data.CanAddArticle != null)
+                chkCanAddArticle.Checked = (bool)data.CanAddArticle;
 
 
         }

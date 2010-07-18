@@ -67,6 +67,9 @@
                         <td>
                             <aspajax:HyperLink ID="lnkRole" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteUserInUserTypeInfo.aspx") + "?uid=" + Eval("LoginUserID")%>'>Roles</aspajax:HyperLink>
                         </td>
+                        <td>
+                            <aspajax:HyperLink ID="lnkUserCource" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteCourceUserInfoView.aspx")+"?uid="+Eval("LoginUserID") %>'>Cources</aspajax:HyperLink>
+                        </td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>

@@ -14,44 +14,46 @@
         <div style="padding: 5px;">
             <div id="divMessage" runat="server">
             </div>
-            <fieldset>
-                <legend>CourceCatagory</legend>
-                <div>
+            <div class="whitecont">
+                <fieldset>
+                    <legend>CourceCatagory</legend>
                     <div>
                         <div>
-                            <span class="label">CatagoryName</span>
+                            <div>
+                                <span class="label">CatagoryName</span>
+                            </div>
+                            <div>
+                                <asp:TextBox ID="txtCatagoryName" runat="server" Width="385px"></asp:TextBox>
+                            </div>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtCatagoryName" runat="server" Width="385px"></asp:TextBox>
+                            <div>
+                                <span class="label">Description</span>
+                            </div>
+                            <div>
+                                <asp:TextBox ID="txtDescription" runat="server" Height="143px" TextMode="MultiLine"
+                                    Width="387px"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <span class="label">CatagoryType</span>
+                            </div>
+                            <div>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div>
-                            <span class="label">Description</span>
-                        </div>
-                        <div>
-                            <asp:TextBox ID="txtDescription" runat="server" Height="143px" TextMode="MultiLine"
-                                Width="387px"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span class="label">CatagoryType</span>
-                        </div>
-                        <div>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
+                </fieldset>
+            </div>
         </div>
         <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn">Add</div></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn">Update</div></aspajax:AjaxLinkButton>
             </div>
         </div>
     </div>

@@ -4,20 +4,18 @@
 }
 body
 {
-    /*font-family: arial,helvetica,clean,sans-serif;*/
-    font-family:"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Tahoma,"DejaVu Sans","Bitstream Vera Sans",Arial,Verdana,"Verdana Ref",sans-serif;
-    font-size: 12px;
+    font-family: verdana,clean,sans-serif; /*font-family:"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Tahoma,"DejaVu Sans","Bitstream Vera Sans",Arial,Verdana,"Verdana Ref",sans-serif;*/
+    font-size: 11.25px;
     text-align: center;
     margin: 0px;
     padding: 0px;
-    background:url("http://demo.cyn.in/bodybg.png") repeat-x scroll left top #D9D9D9;
-    text-align:left;
+    background: url( "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;
+    text-align: left;
 }
 .page
 {
     width: 1000px;
-    margin: 0 auto;
-    /*border: solid 1px #848689;*/
+    margin: 0 auto; /*border: solid 1px #848689;*/
     min-height: 700px;
     padding: 0px;
     background: transparent;
@@ -64,18 +62,18 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(                      'images/headerbt.jpg' ) repeat-x;
+    background: url(                       'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
 {
     display: inline;
-    list-style:none;
+    list-style: none;
 }
 #mylander li
 {
-    display:block;
-    text-align:left;
+    display: block;
+    text-align: left;
 }
 .menu
 {
@@ -354,27 +352,32 @@ input, textarea
 }
 .btn
 {
-    padding: 4px 10px;
+    padding: 5px 10px;
     background: url(images/graybtn.gif);
     background-repeat: repeat-x;
     border: solid 1px #c4c7c8;
     max-width: 200px;
     text-align: center;
-    line-height:12px;
+    line-height: 12px;
+    margin:2px;
 }
 .btn:hover, .cin:hover
 {
     background: url(images/bluebtn.gif);
     border: solid 1px #267bc4;
 }
-.btn:hover a, .cin:hover a
+.btn:hover,.cin:hover
 {
     color: #fff;
 }
 .btn a
 {
     color: #323232;
+}
+a, .grayhead, .btn a,.gray
+{
     font-weight: bold;
+    font-family: Tahoma;
 }
 .gray, h5
 {
@@ -383,7 +386,15 @@ input, textarea
 }
 .gray
 {
-    min-height:30px;
+    min-height: 30px;    
+}
+.gray
+{
+    font-size:13px;
+}
+.btn,body
+{
+    font-size:11px;
 }
 .bksl .btn a
 {
@@ -443,11 +454,11 @@ table thead td, .btext, a, .btitle
 }
 .btn a:hover
 {
-    background:transparent;
+    background: transparent;
 }
 a:hover
 {
-    background:#CEE3FF;
+    background: #CEE3FF;
 }
 .btitle
 {
@@ -477,12 +488,11 @@ h3
 {
     padding: 10px;
     background: #fff;
-    line-height:22px;
-
+    line-height: 22px;
 }
 .dasbo
 {
-       border-bottom:dashed 1px #cfcfcf;
+    border-bottom: dashed 1px #cfcfcf;
 }
 .grayhead
 {
@@ -491,22 +501,21 @@ h3
     background-repeat: repeat-x;
     border: solid 1px #C5C8C9;
     line-height: 28px;
-    padding: 0px 0px 0px 0px;
+    padding: 0px 5px;
     margin: 0px;
 }
 .graylg
 {
     background: url(images/braylg.jpg);
-    height: 73px;
     background-repeat: repeat-x;
     border: solid 1px #C5C8C9;
     line-height: 28px;
-    padding: 0px 0px 0px 0px;
+    padding: 5px;
     margin: 0px;
 }
 .trans
 {
-    background: url(      'images/trans.png' );
+    background: url(       'images/trans.png' );
     padding: 10px;
 }
 /* Icons */
@@ -549,7 +558,7 @@ h3
     background-image: url(images/icons.png);
     background-position: 0 0;
     background-position: -35px -6px;
-    padding: 0px 20px 0px 0px;
+    padding: 3px 10px;
     line-height: 12px;
     empty-cells: show;
 }
@@ -589,7 +598,7 @@ h3
     background-image: url(images/icons.png);
     background-position: 0 0;
     background-position: -191px -6px;
-    padding: 1px 16px 0px 0px;
+    padding: 2px 6px;
     line-height: 12px;
     empty-cells: show;
 }
@@ -619,18 +628,18 @@ h3
     background-image: url(images/icons.png);
     background-position: 0 0;
     background-position: -111px -0px;
-    padding:13px;
+    padding: 13px 15px;
     line-height: 12px;
     empty-cells: show;
 }
 .close
 {
-     background-color:Transparent;
-background-image:url("images/icons.png");
-background-position:-209px -10px;
-empty-cells:show;
-line-height:12px;
-padding:9px;
+    background-color: Transparent;
+    background-image: url( "images/icons.png" );
+    background-position: -209px -10px;
+    empty-cells: show;
+    line-height: 12px;
+    padding: 9px;
 }
 /* end Account*/
 
@@ -677,48 +686,48 @@ a
     background: transparent url(images/bgtl.png);
     background-repeat: no-repeat;
     background-position: left;
-    height:20px;
+    height: 20px;
 }
 .bgtll
 {
     background: transparent url(images/bgtll.png);
     background-repeat: repeat-x;
     background-position: left;
-    height:20px;
-    margin:0px 0 0 20px;
+    height: 20px;
+    margin: 0px 0 0 20px;
 }
 .bgtr
 {
     background: transparent url(images/bgtr.png);
     background-repeat: no-repeat;
     background-position: right;
-    height:20px;
+    height: 20px;
 }
 .bgtc
 {
     background: transparent url(images/bgtc.png);
-    height:20px;
-    margin:0px 20px 0 0;
+    height: 20px;
+    margin: 0px 20px 0 0;
 }
 .bgbl
 {
     background: transparent url(images/bgbl.png);
     background-repeat: no-repeat;
     background-position: left;
-    height:20px;
+    height: 20px;
 }
 .bgbr
 {
     background: transparent url(images/bgbr.png);
     background-repeat: no-repeat;
     background-position: right;
-    height:20px;
+    height: 20px;
 }
 .bgbc
 {
     background: transparent url(images/bgbc.png);
-    height:20px;
-    margin:0px 20px;
+    height: 20px;
+    margin: 0px 20px;
 }
 .bgml
 {
@@ -734,28 +743,26 @@ a
 }
 .bgmc
 {
-    margin:0px 10px;
-    background:#fff;
+    margin: 0px 10px;
+    background: #fff;
 }
 .udate
 {
-    float:right;
-    border-bottom:dashed 1px #cfcfcf;
+    float: right;
+    border-bottom: dashed 1px #cfcfcf;
 }
 .fuleft
 {
-    float:left;
-    width:550px;
+    float: left;
+    width: 550px;
 }
 .furight
 {
-    float:right;
-    width:160px;
+    float: right;
+    width: 160px;
 }
 ul
 {
-    clear:both;
-    
-    display:block;
-    
+    clear: both;
+    display: block;
 }

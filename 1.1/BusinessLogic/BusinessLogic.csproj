@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="AnswerController.cs" />
     <Compile Include="AnswerStateController.cs" />
+    <Compile Include="ArticleController.cs" />
     <Compile Include="BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -72,6 +73,7 @@
     <Compile Include="CourceController.cs" />
     <Compile Include="DocumentController.cs" />
     <Compile Include="EmailController.cs" />
+    <Compile Include="EventController.cs" />
     <Compile Include="ExamController.cs" />
     <Compile Include="EXM_AnswerController.cs" />
     <Compile Include="EXM_QuestionController.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="InstituteController.cs" />
     <Compile Include="InstituteCourceController.cs" />
+    <Compile Include="InstituteCourceUserController.cs" />
     <Compile Include="InstituteSubjectController.cs" />
     <Compile Include="InstituteUserTypeAccessController.cs" />
     <Compile Include="InstituteUserController.cs" />

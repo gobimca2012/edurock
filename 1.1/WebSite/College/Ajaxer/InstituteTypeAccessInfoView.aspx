@@ -8,78 +8,82 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <asp:ListView ID="ListInstituteTypeAccess" runat="server">
-            <LayoutTemplate>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>
-                                InstituteTypeAccessID
-                            </td>
-                            <td>
-                                InstituteUserTypeID
-                            </td>
-                            <td>
-                                CanAddExam
-                            </td>
-                            <td>
-                                CanAddQuestion
-                            </td>
-                            <td>
-                                CanAddUser
-                            </td>
-                            <td>
-                                CanAddCource
-                            </td>
-                            <td>
-                                CanAddSubject
-                            </td>
-                            <td>
-                                ModifiedDate
-                            </td>
-                        </tr>
-                    </thead>
-                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                </table>
-            </LayoutTemplate>
-            <ItemTemplate>
-                <tr>
-                    <td>
-                        <%#Eval("InstituteTypeAccessID") %>
-                    </td>
-                    <td>
-                        <%#Eval("InstituteUserTypeID") %>
-                    </td>
-                    <td>
-                        <%#Eval("CanAddExam") %>
-                    </td>
-                    <td>
-                        <%#Eval("CanAddQuestion") %>
-                    </td>
-                    <td>
-                        <%#Eval("CanAddUser") %>
-                    </td>
-                    <td>
-                        <%#Eval("CanAddCource") %>
-                    </td>
-                    <td>
-                        <%#Eval("CanAddSubject") %>
-                    </td>
-                    <td>
-                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
-                    </td>
-                    <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteTypeAccessID").ToString(), "#contentBox", "#contentBox")%>
-                    </td>
-                    <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteTypeAccessInfo.aspx") + "?cid=" + Eval("InstituteTypeAccessID")%>'
-                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
-                    </td>
-                </tr>
-            </ItemTemplate>
-        </asp:ListView>
-        <div>
+    <div class="contentbox">
+        <div class="gray">
+        </div>
+        <div class="whitecont">
+            <asp:ListView ID="ListInstituteTypeAccess" runat="server">
+                <LayoutTemplate>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>
+                                    InstituteTypeAccessID
+                                </td>
+                                <td>
+                                    InstituteUserTypeID
+                                </td>
+                                <td>
+                                    CanAddExam
+                                </td>
+                                <td>
+                                    CanAddQuestion
+                                </td>
+                                <td>
+                                    CanAddUser
+                                </td>
+                                <td>
+                                    CanAddCource
+                                </td>
+                                <td>
+                                    CanAddSubject
+                                </td>
+                                <td>
+                                    ModifiedDate
+                                </td>
+                            </tr>
+                        </thead>
+                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                    </table>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <%#Eval("InstituteTypeAccessID") %>
+                        </td>
+                        <td>
+                            <%#Eval("InstituteUserTypeID") %>
+                        </td>
+                        <td>
+                            <%#Eval("CanAddExam") %>
+                        </td>
+                        <td>
+                            <%#Eval("CanAddQuestion") %>
+                        </td>
+                        <td>
+                            <%#Eval("CanAddUser") %>
+                        </td>
+                        <td>
+                            <%#Eval("CanAddCource") %>
+                        </td>
+                        <td>
+                            <%#Eval("CanAddSubject") %>
+                        </td>
+                        <td>
+                            <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
+                        </td>
+                        <td>
+                            <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteTypeAccessID").ToString(), "#contentBox", "#contentBox")%>
+                        </td>
+                        <td>
+                            <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteTypeAccessInfo.aspx") + "?cid=" + Eval("InstituteTypeAccessID")%>'
+                                ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:ListView>
+        </div>
+        <div class="gray">
             <div style="float: right">
                 <div style="float: left">
                     <aspajax:AjaxLinkButton ID="lnkPrevInstituteTypeAccess" runat="server" Text="Prev"
@@ -96,7 +100,7 @@
         </div>
         <div>
             <aspajax:HyperLink ID="hpAddInstituteTypeAccess" runat="server" NavigateUrl="~/College/Ajaxer/InstituteTypeAccessInfo.aspx"
-                ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                ContainnerID="#contentBox"><div class="btn">Add New</div></aspajax:HyperLink>
         </div>
     </div>
     </form>

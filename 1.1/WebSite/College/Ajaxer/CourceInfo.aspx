@@ -7,46 +7,50 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div id="iCource">
+    <div id="iCource" class="contentbox">
         <div id="divMessage" runat="server">
         </div>
-        <fieldset>
-            <legend>Cource</legend>
-            <div>
+        <div class="whitecont">
+            <fieldset>
+                <legend>Cource</legend>
                 <div>
                     <div>
-                        <span class="label">CourceCatagoryID</span>
+                        <div>
+                            <span class="label">CourceCatagoryID</span>
+                        </div>
+                        <div>
+                            <asp:DropDownList ID="ddCatagory" runat="server" Height="22px" Width="451px">
+                            </asp:DropDownList>
+                        </div>
                     </div>
                     <div>
-                        <asp:DropDownList ID="ddCatagory" runat="server" Height="22px" Width="451px">
-                        </asp:DropDownList>
+                        <div>
+                            <span class="label">CourceName</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtCourceName" runat="server" Width="454px"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">Description</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtDescription" runat="server" Height="193px" TextMode="MultiLine"
+                                Width="457px"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">CourceType</span>
+                        </div>
+                        <div>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <span class="label">CourceName</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtCourceName" runat="server" Width="454px"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">Description</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtDescription" runat="server" Height="193px" TextMode="MultiLine"
-                            Width="457px"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">CourceType</span>
-                    </div>
-                    <div>
-                    </div>
-                </div>
-            </div>
+            </fieldset>
+        </div>
+        <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#iCource"
                     ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
@@ -55,8 +59,8 @@
                 <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#iCource"
                     ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
-            <asp:HiddenField ID="_AjaxState" runat="server" />
-        </fieldset>
+            <%--<asp:HiddenField ID="_AjaxState" runat="server" />--%>
+        </div>
     </div>
     </form>
 </body>

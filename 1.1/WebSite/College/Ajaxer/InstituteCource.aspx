@@ -8,8 +8,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <div id="InstituteCource">
+    <div class="contentbox">
+        <div class="gray">
+        </div>
+        <div id="InstituteCource" class="whitecont">
             <div>
                 <aspajax:HyperLink ID="lnkback" runat="server" Text="back to List" ContainnerID="#courceinfo"
                     NavigateUrl="~/College/Ajaxer/InstituteCourceInfoView.aspx"></aspajax:HyperLink>
@@ -134,8 +136,10 @@
                     <span id="lblModifieddate" runat="server"></span>
                 </div>
             </div>
-            <asp:LinkButton ID="lnkedit" runat="server" Text="Edit" CssClass="btnlnk"></asp:LinkButton>
-            <asp:LinkButton ID="lnkAddNew" runat="server" Text="Add" CssClass="btnlnk"></asp:LinkButton>
+        </div>
+        <div class="gray">
+            <asp:LinkButton ID="lnkedit" runat="server"><div class="bnt">Edit</div></asp:LinkButton>
+            <asp:LinkButton ID="lnkAddNew" runat="server"><div class="btn">Add</div></asp:LinkButton>
         </div>
     </div>
     </form>

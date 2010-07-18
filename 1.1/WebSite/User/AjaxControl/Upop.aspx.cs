@@ -44,7 +44,17 @@ public partial class User_AjaxControl_Upop : AjaxPage
                 else
                     ugo += " " + du.InstituteName;
             }
-            lblGroup.InnerHtml = ugo;
+
+            var userCource = new InstituteCourceUserController().GetbyLoginUserID(data.LoginUserID);
+            ugo = "";
+            foreach (InstituteCourceUser ucouce in userCource)
+            {
+                if (ugo != "")
+                    ugo += ", " + new InstituteCourceController().GetInstituteCourceName(ucouce.InstituteCourceID);
+                else
+                    ugo += " " + new InstituteCourceController().GetInstituteCourceName(ucouce.InstituteCourceID);
+            }
+            lblCource.InnerHtml = ugo;
 
         }
     }

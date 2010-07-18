@@ -36,6 +36,10 @@ namespace Common
         Audio=3,
         Video=2,
     }
+    public enum InstituteCourceUserEnum
+    {
+        Normal=1
+    }
     public enum ContentTypeEnum
     {
         All=0,
@@ -45,7 +49,9 @@ namespace Common
         Video = 2,
         Question=5,
         HomeWork=6,
-        Exam=7
+        Exam=7,
+        Article=8,
+        Event=9
     }
     public class FileInformation
     {

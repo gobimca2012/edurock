@@ -15,7 +15,9 @@ namespace BusinessLogic
         FileUploader,
         FileUploaderFileName,
         FileUploaderType,
-        FileUploaderDefaultImage
+        FileUploaderDefaultImage,
+        SucessMessage,
+        ErrorMessage
 
     }
 }

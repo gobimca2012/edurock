@@ -54,6 +54,12 @@ namespace DataEntity
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertArticle(Article instance);
+    partial void UpdateArticle(Article instance);
+    partial void DeleteArticle(Article instance);
+    partial void InsertEvent(Event instance);
+    partial void UpdateEvent(Event instance);
+    partial void DeleteEvent(Event instance);
     #endregion
 		
 		public UserDataContext(string connection) : 
@@ -144,6 +150,22 @@ namespace DataEntity
 			}
 		}
 		
+		public System.Data.Linq.Table<Article> Articles
+		{
+			get
+			{
+				return this.GetTable<Article>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Event> Events
+		{
+			get
+			{
+				return this.GetTable<Event>();
+			}
+		}
+		
 		[Function(Name="dbo.GetShareUser")]
 		public ISingleResult<GetShareUserResult> GetShareUser([Parameter(Name="ObjectType", DbType="Int")] System.Nullable<int> objectType, [Parameter(Name="ObjectID", DbType="VarChar(100)")] string objectID)
 		{
@@ -194,6 +216,10 @@ namespace DataEntity
 		
 		private EntitySet<User> _Users;
 		
+		private EntitySet<Article> _Articles;
+		
+		private EntitySet<Event> _Events;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -220,6 +246,8 @@ namespace DataEntity
 			this._Documents = new EntitySet<Document>(new Action<Document>(this.attach_Documents), new Action<Document>(this.detach_Documents));
 			this._ShareUsers = new EntitySet<ShareUser>(new Action<ShareUser>(this.attach_ShareUsers), new Action<ShareUser>(this.detach_ShareUsers));
 			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
+			this._Articles = new EntitySet<Article>(new Action<Article>(this.attach_Articles), new Action<Article>(this.detach_Articles));
+			this._Events = new EntitySet<Event>(new Action<Event>(this.attach_Events), new Action<Event>(this.detach_Events));
 			OnCreated();
 		}
 		
@@ -415,6 +443,32 @@ namespace DataEntity
 			}
 		}
 		
+		[Association(Name="StudentLogin_Article", Storage="_Articles", OtherKey="LoginUserID")]
+		public EntitySet<Article> Articles
+		{
+			get
+			{
+				return this._Articles;
+			}
+			set
+			{
+				this._Articles.Assign(value);
+			}
+		}
+		
+		[Association(Name="StudentLogin_Event", Storage="_Events", OtherKey="LoginUserID")]
+		public EntitySet<Event> Events
+		{
+			get
+			{
+				return this._Events;
+			}
+			set
+			{
+				this._Events.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -478,6 +532,30 @@ namespace DataEntity
 		}
 		
 		private void detach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentLogin = null;
+		}
+		
+		private void attach_Articles(Article entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentLogin = this;
+		}
+		
+		private void detach_Articles(Article entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentLogin = null;
+		}
+		
+		private void attach_Events(Event entity)
+		{
+			this.SendPropertyChanging();
+			entity.StudentLogin = this;
+		}
+		
+		private void detach_Events(Event entity)
 		{
 			this.SendPropertyChanging();
 			entity.StudentLogin = null;
@@ -2505,6 +2583,740 @@ namespace DataEntity
 					if ((value != null))
 					{
 						value.Users.Add(this);
+						this._LoginUserID = value.LoginUserID;
+					}
+					else
+					{
+						this._LoginUserID = default(int);
+					}
+					this.SendPropertyChanged("StudentLogin");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Article")]
+	public partial class Article : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ArticleID;
+		
+		private int _LoginUserID;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private string _MetaDescription;
+		
+		private int _InstituteCourceID;
+		
+		private int _InstituteSubjectID;
+		
+		private string _Tag;
+		
+		private System.Nullable<int> _Rating;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntityRef<StudentLogin> _StudentLogin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnArticleIDChanging(System.Guid value);
+    partial void OnArticleIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnMetaDescriptionChanging(string value);
+    partial void OnMetaDescriptionChanged();
+    partial void OnInstituteCourceIDChanging(int value);
+    partial void OnInstituteCourceIDChanged();
+    partial void OnInstituteSubjectIDChanging(int value);
+    partial void OnInstituteSubjectIDChanged();
+    partial void OnTagChanging(string value);
+    partial void OnTagChanged();
+    partial void OnRatingChanging(System.Nullable<int> value);
+    partial void OnRatingChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public Article()
+		{
+			this._StudentLogin = default(EntityRef<StudentLogin>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ArticleID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ArticleID
+		{
+			get
+			{
+				return this._ArticleID;
+			}
+			set
+			{
+				if ((this._ArticleID != value))
+				{
+					this.OnArticleIDChanging(value);
+					this.SendPropertyChanging();
+					this._ArticleID = value;
+					this.SendPropertyChanged("ArticleID");
+					this.OnArticleIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					if (this._StudentLogin.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MetaDescription", DbType="VarChar(MAX)")]
+		public string MetaDescription
+		{
+			get
+			{
+				return this._MetaDescription;
+			}
+			set
+			{
+				if ((this._MetaDescription != value))
+				{
+					this.OnMetaDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._MetaDescription = value;
+					this.SendPropertyChanged("MetaDescription");
+					this.OnMetaDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteCourceID", DbType="Int NOT NULL")]
+		public int InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this.OnInstituteCourceIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteCourceID = value;
+					this.SendPropertyChanged("InstituteCourceID");
+					this.OnInstituteCourceIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteSubjectID", DbType="Int NOT NULL")]
+		public int InstituteSubjectID
+		{
+			get
+			{
+				return this._InstituteSubjectID;
+			}
+			set
+			{
+				if ((this._InstituteSubjectID != value))
+				{
+					this.OnInstituteSubjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteSubjectID = value;
+					this.SendPropertyChanged("InstituteSubjectID");
+					this.OnInstituteSubjectIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Tag", DbType="VarChar(MAX)")]
+		public string Tag
+		{
+			get
+			{
+				return this._Tag;
+			}
+			set
+			{
+				if ((this._Tag != value))
+				{
+					this.OnTagChanging(value);
+					this.SendPropertyChanging();
+					this._Tag = value;
+					this.SendPropertyChanged("Tag");
+					this.OnTagChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Rating", DbType="Int")]
+		public System.Nullable<int> Rating
+		{
+			get
+			{
+				return this._Rating;
+			}
+			set
+			{
+				if ((this._Rating != value))
+				{
+					this.OnRatingChanging(value);
+					this.SendPropertyChanging();
+					this._Rating = value;
+					this.SendPropertyChanged("Rating");
+					this.OnRatingChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="StudentLogin_Article", Storage="_StudentLogin", ThisKey="LoginUserID", IsForeignKey=true)]
+		public StudentLogin StudentLogin
+		{
+			get
+			{
+				return this._StudentLogin.Entity;
+			}
+			set
+			{
+				StudentLogin previousValue = this._StudentLogin.Entity;
+				if (((previousValue != value) 
+							|| (this._StudentLogin.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StudentLogin.Entity = null;
+						previousValue.Articles.Remove(this);
+					}
+					this._StudentLogin.Entity = value;
+					if ((value != null))
+					{
+						value.Articles.Add(this);
+						this._LoginUserID = value.LoginUserID;
+					}
+					else
+					{
+						this._LoginUserID = default(int);
+					}
+					this.SendPropertyChanged("StudentLogin");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Event")]
+	public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _EventID;
+		
+		private int _LoginUserID;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private string _MetaDescription;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private System.Nullable<int> _InstituteCourceID;
+		
+		private System.Nullable<int> _InstituteSubjectID;
+		
+		private string _Tag;
+		
+		private string _ContactPerson;
+		
+		private string _ContactEmail;
+		
+		private string _ContactPhone;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		private EntityRef<StudentLogin> _StudentLogin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEventIDChanging(System.Guid value);
+    partial void OnEventIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnMetaDescriptionChanging(string value);
+    partial void OnMetaDescriptionChanged();
+    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateChanged();
+    partial void OnInstituteCourceIDChanging(System.Nullable<int> value);
+    partial void OnInstituteCourceIDChanged();
+    partial void OnInstituteSubjectIDChanging(System.Nullable<int> value);
+    partial void OnInstituteSubjectIDChanged();
+    partial void OnTagChanging(string value);
+    partial void OnTagChanged();
+    partial void OnContactPersonChanging(string value);
+    partial void OnContactPersonChanged();
+    partial void OnContactEmailChanging(string value);
+    partial void OnContactEmailChanged();
+    partial void OnContactPhoneChanging(string value);
+    partial void OnContactPhoneChanged();
+    partial void OnModifiedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public Event()
+		{
+			this._StudentLogin = default(EntityRef<StudentLogin>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_EventID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid EventID
+		{
+			get
+			{
+				return this._EventID;
+			}
+			set
+			{
+				if ((this._EventID != value))
+				{
+					this.OnEventIDChanging(value);
+					this.SendPropertyChanging();
+					this._EventID = value;
+					this.SendPropertyChanged("EventID");
+					this.OnEventIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					if (this._StudentLogin.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MetaDescription", DbType="VarChar(MAX)")]
+		public string MetaDescription
+		{
+			get
+			{
+				return this._MetaDescription;
+			}
+			set
+			{
+				if ((this._MetaDescription != value))
+				{
+					this.OnMetaDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._MetaDescription = value;
+					this.SendPropertyChanged("MetaDescription");
+					this.OnMetaDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteCourceID", DbType="Int")]
+		public System.Nullable<int> InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this.OnInstituteCourceIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteCourceID = value;
+					this.SendPropertyChanged("InstituteCourceID");
+					this.OnInstituteCourceIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteSubjectID", DbType="Int")]
+		public System.Nullable<int> InstituteSubjectID
+		{
+			get
+			{
+				return this._InstituteSubjectID;
+			}
+			set
+			{
+				if ((this._InstituteSubjectID != value))
+				{
+					this.OnInstituteSubjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteSubjectID = value;
+					this.SendPropertyChanged("InstituteSubjectID");
+					this.OnInstituteSubjectIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Tag", DbType="VarChar(MAX)")]
+		public string Tag
+		{
+			get
+			{
+				return this._Tag;
+			}
+			set
+			{
+				if ((this._Tag != value))
+				{
+					this.OnTagChanging(value);
+					this.SendPropertyChanging();
+					this._Tag = value;
+					this.SendPropertyChanged("Tag");
+					this.OnTagChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ContactPerson", DbType="VarChar(1000)")]
+		public string ContactPerson
+		{
+			get
+			{
+				return this._ContactPerson;
+			}
+			set
+			{
+				if ((this._ContactPerson != value))
+				{
+					this.OnContactPersonChanging(value);
+					this.SendPropertyChanging();
+					this._ContactPerson = value;
+					this.SendPropertyChanged("ContactPerson");
+					this.OnContactPersonChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ContactEmail", DbType="VarChar(1000)")]
+		public string ContactEmail
+		{
+			get
+			{
+				return this._ContactEmail;
+			}
+			set
+			{
+				if ((this._ContactEmail != value))
+				{
+					this.OnContactEmailChanging(value);
+					this.SendPropertyChanging();
+					this._ContactEmail = value;
+					this.SendPropertyChanged("ContactEmail");
+					this.OnContactEmailChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ContactPhone", DbType="VarChar(20)")]
+		public string ContactPhone
+		{
+			get
+			{
+				return this._ContactPhone;
+			}
+			set
+			{
+				if ((this._ContactPhone != value))
+				{
+					this.OnContactPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._ContactPhone = value;
+					this.SendPropertyChanged("ContactPhone");
+					this.OnContactPhoneChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="StudentLogin_Event", Storage="_StudentLogin", ThisKey="LoginUserID", IsForeignKey=true)]
+		public StudentLogin StudentLogin
+		{
+			get
+			{
+				return this._StudentLogin.Entity;
+			}
+			set
+			{
+				StudentLogin previousValue = this._StudentLogin.Entity;
+				if (((previousValue != value) 
+							|| (this._StudentLogin.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StudentLogin.Entity = null;
+						previousValue.Events.Remove(this);
+					}
+					this._StudentLogin.Entity = value;
+					if ((value != null))
+					{
+						value.Events.Add(this);
 						this._LoginUserID = value.LoginUserID;
 					}
 					else
