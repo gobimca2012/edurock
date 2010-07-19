@@ -187,6 +187,8 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"), this.Page);
+        new JScripter.TinyMCE(this.Page).Create();
         JScripter.DatePicker objDatePicker = new JScripter.DatePicker(this.Page, true);
         objDatePicker.DatePickerTextBox(txtStartDate);
         objDatePicker.DatePickerTextBox(txtEndDate);

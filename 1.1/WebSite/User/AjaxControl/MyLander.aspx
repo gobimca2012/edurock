@@ -22,7 +22,8 @@
                 <aspajax:HyperLink ID="lnkUsers" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ICUserInfoView.aspx">Users</aspajax:HyperLink></li>
             <li><span class="ques">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkMyHomeWork" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/HomeWorkInfoView.aspx">HomeWorks</aspajax:HyperLink></li>
-            <li><span class="ques"></span>Blog</li>
+            <li><span class="ques"></span>
+                <aspajax:HyperLink ID="lnkArticle" runat="server" ContainnerID="#contentBox">Articles</aspajax:HyperLink></li>
             <li><span class="img">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkMyImage" runat="server" ContainnerID="#contentBox">Images</aspajax:HyperLink></li>
             <li><span class="ques">&nbsp;</span>

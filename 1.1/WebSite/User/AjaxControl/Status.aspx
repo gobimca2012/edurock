@@ -12,11 +12,14 @@
             <span id="lblStatus" runat="server"></span>
         </div>
         <div id="changestatus">
+        <div class="btitle">
+        Enter here what you are doing?
+        </div>
             <div>
                 <asp:TextBox ID="txtStatus" runat="server" TextMode="MultiLine"></asp:TextBox>
             </div>
-            <div style="text-align:right">
-                <aspajax:AjaxLinkButton ID="lnkUpdateStatus" runat="server" EnableViewState="False" Increment="False" RequestContainner="#changestatus" ResponseContainner="#changestatus"
+            <div style="text-align:right" >
+                <aspajax:AjaxLinkButton ID="lnkUpdateStatus" runat="server" CssClass="tp" rel="Update your status"  EnableViewState="False" Increment="False" RequestContainner="#changestatus" ResponseContainner="#changestatus"
                     OnAjaxClick="UpdateAjaxClick" Pagger="False"><div class="btn" style="width:90px;float:right"> Update Status</div></aspajax:AjaxLinkButton>
                     <div style="clear:both"></div>
     

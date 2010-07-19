@@ -411,6 +411,30 @@ namespace BusinessLogic
         #endregion
         
         #region InstituteUser
+        public List<GetUserByInsituteCourceIDResult> GetUserByInsituteCourceID(int InsituteCourceID)
+        {
+            try
+            {
+
+                return new DataProvider().GetUserByInsituteCourceID(InsituteCourceID);
+            }
+            catch
+            {
+                return new List<GetUserByInsituteCourceIDResult>();
+            }
+        }
+        public List<GetUserByInsituteCourceIDResult> GetUserByInsituteCourceID(int InsituteCourceID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetUserByInsituteCourceID(InsituteCourceID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetUserByInsituteCourceIDResult>();
+            }
+        }
         public List<GetInstituteUserFeatureAccessResult> GetInstituteUserFeatureAccess(int LoginUserID)
         {
             try

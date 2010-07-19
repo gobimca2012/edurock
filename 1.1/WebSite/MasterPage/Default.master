@@ -11,8 +11,12 @@
 </head>
 <body>
     <form id="form1" runat="server" enctype="multipart/form-data">
+   
     <div id="progress">
     </div>
+    <div id="tooltip">
+   </div>
+   
     <div id="atool">
         <div id="acont">
         </div>
@@ -43,7 +47,7 @@
                     <div style="float: left; width: 198px;" id="sidemenu">
                         <div style="text-align: center; padding: 2px">
                             <div>
-                                <asp:Image ID="img" runat="server" Width="100" />
+                                <asp:Image ID="img" runat="server" Width="172" />
                             </div>
                             <div id="st">
                             </div>
@@ -52,7 +56,7 @@
                         </div>
                         <div class="leftmenu">
                             <div id="courcel">
-                                <div class="grayhead">
+                                <div class="grayhead tp" rel="Select your cource and get update from cource">
                                     <span class="sub" style="float: left"></span><span style="float: left">Cources </span>
                                     <div style="clear: both">
                                     </div>
@@ -62,7 +66,7 @@
                             </div>
                         </div>
                         <div class="leftmenu">
-                            <div id="messageHead">
+                            <div id="messageHead" class="tp" rel="Message System">
                                 <div class="grayhead">
                                     <span class="sub" style="float: left"></span><span style="float: left">Messages
                                     </span>
@@ -84,7 +88,7 @@
                         </div>
                         <div class="leftmenu">
                             <div id="mymenu">
-                                <div class="grayhead">
+                                <div class="grayhead" class="tp" rel="You can manage your data From My Stuff">
                                     <span class="sub" style="float: left"></span><span style="float: left">My Stuff
                                     </span>
                                     <div style="clear: both">
@@ -97,24 +101,24 @@
                             </div>
                         </div>
                     </div>
-                    <div style="float: left; width: 780px; border-left: solid 1px #444;">
+                    <div style="float: left; width: 781px; border-left: solid 1px #444;">
                         <div class="bksl">
                             <div>
                                 <h1 style="color: #fff; margin: 0 0 0 30px">
                                     Learning Management System</h1>
                             </div>
-                            <div style="padding-top: 25px;">
-                                <div class="btn">
+                            <div style="padding-top: 29px;">
+                                <div class="btn" id="dash" runat="server">
                                     <div class="dash" style="float: left">
                                     </div>
                                     <div style="float: left">
-                                        <asp:HyperLink ID="lnkDashBoard" runat="server" NavigateUrl="~/User/DashBoard.aspx">Dashboard</asp:HyperLink></div>
+                                        <asp:HyperLink ID="lnkDashBoard" runat="server" CssClass="tp" rel="Dashboard for All"  NavigateUrl="~/User/DashBoard.aspx">Dashboard</asp:HyperLink></div>
                                 </div>
-                                <div class="btn">
+                                <div class="btn" id="acc" runat="server">
                                     <div class="acco" style="float: left">
                                     </div>
                                     <div style="float: left">
-                                        <asp:HyperLink ID="lnkAcountsetting" runat="server" NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
+                                        <asp:HyperLink ID="lnkAcountsetting" runat="server" CssClass="tp" rel="Manage Your account change your Personal Information" NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
                                     </div>
                                 </div>
                                 <div class="btn" id="divAdmin" runat="server" visible="false">
@@ -147,5 +151,10 @@
         </div>
     </div>
     </form>
+    <script type="text/javascript">
+   
+    
+   
+    </script>
 </body>
 </html>

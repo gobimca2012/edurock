@@ -91,7 +91,14 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         {
             AjaxState["usid"] = Request.Params["usid"];
         }
-
+        if (_InstituteCourceID > 0)
+        {
+            objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/AboutWidget.aspx") + "?icid=" + _InstituteCourceID.ToString());
+        }
+        else
+        {
+            objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/AboutWidget.aspx") );
+        }
         {
             BindList();
             TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.All).Count / PageSize));

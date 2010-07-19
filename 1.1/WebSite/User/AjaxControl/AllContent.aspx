@@ -9,13 +9,16 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="contentbox">
-        <div class="gray">
-        </div>
-        <div class="whitecont">
-            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="ID,ContentType" OnItemDataBound="ListQuestionOnItemDataBound">
-                <LayoutTemplate>
-                    <%-- <table>
+    <div style="float: left; width: 500px">
+        <div class="contentbox">
+            <div class="hcurv">
+                All Activity
+            </div>
+            <div class="whitecont">
+                <div id="allcon">
+                    <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="ID,ContentType" OnItemDataBound="ListQuestionOnItemDataBound">
+                        <LayoutTemplate>
+                            <%-- <table>
                     <thead>
                         <tr>
                             <td>
@@ -50,13 +53,13 @@
                             </td>
                         </tr>
                     </thead>--%>
-                    <div>
-                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                    </div>
-                    <%--</table>--%>
-                </LayoutTemplate>
-                <ItemTemplate>
-                    <%--<tr>
+                            <div>
+                                <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                            </div>
+                            <%--</table>--%>
+                        </LayoutTemplate>
+                        <ItemTemplate>
+                            <%--<tr>
                     <td>
                         <%#Eval("QuestionID") %>
                     </td>
@@ -95,34 +98,40 @@
                             ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
                     </td>
                 </tr>--%>
-                    <div class="dasbo">
-                        <div>
-                            <span class='<%#GetCSSClass(Eval("ContentType").ToString()) %>'>&nbsp;</span>
-                            <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#getURL(Eval("ContentType").ToString(),Eval("ID").ToString()) %>'>
+                            <div class="dasbo">
+                                <div>
+                                    <span class='<%#GetCSSClass(Eval("ContentType").ToString()) %>'>&nbsp;</span>
+                                    <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#getURL(Eval("ContentType").ToString(),Eval("ID").ToString()) %>'>
                             <%#Eval("Title") %></aspajax:HyperLink>
-                        </div>
-                        <div>
-                            <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>'
-                                ModifiedDate='<%#Eval("ModifiedDate") %>' />
-                        </div>
+                                </div>
+                                <div>
+                                    <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>'
+                                        ModifiedDate='<%#Eval("ModifiedDate") %>' />
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:ListView>
+                </div>
+            </div>
+            <div class="hcurv">
+                <div style="float: right">
+                    <div style="float: left">
+                        <aspajax:AjaxLinkButton ID="lnkPrevQuestion" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
+                            Pagger="true" Increment="false" RequestContainner="#Question" ResponseContainner="#Question"></aspajax:AjaxLinkButton>
                     </div>
-                </ItemTemplate>
-            </asp:ListView>
-        </div>
-        <div class="gray">
-            <div style="float: right">
-                <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkPrevQuestion" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                        Pagger="true" Increment="false" RequestContainner="#Question" ResponseContainner="#Question"></aspajax:AjaxLinkButton>
+                    <div style="float: left">
+                        <aspajax:AjaxLinkButton ID="lnkNextQuestion" runat="server" OnAjaxClick="NextAjaxClick"
+                            RequestContainner="#Question" Pagger="true" Increment="true" ResponseContainner="#Question">Next</aspajax:AjaxLinkButton>
+                    </div>
                 </div>
-                <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkNextQuestion" runat="server" OnAjaxClick="NextAjaxClick"
-                        RequestContainner="#Question" Pagger="true" Increment="true" ResponseContainner="#Question">Next</aspajax:AjaxLinkButton>
+                <div style="clear: both">
                 </div>
             </div>
-            <div style="clear: both">
-            </div>
         </div>
+    </div>
+    <div id="sidewidget" style="float: right; width: 268px;">
+    </div>
+    <div style="clear: both">
     </div>
     </form>
 </body>

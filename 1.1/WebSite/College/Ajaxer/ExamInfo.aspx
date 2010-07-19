@@ -57,7 +57,7 @@
                             <span class="label">Description</span>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDescription" runat="server" CssClass="mceEditor" TextMode="MultiLine" Height="400"></asp:TextBox>
                         </div>
                     </div>
                     <div>

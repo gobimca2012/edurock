@@ -57,6 +57,7 @@
     <Compile Include="PopUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tab.cs" />
+    <Compile Include="TinyMCE.cs" />
     <Compile Include="ToolTip.cs" />
     <Compile Include="Validation1.3.cs" />
   </ItemGroup>

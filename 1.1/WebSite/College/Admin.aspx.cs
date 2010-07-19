@@ -17,5 +17,6 @@ public partial class College_Admin : BasePage
     protected void Page_Load(object sender, EventArgs e)
     {
         objLoader.LoadPage("#lander", ResolveUrl("~/College/Ajaxer/AdminLander.aspx"));
+        JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"), this.Page);
     }
 }

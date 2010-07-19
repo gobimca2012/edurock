@@ -12,6 +12,14 @@ $.fn.serializeNoViewState = function()
    //   return this.find("input,textarea,select")
    //   .not("[type=hidden][name^=__]")
    //   .serialize();
+   try
+   {
+      tinyMCE.triggerSave()
+   }
+   catch(e)
+   {
+   }
+
    return this.find("input,textarea,select").serialize();
 
 }
@@ -150,8 +158,9 @@ function ProgressBar(status, id)
    {
       $(document).ready(function()
       {
-      $("#progress").removeClass("loading");
-      });
+         $("#progress").removeClass("loading");
+      }
+      );
    }
 }
 
@@ -381,7 +390,7 @@ function descreaseSecond(PopupDivID, url)
 // popUp
 $.fn.PUIW = function(url, swidth, sheight, rurl, rid)
 {
-   //alert("aa");
+   // alert("aa");
    var id = $(this).attr("id");
    id = "#" + id;
    $(this).html("");
@@ -466,7 +475,7 @@ $.fn.dropdownPostback = function(url, PostContainnerID, ResponseID)
 
 function closePop()
 {
-   //alert('close popup');
+   // alert('close popup');
    $("#ipop").dialog('close');
    $("#ipop").dialog('destroy');
 }
@@ -501,10 +510,55 @@ function ddChange(ddbase, replacediv, url)
 
 //  ---------------------------------------
 
-$.fn.ajaxToolTip = function(url, containnerid)
+$.fn.ToolTip = function()
 {
+   $(this).hover(
+   function ()
+   {
 
-   $(containnerid).LoadPage(url);
+      var tooltipcontent = "";
+      tooltipcontent = $(this).attr("rel");
+      // alert(tooltipcontent);
+      if(tooltipcontent != "")
+      {
+         
+         // $("#atool").addClass("tooltip");
+         $("#tooltip").html('<div class="tooltip"><div class="tdown"></div> <div class="ttip">' + tooltipcontent + '</div></div>');
+         $("#tooltip").show('slow');
+         var po = $(this).offset();
+         var len = tooltipcontent.length;                  
+         var len1= $(this).width();
+         var left = po.left;
+         var top = po.top ;
+         //alert(len);
+         $('#tooltip').css(
+         {
+            left : left + 'px',
+            top : top+20 + 'px',
+            position : 'absolute'
+         }
+         );
+        
+      }
+
+   }
+   ,
+   function ()
+   {
+
+      $('#tooltip', this).css(
+      {
+         position : 'relative'
+
+
+      }
+      );
+      //$("#atool").hide('slow');
+      $("#tooltip").html("");
+      $("#tooltip").removeClass("ttip");
+   }
+   );
+
 }
 
 //  ---------------------------------------
@@ -518,10 +572,10 @@ $.fn.ajaxToolTip = function(ContainnerID, url)
 
       var pos = $(this).offset();
       var width = $(this).width();
-      
+
       $("#atool").css(
       {
-         left : (pos.left - (300+121)) + 'px',
+         left : (pos.left - (300 + 121)) + 'px',
          top : (pos.top - 45) + 'px',
          position : 'absolute'
       }
@@ -565,20 +619,20 @@ $.fn.CheckBox = function(className)
 
 //  ---------------------------------------
 
-function CreateVideoPlayer(aFile,  VideoContainnerID,PlayerPath)
+function CreateVideoPlayer(aFile,  VideoContainnerID, PlayerPath)
 {
    try
    {
 
       var s = new SWFObject(PlayerPath, VideoContainnerID, "580px", "434px", "7");
       s.addParam("allowfullscreen", "true");
-      s.addParam("bufferlength", "7");      
+      s.addParam("bufferlength", "7");
       s.addVariable("width", "580px");
       s.addVariable("height", "434px");
       s.addVariable("displayheight", "300");
       s.addVariable("file", aFile);
       s.addVariable("autostart", false);
-//      s.addVariable("image", ImageURL);
+      //      s.addVariable("image", ImageURL);
       s.write(VideoContainnerID);
       return false;
    }
@@ -587,8 +641,10 @@ function CreateVideoPlayer(aFile,  VideoContainnerID,PlayerPath)
    }
 }
 
-//function CreateVideoPlayer(aFile, ImageURL, VideoContainnerID)
-//{
+//  ---------------------------------------
+
+// function CreateVideoPlayer(aFile, ImageURL, VideoContainnerID)
+// {
 //   try
 //   {
 
@@ -609,54 +665,61 @@ function CreateVideoPlayer(aFile,  VideoContainnerID,PlayerPath)
 //   catch(Err)
 //   {
 //   }
-//}
+// }
 
 
 
-$.fn.centerInClient = function(options) {
-    /// <summary>Centers the selected items in the browser window. Takes into account scroll position.
-    /// Ideally the selected set should only match a single element.
-    /// </summary>    
-    /// <param name="fn" type="Function">Optional function called when centering is complete. Passed DOM element as parameter</param>    
-    /// <param name="forceAbsolute" type="Boolean">if true forces the element to be removed from the document flow 
-    ///  and attached to the body element to ensure proper absolute positioning. 
-    /// Be aware that this may cause ID hierachy for CSS styles to be affected.
-    /// </param>
-    /// <returns type="jQuery" />
-    var opt = { forceAbsolute: false,
-                container: window,    // selector of element to center in
-                completeHandler: null
-              };
-    $.extend(opt, options);
-   
-    return this.each(function(i) {
-        var el = $(this);
-        var jWin = $(opt.container);
-        var isWin = opt.container == window;
+$.fn.centerInClient = function(options)
+{
+   /// < summary > Centers the selected items in the browser window. Takes into account scroll position.
+   /// Ideally the selected set should only match a single element.
+   /// < / summary >
+   /// < param name = "fn" type = "Function" > Optional function called when centering is complete. Passed DOM element as parameter < / param >
+   /// < param name = "forceAbsolute" type = "Boolean" > if true forces the element to be removed from the document flow
+   ///  and attached to the body element to ensure proper absolute positioning.
+   /// Be aware that this may cause ID hierachy for CSS styles to be affected.
+   /// < / param >
+   /// < returns type = "jQuery" / >
+   var opt =
+   {
+      forceAbsolute : false,
+      container : window,    // selector of element to center in
+      completeHandler : null
+   }
+   ;
+   $.extend(opt, options);
 
-        // force to the top of document to ENSURE that 
-        // document absolute positioning is available
-        if (opt.forceAbsolute) {
-            if (isWin)
-                el.remove().appendTo("body");
-            else
-                el.remove().appendTo(jWin.get(0));
-        }
+   return this.each(function(i)
+   {
+      var el = $(this);
+      var jWin = $(opt.container);
+      var isWin = opt.container == window;
 
-        // have to make absolute
-        el.css("position", "absolute");
+      // force to the top of document to ENSURE that
+      // document absolute positioning is available
+      if (opt.forceAbsolute)
+      {
+         if (isWin)
+         el.remove().appendTo("body");
+         else
+         el.remove().appendTo(jWin.get(0));
+      }
 
-        // height is off a bit so fudge it
-        var heightFudge = isWin ? 2.0 : 1.8;
+      // have to make absolute
+      el.css("position", "absolute");
 
-        var x = (isWin ? jWin.width() : jWin.outerWidth()) / 2 - el.outerWidth() / 2;
-        var y = (isWin ? jWin.height() : jWin.outerHeight()) / heightFudge - el.outerHeight() / 2;
+      // height is off a bit so fudge it
+      var heightFudge = isWin ? 2.0 : 1.8;
 
-        el.css("left", x + jWin.scrollLeft());
-        el.css("top", y + jWin.scrollTop());
+      var x = (isWin ? jWin.width() : jWin.outerWidth()) / 2 - el.outerWidth() / 2;
+      var y = (isWin ? jWin.height() : jWin.outerHeight()) / heightFudge - el.outerHeight() / 2;
 
-        // if specified make callback and pass element
-        if (opt.completeHandler)
-            opt.completeHandler(this);
-    });
+      el.css("left", x + jWin.scrollLeft());
+      el.css("top", y + jWin.scrollTop());
+
+      // if specified make callback and pass element
+      if (opt.completeHandler)
+      opt.completeHandler(this);
+   }
+   );
 }

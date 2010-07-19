@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="InstituteCourceInfo.aspx.cs"
-    Inherits="College_Ajaxer_InstituteCourceInfo" %>
+    Inherits="College_Ajaxer_InstituteCourceInfo" EnableEventValidation="false" ValidateRequest="false" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,7 +32,7 @@
                     </div>
                     <div>
                         <asp:TextBox ID="txtMetaDescription" runat="server" Height="203px" TextMode="MultiLine"
-                            Width="670px"></asp:TextBox>
+                            Width="670px" CssClass="mceEditor"></asp:TextBox>
                     </div>
                 </div>
                 <div>
@@ -132,5 +132,19 @@
         </div>
     </div>
     </form>
+
+  <%--  <script language='javascript' type='text/javascript'>
+tinyMCE.init({
+mode : 'textareas',
+theme : 'advanced',
+theme_advanced_buttons1: "bold, italic,underline",
+theme_advanced_buttons2:"",
+theme_advanced_buttons3:"",
+editor_selector : "mceEditor"
+
+});
+//you can also used “advanced” for themes
+    </script>--%>
+
 </body>
 </html>

@@ -9,7 +9,7 @@
     <form id="form1" runat="server">
     <div>
         <ul>
-            <li class="btn roundedall"><span class="ques">&nbsp;</span>
+            <li class="btn roundedall tp" rel="Get All Update" ><span class="ques">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkAll" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">All</aspajax:HyperLink></li>
             <li class="btn roundedall"><span class="ques">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/QuestionInfoView.aspx">Questions</aspajax:HyperLink></li>

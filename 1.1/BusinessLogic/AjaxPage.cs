@@ -161,6 +161,7 @@ namespace BusinessLogic
             {
                 
             }
+            objLoader.InjectScript("$('.tp').ToolTip();", this.Page);
 
         }
         protected override void OnLoadComplete(EventArgs e)

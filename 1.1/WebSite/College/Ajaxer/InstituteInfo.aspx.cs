@@ -16,6 +16,7 @@ public partial class College_Ajaxer_InstituteInfo : AjaxPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        new JScripter.TinyMCE(this.Page).Create();
         BindData();
     }
 

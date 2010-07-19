@@ -83,6 +83,7 @@ li
 {
     display: block;
     text-align: left;
+    border-bottom:dashed 1px #cfcfcf;
 }
 .menu
 {
@@ -303,7 +304,7 @@ input, textarea
     text-align: left;
     display: none;
 }
-.roundedall, .btn, .cin:hover, .contentbox, .trans,#msgstate div,.success
+.roundedall, .btn, .cin:hover, .contentbox, .trans,#msgstate div,.success,.hcurv,.ttip
 {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -317,7 +318,7 @@ input, textarea
     -khtml-border-radius: 0px 0px 5px 5px;
     border-radius: 0px 0px 5px 5px;
 }
-.roundedt, .bksl .btn
+.roundedt, .bksl .btn,.gsad
 {
     -moz-border-radius: 5px 5px 0px 0px;
     -webkit-border-radius: 5px 5px 0px 0px;
@@ -345,7 +346,16 @@ input, textarea
     background-repeat: repeat-x;
     vertical-align: bottom;
 }
-.bksl .btn
+.gsad,.bksl .btn:hover,.bksl .gsad
+{
+        background-image: url(images/gsad.png);
+        color:#fff;
+}
+.gsad a
+{
+    color:#fff;
+}
+.bksl .btn,.gsad
 {
     background-image: url(images/blackbtn.jpg);
     float: left;
@@ -381,7 +391,7 @@ input, textarea
 {
     color: #323232;
 }
-a, .grayhead, .btn a, .gray,#msgstate div,.success,.label
+a, .grayhead, .btn a, .gray,#msgstate div,.success,.label,.hcurv
 {
     font-weight: bold;
     font-family: Tahoma;
@@ -391,12 +401,12 @@ a, .grayhead, .btn a, .gray,#msgstate div,.success,.label
     background-image: url(images/gsl.png);
     border: solid 1px #C5C8C9;
 }
-.gray
+
+.gray,.hcurv
 {
-    min-height: 30px;
-}
-.gray
-{
+    min-height: 20px;
+    padding:0px 10px;
+    line-height:20px;
     font-size: 13px;
 }
 .btn, body
@@ -773,4 +783,26 @@ ul
 {
     clear: both;
     display: block;
+}
+.tooltip
+{
+ 
+    text-align:center;
+}
+.ttip
+{
+    
+    background:transparent url(images/trans.png);    
+    padding:8px;
+    color:#fff;
+    max-width:150px;
+    
+    
+}
+.tdown
+{
+    background:transparent url(images/tdw.png);
+    height:8px;
+    width:12px;
+    margin:0 auto;
 }

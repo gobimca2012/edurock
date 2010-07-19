@@ -52,6 +52,18 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
                 divAdmin.Visible = true;
             }
         }
+        if (this.Request.Url.AbsolutePath.Contains("DashBoard"))
+        {
+            dash.Attributes["class"] = "gsad";
+        }
+        else if (this.Request.Url.AbsolutePath.Contains("AccountSetting"))
+        {
+            acc.Attributes["class"] = "gsad";
+        }
+        else if (this.Request.Url.AbsolutePath.Contains("Admin"))
+        {
+            divAdmin.Attributes["class"] = "gsad";
+        }
 
     }
 }

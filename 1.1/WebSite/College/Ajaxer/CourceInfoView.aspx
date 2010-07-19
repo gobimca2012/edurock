@@ -92,5 +92,17 @@
         </div>
     </div>
     </form>
+
+    <script language='javascript' type='text/javascript'>
+tinyMCE.init({
+mode : 'textareas',
+theme : 'advanced',
+theme_advanced_buttons1: "bold, italic,underline",
+theme_advanced_buttons2:"",
+theme_advanced_buttons3:""
+});
+//you can also used “advanced” for themes
+    </script>
+
 </body>
 </html>

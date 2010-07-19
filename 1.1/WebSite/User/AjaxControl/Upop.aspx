@@ -8,22 +8,23 @@
 <body>
     <form id="form1" runat="server">
     <div class="trans" style="float: left">
-        <div class="roundedall">
-            <div class="gray roundedt">
+        <div class="contentbox">
+            <div class="gray">
                 <div style="float: right">
                     <asp:HyperLink ID="lnkclose" runat="server"><div class="close"></div></asp:HyperLink>
                 </div>
+                <div id="lblName" runat="server" style="float: left">
+                </div>
                 <div style="clear: both">
                 </div>
-                <span id="lblName" runat="server"></span>
             </div>
             <div class="whitecont">
                 <div>
-                    <div>
-                        <div style="float: left">
+                    <div style="width: 360px">
+                        <div style="float: left; width: 110">
                             <asp:Image ID="propic" runat="server" Width="100" />
                         </div>
-                        <div style="float: left; text-align: left; width: 120px" class="btitle">
+                        <div style="float: left; text-align: left; width: 240px" class="btitle">
                             <div>
                                 Status : <span id="lblStatus" runat="server"></span>
                             </div>

@@ -38,7 +38,7 @@ public partial class College_Ajaxer_CourceInfoView : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"), this.Page);
         {
             BindList();
             TotalPage = new InstituteController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID).Count / PageSize;

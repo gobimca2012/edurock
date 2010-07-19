@@ -205,7 +205,9 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         JScripter.DatePicker objdate = new JScripter.DatePicker(this.Page, true);
+        new JScripter.TinyMCE(this.Page).Create();
         objdate.DatePickerTextBox(txtStartDate);
         objdate.DatePickerTextBox(txtEndDate);
         if (Request.Params["icid"] != null)
