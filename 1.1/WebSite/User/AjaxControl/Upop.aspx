@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="trans" style="float: left">
+    <div class="trans" style="float: left;width:400px">
         <div class="contentbox">
             <div class="gray">
                 <div style="float: right">

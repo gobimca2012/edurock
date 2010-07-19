@@ -14,77 +14,16 @@
             Images</div>
         <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
             <LayoutTemplate>
-                <%--    <table>--%>
-                <%--   <thead>
-                        <tr>
-                            <td>
-                                Name
-                            </td>
-                            <td>
-                                Description
-                            </td>
-                            <td>
-                                MetaDescription
-                            </td>
-                            <td>
-                                Tag
-                            </td>
-                            <td>
-                                Rating
-                            </td>
-                            <td>
-                                FilePath
-                            </td>
-                            <td>
-                                DocumentType
-                            </td>
-                            <td>
-                                ModifiedDate
-                            </td>
-                        </tr>
-                    </thead>--%>
+                
                 <div class="whitecont">
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                 </div>
-                <%-- </table>--%>
+              
             </LayoutTemplate>
             <ItemTemplate>
-                <%--    <tr>
-                    <td>
-                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("DocumentID").ToString()%>'>
-                        <%#Eval("Name") %></aspajax:HyperLink>
-                    </td>
-                    <td>
-                        <%#Eval("Description") %>
-                    </td>
-                    <td>
-                        <%#Eval("MetaDescription") %>
-                    </td>
-                    <td>
-                        <%#Eval("Tag") %>
-                    </td>
-                    <td>
-                        <%#Eval("Rating") %>
-                    </td>
-                    <td>
-                        <%#Eval("FilePath") %>
-                    </td>
-                    <td>
-                        <%#Eval("DocumentType") %>
-                    </td>
-                    <td>
-                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
-                    </td>
-                    <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("DocumentID").ToString(), "#contentBox", "#contentBox")%>
-                    </td>
-                    <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?dtype=1&did=" + Eval("DocumentID")%>'
-                            ContainnerID="#contentBox">Edit</aspajax:HyperLink>
-                    </td>
-                </tr>--%>
+              
                 <div class="dasbo">
-                    <div style="float: left">
+                    <div style="float: left;width:550px">
                         <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
                         &nbsp;<%#Eval("Title") %></aspajax:HyperLink>
                     </div>
@@ -102,7 +41,7 @@
         </asp:ListView>
         <div class="gray">
             <div style="float: right">
-                <div style="float: left">
+                <div style="float: left;">
                     <aspajax:AjaxLinkButton ID="lnkPrevDocument" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
                         Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
                 </div>

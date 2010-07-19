@@ -24,9 +24,10 @@
                         <div>
                             <%#Eval("FirstName") %></div>
                     </div>
+                </div>
             </ItemTemplate>
         </asp:ListView>
-        <div class="gray">
+        <div class="gray clear">
             <div>
                 <div style="float: right">
                     <div style="float: left">

@@ -104,10 +104,9 @@
                     <div style="float: left; width: 781px; border-left: solid 1px #444;">
                         <div class="bksl">
                             <div>
-                                <h1 style="color: #fff; margin: 0 0 0 30px">
-                                    Learning Management System</h1>
+                                <div class="head" id="headingBox">Learning Management system</div>
                             </div>
-                            <div style="padding-top: 29px;">
+                            <div style="margin-top: 29px;">
                                 <div class="btn" id="dash" runat="server">
                                     <div class="dash" style="float: left">
                                     </div>

@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="float: left; width: 500px">
+    <div style="float: left; width: 500px;">
         <div class="contentbox">
             <div class="hcurv">
                 All Activity
@@ -122,6 +122,8 @@
                     <div style="float: left">
                         <aspajax:AjaxLinkButton ID="lnkNextQuestion" runat="server" OnAjaxClick="NextAjaxClick"
                             RequestContainner="#Question" Pagger="true" Increment="true" ResponseContainner="#Question">Next</aspajax:AjaxLinkButton>
+                    </div>
+                    <div class="clear">
                     </div>
                 </div>
                 <div style="clear: both">

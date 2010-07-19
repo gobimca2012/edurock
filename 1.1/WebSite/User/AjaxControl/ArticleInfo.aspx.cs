@@ -148,6 +148,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        new JScripter.TinyMCE(this.Page).Create();
         if (Request.Params["arid"] != null)
         {
             AjaxState["arid"] = Request.Params["arid"];

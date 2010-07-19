@@ -13,63 +13,23 @@
             Homeworks</div>
         <asp:ListView ID="ListHomeWork" runat="server">
             <LayoutTemplate>
-                <%-- <table>
-                    <thead>
-                        <tr>
-                            <td>
-                                Title
-                            </td>
-                            <td>
-                                InstituteCourceID
-                            </td>
-                            <td>
-                                InstituteSubjectID
-                            </td>
-                            <td>
-                                ModifiedDate
-                            </td>
-                        </tr>
-                    </thead>--%>
                 <div class="whitecont">
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                 </div>
-                <%--</table>--%>
             </LayoutTemplate>
             <ItemTemplate>
-                <%--<tr>
-                    <td>
-                        <aspajax:HyperLink ID="lnkFull" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWork.aspx")+"?hwid="+Eval("HomeWorkID").ToString()%>'
-                            ContainnerID="#contentBox"><%#Eval("Title") %></aspajax:HyperLink>
-                    </td>
-                    <td>
-                        <%#Eval("InstituteCourceID") %>
-                    </td>
-                    <td>
-                        <%#Eval("InstituteSubjectID") %>
-                    </td>
-                    <td>
-                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
-                    </td>
-                    <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("HomeWorkID").ToString(), "#contentBox", "#contentBox")%>
-                    </td>
-                    <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWorkInfo.aspx") + "?hwid=" + Eval("HomeWorkID")%>'
-                            ContainnerID="#contentBox">Edit</aspajax:HyperLink>
-                    </td>
-                </tr>--%>
-                <div style="clear:both">
-                    <div style="float: left" class="btitle">
+                <div style="clear: both" class="dasbo">
+                    <div style="float: left;width:550px" class="btitle" >
                         <aspajax:HyperLink ID="lnkFull" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWork.aspx")+"?hwid="+Eval("ID").ToString()%>'
                             ContainnerID="#contentBox"><%#Eval("Title") %></aspajax:HyperLink>
                     </div>
                     <div style="float: right">
                         Post on &nbsp;<%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                     </div>
-                    <div style="clear:both">
+                    <div style="clear: both">
                     </div>
                 </div>
-                <hr />
+                
             </ItemTemplate>
         </asp:ListView>
         <div class="gray">

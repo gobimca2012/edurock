@@ -10,39 +10,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <%--<asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
-    --%><div style="float: left;" class="qs">
-        <%-- <asp:UpdatePanel ID="update" runat="server" >
-            <ContentTemplate>
-                <uc3:Question ID="Question1" runat="server" />
-            </ContentTemplate>
-        </asp:UpdatePanel>--%>
+    <div style="float: left;" class="qs">
         <div id="exam">
         </div>
         <div>
-            <div style="float: left">
-                Remainning Time
-            </div>
-            <div id="divh" style="float: left">
-            </div>
-            <div style="float: left">
-                &nbsp;:&nbsp;
-            </div>
-            <div id="divm" style="float: left">
-            </div>
-            <div style="float: left">
-                &nbsp;:&nbsp;
-            </div>
-            <div id="divs" style="float: left">
-            </div>
+            <span id="time"></span>
         </div>
-    </div>
-    <div>
-        Time Remain</div>
-    <div>
-        <span id="time"></span>
-    </div>
     </form>
 </body>
 </html>

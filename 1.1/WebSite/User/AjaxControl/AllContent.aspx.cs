@@ -220,6 +220,10 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         {
             URL = ResolveUrl("~/User/AjaxControl/exam.aspx") + "?eid=" + ID;
         }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Article)
+        {
+            URL = ResolveUrl("~/User/AjaxControl/Article.aspx") + "?arid=" + ID;
+        }
         return URL;
     }
     protected void ListQuestionOnItemDataBound(object sender, ListViewItemEventArgs e)
