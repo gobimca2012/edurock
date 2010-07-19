@@ -24,14 +24,14 @@
                         <div style="float: left; width: 110">
                             <asp:Image ID="propic" runat="server" Width="100" />
                         </div>
-                        <div style="float: left; text-align: left; width: 240px" class="btitle">
-                            <div>
-                                Status : <span id="lblStatus" runat="server"></span>
+                        <div style="float: left; text-align: left; width: 240px">
+                            <div  class="btitle">
+                                Status : <span id="lblStatus" runat="server" class="btext"></span>
                             </div>
                         </div>
                         <div style="clear: both">
                         </div>
-                        <div>
+                        <div class="btext">
                             <div>
                             </div>
                             <div>

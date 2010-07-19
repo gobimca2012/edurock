@@ -176,15 +176,23 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         }
         else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Audio)
         {
-            CssClass = "ques";
+            CssClass = "aud";
         }
         else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.HomeWork)
         {
-            CssClass = "ques";
+            CssClass = "howo";
         }
         else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Exam)
         {
             CssClass = "exm";
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Event)
+        {
+            CssClass = "evt";
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Article)
+        {
+            CssClass = "art";
         }
         return CssClass;
     }

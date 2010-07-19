@@ -109,6 +109,7 @@ public partial class User_AjaxControl_AnswerInfoView : AjaxPage
         }
         else if (e.Command.Contains("accept"))
         {
+            //new AnswerController().UpdateAnswerStateByAnswerID(new Guid(e.Id), Convert.ToInt32(HtmlHelper.ControlValue(e.customId1)));
             new AnswerController().UpdateAnswerStateByAnswerID(new Guid(e.Id), Convert.ToInt32(HtmlHelper.ControlValue(e.customId1)));
             BindList();
         }

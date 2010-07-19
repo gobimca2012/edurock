@@ -118,10 +118,15 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
+            
         }
         if (Request.Params["usid"] != null)
         {
             AjaxState["usid"] = Request.Params["usid"];
+        }
+        if (_InstituteCourceID > 0)
+        {
+            header.InnerHtml = "Questions in " + new InstituteCourceController().GetInstituteCourceName(_InstituteCourceID);
         }
         hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?icid=" + _InstituteCourceID;
         //hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/MyQuestion.aspx") + "?icid=" + ICID;

@@ -10,11 +10,11 @@
 <body>
     <form id="form1" runat="server">
     <div class="contentbox">
-        <div class="gray">
+        <div class="gray" id="header" runat="server">
             Examinations
         </div>
         <div class="whitecont clear">
-            <asp:ListView ID="ListExam" runat="server">
+            <asp:ListView ID="ListExam" runat="server" OnItemDataBound="ListExamOnItemDataBound" DataKeyNames="Param1">
                 <LayoutTemplate>
                     <div>
                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
@@ -27,21 +27,22 @@
                         <%#Eval("Title") %></aspajax:HyperLink>
                         </div>
                         <div style="float: right">
-                            
-                                <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>'
-                                    ModifiedDate='<%#Eval("ModifiedDate") %>' />
+                            <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>'
+                                ModifiedDate='<%#Eval("ModifiedDate") %>' />
                         </div>
                         <div style="clear: both">
                         </div>
                         <div>
-                            <aspajax:HyperLink ID="lnkExmStart" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + Eval("ID").ToString()%>'>Start Exam</aspajax:HyperLink>
-                        </div>
-                        <div>
                             <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
                         </div>
-                        <div>
-                            <aspajax:HyperLink ID="lnkExamAttenter" runat="server" ContainnerID="#contentBox"
-                                NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/ExamAttender.aspx")+"?eid="+Eval("ID").ToString()%>'>Exam Attenders</aspajax:HyperLink>
+                        <div id="IsActive" runat="server">
+                            <div>
+                                <aspajax:HyperLink ID="lnkExmStart" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/College/ExamIntroduction.aspx") + "?eid=" + Eval("ID").ToString()%>'>Start Exam</aspajax:HyperLink>
+                            </div>
+                            <div>
+                                <aspajax:HyperLink ID="lnkExamAttenter" runat="server" ContainnerID="#contentBox"
+                                    NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/ExamAttender.aspx")+"?eid="+Eval("ID").ToString()%>'>Exam Attenders</aspajax:HyperLink>
+                            </div>
                         </div>
                     </div>
                 </ItemTemplate>

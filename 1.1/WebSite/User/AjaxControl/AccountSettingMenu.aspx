@@ -9,12 +9,10 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <ul>
-            <li class="btn">
-                <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/UserInfoView.aspx"> Personal Info</aspajax:HyperLink></li>
+        <div class="btn">
+            <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/UserInfoView.aspx"> Personal Info</aspajax:HyperLink></li>
             <%--<li><a href="#tabs-2">Education Info</a></li>--%>
-        </ul>
-    </div>
+        </div>
     </form>
 </body>
 </html>

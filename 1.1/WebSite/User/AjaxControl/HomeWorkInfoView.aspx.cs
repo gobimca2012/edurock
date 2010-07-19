@@ -87,10 +87,15 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
+            
         }
         if (Request.Params["usid"] != null)
         {
             AjaxState["usid"] = Request.Params["usid"];
+        }
+        if (_InstituteCourceID > 0)
+        {
+            header.InnerHtml = "Homeworks in " + new InstituteCourceController().GetInstituteCourceName(_InstituteCourceID);
         }
         {
             BindList();

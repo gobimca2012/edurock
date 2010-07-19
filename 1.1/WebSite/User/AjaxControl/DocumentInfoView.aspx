@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
     <div class="contentbox">
-        <div class="gray">
+        <div class="gray" id="header" runat="server">
             Images</div>
         <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
             <LayoutTemplate>

@@ -9,7 +9,7 @@ body
     text-align: center;
     margin: 0px;
     padding: 0px;
-    background: url(   "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;
+    background: url(     "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;
     text-align: left;
 }
 .page, #msgstate div
@@ -71,7 +71,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(                         'images/headerbt.jpg' ) repeat-x;
+    background: url(                           'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -377,7 +377,7 @@ input, textarea
     text-align: center;
     line-height: 12px;
     margin: 2px;
-    min-height:14px;
+    min-height: 14px;
 }
 .btn:hover, .cin:hover
 {
@@ -392,7 +392,7 @@ input, textarea
 {
     color: #323232;
 }
-a, .grayhead, .btn a, .gray, #msgstate div, .success, .label, .hcurv,.head
+a, .grayhead, .btn a, .gray, #msgstate div, .success, .label, .hcurv, .head
 {
     font-weight: bold;
     font-family: Tahoma;
@@ -505,7 +505,7 @@ h3
 }
 .whitecont
 {
-    margin:10px;
+    margin: 10px;
     line-height: 22px;
     background: transparent;
     clear: both;
@@ -537,7 +537,7 @@ h3
 }
 .trans
 {
-    background: url(         'images/trans.png' );
+    background: url(           'images/trans.png' );
     padding: 10px;
 }
 /* Icons */
@@ -604,6 +604,14 @@ h3
     line-height: 12px;
     empty-cells: show;
 }
+.howo {
+background-color:Transparent;
+background-image:url("images/icons.png");
+background-position:-257px -9px;
+empty-cells:show;
+line-height:12px;
+padding:2px 5px;
+}
 .vid
 {
     background-color: Transparent;
@@ -623,6 +631,52 @@ h3
     padding: 2px 6px;
     line-height: 12px;
     empty-cells: show;
+}
+.all {
+background-color:Transparent;
+background-image:url("images/icons.png");
+background-position:-198px -40px;
+empty-cells:show;
+line-height:12px;
+padding:2px 5px;
+}
+.art
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+    background-position: -220px -40px;
+    padding: 2px 6px;
+    line-height: 12px;
+    empty-cells: show;
+}
+.aud
+{
+    background-color: Transparent;
+    background-image: url( "images/icons.png" );
+    background-position: -235px -9px;
+    empty-cells: show;
+    line-height: 12px;
+    padding: 2px 6px;
+}
+.evt
+{
+    background-color: Transparent;
+    background-image: url(images/icons.png);
+    background-position: 0 0;
+    background-position: -113px -40px;
+    padding: 2px 6px;
+    line-height: 12px;
+    empty-cells: show;
+}
+.lbr
+{
+    background-color: Transparent;
+    background-image: url(  "images/icons.png" );
+    background-position: -170px -40px;
+    empty-cells: show;
+    line-height: 12px;
+    padding: 2px 10px 0 0;
 }
 .exm
 {
@@ -657,7 +711,7 @@ h3
 .close
 {
     background-color: Transparent;
-    background-image: url(   "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: -209px -10px;
     empty-cells: show;
     line-height: 12px;
@@ -821,16 +875,16 @@ ul
 }
 .head
 {
- font-size:16px;
-padding:3px 43px;  
- color:#fff;
+    font-size: 16px;
+    padding: 3px 43px;
+    color: #fff;
 }
 input
 {
-    min-width:20px;
+    min-width: 20px;
 }
-input[type=radio],input[type=checkbox]
+input[type=radio], input[type=checkbox]
 {
-    width:20px;
-    border:none 0px;
+    width: 20px;
+    border: none 0px;
 }

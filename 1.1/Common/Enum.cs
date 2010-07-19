@@ -53,6 +53,12 @@ namespace Common
         Article=8,
         Event=9
     }
+    public enum AnswerStatusEnum
+    {
+        Open=0,
+        Accepted=1
+    }
+
     public class FileInformation
     {
         public static string getFileExtention(string path)

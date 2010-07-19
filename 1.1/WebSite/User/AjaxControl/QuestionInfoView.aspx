@@ -12,7 +12,7 @@
     <form id="form1" runat="server">
     <div style="padding: 5px;">
         <div class="contentbox">
-            <div class="gray">
+            <div class="gray" id="header" runat="server">
                 Questions
                 <div id="dumi" runat="server" visible="false">
                     <ul>

@@ -87,10 +87,15 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
+           
         }
         if (Request.Params["usid"] != null)
         {
             AjaxState["usid"] = Request.Params["usid"];
+        }
+        if (_InstituteCourceID > 0)
+        {
+            header.InnerHtml = "Examinations in " + new InstituteCourceController().GetInstituteCourceName(_InstituteCourceID);
         }
         if (Request.Params["icid"] != null)
         {
@@ -162,9 +167,16 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
 
     protected void ListExamOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
-        //ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        //string ExamID = ListExam.DataKeys[currentItem.DataItemIndex]["ExamID"].ToString();
-        //new ExamController().de
+        ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        string IsActive = ListExam.DataKeys[currentItem.DataItemIndex]["Param1"].ToString();
+        HtmlGenericControl IsActiveCtr = (HtmlGenericControl)currentItem.FindControl("IsActive");
+        if (IsActiveCtr != null)
+        {
+            if (IsActive=="1")
+            {
+                IsActiveCtr.Visible = true;
+            }
+        }
 
 
 

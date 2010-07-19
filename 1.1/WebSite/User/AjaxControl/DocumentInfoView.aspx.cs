@@ -94,12 +94,16 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
+            
         }
         if (Request.Params["usid"] != null)
         {
             AjaxState["usid"] = Request.Params["usid"];
         }
-
+        if (_InstituteCourceID > 0)
+        {
+            header.InnerHtml = "Documents in " + new InstituteCourceController().GetInstituteCourceName(_InstituteCourceID);
+        }
         if (Request.Params["dtype"] != null)
         {
             AjaxState["dtype"] = Request.Params["dtype"];

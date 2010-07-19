@@ -34,7 +34,7 @@
             </div>--%>
                 <div>
                     <div>
-                        <asp:Image ID="img" runat="server" Visible="false" Width="300" />
+                        <asp:Image ID="img" runat="server" Visible="false" Width="560" />
                     </div>
                     <div id="videoPlayer">
                     </div>

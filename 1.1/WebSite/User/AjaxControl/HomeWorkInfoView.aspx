@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div class="contentbox">
-        <div class="gray">
+        <div class="gray" id="header" runat="server">
             Homeworks</div>
         <asp:ListView ID="ListHomeWork" runat="server">
             <LayoutTemplate>

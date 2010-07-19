@@ -69,7 +69,10 @@ public partial class User_AjaxControl_Exam : AjaxPage
 
             if (data.IsActive != null)
 
-                lblIsActive.InnerHtml = data.IsActive.ToString();
+                if ((bool)data.IsActive)
+                    lblIsActive.InnerHtml = "Activated";
+                else
+                    lblIsActive.InnerHtml = "InActivated";
 
             if (data.RequirePecentage != null)
 

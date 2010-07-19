@@ -2,12 +2,12 @@
     Inherits="User_UserControl_FullViewSideInfo" %>
 <%@ Register Src="UserToolTipLink.ascx" TagName="UserToolTipLink" TagPrefix="uc1" %>
 <div class="graycontent roundedall">
-    <div>
+    <%--<div>
         Ratting:<span id="lblRatting" runat="server"></span>
     </div>
     <div>
         Created By : <span id="lblCreatedBy" runat="server"></span>
-    </div>
+    </div>--%>
     <div>
         Cource Name: <span id="lblCourceName" runat="server"></span>
     </div>
