@@ -14,28 +14,32 @@
                 <div class="gray">
                 </div>
                 <div id="Exam" class="whitecont">
-                    <div>
-                        <div>
-                            <span class="label">ExamName</span>
-                        </div>
-                        <div>
-                            <span id="lblExamName" runat="server"></span>
-                        </div>
+                    <div id="warnningMessage" runat="server" style="color:Red;font-weight:bold">
                     </div>
                     <div>
                         <div>
-                            <span class="label">SubjectName</span>
+                            <div>
+                                <span class="label">ExamName</span>
+                            </div>
+                            <div>
+                                <span id="lblExamName" runat="server"></span>
+                            </div>
                         </div>
                         <div>
-                            <span id="lblSubjectName" runat="server"></span>
+                            <div>
+                                <span class="label">SubjectName</span>
+                            </div>
+                            <div>
+                                <span id="lblSubjectName" runat="server"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div>
                         <div>
-                            <span class="label">Description</span>
-                        </div>
-                        <div>
-                            <span id="lblDescription" runat="server"></span>
+                            <div>
+                                <span class="label">Description</span>
+                            </div>
+                            <div>
+                                <span id="lblDescription" runat="server"></span>
+                            </div>
                         </div>
                     </div>
                 </div>

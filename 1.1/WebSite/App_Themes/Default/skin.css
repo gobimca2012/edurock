@@ -9,7 +9,7 @@ body
     text-align: center;
     margin: 0px;
     padding: 0px;
-    background: url(     "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;
+    background: url(      "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;
     text-align: left;
 }
 .page, #msgstate div
@@ -71,7 +71,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(                           'images/headerbt.jpg' ) repeat-x;
+    background: url(                            'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -537,7 +537,7 @@ h3
 }
 .trans
 {
-    background: url(           'images/trans.png' );
+    background: url(            'images/trans.png' );
     padding: 10px;
 }
 /* Icons */
@@ -604,13 +604,14 @@ h3
     line-height: 12px;
     empty-cells: show;
 }
-.howo {
-background-color:Transparent;
-background-image:url("images/icons.png");
-background-position:-257px -9px;
-empty-cells:show;
-line-height:12px;
-padding:2px 5px;
+.howo
+{
+    background-color: Transparent;
+    background-image: url( "images/icons.png" );
+    background-position: -257px -9px;
+    empty-cells: show;
+    line-height: 12px;
+    padding: 2px 5px;
 }
 .vid
 {
@@ -632,13 +633,14 @@ padding:2px 5px;
     line-height: 12px;
     empty-cells: show;
 }
-.all {
-background-color:Transparent;
-background-image:url("images/icons.png");
-background-position:-198px -40px;
-empty-cells:show;
-line-height:12px;
-padding:2px 5px;
+.all
+{
+    background-color: Transparent;
+    background-image: url( "images/icons.png" );
+    background-position: -198px -40px;
+    empty-cells: show;
+    line-height: 12px;
+    padding: 2px 5px;
 }
 .art
 {
@@ -653,7 +655,7 @@ padding:2px 5px;
 .aud
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -235px -9px;
     empty-cells: show;
     line-height: 12px;
@@ -672,7 +674,7 @@ padding:2px 5px;
 .lbr
 {
     background-color: Transparent;
-    background-image: url(  "images/icons.png" );
+    background-image: url(   "images/icons.png" );
     background-position: -170px -40px;
     empty-cells: show;
     line-height: 12px;
@@ -711,7 +713,7 @@ padding:2px 5px;
 .close
 {
     background-color: Transparent;
-    background-image: url(     "images/icons.png" );
+    background-image: url(      "images/icons.png" );
     background-position: -209px -10px;
     empty-cells: show;
     line-height: 12px;
@@ -820,7 +822,7 @@ a
 }
 .bgmc
 {
-    margin: 0px 10px;
+margin:0 9px 0 10px;
     background: #fff;
 }
 .udate
@@ -887,4 +889,19 @@ input[type=radio], input[type=checkbox]
 {
     width: 20px;
     border: none 0px;
+}
+.lcbg
+{
+    background: url(images/lcbg.png);
+    height: 20px;
+    width:215px;
+    background-position: left;
+    background-repeat:no-repeat;
+}
+.rcbg
+{
+    background: url(images/rcbg.png);
+    background-position:right;
+    height: 20px;        
+    background-repeat:no-repeat;
 }

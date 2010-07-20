@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="float: left; width: 500px;">
+    <div style="float: left; width: 65%;">
         <div class="contentbox">
             <div class="hcurv">
                 All Activity
@@ -18,86 +18,11 @@
                 <div id="allcon">
                     <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="ID,ContentType" OnItemDataBound="ListQuestionOnItemDataBound">
                         <LayoutTemplate>
-                            <%-- <table>
-                    <thead>
-                        <tr>
-                            <td>
-                                QuestionID
-                            </td>
-                            <td>
-                                QuestionText
-                            </td>
-                            <td>
-                                Description
-                            </td>
-                            <td>
-                                LoginUserID
-                            </td>
-                            <td>
-                                InstituteCourceID
-                            </td>
-                            <td>
-                                InstituteSubjectID
-                            </td>
-                            <td>
-                                tag
-                            </td>
-                            <td>
-                                QuestionTypeID
-                            </td>
-                            <td>
-                                QuestionStatusID
-                            </td>
-                            <td>
-                                ModifiedDate
-                            </td>
-                        </tr>
-                    </thead>--%>
                             <div>
                                 <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                             </div>
-                            <%--</table>--%>
                         </LayoutTemplate>
                         <ItemTemplate>
-                            <%--<tr>
-                    <td>
-                        <%#Eval("QuestionID") %>
-                    </td>
-                    <td>
-                        <%#Eval("QuestionText") %>
-                    </td>
-                    <td>
-                        <%#Eval("Description") %>
-                    </td>
-                    <td>
-                        <%#Eval("LoginUserID") %>
-                    </td>
-                    <td>
-                        <%#Eval("InstituteCourceID") %>
-                    </td>
-                    <td>
-                        <%#Eval("InstituteSubjectID") %>
-                    </td>
-                    <td>
-                        <%#Eval("tag") %>
-                    </td>
-                    <td>
-                        <%#Eval("QuestionTypeID") %>
-                    </td>
-                    <td>
-                        <%#Eval("QuestionStatusID") %>
-                    </td>
-                    <td>
-                        <%#Eval("ModifiedDate") %>
-                    </td>
-                    <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("QuestionID").ToString(), "#Question", "#Question")%>
-                    </td>
-                    <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/QuestionInfo.aspx") + "?cid=" + Eval("QuestionID")%>'
-                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
-                    </td>
-                </tr>--%>
                             <div class="dasbo">
                                 <div>
                                     <span class='<%#GetCSSClass(Eval("ContentType").ToString()) %>'>&nbsp;</span>
@@ -131,7 +56,7 @@
             </div>
         </div>
     </div>
-    <div id="sidewidget" style="float: right; width: 268px;">
+    <div id="sidewidget" style="float: right; width:34%;">
     </div>
     <div style="clear: both">
     </div>

@@ -172,9 +172,13 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
         HtmlGenericControl IsActiveCtr = (HtmlGenericControl)currentItem.FindControl("IsActive");
         if (IsActiveCtr != null)
         {
-            if (IsActive=="1")
+            if (IsActive == "1")
             {
                 IsActiveCtr.Visible = true;
+            }
+            else
+            {
+                IsActiveCtr.Visible = false;
             }
         }
 

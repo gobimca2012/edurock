@@ -18,20 +18,6 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">EventID</span>
-                        </div>
-                        <div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span class="label">LoginUserID</span>
-                        </div>
-                        <div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
                             <span class="label">Title</span>
                         </div>
                         <div>
@@ -122,13 +108,7 @@
                             <asp:TextBox ID="txtContactPhone" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <div>
-                        <div>
-                            <span class="label">ModifiedDate</span>
-                        </div>
-                        <div>
-                        </div>
-                    </div>
+                   
                 </div>
             </fieldset>
         </div>

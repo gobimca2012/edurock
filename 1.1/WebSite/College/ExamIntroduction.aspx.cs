@@ -25,10 +25,28 @@ public partial class College_ExamIntroduction : AjaxPage
         Session.Remove(SessionName.ExamList.ToString());
         Session.Remove(SessionName.QuestionList.ToString());
         Session.Remove(SessionName.CurrentQuestion.ToString());
+        var userExamData = new UserExamController().GetbyExamID(_ExamId);
+
         if (!this.IsPostBack)
         {
+            int _UserExamID = 0;
+            if (userExamData.Count > 0)
+            {
+                if ((bool)userExamData[0].IsFinish)
+                {
+                    warnningMessage.InnerHtml = "you allready Attend this Examamination you can not attend again ";
+                }
+                else
+                {
+                    _UserExamID = userExamData[0].UserExamID;
+                    warnningMessage.InnerHtml = "you allready Attend Exam please finished this Examination";
+                }
+            }
+            else
+            {
 
-            int _UserExamID = new UserExamController().Add(new UserAuthontication().LoggedInUserID, _ExamId, DateTime.Now, DateTime.Now, false, DateTime.Now);
+                _UserExamID = new UserExamController().Add(new UserAuthontication().LoggedInUserID, _ExamId, DateTime.Now, DateTime.Now, false, DateTime.Now);
+            }
             Response.Cookies[CookieName.UserExamID.ToString()].Value = _UserExamID.ToString();
             Response.Cookies[CookieName.ExamID.ToString()].Value = Request.Params["eid"];
             BindData();

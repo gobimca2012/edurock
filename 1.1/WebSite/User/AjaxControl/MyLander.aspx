@@ -16,14 +16,10 @@
             <li><span class="exm">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkMyExam" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ExamInfoView.aspx">Exams</aspajax:HyperLink>
             </li>
-            <%--<li ><span class="ques">&nbsp;</span>
-                <aspajax:HyperLink ID="lnktut" runat="server" ContainnerID="#contentBox" NavigateUrl="~/All/Ajaxer/TutorialInfoView.aspx">Tutorials</aspajax:HyperLink></li>--%>
-            <li><span class="us">&nbsp;</span>
-                <aspajax:HyperLink ID="lnkUsers" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ICUserInfoView.aspx">Users</aspajax:HyperLink></li>
             <li><span class="ques">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkMyHomeWork" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/HomeWorkInfoView.aspx">HomeWorks</aspajax:HyperLink></li>
             <li><span class="art"></span>
-                <aspajax:HyperLink ID="lnkArticle" runat="server" ContainnerID="#contentBox">Articles</aspajax:HyperLink></li>
+                <aspajax:HyperLink ID="lnkMyArticle" runat="server" ContainnerID="#contentBox">Articles</aspajax:HyperLink></li>
             <li><span class="img">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkMyImage" runat="server" ContainnerID="#contentBox">Images</aspajax:HyperLink></li>
             <li><span class="aud">&nbsp;</span>

@@ -36,7 +36,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
             Guid DocumentID = Guid.NewGuid();
 
-            string Name; if (HtmlHelper.ControlValue(txtName.ClientID)=="") { throw new Exception("Please enter Name"); } Name = HtmlHelper.ControlValue(txtName.ClientID);
+            string Name; if (HtmlHelper.ControlValue(txtName.ClientID) == "") { throw new Exception("Please enter Name"); } Name = HtmlHelper.ControlValue(txtName.ClientID);
 
             string Description; if (false) { throw new Exception(""); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
@@ -48,17 +48,17 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
             int Rating = 0;
 
-            string FilePath; if (HtmlHelper.ControlValue("filePath")=="") { throw new Exception("Please select File"); } FilePath = HtmlHelper.ControlValue("filePath");
+            string FilePath; if (HtmlHelper.ControlValue("filePath") == "") { throw new Exception("Please select File"); } FilePath = HtmlHelper.ControlValue("filePath");
 
             int DocumentType = _DocumentType;
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
-            int InstituteSubjectID; if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject")=="0") { throw new Exception("Please select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
+            int InstituteSubjectID; if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject") == "0") { throw new Exception("Please select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
             DateTime ModifiedDate = DateTime.Now;
 
             new DocumentController().Add(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceID, InstituteSubjectID, ModifiedDate);
             Session[SessionName.SucessMessage.ToString()] = "Data hasbeen Added SuccessFully";
-            Response.Redirect("~/User/AjaxControl/Document.aspx?did=" + DocumentID.ToString(),true);
+            Response.Redirect("~/User/AjaxControl/Document.aspx?did=" + DocumentID.ToString(), true);
         }
         catch (Exception ex)
         {
@@ -82,10 +82,10 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
 
 
-       
-       
+
+
     }
-		
+
     private void EditData()
     {
         try
@@ -111,7 +111,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
             int InstituteSubjectID; if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject") == "0") { throw new Exception("Please select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
-            
+
             DateTime ModifiedDate = DateTime.Now;
 
             new DocumentController().UpdateByDocumentID(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, ModifiedDate);
@@ -191,7 +191,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             {
                 AjaxState["dtype"] = Request.Params["dtype"];
             }
-            objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx") + "?uptype=" + _DocumentType.ToString(), "ipop", "500", "500", ResolveUrl("~/User/AjaxControl/UploadResponse.aspx"), "#popupresponce");
+            objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx") + "?uptype=" + _DocumentType.ToString(), "ipop", "300", "100", ResolveUrl("~/User/AjaxControl/UploadResponse.aspx"), "#popupresponce");
             //objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx")+"?uptype="+_DocumentType.ToString(), "#ipop");
             if (Request.Params["did"] != null)
             {

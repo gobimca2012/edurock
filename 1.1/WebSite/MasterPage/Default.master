@@ -11,12 +11,10 @@
 </head>
 <body>
     <form id="form1" runat="server" enctype="multipart/form-data">
-   
     <div id="progress">
     </div>
     <div id="tooltip">
-   </div>
-   
+    </div>
     <div id="atool">
         <div id="acont">
         </div>
@@ -31,7 +29,7 @@
     <div id="ipop">
     </div>
     <div class="page">
-        <div class="bgtl">
+        <%--<div class="bgtl">
             <div class="bgtr">
                 <div class="bgtll" style="float: left; width: 188px">
                 </div>
@@ -40,11 +38,15 @@
                 <div style="clear: both">
                 </div>
             </div>
+        </div>--%>
+        <div class="rcbg">
+            <div class="lcbg">
+            </div>
         </div>
         <div class="bgml">
             <div class="bgmr">
                 <div class="bgmc">
-                    <div style="float: left; width: 198px;" id="sidemenu">
+                    <div style="float: left; width: 20%;" id="sidemenu">
                         <div style="text-align: center; padding: 2px">
                             <div>
                                 <asp:Image ID="img" runat="server" Width="172" />
@@ -88,7 +90,7 @@
                         </div>
                         <div class="leftmenu">
                             <div id="mymenu">
-                                <div class="grayhead" class="tp" rel="You can manage your data From My Stuff">
+                                <div class="grayhead tp" rel="You can manage your data From My Stuff">
                                     <span class="sub" style="float: left"></span><span style="float: left">My Stuff
                                     </span>
                                     <div style="clear: both">
@@ -101,23 +103,26 @@
                             </div>
                         </div>
                     </div>
-                    <div style="float: left; width: 781px; border-left: solid 1px #444;">
+                    <div style="float: right; width: 79%; border-left: solid 1px #444;">
                         <div class="bksl">
                             <div>
-                                <div class="head" id="headingBox">Learning Management system</div>
+                                <div class="head" id="headingBox">
+                                    Learning Management system</div>
                             </div>
                             <div style="margin-top: 29px;">
                                 <div class="btn" id="dash" runat="server">
                                     <div class="dash" style="float: left">
                                     </div>
                                     <div style="float: left">
-                                        <asp:HyperLink ID="lnkDashBoard" runat="server" CssClass="tp" rel="Dashboard for All"  NavigateUrl="~/User/DashBoard.aspx">Dashboard</asp:HyperLink></div>
+                                        <asp:HyperLink ID="lnkDashBoard" runat="server" CssClass="tp" rel="Dashboard for All"
+                                            NavigateUrl="~/User/DashBoard.aspx">Dashboard</asp:HyperLink></div>
                                 </div>
                                 <div class="btn" id="acc" runat="server">
                                     <div class="acco" style="float: left">
                                     </div>
                                     <div style="float: left">
-                                        <asp:HyperLink ID="lnkAcountsetting" runat="server" CssClass="tp" rel="Manage Your account change your Personal Information" NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
+                                        <asp:HyperLink ID="lnkAcountsetting" runat="server" CssClass="tp" rel="Manage Your account change your Personal Information"
+                                            NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
                                     </div>
                                 </div>
                                 <div class="btn" id="divAdmin" runat="server" visible="false">
@@ -150,10 +155,12 @@
         </div>
     </div>
     </form>
+
     <script type="text/javascript">
    
     
    
     </script>
+
 </body>
 </html>

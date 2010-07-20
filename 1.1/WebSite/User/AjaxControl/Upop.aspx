@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="trans" style="float: left;width:400px">
+    <div class="trans" style="float: left; width: 400px">
         <div class="contentbox">
             <div class="gray">
                 <div style="float: right">
@@ -25,7 +25,7 @@
                             <asp:Image ID="propic" runat="server" Width="100" />
                         </div>
                         <div style="float: left; text-align: left; width: 240px">
-                            <div  class="btitle">
+                            <div class="btitle">
                                 Status : <span id="lblStatus" runat="server" class="btext"></span>
                             </div>
                         </div>
@@ -40,6 +40,9 @@
                             <div>
                                 <span id="Span2" runat="server"></span>
                             </div>
+                        </div>
+                        <div>
+                            User Role:&nbsp;<span id="lblRole" runat="server"></span>
                         </div>
                         <div>
                             User Institute:&nbsp;<span id="lblGroup" runat="server"></span>

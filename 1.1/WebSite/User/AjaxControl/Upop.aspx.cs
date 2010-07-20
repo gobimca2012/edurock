@@ -12,6 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 using DataEntity;
+using System.Collections.Generic;
 
 public partial class User_AjaxControl_Upop : AjaxPage
 {
@@ -54,8 +55,21 @@ public partial class User_AjaxControl_Upop : AjaxPage
                 else
                     ugo += " " + new InstituteCourceController().GetInstituteCourceName(ucouce.InstituteCourceID);
             }
-           
+
             lblCource.InnerHtml = ugo;
+
+            var userInRoles = new InstituteUserInUserTypeController().GetbyLoginUserID(data.LoginUserID);
+
+            ugo = "";
+            foreach (InstituteUserInUserType urole in userInRoles)
+            {
+                if (ugo != "")
+                    ugo += ", " + urole.InstituteUserType.Name;
+                else
+                    ugo += " " + urole.InstituteUserType.Name;
+            }
+
+            lblRole.InnerHtml = ugo;
 
         }
     }

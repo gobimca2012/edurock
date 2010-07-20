@@ -34,6 +34,48 @@ public partial class User_AjaxControl_ICUserInfoView : AjaxPage
 
     private int TotalPage;
     private int PageSize = 100;
+    private int _LoginUserID
+    {
+        get
+        {
+            if (AjaxState.ContainsKey("usid"))
+            {
+                return Convert.ToInt32(AjaxState["usid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+    private int _InstituteCourceID
+    {
+        get
+        {
+            if (AjaxState.ContainsKey("icid"))
+            {
+                return Convert.ToInt32(AjaxState["icid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+    private int _InstituteSubjectID
+    {
+        get
+        {
+            if (AjaxState.ContainsKey("isid"))
+            {
+                return Convert.ToInt32(AjaxState["isid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
     private int ICID
     {
         get
@@ -44,17 +86,33 @@ public partial class User_AjaxControl_ICUserInfoView : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.Params["isid"] != null)
+        {
+            AjaxState["isid"] = Request.Params["isid"];
+        }
+        if (Request.Params["icid"] != null)
+        {
+            AjaxState["icid"] = Request.Params["icid"];
 
+        }
+        if (Request.Params["usid"] != null)
+        {
+            AjaxState["usid"] = Request.Params["usid"];
+        }
+        if (_InstituteCourceID > 0)
+        {
+            header.InnerHtml = "Users in " + new InstituteCourceController().GetInstituteCourceName(_InstituteCourceID);
+        }
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().Get().Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetUser(_InstituteCourceID,new UserAuthontication().UserInstituteID).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListUser.DataSource = new UserController().Get(PageSize, PageNumber);
+        ListUser.DataSource = new UserController().GetUser(_InstituteCourceID,new UserAuthontication().UserInstituteID, PageSize, PageNumber);
         ListUser.DataBind();
     }
     private void PaggerLinkManager()

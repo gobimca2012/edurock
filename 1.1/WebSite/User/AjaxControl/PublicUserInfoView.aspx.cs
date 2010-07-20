@@ -13,7 +13,7 @@ using System.Xml.Linq;
 using BusinessLogic;
 using DataEntity;
 
-public partial class User_AjaxControl_UserInfoView : AjaxPage
+public partial class User_AjaxControl_PublicUserInfoView : AjaxPage
 {
     private int LoginUserID
     {

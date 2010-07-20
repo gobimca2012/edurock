@@ -19,5 +19,6 @@ public partial class User_DashBoard : BasePage
         //JScripter.JScripter.IncludeJavascriptFile("file", ResolveUrl("~/Jscript/jquery.iframe-post-form.js"), this.Page);
         objLoader.LoadPage("#lander", ResolveUrl("~/User/AjaxControl/Lander.aspx")+"?usid="+Request.Params["usid"]);
     //    objLoader.LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx"));
+        objLoader.LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/PublicUserInfoView.aspx")+"?usid="+Request.Params["usid"]);
     }
 }
