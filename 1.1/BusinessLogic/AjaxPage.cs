@@ -102,22 +102,30 @@ namespace BusinessLogic
             if (Request.Params[AjaxStateName] != null && Request.Params[AjaxStateName] != "")
             {
                 string AjaxStateValues = Request.Params[AjaxStateName].ToString();
-
-                string[] AjaxStatePart = AjaxStateValues.Split('&');
-
+                string[] AjaxStateValueMulti = AjaxStateValues.Split(',');
+                for (int i = 0; i < AjaxStateValueMulti.Length; i++)
                 {
-                    for (int i = 0; i < AjaxStatePart.Length; i++)
+                    SerializeAjaxState(AjaxStateValueMulti[i]);
+                }
+                
+            }
+            base.OnInit(e);
+        }
+        private void SerializeAjaxState(string AjaxStateValues)
+        {
+            string[] AjaxStatePart = AjaxStateValues.Split('&');
+
+            {
+                for (int i = 0; i < AjaxStatePart.Length; i++)
+                {
+                    string[] AjaxStatePartPart = AjaxStatePart[i].Split('=');
+                    if (AjaxStatePartPart.Length > 1)
                     {
-                        string[] AjaxStatePartPart = AjaxStatePart[i].Split('=');
-                        if (AjaxStatePartPart.Length > 1)
-                        {
-                            //AjaxState.Add(AjaxStatePartPart[0], AjaxStatePartPart[1]);
-                            AjaxState[AjaxStatePartPart[0]] = AjaxStatePartPart[1];
-                        }
+                        //AjaxState.Add(AjaxStatePartPart[0], AjaxStatePartPart[1]);
+                        AjaxState[AjaxStatePartPart[0]] = AjaxStatePartPart[1];
                     }
                 }
             }
-            base.OnInit(e);
         }
         protected override void OnLoad(EventArgs e)
         {

@@ -36,11 +36,7 @@
                         <span id="lblDescription" runat="server"></span>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        Post By &nbsp; <span id="user" runat="server" class="btext"></span>
-                    </div>
-                </div>
+              
                 <div>
                     <div>
                         Question Type : <span id="lblQuestionTypeID" runat="server"></span>
@@ -51,14 +47,7 @@
                         Question Status <span id="lblQuestionStatusID" runat="server"></span>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <span class="label">Post Date</span>
-                    </div>
-                    <div>
-                        <span id="lblModifiedDate" runat="server"></span>
-                    </div>
-                </div>
+              
             </div>
         </div>
         <div class="furight">

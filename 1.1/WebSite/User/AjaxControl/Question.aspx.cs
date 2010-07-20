@@ -81,7 +81,7 @@ public partial class User_AjaxControl_Question : AjaxPage
 
         if (data.ModifiedDate != null)
         {
-            lblModifiedDate.InnerHtml = data.ModifiedDate.ToString();
+//            lblModifiedDate.InnerHtml = data.ModifiedDate.ToString();
         }
         FullViewSideInfo1.LoginUserID = data.LoginUserID;
         FullViewSideInfo1.ModifiedDate = data.ModifiedDate;

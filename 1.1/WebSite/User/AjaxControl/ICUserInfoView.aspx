@@ -17,14 +17,15 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <div style="float: left; width: 130px;">
-                   <asp:HyperLink ID="lnkU" runat="server" NavigateUrl='<%#ResolveUrl("~/User/User.aspx") + "?usid=" + Eval("LoginUserID")%>'>
-                    <div>
+                    <asp:HyperLink ID="lnkU" runat="server" NavigateUrl='<%#ResolveUrl("~/User/User.aspx") + "?usid=" + Eval("LoginUserID")%>'>
                         <div>
-                            <asp:Image ID="imgPic" runat="server" Width="100" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>' />
+                            <div>
+                                <asp:Image ID="imgPic" runat="server" Width="100" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>' />
+                            </div>
+                            <div>
+                                <%#Eval("FirstName") %>
+                                &nbsp;<%#Eval("LastName") %></div>
                         </div>
-                        <div>
-                            <%#Eval("FirstName") %> &nbsp;<%#Eval("LastName") %></div>
-                    </div>
                     </asp:HyperLink>
                 </div>
             </ItemTemplate>
@@ -41,7 +42,6 @@
                             RequestContainner="#User" Pagger="true" Increment="true" ResponseContainner="#User">Next</aspajax:AjaxLinkButton>
                     </div>
                 </div>
-                Isers
                 <div style="clear: both">
                 </div>
             </div>

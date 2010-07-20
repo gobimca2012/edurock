@@ -77,6 +77,17 @@ public partial class User_AjaxControl_Lander : AjaxPage
         {
             new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString());
         }
-
+        string Script = "";
+        if (ICID>0)
+        {
+            string CourceName=new InstituteCourceController().GetInstituteCourceName(ICID);
+            Script= string.Format("$('#headingBox').html('{0}');",CourceName);
+        }
+        else if (LoginUserID > 0)
+        {
+            var data=new UserController().GetbyLoginUserID(LoginUserID);
+            Script = string.Format("$('#headingBox').html('{0}');", data[0].FirstName + " " + data[0].LastName);
+        }
+        objLoader.InjectScript(Script, this.Page);
     }
 }
