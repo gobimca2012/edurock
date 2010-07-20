@@ -3406,6 +3406,24 @@ namespace DataAccess
 
         #endregion
         #region CustomUser
+        public List<GetUserResult> GetUser(int InstituteCourceID, int InstituteID)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetUser(InstituteCourceID, InstituteID).ToList();
+
+        }
+        public List<GetUserResult> GetUser(int InstituteCourceID, int InstituteID, int PageSize, int PageNumber)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetUser(InstituteCourceID, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType)
         {
 
