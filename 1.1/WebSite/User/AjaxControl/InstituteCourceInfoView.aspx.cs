@@ -17,21 +17,20 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
 
 
     public HtmlHelper _HtmlHelper = new HtmlHelper();
-    //private int PageNumber
-    //{
-    //    get
-    //    {
-    //        if (Request.Params["pn"] != null)
-    //            return Convert.ToInt32(Request.Params["pn"].ToString());
-    //        else
-    //        {
-    //            lnkPrevInstituteCource.Visible = false;
-    //            return 0;
-    //        }
-    //    }
-
-
-    //}
+    private int LoginUserID
+    {
+        get
+        {
+            if (Request.Params["usid"] != null)
+            {
+                return Convert.ToInt32(Request.Params["usid"]);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
 
     private int TotalPage;
     private int PageSize = 100;
@@ -41,8 +40,7 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
 
         {
             BindList();
-            //TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new InstituteCourceController().GetbyInstituteID(new UserAuthontication().UserInstituteID).Count / PageSize));
-            //PaggerLinkManager();
+          
         }
 
     }
@@ -51,40 +49,7 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
         ListInstituteCource.DataSource = new InstituteCourceController().GetbyInstituteID(new UserAuthontication().UserInstituteID);
         ListInstituteCource.DataBind();
     }
-    //private void PaggerLinkManager()
-    //{
-
-
-    //    if (PageNumber == 0)
-    //    {
-    //        lnkPrevInstituteCource.Visible = false;
-    //    }
-    //    if (TotalPage - 1 == PageNumber || TotalPage == 0)
-    //    {
-    //        lnkNextInstituteCource.Visible = false;
-    //    }
-    //    if (lnkNextInstituteCource.Visible)
-    //    {
-    //        //lnkNextInstituteCource.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
-    //    }
-
-    //    if (lnkPrevInstituteCource.Visible)
-    //    {
-    //        //lnkPrevInstituteCource.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
-    //    }
-    //}
-    //protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
-    //{
-
-    //    BindList();
-    //    PaggerLinkManager();
-    //}
-    //protected void PrevAjaxClick(object sender, AjaxControl.AjaxEventArg e)
-    //{
-
-    //    BindList();
-    //    PaggerLinkManager();
-    //}
+ 
     protected override void OnAjaxListViewCommand(AjaxListViewCommandArg e)
     {
         if (e.Command.Contains("delete"))
@@ -97,8 +62,17 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
 
     protected void ListInstituteCourceOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
-        //ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        //string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+        ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        string InstituteCourceID = ListInstituteCource.DataKeys[currentItem.DataItemIndex]["InstituteCourceID"].ToString();
+        AjaxControl.HyperLink lnkFullvIew = (AjaxControl.HyperLink)currentItem.FindControl("lnkFullvIew");
+        if (lnkFullvIew != null)
+        {
+            if(LoginUserID>0)
+            lnkFullvIew.NavigateUrl = ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?usid=" + LoginUserID.ToString() + "&icid=" + InstituteCourceID;
+            else
+                lnkFullvIew.NavigateUrl = ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?icid=" + InstituteCourceID;
+        }
+            
 
 
 

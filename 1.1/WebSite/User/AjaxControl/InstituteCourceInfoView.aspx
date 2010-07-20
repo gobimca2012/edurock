@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:ListView ID="ListInstituteCource" runat="server">
+    <asp:ListView ID="ListInstituteCource" runat="server" OnItemDataBound="ListInstituteCourceOnItemDataBound" DataKeyNames="InstituteCourceID">
         <LayoutTemplate>
             <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
         </LayoutTemplate>

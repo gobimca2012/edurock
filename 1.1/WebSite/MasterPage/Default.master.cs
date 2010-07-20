@@ -30,8 +30,16 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        new JScripter.Loader(this.Page, true).LoadPage("#icource", ResolveUrl("~/User/AjaxControl/InstituteCourceInfoView.aspx"));
+        
         new JScripter.Loader(this.Page, true).LoadPage("#st", ResolveUrl("~/User/AjaxControl/Status.aspx"));
+        if (!new UserAuthontication().IsOwn(LoginUserID))
+        {
+            new JScripter.Loader(this.Page, true).LoadPage("#icource", ResolveUrl("~/User/AjaxControl/InstituteCourceInfoView.aspx")+"?usid="+LoginUserID.ToString());    
+        }
+        else
+        {
+            new JScripter.Loader(this.Page, true).LoadPage("#icource", ResolveUrl("~/User/AjaxControl/InstituteCourceInfoView.aspx"));    
+        }
         new JScripter.Loader(this.Page, true).LoadPage("#mylander", ResolveUrl("~/User/AjaxControl/MyLander.aspx"));
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#questiontrg", "#questiontrgbox");
