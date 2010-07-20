@@ -12,41 +12,28 @@
         <div class="hcurv">
         </div>
         <div id="User" class="whitecont">
-            <div id="popupresponce">
-                <asp:Image ID="imgProfilepic" runat="server" Width="100" />
-            </div>
-            <div>
-                <asp:LinkButton ID="lnkChangeImage" runat="server">UpdatePic</asp:LinkButton>
-            </div>
-            <div id="propop">
-            </div>
-            <div>
-                <div>
-                    <span class="label">FirstName</span>
+            <div id="pic" runat="server" visible="false">
+                <div id="popupresponce">
+                    <asp:Image ID="imgProfilepic" runat="server" Width="100" />
                 </div>
                 <div>
-                    <span id="lblFirstName" runat="server"></span>
+                    <asp:LinkButton ID="lnkChangeImage" runat="server">UpdatePic</asp:LinkButton>
+                </div>
+                <div id="propop">
                 </div>
             </div>
             <div>
                 <div>
-                    <span class="label">LastName</span>
+                    <span class="label">Real Name</span>
                 </div>
                 <div>
-                    <span id="lblLastName" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">MiddleName</span>
-                </div>
-                <div>
-                    <span id="lblMiddleName" runat="server"></span>
+                    <span id="lblFirstName" runat="server"></span>&nbsp; <span id="lblMiddleName" runat="server">
+                    </span>&nbsp;<span id="lblLastName" runat="server"></span>
                 </div>
             </div>
             <div>
                 <div>
-                    <span class="label">BirthDate</span>
+                    <span class="label">Date of Birth</span>
                 </div>
                 <div>
                     <span id="lblBirthDate" runat="server"></span>
@@ -54,41 +41,17 @@
             </div>
             <div>
                 <div>
-                    <span class="label">Address1</span>
+                    <span class="label">Address</span>
                 </div>
                 <div>
                     <span id="lblAddress1" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">Address2</span>
-                </div>
-                <div>
+                    <br />
                     <span id="lblAddress2" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">City</span>
-                </div>
-                <div>
+                    <br />
                     <span id="lblCity" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">State</span>
-                </div>
-                <div>
+                    <br />
                     <span id="lblState" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">Country</span>
-                </div>
-                <div>
+                    <br />
                     <span id="lblCountry" runat="server"></span>
                 </div>
             </div>

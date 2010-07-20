@@ -95,9 +95,13 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         {
             objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/AboutWidget.aspx") + "?icid=" + _InstituteCourceID.ToString());
         }
+        else if (_LoginUserID > 0)
+        {
+            objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/PublicUserInfoView.aspx") + "?usid=" + _LoginUserID.ToString());
+        }
         else
         {
-            objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/AboutWidget.aspx") );
+            objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/AboutWidget.aspx"));
         }
         {
             BindList();
@@ -231,6 +235,10 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Article)
         {
             URL = ResolveUrl("~/User/AjaxControl/Article.aspx") + "?arid=" + ID;
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Event)
+        {
+            URL = ResolveUrl("~/User/AjaxControl/Event.aspx") + "?evid=" + ID;
         }
         return URL;
     }

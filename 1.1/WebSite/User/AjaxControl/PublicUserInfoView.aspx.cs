@@ -24,7 +24,7 @@ public partial class User_AjaxControl_PublicUserInfoView : AjaxPage
                 lnkEdit.Visible = false;
                 lnkChangeImage.Visible = false;
                 return Convert.ToInt32(AjaxState["usid"]);
-                
+
             }
             else
             {
@@ -41,7 +41,7 @@ public partial class User_AjaxControl_PublicUserInfoView : AjaxPage
         {
             AjaxState["usid"] = Request.Params["usid"];
         }
-        
+
         {
             var data = new UserController().GetbyLoginUserID(LoginUserID);
             if (data.Count > 0)
@@ -79,7 +79,7 @@ public partial class User_AjaxControl_PublicUserInfoView : AjaxPage
 
         if (data.BirthDate != null)
 
-            lblBirthDate.InnerHtml = data.BirthDate.ToString();
+            lblBirthDate.InnerHtml = CommonController.GetDate(Convert.ToDateTime(data.BirthDate.ToString()));
 
         if (data.Address1 != null)
 

@@ -70,10 +70,10 @@ public partial class User_AjaxControl_Lander : AjaxPage
         lnkAudio.NavigateUrl = ResolveUrl("~/User/AjaxControl/AudioInfoView.aspx") + "?dtype=3&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
         lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=2&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
         lnkUsers.NavigateUrl = ResolveUrl("~/User/AjaxControl/ICUserInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
-        if (LoginUserID > 0)
-        {
-        }
-        else
+        //if (LoginUserID > 0)
+        //{
+        //}
+        //else
         {
             new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString());
         }
