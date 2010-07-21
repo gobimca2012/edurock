@@ -15,6 +15,15 @@ using Common;
 
 public partial class User_AjaxControl_Article : AjaxPage
 {
+    private void ControlManager(int LoginUserID)
+    {
+        if (new UserAuthontication().IsOwn(LoginUserID))
+        {
+            //lnkDelete.Visible = true;
+            lnkShare.Visible = true;
+            lnkEdit.Visible = true;
+        }
+    }
 
     private void BindData()
     {
@@ -73,7 +82,9 @@ public partial class User_AjaxControl_Article : AjaxPage
         }
         
         BindData();
+        ControlManager(new UserAuthontication().LoggedInUserID);
         objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + ((int)ContentTypeEnum.Article).ToString());
+        lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + ((int)ContentTypeEnum.Article).ToString();
     }
 
 }

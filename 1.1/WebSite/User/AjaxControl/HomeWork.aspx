@@ -15,6 +15,9 @@
             <div style="float: right">
                 <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn">Edit</div> </aspajax:HyperLink>
             </div>
+            <div style="float: right">
+                <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn">  Share Homework</div></aspajax:HyperLink>
+            </div>
             <div style="clear: both">
             </div>
         </div>
@@ -75,7 +78,7 @@
                     &nbsp;<span id="lblModifiedDate" runat="server"></span>
                 </div>
             </div>
-             <div id="comment">
+            <div id="comment">
             </div>
             <div id="newcommentbox">
             </div>

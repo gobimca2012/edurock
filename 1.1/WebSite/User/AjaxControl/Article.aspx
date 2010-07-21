@@ -11,7 +11,13 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox"><div class="btn">Edit</div></aspajax:HyperLink>
+            <div style="float: right">
+                <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox"><div class="btn">Edit</div></aspajax:HyperLink>
+            </div>
+            <div style="float: right">
+                <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn">  Share </div></aspajax:HyperLink></div>
+            <div class="clear">
+            </div>
         </div>
         <div id="Article" class="whitecont">
             <div class="fuleft">

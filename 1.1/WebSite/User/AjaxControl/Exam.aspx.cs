@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using Common;
 
 public partial class User_AjaxControl_Exam : AjaxPage
 {
@@ -20,6 +21,7 @@ public partial class User_AjaxControl_Exam : AjaxPage
         {
             lnkEdit.Visible = true;
             lnkQuestion.Visible = true;
+            lnkShare.Visible = true;
         }
     }
     private void BindData()
@@ -109,6 +111,7 @@ public partial class User_AjaxControl_Exam : AjaxPage
     {
         lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfo.aspx") + "?eid=" + ID;
         lnkQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/EXMQuestionList.aspx") + "?eid=" + ID;
+        lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + ((int)ContentTypeEnum.Exam).ToString();
     }
 
 }

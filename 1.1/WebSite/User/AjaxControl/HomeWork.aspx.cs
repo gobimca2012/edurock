@@ -21,6 +21,7 @@ public partial class User_AjaxControl_HomeWork : AjaxPage
         if (new UserAuthontication().IsOwn(LoginUserID))
         {
             lnkEdit.Visible = true;
+            lnkShare.Visible = true;
             
         }
     }
@@ -94,6 +95,7 @@ public partial class User_AjaxControl_HomeWork : AjaxPage
     private void MakeLinks()
     {
         lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWorkInfo.aspx") + "?hwid=" + ID.ToString();
+        lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + ((int)ContentTypeEnum.HomeWork).ToString();
     }
 
 }

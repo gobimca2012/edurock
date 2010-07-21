@@ -21,6 +21,8 @@ public partial class User_AjaxControl_Event : AjaxPage
         {
 
             lnkEdit.Visible = true;
+            lnkShare.Visible = true;
+
         }
     }
       
@@ -105,6 +107,7 @@ public partial class User_AjaxControl_Event : AjaxPage
     {
         BindData();
         objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + ((int)ContentTypeEnum.Event).ToString());
+        lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + ((int)ContentTypeEnum.Event).ToString();
     }
 
 }

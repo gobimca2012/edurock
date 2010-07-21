@@ -17,7 +17,7 @@
                 <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn"> Edit</div> </aspajax:HyperLink>
             </div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn">  Share Question</div></aspajax:HyperLink></div>
+                <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn">  Share </div></aspajax:HyperLink></div>
        
             <div style="clear: both">
             </div>
