@@ -17,21 +17,13 @@
                 <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn"> Edit</div> </aspajax:HyperLink>
             </div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkDelete" runat="server" Visible="false"><div class="btn">Delete</div> </aspajax:HyperLink>
-            </div>
+                <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn">  Share Question</div></aspajax:HyperLink></div>
+       
             <div style="clear: both">
             </div>
         </div>
         <div class="whitecont">
             <div style="float: left; width: 550px">
-                <%--<div>
-                <div>
-                    <span class="label">DocumentID</span>
-                </div>
-                <div>
-                    <span id="lblDocumentID" runat="server"></span>
-                </div>
-            </div>--%>
                 <div>
                     <div>
                         <asp:Image ID="img" runat="server" Visible="false" Width="560" />

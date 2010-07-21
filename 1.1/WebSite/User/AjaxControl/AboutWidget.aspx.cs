@@ -55,6 +55,8 @@ public partial class User_AjaxControl_AboutInstitute : AjaxPage
         {
             divsubject.Visible = false;
             var data = new InstituteController().GetbyInstituteID(new UserAuthontication().UserInstituteID);
+            listUser.DataSource = new UserController().GetUser(InstituteCourceID, new UserAuthontication().UserInstituteID);
+            listUser.DataBind();
             if (data.Count > 0)
             {
                 aboutInstitute.InnerHtml = data[0].Description;

@@ -528,17 +528,17 @@ h3
 }
 .graylg
 {
-    background: url(images/braylg.jpg);
+    background: url(images/braylg.png);
     background-repeat: repeat-x;
     border: solid 1px #C5C8C9;
     line-height: 28px;
-    padding: 5px;
+    padding:10px 5px;
     margin: 0px;
 }
 .trans
 {
     background: url(            'images/trans.png' );
-    padding: 10px;
+    padding: 15px;
 }
 /* Icons */
 
@@ -725,6 +725,14 @@ fieldset
 {
     text-align: left;
     border: none;
+    border-top:dashed 1px #626262;
+}
+legend
+{
+    font-size:14px;
+    font-weight:bold;
+    
+    
 }
 .tarrow
 {
@@ -904,4 +912,13 @@ input[type=radio], input[type=checkbox]
     background-position:right;
     height: 20px;        
     background-repeat:no-repeat;
+}
+.nobod
+{
+    border:none;
+}
+.rbod
+{
+    border:none;
+    border-right:dashed 1px #626262;
 }

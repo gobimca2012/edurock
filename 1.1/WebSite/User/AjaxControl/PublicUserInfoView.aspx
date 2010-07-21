@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="contentbox">
+    <div class="graycontent roundedall">
         <div class="hcurv">
         </div>
         <div id="User" class="whitecont">

@@ -19,7 +19,8 @@ public partial class User_AjaxControl_Document : AjaxPage
     {
         if (new UserAuthontication().IsOwn(LoginUserID))
         {
-            lnkDelete.Visible = true;
+            //lnkDelete.Visible = true;
+            lnkShare.Visible = true;
             lnkEdit.Visible = true;
         }
     }
@@ -115,6 +116,7 @@ public partial class User_AjaxControl_Document : AjaxPage
         
         BindData();
         objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + (_ContentType).ToString());
+        lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + (_ContentType).ToString();
     }
 
 }

@@ -185,10 +185,15 @@ function NormalizeUrl(hypobj)
 
 function HtmlPaste(obj, ContainnerID)
 {
+    ProgressBar(true, ContainnerID);
    var htmldata = decHTMLifEnc(obj);
    $(ContainnerID).html(obj);
    // alert($(ContainnerID).html());
-
+$(ContainnerID).ready(function()
+{
+  ProgressBar(false, ContainnerID);
+}
+);
 
 }
 

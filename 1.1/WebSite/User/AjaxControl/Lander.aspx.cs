@@ -70,24 +70,33 @@ public partial class User_AjaxControl_Lander : AjaxPage
         lnkAudio.NavigateUrl = ResolveUrl("~/User/AjaxControl/AudioInfoView.aspx") + "?dtype=3&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
         lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=2&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
         lnkUsers.NavigateUrl = ResolveUrl("~/User/AjaxControl/ICUserInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
-        //if (LoginUserID > 0)
-        //{
-        //}
-        //else
+      
         {
             new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString());
         }
         string Script = "";
-        if (ICID>0)
+        if (ICID > 0 && LoginUserID > 0)
+        {
+            string CourceName = new InstituteCourceController().GetInstituteCourceName(ICID);
+            var data = new UserController().GetbyLoginUserID(LoginUserID);
+            Script = string.Format("$('#headingBox').html('{0}');", CourceName+" of "+data[0].FirstName+" "+data[0].LastName);
+        }
+        else if (ICID>0)
         {
             string CourceName=new InstituteCourceController().GetInstituteCourceName(ICID);
             Script= string.Format("$('#headingBox').html('{0}');",CourceName);
         }
         else if (LoginUserID > 0)
         {
-            var data=new UserController().GetbyLoginUserID(LoginUserID);
+            var data = new UserController().GetbyLoginUserID(LoginUserID);
             Script = string.Format("$('#headingBox').html('{0}');", data[0].FirstName + " " + data[0].LastName);
         }
+        else
+        {
+            var data = new InstituteController().GetbyInstituteID(new UserAuthontication().UserInstituteID);
+            Script = string.Format("$('#headingBox').html('{0}');", data[0].Name);
+        }
+        
         objLoader.InjectScript(Script, this.Page);
     }
 }

@@ -12,6 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 using DataEntity;
+using Common;
 
 public partial class User_AjaxControl_Question : AjaxPage
 {
@@ -93,7 +94,7 @@ public partial class User_AjaxControl_Question : AjaxPage
     private void MakeLinks()
     {
         lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?icid="+_InstituteCourceID.ToString()+"&qid=" + ID.ToString();
-        lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx")  + "?qid=" + ID.ToString();
+        lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx")  + "?conid=" + ID.ToString()+"&type="+((int)ContentTypeEnum.Question).ToString();
     }
 
 

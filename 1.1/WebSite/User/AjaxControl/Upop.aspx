@@ -25,33 +25,29 @@
                             <asp:Image ID="propic" runat="server" Width="100" />
                         </div>
                         <div style="float: left; text-align: left; width: 240px">
-                            <div class="btitle">
-                                Status : <span id="lblStatus" runat="server" class="btext"></span>
+                            <div>
+                                <span class="label">Status :</span> <span id="lblStatus" runat="server" class="btext">
+                                </span>
                             </div>
                         </div>
                         <div style="clear: both">
                         </div>
-                        <div class="btext">
+                        <div class="dasbo">
                             <div>
-                            </div>
-                            <div>
-                                Username :<span id="lblUserName" runat="server"></span>
-                            </div>
-                            <div>
-                                <span id="Span2" runat="server"></span>
+                                <span class="label">Username :</span> <span id="lblUserName" runat="server"></span>
                             </div>
                         </div>
-                        <div>
-                            User Role:&nbsp;<span id="lblRole" runat="server"></span>
+                        <div class="dasbo">
+                            <span class="label">User Role:</span>&nbsp;<span id="lblRole" runat="server"></span>
+                        </div>
+                        <div class="dasbo">
+                            <span class="label">User Institute:</span> &nbsp;<span id="lblGroup" runat="server"></span>
+                        </div>
+                        <div class="dasbo">
+                            <span class="label">User Cource:</span>&nbsp;<span id="lblCource" runat="server"></span>
                         </div>
                         <div>
-                            User Institute:&nbsp;<span id="lblGroup" runat="server"></span>
-                        </div>
-                        <div>
-                            User Cource:&nbsp;<span id="lblCource" runat="server"></span>
-                        </div>
-                        <div>
-                            <asp:HyperLink ID="lnkUserProfile" runat="server">Full Profile</asp:HyperLink>
+                            <asp:HyperLink ID="lnkUserProfile" runat="server"><div class="btn">Full Profile</div> </asp:HyperLink>
                         </div>
                     </div>
                 </div>

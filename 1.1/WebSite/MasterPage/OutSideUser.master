@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Default.master.cs" Inherits="MasterPage_Default" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="OutSideUser.master.cs" Inherits="MasterPage_OutSideUser" %>
 
 <%@ Register Src="../LayoutControl/HeaderNavigation.ascx" TagName="HeaderNavigation"
     TagPrefix="uc1" %>
@@ -29,16 +29,7 @@
     <div id="ipop">
     </div>
     <div class="page">
-        <%--<div class="bgtl">
-            <div class="bgtr">
-                <div class="bgtll" style="float: left; width: 188px">
-                </div>
-                <div class="bgtc" style="float: left; width: 772px;">
-                </div>
-                <div style="clear: both">
-                </div>
-            </div>
-        </div>--%>
+      
         <div class="rcbg">
             <div class="lcbg">
             </div>
@@ -47,61 +38,7 @@
             <div class="bgmr">
                 <div class="bgmc">
                     <div style="float: left; width: 20%;" id="sidemenu">
-                        <div style="text-align: center; padding: 2px">
-                            <div>
-                                <asp:Image ID="img" runat="server" Width="172" />
-                            </div>
-                            <div id="st">
-                            </div>
-                            <div style="clear: both">
-                            </div>
-                        </div>
-                        <div class="leftmenu">
-                            <div id="courcel">
-                                <div class="grayhead tp" rel="Select your cource and get update from cource">
-                                    <span class="sub" style="float: left"></span><span style="float: left">Cources </span>
-                                    <div style="clear: both">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="icource" class="vis">
-                            </div>
-                        </div>
-                        <div class="leftmenu">
-                            <div id="messageHead" class="tp" rel="Message System">
-                                <div class="grayhead">
-                                    <span class="sub" style="float: left"></span><span style="float: left">Messages
-                                    </span>
-                                    <div style="clear: both">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="messagepn" class="invis">
-                                <div class="cin">
-                                    <aspajax:HyperLink ID="lnkNewMessage" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/MessageInfo.aspx">New Message</aspajax:HyperLink>
-                                </div>
-                                <div class="cin">
-                                    <aspajax:HyperLink ID="lnkInbox" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/InboxMessageInfoView.aspx">Inbox Message</aspajax:HyperLink>
-                                </div>
-                                <div class="cin">
-                                    <aspajax:HyperLink ID="lnkSent" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/SentMessageInfoView.aspx">Sent Message</aspajax:HyperLink>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="leftmenu">
-                            <div id="mymenu">
-                                <div class="grayhead tp" rel="You can manage your data From My Stuff">
-                                    <span class="sub" style="float: left"></span><span style="float: left">My Stuff
-                                    </span>
-                                    <div style="clear: both">
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="mymenupanel" class="invis">
-                                <div id="mylander">
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div style="float: right; width: 79%; border-left: solid 1px #444;">
                         <div class="bksl">
