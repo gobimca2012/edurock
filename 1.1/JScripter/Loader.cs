@@ -142,6 +142,22 @@ namespace JScripter
             //lnk.Attributes["href"] = "javascript:void(0);";
             InjectScript(Injectscript, _thisPage);
         }
+        public void AjaxRedirect(string ContainerID, string PostContainnerID, string url, string lnkID)
+        {
+            if (url.Contains("?"))
+            {
+                url += "&ac=r";
+            }
+            else
+            {
+                url += "?ac=r";
+            }
+            url += "&k=" + lnkID;
+
+            string Injectscript = string.Format("$('#{0}').LinkPostH('{1}','{2}','{3}');", lnkID, url, PostContainnerID, ContainerID);
+            //lnk.Attributes["href"] = "javascript:void(0);";
+            InjectScript(Injectscript, _thisPage);
+        }
         public void PostData(string ContainerID, string PostContainnerID, string url, HyperLink lnk)
         {
             if (url.Contains("?"))
@@ -195,5 +211,15 @@ namespace JScripter
 			//HttpContext.Current.Response.Write(script);
 
 		}
+        public void RedirectPage(string url)
+        {
+
+            string script = "window.location=";
+            script += "'" + url + "';";
+            InjectScript(script, _thisPage);
+            //aspxPage.RegisterStartupScript("onload", script);
+            //HttpContext.Current.Response.Write(script);
+
+        }
 	}
 }

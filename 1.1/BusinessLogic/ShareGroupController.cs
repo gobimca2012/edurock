@@ -625,6 +625,99 @@ namespace BusinessLogic
         }
         #endregion
         #region ShareGroup
+        public List<GetShareGroupResult> GetShareGroup(int ObjectType, string ObjectID)
+        {
+            try
+            {
+
+                return new DataProvider().GetShareGroup(ObjectType, ObjectID);
+            }
+            catch
+            {
+                return new List<GetShareGroupResult>();
+            }
+        }
+        public List<GetShareGroupResult> GetShareGroup(int ObjectType, string ObjectID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetShareGroup(ObjectType, ObjectID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetShareGroupResult>();
+            }
+        }
+        public bool UpdateEnableEdit(int InsitiuteUserTypeID, string QuestionID, int ObjectType, bool EnableEdit)
+        {
+            try
+            {
+                new DataProvider().UpdateShareGroupEnableEdit(InsitiuteUserTypeID, QuestionID, ObjectType, EnableEdit);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false; ;
+            }
+        }
+
+        public bool UpdateEnableDelete(int InsitiuteUserTypeID, string QuestionID, int ObjectType, bool EnableDelete)
+        {
+            try
+            {
+                new DataProvider().UpdateShareGroupEnableDelete(InsitiuteUserTypeID, QuestionID, ObjectType, EnableDelete);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false; ;
+            }
+        }
+        public bool UpdateEnableAdd(int InsitiuteUserTypeID, string QuestionID, int ObjectType, bool EnableAdd)
+        {
+            try
+            {
+                new DataProvider().UpdateShareGroupEnableAdd(InsitiuteUserTypeID, QuestionID, ObjectType, EnableAdd);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false; ;
+            }
+        }
+        public bool UpdateEnableView(int InsitiuteUserTypeID, string QuestionID, int ObjectType, bool EnableView)
+        {
+            try
+            {
+                new DataProvider().UpdateShareGroupEnableView(InsitiuteUserTypeID, QuestionID, ObjectType, EnableView);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false; ;
+            }
+        }
         #endregion
 				
 	

@@ -227,4 +227,17 @@
       <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetShareGroup" Method="GetShareGroup">
+    <Parameter Name="ObjectType" Parameter="objectType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ObjectID" Parameter="objectID" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="GetShareGroupResult">
+      <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteUserTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EnableEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -22,8 +22,7 @@ namespace AjaxControl
             get;
             set;
         }
-        
-        protected override void OnLoad(EventArgs e)
+        protected override void OnPreRender(EventArgs e)
         {
             string ControlValue = "false";
             if (Checked)
@@ -35,20 +34,25 @@ namespace AjaxControl
             {
                 this.CssClass = "unchecked";
             }
-            string _CheckClassName="checked";
-            if (Checked )
+            string _CheckClassName = "checked";
+            if (Checked)
             {
                 _CheckClassName = "unchecked";
             }
             this.Attributes["href"] = "javascript:void(0);";
             this.Attributes["onclick"] = string.Format("$(this).CheckBox('{0}');", _CheckClassName);
             //this.Text = string.Format("<div id='{0}'></div>", this.ID);
-            if (CustomID == null|| CustomID=="")
+            if (CustomID == null || CustomID == "")
             {
                 CustomID = ID;
             }
 
             this.Text = string.Format("<input id='{0}' type='text' value='{1}' name='{0}'></input>", this.CustomID, ControlValue);
+            base.OnPreRender(e);
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            
             base.OnLoad(e);
         }
     }

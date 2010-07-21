@@ -629,7 +629,7 @@ namespace BusinessLogic
         {
             try
             {
-                new DataProvider().UpdateShareUser(LoginUserID, QuestionID,ObjectType, EnableEdit);
+                new DataProvider().UpdateShareUserEnableEdit(LoginUserID, QuestionID,ObjectType, EnableEdit);
                 return true;
             }
             catch (Exception ex)

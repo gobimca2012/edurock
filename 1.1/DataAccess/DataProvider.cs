@@ -13508,10 +13508,10 @@ namespace DataAccess
 
         #endregion
         #region CustomShareUser
-        public void UpdateShareUser(int LoginUserID, string QuestionID, int ObjectType, bool EnableEdit)
+        public void UpdateShareUserEnableEdit(int LoginUserID, string QuestionID, int ObjectType, bool EnableEdit)
         {
             UserDataContext db = new UserDataContext();
-            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == (int)ObjectEnum.Question select p).ToList();
+            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == ObjectType select p).ToList();
             if (dataBunch.Count > 0)
             {
                 var data = dataBunch[0];
@@ -13525,6 +13525,15 @@ namespace DataAccess
                 {
                     ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, EnableEdit, false, true, false, false, DateTime.Now);
                 }
+                else
+                {
+                    ShareAdd(Guid.NewGuid(), ObjectType, QuestionID, DateTime.Now);
+                    data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                    if (data.Count > 0)
+                    {
+                        ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, EnableEdit, false, true, false, false, DateTime.Now);
+                    }
+                }
 
             }
 
@@ -13532,7 +13541,7 @@ namespace DataAccess
         public void UpdateShareUserEnableView(int LoginUserID, string QuestionID, int ObjectType, bool EnableView)
         {
             UserDataContext db = new UserDataContext();
-            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == (int)ObjectEnum.Question select p).ToList();
+            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == ObjectType select p).ToList();
             if (dataBunch.Count > 0)
             {
                 var data = dataBunch[0];
@@ -13546,6 +13555,15 @@ namespace DataAccess
                 {
                     ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, false, EnableView, false, false, DateTime.Now);
                 }
+                else
+                {
+                    ShareAdd(Guid.NewGuid(), ObjectType, QuestionID, DateTime.Now);
+                    data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                    if (data.Count > 0)
+                    {
+                        ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, false, EnableView, false, false, DateTime.Now);
+                    }
+                }
 
             }
 
@@ -13553,7 +13571,7 @@ namespace DataAccess
         public void UpdateShareUserEnableAdd(int LoginUserID, string QuestionID, int ObjectType, bool EnableAdd)
         {
             UserDataContext db = new UserDataContext();
-            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == (int)ObjectEnum.Question select p).ToList();
+            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == ObjectType select p).ToList();
             if (dataBunch.Count > 0)
             {
                 var data = dataBunch[0];
@@ -13565,7 +13583,16 @@ namespace DataAccess
                 var data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
                 if (data.Count > 0)
                 {
-                    ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, EnableAdd, true, false, false, DateTime.Now);
+                    ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, EnableAdd, false, false, false, DateTime.Now);
+                }
+                else
+                {
+                    ShareAdd(Guid.NewGuid(), ObjectType, QuestionID, DateTime.Now);
+                    data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                    if (data.Count > 0)
+                    {
+                        ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, EnableAdd, false, false, false, DateTime.Now);
+                    }
                 }
 
             }
@@ -13574,7 +13601,7 @@ namespace DataAccess
         public void UpdateShareUserEnableDelete(int LoginUserID, string QuestionID, int ObjectType, bool EnableDelete)
         {
             UserDataContext db = new UserDataContext();
-            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == (int)ObjectEnum.Question select p).ToList();
+            var dataBunch = (from p in db.ShareUsers where p.LoginUserID == LoginUserID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == ObjectType select p).ToList();
             if (dataBunch.Count > 0)
             {
                 var data = dataBunch[0];
@@ -13586,11 +13613,19 @@ namespace DataAccess
                 var data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
                 if (data.Count > 0)
                 {
-                    ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, false, true, EnableDelete, false, DateTime.Now);
+                    ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, false, false, EnableDelete, false, DateTime.Now);
+                }
+                else
+                {
+                    ShareAdd(Guid.NewGuid(), ObjectType, QuestionID, DateTime.Now);
+                    data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                    if (data.Count > 0)
+                    {
+                        ShareUserAdd(Guid.NewGuid(), LoginUserID, data[0].ShareID, false, false, false, EnableDelete, false, DateTime.Now);
+                    }
                 }
 
             }
-
         }
         public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID)
         {
@@ -14165,6 +14200,144 @@ namespace DataAccess
 
         #endregion
         #region CustomShareGroup
+        public List<GetShareGroupResult> GetShareGroup(int ObjectType, string ObjectID)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetShareGroup(ObjectType, ObjectID).ToList();
+
+        }
+        public List<GetShareGroupResult> GetShareGroup(int ObjectType, string ObjectID, int PageSize, int PageNumber)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetShareGroup(ObjectType, ObjectID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
+        public void UpdateShareGroupEnableEdit(int InstituteUserTypeID, string QuestionID, int ObjectType, bool EnableEdit)
+        {
+            UserDataContext db = new UserDataContext();
+            var dataBunch = (from p in db.ShareGroups where p.InstituteUserTypeID == InstituteUserTypeID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == ObjectType select p).ToList();
+            if (dataBunch.Count > 0)
+            {
+                var data = dataBunch[0];
+                data.EnableEdit = EnableEdit;
+                db.SubmitChanges();
+            }
+            else
+            {
+                var data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                if (data.Count > 0)
+                {
+                    ShareGroupAdd(Guid.NewGuid(), InstituteUserTypeID, data[0].ShareID, EnableEdit, false, true, false, false, DateTime.Now);                    
+                }
+                else
+                {
+                    ShareAdd(Guid.NewGuid(), ObjectType, QuestionID, DateTime.Now);
+                    data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                    if (data.Count > 0)
+                    {
+                        ShareGroupAdd(Guid.NewGuid(), InstituteUserTypeID, data[0].ShareID, EnableEdit, false, true, false, false, DateTime.Now);
+                    }
+                }
+
+            }
+
+        }
+        public void UpdateShareGroupEnableAdd(int InstituteUserTypeID, string QuestionID, int ObjectType, bool EnableAdd)
+        {
+            UserDataContext db = new UserDataContext();
+            var dataBunch = (from p in db.ShareGroups where p.InstituteUserTypeID == InstituteUserTypeID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == ObjectType select p).ToList();
+            if (dataBunch.Count > 0)
+            {
+                var data = dataBunch[0];
+                data.EnableAdd = EnableAdd;
+                db.SubmitChanges();
+            }
+            else
+            {
+                var data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                if (data.Count > 0)
+                {
+                    ShareGroupAdd(Guid.NewGuid(), InstituteUserTypeID, data[0].ShareID, false, EnableAdd, true, false, false, DateTime.Now);
+                }
+                else
+                {
+                    ShareAdd(Guid.NewGuid(), ObjectType, QuestionID, DateTime.Now);
+                    data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                    if (data.Count > 0)
+                    {
+                        ShareGroupAdd(Guid.NewGuid(), InstituteUserTypeID, data[0].ShareID, false, EnableAdd, true, false, false, DateTime.Now);
+                    }
+                }
+
+            }
+
+        }
+        public void UpdateShareGroupEnableView(int InstituteUserTypeID, string QuestionID, int ObjectType, bool EnableView)
+        {
+            UserDataContext db = new UserDataContext();
+            var dataBunch = (from p in db.ShareGroups where p.InstituteUserTypeID == InstituteUserTypeID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == ObjectType select p).ToList();
+            if (dataBunch.Count > 0)
+            {
+                var data = dataBunch[0];
+                data.EnableView = EnableView;
+                db.SubmitChanges();
+            }
+            else
+            {
+                var data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                if (data.Count > 0)
+                {
+                    ShareGroupAdd(Guid.NewGuid(), InstituteUserTypeID, data[0].ShareID, false, false, EnableView, false, false, DateTime.Now);
+                }
+                else
+                {
+                    ShareAdd(Guid.NewGuid(), ObjectType, QuestionID, DateTime.Now);
+                    data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                    if (data.Count > 0)
+                    {
+                        ShareGroupAdd(Guid.NewGuid(), InstituteUserTypeID, data[0].ShareID, false, false, EnableView, false, false, DateTime.Now);
+                    }
+                }
+
+            }
+
+        }
+        public void UpdateShareGroupEnableDelete(int InstituteUserTypeID, string QuestionID, int ObjectType, bool EnableDelete)
+        {
+            UserDataContext db = new UserDataContext();
+            var dataBunch = (from p in db.ShareGroups where p.InstituteUserTypeID == InstituteUserTypeID && p.Share.ObjectID == QuestionID && p.Share.ObjectType == ObjectType select p).ToList();
+            if (dataBunch.Count > 0)
+            {
+                var data = dataBunch[0];
+                data.EnableDelete = EnableDelete;
+                db.SubmitChanges();
+            }
+            else
+            {
+                var data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                if (data.Count > 0)
+                {
+                    ShareGroupAdd(Guid.NewGuid(), InstituteUserTypeID, data[0].ShareID, false, false, true, false, EnableDelete, DateTime.Now);
+                }
+                else
+                {
+                    ShareAdd(Guid.NewGuid(), ObjectType, QuestionID, DateTime.Now);
+                    data = (from p in db.Shares where p.ObjectID == QuestionID && p.ObjectType == ObjectType select p).ToList();
+                    if (data.Count > 0)
+                    {
+                        ShareGroupAdd(Guid.NewGuid(), InstituteUserTypeID, data[0].ShareID, false, false, true, false, EnableDelete, DateTime.Now);
+                    }
+                }
+
+            }
+
+        }
         #endregion
 
 

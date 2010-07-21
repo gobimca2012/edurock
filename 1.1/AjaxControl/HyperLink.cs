@@ -20,7 +20,8 @@ namespace AjaxControl
         protected override void OnPreRender(EventArgs e)
         {
             this.Attributes["href"] = "javascript:void(0);";
-            new JScripter.Loader(this.Page, false).PostData(ContainnerID, ContainnerID, ResolveUrl(this.NavigateUrl), this.ClientID);
+            //new JScripter.Loader(this.Page, false).PostData(ContainnerID, ContainnerID, ResolveUrl(this.NavigateUrl), this.ClientID);
+            new JScripter.Loader(this.Page, false).AjaxRedirect(ContainnerID, ContainnerID, ResolveUrl(this.NavigateUrl), this.ClientID);
             this.NavigateUrl = "";
             
             base.OnPreRender(e);

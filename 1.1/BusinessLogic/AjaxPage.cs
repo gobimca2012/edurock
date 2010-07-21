@@ -167,7 +167,7 @@ namespace BusinessLogic
             }
             else
             {
-                
+                objLoader.RedirectPage(ResolveUrl("~/home.aspx"));
             }
             objLoader.InjectScript("$('.tp').ToolTip();", this.Page);
 

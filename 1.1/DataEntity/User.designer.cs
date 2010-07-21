@@ -204,6 +204,13 @@ namespace DataEntity
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), instituteCourceID, instituteID);
 			return ((ISingleResult<GetUserResult>)(result.ReturnValue));
 		}
+		
+		[Function(Name="dbo.GetShareGroup")]
+		public ISingleResult<GetShareGroupResult> GetShareGroup([Parameter(Name="ObjectType", DbType="Int")] System.Nullable<int> objectType, [Parameter(Name="ObjectID", DbType="VarChar(100)")] string objectID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), objectType, objectID);
+			return ((ISingleResult<GetShareGroupResult>)(result.ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.LoginUser")]
@@ -4401,6 +4408,140 @@ namespace DataEntity
 				if ((this._InstituteID != value))
 				{
 					this._InstituteID = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetShareGroupResult
+	{
+		
+		private string _Name;
+		
+		private int _InstituteUserTypeID;
+		
+		private System.Nullable<bool> _EnableEdit;
+		
+		private System.Nullable<bool> _EnableAdd;
+		
+		private System.Nullable<bool> _EnableView;
+		
+		private System.Nullable<bool> _EnableDelete;
+		
+		private System.Nullable<bool> _EnableEditByLoggedIn;
+		
+		public GetShareGroupResult()
+		{
+		}
+		
+		[Column(Storage="_Name", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteUserTypeID", DbType="Int NOT NULL")]
+		public int InstituteUserTypeID
+		{
+			get
+			{
+				return this._InstituteUserTypeID;
+			}
+			set
+			{
+				if ((this._InstituteUserTypeID != value))
+				{
+					this._InstituteUserTypeID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EnableEdit", DbType="Bit")]
+		public System.Nullable<bool> EnableEdit
+		{
+			get
+			{
+				return this._EnableEdit;
+			}
+			set
+			{
+				if ((this._EnableEdit != value))
+				{
+					this._EnableEdit = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EnableAdd", DbType="Bit")]
+		public System.Nullable<bool> EnableAdd
+		{
+			get
+			{
+				return this._EnableAdd;
+			}
+			set
+			{
+				if ((this._EnableAdd != value))
+				{
+					this._EnableAdd = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EnableView", DbType="Bit")]
+		public System.Nullable<bool> EnableView
+		{
+			get
+			{
+				return this._EnableView;
+			}
+			set
+			{
+				if ((this._EnableView != value))
+				{
+					this._EnableView = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EnableDelete", DbType="Bit")]
+		public System.Nullable<bool> EnableDelete
+		{
+			get
+			{
+				return this._EnableDelete;
+			}
+			set
+			{
+				if ((this._EnableDelete != value))
+				{
+					this._EnableDelete = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EnableEditByLoggedIn", DbType="Bit")]
+		public System.Nullable<bool> EnableEditByLoggedIn
+		{
+			get
+			{
+				return this._EnableEditByLoggedIn;
+			}
+			set
+			{
+				if ((this._EnableEditByLoggedIn != value))
+				{
+					this._EnableEditByLoggedIn = value;
 				}
 			}
 		}
