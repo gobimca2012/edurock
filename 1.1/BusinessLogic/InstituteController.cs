@@ -1087,6 +1087,32 @@ namespace BusinessLogic
                 return 0;
             }
         }
+
+        public void BindInstitute(DropDownList dd)
+        {
+            var data = Get();
+            dd.DataSource = data;
+            dd.DataTextField = "Name";
+            dd.DataValueField = "InstituteID";
+            dd.DataBind();
+            ListItem noneItem = new ListItem();
+            noneItem.Text = "select";
+            noneItem.Value = "0";
+            dd.Items.Insert(0, noneItem);
+        }
+        public void BindInstitute(DropDownList dd, string SelectedValue)
+        {
+            var data = Get();
+            dd.DataSource = data;
+            dd.DataTextField = "Name";
+            dd.DataValueField = "InstituteID";
+            dd.DataBind();
+            ListItem noneItem = new ListItem();
+            noneItem.Text = "select";
+            noneItem.Value = "0";
+            dd.Items.Insert(0, noneItem);
+            dd.SelectedValue = SelectedValue;
+        }
         #endregion
 				
 	

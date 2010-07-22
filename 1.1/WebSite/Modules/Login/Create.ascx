@@ -1,15 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Create.ascx.cs" Inherits="Modules_Login_Create" %>
-<div class="contentbox" style="position: absolute; padding: 5px">
+<div class="contentbox" style="position: absolute; padding: 5px;width:250px">
     <fieldset>
-        <legend>LoginUser</legend>
+        <legend>Registration</legend>
         <div>
-            <div>
-                <div>
-                    <span class="label">LoginUserID</span>
-                </div>
-                <div>
-                </div>
-            </div>
+            
             <div>
                 <div>
                     <span class="label">Username</span>

@@ -17,15 +17,23 @@ using BusinessLogic;
 
 public partial class User_Service :AjaxPage
 {
-    protected void Page_Load(object sender, EventArgs e)
+    protected override void OnLoad(EventArgs e)
     {
+        IsLogginMandatory = false;
         EnableAjaxState = false;
         if (Request.Params["icid"] != null)
         {
             new InstituteSubjectController().BindInstituteSubject(ddSubject, Convert.ToInt32(Request.Params["icid"]));
             ddSubject.Visible = true;
         }
+        if (Request.Params["iid"] != null)
+        {
+            new InstituteCourceController().BindInstituteCource(ddCource, Convert.ToInt32(Request.Params["iid"]));
+            ddCource.Visible = true;
+        }
+        base.OnLoad(e);
     }
+    
     [WebMethod]
     public List<InstituteSubject> GetSubject(string InstituteCourceID)
     {

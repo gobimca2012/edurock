@@ -1,4 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="OutSideUser.master.cs" Inherits="MasterPage_OutSideUser" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="OutSideUser.master.cs"
+    Inherits="MasterPage_OutSideUser" %>
 
 <%@ Register Src="../LayoutControl/HeaderNavigation.ascx" TagName="HeaderNavigation"
     TagPrefix="uc1" %>
@@ -29,7 +30,6 @@
     <div id="ipop">
     </div>
     <div class="page">
-      
         <div class="rcbg">
             <div class="lcbg">
             </div>
@@ -38,7 +38,6 @@
             <div class="bgmr">
                 <div class="bgmc">
                     <div style="float: left; width: 20%;" id="sidemenu">
-                        
                     </div>
                     <div style="float: right; width: 79%; border-left: solid 1px #444;">
                         <div class="bksl">
@@ -73,10 +72,10 @@
                         <div id="lander" class="graylg">
                         </div>
                         <div style="clear: both; min-height: 500px; margin: 5px;">
-                            <div id="contentBox">
-                            </div>
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
+                            <div id="contentBox">
+                            </div>
                         </div>
                     </div>
                     <div style="clear: both">

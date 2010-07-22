@@ -21,6 +21,9 @@
             <li id="lilogout" runat="server" class="btn">
                 <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">LogOut</asp:LinkButton>
             </li>
+            <li id="li1" runat="server" class="btn">
+                <asp:HyperLink ID="lnkRegisterInstitute" runat="server" NavigateUrl="~/RegisterInstitute.aspx">Register Institute</asp:HyperLink>
+            </li>
         </ul>
         <div id="logindiv" style="display: none">
             <uc2:Login ID="Login1" runat="server" />

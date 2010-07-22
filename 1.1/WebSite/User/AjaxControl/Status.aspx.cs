@@ -30,5 +30,6 @@ public partial class User_AjaxControl_Status : AjaxPage
     {
         string Status = HtmlHelper.ControlValue(txtStatus.ClientID);
         new UserController().UpdateUserStatus(new UserAuthontication().LoggedInUserID, Status);
+        lblStatus.InnerText = new UserController().GetUserStatus(new UserAuthontication().LoggedInUserID);
     }
 }

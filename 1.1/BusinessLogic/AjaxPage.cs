@@ -30,7 +30,7 @@ namespace BusinessLogic
         public JScripter.Loader objLoader;
         public bool IsFileUpload = false;
         public bool EnableAjaxState = true;
-
+        protected bool IsLogginMandatory = true;
         public bool IsEventChange
         {
             get;
@@ -146,7 +146,7 @@ namespace BusinessLogic
                 }
                 IsEventChange = false;
                 this.Page.Header.Visible = false;
-                base.OnLoad(e);
+                
 
                 if (Request.Params["lcmd"] != null)
                 {
@@ -167,10 +167,13 @@ namespace BusinessLogic
             }
             else
             {
-                objLoader.RedirectPage(ResolveUrl("~/home.aspx"));
+                if (IsLogginMandatory)
+                {
+                    objLoader.RedirectPage(ResolveUrl("~/home.aspx"));
+                }
             }
             objLoader.InjectScript("$('.tp').ToolTip();", this.Page);
-
+            base.OnLoad(e);
         }
         protected override void OnLoadComplete(EventArgs e)
         {

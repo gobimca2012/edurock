@@ -7,6 +7,7 @@ using DataAccess;
 using System.Diagnostics;
 using Logger;
 using System.Web.Security;
+using Common;
 namespace BusinessLogic
 {
     public class LoginUserController
@@ -455,11 +456,12 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public bool CreateUser(string Username, string Password, string Email, int UType)
+        public Dictionary<string,string> CreateUser(string Username, string Password, string Email, int UType)
         {
+            Dictionary<string, string> StatusReturn = new Dictionary<string, string>();
             try
             {
-
+                
                 MembershipCreateStatus status;
                 MembershipUser MemUser = Membership.CreateUser(Username, Password, Email, "No Question", "No Answer", true, out status);
                 if (status == MembershipCreateStatus.Success)
@@ -471,18 +473,65 @@ namespace BusinessLogic
                         {
                             Membership.DeleteUser(MemUser.UserName);
                         }
+                        StatusReturn.Add("loginuserid", LoginUserID.ToString());
+                        StatusReturn.Add("status","success");
                     }
                     catch
                     {
                         Membership.DeleteUser(MemUser.UserName);
+                        StatusReturn.Add("status", "error");
                     }
 
                 }
-                return true;
+                return StatusReturn;
             }
             catch
             {
-                return false;
+                return StatusReturn;
+            }
+        }
+        public Dictionary<string, string> CreateUser(string Username, string Password, string Email, int UType,int InstituteID,int InstituteCourceID)
+        {
+            Dictionary<string, string> StatusReturn = new Dictionary<string, string>();
+            try
+            {
+
+                MembershipCreateStatus status;
+                MembershipUser MemUser = Membership.CreateUser(Username, Password, Email, "No Question", "No Answer", true, out status);
+                if (status == MembershipCreateStatus.Success)
+                {
+                    try
+                    {
+                        int LoginUserID = Add(Username, Password, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
+                        new InstituteUserController().Add(InstituteID, LoginUserID, "", DateTime.Now);
+                        new InstituteCourceUserController().Add(InstituteCourceID, LoginUserID, LoginUserID, (int)InstituteCourceUserEnum.Normal, DateTime.Now);
+                        if (LoginUserID == 0)
+                        {
+                            Membership.DeleteUser(MemUser.UserName);
+                        }
+                        StatusReturn.Add("loginuserid", LoginUserID.ToString());
+                        StatusReturn.Add("status", "success");
+                    }
+                    catch
+                    {
+                        Membership.DeleteUser(MemUser.UserName);
+                        StatusReturn.Add("status", "error");
+                    }
+
+                }
+                else if (status == MembershipCreateStatus.DuplicateUserName)
+                {
+                    StatusReturn.Add("status", "Please enter different Username");
+                }
+                else if (status == MembershipCreateStatus.DuplicateEmail)
+                {
+                    StatusReturn.Add("status", "Please select differnt Email");
+                }
+                return StatusReturn;
+            }
+            catch
+            {
+                return StatusReturn;
             }
         }
         public bool CreateUser(string Username, string Password, string Email, int UType, int InstituteUserType)
