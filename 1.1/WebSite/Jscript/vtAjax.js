@@ -260,6 +260,10 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
    // alert("hello");
    $(this).click(function()
    {
+        
+      var LinkClientID = $(this).attr("id");   
+      if(ValidateForm(LinkClientID))
+      {
       ProgressBar(true, PostContainnerID);
       var data = $(PostContainnerID).serializeNoViewState();
       var urlparts = url.toString().split('?');
@@ -272,6 +276,7 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
          ProgressBar(false, PostContainnerID);
       }
       );
+      }
    }
    );
 }

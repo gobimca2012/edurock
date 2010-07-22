@@ -17,6 +17,8 @@ public partial class All_Ajaxer_RegisterUser :AjaxPage
 {
     protected override void OnLoad(EventArgs e)
     {
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkRegister.ClientID);
+        objValidate.Medatory(txtUsername, "Please enter", this.Page);
         IsLogginMandatory = false;
         new InstituteController().BindInstitute(ddInstitute);
         ddInstitute.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddInstitute.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?iid="));

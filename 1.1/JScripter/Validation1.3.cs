@@ -15,6 +15,13 @@ namespace JScripter
             string Script = string.Format("$('#{0}').ValidateButton();", lnkSubmitButton.ClientID);
             InjectScript(Script, thisPage);
         }
+        public Validation(Page thisPage, string lnkButtonID)
+        {
+            //JScripter.IncludeJavascriptFile("Validation", thisPage.ResolveUrl("~/Jscript/Validation1.3Ajax.js"), thisPage);
+            //string Script = string.Format("$('#{0}').ValidateButton();", lnkButtonID);
+            string Script = string.Format("AddValidateBtn('{0}');", lnkButtonID);
+            InjectScript(Script, thisPage);
+        }
         public Validation(Page thisPage, LinkButton lnkSubmitButton,bool IsloadScript)
         {
             if (IsloadScript)
