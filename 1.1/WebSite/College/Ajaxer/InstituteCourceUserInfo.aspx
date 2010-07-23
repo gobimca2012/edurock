@@ -20,27 +20,14 @@
                     <div>
                         <div>
                             <div>
-                                <span class="label">InstituteCourceID</span>
+                                <span class="label">select Cource</span>
                             </div>
                             <div>
                                 <asp:DropDownList ID="ddCource" runat="server">
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div>
-                            <div>
-                                <span class="label">LoginUserID</span>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <span class="label">Type</span>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </fieldset>
             </div>

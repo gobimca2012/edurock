@@ -30,6 +30,22 @@
             </div>
             <div>
                 <div>
+                    <span class="label">First name</span>
+                </div>
+                <div>
+                    <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <span class="label">Last name</span>
+                </div>
+                <div>
+                    <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div>
+                <div>
                     Email:
                 </div>
                 <div>
@@ -38,7 +54,7 @@
             </div>
             <div>
                 <div>
-                    User Type
+                    User Role
                 </div>
                 <div>
                     <asp:DropDownList ID="ddUserType" runat="server">
@@ -48,7 +64,7 @@
         </div>
         <div class="gray">
             <aspajax:AjaxLinkButton ID="lnkUserAdd" runat="server" RequestContainner="#contentBox"
-                ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
         </div>
     </div>
     </form>

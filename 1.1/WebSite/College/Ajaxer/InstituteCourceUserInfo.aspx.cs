@@ -15,6 +15,19 @@ using Common;
 
 public partial class College_Ajaxer_InstituteCourceUserInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        lnkAddInstituteCourceUser.EnableValidation = true;
+        lnkUpdateInstituteCourceUser.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddInstituteCourceUser.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateInstituteCourceUser.ClientID);
+        //objValidate.Medatory(txtCatagoryName, "Please Catagory Name", this.Page);
+        objValidate.DrowDownMendatory(ddCource, "Please Select Cource", this.Page, "0");
+        
+
+
+
+    }
     private int UserID
     {
         get

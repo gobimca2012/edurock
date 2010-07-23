@@ -41,6 +41,40 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return ObjLoginUser.LoginUserID;
         }
+        public int LoginUserAdd(string Username, string Password,string Firstname,string Lastname,string ProfilePic, int UserType, Guid UserId, DateTime ModifiedDate, DateTime CreatedDate)
+        {
+            LoginUser ObjLoginUser = new LoginUser();
+
+
+
+            ObjLoginUser.Username = Username;
+
+            ObjLoginUser.Password = Password;
+            
+            
+
+            ObjLoginUser.UserType = UserType;
+
+            ObjLoginUser.UserId = UserId;
+
+            ObjLoginUser.ModifiedDate = ModifiedDate;
+
+            ObjLoginUser.CreatedDate = CreatedDate;
+
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.LoginUsers.InsertOnSubmit(ObjLoginUser);
+            db.SubmitChanges();
+            UserDataContext dbUser = new UserDataContext();
+            User objUser = new User();
+            objUser.FirstName = Firstname;
+            objUser.LastName = Lastname;
+            objUser.PhotoPath = ProfilePic;
+            objUser.LoginUserID = ObjLoginUser.LoginUserID;
+            dbUser.Users.InsertOnSubmit(objUser);
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return ObjLoginUser.LoginUserID;
+        }
 
         public List<LoginUser> LoginUserGet(int PageSize, int PageNumber)
         {

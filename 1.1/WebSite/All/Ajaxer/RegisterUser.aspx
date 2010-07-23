@@ -29,6 +29,22 @@
                         <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
                     </div>
                 </div>
+                 <div>
+                    <div>
+                        <span class="label">First name</span>
+                    </div>
+                    <div>
+                        <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+                 <div>
+                    <div>
+                        <span class="label">Last name</span>
+                    </div>
+                    <div>
+                        <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+                    </div>
+                </div>
                 <div>
                     <div>
                         <span class="label">Confirm password</span>

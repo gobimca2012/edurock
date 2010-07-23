@@ -16,11 +16,11 @@
             <div id="divMessage" runat="server">
             </div>
             <fieldset>
-                <legend>InstituteSubject</legend>
+                <legend> Subject</legend>
                 <div>
                     <div>
                         <div>
-                            <span class="label">SubjectText</span>
+                            <span class="label">Subject Title</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtSubjectText" runat="server"></asp:TextBox>

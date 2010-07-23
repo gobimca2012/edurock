@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div style="float: left">
-                <aspajax:HyperLink ID="hpAddInstituteCourceUser" runat="server" ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                <aspajax:HyperLink ID="hpAddInstituteCourceUser" runat="server" ContainnerID="#contentBox"><div class="btn"> Add New</div></aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

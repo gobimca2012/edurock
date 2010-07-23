@@ -42,11 +42,15 @@ public partial class All_Ajaxer_RegisterUser : AjaxPage
         Password = HtmlHelper.ControlValue(txtPassword.ClientID);
         string Email;
         Email = HtmlHelper.ControlValue(txtUseremail.ClientID);
+        string FirstName;
+        FirstName = HtmlHelper.ControlValue(txtFirstName.ClientID);
+        string Lastname;
+        Lastname = HtmlHelper.ControlValue(txtLastName.ClientID);
         int InstituteID = 0;
         InstituteID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstitute.ClientID));
         int InstituteCourceID = 0;
         InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
-        Dictionary<string, string> status = new LoginUserController().CreateUser(UserName, Password, Email, (int)UserTypeEnum.Student, InstituteID, InstituteCourceID);
+        Dictionary<string, string> status = new LoginUserController().CreateUser(UserName, Password,FirstName,Lastname,ConfigurationSettings.AppSettings["UserAvtar"].ToString(),  Email, (int)UserTypeEnum.Student, InstituteID, InstituteCourceID);
         if (status["status"].Contains("success"))
         {
             divMessage.InnerHtml = "<div class='success'>User created</div>";

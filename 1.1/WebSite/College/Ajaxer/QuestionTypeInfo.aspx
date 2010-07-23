@@ -19,7 +19,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">QuestionTypeTnext</span>
+                            <span class="label">QuestionType</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtQuestionTypeTnext" runat="server"></asp:TextBox>
@@ -31,11 +31,11 @@
         <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddQuestionType" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdateQuestionType" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn"> Update</div></aspajax:AjaxLinkButton>
             </div>
         </div>
     </div>

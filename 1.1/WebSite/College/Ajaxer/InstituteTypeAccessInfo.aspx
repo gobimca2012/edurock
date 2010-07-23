@@ -15,116 +15,102 @@
             <div id="divMessage" runat="server">
             </div>
             <fieldset>
-                <legend>InstituteTypeAccess</legend>
+                <legend>User Role Access</legend>
                 <div>
                     <div>
                         <div>
-                            <span class="label">InstituteTypeAccessID</span>
+                            <span class="label"></span>
                         </div>
                         <div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span class="label">InstituteUserTypeID</span>
-                        </div>
-                        <div>
+                            <asp:CheckBox ID="chkCanAddExam" runat="server" Text="CanAddExam" />
                         </div>
                     </div>
                     <div>
                         <div>
-                            <span class="label">CanAddExam</span>
+                            <span class="label"></span>
                         </div>
                         <div>
-                            <asp:CheckBox ID="chkCanAddExam" runat="server" />
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span class="label">CanAddQuestion</span>
-                        </div>
-                        <div>
-                            <asp:CheckBox ID="chkCanAddQuestion" runat="server" />
+                            <asp:CheckBox ID="chkCanAddQuestion" runat="server" Text="CanAddQuestion" />
                         </div>
                     </div>
                     <div>
                         <div>
-                            <span class="label">CanAddUser</span>
+                            <span class="label"></span>
                         </div>
                         <div>
-                            <asp:CheckBox ID="chkCanAddUser" runat="server" />
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span class="label">CanAddCource</span>
-                        </div>
-                        <div>
-                            <asp:CheckBox ID="chkCanAddCource" runat="server" />
+                            <asp:CheckBox ID="chkCanAddUser" runat="server" Text="CanAddUser" />
                         </div>
                     </div>
                     <div>
                         <div>
-                            <span class="label">CanAddSubject</span>
+                            <span class="label"></span>
                         </div>
                         <div>
-                            <asp:CheckBox ID="chkCanAddSubject" runat="server" />
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span class="label">CanAddAudio</span>
-                        </div>
-                        <div>
-                            <asp:CheckBox ID="chkCanAddAudio" runat="server" />
+                            <asp:CheckBox ID="chkCanAddCource" runat="server" Text="CanAddCource" />
                         </div>
                     </div>
                     <div>
                         <div>
-                            <span class="label">CanAddImage</span>
+                            <span class="label"></span>
                         </div>
                         <div>
-                            <asp:CheckBox ID="chkCanAddImage" runat="server" />
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span class="label">CanAddDocument</span>
-                        </div>
-                        <div>
-                            <asp:CheckBox ID="chkCanAddDocument" runat="server" />
+                            <asp:CheckBox ID="chkCanAddSubject" runat="server" Text="CanAddSubject" />
                         </div>
                     </div>
                     <div>
                         <div>
-                            <span class="label">CanAddVideo</span>
+                            <span class="label"></span>
                         </div>
                         <div>
-                            <asp:CheckBox ID="chkCanAddVideo" runat="server" />
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span class="label">CanAddHomeWork</span>
-                        </div>
-                        <div>
-                            <asp:CheckBox ID="chkCanAddHomeWork" runat="server" />
+                            <asp:CheckBox ID="chkCanAddAudio" runat="server" Text="CanAddAudio" />
                         </div>
                     </div>
                     <div>
                         <div>
-                            <span class="label">CanAddEvent</span>
+                            <span class="label"></span>
                         </div>
                         <div>
-                            <asp:CheckBox ID="chkCanAddEvent" runat="server" />
+                            <asp:CheckBox ID="chkCanAddImage" runat="server" Text="CanAddImage" />
                         </div>
                     </div>
                     <div>
                         <div>
-                            <span class="label">CanAddArticle</span>
+                            <span class="label"></span>
                         </div>
                         <div>
-                            <asp:CheckBox ID="chkCanAddArticle" runat="server" />
+                            <asp:CheckBox ID="chkCanAddDocument" runat="server" Text="CanAddDocument" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label"></span>
+                        </div>
+                        <div>
+                            <asp:CheckBox ID="chkCanAddVideo" runat="server" Text="CanAddVideo" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label"></span>
+                        </div>
+                        <div>
+                            <asp:CheckBox ID="chkCanAddHomeWork" runat="server" Text="CanAddHomeWork" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label"></span>
+                        </div>
+                        <div>
+                            <asp:CheckBox ID="chkCanAddEvent" runat="server" Text="CanAddEvent" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label"></span>
+                        </div>
+                        <div>
+                            <asp:CheckBox ID="chkCanAddArticle" runat="server" Text="CanAddArticle"/>
                         </div>
                     </div>
                 </div>

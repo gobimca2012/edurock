@@ -14,7 +14,19 @@ using BusinessLogic;
 
 public partial class College_Ajaxer_InstituteTypeAccessInfo : AjaxPage
 {
+    private void FormValidation()
+    {
 
+        lnkAddInstituteTypeAccess.EnableValidation = true;
+        lnkUpdateInstituteTypeAccess.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddInstituteTypeAccess.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateInstituteTypeAccess.ClientID);
+      
+
+
+
+
+    }
     private int _InstituteUserTypeID
     {
         get

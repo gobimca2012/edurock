@@ -14,7 +14,16 @@ using BusinessLogic;
 
 public partial class College_Ajaxer_InstituteUserTypeInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        lnkUpdateInstituteUserType.EnableValidation = true;
+        lnkAddInstituteUserType.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddInstituteUserType.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateInstituteUserType.ClientID);
+        objValidate.Medatory(txtName, "Please enter Role Name", this.Page);
+        
 
+    }
 
     private void AddData()
     {
@@ -107,6 +116,7 @@ public partial class College_Ajaxer_InstituteUserTypeInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         if (Request.Params["iuid"] != null)
         {
             AjaxState["iuid"] = Request.Params["iuid"];

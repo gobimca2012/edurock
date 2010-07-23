@@ -15,7 +15,21 @@ using BusinessLogic;
 public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 {
 
+    private void FormValidation()
+    {
 
+        lnkAddInstituteCource.EnableValidation = true;
+        lnkUpdateInstituteCource.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddInstituteCource.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateInstituteCource.ClientID);
+        objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
+        objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
+        objValidate.DrowDownMendatory(ddCource, "Please select Cource", this.Page,"0");
+
+
+
+
+    }
     private void AddData()
     {
         try
@@ -206,7 +220,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        FormValidation();
         JScripter.DatePicker objdate = new JScripter.DatePicker(this.Page, true);
         new JScripter.TinyMCE(this.Page).Create();
         objdate.DatePickerTextBox(txtStartDate);

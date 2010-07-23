@@ -287,6 +287,24 @@ namespace BusinessLogic
                 return 0;
             }
         }
+        public int Add(string Username, string Password, string FirstName, string Lastname,string ProfilePic, int UserType, Guid UserId, DateTime ModifiedDate, DateTime CreatedDate)
+        {
+
+            try
+            {
+                int ID = new DataProvider().LoginUserAdd(Username, Password,FirstName,Lastname,ProfilePic, UserType, UserId, ModifiedDate, CreatedDate);
+                return ID;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" SaveAnswer: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return 0;
+            }
+        }
         public bool DeletebyLoginUserID(int LoginUserID)
         {
             try
@@ -456,12 +474,12 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public Dictionary<string,string> CreateUser(string Username, string Password, string Email, int UType)
+        public Dictionary<string, string> CreateUser(string Username, string Password, string Email, int UType)
         {
             Dictionary<string, string> StatusReturn = new Dictionary<string, string>();
             try
             {
-                
+
                 MembershipCreateStatus status;
                 MembershipUser MemUser = Membership.CreateUser(Username, Password, Email, "No Question", "No Answer", true, out status);
                 if (status == MembershipCreateStatus.Success)
@@ -474,7 +492,7 @@ namespace BusinessLogic
                             Membership.DeleteUser(MemUser.UserName);
                         }
                         StatusReturn.Add("loginuserid", LoginUserID.ToString());
-                        StatusReturn.Add("status","success");
+                        StatusReturn.Add("status", "success");
                     }
                     catch
                     {
@@ -490,7 +508,7 @@ namespace BusinessLogic
                 return StatusReturn;
             }
         }
-        public Dictionary<string, string> CreateUser(string Username, string Password, string Email, int UType,int InstituteID,int InstituteCourceID)
+        public Dictionary<string, string> CreateUser(string Username, string Password, string Email, int UType, int InstituteID, int InstituteCourceID)
         {
             Dictionary<string, string> StatusReturn = new Dictionary<string, string>();
             try
@@ -534,20 +552,98 @@ namespace BusinessLogic
                 return StatusReturn;
             }
         }
+        public Dictionary<string, string> CreateUser(string Username, string Password, string Firstname, string Lastname, string ProfilePic, string Email, int UType, int InstituteID, int InstituteCourceID)
+        {
+            Dictionary<string, string> StatusReturn = new Dictionary<string, string>();
+            try
+            {
+
+                MembershipCreateStatus status;
+                MembershipUser MemUser = Membership.CreateUser(Username, Password, Email, "No Question", "No Answer", true, out status);
+                if (status == MembershipCreateStatus.Success)
+                {
+                    try
+                    {
+                        int LoginUserID = Add(Username, Password,Firstname,Lastname,ProfilePic, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
+                        new InstituteUserController().Add(InstituteID, LoginUserID, "", DateTime.Now);
+                        new InstituteCourceUserController().Add(InstituteCourceID, LoginUserID, LoginUserID, (int)InstituteCourceUserEnum.Normal, DateTime.Now);
+                        if (LoginUserID == 0)
+                        {
+                            Membership.DeleteUser(MemUser.UserName);
+                        }
+                        StatusReturn.Add("loginuserid", LoginUserID.ToString());
+                        StatusReturn.Add("status", "success");
+                    }
+                    catch
+                    {
+                        Membership.DeleteUser(MemUser.UserName);
+                        StatusReturn.Add("status", "error");
+                    }
+
+                }
+                else if (status == MembershipCreateStatus.DuplicateUserName)
+                {
+                    StatusReturn.Add("status", "Please enter different Username");
+                }
+                else if (status == MembershipCreateStatus.DuplicateEmail)
+                {
+                    StatusReturn.Add("status", "Please select differnt Email");
+                }
+                return StatusReturn;
+            }
+            catch
+            {
+                return StatusReturn;
+            }
+        }
         public bool CreateUser(string Username, string Password, string Email, int UType, int InstituteUserType)
         {
             try
             {
 
                 MembershipCreateStatus status;
-                int LoginUserID=0;
+                int LoginUserID = 0;
                 MembershipUser MemUser = Membership.CreateUser(Username, Password, Email, "No Question", "No Answer", true, out status);
                 if (status == MembershipCreateStatus.Success)
                 {
                     try
                     {
-                         LoginUserID = Add(Username, Password, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
-                        int id=new InstituteUserController().Add( new UserAuthontication().InstituteID,LoginUserID, "", DateTime.Now);
+                        LoginUserID = Add(Username, Password, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
+                        int id = new InstituteUserController().Add(new UserAuthontication().InstituteID, LoginUserID, "", DateTime.Now);
+                        if (LoginUserID == 0)
+                        {
+                            Membership.DeleteUser(MemUser.UserName);
+                            new InstituteUserController().DeletebyInstituteUserID(id);
+                        }
+                    }
+                    catch
+                    {
+                        DeletebyLoginUserID(LoginUserID);
+                        Membership.DeleteUser(MemUser.UserName);
+                    }
+
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool CreateUser(string Username, string Password,string Firstname,string LastName,string ProfilePic, string Email, int UType, int InstituteUserType)
+        {
+            try
+            {
+
+                MembershipCreateStatus status;
+                int LoginUserID = 0;
+                MembershipUser MemUser = Membership.CreateUser(Username, Password, Email, "No Question", "No Answer", true, out status);
+                if (status == MembershipCreateStatus.Success)
+                {
+                    try
+                    {
+                        LoginUserID = Add(Username, Password,Firstname,LastName,ProfilePic, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
+                        int id = new InstituteUserController().Add(new UserAuthontication().InstituteID, LoginUserID, "", DateTime.Now);
                         if (LoginUserID == 0)
                         {
                             Membership.DeleteUser(MemUser.UserName);

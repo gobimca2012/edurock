@@ -14,7 +14,18 @@ using BusinessLogic;
 
 public partial class College_Ajaxer_InstituteSubjectInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        lnkAddInstituteSubject.EnableValidation = true;
+        lnkUpdateInstituteSubject.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddInstituteSubject.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateInstituteSubject.ClientID);
+        objValidate.Medatory(txtSubjectText, "Please enter Subject Title", this.Page);
+        
 
+
+
+    }
     private int _InstituteCourceID
     {
         get

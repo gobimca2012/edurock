@@ -71,7 +71,7 @@
             </div>
             <div style="float: left">
                 <aspajax:HyperLink ID="hpAddInstituteUserType" runat="server" NavigateUrl="~/College/Ajaxer/InstituteUserTypeInfo.aspx"
-                    ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                    ContainnerID="#contentBox"><div class="btn"> Add New</div></aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

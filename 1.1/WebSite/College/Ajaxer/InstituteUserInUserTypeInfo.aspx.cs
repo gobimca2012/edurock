@@ -15,6 +15,7 @@ using BusinessLogic;
 public partial class College_Ajaxer_InstituteUserInUserTypeInfo : AjaxPage
 {
     public HtmlHelper _HtmlHelper = new HtmlHelper();
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.Params["uid"] != null)

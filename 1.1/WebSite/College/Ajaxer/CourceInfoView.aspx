@@ -88,7 +88,7 @@
         </div>
         <div>
             <aspajax:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/College/Ajaxer/CourceInfo.aspx"
-                ContainnerID="#courceinfo">Add New</aspajax:HyperLink>
+                ContainnerID="#courceinfo"><div class="btn"> Add New</div></aspajax:HyperLink>
         </div>
     </div>
     </form>

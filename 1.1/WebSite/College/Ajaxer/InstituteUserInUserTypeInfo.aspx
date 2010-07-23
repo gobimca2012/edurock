@@ -13,7 +13,9 @@
             User roles</div>
         <asp:ListView ID="ListUserRoles" runat="server" DataKeyNames="InstituteUserInUserTypeID">
             <LayoutTemplate>
-                <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                <div class="whitecont">
+                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                </div>
             </LayoutTemplate>
             <ItemTemplate>
                 <div>
@@ -30,10 +32,10 @@
     <div class="contentbox">
         <div class="gray">
             User roles</div>
-        <div>
+        <div class="whitecont">
             <div>
                 <div>
-                    <span class="label">UserRole</span>
+                    <span class="label">User Role</span>
                 </div>
                 <div>
                     <asp:DropDownList ID="ddRoles" runat="server">
@@ -48,7 +50,7 @@
         <div class="gray">
             <aspajax:AjaxLinkButton ID="lnkP" runat="server" EnableViewState="False" RequestContainner="#contentBox"
                 ResponseContainner="#contentBox" Increment="False" OnAjaxClick="AddAjaxClick"
-                Pagger="False">Add</aspajax:AjaxLinkButton>
+                Pagger="False"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
         </div>
     </div>
     </form>

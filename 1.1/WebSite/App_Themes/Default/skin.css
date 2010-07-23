@@ -9,8 +9,9 @@ body
     text-align: center;
     margin: 0px;
     padding: 0px;
-    background: url(      "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;
+    /*background: url(      "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;*/
     text-align: left;
+    background:#f1f1f1;
 }
 .page, #msgstate div
 {
