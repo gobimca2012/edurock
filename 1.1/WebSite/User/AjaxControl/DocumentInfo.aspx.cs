@@ -14,7 +14,17 @@ using BusinessLogic;
 
 public partial class User_AjaxControl_DocumentInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddDocument.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateDocument.ClientID);
+        objValidate.DrowDownMendatory(ddCource, "Please select Cource ", this.Page, "0");
+        objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
+        objValidate.Medatory(txtName, "Please enter Title", this.Page);
 
+
+
+    }
     private int _DocumentType
     {
         get
@@ -173,6 +183,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         if (IsEventChange)
         {
 

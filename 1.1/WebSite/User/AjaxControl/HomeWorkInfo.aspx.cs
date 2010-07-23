@@ -14,7 +14,18 @@ using BusinessLogic;
 
 public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        lnkAddHomeWork.EnableValidation = true;
+        lnkUpdateHomeWork.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddHomeWork.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateHomeWork.ClientID);
+        objValidate.Medatory(txtTitle, "Please enter Title", this.Page);
+        objValidate.Medatory(txtDescription, "Please enter Description", this.Page);
+        objValidate.DrowDownMendatory(ddInstituteCource, "Please select Cource", this.Page,"0");
+        objValidate.DrowDownMendatory(ddInstituteSubject, "Please select Subject", this.Page,"0");
 
+    }
 
     private void AddData()
     {
@@ -25,15 +36,15 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
-            string Title; if (HtmlHelper.ControlValue(txtTitle.ClientID)=="") { throw new Exception("Please enter title"); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
+            string Title; if (HtmlHelper.ControlValue(txtTitle.ClientID) == "") { throw new Exception("Please enter title"); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
 
-            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID)=="") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID) == "") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
-            string ShortDescription; if (HtmlHelper.ControlValue(txtShortDescription.ClientID)=="") { throw new Exception("Please enter Short description"); } ShortDescription = HtmlHelper.ControlValue(txtShortDescription.ClientID);
+            string ShortDescription; if (HtmlHelper.ControlValue(txtShortDescription.ClientID) == "") { throw new Exception("Please enter Short description"); } ShortDescription = HtmlHelper.ControlValue(txtShortDescription.ClientID);
 
-            int InstituteCourceID; if (HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteCource.ClientID)=="0") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "0") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
 
-            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID)=="0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
 
             DateTime ModifiedDate = DateTime.Now;
 
@@ -141,6 +152,7 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         if (!IsEventChange)
         {
             if (Request.Params["icid"] != null)

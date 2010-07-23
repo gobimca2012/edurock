@@ -15,7 +15,7 @@
             <div>
                 <div>
                     <div>
-                        <span class="label">QuestionText</span>
+                        <span class="label">Title</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtQuestionText" runat="server"></asp:TextBox>
@@ -31,7 +31,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">QuestionTypeID</span>
+                        <span class="label">Question Type</span>
                     </div>
                     <div>
                         <asp:DropDownList ID="ddQuestionType" runat="server">

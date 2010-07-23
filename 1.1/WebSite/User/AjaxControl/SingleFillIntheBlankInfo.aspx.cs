@@ -14,6 +14,16 @@ using BusinessLogic;
 
 public partial class User_AjaxControl_SingleFillIntheBlankInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        lnkAddUserInfo.EnableValidation = true;
+        lnkUpdate.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddUserInfo.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdate.ClientID);
+        objValidate.Medatory(txtQuestionPart1, "Please enter Question part 1", this.Page);
+        objValidate.Medatory(txtQuestionPart2, "Please enter Question part 2", this.Page);
+        objValidate.Medatory(txtMarks, "Please enter Question Marks", this.Page);
+    }
     protected void AjaxUpdateClick(object sender, AjaxControl.AjaxEventArg e)
     {
         EditData();
@@ -114,6 +124,7 @@ public partial class User_AjaxControl_SingleFillIntheBlankInfo : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         if (Request.Params["eid"] != null)
         {
             _ExamID = Convert.ToInt32(Request.Params["eid"]);

@@ -14,7 +14,15 @@ using BusinessLogic;
 
 public partial class User_AjaxControl_SingleChoiceInfo : AjaxPage
 {
-
+    private void FormValidation()
+    {
+        lnkAddEXM_Question.EnableValidation = true;
+        lnkUpdateEXM_Question.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddEXM_Question.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateEXM_Question.ClientID);
+        objValidate.Medatory(txtQuestion, "Please enter Question", this.Page);
+        objValidate.Medatory(txtMarks, "Please enter Question Marks", this.Page);
+    }
     private int _ExamID
     {
         get
@@ -57,7 +65,7 @@ public partial class User_AjaxControl_SingleChoiceInfo : AjaxPage
 
             new EXM_QuestionController().Add(Question, LoginUserID, ExamID, Q_Type, Description, Convert.ToInt32(marks), ModifiedDate);
             //new EXM_QuestionController().Add(Question, LoginUserID, ExamID, Q_Type, Marks, Description, ModifiedDate, Order, IsActive);
-            Response.Redirect("~/User/AjaxControl/EXMQuestionList.aspx?eid="+_ExamID.ToString());
+            Response.Redirect("~/User/AjaxControl/EXMQuestionList.aspx?eid=" + _ExamID.ToString());
         }
         catch (Exception ex)
         {
@@ -109,7 +117,7 @@ public partial class User_AjaxControl_SingleChoiceInfo : AjaxPage
         {
             var data = dataBunch[0];
 
-            
+
             txtQuestion.Text = data.Question;
 
 
@@ -117,8 +125,8 @@ public partial class User_AjaxControl_SingleChoiceInfo : AjaxPage
 
             txtDescription.Text = data.Description;
 
-            
-            chkIsActive.Checked =(bool) data.IsActive;
+
+            chkIsActive.Checked = (bool)data.IsActive;
 
         }
     }
@@ -143,6 +151,7 @@ public partial class User_AjaxControl_SingleChoiceInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         if (Request.Params["eid"] != null)
         {
             AjaxState["eid"] = Request.Params["eid"];
@@ -159,7 +168,7 @@ public partial class User_AjaxControl_SingleChoiceInfo : AjaxPage
             //new CourceCatagoryController().BindCourceCatagory(ddCatagory);
             lnkUpdateEXM_Question.Visible = false;
         }
-        
+
     }
 
 }

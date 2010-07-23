@@ -152,6 +152,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
     private void BindData()
     {
+        lnkUpdateInstituteCource.Visible = true;
         var dataBunch = new InstituteCourceController().GetbyInstituteCourceID(ID);
         if (dataBunch.Count > 0)
         {

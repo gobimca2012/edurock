@@ -125,7 +125,7 @@
             </div>
             <div style="float: left">
                 <aspajax:HyperLink ID="hpAddInstituteCource" runat="server" NavigateUrl="~/College/Ajaxer/InstituteCourceInfo.aspx"
-                    ContainnerID="#contentBox"><div class="gray"> Add New</div></aspajax:HyperLink>
+                    ContainnerID="#contentBox"><div class="btn"> Add New</div></aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

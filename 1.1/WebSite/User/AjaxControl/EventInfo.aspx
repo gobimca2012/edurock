@@ -34,7 +34,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">MetaDescription</span>
+                            <span class="label">Meta Description</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtMetaDescription" runat="server"></asp:TextBox>
@@ -42,7 +42,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">StartDate</span>
+                            <span class="label">Start Date</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
@@ -50,7 +50,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">EndDate</span>
+                            <span class="label">End Date</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
@@ -86,7 +86,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">ContactPerson</span>
+                            <span class="label">Contact Person</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtContactPerson" runat="server"></asp:TextBox>
@@ -94,7 +94,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">ContactEmail</span>
+                            <span class="label">Contact Email</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtContactEmail" runat="server"></asp:TextBox>
@@ -102,7 +102,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">ContactPhone</span>
+                            <span class="label">Contact Phone</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtContactPhone" runat="server"></asp:TextBox>

@@ -1,4 +1,5 @@
-﻿function loadobject(url, loadid, clickid)
+﻿// JavaScript Document
+function loadobject(url, loadid, clickid)
 {
    this.url = url;
    this.loadid = loadid;
@@ -185,15 +186,15 @@ function NormalizeUrl(hypobj)
 
 function HtmlPaste(obj, ContainnerID)
 {
-    ProgressBar(true, ContainnerID);
+   ProgressBar(true, ContainnerID);
    var htmldata = decHTMLifEnc(obj);
    $(ContainnerID).html(obj);
    // alert($(ContainnerID).html());
-$(ContainnerID).ready(function()
-{
-  ProgressBar(false, ContainnerID);
-}
-);
+   $(ContainnerID).ready(function()
+   {
+      ProgressBar(false, ContainnerID);
+   }
+   );
 
 }
 
@@ -260,10 +261,8 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
    // alert("hello");
    $(this).click(function()
    {
-        
-      var LinkClientID = $(this).attr("id");   
-      if(ValidateForm(LinkClientID))
-      {
+
+
       ProgressBar(true, PostContainnerID);
       var data = $(PostContainnerID).serializeNoViewState();
       var urlparts = url.toString().split('?');
@@ -276,6 +275,38 @@ $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
          ProgressBar(false, PostContainnerID);
       }
       );
+
+   }
+   );
+}
+
+//  ---------------------------------------
+
+$.fn.LinkPostHV = function(url, PostContainnerID, ContainnerID, EnableValidate)
+{
+   // alert("hello");
+   $(this).click(function()
+   {
+      var Isvalidate = true;
+      if(EnableValidate)
+      {
+         Isvalidate = ValidateForm();
+      }
+      if(Isvalidate)
+      {
+         ProgressBar(true, PostContainnerID);
+         var data = $(PostContainnerID).serializeNoViewState();
+         var urlparts = url.toString().split('?');
+         data += "&" + urlparts[1];
+         $.post(urlparts[0], data,
+         function(result)
+         {
+            HtmlPaste(result, ContainnerID);
+            BuildLinks(ContainnerID);
+            ProgressBar(false, PostContainnerID);
+         }
+         );
+
       }
    }
    );
@@ -531,24 +562,24 @@ $.fn.ToolTip = function()
       // alert(tooltipcontent);
       if(tooltipcontent != "")
       {
-         
+
          // $("#atool").addClass("tooltip");
          $("#tooltip").html('<div class="tooltip"><div class="tdown"></div> <div class="ttip">' + tooltipcontent + '</div></div>');
          $("#tooltip").show('slow');
          var po = $(this).offset();
-         var len = tooltipcontent.length;                  
-         var len1= $(this).width();
+         var len = tooltipcontent.length;
+         var len1 = $(this).width();
          var left = po.left;
          var top = po.top ;
-         //alert(len);
+         // alert(len);
          $('#tooltip').css(
          {
             left : left + 'px',
-            top : top+20 + 'px',
+            top : top + 20 + 'px',
             position : 'absolute'
          }
          );
-        
+
       }
 
    }
@@ -563,7 +594,7 @@ $.fn.ToolTip = function()
 
       }
       );
-      //$("#atool").hide('slow');
+      // $("#atool").hide('slow');
       $("#tooltip").html("");
       $("#tooltip").removeClass("ttip");
    }

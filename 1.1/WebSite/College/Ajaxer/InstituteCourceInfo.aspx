@@ -14,12 +14,18 @@
         <div id="divMessage" runat="server">
         </div>
         <fieldset>
-            <legend>InstituteCource</legend>
+            <legend>Cource</legend>
             <div>
                 <div>
                     <div>
-                        <span class="label">CourceID</span><span><aspajax:HyperLink ID="lnkAddCat" runat="server"
-                            ContainnerID="#contentBox" NavigateUrl="~/College/Ajaxer/CourceInfo.aspx">Add New Catagory</aspajax:HyperLink></span>
+                        <span class="label">Select Cource</span>
+                        <div>
+                            In case your cource not available in Cource Dropdown add new Cource using Add new
+                            Base Cource
+                        </div>
+                        <div>
+                            <aspajax:HyperLink ID="lnkAddCat" runat="server" ContainnerID="#contentBox" NavigateUrl="~/College/Ajaxer/CourceInfo.aspx">Add new Base Cource</aspajax:HyperLink>
+                        </div>
                     </div>
                     <div>
                         <asp:DropDownList ID="ddCource" runat="server">
@@ -124,7 +130,7 @@
                     ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
             </div>
             <div style="float: left">
-                <aspajax:AjaxLinkButton ID="lnkUpdateInstituteCource" runat="server" RequestContainner="#contentBox"
+                <aspajax:AjaxLinkButton ID="lnkUpdateInstituteCource" runat="server" RequestContainner="#contentBox" Visible="false"
                     ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn">Update</div></aspajax:AjaxLinkButton>
             </div>
             <div style="clear: both">
@@ -132,8 +138,7 @@
         </div>
     </div>
     </form>
-
-  <%--  <script language='javascript' type='text/javascript'>
+    <%--  <script language='javascript' type='text/javascript'>
 tinyMCE.init({
 mode : 'textareas',
 theme : 'advanced',
@@ -145,6 +150,5 @@ editor_selector : "mceEditor"
 });
 //you can also used “advanced” for themes
     </script>--%>
-
 </body>
 </html>

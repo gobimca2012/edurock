@@ -66,7 +66,7 @@
                 <div>
                     <div style="float: left">
                         <aspajax:AjaxLinkButton ID="lnkRegister" runat="server" EnableViewState="False" RequestContainner="#contentBox"
-                            ResponseContainner="#contentBox" Increment="False" OnAjaxClick="RegisterAjax"
+                            ResponseContainner="#contentBox" Increment="False" OnAjaxClick="RegisterAjax" EnableValidation="true"
                             Pagger="False">Register</aspajax:AjaxLinkButton>
                     </div>
                 </div>

@@ -26,28 +26,22 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">IsRight</span>
+                        <span class="label">Is Right</span>
                     </div>
                     <div>
                         <asp:CheckBox ID="chkIsRight" runat="server" />
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <span class="label">Marks</span>
-                    </div>
-                    <div>
-                    </div>
-                </div>
+               
             </div>
         </fieldset>
         <div class="gray">
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddEXM_Answer" runat="server" RequestContainner="#contentBox"
+                <aspajax:AjaxLinkButton ID="lnkAddEXM_Answer" runat="server" RequestContainner="#contentBox" EnableValidation="true"
                     ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateEXM_Answer" runat="server" RequestContainner="#contentBox"
+                <aspajax:AjaxLinkButton ID="lnkUpdateEXM_Answer" runat="server" RequestContainner="#contentBox" EnableValidation="true"
                     ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
         </div>

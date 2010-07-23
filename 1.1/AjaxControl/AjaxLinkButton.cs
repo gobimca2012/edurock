@@ -27,6 +27,11 @@ namespace AjaxControl
         private string _Url;
         public delegate void AjaxClickEventHandler(object sender, AjaxEventArg e);
         public event AjaxClickEventHandler AjaxClick;
+        public bool EnableValidation
+        {
+            get;
+            set;
+        }
         protected virtual void OnAjaxClick(AjaxEventArg e)
         {
             if (AjaxClick != null)
@@ -94,6 +99,7 @@ namespace AjaxControl
         protected override void OnLoad(EventArgs e)
         {
             Parames = new Dictionary<string, string>();
+
             base.OnLoad(e);
             string Url = ResolveUrl(this.NavigateUrl);
             string Questring = "", QueryStringStr = "";
@@ -212,7 +218,10 @@ namespace AjaxControl
                     Url += string.Format("&{0}={1}", Keylist[i], valuelist[i]);
                 }
             }
-            new JScripter.Loader(this.Page, false).PostData(RequestContainner, ResponseContainner, Url + ExternameUrlParam, this);
+            if (!EnableValidation)
+                new JScripter.Loader(this.Page, false).PostData(RequestContainner, ResponseContainner, Url + ExternameUrlParam, this);
+            else
+                new JScripter.Loader(this.Page, false).PostDataWithValidation(RequestContainner, ResponseContainner, Url + ExternameUrlParam, this);
             NavigateUrl = "";
 
 

@@ -15,7 +15,17 @@ using BusinessLogic;
 public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
 {
 
+    private void FormValidation()
+    {
+        lnkAddcource.EnableValidation = true;
+        lnkUpdate.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddcource.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdate.ClientID);
+        objValidate.Medatory(txtCatagoryName, "Please Catagory Name", this.Page);
+        
+        
 
+    }
     private void AddData()
     {
         try
@@ -105,6 +115,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         if (Request.Params["ccid"] != null)
         {
             AjaxState["ccid"] = Request.Params["ccid"];

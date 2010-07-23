@@ -15,7 +15,25 @@ using BusinessLogic;
 public partial class User_AjaxControl_EventInfo : AjaxPage
 {
 
+    private void FormValidation()
+    {
+        lnkAddEvent.EnableValidation = true;
+        lnkUpdateEvent.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddEvent.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateEvent.ClientID);
+        objValidate.Medatory(txtTitle, "Please enter Title", this.Page);
+        objValidate.Medatory(txtContactEmail, "Please enter Contact Email Address", this.Page);
+        objValidate.Medatory(txtContactPerson, "Please enter Contact Person", this.Page);
+        objValidate.Medatory(txtContactPhone, "Please enter Contact Phone Number", this.Page);
+        objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
+        objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
+        objValidate.DrowDownMendatory(ddCource, "Please select Cource ", this.Page, "0");
+        objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
+        
 
+
+
+    }
     private void AddData()
     {
         try
@@ -185,6 +203,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         if (Request.Params["evid"] != null)
         {
             AjaxState["evid"] = Request.Params["evid"];

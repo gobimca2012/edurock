@@ -29,24 +29,18 @@
     <div id="ipop">
     </div>
     <div class="page">
-        <%--<div class="bgtl">
-            <div class="bgtr">
-                <div class="bgtll" style="float: left; width: 188px">
-                </div>
-                <div class="bgtc" style="float: left; width: 772px;">
-                </div>
-                <div style="clear: both">
-                </div>
+        <div>
+            <div class="lcbg" style="float: left">
             </div>
-        </div>--%>
-        <div class="rcbg">
-            <div class="lcbg">
+            <div class="rcbg" style="float: right; width: 80%">
+            </div>
+            <div style="clear: both">
             </div>
         </div>
-        <div class="bgml">
-            <div class="bgmr">
-                <div class="bgmc">
-                    <div style="float: left; width: 20%;" id="sidemenu">
+        <div class="lmbg">
+            <div class="rmbg">
+                <div style="float: left; width: 20%;" id="sidemenu">
+                    <div style="margin-left: 10px">
                         <div style="text-align: center; padding: 2px">
                             <div>
                                 <asp:Image ID="img" runat="server" Width="172" />
@@ -70,8 +64,11 @@
                         <div class="leftmenu">
                             <div id="messageHead" class="tp" rel="Message System">
                                 <div class="grayhead">
-                                    <span class="sub" style="float: left"></span><span style="float: left">Messages
-                                    </span>
+                                    <div class="sub" style="float: left">
+                                    </div>
+                                    <div style="float: left">
+                                        Messages
+                                    </div>
                                     <div style="clear: both">
                                     </div>
                                 </div>
@@ -91,8 +88,11 @@
                         <div class="leftmenu">
                             <div id="mymenu">
                                 <div class="grayhead tp" rel="You can manage your data From My Stuff">
-                                    <span class="sub" style="float: left"></span><span style="float: left">My Stuff
-                                    </span>
+                                    <div class="sub" style="float: left">
+                                    </div>
+                                    <div style="float: left">
+                                        My Stuff
+                                    </div>
                                     <div style="clear: both">
                                     </div>
                                 </div>
@@ -103,7 +103,9 @@
                             </div>
                         </div>
                     </div>
-                    <div style="float: right; width: 79%; border-left: solid 1px #444;">
+                </div>
+                <div style="float: right; width: 80%;">
+                    <div style="margin-right: 10px; border-left: solid 1px #444;">
                         <div class="bksl">
                             <div>
                                 <div class="head" id="headingBox">
@@ -142,11 +144,16 @@
                             </asp:ContentPlaceHolder>
                         </div>
                     </div>
-                    <div style="clear: both">
-                    </div>
+                </div>
+                <div class="clear">
                 </div>
             </div>
+            <div class="clear">
+            </div>
         </div>
+        <%--</div>
+            </div>
+        </div>--%>
         <div class="bgbl">
             <div class="bgbr">
                 <div class="bgbc">

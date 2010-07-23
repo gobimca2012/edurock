@@ -174,6 +174,22 @@ namespace JScripter
             lnk.Attributes["href"] = "javascript:void(0);";
             InjectScript(Injectscript, _thisPage);
         }
+        public void PostDataWithValidation(string ContainerID, string PostContainnerID, string url, HyperLink lnk)
+        {
+            if (url.Contains("?"))
+            {
+                url += "&ac=p";
+            }
+            else
+            {
+                url += "?ac=p";
+            }
+            url += "&k=" + lnk.ClientID;
+
+            string Injectscript = string.Format("$('#{0}').LinkPostHV('{1}','{2}','{3}','true');", lnk.ClientID, url, PostContainnerID, ContainerID);
+            lnk.Attributes["href"] = "javascript:void(0);";
+            InjectScript(Injectscript, _thisPage);
+        }
 		public void LoadPageOnClick(string ContainerID, string url, LinkButton lnk)
 		{
 			string Injectscript = string.Format("$('{0}').LinkLoadPage('{1}','{2}');", lnk.ClientID, url, ContainerID);

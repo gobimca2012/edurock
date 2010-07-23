@@ -14,7 +14,20 @@ using BusinessLogic;
 
 public partial class User_AjaxControl_QuestionInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        lnkAddQuestion.EnableValidation = true;
+        lnkUpdateQuestion.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddQuestion.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateQuestion.ClientID);
+        
+        objValidate.Medatory(txtQuestionText, "Please enter Question Title", this.Page);
+        objValidate.DrowDownMendatory(ddCource, "Please select Cource", this.Page,"0");
+        objValidate.DrowDownMendatory(ddSubject, "Please select Subject", this.Page,"0");
+        objValidate.DrowDownMendatory(ddQuestionType, "Please select Question Type", this.Page,"0");
 
+
+    }
 
     private void AddData()
     {
@@ -137,6 +150,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];

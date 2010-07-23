@@ -20,7 +20,7 @@
                     <div>
                         <div>
                             <div>
-                                <span class="label">CatagoryName</span>
+                                <span class="label">Catagory Name</span>
                             </div>
                             <div>
                                 <asp:TextBox ID="txtCatagoryName" runat="server" Width="385px"></asp:TextBox>
@@ -35,13 +35,7 @@
                                     Width="387px"></asp:TextBox>
                             </div>
                         </div>
-                        <div>
-                            <div>
-                                <span class="label">CatagoryType</span>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
+                       
                     </div>
                 </fieldset>
             </div>

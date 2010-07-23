@@ -15,7 +15,20 @@ using BusinessLogic;
 public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 {
 
+    private void FormValidation()
+    {
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddExam.ClientID);
+        objValidate.DrowDownMendatory(ddInstituteCource, "Please select Cource ", this.Page, "0");
+        objValidate.DrowDownMendatory(ddInstituteSubject, "Please select Subject ", this.Page, "0");
+        objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
+        objValidate.Medatory(txtExamName, "Please enter Exam Name", this.Page);
+        objValidate.Medatory(txtExamTime, "Please enter Exam Time", this.Page);
+        objValidate.Medatory(txtRequirePecentage, "Please enter Required Pecentage", this.Page);
+        objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
+        objValidate.Medatory(txtSubjectName, "Please enter Subject Name", this.Page);
+        
 
+    }
     private void AddData()
     {
         try
@@ -159,7 +172,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
         JScripter.DatePicker objDatePicker = new JScripter.DatePicker(this.Page, true);
         objDatePicker.DatePickerTextBox(txtStartDate);
         objDatePicker.DatePickerTextBox(txtEndDate);
-
+        FormValidation();
         if (Request.Params["eid"] != null)
         {
             AjaxState["eid"] = Request.Params["eid"];

@@ -30,16 +30,22 @@
     <div id="ipop">
     </div>
     <div class="page">
-        <div class="rcbg">
-            <div class="lcbg">
+        <div>
+            <div class="lcbg" style="float: left">
+            </div>
+            <div class="rcbg" style="float: right; width: 80%">
+            </div>
+            <div style="clear: both">
             </div>
         </div>
-        <div class="bgml">
-            <div class="bgmr">
-                <div class="bgmc">
-                    <div style="float: left; width: 20%;" id="sidemenu">
+        <div class="lmbg">
+            <div class="rmbg">
+                <div style="float: left; width: 20%;" id="sidemenu">
+                    <div style="margin-left: 10px">
                     </div>
-                    <div style="float: right; width: 79%; border-left: solid 1px #444;">
+                </div>
+                <div style="float: right; width: 80%;">
+                    <div style="margin-right: 10px; border-left: solid 1px #444;">
                         <div class="bksl">
                             <div>
                                 <div class="head" id="headingBox">
@@ -78,11 +84,16 @@
                             </div>
                         </div>
                     </div>
-                    <div style="clear: both">
-                    </div>
+                </div>
+                <div class="clear">
                 </div>
             </div>
+            <div class="clear">
+            </div>
         </div>
+        <%--</div>
+            </div>
+        </div>--%>
         <div class="bgbl">
             <div class="bgbr">
                 <div class="bgbc">

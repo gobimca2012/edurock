@@ -14,9 +14,26 @@ using BusinessLogic;
 
 public partial class User_AjaxControl_UserInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        lnkAddUserInfo.EnableValidation = true;
+        lnkUpdate.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddUserInfo.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdate.ClientID);
+        objValidate.Medatory(txtAddress1, "Please enter Address1", this.Page);
+        objValidate.Medatory(txtCity, "Please enter City", this.Page);
+        objValidate.Medatory(txtCountry, "Please enter Country", this.Page);
+        objValidate.Medatory(txtFirstName, "Please enter First Name", this.Page);
+        objValidate.Medatory(txtLastName, "Please enter Last Name", this.Page);
+        objValidate.Medatory(txtState, "Please enter State", this.Page);
+        objValidate.DrowDownMendatory(ddDay, "Please select Day", this.Page,"0");
+        objValidate.DrowDownMendatory(ddMonth, "Please select Month", this.Page,"0");
+        objValidate.DrowDownMendatory(ddYear, "Please select Year", this.Page,"0");
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         //if (!this.IsAjaxPostBack)
+        FormValidation();
         {
             var data = new UserController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID);
             if (data.Count > 0)

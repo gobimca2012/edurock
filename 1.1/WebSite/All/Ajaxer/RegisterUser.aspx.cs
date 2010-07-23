@@ -13,18 +13,27 @@ using System.Xml.Linq;
 using BusinessLogic;
 using System.Collections.Generic;
 
-public partial class All_Ajaxer_RegisterUser :AjaxPage
+public partial class All_Ajaxer_RegisterUser : AjaxPage
 {
-    protected override void OnLoad(EventArgs e)
+    private void FormValidation()
     {
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkRegister.ClientID);
-        objValidate.Medatory(txtUsername, "Please enter", this.Page);
+        objValidate.Medatory(txtUsername, "Please enter Username", this.Page);
+        objValidate.Medatory(txtPassword, "Please enter Password", this.Page);
+        objValidate.Medatory(txtUseremail, "Please enter Email Address", this.Page);
+        objValidate.ComparttextBox(txtPassword, "Please enter password does not match", this.Page, txtConfirm);
+        objValidate.DrowDownMendatory(ddCource, "Please select cource", this.Page, "0");
+        objValidate.DrowDownMendatory(ddInstitute, "Please select Institute", this.Page, "0");
+    }
+    protected override void OnLoad(EventArgs e)
+    {
+        FormValidation();
         IsLogginMandatory = false;
         new InstituteController().BindInstitute(ddInstitute);
         ddInstitute.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddInstitute.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?iid="));
         base.OnLoad(e);
     }
-    
+
     private int AddUser()
     {
         string UserName;
@@ -34,10 +43,10 @@ public partial class All_Ajaxer_RegisterUser :AjaxPage
         string Email;
         Email = HtmlHelper.ControlValue(txtUseremail.ClientID);
         int InstituteID = 0;
-        InstituteID=Convert.ToInt32(HtmlHelper.ControlValue(ddInstitute.ClientID));
-        int InstituteCourceID=0;
-        InstituteCourceID=Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
-        Dictionary<string,string> status= new LoginUserController().CreateUser(UserName,Password,Email,(int)UserTypeEnum.Student,InstituteID,InstituteCourceID);
+        InstituteID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstitute.ClientID));
+        int InstituteCourceID = 0;
+        InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+        Dictionary<string, string> status = new LoginUserController().CreateUser(UserName, Password, Email, (int)UserTypeEnum.Student, InstituteID, InstituteCourceID);
         if (status["status"].Contains("success"))
         {
             divMessage.InnerHtml = "<div class='success'>User created</div>";

@@ -35,7 +35,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">MetaDescription</span>
+                            <span class="label">Meta Description</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtMetaDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
@@ -90,11 +90,11 @@
         </div>
         <div class="gray">
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddDocument" runat="server" RequestContainner="#contentBox"
+                <aspajax:AjaxLinkButton ID="lnkAddDocument" runat="server" RequestContainner="#contentBox" EnableValidation="true"
                     ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateDocument" runat="server" RequestContainner="#contentBox"
+                <aspajax:AjaxLinkButton ID="lnkUpdateDocument" runat="server" RequestContainner="#contentBox" EnableValidation="true"
                     ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn"> Update</div></aspajax:AjaxLinkButton>
             </div>
         </div>

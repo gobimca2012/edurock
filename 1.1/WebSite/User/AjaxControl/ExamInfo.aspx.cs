@@ -14,7 +14,24 @@ using BusinessLogic;
 
 public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddExam.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateExam.ClientID);
+        objValidate.DrowDownMendatory(ddInstituteCource, "Please select Cource ", this.Page, "0");
+        objValidate.DrowDownMendatory(ddInstituteSubject, "Please select Subject ", this.Page, "0");
+        objValidate.Medatory(txtExamTime, "Please enter Title", this.Page);
+        objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
+        objValidate.Medatory(txtExamTime, "Please enter Examination Time", this.Page);
+        objValidate.Medatory(txtRequirePecentage, "Please enter Required Percentage", this.Page);
+        objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
+        objValidate.Medatory(txtSubjectName, "Please enter Subject name", this.Page);
+        
 
+
+
+
+    }
 
     private void AddData()
     {
@@ -189,6 +206,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
     {
         //JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"), this.Page);
         //new JScripter.TinyMCE(this.Page).Create();
+        FormValidation();
         JScripter.DatePicker objDatePicker = new JScripter.DatePicker(this.Page, true);
         objDatePicker.DatePickerTextBox(txtStartDate);
         objDatePicker.DatePickerTextBox(txtEndDate);

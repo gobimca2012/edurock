@@ -15,7 +15,19 @@ using BusinessLogic;
 public partial class User_AjaxControl_ArticleInfo : AjaxPage
 {
 
+    private void FormValidation()
+    {
+        lnkUpdateArticle.EnableValidation = true;
+        lnkAddArticle.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddArticle.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateArticle.ClientID);
+        objValidate.DrowDownMendatory(ddCource, "Please select Cource ", this.Page, "0");
+        objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
+        objValidate.Medatory(txtTitle, "Please enter Title", this.Page);
+        
 
+
+    }
     private void AddData()
     {
         try
@@ -148,6 +160,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         new JScripter.TinyMCE(this.Page).Create();
         if (Request.Params["arid"] != null)
         {

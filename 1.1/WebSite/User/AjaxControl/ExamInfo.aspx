@@ -19,7 +19,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">InstituteCourceID</span>
+                            <span class="label">Cource</span>
                         </div>
                         <div id="ddin">
                             <asp:DropDownList ID="ddInstituteCource" runat="server">
@@ -28,7 +28,7 @@
                     </div>
                     <div id="SubjectDrop">
                         <div>
-                            <span class="label">InstituteSubjectID</span>
+                            <span class="label">Subject</span>
                         </div>
                         <div>
                             <div>
@@ -39,7 +39,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">ExamName</span>
+                            <span class="label">Examination Title</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtExamName" runat="server"></asp:TextBox>
@@ -47,7 +47,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">SubjectName</span>
+                            <span class="label">Subject Name</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtSubjectName" runat="server"></asp:TextBox>
@@ -63,7 +63,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">ExamTime</span>
+                            <span class="label">Exam Time</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtExamTime" runat="server"></asp:TextBox>
@@ -79,7 +79,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">RequirePecentage</span>
+                            <span class="label">Required Pecentage</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtRequirePecentage" runat="server"></asp:TextBox>
@@ -87,7 +87,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">StartDate</span>
+                            <span class="label">Start Date</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
@@ -95,7 +95,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">EndDate</span>
+                            <span class="label">End Date</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
@@ -106,11 +106,11 @@
         </div>
         <div class="gray">
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddExam" runat="server" RequestContainner="#contentBox"
+                <aspajax:AjaxLinkButton ID="lnkAddExam" runat="server" RequestContainner="#contentBox" EnableValidation="true"
                     ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateExam" runat="server" RequestContainner="#contentBox"
+                <aspajax:AjaxLinkButton ID="lnkUpdateExam" runat="server" RequestContainner="#contentBox" EnableValidation="true"
                     ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn"> Update</div></aspajax:AjaxLinkButton>
             </div>
         </div>

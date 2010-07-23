@@ -1,4 +1,5 @@
 ﻿// JavaScript Document
+// JavaScript Document
 var isPassword = true;
 var unvalidIDs = new Array();
 var validationType = new Array();
@@ -407,6 +408,10 @@ function CompartTextBox(obj, id2, Message)
 function GetDropdownSelected(id)
 {
    var obj = document.getElementById(id);
+   if(obj.options.length == 0)
+   {
+      return "0";
+   }
    for (var i = 0; i < obj.options.length; i ++ )
    {
       if (obj.options[ i ].selected)
@@ -419,228 +424,212 @@ function GetDropdownSelected(id)
 
 //  ---------------------------------------
 
-function AddValidateBtn(ClientID)
+function ClearValidation()
 {
-   //for(var i = 0; i < ValidateBtns.length; i ++ )
-   //{
-      ValidateBtns[ValidateBtns.length] = ClientID;
-   //}
+   
+  unvalidIDs=new Array();
+  idCounter=0;
+  return true;
 }
 
 //  ---------------------------------------
 
-function CheckBtnInValidation(btnClientID)
+function ValidateForm()
 {
-   for(var i = 0; i < ValidateBtns.length; i ++ )
+
+   alert("aa");
+   IsValidateSuccessFully = false;
+   showupID = new Array();
+   var goahead = false;
+   var isValidate = true;
+   if(unvalidIDs.length > 0)
    {
-      if(ValidateBtns[i] = btnClientID)
+      var xaxaddd = unvalidIDs;
+      for(var i = 0; i < unvalidIDs.length; i ++ )
       {
-         return true;
-      }
-
-   }
-   return false;
-}
-
-//  ---------------------------------------
-
-function ValidateForm(btnClientID)
-{
-   if(CheckBtnInValidation(btnClientID))
-   {
-     alert("aa");
-      IsValidateSuccessFully = false;
-      showupID = new Array();
-      var goahead = false;
-      var isValidate = true;
-      if(unvalidIDs.length > 0)
-      {
-         var xaxaddd = unvalidIDs;
-         for(var i = 0; i < unvalidIDs.length; i ++ )
+         var idvalid = unvalidIDs[i].hasid.replace("val", "");
+         if(unvalidIDs[i].type == "mendatory")
          {
-            var idvalid = unvalidIDs[i].hasid.replace("val", "");
-            if(unvalidIDs[i].type == "mendatory")
+            goahead = Mendatory($(idvalid), unvalidIDs[i].message);
+            if(goahead == false)
             {
-               goahead = Mendatory($(idvalid), unvalidIDs[i].message);
-               if(goahead == false)
+               if(isValidate == true)
                {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
 
-                  // return false;
-               }
-
-            }
-            else if(unvalidIDs[i].type == "max")
-            {
-               goahead = MaximumLength($(idvalid), unvalidIDs[i].param1, unvalidIDs[i].message);
-               if(goahead == false)
-               {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
-                  // return false;
-               }
-            }
-            else if(unvalidIDs[i].type == "comp")
-            {
-               goahead = CompartTextBox($(idvalid), "#" + unvalidIDs[i].param1, unvalidIDs[i].message);
-               if(goahead == false)
-               {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
-                  // return false;
-               }
-            }
-            else if(unvalidIDs[i].type == "min")
-            {
-               goahead = MinimumLength($(idvalid), unvalidIDs[i].param1, unvalidIDs[i].message);
-               if(goahead == false)
-               {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
-                  // return false;
-               }
-            }
-            else if(unvalidIDs[i].type == "dig")
-            {
-               goahead = DigitOnly($(idvalid), unvalidIDs[i].message);
-               if(goahead == false)
-               {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
-                  // return false;
-               }
-            }
-            else if(unvalidIDs[i].type == "nospe")
-            {
-               goahead = NoSpecialCharector($(idvalid), unvalidIDs[i].message);
-               if(goahead == false)
-               {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
-                  // return false;
-               }
-            }
-            else if(unvalidIDs[i].type == "website")
-            {
-               goahead = WebSite($(idvalid), unvalidIDs[i].message);
-               if(goahead == false)
-               {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
-                  // return false;
-               }
-            }
-            else if(unvalidIDs[i].type == "alph")
-            {
-               goahead = AlphabetOnly($(idvalid), unvalidIDs[i].message);
-               if(goahead == false)
-               {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
-                  // return false;
-               }
-            }
-            else if(unvalidIDs[i].type == "email")
-            {
-               goahead = Email($(idvalid), unvalidIDs[i].message);
-               if(goahead == false)
-               {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
-                  // return false;
-               }
-            }
-            else if(unvalidIDs[i].type == "ddm")
-            {
-               var ddval = GetDropdownSelected(unvalidIDs[i].cid);
-               if(ddval == unvalidIDs[i].param1)
-               {
-                  MessageDisplay($(idvalid), unvalidIDs[i].message);
-                  goahead = false;
-               }
-               else
-               {
-                  MessageDown($(idvalid));
-                  goahead = true;
-               }
-               if(goahead == false)
-               {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
-                  // return false;
-               }
-            }
-            else if(unvalidIDs[i].type == "bday")
-            {
-               var ddval = GetDropdownSelected(unvalidIDs[i].cid);
-               var ddval1 = GetDropdownSelected(unvalidIDs[i].param1);
-               var ddval2 = GetDropdownSelected(unvalidIDs[i].param2);
-               if(ddval == '0' || ddval1 == '0' || ddval2 == '0')
-               {
-                  MessageDisplay($('#' + unvalidIDs[i].param2), unvalidIDs[i].message);
-                  goahead = false;
-               }
-               else
-               {
-                  MessageDown($('#' + unvalidIDs[i].param2));
-               }
-               if(goahead == false)
-               {
-                  if(isValidate == true)
-                  {
-                     $(idvalid).focus();
-                  }
-                  isValidate = goahead;
-                  // return false;
-               }
+               // return false;
             }
 
          }
-         IsValidateSuccessFully = isValidate;
-         return isValidate;
+         else if(unvalidIDs[i].type == "max")
+         {
+            goahead = MaximumLength($(idvalid), unvalidIDs[i].param1, unvalidIDs[i].message);
+            if(goahead == false)
+            {
+               if(isValidate == true)
+               {
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
+               // return false;
+            }
+         }
+         else if(unvalidIDs[i].type == "comp")
+         {
+            goahead = CompartTextBox($(idvalid), "#" + unvalidIDs[i].param1, unvalidIDs[i].message);
+            if(goahead == false)
+            {
+               if(isValidate == true)
+               {
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
+               // return false;
+            }
+         }
+         else if(unvalidIDs[i].type == "min")
+         {
+            goahead = MinimumLength($(idvalid), unvalidIDs[i].param1, unvalidIDs[i].message);
+            if(goahead == false)
+            {
+               if(isValidate == true)
+               {
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
+               // return false;
+            }
+         }
+         else if(unvalidIDs[i].type == "dig")
+         {
+            goahead = DigitOnly($(idvalid), unvalidIDs[i].message);
+            if(goahead == false)
+            {
+               if(isValidate == true)
+               {
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
+               // return false;
+            }
+         }
+         else if(unvalidIDs[i].type == "nospe")
+         {
+            goahead = NoSpecialCharector($(idvalid), unvalidIDs[i].message);
+            if(goahead == false)
+            {
+               if(isValidate == true)
+               {
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
+               // return false;
+            }
+         }
+         else if(unvalidIDs[i].type == "website")
+         {
+            goahead = WebSite($(idvalid), unvalidIDs[i].message);
+            if(goahead == false)
+            {
+               if(isValidate == true)
+               {
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
+               // return false;
+            }
+         }
+         else if(unvalidIDs[i].type == "alph")
+         {
+            goahead = AlphabetOnly($(idvalid), unvalidIDs[i].message);
+            if(goahead == false)
+            {
+               if(isValidate == true)
+               {
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
+               // return false;
+            }
+         }
+         else if(unvalidIDs[i].type == "email")
+         {
+            goahead = Email($(idvalid), unvalidIDs[i].message);
+            if(goahead == false)
+            {
+               if(isValidate == true)
+               {
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
+               // return false;
+            }
+         }
+         else if(unvalidIDs[i].type == "ddm")
+         {
+            var ddval = GetDropdownSelected(unvalidIDs[i].cid);
+            if(ddval == unvalidIDs[i].param1)
+            {
+               MessageDisplay($(idvalid), unvalidIDs[i].message);
+               goahead = false;
+            }
+            else
+            {
+               MessageDown($(idvalid));
+               goahead = true;
+            }
+            if(goahead == false)
+            {
+               if(isValidate == true)
+               {
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
+               // return false;
+            }
+         }
+         else if(unvalidIDs[i].type == "bday")
+         {
+            var ddval = GetDropdownSelected(unvalidIDs[i].cid);
+            var ddval1 = GetDropdownSelected(unvalidIDs[i].param1);
+            var ddval2 = GetDropdownSelected(unvalidIDs[i].param2);
+            if(ddval == '0' || ddval1 == '0' || ddval2 == '0')
+            {
+               MessageDisplay($('#' + unvalidIDs[i].param2), unvalidIDs[i].message);
+               goahead = false;
+            }
+            else
+            {
+               MessageDown($('#' + unvalidIDs[i].param2));
+            }
+            if(goahead == false)
+            {
+               if(isValidate == true)
+               {
+                  $(idvalid).focus();
+               }
+               isValidate = goahead;
+               // return false;
+            }
+         }
+
       }
-      else
-      {
-         return true;
-      }
+      IsValidateSuccessFully = isValidate;
+      return isValidate;
    }
    else
    {
       return true;
    }
-
 }
+
+//  ---------------------------------------
+
+
+
+
 
 //  ---------------------------------------
 
@@ -836,6 +825,9 @@ $.fn.ValidateButton = function()
       }
 
    }
+
+   //  ---------------------------------------
+
    );
 }
 
@@ -863,6 +855,9 @@ function DatePickerValidate(id1, id2)
       }
 
    }
+
+   //  ---------------------------------------
+
    );
    $(id2).attr("disabled", "disabled");
 }

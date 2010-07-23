@@ -14,9 +14,19 @@ using BusinessLogic;
 
 public partial class College_Ajaxer_CourceInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        lnkAddcource.EnableValidation = true;
+        lnkUpdate.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddcource.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdate.ClientID);
+        objValidate.DrowDownMendatory(ddCatagory, "Please select Cource Catagory", this.Page, "0");
+        objValidate.Medatory(txtCourceName, "Please enter Cource Name", this.Page);
+        
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        FormValidation();
         if (Request.Params["cid"]!=null)
         {
             AjaxState["cid"] = Request.Params["cid"];

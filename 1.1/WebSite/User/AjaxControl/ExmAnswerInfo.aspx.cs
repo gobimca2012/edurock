@@ -15,6 +15,15 @@ using System.Collections.Generic;
 
 public partial class User_AjaxControl_ExmAnswerInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        lnkUpdateEXM_Answer.EnableValidation = true;
+        lnkAddEXM_Answer.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddEXM_Answer.ClientID);
+        JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateEXM_Answer.ClientID);
+        objValidate.Medatory(txtAnswer, "Please enter Answer", this.Page);
+
+    }
 
     private int _QuestionID
     {
@@ -114,6 +123,7 @@ public partial class User_AjaxControl_ExmAnswerInfo : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         if (Request.Params["qid"] != null)
         {
             AjaxState["qid"] = Request.Params["qid"];

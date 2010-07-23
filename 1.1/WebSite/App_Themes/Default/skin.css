@@ -17,6 +17,7 @@ body
     width: 1000px;
     margin: 0 auto; /*border: solid 1px #848689;*/
     background: #008000;
+    max-width:1336px;
 }
 #msgstate div, .success
 {
@@ -902,7 +903,7 @@ input[type=radio], input[type=checkbox]
 {
     background: url(images/lcbg.png);
     height: 20px;
-    width:215px;
+    width:20%;
     background-position: left;
     background-repeat:no-repeat;
 }
@@ -921,4 +922,27 @@ input[type=radio], input[type=checkbox]
 {
     border:none;
     border-right:dashed 1px #626262;
+}
+.valtooltip
+{
+    color:Red;
+    font-weight:bold;
+    
+}
+.lmbg
+{
+    background-image:url(images/lmbg.png);
+    background-repeat:repeat-y;
+  
+}
+.rmbg
+{
+    background-image:url(images/rmbg.png);
+    background-repeat:repeat-y;
+    background-position:right;
+   
+}
+.label
+{
+    line-height:22px;
 }

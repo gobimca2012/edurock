@@ -15,9 +15,27 @@ using System.Collections.Generic;
 
 public partial class College_Ajaxer_RegisterInstitute : AjaxPage
 {
-    
+    private void FormValidation()
+    {
+
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkRegister.ClientID);
+        objValidate.Medatory(txtUsername, "Please enter Username", this.Page);
+        objValidate.Medatory(txtPassword, "Please enter Password", this.Page);
+        objValidate.Medatory(txtUseremail, "Please enter Email Address", this.Page);
+        objValidate.ComparttextBox(txtPassword, "Please enter password does not match", this.Page, txtConfirm);
+        objValidate.DrowDownMendatory(ddCollegeType, "Please select College Type", this.Page, "0");
+        objValidate.Medatory(txtAddress, "Please enter valid address", this.Page);
+        objValidate.Medatory(txtCityName, "Please enter valid city", this.Page);
+        objValidate.Medatory(txtCountryName, "Please enter valid Country", this.Page);
+        objValidate.Medatory(txtEmail, "Please enter valid email address of Institute", this.Page);
+        objValidate.Medatory(txtName, "Please enter Insitiute Name", this.Page);
+        objValidate.Medatory(txtShortName, "Please enter Insititute Short Name", this.Page);
+        objValidate.Medatory(txtStateName, "Please enter valid State", this.Page);
+        
+    }
     protected override void OnLoad(EventArgs e)
     {
+        FormValidation();
         IsLogginMandatory = false;
        // new JScripter.TinyMCE(this.Page).Create();
         BindData();

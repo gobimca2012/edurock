@@ -18,7 +18,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">ExamName</span>
+                            <span class="label">Exam Name</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtExamName" runat="server"></asp:TextBox>
@@ -26,7 +26,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">SubjectName</span>
+                            <span class="label">Subject Name</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtSubjectName" runat="server"></asp:TextBox>
@@ -34,7 +34,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">InstituteCourceID</span>
+                            <span class="label"> Cource</span>
                         </div>
                         <div id="ddin">
                             <asp:DropDownList ID="ddInstituteCource" runat="server">
@@ -43,7 +43,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">InstituteSubjectID</span>
+                            <span class="label">Subject</span>
                         </div>
                         <div>
                             <div>
@@ -60,23 +60,11 @@
                             <asp:TextBox ID="txtDescription" runat="server" CssClass="mceEditor" TextMode="MultiLine" Height="400"></asp:TextBox>
                         </div>
                     </div>
+                    
+                   
                     <div>
                         <div>
-                            <span class="label">LoginUserID</span>
-                        </div>
-                        <div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span class="label">ModifiedDate</span>
-                        </div>
-                        <div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span class="label">ExamTime</span>
+                            <span class="label">Exam Time</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtExamTime" runat="server"></asp:TextBox>
@@ -92,7 +80,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">RequirePecentage</span>
+                            <span class="label">Required Pecentage</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtRequirePecentage" runat="server"></asp:TextBox>
@@ -100,7 +88,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">StartDate</span>
+                            <span class="label">Start Date</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
@@ -108,7 +96,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">EndDate</span>
+                            <span class="label">End Date</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
@@ -119,7 +107,7 @@
         </div>
         <div class="gray">
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddExam" runat="server" RequestContainner="#contentBox"
+                <aspajax:AjaxLinkButton ID="lnkAddExam" runat="server" RequestContainner="#contentBox" EnableValidation="true"
                     ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
             </div>
             <div>
