@@ -11,6 +11,17 @@
         <div class="gray">
             Share Your Data</div>
         <fieldset>
+            <legend>All User Access</legend>
+            <div>
+                <%--<asp:CheckBox ID="chkEditAllUser" runat="server" Text="Can Edit" Checked="false" />--%>
+                <aspajax:CheckBox ID="chkEditAllUser" CustomID="chkAllEdit$AllUSer" runat="server" Checked="false"></aspajax:CheckBox><span>All User Can Edit</span>
+            </div>
+            <div>
+                <%--<asp:CheckBox ID="chkViewAllUser" runat="server" Text="Can View" Checked="true"/>--%>
+                <aspajax:CheckBox ID="chkViewAllUser" CustomID="chkAllView$AllUSer" runat="server" Checked="true"></aspajax:CheckBox><span>All User can View</span>
+            </div>
+        </fieldset>
+        <fieldset>
             <legend>Share with Users</legend>
             <div class="whitecont">
                 <asp:ListView ID="listUsers" runat="server">

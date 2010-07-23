@@ -17,7 +17,7 @@ public partial class All_Ajaxer_RegisterUser : AjaxPage
 {
     private void FormValidation()
     {
-        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkRegister.ClientID);
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkRegisterNewUser.ClientID);
         objValidate.Medatory(txtUsername, "Please enter Username", this.Page);
         objValidate.Medatory(txtPassword, "Please enter Password", this.Page);
         objValidate.Medatory(txtUseremail, "Please enter Email Address", this.Page);
@@ -34,7 +34,7 @@ public partial class All_Ajaxer_RegisterUser : AjaxPage
         base.OnLoad(e);
     }
 
-    private int AddUser()
+    private void AddUser()
     {
         string UserName;
         UserName = HtmlHelper.ControlValue(txtUsername.ClientID);
@@ -59,7 +59,9 @@ public partial class All_Ajaxer_RegisterUser : AjaxPage
         {
             divMessage.InnerHtml = "<div class='error'>not created</div>";
         }
-        return 0;
+        Session[SessionName.StatusMessage.ToString()] = "User SuccessFully Created";
+
+        Response.Redirect("~/Success.aspx");
     }
     protected void RegisterAjax(object sender, AjaxControl.AjaxEventArg e)
     {

@@ -29,7 +29,7 @@
             <uc2:Login ID="Login1" runat="server" />
         </div>
         <div id="creatediv" style="display: none">
-            <uc1:Create ID="Create1" runat="server" />
+           <div id="registernew" style="position:absolute;width:200px"></div>
         </div>
     </div>
 </div>

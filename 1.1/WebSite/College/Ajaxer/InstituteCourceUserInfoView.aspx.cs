@@ -98,7 +98,7 @@ public partial class College_Ajaxer_InstituteCourceUserInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-
+            new InstituteCourceUserController().DeletebyInstituteCourceUserID(new Guid(e.Id));
             BindList();
         }
         base.OnAjaxListViewCommand(e);

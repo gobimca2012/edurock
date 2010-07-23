@@ -29,7 +29,15 @@
                         <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
                     </div>
                 </div>
-                 <div>
+                <div>
+                    <div>
+                        <span class="label">Confirm password</span>
+                    </div>
+                    <div>
+                        <asp:TextBox ID="txtConfirm" runat="server"></asp:TextBox>
+                    </div>
+                </div>
+                <div>
                     <div>
                         <span class="label">First name</span>
                     </div>
@@ -37,20 +45,12 @@
                         <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
                     </div>
                 </div>
-                 <div>
+                <div>
                     <div>
                         <span class="label">Last name</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">Confirm password</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtConfirm" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div>
@@ -81,9 +81,9 @@
                 </div>
                 <div>
                     <div style="float: left">
-                        <aspajax:AjaxLinkButton ID="lnkRegister" runat="server" EnableViewState="False" RequestContainner="#contentBox"
-                            ResponseContainner="#contentBox" Increment="False" OnAjaxClick="RegisterAjax" EnableValidation="true"
-                            Pagger="False">Register</aspajax:AjaxLinkButton>
+                        <aspajax:AjaxLinkButton ID="lnkRegisterNewUser" runat="server" EnableViewState="False" RequestContainner="#registernew"
+                            ResponseContainner="#registernew" Increment="False" OnAjaxClick="RegisterAjax"
+                            EnableValidation="true" Pagger="False"><div class="btn"> Register</div> </aspajax:AjaxLinkButton>
                     </div>
                 </div>
             </div>

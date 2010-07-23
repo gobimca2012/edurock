@@ -18,7 +18,7 @@ public partial class College_Ajaxer_RegisterInstitute : AjaxPage
     private void FormValidation()
     {
 
-        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkRegister.ClientID);
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkRegisterInstitute.ClientID);
         objValidate.Medatory(txtUsername, "Please enter Username", this.Page);
         objValidate.Medatory(txtPassword, "Please enter Password", this.Page);
         objValidate.Medatory(txtUseremail, "Please enter Email Address", this.Page);
@@ -112,6 +112,9 @@ public partial class College_Ajaxer_RegisterInstitute : AjaxPage
             if (InstituteID > 0)
             {
                 new InstituteUserController().Add(InstituteID, LoginUserID, "", DateTime.Now);
+                Session[SessionName.StatusMessage.ToString()] = "User SuccessFully Created";
+
+                Response.Redirect("~/Success.aspx");
             }
         }
         catch (Exception ex)

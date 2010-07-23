@@ -287,12 +287,12 @@ namespace BusinessLogic
                 return 0;
             }
         }
-        public int Add(string Username, string Password, string FirstName, string Lastname,string ProfilePic, int UserType, Guid UserId, DateTime ModifiedDate, DateTime CreatedDate)
+        public int Add(string Username, string Password, string FirstName, string Lastname, string ProfilePic, int UserType, Guid UserId, DateTime ModifiedDate, DateTime CreatedDate)
         {
 
             try
             {
-                int ID = new DataProvider().LoginUserAdd(Username, Password,FirstName,Lastname,ProfilePic, UserType, UserId, ModifiedDate, CreatedDate);
+                int ID = new DataProvider().LoginUserAdd(Username, Password, FirstName, Lastname, ProfilePic, UserType, UserId, ModifiedDate, CreatedDate);
                 return ID;
             }
             catch (Exception ex)
@@ -564,9 +564,9 @@ namespace BusinessLogic
                 {
                     try
                     {
-                        int LoginUserID = Add(Username, Password,Firstname,Lastname,ProfilePic, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
+                        int LoginUserID = Add(Username, Password, Firstname, Lastname, ProfilePic, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
                         new InstituteUserController().Add(InstituteID, LoginUserID, "", DateTime.Now);
-                        new InstituteCourceUserController().Add(InstituteCourceID, LoginUserID, LoginUserID, (int)InstituteCourceUserEnum.Normal, DateTime.Now);
+                        new InstituteCourceUserController().Add(Guid.NewGuid(), InstituteCourceID, LoginUserID, LoginUserID, (int)InstituteCourceUserEnum.Normal, DateTime.Now);
                         if (LoginUserID == 0)
                         {
                             Membership.DeleteUser(MemUser.UserName);
@@ -630,7 +630,7 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public bool CreateUser(string Username, string Password,string Firstname,string LastName,string ProfilePic, string Email, int UType, int InstituteUserType)
+        public bool CreateUser(string Username, string Password, string Firstname, string LastName, string ProfilePic, string Email, int UType, int InstituteUserType)
         {
             try
             {
@@ -642,7 +642,7 @@ namespace BusinessLogic
                 {
                     try
                     {
-                        LoginUserID = Add(Username, Password,Firstname,LastName,ProfilePic, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
+                        LoginUserID = Add(Username, Password, Firstname, LastName, ProfilePic, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
                         int id = new InstituteUserController().Add(new UserAuthontication().InstituteID, LoginUserID, "", DateTime.Now);
                         if (LoginUserID == 0)
                         {

@@ -15,7 +15,7 @@ body
 }
 .page, #msgstate div
 {
-    width: 1000px;
+    width: 100%;
     margin: 0 auto; /*border: solid 1px #848689;*/
     background: #008000;
     max-width:1336px;
@@ -727,13 +727,13 @@ fieldset
 {
     text-align: left;
     border: none;
-    border-top:dashed 1px #626262;
+    border-top:solid 1px #626262;
 }
 legend
 {
     font-size:14px;
     font-weight:bold;
-    
+color:#497EC1;    
     
 }
 .tarrow

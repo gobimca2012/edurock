@@ -20,6 +20,7 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
         if (!new UserAuthontication().IsLoggedIn)
         {
             lilogout.Visible = false;
+            objLoader.LoadPage("#registernew", ResolveUrl("~/All/Ajaxer/RegisterUser.aspx"));
             liAccountsetting.Visible = false;
         }
         else

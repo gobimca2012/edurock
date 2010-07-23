@@ -72,6 +72,7 @@ namespace DataAccess
             objUser.PhotoPath = ProfilePic;
             objUser.LoginUserID = ObjLoginUser.LoginUserID;
             dbUser.Users.InsertOnSubmit(objUser);
+            dbUser.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return ObjLoginUser.LoginUserID;
         }
@@ -12986,6 +12987,91 @@ namespace DataAccess
 
         #endregion
         #region CustomShare
+        public List<Share> ShareGet(string ObjectID,int Type)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Shares where p.ObjectID == ObjectID && p.ObjectType==Type select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+        public void UpdateShareViewAllUser(int ObjectType, string ObjectID,bool EnableAllUseView)
+        {
+            UserDataContext db=new UserDataContext();
+            var data = (from p in db.Shares where p.ObjectID == ObjectID && p.ObjectType == ObjectType select p).ToList();
+            if (data.Count > 0)
+            {
+                data[0].EnableAllUseView = EnableAllUseView;
+                db.SubmitChanges();
+            }
+            else
+            {
+                Share objShare = new Share();
+                objShare.EnableAllUserComment = true;
+                objShare.EnableAllUserEdit = false;
+                objShare.EnableAllUseView = EnableAllUseView;
+                objShare.ModifiedDate = DateTime.Now;
+                objShare.ObjectID = ObjectID;
+                objShare.ObjectType = ObjectType;
+                objShare.ShareID = Guid.NewGuid();
+                db.Shares.InsertOnSubmit(objShare);
+                db.SubmitChanges();
+            }
+
+        }
+        public void UpdateShareEditAllUser(int ObjectType, string ObjectID, bool EnableAllUseEdit)
+        {
+            UserDataContext db = new UserDataContext();
+            var data = (from p in db.Shares where p.ObjectID == ObjectID && p.ObjectType == ObjectType select p).ToList();
+            if (data.Count > 0)
+            {
+                data[0].EnableAllUserEdit = EnableAllUseEdit;
+                db.SubmitChanges();
+            }
+            else
+            {
+                Share objShare = new Share();
+                objShare.EnableAllUserComment = true;
+                objShare.EnableAllUserEdit = EnableAllUseEdit;
+                objShare.EnableAllUseView = true;
+                objShare.ModifiedDate = DateTime.Now;
+                objShare.ObjectID = ObjectID;
+                objShare.ObjectType = ObjectType;
+                objShare.ShareID = Guid.NewGuid();
+                db.Shares.InsertOnSubmit(objShare);
+                db.SubmitChanges();
+            }
+        }
+
+        public void UpdateShareCommentAllUser(int ObjectType, string ObjectID, bool EnableAllUseComment)
+        {
+            UserDataContext db = new UserDataContext();
+            var data = (from p in db.Shares where p.ObjectID == ObjectID && p.ObjectType == ObjectType select p).ToList();
+            if (data.Count > 0)
+            {
+                data[0].EnableAllUserComment = EnableAllUseComment;
+                db.SubmitChanges();
+            }
+            else
+            {
+                Share objShare = new Share();
+                objShare.EnableAllUserComment = EnableAllUseComment;
+                objShare.EnableAllUserEdit = false;
+                objShare.EnableAllUseView = true;
+                objShare.ModifiedDate = DateTime.Now;
+                objShare.ObjectID = ObjectID;
+                objShare.ObjectType = ObjectType;
+                objShare.ShareID = Guid.NewGuid();
+                db.Shares.InsertOnSubmit(objShare);
+                db.SubmitChanges();
+            }
+        }
         #endregion
 
 
