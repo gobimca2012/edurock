@@ -134,7 +134,7 @@ namespace BusinessLogic
             {
                 if (Session[SessionName.SucessMessage.ToString()] != null)
                 {
-                    string MessageInjectScript = string.Format("alert('aa');$('#msgstate').html('<div>{0}</div>');", Session[SessionName.SucessMessage.ToString()].ToString());
+                    string MessageInjectScript = string.Format("$('#msgstate').html('<div>{0}</div>');", Session[SessionName.SucessMessage.ToString()].ToString());
                     objLoader.InjectScript(MessageInjectScript, this.Page);
                     Session.Remove(SessionName.SucessMessage.ToString());
                 }

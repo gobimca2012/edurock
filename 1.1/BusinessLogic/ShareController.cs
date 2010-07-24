@@ -9,6 +9,19 @@ using DataAccess;
 
 namespace BusinessLogic
 {
+    public class ShareContent
+    {
+        public bool IsViewable
+        {
+            get;
+            set;
+        }
+        public bool IsEditablable
+        {
+            get;
+            set;
+        }
+    }
     public class ShareController
     {
 
@@ -355,6 +368,22 @@ namespace BusinessLogic
         }
         #endregion
         #region Share
+        public void IsViewable(string ObjectID, int ObjectType, int LoginUserID)
+        {
+            ShareContent objShareContent = new ShareContent();
+            var data=new ShareController().Get(ObjectID, ObjectType);
+            if (data.Count > 0)
+            {
+                if (data[0].EnableAllUseView)
+                {
+                    objShareContent.IsViewable = true;
+                }
+                else
+                {
+
+                }
+            }
+        }
         public bool UpdateShareCommentAllUser(int ObjectType, string ObjectID, bool EnableAllUseComment)
         {
             try

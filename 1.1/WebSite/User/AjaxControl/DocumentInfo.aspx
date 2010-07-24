@@ -19,7 +19,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">Name</span>
+                            <span class="label">Title</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
