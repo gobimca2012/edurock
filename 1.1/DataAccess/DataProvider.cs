@@ -13765,6 +13765,42 @@ namespace DataAccess
             return db.GetShareUser(ObjectType, ObjectID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
+        public List<GetUserObjectAccessResult> GetUserObjectAccess(int LoginUserID, string ObjectID, int ObjectType)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetUserObjectAccess(LoginUserID, ObjectID, ObjectType).ToList();
+
+        }
+        public List<GetUserObjectAccessResult> GetUserObjectAccess(int LoginUserID, string ObjectID, int ObjectType, int PageSize, int PageNumber)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetUserObjectAccess(LoginUserID, ObjectID, ObjectType).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
+        public List<GetGroupObjectAccessResult> GetGroupObjectAccess(int LoginUserID, string ObjectID, int ObjectType)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType).ToList();
+
+        }
+        public List<GetGroupObjectAccessResult> GetGroupObjectAccess(int LoginUserID, string ObjectID, int ObjectType, int PageSize, int PageNumber)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         #endregion
 
 

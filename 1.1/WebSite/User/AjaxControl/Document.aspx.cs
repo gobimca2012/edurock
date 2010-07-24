@@ -59,7 +59,7 @@ public partial class User_AjaxControl_Document : AjaxPage
             {
 
                 ControlManager(data.LoginUserID);
-                
+
             }
 
             if (data.Rating != null)
@@ -76,23 +76,23 @@ public partial class User_AjaxControl_Document : AjaxPage
                 }
                 else if (data.DocumentType == (int)DocumentTypeEnum.Document)
                 {
-                    lblFilePath.HRef =ResolveUrl( data.FilePath.ToString());
+                    lblFilePath.HRef = ResolveUrl(data.FilePath.ToString());
                 }
                 else if (data.DocumentType == (int)DocumentTypeEnum.Audio || data.DocumentType == (int)DocumentTypeEnum.Video)
                 {
                     //lblFilePath.InnerHtml = data.FilePath.ToString();
                     new JScripter.Player(this.Page).CreatePlayer(ResolveUrl(data.FilePath.ToString()), "videoPlayer");
                 }
-                
+
             }
             if (data.DocumentType != null)
             {
                 //lblDocumentType.InnerHtml = data.DocumentType.ToString();
-                lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?did=" + ID.ToString()+"&dtype="+data.DocumentType.ToString();
+                lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?did=" + ID.ToString() + "&dtype=" + data.DocumentType.ToString();
             }
             if (data.DocumentCources.Count > 0)
             {
-                FullViewSideInfo1.CourceID =data.DocumentCources[0].InstituteCourceID;
+                FullViewSideInfo1.CourceID = data.DocumentCources[0].InstituteCourceID;
                 FullViewSideInfo1.SubjectID = (int)data.DocumentCources[0].SubjectID;
                 FullViewSideInfo1.LoginUserID = data.LoginUserID;
                 FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
@@ -111,12 +111,17 @@ public partial class User_AjaxControl_Document : AjaxPage
             return new Guid(Request.Params["did"]);
         }
     }
+    ShareContent UserAccess;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-        BindData();
-        objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + (_ContentType).ToString());
-        lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + (_ContentType).ToString();
+        UserAccess = new ShareController().GetAccess(ID.ToString(), _ContentType, new UserAuthontication().LoggedInUserID);
+        if (UserAccess.IsViewable)
+        {
+            BindData();
+            objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + (_ContentType).ToString());
+            lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + (_ContentType).ToString();
+        }
+
     }
 
 }

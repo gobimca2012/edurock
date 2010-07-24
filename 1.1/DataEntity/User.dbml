@@ -243,4 +243,32 @@
       <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetUserObjectAccess" Method="GetUserObjectAccess">
+    <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ObjectID" Parameter="objectID" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="ObjectType" Parameter="objectType" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetUserObjectAccessResult">
+      <Column Name="Username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EnableEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetGroupObjectAccess" Method="GetGroupObjectAccess">
+    <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ObjectID" Parameter="objectID" Type="System.String" DbType="VarChar(40)" />
+    <Parameter Name="ObjectType" Parameter="objectType" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetGroupObjectAccessResult">
+      <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteUserTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EnableEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

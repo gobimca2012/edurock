@@ -368,21 +368,106 @@ namespace BusinessLogic
         }
         #endregion
         #region Share
-        public void IsViewable(string ObjectID, int ObjectType, int LoginUserID)
+        public List<GetUserObjectAccessResult> GetUserObjectAccess(int LoginUserID, string ObjectID, int ObjectType)
+        {
+            try
+            {
+
+                return new DataProvider().GetUserObjectAccess(LoginUserID, ObjectID, ObjectType);
+            }
+            catch
+            {
+                return new List<GetUserObjectAccessResult>();
+            }
+        }
+        public List<GetUserObjectAccessResult> GetUserObjectAccess(int LoginUserID, string ObjectID, int ObjectType, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetUserObjectAccess(LoginUserID, ObjectID, ObjectType, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetUserObjectAccessResult>();
+            }
+        }
+        public List<GetGroupObjectAccessResult> GetGroupObjectAccess(int LoginUserID, string ObjectID, int ObjectType)
+        {
+            try
+            {
+
+                return new DataProvider().GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType);
+            }
+            catch
+            {
+                return new List<GetGroupObjectAccessResult>();
+            }
+        }
+        public List<GetGroupObjectAccessResult> GetGroupObjectAccess(int LoginUserID, string ObjectID, int ObjectType, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetGroupObjectAccessResult>();
+            }
+        }
+        public ShareContent GetAccess(string ObjectID, int ObjectType, int LoginUserID)
         {
             ShareContent objShareContent = new ShareContent();
-            var data=new ShareController().Get(ObjectID, ObjectType);
-            if (data.Count > 0)
+            objShareContent.IsViewable = false;
+            objShareContent.IsEditablable = false;
+            var dataShareData = new ShareController().Get(ObjectID, ObjectType);
+            var dataShareUser = GetUserObjectAccess(LoginUserID, ObjectID, ObjectType);
+            var dataGroupUser = GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType);
+            if (dataShareData.Count > 0)
             {
-                if (data[0].EnableAllUseView)
+                if ((bool)dataShareData[0].EnableAllUseView)
                 {
                     objShareContent.IsViewable = true;
                 }
-                else
+            }
+            else if (dataGroupUser.Count > 0)
+            {
+                if ((bool)dataGroupUser[0].EnableView)
                 {
-
+                    objShareContent.IsViewable = true;
                 }
             }
+            else if (dataShareUser.Count > 0)
+            {
+                if ((bool)dataShareUser[0].EnableView)
+                {
+                    objShareContent.IsViewable = true;
+                }
+            }
+
+            if (dataShareData.Count > 0)
+            {
+                if ((bool)dataShareData[0].EnableAllUserEdit)
+                {
+                    objShareContent.IsEditablable = true;
+                }
+            }
+            else if (dataGroupUser.Count > 0)
+            {
+                if ((bool)dataGroupUser[0].EnableEdit)
+                {
+                    objShareContent.IsEditablable = true;
+                }
+            }
+            else if (dataShareUser.Count > 0)
+            {
+                if ((bool)dataShareUser[0].EnableEdit)
+                {
+                    objShareContent.IsEditablable = true;
+                }
+            }
+            return objShareContent;
         }
         public bool UpdateShareCommentAllUser(int ObjectType, string ObjectID, bool EnableAllUseComment)
         {
@@ -418,7 +503,7 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public bool UpdateShareViewAllUser(int ObjectType, string ObjectID,bool EnableAllUseView)
+        public bool UpdateShareViewAllUser(int ObjectType, string ObjectID, bool EnableAllUseView)
         {
             try
             {
@@ -435,11 +520,11 @@ namespace BusinessLogic
                 return false;
             }
         }
-        public List<Share> Get(string ObjectID,int Type)
+        public List<Share> Get(string ObjectID, int Type)
         {
             try
             {
-                return new DataProvider().ShareGet(ObjectID,Type);
+                return new DataProvider().ShareGet(ObjectID, Type);
             }
             catch (Exception ex)
             {
