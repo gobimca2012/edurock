@@ -13,14 +13,24 @@ body
     text-align: left;
     background:#f1f1f1;
 }
-.page, #msgstate div
+.page, #msgstate div, .success
 {
     width: 100%;
     margin: 0 auto; /*border: solid 1px #848689;*/
     background: #008000;
     max-width:1336px;
 }
-#msgstate div, .success
+.brcum
+{
+    
+    border:solid 1px #f0f0f0;
+  
+}
+.brcum a
+{
+    color:#fff;
+}
+#msgstate div, .success,.brcum
 {
     padding: 5px;
     color: #fff;

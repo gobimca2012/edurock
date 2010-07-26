@@ -19,25 +19,27 @@ public partial class User_AjaxControl_Event : AjaxPage
     {
         if (new UserAuthontication().IsOwn(LoginUserID))
         {
-
-            lnkEdit.Visible = true;
-            lnkShare.Visible = true;
+            //lnkDelete.Visible = true;
+            lnkShare.Visible = UserAccess.IsEditablable;
 
         }
+        lnkEdit.Visible = UserAccess.IsEditablable;
     }
-      
+    ShareContent UserAccess;
     private void BindData()
     {
         var dataBunch = new EventController().GetbyEventID(ID);
         if (dataBunch.Count > 0)
         {
-            var data = dataBunch[0];
-            
-                
-                
+            var data = dataBunch[0];                
 
             if (data.LoginUserID != null)
             {
+                UserAccess = new ShareController().GetAccess(ID.ToString(), (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+                if (!UserAccess.IsViewable)
+                {
+                    Response.Redirect("~/Status/NoAccess.aspx");
+                }
                 ControlManager(data.LoginUserID);
                 FullViewSideInfo1.LoginUserID = data.LoginUserID;
                 FullViewSideInfo1.ModifiedDate =(DateTime) data.ModifiedDate;

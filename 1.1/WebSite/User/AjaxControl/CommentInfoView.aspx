@@ -21,7 +21,7 @@
                     <div style="float: left;padding:2px;width:70px">
                         <uc1:UserBox ID="UserBox1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>' />
                     </div>
-                    <div style="float: left;padding:2px;width:500px">
+                    <div style="float: left;padding:2px;width:75%">
                         <%#Eval("CommentText") %>
                     </div>
                     <div style="float: left;padding:2px;width:65px">

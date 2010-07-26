@@ -29,15 +29,18 @@ public partial class User_AjaxControl_Question : AjaxPage
         {
             return Convert.ToInt32(AjaxState["icid"]);
         }
-    }
+    }ShareContent UserAccess;
     private void ControlManager(int LoginUserID)
     {
         if (new UserAuthontication().IsOwn(LoginUserID))
         {
-            lnkEdit.Visible = true;
+
             lnkShare.Visible = true;
 
         }
+
+
+        lnkEdit.Visible = UserAccess.IsEditablable;
     }
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -83,6 +86,11 @@ public partial class User_AjaxControl_Question : AjaxPage
         if (data.ModifiedDate != null)
         {
 //            lblModifiedDate.InnerHtml = data.ModifiedDate.ToString();
+        }
+        UserAccess = new ShareController().GetAccess(ID.ToString(), (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+        if (!UserAccess.IsViewable)
+        {
+            Response.Redirect("~/Status/NoAccess.aspx");
         }
         FullViewSideInfo1.LoginUserID = data.LoginUserID;
         FullViewSideInfo1.ModifiedDate = data.ModifiedDate;

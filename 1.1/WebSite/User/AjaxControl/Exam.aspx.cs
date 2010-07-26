@@ -15,14 +15,19 @@ using Common;
 
 public partial class User_AjaxControl_Exam : AjaxPage
 {
+    ShareContent UserAccess;
     private void ControlManager(int LoginUserID)
     {
+       
         if (new UserAuthontication().IsOwn(LoginUserID))
         {
-            lnkEdit.Visible = true;
-            lnkQuestion.Visible = true;
+
             lnkShare.Visible = true;
+
         }
+
+        lnkQuestion.Visible = UserAccess.IsEditablable;
+        lnkEdit.Visible = UserAccess.IsEditablable;
     }
     private void BindData()
     {
@@ -32,11 +37,11 @@ public partial class User_AjaxControl_Exam : AjaxPage
             var data = dataBunch[0];
             if (data.ExamID != null)
 
-               // lblExamID.InnerHtml = data.ExamID.ToString();
+                // lblExamID.InnerHtml = data.ExamID.ToString();
 
-            if (data.ExamName != null)
+                if (data.ExamName != null)
 
-                lblExamName.InnerHtml = data.ExamName.ToString();
+                    lblExamName.InnerHtml = data.ExamName.ToString();
 
             if (data.SubjectName != null)
 
@@ -52,7 +57,7 @@ public partial class User_AjaxControl_Exam : AjaxPage
             {
 
                 //lblInstituteSubjectID.InnerHtml = data.InstituteSubjectID.ToString();
-                FullViewSideInfo1.SubjectID =(int) data.InstituteSubjectID;
+                FullViewSideInfo1.SubjectID = (int)data.InstituteSubjectID;
             }
             if (data.Description != null)
 
@@ -60,11 +65,17 @@ public partial class User_AjaxControl_Exam : AjaxPage
 
             if (data.LoginUserID != null)
             {
+                UserAccess = new ShareController().GetAccess(ID.ToString(), (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+                if (!UserAccess.IsViewable)
+                {
+                    Response.Redirect("~/Status/NoAccess.aspx");
+                }
+
                 FullViewSideInfo1.LoginUserID = data.LoginUserID;
                 FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
                 ControlManager(data.LoginUserID);
             }
-            
+
             if (data.ExamTime != null)
 
                 lblExamTime.InnerHtml = data.ExamTime.ToString();
@@ -86,7 +97,7 @@ public partial class User_AjaxControl_Exam : AjaxPage
 
             if (data.EndDate != null)
 
-                lblEndDate.InnerHtml =  CommonController.GetDate(Convert.ToDateTime(data.EndDate.ToString()));
+                lblEndDate.InnerHtml = CommonController.GetDate(Convert.ToDateTime(data.EndDate.ToString()));
         }
 
     }

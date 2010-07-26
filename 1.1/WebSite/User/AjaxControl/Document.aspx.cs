@@ -20,9 +20,10 @@ public partial class User_AjaxControl_Document : AjaxPage
         if (new UserAuthontication().IsOwn(LoginUserID))
         {
             //lnkDelete.Visible = true;
-            lnkShare.Visible = true;
-            lnkEdit.Visible = true;
+            lnkShare.Visible = UserAccess.IsEditablable;
+        
         }
+        lnkEdit.Visible = UserAccess.IsEditablable;
     }
     private int _ContentType
     {
@@ -54,10 +55,14 @@ public partial class User_AjaxControl_Document : AjaxPage
             if (data.Tag != null)
 
                 lblTag.InnerHtml = data.Tag.ToString();
-
+            _ContentType = data.DocumentType;
             if (data.LoginUserID != null)
             {
-
+                UserAccess = new ShareController().GetAccess(ID.ToString(), _ContentType, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+                if (!UserAccess.IsViewable)
+                {
+                    Response.Redirect("~/Status/NoAccess.aspx");
+                }
                 ControlManager(data.LoginUserID);
 
             }
@@ -68,7 +73,7 @@ public partial class User_AjaxControl_Document : AjaxPage
 
             if (data.FilePath != null)
             {
-                _ContentType = data.DocumentType;
+
                 if (data.DocumentType == (int)DocumentTypeEnum.Image)
                 {
                     img.Visible = true;
@@ -114,8 +119,8 @@ public partial class User_AjaxControl_Document : AjaxPage
     ShareContent UserAccess;
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserAccess = new ShareController().GetAccess(ID.ToString(), _ContentType, new UserAuthontication().LoggedInUserID);
-        if (UserAccess.IsViewable)
+
+        //if (UserAccess.IsViewable)
         {
             BindData();
             objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + (_ContentType).ToString());

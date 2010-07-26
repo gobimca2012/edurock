@@ -20,9 +20,10 @@ public partial class User_AjaxControl_Article : AjaxPage
         if (new UserAuthontication().IsOwn(LoginUserID))
         {
             //lnkDelete.Visible = true;
-            lnkShare.Visible = true;
-            lnkEdit.Visible = true;
+            lnkShare.Visible = UserAccess.IsEditablable;
+
         }
+        lnkEdit.Visible = UserAccess.IsEditablable;
     }
 
     private void BindData()
@@ -34,7 +35,11 @@ public partial class User_AjaxControl_Article : AjaxPage
 
             if (data.LoginUserID != null)
             {
-
+                UserAccess = new ShareController().GetAccess(ID.ToString(), (int)ContentTypeEnum.Article, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+                if (!UserAccess.IsViewable)
+                {
+                    Response.Redirect("~/Status/NoAccess.aspx");
+                }
                 FullViewSideInfo1.LoginUserID = data.LoginUserID;
                 FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
                 FullViewSideInfo1.CourceID = data.InstituteCourceID;
@@ -74,6 +79,7 @@ public partial class User_AjaxControl_Article : AjaxPage
             return new Guid(AjaxState["arid"]);
         }
     }
+    ShareContent UserAccess;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.Params["arid"] != null)

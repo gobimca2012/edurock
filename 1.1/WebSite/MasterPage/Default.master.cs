@@ -24,7 +24,8 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
             }
             else
             {
-                return new UserAuthontication().LoggedInUserID;
+                //return new UserAuthontication().LoggedInUserID;
+                return 0;
             }
         }
     }
@@ -49,11 +50,26 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
         objEffect.Collapspanel("#courcel", "#icource");
         if (new UserAuthontication().IsLoggedIn)
         {
-            var UserData = new UserController().GetbyLoginUserID(LoginUserID);
+            int ProfileLogginUserID = 0;
+            if (LoginUserID > 0)
+            {
+                ProfileLogginUserID = LoginUserID;
+            }
+            else
+            {
+                ProfileLogginUserID = new UserAuthontication().LoggedInUserID;
+            }
+            var UserData = new UserController().GetbyLoginUserID(ProfileLogginUserID);
             if (UserData.Count > 0)
             {
                 if (UserData[0].PhotoPath != null)
+                {
                     img.ImageUrl = ResolveUrl(UserData[0].PhotoPath);
+                }
+                if (UserData[0].FirstName != null && UserData[0].LastName != null)
+                {
+                    lblName.InnerHtml = UserData[0].FirstName + "&nbsp; " + UserData[0].LastName;
+                }
             }
             if (new UserAuthontication().UserType == UserTypeEnum.College)
             {

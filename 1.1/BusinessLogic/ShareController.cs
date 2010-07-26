@@ -416,56 +416,65 @@ namespace BusinessLogic
                 return new List<GetGroupObjectAccessResult>();
             }
         }
-        public ShareContent GetAccess(string ObjectID, int ObjectType, int LoginUserID)
+        public ShareContent GetAccess(string ObjectID, int ObjectType, int LoginUserID, int ObjectLoginUserID)
         {
             ShareContent objShareContent = new ShareContent();
-            objShareContent.IsViewable = false;
-            objShareContent.IsEditablable = false;
-            var dataShareData = new ShareController().Get(ObjectID, ObjectType);
-            var dataShareUser = GetUserObjectAccess(LoginUserID, ObjectID, ObjectType);
-            var dataGroupUser = GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType);
-            if (dataShareData.Count > 0)
+            if (LoginUserID != ObjectLoginUserID)
             {
-                if ((bool)dataShareData[0].EnableAllUseView)
-                {
-                    objShareContent.IsViewable = true;
-                }
-            }
-            else if (dataGroupUser.Count > 0)
-            {
-                if ((bool)dataGroupUser[0].EnableView)
-                {
-                    objShareContent.IsViewable = true;
-                }
-            }
-            else if (dataShareUser.Count > 0)
-            {
-                if ((bool)dataShareUser[0].EnableView)
-                {
-                    objShareContent.IsViewable = true;
-                }
-            }
 
-            if (dataShareData.Count > 0)
-            {
-                if ((bool)dataShareData[0].EnableAllUserEdit)
+                objShareContent.IsViewable = false;
+                objShareContent.IsEditablable = false;
+                var dataShareData = new ShareController().Get(ObjectID, ObjectType);
+                var dataShareUser = GetUserObjectAccess(LoginUserID, ObjectID, ObjectType);
+                var dataGroupUser = GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType);
+                if (dataShareData.Count > 0 && (bool)dataShareData[0].EnableAllUseView)
                 {
-                    objShareContent.IsEditablable = true;
+                    //if ()
+                    {
+                        objShareContent.IsViewable = true;
+                    }
+                }
+                else if (dataGroupUser.Count > 0 && (bool)dataGroupUser[0].EnableView)
+                {
+                    //if ()
+                    {
+                        objShareContent.IsViewable = true;
+                    }
+                }
+                else if (dataShareUser.Count > 0 && (bool)dataShareUser[0].EnableView)
+                {
+                    //if ()
+                    {
+                        objShareContent.IsViewable = true;
+                    }
+                }
+
+                if (dataShareData.Count > 0 && (bool)dataShareData[0].EnableAllUserEdit)
+                {
+
+                    {
+                        objShareContent.IsEditablable = true;
+                    }
+                }
+                else if (dataGroupUser.Count > 0 && (bool)dataGroupUser[0].EnableEdit)
+                {
+                    //if ()
+                    {
+                        objShareContent.IsEditablable = true;
+                    }
+                }
+                else if (dataShareUser.Count > 0 && (bool)dataShareUser[0].EnableEdit)
+                {
+                    //if ()
+                    {
+                        objShareContent.IsEditablable = true;
+                    }
                 }
             }
-            else if (dataGroupUser.Count > 0)
+            else
             {
-                if ((bool)dataGroupUser[0].EnableEdit)
-                {
-                    objShareContent.IsEditablable = true;
-                }
-            }
-            else if (dataShareUser.Count > 0)
-            {
-                if ((bool)dataShareUser[0].EnableEdit)
-                {
-                    objShareContent.IsEditablable = true;
-                }
+                objShareContent.IsEditablable = true;
+                objShareContent.IsViewable = true;
             }
             return objShareContent;
         }

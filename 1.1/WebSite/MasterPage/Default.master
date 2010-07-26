@@ -26,7 +26,15 @@
     </div>
     <div id="msgstate">
     </div>
-    <div id="ipop">
+    <div  class="brcum">
+        <div style="float: left">
+            <a href="~/User/DashBoard.aspx" runat="server" id="ddU">DashBoard</a>
+        </div>
+        <div id="headingBox"  style="float: left">
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div id="ipop" >
     </div>
     <div class="page">
         <div>
@@ -44,6 +52,9 @@
                         <div style="text-align: center; padding: 2px">
                             <div>
                                 <asp:Image ID="img" runat="server" Width="172" />
+                                <div>
+                                    <span id="lblName" runat="server"></span>
+                                </div>
                             </div>
                             <div id="st">
                             </div>
@@ -108,8 +119,6 @@
                     <div style="margin-right: 10px; border-left: solid 1px #444;">
                         <div class="bksl">
                             <div>
-                                <div class="head" id="headingBox">
-                                    Learning Management system</div>
                             </div>
                             <div style="margin-top: 29px;">
                                 <div class="btn" id="dash" runat="server">

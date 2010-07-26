@@ -160,7 +160,7 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-            new DocumentController().DeletebyDocumentID(new Guid(e.Id));
+            new EventController().DeletebyEventID(new Guid(e.Id));
             BindList();
         }
         base.OnAjaxListViewCommand(e);

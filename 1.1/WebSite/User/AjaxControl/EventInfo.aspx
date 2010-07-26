@@ -29,7 +29,7 @@
                             <span class="label">Description</span>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="400"></asp:TextBox>
                         </div>
                     </div>
                     <div>
@@ -37,7 +37,7 @@
                             <span class="label">Meta Description</span>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtMetaDescription" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtMetaDescription" runat="server" TextMode="MultiLine" Height="300"> </asp:TextBox>
                         </div>
                     </div>
                     <div>
