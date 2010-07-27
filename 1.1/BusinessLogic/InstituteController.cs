@@ -6,6 +6,9 @@ using System.Diagnostics;
 using DataAccess;
 using DataEntity;
 using System.Web.UI.WebControls;
+using System.IO;
+using System.Configuration;
+using System.Web;
 
 namespace BusinessLogic
 {
@@ -978,6 +981,37 @@ namespace BusinessLogic
 
         #endregion
         #region Institute
+        public string Upload(FileUpload fl)
+        {
+            string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["ProfilePic"]);
+            FolderPath += new UserAuthontication().LoggedInUserName + "/";
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+            string FilePath = FolderPath + "/" + fl.FileName;
+            string ReturnFilePath = ConfigurationSettings.AppSettings["ProfilePic"] + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            fl.SaveAs(FilePath);
+            return ReturnFilePath;
+        }
+        public string UpdateByInstituteID(int InstituteID, int LoginUserID, FileUpload File)
+        {
+            try
+            {
+                string FilePath = Upload(File);
+                new DataProvider().InstituteUpdateByInstituteID(InstituteID, LoginUserID, FilePath);
+                return FilePath;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return "";
+            }
+        }
         public List<GetInstituteByLoginUserIDResult> GetInstituteByLoginUserID(int LoginUserID)
         {
             try

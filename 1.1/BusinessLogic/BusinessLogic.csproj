@@ -94,9 +94,6 @@
     <Compile Include="IStartExam.cs" />
     <Compile Include="LoginUserController.cs" />
     <Compile Include="MessageController.cs" />
-    <Compile Include="PaymentBI\OrderController.cs" />
-    <Compile Include="PaymentBI\OrderItemController.cs" />
-    <Compile Include="PaymentBI\PaymentController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionController.cs" />
     <Compile Include="QuestionStatusController.cs" />

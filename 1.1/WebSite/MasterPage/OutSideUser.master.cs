@@ -30,8 +30,11 @@ public partial class MasterPage_OutSideUser : System.Web.UI.MasterPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-        
+        var data = new InstituteController().Get();
+        if (data.Count > 0)
+            if (data[0].Logo != null)
+                imgLogo.ImageUrl = ResolveUrl(data[0].Logo);
+
 
     }
 }

@@ -12,11 +12,15 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using DataEntity;
 using BusinessLogic;
+using Common;
 public partial class College_Ajaxer_CollegeInfo : AjaxPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         var data = new InstituteController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID);
+        JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, false);
+        //objPopup.IframePopUp(lnkChangeImage, ResolveUrl("~/User/UploadPhoto.aspx")+"?uptype=0", "propop", "500", "500", ResolveUrl("~/User/AjaxControl/UserInfoView.aspx"), "#accountsetting");
+        objPopup.IframePopUp(lnkChangeImage, ResolveUrl("~/User/UploadPhoto.aspx") + "?iid="+data[0].InstituteID.ToString()+"&uptype="+((int)DocumentTypeEnum.UploadInstitutePic).ToString(), "ipop", "500", "500", ResolveUrl("~/User/AjaxControl/UploadResponse.aspx"), "#popupresponce");
         if (data.Count > 0)
         {
             BindData(data[0]);

@@ -4742,6 +4742,18 @@ namespace DataAccess
 
         #endregion
         #region CustomInstitute
+        public void InstituteUpdateByInstituteID(int InstituteID, int LoginUserID,string Logo)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            InstituteDataContext db = new InstituteDataContext();
+            db.DeferredLoadingEnabled = false;
+            Institute data = db.Institutes.Single(p => p.InstituteID == InstituteID);
+            data.LoginUserID = LoginUserID;
+            data.ModifiedDate = DateTime.Now;
+            data.Logo = Logo;
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
         public List<GetInstituteByLoginUserIDResult> GetInstituteByLoginUserID(int LoginUserID)
         {
 

@@ -42,6 +42,11 @@
             <div class="rmbg">
                 <div style="float: left; width: 20%;" id="sidemenu">
                     <div style="margin-left: 10px">
+                        <div>
+                            <asp:Image ID="imgLogo" runat="server" Width="150px" />
+                        </div>
+                        <div id="incource">
+                        </div>
                     </div>
                 </div>
                 <div style="float: right; width: 80%;">

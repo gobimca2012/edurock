@@ -967,3 +967,63 @@ input[type=radio], input[type=checkbox]
 {
     line-height:22px;
 }
+.plb
+{
+    background:url(images/plb.png);
+    background-position:left;
+}
+.prb
+{
+    background:url(images/prb.png);
+    background-position:right;
+}
+.pcb
+{
+    background:url(images/pcb.png);
+    background-repeat:repeat-x;
+    margin:0px 20px;
+    height:20px;
+}
+.plt
+{
+    background:url(images/plt.png);
+    background-position:left;
+}
+.prt
+{
+    background:url(images/prt.png);
+    background-position:right;
+}
+.pct
+{
+    background:url(images/pct.png);
+    background-repeat:repeat-x;
+    margin:0px 20px;
+    height:20px;
+}
+.plm
+{
+    background:url(images/plm.png);
+    background-position:left;
+    background-repeat:repeat-y;
+    
+}
+.prm
+{
+    background:url(images/prm.png);
+    background-position:right;
+    background-repeat:repeat-y;
+}
+.pcm
+{
+    background:#fff;    
+    margin:0px 20px;
+    
+    padding:5px;
+}
+.prt,.plt,.prb,.plb
+{
+   
+    height:20px;
+    background-repeat:no-repeat;
+}

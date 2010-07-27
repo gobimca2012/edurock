@@ -18,20 +18,10 @@
         </div>
     </div>
     <div class="header" style="border: none; background: transparent">
-        <uc1:headernavigation id="HeaderNavigation1" runat="server" />
     </div>
     <div style="clear: both">
     </div>
     <div id="msgstate">
-    </div>
-    <div class="brcum">
-        <div style="float: left">
-            <a href="~/User/DashBoard.aspx" runat="server" id="ddU">DashBoard</a>
-        </div>
-        <div id="headingBox" style="float: left">
-        </div>
-        <div class="clear">
-        </div>
     </div>
     <div id="ipop">
     </div>

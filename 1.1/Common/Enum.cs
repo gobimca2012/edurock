@@ -35,6 +35,7 @@ namespace Common
         Image=1,
         Audio=3,
         Video=2,
+        UploadInstitutePic=5
     }
     public enum InstituteCourceUserEnum
     {

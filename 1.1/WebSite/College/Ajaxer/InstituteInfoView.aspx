@@ -14,6 +14,14 @@
         </div>
         <div id="Institute" style="padding: 5px;">
             <div>
+                <div id="popupresponce">
+                    <asp:Image ID="imgProfilepic" runat="server" Width="100" />
+                </div>
+                <div>
+                    <asp:LinkButton ID="lnkChangeImage" runat="server">UpdatePic</asp:LinkButton>
+                </div>
+            </div>
+            <div>
                 <div>
                     <span class="label">Name</span>
                 </div>

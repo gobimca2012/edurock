@@ -11,15 +11,14 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
-public partial class Home : BasePage
+
+public partial class Institute : BasePage
 {
-    protected override void OnInit(EventArgs e)
+    protected override void OnLoad(EventArgs e)
     {
-        IsLogginMandatory = false;
-        base.OnInit(e);
-    }
-    protected void Page_Load(object sender, EventArgs e)
-    {
+
+
+        this.IsLogginMandatory = false;
         var data = new InstituteController().Get();
         if (data.Count > 0)
         {
@@ -28,5 +27,6 @@ public partial class Home : BasePage
             objLoader.LoadPage("#indesc", ResolveUrl("~/College/Ajaxer/Institute1_0.aspx") + "?iid=" + data[0].InstituteID.ToString());
             //objLoader.LoadPage("#incon", ResolveUrl("~/College/Ajaxer/InstituteContactInfo.aspx") + "?iid=" + data[0].InstituteID.ToString());
         }
+        base.OnLoad(e);
     }
 }

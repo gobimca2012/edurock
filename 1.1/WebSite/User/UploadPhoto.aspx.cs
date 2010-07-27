@@ -37,6 +37,15 @@ public partial class User_UploadPhoto : BasePage
             Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;
             injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
         }
+        else if (UploadType == (int)DocumentTypeEnum.UploadInstitutePic)
+        {
+            string Path = new InstituteController().UpdateByInstituteID(Convert.ToInt32(Request.Params["iid"]), new UserAuthontication().LoggedInUserID, fileUploader);
+            Session[SessionName.FileUploader.ToString()] = Path;
+            Session[SessionName.FileUploaderDefaultImage.ToString()] = Path;
+            Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
+            Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;
+            injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
+        }
         else if (UploadType == (int)DocumentTypeEnum.Image)
         {
             if (FileInformation.IsImage(FileInformation.getFileExtention(fileUploader.FileName)))
