@@ -225,6 +225,13 @@ namespace DataEntity
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID, objectID, objectType);
 			return ((ISingleResult<GetGroupObjectAccessResult>)(result.ReturnValue));
 		}
+		
+		[Function(Name="dbo.GetUserRelatedContent")]
+		public ISingleResult<GetUserRelatedContentResult> GetUserRelatedContent([Parameter(Name="LoginUserID", DbType="Int")] System.Nullable<int> loginUserID, [Parameter(Name="InstituteCourceID", DbType="Int")] System.Nullable<int> instituteCourceID, [Parameter(Name="InstituteSubjectID", DbType="Int")] System.Nullable<int> instituteSubjectID, [Parameter(Name="ContentType", DbType="Int")] System.Nullable<int> contentType, [Parameter(Name="LoggedInUserLoginID", DbType="Int")] System.Nullable<int> loggedInUserLoginID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID, instituteCourceID, instituteSubjectID, contentType, loggedInUserLoginID);
+			return ((ISingleResult<GetUserRelatedContentResult>)(result.ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.LoginUser")]
@@ -4896,6 +4903,158 @@ namespace DataEntity
 				if ((this._EnableEditByLoggedIn != value))
 				{
 					this._EnableEditByLoggedIn = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetUserRelatedContentResult
+	{
+		
+		private string _ID;
+		
+		private string _Title;
+		
+		private int _LoginUserID;
+		
+		private System.Nullable<int> _InstituteCourceID;
+		
+		private System.Nullable<int> _InstituteSubjectID;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		private int _ContentType;
+		
+		private string _Param1;
+		
+		public GetUserRelatedContentResult()
+		{
+		}
+		
+		[Column(Storage="_ID", DbType="VarChar(40)")]
+		public string ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this._LoginUserID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteCourceID", DbType="Int")]
+		public System.Nullable<int> InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this._InstituteCourceID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteSubjectID", DbType="Int")]
+		public System.Nullable<int> InstituteSubjectID
+		{
+			get
+			{
+				return this._InstituteSubjectID;
+			}
+			set
+			{
+				if ((this._InstituteSubjectID != value))
+				{
+					this._InstituteSubjectID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ContentType", DbType="Int NOT NULL")]
+		public int ContentType
+		{
+			get
+			{
+				return this._ContentType;
+			}
+			set
+			{
+				if ((this._ContentType != value))
+				{
+					this._ContentType = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Param1", DbType="VarChar(MAX)")]
+		public string Param1
+		{
+			get
+			{
+				return this._Param1;
+			}
+			set
+			{
+				if ((this._Param1 != value))
+				{
+					this._Param1 = value;
 				}
 			}
 		}

@@ -73,6 +73,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OnlineExamination.dbml</DependentUpon>
     </Compile>
+    <Compile Include="OrderPayment.cs">
+      <DependentUpon>OrderPayment.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderPayment.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderPayment.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -154,6 +162,16 @@
   <ItemGroup>
     <None Include="Message.dbml.layout">
       <DependentUpon>Message.dbml</DependentUpon>
+    </None>
+    <None Include="OrderPayment.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>OrderPayment.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OrderPayment.dbml.layout">
+      <DependentUpon>OrderPayment.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

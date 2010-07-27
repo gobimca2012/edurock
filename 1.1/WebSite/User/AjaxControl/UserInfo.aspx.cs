@@ -130,11 +130,13 @@ public partial class User_AjaxControl_UserInfo : AjaxPage
             txtLastName.Text = data.LastName;
 
             txtMiddleName.Text = data.MiddleName;
-
-            ddDay.SelectedValue = data.BirthDate.Value.Day.ToString();
-            ddMonth.SelectedValue = data.BirthDate.Value.Month.ToString();
-            ddYear.SelectedValue = data.BirthDate.Value.Year.ToString();
-
+            if (data.BirthDate != null)
+            {
+                ddDay.SelectedValue = data.BirthDate.Value.Day.ToString();
+                ddMonth.SelectedValue = data.BirthDate.Value.Month.ToString();
+                ddYear.SelectedValue = data.BirthDate.Value.Year.ToString();
+            }
+            
             txtAddress1.Text = data.Address1;
 
             txtAddress2.Text = data.Address2;

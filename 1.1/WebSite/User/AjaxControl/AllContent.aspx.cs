@@ -112,7 +112,7 @@ public partial class User_AjaxControl_AllContent : AjaxPage
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID,(int)ContentTypeEnum.All, PageSize, PageNumber);
+        ListQuestion.DataSource = new UserController().GetUserRelatedContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID,(int)ContentTypeEnum.All,new UserAuthontication().LoggedInUserID,  PageSize, PageNumber);
         ListQuestion.DataBind();
     }
     private void PaggerLinkManager()

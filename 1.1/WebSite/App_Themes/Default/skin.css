@@ -20,15 +20,25 @@ body
     background: #008000;
     max-width:1336px;
 }
+.grebg
+{
+    background:#BEF3AF;
+    padding:5px;
+    color:#fff;
+    font-weight:bold;
+}
 .brcum
 {
     
     border:solid 1px #f0f0f0;
-  
+    background:#9E9E9E;
+  width:92%;
+  margin:0 auto;
 }
-.brcum a
+.brcum a,.brcum div
 {
     color:#fff;
+    font-weight:bold;
 }
 #msgstate div, .success,.brcum
 {
@@ -316,7 +326,7 @@ input, textarea
     text-align: left;
     display: none;
 }
-.roundedall, .btn, .cin:hover, .contentbox, .trans, #msgstate div, .success, .hcurv, .ttip
+.roundedall, .btn, .cin:hover, .contentbox, .trans, #msgstate div, .success, .hcurv, .ttip,.brcum
 {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;

@@ -10,6 +10,7 @@
     <form id="form1" runat="server">
     <div class="graycontent roundedall">
         <div class="hcurv">
+            Personal Information
         </div>
         <div id="User" class="whitecont">
             <div id="pic" runat="server" visible="false">
@@ -29,6 +30,16 @@
                 <div>
                     <span id="lblFirstName" runat="server"></span>&nbsp; <span id="lblMiddleName" runat="server">
                     </span>&nbsp;<span id="lblLastName" runat="server"></span>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div class="label">
+                        User's Role
+                    </div>
+                    <div>
+                        <span id="lblUserRoles" runat="server"></span>
+                    </div>
                 </div>
             </div>
             <div>
@@ -66,6 +77,16 @@
         </div>
         <div class="hcurv">
             <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox" NavigateUrl="UserInfo.aspx"><div class="btn"> Edit</div></aspajax:HyperLink>
+        </div>
+    </div>
+    <div class="graycontent roundedall">
+        <div>
+            <div class="hcurv">
+                User's Cource
+            </div>
+            <div class="whitecont">
+                <span id="lblUserCource" runat="server"></span>
+            </div>
         </div>
     </div>
     </form>

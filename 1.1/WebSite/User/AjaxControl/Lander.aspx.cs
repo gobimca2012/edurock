@@ -80,22 +80,22 @@ public partial class User_AjaxControl_Lander : AjaxPage
         {
             string CourceName = new InstituteCourceController().GetInstituteCourceName(ICID);
             var data = new UserController().GetbyLoginUserID(LoginUserID);
-            Script = string.Format("$('#headingBox').html('{0}');", CourceName+" >> "+data[0].FirstName+" "+data[0].LastName);
+            Script = string.Format("$('#headingBox').html('{0}');",">> "+ CourceName+" >> "+data[0].FirstName+" "+data[0].LastName);
         }
         else if (ICID>0)
         {
             string CourceName=new InstituteCourceController().GetInstituteCourceName(ICID);
-            Script= string.Format("$('#headingBox').html('{0}');",CourceName);
+            Script = string.Format("$('#headingBox').html('{0}');", ">> " + CourceName);
         }
         else if (LoginUserID > 0)
         {
             var data = new UserController().GetbyLoginUserID(LoginUserID);
-            Script = string.Format("$('#headingBox').html('{0}');", data[0].FirstName + " " + data[0].LastName);
+            Script = string.Format("$('#headingBox').html('{0}');", ">> " + data[0].FirstName + " " + data[0].LastName);
         }
         else
         {
             var data = new InstituteController().GetbyInstituteID(new UserAuthontication().UserInstituteID);
-            Script = string.Format("$('#headingBox').html('{0}');", data[0].Name);
+            Script = string.Format("$('#headingBox').html('{0}');", ">> " + data[0].Name);
         }
         
         objLoader.InjectScript(Script, this.Page);

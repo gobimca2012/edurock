@@ -105,7 +105,40 @@ public partial class User_AjaxControl_PublicUserInfoView : AjaxPage
 
             lblWebSite.InnerHtml = data.WebSite.ToString();
 
+        var usergroup = new InstituteController().GetInstituteByLoginUserID(data.LoginUserID);
+        string ugo = "";
+        foreach (GetInstituteByLoginUserIDResult du in usergroup)
+        {
+            if (ugo != "")
+                ugo += ", " + du.InstituteName;
+            else
+                ugo += " " + du.InstituteName;
+        }
+        lblUserRoles.InnerHtml = ugo;
+        var userCource = new InstituteCourceUserController().GetbyLoginUserID(data.LoginUserID);
+        ugo = "";
+        foreach (InstituteCourceUser ucouce in userCource)
+        {
+            if (ugo != "")
+                ugo += ", " + new InstituteCourceController().GetInstituteCourceName(ucouce.InstituteCourceID);
+            else
+                ugo += " " + new InstituteCourceController().GetInstituteCourceName(ucouce.InstituteCourceID);
+        }
 
+        lblUserCource.InnerHtml = ugo;
+
+        //var userInRoles = new InstituteUserInUserTypeController().GetbyLoginUserID(data.LoginUserID);
+
+        //ugo = "";
+        //foreach (InstituteUserInUserType urole in userInRoles)
+        //{
+        //    if (ugo != "")
+        //        ugo += ", " + urole.InstituteUserType.Name;
+        //    else
+        //        ugo += " " + urole.InstituteUserType.Name;
+        //}
+
+        //lblRole.InnerHtml = ugo;
 
     }
 

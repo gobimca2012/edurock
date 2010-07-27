@@ -867,6 +867,30 @@ namespace BusinessLogic
                 return new List<GetContentResult>();
             }
         }
+        public List<GetUserRelatedContentResult> GetUserRelatedContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID)
+        {
+            try
+            {
+
+                return new DataProvider().GetUserRelatedContent(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID);
+            }
+            catch
+            {
+                return new List<GetUserRelatedContentResult>();
+            }
+        }
+        public List<GetUserRelatedContentResult> GetUserRelatedContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetUserRelatedContent(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetUserRelatedContentResult>();
+            }
+        }
         public List<GetUserContentResult> GetUserContent(int LoginUserID)
 		{
 			try

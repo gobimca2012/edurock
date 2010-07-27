@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
     <div style="float: left; width: 65%;">
         <div class="contentbox rbod">
-            <fieldset style="margin-right:5px;">
+            <fieldset style="margin-right: 5px;">
                 <legend>All Activity </legend>
                 <div class="whitecont">
                     <div id="allcon">
