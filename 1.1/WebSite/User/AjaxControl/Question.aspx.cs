@@ -87,7 +87,7 @@ public partial class User_AjaxControl_Question : AjaxPage
         {
 //            lblModifiedDate.InnerHtml = data.ModifiedDate.ToString();
         }
-        UserAccess = new ShareController().GetAccess(ID.ToString(), (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+        UserAccess = new ShareController().GetAccess(ID.ToString(), (int)ContentTypeEnum.Question, new UserAuthontication().LoggedInUserID, data.LoginUserID);
         if (!UserAccess.IsViewable)
         {
             Response.Redirect("~/Status/NoAccess.aspx");

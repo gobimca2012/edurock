@@ -31,7 +31,7 @@ public partial class User_AjaxControl_Event : AjaxPage
         var dataBunch = new EventController().GetbyEventID(ID);
         if (dataBunch.Count > 0)
         {
-            var data = dataBunch[0];                
+            var data = dataBunch[0];
 
             if (data.LoginUserID != null)
             {
@@ -42,8 +42,12 @@ public partial class User_AjaxControl_Event : AjaxPage
                 }
                 ControlManager(data.LoginUserID);
                 FullViewSideInfo1.LoginUserID = data.LoginUserID;
-                FullViewSideInfo1.ModifiedDate =(DateTime) data.ModifiedDate;
-                FullViewSideInfo1.CourceID =(int) data.InstituteCourceID;
+                if (data.EditLoginUserID != null && data.EditLoginUserID > 0)
+                    FullViewSideInfo1.EditorLoginUserID = (int)data.EditLoginUserID;
+                else
+                    FullViewSideInfo1.EditorLoginUserID = (int)data.LoginUserID;
+                FullViewSideInfo1.ModifiedDate = (DateTime)data.ModifiedDate;
+                FullViewSideInfo1.CourceID = (int)data.InstituteCourceID;
                 FullViewSideInfo1.SubjectID = (int)data.InstituteSubjectID;
             }
             if (data.Title != null)

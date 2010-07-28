@@ -8,6 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <div class="grayhead ">Cources</div>
     <div class="graycontent roundedall" style="line-height: 22px;">
         <asp:ListView ID="listCource" runat="server">
             <LayoutTemplate>

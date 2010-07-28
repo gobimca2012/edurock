@@ -44,6 +44,11 @@ public partial class User_UserControl_FullViewSideInfo : System.Web.UI.UserContr
         set;
 
     }
+    public int EditorLoginUserID
+    {
+        get;
+        set;
+    }
     public DateTime ModifiedDate
     {
         get;
@@ -55,6 +60,7 @@ public partial class User_UserControl_FullViewSideInfo : System.Web.UI.UserContr
         lblCourceName.InnerText =new InstituteCourceController().GetInstituteCourceName(CourceID);
         lblSubjectName.InnerText =new InstituteSubjectController().GetInstituteSubjectName(SubjectID);
         UserToolTipLink1.LoginUserID = LoginUserID;
+        UserToolTipLink1.EditorLoginUserID = EditorLoginUserID;
         UserToolTipLink1.ModifiedDate = ModifiedDate;
 
     }

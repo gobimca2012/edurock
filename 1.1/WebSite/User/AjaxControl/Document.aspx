@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="whitecont">
-            <div style="float: left; width: 550px">
+            <div class="fuleft">
                 <div>
                     <div>
                         <asp:Image ID="img" runat="server" Visible="false" Width="560" />
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div style="float: right; width: 160px;">
+              <div class="furight">
                 <uc1:FullViewSideInfo ID="FullViewSideInfo1" runat="server" />
             </div>
             <div style="clear: both">

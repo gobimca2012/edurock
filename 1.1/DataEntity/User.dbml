@@ -10,12 +10,12 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="StudentLogin_UserEducation" Member="UserEducations" OtherKey="LoginUserID" Type="UserEducation" />
-      <Association Name="StudentLogin_Document" Member="Documents" OtherKey="LoginUserID" Type="Document" />
       <Association Name="StudentLogin_ShareUser" Member="ShareUsers" OtherKey="LoginUserID" Type="ShareUser" />
       <Association Name="StudentLogin_User" Member="Users" OtherKey="LoginUserID" Type="User" />
+      <Association Name="StudentLogin_Comment" Member="Comments" OtherKey="LoginUserID" Type="Comment" />
+      <Association Name="StudentLogin_Document" Member="Documents" OtherKey="LoginUserID" Type="Document" />
       <Association Name="StudentLogin_Article" Member="Articles" OtherKey="LoginUserID" Type="Article" />
       <Association Name="StudentLogin_Event" Member="Events" OtherKey="LoginUserID" Type="Event" />
-      <Association Name="StudentLogin_Comment" Member="Comments" OtherKey="LoginUserID" Type="Comment" />
     </Type>
   </Table>
   <Table Name="dbo.UserEducation" Member="UserEducations">
@@ -27,22 +27,6 @@
       <Column Name="Year" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="StudentLogin_UserEducation" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Document" Member="Documents">
-    <Type Name="Document">
-      <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="MetaDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Tag" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FilePath" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="DocumentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Document_DocumentCource" Member="DocumentCources" OtherKey="DocumentID" Type="DocumentCource" />
-      <Association Name="StudentLogin_Document" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DocumentCource" Member="DocumentCources">
@@ -105,40 +89,6 @@
       <Association Name="StudentLogin_User" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Article" Member="Articles">
-    <Type Name="Article">
-      <Column Name="ArticleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="MetaDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Tag" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="StudentLogin_Article" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Event" Member="Events">
-    <Type Name="Event">
-      <Column Name="EventID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="MetaDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Tag" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="ContactPerson" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="ContactEmail" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="ContactPhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="StudentLogin_Event" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Comment" Member="Comments">
     <Type Name="Comment">
       <Column Name="CommentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -161,6 +111,59 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Share_ShareGroup" Member="ShareGroups" OtherKey="ShareID" Type="ShareGroup" />
       <Association Name="Share_ShareUser" Member="ShareUsers" OtherKey="ShareID" Type="ShareUser" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Document" Member="Documents">
+    <Type Name="Document">
+      <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MetaDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EditLoginUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FilePath" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DocumentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Document_DocumentCource" Member="DocumentCources" OtherKey="DocumentID" Type="DocumentCource" />
+      <Association Name="StudentLogin_Document" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Article" Member="Articles">
+    <Type Name="Article">
+      <Column Name="ArticleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EditLoginUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MetaDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Tag" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="StudentLogin_Article" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Event" Member="Events">
+    <Type Name="Event">
+      <Column Name="EventID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EditLoginUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="MetaDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tag" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ContactPerson" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ContactEmail" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ContactPhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="StudentLogin_Event" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetShareUser" Method="GetShareUser">

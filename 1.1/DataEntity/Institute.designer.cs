@@ -63,9 +63,6 @@ namespace DataEntity
     partial void InsertInstituteUserInUserType(InstituteUserInUserType instance);
     partial void UpdateInstituteUserInUserType(InstituteUserInUserType instance);
     partial void DeleteInstituteUserInUserType(InstituteUserInUserType instance);
-    partial void InsertHomeWork(HomeWork instance);
-    partial void UpdateHomeWork(HomeWork instance);
-    partial void DeleteHomeWork(HomeWork instance);
     partial void InsertInstituteUserTypeAccess(InstituteUserTypeAccess instance);
     partial void UpdateInstituteUserTypeAccess(InstituteUserTypeAccess instance);
     partial void DeleteInstituteUserTypeAccess(InstituteUserTypeAccess instance);
@@ -75,6 +72,9 @@ namespace DataEntity
     partial void InsertInstitute(Institute instance);
     partial void UpdateInstitute(Institute instance);
     partial void DeleteInstitute(Institute instance);
+    partial void InsertHomeWork(HomeWork instance);
+    partial void UpdateHomeWork(HomeWork instance);
+    partial void DeleteHomeWork(HomeWork instance);
     #endregion
 		
 		public InstituteDataContext(string connection) : 
@@ -189,14 +189,6 @@ namespace DataEntity
 			}
 		}
 		
-		public System.Data.Linq.Table<HomeWork> HomeWorks
-		{
-			get
-			{
-				return this.GetTable<HomeWork>();
-			}
-		}
-		
 		public System.Data.Linq.Table<InstituteUserTypeAccess> InstituteUserTypeAccesses
 		{
 			get
@@ -218,6 +210,14 @@ namespace DataEntity
 			get
 			{
 				return this.GetTable<Institute>();
+			}
+		}
+		
+		public System.Data.Linq.Table<HomeWork> HomeWorks
+		{
+			get
+			{
+				return this.GetTable<HomeWork>();
 			}
 		}
 		
@@ -3168,236 +3168,6 @@ namespace DataEntity
 		}
 	}
 	
-	[Table(Name="dbo.HomeWork")]
-	public partial class HomeWork : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _HomeWorkID;
-		
-		private int _LoginUserID;
-		
-		private string _Title;
-		
-		private string _Description;
-		
-		private string _ShortDescription;
-		
-		private System.Nullable<int> _InstituteCourceID;
-		
-		private System.Nullable<int> _InstituteSubjectID;
-		
-		private System.DateTime _ModifiedDate;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnHomeWorkIDChanging(int value);
-    partial void OnHomeWorkIDChanged();
-    partial void OnLoginUserIDChanging(int value);
-    partial void OnLoginUserIDChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnShortDescriptionChanging(string value);
-    partial void OnShortDescriptionChanged();
-    partial void OnInstituteCourceIDChanging(System.Nullable<int> value);
-    partial void OnInstituteCourceIDChanged();
-    partial void OnInstituteSubjectIDChanging(System.Nullable<int> value);
-    partial void OnInstituteSubjectIDChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public HomeWork()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_HomeWorkID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int HomeWorkID
-		{
-			get
-			{
-				return this._HomeWorkID;
-			}
-			set
-			{
-				if ((this._HomeWorkID != value))
-				{
-					this.OnHomeWorkIDChanging(value);
-					this.SendPropertyChanging();
-					this._HomeWorkID = value;
-					this.SendPropertyChanged("HomeWorkID");
-					this.OnHomeWorkIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
-		public int LoginUserID
-		{
-			get
-			{
-				return this._LoginUserID;
-			}
-			set
-			{
-				if ((this._LoginUserID != value))
-				{
-					this.OnLoginUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._LoginUserID = value;
-					this.SendPropertyChanged("LoginUserID");
-					this.OnLoginUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Description", DbType="VarChar(MAX)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ShortDescription", DbType="VarChar(MAX)")]
-		public string ShortDescription
-		{
-			get
-			{
-				return this._ShortDescription;
-			}
-			set
-			{
-				if ((this._ShortDescription != value))
-				{
-					this.OnShortDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._ShortDescription = value;
-					this.SendPropertyChanged("ShortDescription");
-					this.OnShortDescriptionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_InstituteCourceID", DbType="Int")]
-		public System.Nullable<int> InstituteCourceID
-		{
-			get
-			{
-				return this._InstituteCourceID;
-			}
-			set
-			{
-				if ((this._InstituteCourceID != value))
-				{
-					this.OnInstituteCourceIDChanging(value);
-					this.SendPropertyChanging();
-					this._InstituteCourceID = value;
-					this.SendPropertyChanged("InstituteCourceID");
-					this.OnInstituteCourceIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_InstituteSubjectID", DbType="Int")]
-		public System.Nullable<int> InstituteSubjectID
-		{
-			get
-			{
-				return this._InstituteSubjectID;
-			}
-			set
-			{
-				if ((this._InstituteSubjectID != value))
-				{
-					this.OnInstituteSubjectIDChanging(value);
-					this.SendPropertyChanging();
-					this._InstituteSubjectID = value;
-					this.SendPropertyChanged("InstituteSubjectID");
-					this.OnInstituteSubjectIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="dbo.InstituteUserTypeAccess")]
 	public partial class InstituteUserTypeAccess : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4613,6 +4383,260 @@ namespace DataEntity
 		{
 			this.SendPropertyChanging();
 			entity.Institute = null;
+		}
+	}
+	
+	[Table(Name="dbo.HomeWork")]
+	public partial class HomeWork : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _HomeWorkID;
+		
+		private int _LoginUserID;
+		
+		private System.Nullable<int> _EditLoginUserID;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private string _ShortDescription;
+		
+		private System.Nullable<int> _InstituteCourceID;
+		
+		private System.Nullable<int> _InstituteSubjectID;
+		
+		private System.DateTime _ModifiedDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnHomeWorkIDChanging(int value);
+    partial void OnHomeWorkIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnEditLoginUserIDChanging(System.Nullable<int> value);
+    partial void OnEditLoginUserIDChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnShortDescriptionChanging(string value);
+    partial void OnShortDescriptionChanged();
+    partial void OnInstituteCourceIDChanging(System.Nullable<int> value);
+    partial void OnInstituteCourceIDChanged();
+    partial void OnInstituteSubjectIDChanging(System.Nullable<int> value);
+    partial void OnInstituteSubjectIDChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public HomeWork()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_HomeWorkID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int HomeWorkID
+		{
+			get
+			{
+				return this._HomeWorkID;
+			}
+			set
+			{
+				if ((this._HomeWorkID != value))
+				{
+					this.OnHomeWorkIDChanging(value);
+					this.SendPropertyChanging();
+					this._HomeWorkID = value;
+					this.SendPropertyChanged("HomeWorkID");
+					this.OnHomeWorkIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EditLoginUserID", DbType="Int")]
+		public System.Nullable<int> EditLoginUserID
+		{
+			get
+			{
+				return this._EditLoginUserID;
+			}
+			set
+			{
+				if ((this._EditLoginUserID != value))
+				{
+					this.OnEditLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._EditLoginUserID = value;
+					this.SendPropertyChanged("EditLoginUserID");
+					this.OnEditLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ShortDescription", DbType="VarChar(MAX)")]
+		public string ShortDescription
+		{
+			get
+			{
+				return this._ShortDescription;
+			}
+			set
+			{
+				if ((this._ShortDescription != value))
+				{
+					this.OnShortDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._ShortDescription = value;
+					this.SendPropertyChanged("ShortDescription");
+					this.OnShortDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteCourceID", DbType="Int")]
+		public System.Nullable<int> InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this.OnInstituteCourceIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteCourceID = value;
+					this.SendPropertyChanged("InstituteCourceID");
+					this.OnInstituteCourceIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteSubjectID", DbType="Int")]
+		public System.Nullable<int> InstituteSubjectID
+		{
+			get
+			{
+				return this._InstituteSubjectID;
+			}
+			set
+			{
+				if ((this._InstituteSubjectID != value))
+				{
+					this.OnInstituteSubjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteSubjectID = value;
+					this.SendPropertyChanged("InstituteSubjectID");
+					this.OnInstituteSubjectIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

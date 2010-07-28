@@ -422,7 +422,7 @@ namespace BusinessLogic
             if (LoginUserID != ObjectLoginUserID)
             {
 
-                objShareContent.IsViewable = false;
+                objShareContent.IsViewable = true;
                 objShareContent.IsEditablable = false;
                 var dataShareData = new ShareController().Get(ObjectID, ObjectType);
                 var dataShareUser = GetUserObjectAccess(LoginUserID, ObjectID, ObjectType);

@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class User_UserControl_UserToolTipLink : System.Web.UI.UserControl
+public partial class User_UserControl_UserToolTipLink1_1 : System.Web.UI.UserControl
 {
     public int LoginUserID
     {
@@ -31,26 +31,31 @@ public partial class User_UserControl_UserToolTipLink : System.Web.UI.UserContro
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        var dataUser = new UserController().GetbyLoginUserID(LoginUserID);
-        if (dataUser.Count > 0)
-        {
-            lnkTool.Text = dataUser[0].FirstName + " " + dataUser[0].LastName;
-            new JScripter.ToolTip(this.Page).AjaxToolTip(lnkTool, ResolveUrl("~/User/AjaxControl/Upop.aspx") + "?lid=" + LoginUserID.ToString(), "acont");
-        }
+
         if (EditorLoginUserID > 0)
         {
-            dataUser = new UserController().GetbyLoginUserID(EditorLoginUserID);
+            var dataUser = new UserController().GetbyLoginUserID(EditorLoginUserID);
             if (dataUser.Count > 0)
             {
-                lnkETool.Text = dataUser[0].FirstName + " " + dataUser[0].LastName;
+                lnkETool.Text =  dataUser[0].FirstName + " " + dataUser[0].LastName;
                 new JScripter.ToolTip(this.Page).AjaxToolTip(lnkETool, ResolveUrl("~/User/AjaxControl/Upop.aspx") + "?lid=" + LoginUserID.ToString(), "acont");
+                lnkETool.Visible = true;
+                lnke.Visible = true;
             }
         }
         else
         {
-            lnkETool.Text = dataUser[0].FirstName + " " + dataUser[0].LastName;
-            new JScripter.ToolTip(this.Page).AjaxToolTip(lnkETool, ResolveUrl("~/User/AjaxControl/Upop.aspx") + "?lid=" + LoginUserID.ToString(), "acont");
+            var dataUser = new UserController().GetbyLoginUserID(LoginUserID);
+            if (dataUser.Count > 0)
+            {
+                lnkTool.Text =  dataUser[0].FirstName + " " + dataUser[0].LastName;
+                new JScripter.ToolTip(this.Page).AjaxToolTip(lnkTool, ResolveUrl("~/User/AjaxControl/Upop.aspx") + "?lid=" + LoginUserID.ToString(), "acont");
+                lnkTool.Visible = true;
+                lnkc.Visible = true;
+            }
         }
+        
+
         if (ModifiedDate != null)
         {
             lblDate.InnerText = CommonController.GetDate(ModifiedDate);

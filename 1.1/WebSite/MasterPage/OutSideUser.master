@@ -42,7 +42,7 @@
             <div class="rmbg">
                 <div style="float: left; width: 20%;" id="sidemenu">
                     <div style="margin-left: 10px">
-                        <div>
+                        <div style="text-align:center">
                             <asp:Image ID="imgLogo" runat="server" Width="150px" />
                         </div>
                         <div id="incource">

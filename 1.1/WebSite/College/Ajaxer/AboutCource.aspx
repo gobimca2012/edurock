@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div id="instituteCourceBuk">
         <div style="float: left; width: 70%">
             <div style="border-right: dashed 1px">
                 <fieldset>
@@ -20,6 +20,15 @@
                         </div>
                         <div id="lblprice" runat="server">
                         </div>
+                        <div id="divmessage" runat="server">
+                        </div>
+                        <div>
+                            <aspajax:AjaxLinkButton ID="lnkJoinCource" RequestContainner="#contentBox" ResponseContainner="#contentBox"
+                                runat="server" EnableValidation="False" EnableViewState="False" Increment="False"
+                                OnAjaxClick="AjaxJoinCource" Pagger="False">
+                       <div class="btn">Join cource</div>
+                            </aspajax:AjaxLinkButton>
+                        </div>
                         <div class="label">
                             Duration
                         </div>
@@ -30,25 +39,27 @@
             </div>
         </div>
         <div style="float: right; width: 30%">
-            <fieldset>
-                <legend>Subjects</legend>
-                <div>
+            <div class="graycontent roundedall">
+                <fieldset>
+                    <legend>Subjects</legend>
                     <div>
-                        <asp:ListView ID="listSubject" runat="server">
-                            <LayoutTemplate>
-                                <div>
-                                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                                </div>
-                            </LayoutTemplate>
-                            <ItemTemplate>
-                                <div>
-                                    <%#Eval("SubjectText") %>
-                                </div>
-                            </ItemTemplate>
-                        </asp:ListView>
+                        <div>
+                            <asp:ListView ID="listSubject" runat="server">
+                                <LayoutTemplate>
+                                    <div>
+                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                                    </div>
+                                </LayoutTemplate>
+                                <ItemTemplate>
+                                    <div>
+                                        <%#Eval("SubjectText") %>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
+                        </div>
                     </div>
-                </div>
-            </fieldset>
+                </fieldset>
+            </div>
             <div>
                 <fieldset>
                     <legend>Users</legend>

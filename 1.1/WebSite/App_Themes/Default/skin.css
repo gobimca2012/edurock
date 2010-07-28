@@ -458,6 +458,7 @@ h5
     text-align: left;
     padding: 5px;
     margin: 5px;
+    line-height:20px;
 }
 .cin
 {
@@ -863,12 +864,12 @@ margin:0 9px 0 10px;
 .fuleft
 {
     float: left;
-    width: 550px;
+    width: 70%;
 }
 .furight
 {
     float: right;
-    width: 160px;
+    width: 30%;
 }
 ul
 {
