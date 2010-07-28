@@ -172,7 +172,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
         {
 
             lnkUpdateArticle.Visible = false;
-            new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
+            new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
         }
         ddCource.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddCource.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?icid="));
     }

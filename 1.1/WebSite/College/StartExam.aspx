@@ -10,12 +10,16 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="float: left;" class="qs">
-        <div id="exam">
+    <div class="qs">
+        <div id="exam" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0">
         </div>
         <div>
             <span id="time"></span>
         </div>
+
+        <script type="text/javascript">
+        $(window).unload( function () { alert("Bye now!"); } );
+        </script>
     </form>
 </body>
 </html>

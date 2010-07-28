@@ -20,63 +20,71 @@
                 <div style="clear: both">
                 </div>
             </div>
-            <div class="whitecont">
-                <div>
-                    <div style="width: 360px">
-                        <div style="float: left; width: 110">
-                            <asp:Image ID="propic" runat="server" Width="100" />
-                        </div>
-                        <div style="float: left; text-align: left; width: 240px">
-                            <div>
-                                <span class="label">Status :</span> <span id="lblStatus" runat="server" class="btext">
-                                </span>
+            <div id="popupLoggedIn" runat="server">
+                <div class="whitecont">
+                    <div>
+                        <div style="width: 360px">
+                            <div style="float: left; width: 110">
+                                <asp:Image ID="propic" runat="server" Width="100" />
                             </div>
-                        </div>
-                        <div style="clear: both">
-                        </div>
-                        <div class="dasbo">
-                            <div>
-                                <span class="label">Username :</span> <span id="lblUserName" runat="server"></span>
+                            <div style="float: left; text-align: left; width: 240px">
+                                <div>
+                                    <span class="label">Status :</span> <span id="lblStatus" runat="server" class="btext">
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="dasbo">
-                            <span class="label">User Role:</span>&nbsp;<span id="lblRole" runat="server"></span>
-                        </div>
-                        <div class="dasbo">
-                            <span class="label">User Institute:</span> &nbsp;<span id="lblGroup" runat="server"></span>
-                        </div>
-                        <div class="dasbo">
-                            <span class="label">User Cource:</span>&nbsp;<span id="lblCource" runat="server"></span>
-                        </div>
-                        <div>
-                            <div>
-                                recent Activity
+                            <div style="clear: both">
                             </div>
-                            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="ID,ContentType" OnItemDataBound="ListQuestionOnItemDataBound">
-                                <LayoutTemplate>
-                                    <div>
-                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                                    </div>
-                                </LayoutTemplate>
-                                <ItemTemplate>
-                                    <div class="dasbo">
+                            <div class="dasbo">
+                                <div>
+                                    <span class="label">Username :</span> <span id="lblUserName" runat="server"></span>
+                                </div>
+                            </div>
+                            <div class="dasbo">
+                                <span class="label">User Role:</span>&nbsp;<span id="lblRole" runat="server"></span>
+                            </div>
+                            <div class="dasbo">
+                                <span class="label">User Institute:</span> &nbsp;<span id="lblGroup" runat="server"></span>
+                            </div>
+                            <div class="dasbo">
+                                <span class="label">User Cource:</span>&nbsp;<span id="lblCource" runat="server"></span>
+                            </div>
+                            <div>
+                                <div>
+                                    recent Activity
+                                </div>
+                                <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="ID,ContentType" OnItemDataBound="ListQuestionOnItemDataBound">
+                                    <LayoutTemplate>
                                         <div>
-                                            <span class='<%#GetCSSClass(Eval("ContentType").ToString()) %>'>&nbsp;</span>
-                                            <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#getURL(Eval("ContentType").ToString(),Eval("ID").ToString()) %>'>
-                            <%#Eval("Title") %></aspajax:HyperLink>
+                                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                                         </div>
-                                        <%-- <div>
+                                    </LayoutTemplate>
+                                    <ItemTemplate>
+                                        <div class="dasbo">
+                                            <div>
+                                                <span class='<%#GetCSSClass(Eval("ContentType").ToString()) %>'>&nbsp;</span>
+                                                <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#getURL(Eval("ContentType").ToString(),Eval("ID").ToString()) %>'>
+                            <%#Eval("Title") %></aspajax:HyperLink>
+                                            </div>
+                                            <%-- <div>
                                             <uc1:usertooltiplink id="UserToolTipLink1" runat="server" loginuserid='<%#Eval("LoginUserID") %>'
                                                 modifieddate='<%#Eval("ModifiedDate") %>' />
                                         </div>--%>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:ListView>
-                        </div>
-                        <div>
-                            <asp:HyperLink ID="lnkUserProfile" runat="server"><div class="btn">Full Profile</div> </asp:HyperLink>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:ListView>
+                            </div>
+                            <div>
+                                <asp:HyperLink ID="lnkUserProfile" runat="server"><div class="btn">Full Profile</div> </asp:HyperLink>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div id="popupLoggedOut" runat="server" visible="false">
+                <div class="whitecont">
+                    <h3>
+                        Please sign in to System</h3>
                 </div>
             </div>
         </div>

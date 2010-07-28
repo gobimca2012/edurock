@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="contentbox" style="width:765px">
+    <div class="contentbox" style="width:100%;height:100%">
         <div class="gray">
             Exam Start
         </div>

@@ -212,7 +212,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
         }
         else
         {
-            new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
+            new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
             lnkUpdateEvent.Visible = false;
         }
         JScripter.DatePicker objDate = new JScripter.DatePicker(this.Page);

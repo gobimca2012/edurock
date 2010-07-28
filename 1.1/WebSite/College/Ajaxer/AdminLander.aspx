@@ -11,7 +11,7 @@
         <ul>
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/College/Ajaxer/InstituteInfoView.aspx"
-                    ContainnerID="#contentBox">Profile Edit</aspajax:HyperLink>
+                    ContainnerID="#contentBox">Institute Information</aspajax:HyperLink>
             </li>
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkCource" runat="server" NavigateUrl="~/College/Ajaxer/InstituteCourceInfoView.aspx"

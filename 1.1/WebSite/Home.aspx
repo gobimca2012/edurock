@@ -4,7 +4,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div id="inheader">
+    <div id="inheader" style="float: left; width: 60%">
+    </div>
+    <div id="iuser" style="float: right;width:40%">
+    </div>
+    <div class="clear">
     </div>
     <div id="indesc">
     </div>

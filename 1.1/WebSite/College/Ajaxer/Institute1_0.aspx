@@ -8,11 +8,15 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <div>
-            <p id="lblDescription" runat="server">
-            </p>
-            <div style="clear:both"></div>
-        </div>
+        <fieldset>
+            <legend>About Institute</legend>
+            <div>
+                <p id="lblDescription" runat="server">
+                </p>
+                <div style="clear: both">
+                </div>
+            </div>
+        </fieldset>
     </div>
     </form>
 </body>

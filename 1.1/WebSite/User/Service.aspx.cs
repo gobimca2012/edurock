@@ -28,7 +28,7 @@ public partial class User_Service :AjaxPage
         }
         if (Request.Params["iid"] != null)
         {
-            new InstituteCourceController().BindInstituteCource(ddCource, Convert.ToInt32(Request.Params["iid"]));
+            new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, Convert.ToInt32(Request.Params["iid"]),new UserAuthontication().LoggedInUserID);
             ddCource.Visible = true;
         }
         base.OnLoad(e);

@@ -49,7 +49,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new QuestionController().Add(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID, InstituteSubjectID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
-            Response.Redirect("~/User/AjaxControl/Question.aspx?qid=" + QuestionID.ToString() + "&icid=" + ICID.ToString());
+            Response.Redirect("~/User/AjaxControl/Question.aspx?qid=" + QuestionID.ToString());// + "&icid=" + ICID.ToString());
         }
         catch (Exception ex)
         {
@@ -96,7 +96,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             string tags; if (false) { throw new Exception(""); } tags = HtmlHelper.ControlValue(txtTags.ClientID);
             new QuestionController().UpdateByQuestionID(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID,InstituteSubjectID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
 
-            Response.Redirect("~/User/AjaxControl/Question.aspx?qid=" + QuestionID.ToString()+"&icid="+ICID.ToString()) ;
+            Response.Redirect("~/User/AjaxControl/Question.aspx?qid=" + QuestionID.ToString());//+"&icid="+ICID.ToString()) ;
         }
         catch (Exception ex)
         {
@@ -166,7 +166,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
         {
             new QuestionTypeController().BindQuestionType(ddQuestionType, new UserAuthontication().UserInstituteLoginID);
             lnkUpdateQuestion.Visible = false;
-            new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
+            new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
         }
         ddCource.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddCource.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?icid="));
        

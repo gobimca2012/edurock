@@ -69,6 +69,25 @@ namespace JScripter
 			//HttpContext.Current.Response.Write(script);
 
 		}
+        public void ClearArea(string ContainerID)
+        {
+            string script = string.Format("$('{0}').html('');", ContainerID);
+            System.Web.UI.Page aspxPage = new System.Web.UI.Page();
+            String csname1 = Guid.NewGuid().ToString().Replace("-", "");
+
+            aspxPage = _thisPage;
+            Type cstype = aspxPage.GetType();
+            // Get a ClientScriptManager reference from the Page class.
+            ClientScriptManager cs = aspxPage.ClientScript;
+            if (!cs.IsStartupScriptRegistered(cstype, csname1))
+            {
+                cs.RegisterStartupScript(cstype, csname1, script, true);
+            }
+
+            //aspxPage.RegisterStartupScript("onload", script);
+            //HttpContext.Current.Response.Write(script);
+
+        }
 		public string LoadPageScript(string ContainerID, string url)
 		{
 			//string script = string.Format("<script type='text/javascript'>$('{0}').LoadPage('{1}');</script>", id, url);

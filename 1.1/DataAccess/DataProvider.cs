@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Logger;
 using System.Data;
 using Common;
+using System.Collections;
 namespace DataAccess
 {
     public class DataProvider
@@ -6367,6 +6368,23 @@ namespace DataAccess
             option.LoadWith<Cource>(p => p.CourceCatagory);
             db.LoadOptions = option;
             var data = (from p in db.InstituteCourceUsers where p.LoginUserID == LoginUserID && p.InstituteCource.InstituteID == InstituteID select p.InstituteCource).ToList();
+            //var data = (from p in db.InstituteCources where p.InstituteID == InstituteID select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+        public IEnumerable InstituteCourceGetByLoginUserID(int InstituteID, int LoginUserID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            DataLoadOptions option = new DataLoadOptions();
+            option.LoadWith<InstituteCourceUser>(p => p.InstituteCource);
+            option.LoadWith<InstituteCource>(p => p.Cource);
+            option.LoadWith<Cource>(p => p.CourceCatagory);
+            db.LoadOptions = option;
+            var data = (from p in db.InstituteCourceUsers where p.LoginUserID == LoginUserID && p.InstituteCource.InstituteID == InstituteID select new { CourceName = p.InstituteCource.Cource.CourceName, InstituteCourceID = p.InstituteCourceID });
             //var data = (from p in db.InstituteCources where p.InstituteID == InstituteID select p).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;

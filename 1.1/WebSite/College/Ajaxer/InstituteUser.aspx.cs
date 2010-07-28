@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class College_Ajaxer_InstituteCourceUser : AjaxPage
+public partial class College_Ajaxer_InstituteUser : AjaxPage
 {
     public int _InstituteID
     {
@@ -22,25 +22,17 @@ public partial class College_Ajaxer_InstituteCourceUser : AjaxPage
         }
 
     }
-    public int _InstituteCourceID
-    {
-        get
-        {
-            return Convert.ToInt32(Request.Params["icid"]);
-        }
-
-    }
     protected override void OnLoad(EventArgs e)
     {
         IsLogginMandatory = false;
         Binddata();
         base.OnLoad(e);
     }
-
+    
     private void Binddata()
     {
 
-        var data = new UserController().GetUser(_InstituteCourceID, _InstituteID);
+        var data = new UserController().GetUser(0,_InstituteID);
         ListUser.DataSource = data;
         ListUser.DataBind();
     }

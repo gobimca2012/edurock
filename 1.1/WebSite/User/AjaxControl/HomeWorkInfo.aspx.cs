@@ -167,7 +167,7 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
             }
             else
             {
-                new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID);
+                new InstituteCourceController().BindInstituteCourceByLoginUserID(ddInstituteCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
 
                 lnkUpdateHomeWork.Visible = false;
             }

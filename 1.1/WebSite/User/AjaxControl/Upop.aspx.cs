@@ -122,13 +122,27 @@ public partial class User_AjaxControl_Upop : AjaxPage
 
 
     }
+    protected override void OnInit(EventArgs e)
+    {
+        IsLogginMandatory = false;
+        base.OnInit(e);
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Params["lid"] != null)
+        if (new UserAuthontication().IsLoggedIn)
         {
-            Binddata();
-            lnkUserProfile.NavigateUrl = ResolveUrl("~/User/User.aspx") + "?usid=" + Request.Params["lid"];
-            BindRecentContent();
+            if (Request.Params["lid"] != null)
+            {
+                Binddata();
+                lnkUserProfile.NavigateUrl = ResolveUrl("~/User/User.aspx") + "?usid=" + Request.Params["lid"];
+                BindRecentContent();
+            }
+           
+        }
+        else
+        {
+            popupLoggedIn.Visible = false;
+            popupLoggedOut.Visible = true;
         }
         string aaa = string.Format("$('#{0}').ajaxToolTipclose();", lnkclose.ClientID);
         JScripter.JScripter.InjectScript(aaa, this.Page);

@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="graycontent roundedall" style="line-height:22px;">
+    <div class="graycontent roundedall" style="line-height: 22px;">
         <asp:ListView ID="listCource" runat="server">
             <LayoutTemplate>
                 <div>
@@ -17,7 +17,7 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <div>
-                    <asp:HyperLink ID="lnkFullView" runat="server"><%#Eval("Cource.CourceName")%></asp:HyperLink>
+                    <aspajax:HyperLink ID="lnkFullView" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/AboutCource.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()+"&iid="+_InstituteID.ToString()%>'><%#Eval("Cource.CourceName")%></aspajax:HyperLink>
                 </div>
             </ItemTemplate>
         </asp:ListView>

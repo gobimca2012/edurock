@@ -26,6 +26,7 @@ public partial class Home : BasePage
             objLoader.LoadPage("#inheader", ResolveUrl("~/College/Ajaxer/AboutInstitute.aspx") + "?iid=" + data[0].InstituteID.ToString());
             objLoader.LoadPage("#incource", ResolveUrl("~/College/Ajaxer/InstituteCourceList.aspx") + "?iid=" + data[0].InstituteID.ToString());
             objLoader.LoadPage("#indesc", ResolveUrl("~/College/Ajaxer/Institute1_0.aspx") + "?iid=" + data[0].InstituteID.ToString());
+            objLoader.LoadPage("#iuser", ResolveUrl("~/College/Ajaxer/InstituteUser.aspx") + "?iid=" + data[0].InstituteID.ToString());
             //objLoader.LoadPage("#incon", ResolveUrl("~/College/Ajaxer/InstituteContactInfo.aspx") + "?iid=" + data[0].InstituteID.ToString());
         }
     }

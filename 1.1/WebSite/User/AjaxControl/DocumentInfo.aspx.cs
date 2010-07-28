@@ -158,7 +158,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             }
             else
             {
-                new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
+                new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
             }
         }
     }
@@ -216,7 +216,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
                 //new CourceCatagoryController().BindCourceCatagory(ddCatagory);
                 lnkUpdateDocument.Visible = false;
                 newAdd.Visible = false;
-                new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
+                new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
 
             }
 

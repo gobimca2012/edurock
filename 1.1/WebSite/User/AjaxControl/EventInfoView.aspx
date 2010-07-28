@@ -12,7 +12,7 @@
     <div>
         <div class="contentbox">
             <div class="gray" id="header" runat="server">
-                Images</div>
+                Events</div>
             <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
                 <LayoutTemplate>
                     

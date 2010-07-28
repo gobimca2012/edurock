@@ -136,7 +136,7 @@ public partial class College_Ajaxer_InstituteCourceUserInfo : AjaxPage
         }
         else
         {
-            new InstituteCourceController().BindInstituteCource(ddCource, new UserAuthontication().UserInstituteID);
+            new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
             lnkUpdateInstituteCourceUser.Visible = false;
         }
     }
