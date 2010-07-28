@@ -35,6 +35,7 @@ public partial class College_ExamIntroduction : AjaxPage
                 if ((bool)userExamData[0].IsFinish)
                 {
                     warnningMessage.InnerHtml = "you allready Attend this Examamination you can not attend again ";
+                    lnkStart.Visible = false;
                 }
                 else
                 {
