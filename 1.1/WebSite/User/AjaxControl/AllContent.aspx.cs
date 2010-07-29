@@ -75,7 +75,7 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         }
     }
     private int TotalPage;
-    private int PageSize = 100;
+    private int PageSize = 20;
 
     protected void Page_Load(object sender, EventArgs e)
     {

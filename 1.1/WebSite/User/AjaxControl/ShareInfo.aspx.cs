@@ -77,11 +77,27 @@ public partial class User_ShareInfo : AjaxPage
         listUsers.DataBind();
 
     }
+    private void CreateBackLink()
+    {
+        if (Type == (int)ContentTypeEnum.Article)
+            lnkBack.NavigateUrl = ResolveUrl("~/User/AjaxControl/Article.aspx") + "?arid=" + QuestionID.ToString();
+        else if (Type == (int)ContentTypeEnum.Audio || Type == (int)ContentTypeEnum.Image || Type == (int)ContentTypeEnum.Video || Type == (int)ContentTypeEnum.Document)
+            lnkBack.NavigateUrl = ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + QuestionID.ToString();
+        else if (Type == (int)ContentTypeEnum.Event)
+            lnkBack.NavigateUrl = ResolveUrl("~/User/AjaxControl/Event.aspx") + "?evid=" + QuestionID.ToString();
+        else if (Type == (int)ContentTypeEnum.Exam)
+            lnkBack.NavigateUrl = ResolveUrl("~/User/AjaxControl/Exam.aspx") + "?eid=" + QuestionID.ToString();
+        else if (Type == (int)ContentTypeEnum.HomeWork)
+            lnkBack.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWork.aspx") + "?hwid=" + QuestionID.ToString();
+        else if (Type == (int)ContentTypeEnum.Question)
+            lnkBack.NavigateUrl = ResolveUrl("~/User/AjaxControl/Question.aspx") + "?qid=" + QuestionID.ToString();
+        
+    }
 
     private void BindGroupData()
     {
+        CreateBackLink();
         var data = new ShareGroupController().GetShareGroup(Type, QuestionID.ToString());
-
         ListGroup.DataSource = data;
         ListGroup.DataBind();
 

@@ -25,8 +25,8 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
         objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
         objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
         objValidate.DrowDownMendatory(ddCource, "Please select Cource", this.Page,"0");
-
-
+        objValidate.DigitOnly(txtPrice, "Please enter Number only", this.Page);
+        
 
 
     }
@@ -89,6 +89,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
 
             new InstituteCourceController().Add(InstituteID, CourceID, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen added Successfully", "Cource");
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
         catch (Exception ex)
@@ -155,7 +156,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
             DateTime Modifieddate = DateTime.Now;
 
             new InstituteCourceController().UpdateByInstituteCourceID(InstituteCourceID, InstituteID, CourceID, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
-
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "Cource");
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
         catch (Exception ex)

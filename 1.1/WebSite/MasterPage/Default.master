@@ -11,7 +11,9 @@
 </head>
 <body>
     <form id="form1" runat="server" enctype="multipart/form-data">
-    <div id="exambuket" style="position:fixed;">
+    <div id="dummy">
+    </div>
+    <div id="exambuket" style="position: fixed;">
     </div>
     <div id="progress">
     </div>
@@ -26,9 +28,11 @@
     </div>
     <div style="clear: both">
     </div>
-    <div id="msgstate">
+   
+    <div id="ipop">
     </div>
-    <div class="brcum">
+    <div class="page" id="pagecon" runat="server">
+     <div class="brcum">
         <div style="float: left">
             <a href="~/User/DashBoard.aspx" runat="server" id="ddU">DashBoard</a>
         </div>
@@ -37,9 +41,8 @@
         <div class="clear">
         </div>
     </div>
-    <div id="ipop">
-    </div>
-    <div class="page">
+        <div id="msgstate">
+        </div>
         <div>
             <div class="lcbg" style="float: left">
             </div>
@@ -115,6 +118,9 @@
                                 <div id="mylander">
                                 </div>
                             </div>
+                        </div>
+                        <div>
+                            <asp:HyperLink ID="lnkFullMode" runat="server">Full Mode</asp:HyperLink>
                         </div>
                     </div>
                 </div>

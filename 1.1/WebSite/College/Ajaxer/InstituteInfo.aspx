@@ -116,20 +116,24 @@
                             <span class="label">Description</span>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" CssClass="mceEditor" Height="400px"></asp:TextBox>
+                            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" CssClass="mceEditor"
+                                Height="400px"></asp:TextBox>
                         </div>
                     </div>
                 </div>
             </fieldset>
         </div>
+        <div class="clear">
+        </div>
         <div class="gray">
-        <div style="clear:both"></div>
-            <div>
+            <div style="float: left">
                 <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#contentBox"
                     ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn"> Update</div></aspajax:AjaxLinkButton>
             </div>
-            <div>
+            <div style="float: left">
                 <aspajax:HyperLink ID="lnkCancel" runat="server" ContainnerID="#contentBox" NavigateUrl="InstituteInfoView.aspx"><div class="btn"> Cancel</div></aspajax:HyperLink>
+            </div>
+            <div style="clear">
             </div>
         </div>
     </div>

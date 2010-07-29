@@ -44,6 +44,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new CourceCatagoryController().Add(CatagoryName, LoginUserID, Description, CatagoryType, ModifiedDate);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen added Successfully", "Cource catagory", CatagoryName);
             Response.Redirect("~/College/Ajaxer/CourceCatagoryInfoView.aspx");
         }
         catch (Exception ex)
@@ -69,7 +70,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new CourceCatagoryController().UpdateByCourceCatagoryID(ID, CatagoryName, LoginUserID, Description, CatagoryType, ModifiedDate);
-
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen updated Successfully", "Cource catagory",CatagoryName);
             Response.Redirect("~/College/Ajaxer/CourceCatagoryInfoView.aspx");
         }
         catch (Exception ex)

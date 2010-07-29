@@ -9,16 +9,25 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Share Your Data</div>
+            <div style="float: left">
+                Share Your Data</div>
+            <div style="float: right">
+                <aspajax:HyperLink ID="lnkBack" runat="server" ContainnerID="#contentBox"><div class="btn"> Back to FullView</div></aspajax:HyperLink>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
         <fieldset>
             <legend>All User Access</legend>
             <div>
                 <%--<asp:CheckBox ID="chkEditAllUser" runat="server" Text="Can Edit" Checked="false" />--%>
-                <aspajax:CheckBox ID="chkEditAllUser" CustomID="chkAllEdit$AllUSer" runat="server" Checked="false"></aspajax:CheckBox><span>All User Can Edit</span>
+                <aspajax:CheckBox ID="chkEditAllUser" CustomID="chkAllEdit$AllUSer" runat="server"
+                    Checked="false"></aspajax:CheckBox><span>All User Can Edit</span>
             </div>
             <div>
                 <%--<asp:CheckBox ID="chkViewAllUser" runat="server" Text="Can View" Checked="true"/>--%>
-                <aspajax:CheckBox ID="chkViewAllUser" CustomID="chkAllView$AllUSer" runat="server" Checked="true"></aspajax:CheckBox><span>All User can View</span>
+                <aspajax:CheckBox ID="chkViewAllUser" CustomID="chkAllView$AllUSer" runat="server"
+                    Checked="true"></aspajax:CheckBox><span>All User can View</span>
             </div>
         </fieldset>
         <fieldset>

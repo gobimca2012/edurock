@@ -77,7 +77,10 @@ public partial class College_Ajaxer_CollegeInfo : AjaxPage
         if (data.Description != null)
 
             lblDescription.InnerHtml = data.Description.ToString();
-
+        if (data.Logo != null)
+        {
+            imgProfilepic.ImageUrl = ResolveUrl(data.Logo);
+        }
         
     }
 

@@ -61,6 +61,7 @@ public partial class College_Ajaxer_CourceInfo : AjaxPage
             DateTime Modifieddate = DateTime.Now;
 
             new CourceController().Add( CourceCatagoryID, CourceName, Description, CourceType, Modifieddate);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully now you can add this cource to your institute.", "Cource ",CourceName);
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
         catch (Exception ex)
@@ -84,6 +85,7 @@ public partial class College_Ajaxer_CourceInfo : AjaxPage
             DateTime Modifieddate = DateTime.Now;
 
             new CourceController().UpdateByCourceID(ID, CourceCatagoryID, CourceName, Description, CourceType, Modifieddate);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "Cource ", CourceName);
             Response.Redirect("~/College/Ajaxer/CourceInfoView.aspx");
         }
         catch (Exception ex)

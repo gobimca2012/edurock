@@ -50,15 +50,15 @@
                     <div style="float: left">
                         <%--<asp:LinkButton ID="lnkUpdate" runat="server" OnClick="lnkUpdate_Click">Update</asp:LinkButton>--%>
                         <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" OnAjaxClick="AjaxUpdateClick"
-                            RequestContainner="#contentBox" ResponseContainner="#contentBox">Update</aspajax:AjaxLinkButton>
+                            RequestContainner="#contentBox" ResponseContainner="#contentBox"><div class="btn">Update</div></aspajax:AjaxLinkButton>
                     </div>
                     <div>
                         <aspajax:AjaxLinkButton ID="lnkAddUserInfo" runat="server" OnAjaxClick="AjaxAddClick"
-                            RequestContainner="#contentBox" ResponseContainner="#contentBox">Save</aspajax:AjaxLinkButton>
+                            RequestContainner="#contentBox" ResponseContainner="#contentBox"><div class="btn">Save</div></aspajax:AjaxLinkButton>
                     </div>
                     <div style="float: left">
                         <aspajax:HyperLink ID="lnkCancel" runat="server" NavigateUrl="UserInfoView.aspx"
-                            ContainnerID="#contentBox">Cancel</aspajax:HyperLink>
+                            ContainnerID="#contentBox"><div class="btn">Cancel</div></aspajax:HyperLink>
                     </div>
                 </div>
             </div>

@@ -44,6 +44,7 @@ public partial class Admin_Ajaxer_QuestionTypeInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new QuestionTypeController().Add(QuestionTypeTnext, LoginUserID, ModifiedDate);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen added Successfully", "Question Type", QuestionTypeTnext);
             Response.Redirect("~/College/Ajaxer/QuestionTypeInfoView.aspx");
         }
         catch (Exception ex)
@@ -66,7 +67,7 @@ public partial class Admin_Ajaxer_QuestionTypeInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new QuestionTypeController().UpdateByQuestionTypeID(QuestionTypeID, QuestionTypeTnext, LoginUserID, ModifiedDate);
-
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen updated Successfully", "Question Type", QuestionTypeTnext);
             Response.Redirect("~/College/Ajaxer/QuestionTypeInfoView.aspx");
         }
         catch (Exception ex)

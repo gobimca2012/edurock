@@ -12,6 +12,7 @@
         <div class="gray">
             New User</div>
         <div style="padding: 5px;">
+        <div id="divMessage" runat="server"></div>
             <div>
                 <div>
                     <span class="label">Username</span>

@@ -11,19 +11,16 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Images</div>
+            Audios</div>
         <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
             <LayoutTemplate>
-                
                 <div class="whitecont">
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                 </div>
-              
             </LayoutTemplate>
             <ItemTemplate>
-              
                 <div class="dasbo">
-                    <div style="float: left;width:550px">
+                    <div style="float: left; width: 550px">
                         <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
                         &nbsp;<%#Eval("Title") %></aspajax:HyperLink>
                     </div>

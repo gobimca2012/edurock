@@ -22,6 +22,7 @@ public partial class User_AjaxControl_SingleChoiceInfo : AjaxPage
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateEXM_Question.ClientID);
         objValidate.Medatory(txtQuestion, "Please enter Question", this.Page);
         objValidate.Medatory(txtMarks, "Please enter Question Marks", this.Page);
+        objValidate.DigitOnly(txtMarks, "Please enter Number only", this.Page);
     }
     private int _ExamID
     {

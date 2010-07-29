@@ -15,9 +15,17 @@ using BusinessLogic;
 public partial class College_Ajaxer_InstituteUserInUserTypeInfo : AjaxPage
 {
     public HtmlHelper _HtmlHelper = new HtmlHelper();
-    
+    private void FormValidation()
+    {
+
+        lnkP.EnableValidation = true;
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkP.ClientID);
+        objValidate.DrowDownMendatory(ddRoles, "Please select role", this.Page, "0");
+
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         if (Request.Params["uid"] != null)
         {
             AjaxState["uid"] = Request.Params["uid"];
@@ -44,6 +52,7 @@ public partial class College_Ajaxer_InstituteUserInUserTypeInfo : AjaxPage
     protected void AddAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
         new InstituteUserInUserTypeController().Add(ID, new UserAuthontication().InstituteIDByLoginUserID(ID), Convert.ToInt32(HtmlHelper.ControlValue(ddRoles.ClientID)), DateTime.Now);
+        Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "User Role ");
         BindData();
     }
     //protected void ListInstituteSubjectOnItemDataBound(object sender, ListViewItemEventArgs e)
@@ -59,6 +68,7 @@ public partial class College_Ajaxer_InstituteUserInUserTypeInfo : AjaxPage
         {
 
             new InstituteUserInUserTypeController().DeletebyInstituteUserInUserTypeID(Convert.ToInt32(e.Id));
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen deleted Successfully", "User Role ");
             BindData();
         }
         base.OnAjaxListViewCommand(e);

@@ -444,6 +444,48 @@ namespace BusinessLogic
         }
         #endregion
         #region LoginUser
+        public bool IsUserNameAvailable(string UserName)
+        {
+            try
+            {
+                bool result =new DataProvider().IsUserNameAvailable(UserName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" SaveAnswer: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false;
+            }
+        }
+        public bool ChangePassword(int LoginUserID,string OldPassword, string newPassword)
+        {
+            try
+            {
+                if (Membership.GetUser().ChangePassword(OldPassword, newPassword))
+                {
+                    new DataProvider().ChangePassword(LoginUserID, newPassword);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" SaveAnswer: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false;
+            }
+            
+        }
         public bool CreateUser(string Username, string Password, string Email)
         {
             try

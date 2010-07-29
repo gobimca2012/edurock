@@ -32,7 +32,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
     {
         try
         {
-
+            
             Guid ArticleID = Guid.NewGuid();
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
@@ -52,8 +52,9 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
             int Rating = 0;
 
             DateTime ModifiedDate = DateTime.Now;
-
+            
             new ArticleController().Add(ArticleID, LoginUserID, Title, Description, MetaDescription, InstituteCourceID, InstituteSubjectID, Tag, Rating, ModifiedDate);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen added Successfully", "Article", Title);
             Response.Redirect("~/User/AjaxControl/Article.aspx?arid=" + ArticleID.ToString());
         }
         catch (Exception ex)

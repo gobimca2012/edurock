@@ -34,6 +34,7 @@ public partial class User_AjaxControl_EducaonInfot : AjaxPage
             DateTime ModifiedDate; if (false) { throw new Exception(""); } ModifiedDate = DateTime.Now;
 
             new UserEducationController().Add(LoginUserID, InstitueName, SubjectName, Year, ModifiedDate);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen added Successfully", "Article", Title);
             Response.Redirect("~/User/AjaxControl/EducationView.aspx");
         }
         catch (Exception ex)
@@ -60,7 +61,7 @@ public partial class User_AjaxControl_EducaonInfot : AjaxPage
             DateTime ModifiedDate; if (false) { throw new Exception(""); } ModifiedDate = DateTime.Now;
 
             new UserEducationController().UpdateByUserEducationID(ID, LoginUserID, InstitueName, SubjectName, Year, ModifiedDate);
-
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "Institute", InstitueName);
             Response.Redirect("~/User/AjaxControl/EducationView.aspx");
         }
         catch (Exception ex)

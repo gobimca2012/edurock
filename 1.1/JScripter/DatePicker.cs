@@ -26,6 +26,7 @@ namespace JScripter
         }
         public void DatePickerTextBox(TextBox txtbox)
         {
+            txtbox.ReadOnly = true;
             string script = "$('#"+txtbox.ClientID+"').datepicker(    {       dateFormat : 'mm/dd/yy',       minDate:new Date()    }    );";
             //string script = string.Format("$('#{0}').datepicker({1});", txtbox.ClientID,"{dateFormat : 'mm/dd/yy'}");
             System.Web.UI.Page aspxPage = new System.Web.UI.Page();

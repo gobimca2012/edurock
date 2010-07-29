@@ -22,6 +22,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateQuestion.ClientID);
         
         objValidate.Medatory(txtQuestionText, "Please enter Question Title", this.Page);
+        objValidate.Medatory(txtDescription, "Please enter Question Description", this.Page);
         objValidate.DrowDownMendatory(ddCource, "Please select Cource", this.Page,"0");
         objValidate.DrowDownMendatory(ddSubject, "Please select Subject", this.Page,"0");
         objValidate.DrowDownMendatory(ddQuestionType, "Please select Question Type", this.Page,"0");
@@ -49,6 +50,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new QuestionController().Add(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID, InstituteSubjectID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Added Successfully", "Question", QuestionText);
             Response.Redirect("~/User/AjaxControl/Question.aspx?qid=" + QuestionID.ToString());// + "&icid=" + ICID.ToString());
         }
         catch (Exception ex)
@@ -95,7 +97,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
             string tags; if (false) { throw new Exception(""); } tags = HtmlHelper.ControlValue(txtTags.ClientID);
             new QuestionController().UpdateByQuestionID(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID,InstituteSubjectID, tags, QuestionTypeID, QuestionStatusID, ModifiedDate);
-
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "Question", QuestionText);
             Response.Redirect("~/User/AjaxControl/Question.aspx?qid=" + QuestionID.ToString());//+"&icid="+ICID.ToString()) ;
         }
         catch (Exception ex)

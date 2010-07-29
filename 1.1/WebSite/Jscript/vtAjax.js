@@ -764,3 +764,23 @@ $.fn.centerInClient = function(options)
    }
    );
 }
+
+$.fn.fullMode=function(id,url,chwidth)
+{
+    $(this).click(function()
+    {
+            if($(id).hasClass("page"))
+           {
+             $(id).addClass("fpage")
+             $(id).removeClass("page")
+           }
+           else
+           {
+              $(id).addClass("page")
+             $(id).removeClass("fpage")
+           }
+       $("#dummy").LoadPage(url);   
+    }
+    );
+    
+}

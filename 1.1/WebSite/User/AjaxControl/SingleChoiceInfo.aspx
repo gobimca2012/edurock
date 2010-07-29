@@ -55,11 +55,11 @@
         <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddEXM_Question" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn">Add</div></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdateEXM_Question" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn">Update</div></aspajax:AjaxLinkButton>
             </div>
         </div>
     </div>

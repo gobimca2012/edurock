@@ -31,17 +31,32 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (Request.Cookies[CookieName.FullMode.ToString()] != null && Request.Cookies[CookieName.FullMode.ToString()].Value == "1")
+        {
+            //pagecon.Style.Add("width", "100%");
+            pagecon.Attributes["class"] = "fpage";
+            string script = string.Format("$('#{0}').fullMode('{1}','{2}','{3}');", lnkFullMode.ClientID, "#" + pagecon.ClientID, ResolveUrl("~/User/Action.aspx") + "?ch=0", "1000px");
+            JScripter.JScripter.InjectScript(script, this.Page);
+        }
+        else
+        {
+            string script = string.Format("$('#{0}').fullMode('{1}','{2}','{3}');", lnkFullMode.ClientID, "#" + pagecon.ClientID, ResolveUrl("~/User/Action.aspx") + "?ch=1", "100%");
+            JScripter.JScripter.InjectScript(script, this.Page);
+            //pagecon.Style.Add("width", "1000px");
+            pagecon.Attributes["class"] = "page";
+        }
         new JScripter.Loader(this.Page, true).LoadPage("#st", ResolveUrl("~/User/AjaxControl/Status.aspx"));
         //if (!new UserAuthontication().IsOwn(LoginUserID))
         {
-            new JScripter.Loader(this.Page, true).LoadPage("#icource", ResolveUrl("~/User/AjaxControl/InstituteCourceInfoView.aspx")+"?usid="+LoginUserID.ToString());    
+            new JScripter.Loader(this.Page, true).LoadPage("#icource", ResolveUrl("~/User/AjaxControl/InstituteCourceInfoView.aspx") + "?usid=" + LoginUserID.ToString());
         }
         //else
         //{
         //    new JScripter.Loader(this.Page, true).LoadPage("#icource", ResolveUrl("~/User/AjaxControl/InstituteCourceInfoView.aspx"));    
         //}
+
         new JScripter.Loader(this.Page, true).LoadPage("#mylander", ResolveUrl("~/User/AjaxControl/MyLander.aspx"));
+
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#questiontrg", "#questiontrgbox");
         objEffect.Collapspanel("#messageHead", "#messagepn");

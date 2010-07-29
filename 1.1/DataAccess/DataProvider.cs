@@ -363,7 +363,27 @@ namespace DataAccess
 
         #endregion
         #region CustomLoginUser
-
+        public bool IsUserNameAvailable(string UserName)
+        {
+            UserDataContext db = new UserDataContext();
+            var data = (from p in db.StudentLogins where p.Username.ToLower() == UserName.ToLower().Trim() select p.Username).ToList();
+            if (data.Count > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public void ChangePassword(int LoginUserID, string NewPassword)
+        {
+            UserDataContext db = new UserDataContext();
+            StudentLogin data = db.StudentLogins.Single(p => p.LoginUserID == LoginUserID);
+            data.Password = NewPassword;
+            db.SubmitChanges();
+        }
+        
         #endregion
 
 

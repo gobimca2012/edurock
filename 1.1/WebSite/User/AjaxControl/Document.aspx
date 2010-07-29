@@ -18,7 +18,6 @@
             </div>
             <div style="float: right">
                 <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn">  Share </div></aspajax:HyperLink></div>
-       
             <div style="clear: both">
             </div>
         </div>
@@ -26,7 +25,7 @@
             <div class="fuleft">
                 <div>
                     <div>
-                        <asp:Image ID="img" runat="server" Visible="false" Width="560" />
+                        <asp:Image ID="img" runat="server" Visible="false" Width="90%" />
                     </div>
                     <div id="videoPlayer">
                     </div>
@@ -91,7 +90,7 @@
                     </div>
                 </div>
             </div>
-              <div class="furight">
+            <div class="furight">
                 <uc1:FullViewSideInfo ID="FullViewSideInfo1" runat="server" />
             </div>
             <div style="clear: both">

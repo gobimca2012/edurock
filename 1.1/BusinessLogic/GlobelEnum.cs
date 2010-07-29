@@ -11,7 +11,8 @@ namespace BusinessLogic
     public enum CookieName
     {
         ExamID=1,
-        UserExamID=2
+        UserExamID=2,
+        FullMode=3
 
     }
     public enum CatagoryTypeEnum

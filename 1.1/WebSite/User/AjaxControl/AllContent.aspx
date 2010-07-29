@@ -41,11 +41,11 @@
                     <div style="float: right">
                         <div style="float: left">
                             <aspajax:AjaxLinkButton ID="lnkPrevQuestion" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                                Pagger="true" Increment="false" RequestContainner="#Question" ResponseContainner="#Question"></aspajax:AjaxLinkButton>
+                                Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
                         </div>
                         <div style="float: left">
                             <aspajax:AjaxLinkButton ID="lnkNextQuestion" runat="server" OnAjaxClick="NextAjaxClick"
-                                RequestContainner="#Question" Pagger="true" Increment="true" ResponseContainner="#Question">Next</aspajax:AjaxLinkButton>
+                                RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                         </div>
                         <div class="clear">
                         </div>

@@ -23,6 +23,7 @@ public partial class User_AjaxControl_SingleFillIntheBlankInfo : AjaxPage
         objValidate.Medatory(txtQuestionPart1, "Please enter Question part 1", this.Page);
         objValidate.Medatory(txtQuestionPart2, "Please enter Question part 2", this.Page);
         objValidate.Medatory(txtMarks, "Please enter Question Marks", this.Page);
+        objValidate.DigitOnly(txtMarks, "Please enter Number only", this.Page);
     }
     protected void AjaxUpdateClick(object sender, AjaxControl.AjaxEventArg e)
     {

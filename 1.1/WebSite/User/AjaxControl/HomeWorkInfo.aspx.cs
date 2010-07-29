@@ -49,6 +49,7 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             int HomeworkID = new HomeWorkController().Add(LoginUserID, Title, Description, ShortDescription, InstituteCourceID, InstituteSubjectID, ModifiedDate);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Added Successfully", "Home work", Title);
             Response.Redirect("~/User/AjaxControl/HomeWork.aspx?hwid=" + HomeworkID.ToString());
         }
         catch (Exception ex)
@@ -94,7 +95,7 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new HomeWorkController().UpdateByHomeWorkID(ID, LoginUserID, Title, Description, ShortDescription, InstituteCourceID, InstituteSubjectID, ModifiedDate);
-
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Added Successfully", "Home work", Title);
             Response.Redirect("~/User/AjaxControl/HomeWork.aspx?hwid=" + ID.ToString());
         }
         catch (Exception ex)

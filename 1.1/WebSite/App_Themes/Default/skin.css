@@ -8,39 +8,44 @@ body
     font-size: 11.25px;
     text-align: center;
     margin: 0px;
-    padding: 0px;
-    /*background: url(      "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;*/
+    padding: 0px; /*background: url(      "http://demo.cyn.in/bodybg.png" ) repeat-x scroll left top #D9D9D9;*/
     text-align: left;
-    background:#f1f1f1;
+    background: #f1f1f1;
 }
 .page, #msgstate div, .success
 {
-    width: 100%;
+    width: 1000px;
     margin: 0 auto; /*border: solid 1px #848689;*/
     background: #008000;
-    max-width:1336px;
+    max-width: 1336px;
+}
+.fpage
+{
+    width: 100%;
+    margin: 0 auto; /*border: solid 1px #848689;*/
+   
+    max-width: 1336px;
 }
 .grebg
 {
-    background:#BEF3AF;
-    padding:5px;
-    color:#fff;
-    font-weight:bold;
+    background: #BEF3AF;
+    padding: 5px;
+    color: #fff;
+    font-weight: bold;
 }
 .brcum
 {
-    
-    border:solid 1px #f0f0f0;
-    background:#9E9E9E;
-  width:92%;
-  margin:0 auto;
+    border: solid 1px #f0f0f0;
+    background: #9E9E9E;
+    width: 92%;
+    margin: 0 auto;
 }
-.brcum a,.brcum div
+.brcum a, .brcum div
 {
-    color:#fff;
-    font-weight:bold;
+    color: #fff;
+    font-weight: bold;
 }
-#msgstate div, .success,.brcum
+#msgstate div, .success, .brcum
 {
     padding: 5px;
     color: #fff;
@@ -93,7 +98,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(                            'images/headerbt.jpg' ) repeat-x;
+    background: url(                             'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -326,7 +331,7 @@ input, textarea
     text-align: left;
     display: none;
 }
-.roundedall, .btn, .cin:hover, .contentbox, .trans, #msgstate div, .success, .hcurv, .ttip,.brcum
+.roundedall, .btn, .cin:hover, .contentbox, .trans, #msgstate div, .success, .hcurv, .ttip, .brcum
 {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -458,7 +463,7 @@ h5
     text-align: left;
     padding: 5px;
     margin: 5px;
-    line-height:20px;
+    line-height: 20px;
 }
 .cin
 {
@@ -555,12 +560,12 @@ h3
     background-repeat: repeat-x;
     border: solid 1px #C5C8C9;
     line-height: 28px;
-    padding:10px 5px;
+    padding: 10px 5px;
     margin: 0px;
 }
 .trans
 {
-    background: url(            'images/trans.png' );
+    background: url(             'images/trans.png' );
     padding: 15px;
 }
 /* Icons */
@@ -630,7 +635,7 @@ h3
 .howo
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -257px -9px;
     empty-cells: show;
     line-height: 12px;
@@ -659,7 +664,7 @@ h3
 .all
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -198px -40px;
     empty-cells: show;
     line-height: 12px;
@@ -678,7 +683,7 @@ h3
 .aud
 {
     background-color: Transparent;
-    background-image: url(  "images/icons.png" );
+    background-image: url(   "images/icons.png" );
     background-position: -235px -9px;
     empty-cells: show;
     line-height: 12px;
@@ -697,7 +702,7 @@ h3
 .lbr
 {
     background-color: Transparent;
-    background-image: url(   "images/icons.png" );
+    background-image: url(    "images/icons.png" );
     background-position: -170px -40px;
     empty-cells: show;
     line-height: 12px;
@@ -736,7 +741,7 @@ h3
 .close
 {
     background-color: Transparent;
-    background-image: url(      "images/icons.png" );
+    background-image: url(       "images/icons.png" );
     background-position: -209px -10px;
     empty-cells: show;
     line-height: 12px;
@@ -748,14 +753,13 @@ fieldset
 {
     text-align: left;
     border: none;
-    border-top:solid 1px #626262;
+    border-top: solid 1px #626262;
 }
 legend
 {
-    font-size:14px;
-    font-weight:bold;
-color:#497EC1;    
-    
+    font-size: 14px;
+    font-weight: bold;
+    color: #497EC1;
 }
 .tarrow
 {
@@ -853,12 +857,12 @@ a
 }
 .bgmc
 {
-margin:0 9px 0 10px;
+    margin: 0 9px 0 10px;
     background: #fff;
 }
 .udate
 {
-    float: right;
+/*    float: right;*/
     border-bottom: dashed 1px #cfcfcf;
 }
 .fuleft
@@ -925,106 +929,100 @@ input[type=radio], input[type=checkbox]
 {
     background: url(images/lcbg.png);
     height: 20px;
-    width:20%;
+    width: 20%;
     background-position: left;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
 }
 .rcbg
 {
     background: url(images/rcbg.png);
-    background-position:right;
-    height: 20px;        
-    background-repeat:no-repeat;
+    background-position: right;
+    height: 20px;
+    background-repeat: no-repeat;
 }
 .nobod
 {
-    border:none;
+    border: none;
 }
 .rbod
 {
-    border:none;
-    border-right:dashed 1px #626262;
+    border: none;
+    border-right: dashed 1px #626262;
 }
 .valtooltip
 {
-    color:Red;
-    font-weight:bold;
-    
+    color: Red;
+    font-weight: bold;
 }
 .lmbg
 {
-    background-image:url(images/lmbg.png);
-    background-repeat:repeat-y;
-  
+    background-image: url(images/lmbg.png);
+    background-repeat: repeat-y;
 }
 .rmbg
 {
-    background-image:url(images/rmbg.png);
-    background-repeat:repeat-y;
-    background-position:right;
-   
+    background-image: url(images/rmbg.png);
+    background-repeat: repeat-y;
+    background-position: right;
 }
 .label
 {
-    line-height:22px;
+    line-height: 22px;
 }
 .plb
 {
-    background:url(images/plb.png);
-    background-position:left;
+    background: url(images/plb.png);
+    background-position: left;
 }
 .prb
 {
-    background:url(images/prb.png);
-    background-position:right;
+    background: url(images/prb.png);
+    background-position: right;
 }
 .pcb
 {
-    background:url(images/pcb.png);
-    background-repeat:repeat-x;
-    margin:0px 20px;
-    height:20px;
+    background: url(images/pcb.png);
+    background-repeat: repeat-x;
+    margin: 0px 20px;
+    height: 20px;
 }
 .plt
 {
-    background:url(images/plt.png);
-    background-position:left;
+    background: url(images/plt.png);
+    background-position: left;
 }
 .prt
 {
-    background:url(images/prt.png);
-    background-position:right;
+    background: url(images/prt.png);
+    background-position: right;
 }
 .pct
 {
-    background:url(images/pct.png);
-    background-repeat:repeat-x;
-    margin:0px 20px;
-    height:20px;
+    background: url(images/pct.png);
+    background-repeat: repeat-x;
+    margin: 0px 20px;
+    height: 20px;
 }
 .plm
 {
-    background:url(images/plm.png);
-    background-position:left;
-    background-repeat:repeat-y;
-    
+    background: url(images/plm.png);
+    background-position: left;
+    background-repeat: repeat-y;
 }
 .prm
 {
-    background:url(images/prm.png);
-    background-position:right;
-    background-repeat:repeat-y;
+    background: url(images/prm.png);
+    background-position: right;
+    background-repeat: repeat-y;
 }
 .pcm
 {
-    background:#fff;    
-    margin:0px 20px;
-    
-    padding:5px;
+    background: #fff;
+    margin: 0px 20px;
+    padding: 5px;
 }
-.prt,.plt,.prb,.plb
+.prt, .plt, .prb, .plb
 {
-   
-    height:20px;
-    background-repeat:no-repeat;
+    height: 20px;
+    background-repeat: no-repeat;
 }

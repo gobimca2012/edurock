@@ -13,19 +13,16 @@
     <div>
         <div class="contentbox">
             <div class="gray" id="header" runat="server">
-                </div>
+            </div>
             <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
                 <LayoutTemplate>
-                    
                     <div class="whitecont">
                         <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                     </div>
-                  
                 </LayoutTemplate>
                 <ItemTemplate>
-                   
                     <div class="dasbo">
-                        <div style="float: left;width:550px">
+                        <div style="float: left; width: 550px">
                             <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Article.aspx") + "?arid=" + Eval("ID").ToString()%>'>
                         &nbsp;<%#Eval("Title") %></aspajax:HyperLink>
                         </div>
@@ -54,7 +51,7 @@
                 </div>
                 <div>
                     <aspajax:HyperLink ID="hpAddDocument" runat="server" NavigateUrl="~/User/AjaxControl/ArticleInfo.aspx"
-                        ContainnerID="#contentBox"><div class="btn"> Add New Document</div></aspajax:HyperLink>
+                        ContainnerID="#contentBox"><div class="btn"> Add New Article</div></aspajax:HyperLink>
                 </div>
             </div>
             <div style="clear: both">

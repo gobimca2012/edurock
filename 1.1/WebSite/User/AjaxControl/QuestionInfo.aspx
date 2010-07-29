@@ -67,11 +67,11 @@
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddQuestion" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn">Add</div></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdateQuestion" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn">Update</div></aspajax:AjaxLinkButton>
             </div>
         </fieldset>
     </div>

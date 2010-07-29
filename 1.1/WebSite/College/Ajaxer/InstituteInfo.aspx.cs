@@ -14,8 +14,32 @@ using BusinessLogic;
 
 public partial class College_Ajaxer_InstituteInfo : AjaxPage
 {
+    private void FormValidation()
+    {
+        lnkUpdate.EnableValidation = true;
+
+        JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkUpdate.ClientID);
+        
+        objValidate.DrowDownMendatory(ddCollegeType, "Please select Institute Type ", this.Page, "0");
+        
+        objValidate.Medatory(txtAddress, "Please enter Address", this.Page);
+        objValidate.Medatory(txtCityName, "Please enter City Name", this.Page);
+        objValidate.Medatory(txtCountryName, "Please enter Country", this.Page);
+        objValidate.Medatory(txtEmail, "Please enter Email Address", this.Page);
+        objValidate.Medatory(txtName, "Please enter Institute Name", this.Page);
+        objValidate.Medatory(txtShortName, "Please enter Institute Short Name", this.Page);
+        objValidate.Medatory(txtStateName, "Please enter State Name", this.Page);
+        objValidate.Medatory(txtTelePhone, "Please enter Telephone Number", this.Page);
+        objValidate.Medatory(txtWebSite, "Please enter Institute Website", this.Page);
+        objValidate.Email(txtEmail, "Please enter valid Email Address", this.Page);
+        objValidate.DigitOnly(txtTelePhone, "Please enter Valid Telephone Number", this.Page);
+        objValidate.MinimumLength(txtTelePhone, "Please enter Valid Telephone Number", this.Page,"10");
+
+
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
+        FormValidation();
         new JScripter.TinyMCE(this.Page).Create();
         BindData();
     }
@@ -101,6 +125,7 @@ public partial class College_Ajaxer_InstituteInfo : AjaxPage
         bool IsDeleted = false;
 
         new InstituteController().UpdateByLoginUserID(LoginUserID, Name, Address, CityName, StateName, CountryName, TelePhone, Fax, Email, WebSite, CollegeType, ShortName, Description, ModifiedDate, IsDeleted);
+        Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "", ShortName);
     }
 
     private void BindData()

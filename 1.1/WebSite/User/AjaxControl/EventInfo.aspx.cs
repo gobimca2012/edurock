@@ -23,8 +23,10 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateEvent.ClientID);
         objValidate.Medatory(txtTitle, "Please enter Title", this.Page);
         objValidate.Medatory(txtContactEmail, "Please enter Contact Email Address", this.Page);
+        objValidate.Email(txtContactEmail, "Please enter Valid Contact Email Address", this.Page);
         objValidate.Medatory(txtContactPerson, "Please enter Contact Person", this.Page);
         objValidate.Medatory(txtContactPhone, "Please enter Contact Phone Number", this.Page);
+        objValidate.DigitOnly(txtContactPhone, "Please enter Number Only", this.Page);
         objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
         objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
         objValidate.DrowDownMendatory(ddCource, "Please select Cource ", this.Page, "0");
@@ -68,6 +70,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new EventController().Add(EventID, LoginUserID, Title, Description, MetaDescription, StartDate, EndDate, InstituteCourceID, InstituteSubjectID, Tag, ContactPerson, ContactEmail, ContactPhone, ModifiedDate);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Added Successfully", "Event", Title);
             Response.Redirect("~/User/AjaxControl/Event.aspx?evid=" + EventID.ToString());
         }
         catch (Exception ex)
@@ -137,7 +140,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new EventController().UpdateByEventID(EventID, LoginUserID, Title, Description, MetaDescription, StartDate, EndDate, InstituteCourceID, InstituteSubjectID, Tag, ContactPerson, ContactEmail, ContactPhone, ModifiedDate);
-
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "Event", Title);
             Response.Redirect("~/User/AjaxControl/Event.aspx?evid=" + EventID.ToString());
         }
         catch (Exception ex)

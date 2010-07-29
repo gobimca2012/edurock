@@ -13,6 +13,11 @@
             <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/UserInfoView.aspx"> Personal Info</aspajax:HyperLink></li>
             <%--<li><a href="#tabs-2">Education Info</a></li>--%>
         </div>
+        <div class="btn">
+            <aspajax:HyperLink ID="lnkChangePass" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ChangePassword.aspx"> Change password</aspajax:HyperLink></li>
+            <%--<li><a href="#tabs-2">Education Info</a></li>--%>
+        </div>
+    </div>
     </form>
 </body>
 </html>
