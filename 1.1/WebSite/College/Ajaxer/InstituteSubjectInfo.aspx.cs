@@ -62,7 +62,7 @@ public partial class College_Ajaxer_InstituteSubjectInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new InstituteSubjectController().Add(LoginUserID, SubjectText, Description, InstituteCourceID, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen added Successfully", "Subject ",SubjectText);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been added Successfully", "Subject ",SubjectText);
             Response.Redirect("~/College/Ajaxer/InstituteSubjectInfoView.aspx?icid="+_InstituteCourceID.ToString());
         }
         catch (Exception ex)
@@ -89,7 +89,7 @@ public partial class College_Ajaxer_InstituteSubjectInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new InstituteSubjectController().UpdateByInstituteSubjectID(InstituteSubjectID, LoginUserID, SubjectText, Description, InstituteCourceID, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen updated Successfully", "Subject ", SubjectText);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been updated Successfully", "Subject ", SubjectText);
             Response.Redirect("~/College/Ajaxer/InstituteSubjectInfoView.aspx?icid=" + _InstituteCourceID.ToString());
         }
         catch (Exception ex)

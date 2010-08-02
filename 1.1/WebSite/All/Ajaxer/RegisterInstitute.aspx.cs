@@ -28,8 +28,8 @@ public partial class College_Ajaxer_RegisterInstitute : AjaxPage
         objValidate.Medatory(txtCityName, "Please enter valid city", this.Page);
         objValidate.Medatory(txtCountryName, "Please enter valid Country", this.Page);
         objValidate.Medatory(txtEmail, "Please enter valid email address of Institute", this.Page);
-        objValidate.Medatory(txtName, "Please enter Insitiute Name", this.Page);
-        objValidate.Medatory(txtShortName, "Please enter Insititute Short Name", this.Page);
+        objValidate.Medatory(txtName, "Please enter Institute Name", this.Page);
+        objValidate.Medatory(txtShortName, "Please enter Institute Short Name", this.Page);
         objValidate.Medatory(txtStateName, "Please enter valid State", this.Page);
         
     }

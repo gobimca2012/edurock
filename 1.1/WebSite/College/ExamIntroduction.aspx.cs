@@ -34,13 +34,13 @@ public partial class College_ExamIntroduction : AjaxPage
             {
                 if ((bool)userExamData[0].IsFinish)
                 {
-                    warnningMessage.InnerHtml = "you allready Attend this Examamination you can not attend again ";
+                    warnningMessage.InnerHtml = "you already Attend this Examination you can not attend again ";
                     lnkStart.Visible = false;
                 }
                 else
                 {
                     _UserExamID = userExamData[0].UserExamID;
-                    warnningMessage.InnerHtml = "you allready Attend Exam please finished this Examination";
+                    warnningMessage.InnerHtml = "you already Attend Exam please finished this Examination";
                 }
             }
             else

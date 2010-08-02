@@ -22,7 +22,7 @@ public partial class All_Ajaxer_RegisterUser : AjaxPage
         objValidate.Medatory(txtPassword, "Please enter Password", this.Page);
         objValidate.Medatory(txtUseremail, "Please enter Email Address", this.Page);
         objValidate.ComparttextBox(txtPassword, "Please enter password does not match", this.Page, txtConfirm);
-        objValidate.DrowDownMendatory(ddCource, "Please select cource", this.Page, "0");
+        objValidate.DrowDownMendatory(ddCource, "Please select course", this.Page, "0");
         objValidate.DrowDownMendatory(ddInstitute, "Please select Institute", this.Page, "0");
     }
     protected override void OnLoad(EventArgs e)

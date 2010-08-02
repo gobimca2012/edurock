@@ -20,8 +20,8 @@ public partial class College_Ajaxer_CourceInfo : AjaxPage
         lnkUpdate.EnableValidation = true;
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddcource.ClientID);
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdate.ClientID);
-        objValidate.DrowDownMendatory(ddCatagory, "Please select Cource Catagory", this.Page, "0");
-        objValidate.Medatory(txtCourceName, "Please enter Cource Name", this.Page);
+        objValidate.DrowDownMendatory(ddCatagory, "Please select Course Category", this.Page, "0");
+        objValidate.Medatory(txtCourceName, "Please enter Course Name", this.Page);
         
     }
     protected void Page_Load(object sender, EventArgs e)
@@ -61,7 +61,7 @@ public partial class College_Ajaxer_CourceInfo : AjaxPage
             DateTime Modifieddate = DateTime.Now;
 
             new CourceController().Add( CourceCatagoryID, CourceName, Description, CourceType, Modifieddate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully now you can add this cource to your institute.", "Cource ",CourceName);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been Updated Successfully now you can add this course to your institute.", "Course ",CourceName);
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
         catch (Exception ex)
@@ -85,7 +85,7 @@ public partial class College_Ajaxer_CourceInfo : AjaxPage
             DateTime Modifieddate = DateTime.Now;
 
             new CourceController().UpdateByCourceID(ID, CourceCatagoryID, CourceName, Description, CourceType, Modifieddate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "Cource ", CourceName);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been Updated Successfully", "Course ", CourceName);
             Response.Redirect("~/College/Ajaxer/CourceInfoView.aspx");
         }
         catch (Exception ex)

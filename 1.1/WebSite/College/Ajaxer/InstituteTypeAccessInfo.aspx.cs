@@ -103,7 +103,7 @@ public partial class College_Ajaxer_InstituteTypeAccessInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new InstituteUserTypeAccessController().Add(InstituteUserTypeID, CanAddExam, CanAddQuestion, CanAddUser, CanAddCource, CanAddSubject, CanAddAudio, CanAddImage, CanAddDocument, CanAddVideo, CanAddHomeWork, CanAddEvent, CanAddArticle, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen updated Successfully", "Role Access ");
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been updated Successfully", "Role Access ");
             Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
         }
         catch (Exception ex)
@@ -182,7 +182,7 @@ public partial class College_Ajaxer_InstituteTypeAccessInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new InstituteUserTypeAccessController().UpdateByInstituteUserTypeID(InstituteUserTypeID, CanAddExam, CanAddQuestion, CanAddUser, CanAddCource, CanAddSubject, CanAddAudio, CanAddImage, CanAddDocument, CanAddVideo, CanAddHomeWork, CanAddEvent, CanAddArticle, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen updated Successfully", "Role Access ");
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been updated Successfully", "Role Access ");
             Response.Redirect("~/College/Ajaxer/InstituteUserTypeInfoView.aspx");
         }
         catch (Exception ex)

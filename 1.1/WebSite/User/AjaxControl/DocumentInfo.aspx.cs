@@ -18,7 +18,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
     {
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddDocument.ClientID);
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateDocument.ClientID);
-        objValidate.DrowDownMendatory(ddCource, "Please select Cource ", this.Page, "0");
+        objValidate.DrowDownMendatory(ddCource, "Please select Course ", this.Page, "0");
         objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
         objValidate.Medatory(txtName, "Please enter Title", this.Page);
 
@@ -62,12 +62,12 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
             int DocumentType = _DocumentType;
 
-            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
             int InstituteSubjectID; if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject") == "0") { throw new Exception("Please select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
             DateTime ModifiedDate = DateTime.Now;
 
             new DocumentController().Add(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceID, InstituteSubjectID, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{1} hasbeen Added Successfully",  Name);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{1} has been Added Successfully",  Name);
             Response.Redirect("~/User/AjaxControl/Document.aspx?did=" + DocumentID.ToString(), true);
         }
         catch (Exception ex)
@@ -119,13 +119,13 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
             int DocumentType = _DocumentType;
 
-            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
             int InstituteSubjectID; if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject") == "0") { throw new Exception("Please select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
 
             DateTime ModifiedDate = DateTime.Now;
 
             new DocumentController().UpdateByDocumentID(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{1} hasbeen Updated Successfully", Name);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{1} has been Updated Successfully", Name);
             Response.Redirect("~/User/AjaxControl/Document.aspx?did=" + DocumentID.ToString());
         }
         catch (Exception ex)

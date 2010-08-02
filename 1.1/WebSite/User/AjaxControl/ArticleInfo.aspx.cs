@@ -21,7 +21,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
         lnkAddArticle.EnableValidation = true;
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddArticle.ClientID);
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateArticle.ClientID);
-        objValidate.DrowDownMendatory(ddCource, "Please select Cource ", this.Page, "0");
+        objValidate.DrowDownMendatory(ddCource, "Please select Course ", this.Page, "0");
         objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
         objValidate.Medatory(txtTitle, "Please enter Title", this.Page);
         
@@ -43,7 +43,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
 
             string MetaDescription; if (HtmlHelper.ControlValue(txtMetaDescription.ClientID) == "") { throw new Exception("Please Enter Meta Description"); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
 
-            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select Cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select Course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
             int InstituteSubjectID; if ((HtmlHelper.ControlValue(ddSubject.ClientID)) == "" || (HtmlHelper.ControlValue(ddSubject.ClientID)) == "0") { throw new Exception("Please Select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
@@ -54,7 +54,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
             
             new ArticleController().Add(ArticleID, LoginUserID, Title, Description, MetaDescription, InstituteCourceID, InstituteSubjectID, Tag, Rating, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen added Successfully", "Article", Title);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been added Successfully", "Article", Title);
             Response.Redirect("~/User/AjaxControl/Article.aspx?arid=" + ArticleID.ToString());
         }
         catch (Exception ex)
@@ -96,7 +96,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
 
             string MetaDescription; if (HtmlHelper.ControlValue(txtMetaDescription.ClientID) == "") { throw new Exception("Please Enter Meta Description"); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
 
-            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select Cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select Course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
             int InstituteSubjectID; if ((HtmlHelper.ControlValue(ddSubject.ClientID)) == "" || (HtmlHelper.ControlValue(ddSubject.ClientID)) == "0") { throw new Exception("Please Select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 

@@ -21,7 +21,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
         lnkUpdate.EnableValidation = true;
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddcource.ClientID);
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdate.ClientID);
-        objValidate.Medatory(txtCatagoryName, "Please Catagory Name", this.Page);
+        objValidate.Medatory(txtCatagoryName, "Please Category Name", this.Page);
         
         
 
@@ -44,7 +44,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new CourceCatagoryController().Add(CatagoryName, LoginUserID, Description, CatagoryType, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen added Successfully", "Cource catagory", CatagoryName);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been added Successfully", "Course category", CatagoryName);
             Response.Redirect("~/College/Ajaxer/CourceCatagoryInfoView.aspx");
         }
         catch (Exception ex)
@@ -70,7 +70,7 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new CourceCatagoryController().UpdateByCourceCatagoryID(ID, CatagoryName, LoginUserID, Description, CatagoryType, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen updated Successfully", "Cource catagory",CatagoryName);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been updated Successfully", "Course category",CatagoryName);
             Response.Redirect("~/College/Ajaxer/CourceCatagoryInfoView.aspx");
         }
         catch (Exception ex)

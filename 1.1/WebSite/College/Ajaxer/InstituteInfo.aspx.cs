@@ -125,7 +125,7 @@ public partial class College_Ajaxer_InstituteInfo : AjaxPage
         bool IsDeleted = false;
 
         new InstituteController().UpdateByLoginUserID(LoginUserID, Name, Address, CityName, StateName, CountryName, TelePhone, Fax, Email, WebSite, CollegeType, ShortName, Description, ModifiedDate, IsDeleted);
-        Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "", ShortName);
+        Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been Updated Successfully", "", ShortName);
     }
 
     private void BindData()

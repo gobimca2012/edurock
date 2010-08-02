@@ -24,7 +24,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateInstituteCource.ClientID);
         objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
         objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
-        objValidate.DrowDownMendatory(ddCource, "Please select Cource", this.Page,"0");
+        objValidate.DrowDownMendatory(ddCource, "Please select Course", this.Page,"0");
         objValidate.DigitOnly(txtPrice, "Please enter Number only", this.Page);
         
 
@@ -89,7 +89,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
 
             new InstituteCourceController().Add(InstituteID, CourceID, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen added Successfully", "Cource");
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been added Successfully", "Course");
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
         catch (Exception ex)
@@ -156,7 +156,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
             DateTime Modifieddate = DateTime.Now;
 
             new InstituteCourceController().UpdateByInstituteCourceID(InstituteCourceID, InstituteID, CourceID, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "Cource");
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been Updated Successfully", "Course");
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
         catch (Exception ex)

@@ -29,7 +29,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
         objValidate.DigitOnly(txtContactPhone, "Please enter Number Only", this.Page);
         objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
         objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
-        objValidate.DrowDownMendatory(ddCource, "Please select Cource ", this.Page, "0");
+        objValidate.DrowDownMendatory(ddCource, "Please select Course ", this.Page, "0");
         objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
         
 
@@ -55,7 +55,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
 
             DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID)=="") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
-            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "" || HtmlHelper.ControlValue(ddCource.ClientID)=="0") { throw new Exception("Please enter cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "" || HtmlHelper.ControlValue(ddCource.ClientID)=="0") { throw new Exception("Please enter course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
             int InstituteSubjectID; if (HtmlHelper.ControlValue(ddSubject.ClientID) == "" || HtmlHelper.ControlValue(ddSubject.ClientID)=="0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
@@ -70,7 +70,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new EventController().Add(EventID, LoginUserID, Title, Description, MetaDescription, StartDate, EndDate, InstituteCourceID, InstituteSubjectID, Tag, ContactPerson, ContactEmail, ContactPhone, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Added Successfully", "Event", Title);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been Added Successfully", "Event", Title);
             Response.Redirect("~/User/AjaxControl/Event.aspx?evid=" + EventID.ToString());
         }
         catch (Exception ex)
@@ -125,7 +125,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
 
             DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID) == "") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
-            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "" || HtmlHelper.ControlValue(ddCource.ClientID) == "0") { throw new Exception("Please enter cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "" || HtmlHelper.ControlValue(ddCource.ClientID) == "0") { throw new Exception("Please enter course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
             int InstituteSubjectID; if (HtmlHelper.ControlValue(ddSubject.ClientID) == "" || HtmlHelper.ControlValue(ddSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
@@ -140,7 +140,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new EventController().UpdateByEventID(EventID, LoginUserID, Title, Description, MetaDescription, StartDate, EndDate, InstituteCourceID, InstituteSubjectID, Tag, ContactPerson, ContactEmail, ContactPhone, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "Event", Title);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been Updated Successfully", "Event", Title);
             Response.Redirect("~/User/AjaxControl/Event.aspx?evid=" + EventID.ToString());
         }
         catch (Exception ex)

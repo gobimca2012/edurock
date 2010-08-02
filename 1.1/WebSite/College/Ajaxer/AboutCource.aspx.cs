@@ -70,16 +70,16 @@ public partial class College_Ajaxer_AboutCource : AjaxPage
             if (data[0].IsFree != null)
             {
                 if ((bool)data[0].IsFree)
-                    lblprice.InnerHtml = "Free Cource you can Join this Cource";
+                    lblprice.InnerHtml = "Free Course you can Join this Course";
                 else if (data[0].Price != null)
                 {
-                    lblprice.InnerText = "price of Cource :" + data[0].Price.ToString();
+                    lblprice.InnerText = "price of Course :" + data[0].Price.ToString();
                 }
             }
            
             if (data[0].StartDate.Value != null && data[0].EndDate.Value!=null)
             {
-                lblDuration.InnerText = "Cource Start From " + CommonController.GetDate(data[0].StartDate.Value) + " to " + CommonController.GetDate(data[0].EndDate.Value);
+                lblDuration.InnerText = "Course Start From " + CommonController.GetDate(data[0].StartDate.Value) + " to " + CommonController.GetDate(data[0].EndDate.Value);
             }
             if (data[0].InstituteSubjects != null)
             {
@@ -98,11 +98,11 @@ public partial class College_Ajaxer_AboutCource : AjaxPage
             if (!new InstituteCourceUserController().IsUserAllreadyInCource(new UserAuthontication().LoggedInUserID, _InstituteCourceID))
             {
                 new InstituteCourceUserController().Add(Guid.NewGuid(), _InstituteCourceID, new UserAuthontication().LoggedInUserID, new UserAuthontication().LoggedInUserID, (int)InstituteCourceUserEnum.Normal, DateTime.Now);
-                divmessage.InnerHtml = "<div class='success'>you are now access data of this cource</div>";
+                divmessage.InnerHtml = "<div class='success'>you are now access data of this course</div>";
             }
             else
             {
-                divmessage.InnerHtml = "<div class='error'>You are allready in this cource</div>";
+                divmessage.InnerHtml = "<div class='error'>You are already in this course</div>";
             }
         }
         else

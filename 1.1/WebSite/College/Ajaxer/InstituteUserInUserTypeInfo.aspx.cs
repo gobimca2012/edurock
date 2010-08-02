@@ -52,7 +52,7 @@ public partial class College_Ajaxer_InstituteUserInUserTypeInfo : AjaxPage
     protected void AddAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
         new InstituteUserInUserTypeController().Add(ID, new UserAuthontication().InstituteIDByLoginUserID(ID), Convert.ToInt32(HtmlHelper.ControlValue(ddRoles.ClientID)), DateTime.Now);
-        Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "User Role ");
+        Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been Updated Successfully", "User Role ");
         BindData();
     }
     //protected void ListInstituteSubjectOnItemDataBound(object sender, ListViewItemEventArgs e)
@@ -68,7 +68,7 @@ public partial class College_Ajaxer_InstituteUserInUserTypeInfo : AjaxPage
         {
 
             new InstituteUserInUserTypeController().DeletebyInstituteUserInUserTypeID(Convert.ToInt32(e.Id));
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen deleted Successfully", "User Role ");
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been deleted Successfully", "User Role ");
             BindData();
         }
         base.OnAjaxListViewCommand(e);
