@@ -11,8 +11,18 @@ namespace JScripter
     {
         public Validation(Page thisPage,LinkButton lnkSubmitButton)
         {
+
             JScripter.IncludeJavascriptFile("Validation",thisPage.ResolveUrl("~/MusesterScript/Validation1.3.js"), thisPage);
             string Script = string.Format("$('#{0}').ValidateButton();", lnkSubmitButton.ClientID);
+            InjectScript(Script, thisPage);
+        }
+        public Validation(Page thisPage, string lnkButtonID)
+        {
+            //JScripter.IncludeJavascriptFile("Validation", thisPage.ResolveUrl("~/Jscript/Validation1.3Ajax.js"), thisPage);
+            //string Script = string.Format("$('#{0}').ValidateButton();", lnkButtonID);
+            //string Script = string.Format("AddValidateBtn('{0}');", lnkButtonID);
+            //InjectScript(Script, thisPage);
+            string Script = string.Format("ClearValidation();");
             InjectScript(Script, thisPage);
         }
         public Validation(Page thisPage, LinkButton lnkSubmitButton,bool IsloadScript)
@@ -35,6 +45,7 @@ namespace JScripter
             string Script = string.Format("$('#{0}').Mendatory('{1}');", txt.ClientID, Message);
             InjectScript(Script, thisPage);
         }
+
         public void DigitOnly(TextBox txt, string Message, Page thisPage)
         {
             string Script = string.Format("$('#{0}').DigitOnly('{1}');", txt.ClientID, Message);

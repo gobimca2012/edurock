@@ -1,0 +1,250 @@
+﻿##|TYPE Template
+##|UNIQUEID d3a58059-a75e-4b45-a7a6-0adf092d70bb
+##|TITLE AddFromCSPageMethod
+##|NAMESPACE 
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE None
+##|GUI_ENGINE .Net Script
+##|GUI_LANGUAGE C#
+##|GUI_BEGIN
+
+public class GeneratedGui : DotNetScriptGui
+{
+	public GeneratedGui(ZeusContext context) : base(context) {}
+
+	//-----------------------------------------
+	// The User Interface Entry Point
+	//-----------------------------------------
+	public override void Setup()
+	{
+		// ** UNCOMMENT CODE BELOW TO SEE UI **
+
+		ui.Title = ".NetScript C# Sample: Java Class";
+		ui.Width = 340;
+		ui.Height = 300;
+
+		// Setup Database selection combobox.
+		GuiLabel label_d = ui.AddLabel("lblDatabases", "Select a database:", "Select a database in the dropdown below.");
+		GuiComboBox cmbDatabases = ui.AddComboBox("databaseName", "Select a database.");
+
+		// Setup Tables selection multi-select listbox.
+		GuiLabel label_t = ui.AddLabel("lblTables", "Select table:", "Select table from the combobox below.");
+		GuiComboBox cmbTables = ui.AddComboBox("tableName", "Select a table.");
+
+		// bind data to the controls
+		cmbDatabases.BindData(MyMeta.Databases);
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name;
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+		
+		GuiTextBox txtPrefix=ui.AddTextBox("Prefix","","");
+		// Attach the onchange event to the cmbDatabases control.
+		cmbDatabases.AttachEvent("onchange", "cmbDatabases_onchange");
+
+	
+		ui.ShowGui = true;ui.AddLabel("lblDemo", "Demo", "Demo Tooltip");
+		ui.ShowGui = true;
+	}
+	public void cmbDatabases_onchange(GuiComboBox control)
+	{
+		GuiComboBox cmbDatabases = ui["databaseName"] as GuiComboBox;
+		GuiComboBox cmbTables = ui["tableName"] as GuiComboBox;
+		
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+	}
+
+}
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE .Net Script
+##|BODY_LANGUAGE C#
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+public class GeneratedTemplate : DotNetScriptTemplate
+{
+	public GeneratedTemplate(ZeusContext context) : base(context) {}
+	
+	public void CreateTableColumnParameterizeFunction(ITable table)
+	{%><%int colcount=0;foreach(IColumn column in table.Columns){colcount++;if(colcount==table.Columns.Count){%><%=column.LanguageType%> <%=column.Alias%>)<%}else{%><%=column.LanguageType%> <%=column.Alias%>,<%}}
+	}
+	public void PassColumnParameterToFunction(ITable table)
+	{%><%int colcount=0;foreach(IColumn column in table.Columns){colcount++;if(colcount==table.Columns.Count){%><%=column.Alias%>)<%}else{%><%=column.Alias%>,<%}}
+	}
+	public void MakeJsonObject(ITable table,string Prefix)
+	{%>
+	
+	<%//Ajax Data Get and Make Json and Post%>
+			<%
+			int colcount=0;
+			foreach(IColumn column in table.Columns)
+			{	
+					if(column.LanguageType=="string")
+					{%>				    
+					var <%=column.Alias%>=$("<%=Prefix%>txt<%=column.Alias%>").val();
+					<%}
+					else if(column.LanguageType=="bool" || column.LanguageType=="Boolean")
+					{%>
+						
+						var <%=column.Alias%>=$("<%=Prefix%>chk<%=column.Alias%>").val();
+					<%}
+					else if(column.LanguageType=="Guid")
+					{
+						if(column.IsInForeignKey)
+						{%>
+							var <%=column.Alias%>=$("<%=Prefix%>dd<%=column.Alias%>").val();
+						<%}
+					}
+					else if(column.LanguageType=="DateTime")
+					{%>
+						var <%=column.Alias%>=$("<%=Prefix%>txt<%=column.Alias%>").val();
+					<%}				
+			}
+			
+			%>var data="{<%colcount=0;
+			foreach(IColumn column in table.Columns)
+			{		
+			    colcount++;
+				if(colcount==table.Columns.Count)
+				{
+				%>'<%=column.Alias%>':'"+<%=column.Alias%>+"'<%					
+				}
+				else
+				{
+				%>'<%=column.Alias%>':'"+<%=column.Alias%>+"',<%
+				}
+			}
+			
+			%>}";<%//End Json Creation and Post%>
+			<%
+	 }
+	
+	//---------------------------------------------------
+	// Render() is where you want to write your logic    
+	//---------------------------------------------------
+	public override void Render()
+	{
+	    string databaseName = input["databaseName"].ToString();
+		string tableName = input["tableName"].ToString();
+		int columnCount=0;
+		IDatabase database = MyMeta.Databases[databaseName];
+		ITable table = database.Tables[tableName];
+		string Prefix=input["Prefix"].ToString();
+		%>
+		<%foreach(IColumn column in table.Columns)
+		{%>
+		            
+                    <%if (column.LanguageType == "string")
+                      {
+                    %>
+					string txt<%=column.Alias%>="";
+					if(Request.Params["<%=Prefix%>txt<%=column.Alias%>"]!=null)
+					txt<%=column.Alias%>=Request.Params["<%=Prefix%>txt<%=column.Alias%>"].ToString();                    
+                    <%}
+                      else if (column.LanguageType == "bool" || column.LanguageType == "Boolean")
+                      {%>
+					  Boolean chk<%=column.Alias%>=false;
+					  if(Request.Params["<%=Prefix%>chk<%=column.Alias%>"]!=null)
+					  {
+					  chk<%=column.Alias%>=Convert.ToBoolean(Request.Params["<%=Prefix%>chk<%=column.Alias%>"].ToString());                    					  
+					  }
+                    <%}
+                      else if (column.LanguageType == "Guid")
+                      {
+                          if (column.IsInForeignKey)
+                          {                    
+                    %>
+					Guid dd<%=column.Alias%>=Guid.Empty;
+					if(Request.Params["<%=Prefix%>dd<%=column.Alias%>"]!=null)					
+					dd<%=column.Alias%>=new Guid(Request.Params["<%=Prefix%>dd<%=column.Alias%>"].ToString());
+                    
+                    <%}
+					
+                      }
+					  else if(column.LanguageType=="DateTime")
+					  {%>
+						DateTime txt<%=column.Alias%>=DateTime.Now;
+					if(Request.Params["<%=Prefix%>txt<%=column.Alias%>"]!=null)					
+					txt<%=column.Alias%>=Convert.ToDateTime(Request.Params["<%=Prefix%>txt<%=column.Alias%>"].ToString());
+					  <%}
+					  %>
+        
+			<%}%>
+			new <%=table.Alias%>Controller().<%=table.Alias%>Add(
+			<%
+			int colcount=0;
+			foreach(IColumn column in table.Columns)
+			{
+				colcount++;
+				if(colcount==0)
+				{
+					if(column.LanguageType=="Guid")
+					{%>
+						new Guid(),
+					<%}
+				}
+				else if(colcount==table.Columns.Count)
+				{
+					if(column.LanguageType=="string")
+					{%>				    
+					txt<%=column.Alias%>);
+					<%}
+					else if(column.LanguageType=="bool" || column.LanguageType=="Boolean")
+					{%>
+						chk<%=column.Alias%>);
+					<%}
+					else if(column.LanguageType=="Guid")
+					{
+						if(column.IsInForeignKey)
+						{%>
+							dd<%=column.Alias%>);
+						<%}
+					}
+					else if(column.LanguageType=="DateTime")
+					{%>
+						txt<%=column.Alias%>,
+					<%}
+					
+					%>
+				<%}
+				else
+				{
+					if(column.LanguageType=="string")
+					{%>				    
+					txt<%=column.Alias%>,
+					<%}
+					else if(column.LanguageType=="bool" || column.LanguageType=="Boolean")
+					{%>
+						chk<%=column.Alias%>,
+					<%}
+					else if(column.LanguageType=="Guid")
+					{
+						if(column.IsInForeignKey)
+						{%>
+							dd<%=column.Alias%>,
+						<%}
+					}
+					else if(column.LanguageType=="DateTime")
+					{%>
+						txt<%=column.Alias%>,
+					<%}
+					%>
+				<%}
+			}%>
+			
+			
+			<%MakeJsonObject(table,Prefix);%>
+			
+			<%//Code for PageMethod of Add new Table Data%>
+			[WebMethod]
+			public static void Add<%=table.Alias%>(<%CreateTableColumnParameterizeFunction(table);%>
+			{
+			   new <%=table.Alias%>Controller().<%=table.Alias%>Add(<%PassColumnParameterToFunction(table);%>;
+			}
+			<%//End of PageMethod%>
+			
+		<%// End of Render Function and Full Class Bracket		
+	}
+}
+%>
+##|BODY_END

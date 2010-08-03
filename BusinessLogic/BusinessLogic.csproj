@@ -8,7 +8,7 @@
     <ProjectGuid>{1A9E6B33-7990-4479-8CB9-476E3214ECA0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogin</RootNamespace>
+    <RootNamespace>BusinessLogic</RootNamespace>
     <AssemblyName>BusinessLogic</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -39,6 +39,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -53,18 +56,66 @@
     <Compile Include="AjaxPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="AnswerController.cs" />
+    <Compile Include="AnswerStateController.cs" />
+    <Compile Include="ArticleController.cs" />
     <Compile Include="BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="BaseUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ButtonVisibilityHelper.cs" />
+    <Compile Include="CollegeBasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CommentController.cs" />
     <Compile Include="CommonController.cs" />
+    <Compile Include="CourceCatagoryController.cs" />
+    <Compile Include="CourceController.cs" />
+    <Compile Include="DocumentController.cs" />
     <Compile Include="EmailController.cs" />
+    <Compile Include="EventController.cs" />
     <Compile Include="ExamController.cs" />
+    <Compile Include="EXM_AnswerController.cs" />
+    <Compile Include="EXM_QuestionController.cs" />
+    <Compile Include="EXM_UserAnswerController.cs" />
+    <Compile Include="GlobelEnum.cs" />
+    <Compile Include="HomeWorkController.cs" />
+    <Compile Include="HtmlHelper.cs" />
+    <Compile Include="InstituteController.cs" />
+    <Compile Include="InstituteCourceController.cs" />
+    <Compile Include="InstituteCourceUserController.cs" />
+    <Compile Include="InstituteSubjectController.cs" />
+    <Compile Include="InstituteUserTypeAccessController.cs" />
+    <Compile Include="InstituteUserController.cs" />
+    <Compile Include="InstituteUserInUserTypeController.cs" />
+    <Compile Include="InstituteUserTypeController.cs" />
+    <Compile Include="IStartExam.cs" />
     <Compile Include="LoginUserController.cs" />
+    <Compile Include="MessageController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionController.cs" />
+    <Compile Include="QuestionStatusController.cs" />
+    <Compile Include="QuestionTypeController.cs" />
+    <Compile Include="SessionName.cs" />
     <Compile Include="SettingProvider.cs" />
+    <Compile Include="ShareController.cs" />
+    <Compile Include="ShareGroupController.cs" />
+    <Compile Include="ShareUserController.cs" />
+    <Compile Include="StartExam.cs" />
+    <Compile Include="TutorialController.cs" />
+    <Compile Include="TutorialTypeController.cs" />
     <Compile Include="UserAuthontication.cs" />
+    <Compile Include="UserController.cs" />
+    <Compile Include="UserEducationController.cs" />
+    <Compile Include="UserExamController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{DA82B465-2DF2-4D7C-81A9-1E617420A69C}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{8A0AE474-D87D-415B-A5D4-7AC5461431FE}</Project>
       <Name>DataAccess</Name>
@@ -81,6 +132,9 @@
       <Project>{DB315DB1-394C-4B9E-8D52-C77FBFEC128B}</Project>
       <Name>MikeCompression</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

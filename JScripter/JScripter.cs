@@ -23,9 +23,9 @@ namespace JScripter
             Type cstype = aspxPage.GetType();
             // Get a ClientScriptManager reference from the Page class.
             ClientScriptManager cs = aspxPage.ClientScript;
-            if (!cs.IsClientScriptBlockRegistered(cstype, csname1))
+            if (!cs.IsStartupScriptRegistered(cstype, csname1))
             {
-                cs.RegisterClientScriptBlock(cstype, csname1, script,true);
+                cs.RegisterStartupScript(cstype, csname1, script,true);
             }
 
             //aspxPage.RegisterStartupScript("onload", script);

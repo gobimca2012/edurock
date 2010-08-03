@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="SingleColumn.master.cs"
+    Inherits="MasterPage_TwoColumn" %>
+
+<%@ Register Src="../LayoutControl/HeaderNavigation.ascx" TagName="HeaderNavigation"
+    TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Untitled Page</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="page">
+        <div>
+            <uc1:HeaderNavigation ID="HeaderNavigation1" runat="server" />
+        </div>
+        <div class="plt">
+            <div class="prt">
+                <div class="pct">
+                </div>
+            </div>
+        </div>
+        <div class="plm">
+            <div class="prm">
+                <div class="pcm">
+                    <div style="clear: both">
+                    </div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <div style="clear: both">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="plb">
+            <div class="prb">
+                <div class="pcb">
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

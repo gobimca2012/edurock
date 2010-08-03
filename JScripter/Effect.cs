@@ -71,5 +71,10 @@ namespace JScripter
             }
 
         }
+        public void Collapspanel(string TriggerID, string BoxiD)
+        {            
+            String Script = string.Format("$('{0}').shower('{1}');", TriggerID, BoxiD);
+            InjectScript(Script, _thisPage);
+        }
     }
 }

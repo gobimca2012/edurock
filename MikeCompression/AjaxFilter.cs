@@ -95,42 +95,44 @@ namespace MikeCompression
             byte[] data = new byte[count + 1];
             Buffer.BlockCopy(buffer, offset, data, 0, count);
 
+            //string s = System.Text.Encoding.UTF8.GetString(data);
             string s = System.Text.Encoding.UTF8.GetString(data);
             
-            //s = Regex.Replace(s, @"<!.*?>", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
-            //s = Regex.Replace(s, @"<input.*VIEWSTATE.*/>", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
-            //s = Regex.Replace(s, @"<input.*EVENTTARGET.*/>", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
-            //s = Regex.Replace(s, @"<input.*EVENTARGUMENT.*/>", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
-            //s = Regex.Replace(s, @"<meta.*?>", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
-            //s = Regex.Replace(s, @"<link.*?>", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
-            //s = Regex.Replace(s, @"<form.*?>", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
-            //s = s.Replace("</form>", "");
-            //s = s.Replace("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' >", "");
-            //s = s.Replace("<html>", "");
-            //s = s.Replace("</html>", "");
-            //s = s.Replace("<head>", "");
-            //s = s.Replace("</head>", "");
-            //s = s.Replace("<body>", "");
-            //s = s.Replace("</body>", "");
-            //s = Regex.Replace(s, "^\\s*", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<!.*?>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<input.*VIEWSTATE.*/>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<input.*EVENTTARGET.*/>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<input.*EVENTARGUMENT.*/>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<meta.*?>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<link.*?>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<form.*?>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = s.Replace("</form>", "");
+            s = s.Replace("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' >", "");
+            s = s.Replace("<html>", "");
+            s = s.Replace("</html>", "");
+            s = s.Replace("<head>", "");
+            s = s.Replace("</head>", "");
+            s = s.Replace("<body>", "");
+            s = s.Replace("</body>", "");
+            s = Regex.Replace(s, "^\\s*", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
 
 
-            //s = Regex.Replace(s, "\\r\\n", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
-            //s = Regex.Replace(s, "<!--*.*?-->", string.Empty, RegexOptions.Compiled |
-            //                  RegexOptions.Multiline);
+            s = Regex.Replace(s, "\\r\\n", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = Regex.Replace(s, "<!--*.*?-->", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
 
-            //s = Regex.Replace(s, "*\s*", string.Empty, RegexOptions.Compiled |RegexOptions.Multiline);
-            byte[] outdata = System.Text.Encoding.UTF8.GetBytes(s);
+
+            byte[] outdata = System.Text.Encoding.Default.GetBytes(s);
             this._content.Write(outdata, 0, outdata.GetLength(0));
+            
         }
     }
 }

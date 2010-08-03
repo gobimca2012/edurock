@@ -1,0 +1,183 @@
+﻿##|TYPE Template
+##|UNIQUEID b5c53f0b-0a27-4aa9-9392-901d4942eae3
+##|TITLE DataListCS
+##|NAMESPACE 
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE None
+##|GUI_ENGINE .Net Script
+##|GUI_LANGUAGE C#
+##|GUI_BEGIN
+
+public class GeneratedGui : DotNetScriptGui
+{
+	public GeneratedGui(ZeusContext context) : base(context) {}
+
+	//-----------------------------------------
+	// The User Interface Entry Point
+	//-----------------------------------------
+	public override void Setup()
+	{
+		// ** UNCOMMENT CODE BELOW TO SEE UI **
+
+		ui.Title = ".NetScript C# Sample: Java Class";
+		ui.Width = 340;
+		ui.Height = 200;
+
+		// Setup Database selection combobox.
+		GuiLabel label_d = ui.AddLabel("lblDatabases", "Select a database:", "Select a database in the dropdown below.");
+		GuiComboBox cmbDatabases = ui.AddComboBox("databaseName", "Select a database.");
+
+		// Setup Tables selection multi-select listbox.
+		GuiLabel label_t = ui.AddLabel("lblTables", "Select table:", "Select table from the combobox below.");
+		GuiComboBox cmbTables = ui.AddComboBox("tableName", "Select a table.");
+
+		// bind data to the controls
+		cmbDatabases.BindData(MyMeta.Databases);
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name;
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+		
+		
+		// Attach the onchange event to the cmbDatabases control.
+		cmbDatabases.AttachEvent("onchange", "cmbDatabases_onchange");
+
+	
+		ui.ShowGui = true;ui.AddLabel("lblDemo", "Demo", "Demo Tooltip");
+		ui.ShowGui = true;
+	}
+	public void cmbDatabases_onchange(GuiComboBox control)
+	{
+		GuiComboBox cmbDatabases = ui["databaseName"] as GuiComboBox;
+		GuiComboBox cmbTables = ui["tableName"] as GuiComboBox;
+		
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+	}
+
+}
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE .Net Script
+##|BODY_LANGUAGE C#
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+public class GeneratedTemplate : DotNetScriptTemplate
+{
+	public GeneratedTemplate(ZeusContext context) : base(context) {}
+
+	//---------------------------------------------------
+	// Render() is where you want to write your logic    
+	//---------------------------------------------------
+	public override void Render()
+	{
+	string databaseName = input["databaseName"].ToString();
+		string tableName = input["tableName"].ToString();
+		int columnCount=0;
+		IDatabase database = MyMeta.Databases[databaseName];
+		ITable table = database.Tables[tableName];
+	%>
+		private int PageNumber
+		{
+			get
+			{
+				if (ViewState["PageNumber"] != null)
+					return Convert.ToInt32(ViewState["PageNumber"].ToString());
+				else
+				{
+				 lnkPrev.Visible = false;
+					return 0;
+				}
+			}
+			set
+			{
+				ViewState["PageNumber"] = value;
+			}
+		}
+		private int TotalPage
+		{
+			get
+			{
+				if (ViewState["TotalPage"] != null)
+					return Convert.ToInt32(ViewState["TotalPage"].ToString());
+				else
+				{
+
+					return 0;
+				}
+			}
+			set
+			{
+				ViewState["TotalPage"] = value;
+			}
+		}
+		private int PageSize = 20;
+
+		protected void Page_Load(object sender, EventArgs e)
+		{
+			if (!this.IsPostBack)
+			{
+				BindList();
+				TotalPage = new <%=table.Alias%>Controller().<%=table.Alias%>Get().Count / PageSize;
+			}
+
+		}
+		private void BindList()
+		{
+			List<%=table.Alias%>.DataSource = new <%=table.Alias%>Controller().<%=table.Alias%>Get(PageSize, PageNumber);
+			List<%=table.Alias%>.DataBind();
+		}
+		protected void Prev_Click(object sender, EventArgs e)
+		{
+			if (PageNumber > 0)
+			{
+				PageNumber = PageNumber	- 1;
+				if (PageNumber == 0)
+                {
+                    lnkPrev.Visible = false;
+                }
+			}
+			BindList();
+			if (PageNumber < TotalPage)
+			{
+				lnkNext.Visible = false;
+			}
+			else
+			{
+				lnkNext.Visible = true;
+			}
+			if (PageNumber < 1)
+			{
+				lnkPrev.Visible = false;
+			}
+			else
+			{
+				lnkPrev.Visible = true; ;
+			}
+		} 
+		protected void Next_Click(object sender, EventArgs e)
+		{
+
+			PageNumber = PageNumber + 1;
+
+			BindList();
+		}
+		protected void List<%=table.Alias%>ItemDataBound(object sender, DataListItemEventArgs e)
+		{
+			if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+			{
+				if (IsOwen)
+				{
+					string DataKey = List<%=table.Alias%>.DataKeys[e.Item.ItemIndex].ToString();
+					LinkButton lnkDelete = (LinkButton)e.Item.FindControl("lnkDelete");
+					lnkDelete.Visible = true;
+					JavascriptBuilder.JavascriptController.LoadPageOnClick("#UserPhotos", ResolveUrl("~/Modules/User/PhotoList.aspx") + "?Action=Delete&ID=" + DataKey, lnkDelete);
+				}
+			}
+		}
+
+
+<%	}
+
+}
+%>
+##|BODY_END

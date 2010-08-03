@@ -15,7 +15,6 @@ public partial class AddQuestion :BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.AjaxLoad("#addque", ResolveUrl("~/Modules/OnLineExam/ExamList.aspx"));
-        //this.AjaxLoad("#addque", ResolveUrl("~/Modules/OnLineExam/AddExam.aspx"));
+        
     }
 }

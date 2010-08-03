@@ -13,19 +13,20 @@ namespace JScripter
         Page _thisPage;
         public DatePicker(Page thisPage)
         {
-            JScripter.IncludeJavascriptFile("JqueryDate", thisPage.ResolveUrl("~/MusesterScript/ui.datepicker.js"), thisPage);
+            JScripter.IncludeJavascriptFile("ui.datepicker.js", thisPage.ResolveUrl("~/Jscript/ui.datepicker.js"), thisPage);
             _thisPage = thisPage;
         }
         public DatePicker(Page thisPage,bool IsScripRequer)
         {
             if (IsScripRequer)
             {
-                JScripter.IncludeJavascriptFile("JqueryDate", thisPage.ResolveUrl("~/MusesterScript/ui.datepicker.js"), thisPage);
+                JScripter.IncludeJavascriptFile("ui.datepicker.js", thisPage.ResolveUrl("~/Jscript/ui.datepicker.js"), thisPage);
             }
             _thisPage = thisPage;
         }
         public void DatePickerTextBox(TextBox txtbox)
         {
+            txtbox.ReadOnly = true;
             string script = "$('#"+txtbox.ClientID+"').datepicker(    {       dateFormat : 'mm/dd/yy',       minDate:new Date()    }    );";
             //string script = string.Format("$('#{0}').datepicker({1});", txtbox.ClientID,"{dateFormat : 'mm/dd/yy'}");
             System.Web.UI.Page aspxPage = new System.Web.UI.Page();

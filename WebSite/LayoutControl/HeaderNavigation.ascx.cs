@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
-using BusinessLogin;
+
 public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -19,31 +19,43 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
         JScripter.Loader objLoader = new JScripter.Loader(this.Page, false);
         if (!new UserAuthontication().IsLoggedIn)
         {
-            objLoader.LoadPage("#creatediv", ResolveUrl("~/Modules/Login/Create.aspx"));
-            objLoader.LoadPage("#logindiv", ResolveUrl("~/Modules/Login/login.aspx"));
-            lnkLogout.Visible = false;
+            lilogout.Visible = false;
+            objLoader.LoadPage("#registernew", ResolveUrl("~/All/Ajaxer/RegisterUser.aspx"));
+            liAccountsetting.Visible = false;
         }
         else
         {
             lnkLogout.Visible = true;
-            lnkCreate.Visible = false;
+            lilogout.Visible = true;
+            liCreate.Visible = false;
             lnkLogin.Text = new UserAuthontication().LoggedInUserName;
-            if (new UserAuthontication().UserType == UserTypeEnum.College)
+            if (new UserAuthontication().LoggedInUserName.Trim().ToLower() == "admin")
             {
-                ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/CollegeMenu.ascx"));
+                ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/AdminNavigation.ascx"));
+                lnkAccountSetting.NavigateUrl = "~/User/AccountSetting.aspx";
+                lnkAccountSetting.Visible = false;
+                liAccountsetting.Visible = false;
+            }
+            else if (new UserAuthontication().UserType == UserTypeEnum.College)
+            {
+                //ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/CollegeMenu.ascx"));
+                //lnkAccountSetting.NavigateUrl = "~/College/Admin.aspx";
+            }
+            else if (new UserAuthontication().UserType == UserTypeEnum.Student)
+            {
+                //ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/UserMenu.ascx"));
+                lnkAccountSetting.NavigateUrl = "~/User/AccountSetting.aspx";
+                lnkAccountSetting.Visible = false;
+                liAccountsetting.Visible = false;
             }
             
         }
 
     }
-    protected void lnkLogoutClick(object sender, string e)
-    {
-        new UserAuthontication().LogOut();
-        JScripter.Loader.RedirectPage(ResolveUrl("~/Logout.aspx"), this.Page);
-    }
+
     protected void lnkLogout_Click(object sender, EventArgs e)
     {
         new UserAuthontication().LogOut();
-        Response.Redirect("~/Logout.aspx");
+        Response.Redirect("~/Home.aspx");
     }
 }

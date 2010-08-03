@@ -15,7 +15,8 @@ public partial class Default :BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-        this.AjaxLoad("#create", ResolveUrl("~/Modules/login/Create.aspx"));
+
+        string aa = "";
+        string bb = aa;
     }
 }

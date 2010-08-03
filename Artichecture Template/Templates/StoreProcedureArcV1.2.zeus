@@ -1,0 +1,291 @@
+﻿##|TYPE Template
+##|UNIQUEID bfa7cddb-5312-46ca-acf1-0da35f9acd69
+##|TITLE StoreProcedureArch
+##|NAMESPACE 
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE None
+##|GUI_ENGINE .Net Script
+##|GUI_LANGUAGE C#
+##|GUI_BEGIN
+
+public class GeneratedGui : DotNetScriptGui
+{
+	public GeneratedGui(ZeusContext context) : base(context) {}
+
+	//-----------------------------------------
+	// The User Interface Entry Point
+	//-----------------------------------------
+	public override void Setup()
+	{
+		// ** UNCOMMENT CODE BELOW TO SEE UI **
+
+		ui.Title = ".NetScript C# Sample: Java Class";
+		ui.Width = 340;
+		ui.Height = 300;
+
+		// Setup Database selection combobox.
+		GuiLabel label_d = ui.AddLabel("lblDatabases", "Select a database:", "Select a database in the dropdown below.");
+		GuiComboBox cmbDatabases = ui.AddComboBox("databaseName", "Select a database.");
+
+		// Setup Tables selection multi-select listbox.
+		GuiLabel label_t = ui.AddLabel("lblTables", "Select table:", "Select table from the combobox below.");
+		GuiComboBox cmbTables = ui.AddComboBox("StoreProcedure", "Select a table.");
+
+		// bind data to the controls
+		cmbDatabases.BindData(MyMeta.Databases);
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name;
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+		GuiTextBox txtPrefix=ui.AddTextBox("Prefix","","");
+		
+		// Attach the onchange event to the cmbDatabases control.
+		cmbDatabases.AttachEvent("onchange", "cmbDatabases_onchange");
+
+	
+		ui.ShowGui = true;ui.AddLabel("lblDemo", "Demo", "Demo Tooltip");
+		ui.ShowGui = true;
+	}
+	public void cmbDatabases_onchange(GuiComboBox control)
+	{
+		GuiComboBox cmbDatabases = ui["databaseName"] as GuiComboBox;
+		GuiComboBox cmbTables = ui["StoreProcedure"] as GuiComboBox;
+		
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Procedures );
+	}
+
+}
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE .Net Script
+##|BODY_LANGUAGE C#
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+public class GeneratedTemplate : DotNetScriptTemplate
+{
+
+	public GeneratedTemplate(ZeusContext context) : base(context) {}
+	public void ProcedureController(string Name,IParameters Parameters)
+	{
+	   %>public List<<%=Name%>Result> <%=Name%>(<%
+	   int count=0;
+	   foreach(IParameter Parameter in Parameters)
+		{
+			count++;
+			if(count>1)
+			{
+				if(count==Parameters.Count)
+				{	
+					%><%=Parameter.LanguageType%> <%=Parameter.Alias.Replace("@","")%>)<%
+				}
+				else
+				{
+					%><%=Parameter.LanguageType%> <%=Parameter.Alias.Replace("@","")%>,<%
+				}
+			}
+			
+		}%>
+		{
+			try
+			{
+			   
+			   return new DataProvider().<%=Name%>(<%
+			    count=0;
+			   foreach(IParameter Parameter in Parameters)
+				{
+					count++;
+					if(count>1)
+					{
+						if(count==Parameters.Count)
+						{	
+							%><%=Parameter.Alias.Replace("@","")%>)<%
+						}
+						else
+						{
+							%><%=Parameter.Alias.Replace("@","")%>,<%
+						}
+					}
+					
+				}%>;
+			}
+			catch
+			{
+				return new List<<%=Name%>Result>();
+			}
+		}<%
+	
+		
+	}
+	
+	public void ProcedureControllerPagging(string Name,IParameters Parameters)
+	{
+	   %>public List<<%=Name%>Result> <%=Name%>(<%
+	   int count=0;
+	   foreach(IParameter Parameter in Parameters)
+		{
+			count++;
+			if(count>1)
+			{
+				if(count==Parameters.Count)
+				{	
+					%><%=Parameter.LanguageType%> <%=Parameter.Alias.Replace("@","")%>,int PageSize, int PageNumber)<%
+					}
+				else
+				{
+					%><%=Parameter.LanguageType%> <%=Parameter.Alias.Replace("@","")%>,<%
+				}
+			}
+			
+		}%>
+		{
+			try
+			{
+			   
+			   return new DataProvider().<%=Name%>(<%
+			    count=0;
+			   foreach(IParameter Parameter in Parameters)
+				{
+					count++;
+					if(count>1)
+					{
+						if(count==Parameters.Count)
+						{	
+							%><%=Parameter.Alias.Replace("@","")%>,PageSize,PageNumber)<%
+						}
+						else
+						{
+							%><%=Parameter.Alias.Replace("@","")%>,<%
+						}
+					}
+					
+				}%>;
+			}
+			catch
+			{
+				return new List<<%=Name%>Result>();
+			}
+		}<%
+	
+		
+	}
+	public void ProcedureDataProvider(string Name,IParameters Parameters)
+	{
+	   %>public List<<%=Name%>Result> <%=Name%>(<%
+	   int count=0;
+	   foreach(IParameter Parameter in Parameters)
+		{
+			count++;
+			if(count>1)
+			{
+				if(count==Parameters.Count)
+				{	
+					%><%=Parameter.LanguageType%> <%=Parameter.Alias.Replace("@","")%>)<%
+				}
+				else
+				{
+					%><%=Parameter.LanguageType%> <%=Parameter.Alias.Replace("@","")%>,<%
+				}
+			}
+			
+		}%>
+		{
+			
+			   <%=DataContextDBObject%>
+			   db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+			   return db.<%=Name%>(<%
+			    count=0;
+			   foreach(IParameter Parameter in Parameters)
+				{
+					count++;
+					if(count>1)
+					{
+						if(count==Parameters.Count)
+						{	
+							%><%=Parameter.Alias.Replace("@","")%>)<%
+						}
+						else
+						{
+							%><%=Parameter.Alias.Replace("@","")%>,<%
+						}
+					}
+					
+				}%>.ToList();
+			
+		}<%
+	
+		
+	}
+	
+	
+	public void ProcedureDataProviderPagging(string Name,IParameters Parameters)
+	{
+	   %>public List<<%=Name%>Result> <%=Name%>(<%
+	   int count=0;
+	   foreach(IParameter Parameter in Parameters)
+		{
+			count++;
+			if(count>1)
+			{
+				if(count==Parameters.Count)
+				{	
+					%><%=Parameter.LanguageType%> <%=Parameter.Alias.Replace("@","")%>,int PageSize, int PageNumber)<%
+				}
+				else
+				{
+					%><%=Parameter.LanguageType%> <%=Parameter.Alias.Replace("@","")%>,<%
+				}
+			}
+			
+		}%>
+		{
+			
+			   <%=DataContextDBObject%>
+			   db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+			   return db.<%=Name%>(<%
+			    count=0;
+			   foreach(IParameter Parameter in Parameters)
+				{
+					count++;
+					if(count>1)
+					{
+						if(count==Parameters.Count)
+						{	
+							%><%=Parameter.Alias.Replace("@","")%>)<%
+						}
+						else
+						{
+							%><%=Parameter.Alias.Replace("@","")%>,<%
+						}
+					}
+					
+				}%>.Skip(PageNumber * PageSize).Take(PageSize).ToList();
+			
+		}<%
+	
+		
+	}
+	//---------------------------------------------------
+	// Render() is where you want to write your logic    
+	//---------------------------------------------------
+	string DataContextDBObject="CollegeDataBaseDataContext db = new CollegeDataBaseDataContext();";
+	public override void Render()
+	{
+		string databaseName = input["databaseName"].ToString();
+		string ProcedureName = input["StoreProcedure"].ToString();
+		
+		int columnCount=0;
+		IDatabase database = MyMeta.Databases[databaseName];
+		IProcedure Procedure = database.Procedures[ProcedureName];
+		ProcedureController(Procedure.Alias,Procedure.Parameters);
+		ProcedureControllerPagging(Procedure.Alias,Procedure.Parameters);
+		ProcedureDataProvider(Procedure.Alias,Procedure.Parameters);
+		ProcedureDataProviderPagging(Procedure.Alias,Procedure.Parameters);
+		
+		
+	}
+
+}
+%>
+##|BODY_END

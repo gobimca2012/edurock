@@ -1,0 +1,127 @@
+﻿##|TYPE Template
+##|UNIQUEID b30b4213-f767-4306-a2b9-9e8f994825af
+##|TITLE FullViewCS
+##|NAMESPACE 
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE C#
+##|GUI_ENGINE .Net Script
+##|GUI_LANGUAGE C#
+##|GUI_BEGIN
+
+public class GeneratedGui : DotNetScriptGui
+{
+	public GeneratedGui(ZeusContext context) : base(context) {}
+
+	//-----------------------------------------
+	// The User Interface Entry Point
+	//-----------------------------------------
+	public override void Setup()
+	{
+		// ** UNCOMMENT CODE BELOW TO SEE UI **
+
+		ui.Title = ".NetScript C# Sample: Java Class";
+		ui.Width = 340;
+		ui.Height = 400;
+
+		// Setup Database selection combobox.
+		GuiLabel label_d = ui.AddLabel("lblDatabases", "Select a database:", "Select a database in the dropdown below.");
+		GuiComboBox cmbDatabases = ui.AddComboBox("databaseName", "Select a database.");
+
+		// Setup Tables selection multi-select listbox.
+		GuiLabel label_t = ui.AddLabel("lblTables", "Select table:", "Select table from the combobox below.");
+		GuiComboBox cmbTables = ui.AddComboBox("tableName", "Select a table.");
+
+		// bind data to the controls
+		cmbDatabases.BindData(MyMeta.Databases);
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name;
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+		
+		
+		// Attach the onchange event to the cmbDatabases control.
+		cmbDatabases.AttachEvent("onchange", "cmbDatabases_onchange");
+		GuiLabel label_ColumnName = ui.AddLabel("lblColumnName", "Enter ColumnName with is QueryString:", "Enter ColumnName with is QueryString:");
+		GuiTextBox txtFieldName= ui.AddTextBox("ColumnName","","");
+		
+		GuiLabel label_ColumnNameDataType = ui.AddLabel("lblColumnNameDataType", "Enter ColumnName with is QueryString DataType:", "Enter ColumnName with is QueryString DataType:");
+		GuiTextBox txtFieldNameDataType= ui.AddTextBox("ColumnNameDataType","","");
+	
+		ui.ShowGui = true;ui.AddLabel("lblDemo", "Demo", "Demo Tooltip");
+		ui.ShowGui = true;
+	}
+	public void cmbDatabases_onchange(GuiComboBox control)
+	{
+		GuiComboBox cmbDatabases = ui["databaseName"] as GuiComboBox;
+		GuiComboBox cmbTables = ui["tableName"] as GuiComboBox;
+		
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+	}
+
+}
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE .Net Script
+##|BODY_LANGUAGE C#
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+public class GeneratedTemplate : DotNetScriptTemplate
+{
+	public GeneratedTemplate(ZeusContext context) : base(context) {}
+
+	//---------------------------------------------------
+	// Render() is where you want to write your logic    
+	//---------------------------------------------------
+	public override void Render()
+	{
+		
+		string databaseName = input["databaseName"].ToString();
+		string tableName = input["tableName"].ToString();
+		string columnName=input["ColumnName"].ToString();
+		string ColumnNameDataType=input["ColumnNameDataType"].ToString();
+		int columnCount=0;
+		IDatabase database = MyMeta.Databases[databaseName];
+		ITable table = database.Tables[tableName];
+		GetDataAssingment(table);
+		staticPrint();
+	}
+	public void GetDataAssingment(ITable table)
+	{
+		string Script="";
+		%>
+		private void BindData(<insetType> data)
+		{
+		<%
+		foreach(IColumn col in table.Columns)
+		{
+			getColumnAssignment(col);
+			
+		}
+		%>
+		}
+		<%
+	}
+	private void getColumnAssignment(IColumn col)
+	{
+		%>
+		<%=string.Format("if(data.{0}!=null)",col.Alias) %>
+		
+		<%=string.Format("lbl{0}.InnerHtml=data.{0}.ToString();",col.Alias) %>
+		<%
+	}
+	private void staticPrint()
+	{%>
+	private int ID
+    {
+        get
+        {
+            return Convert.ToInt32(Request.Params["qid"]);
+        }
+    }	
+	protected void Page_Load(object sender, EventArgs e)
+    {
+        BindData(ID);
+    }
+	<%}
+	}%>
+##|BODY_END

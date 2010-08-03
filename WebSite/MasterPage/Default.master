@@ -10,16 +10,182 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div class="page">
-        <div class="header">
-            <uc1:HeaderNavigation ID="HeaderNavigation1" runat="server" />
+    <form id="form1" runat="server" enctype="multipart/form-data">
+    <div id="dummy">
+    </div>
+    <div id="exambuket" style="position: fixed;">
+    </div>
+    <div id="progress">
+    </div>
+    <div id="tooltip">
+    </div>
+    <div id="atool">
+        <div id="acont">
+        </div>
+    </div>
+    <div class="header" style="border: none; background: transparent">
+        <uc1:HeaderNavigation ID="HeaderNavigation1" runat="server" />
+    </div>
+    <div style="clear: both">
+    </div>
+   
+    <div id="ipop">
+    </div>
+    <div class="page" id="pagecon" runat="server">
+     <div class="brcum">
+        <div style="float: left">
+            <a href="~/User/DashBoard.aspx" runat="server" id="ddU">DashBoard</a>
+        </div>
+        <div id="headingBox" style="float: left">
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+        <div id="msgstate">
         </div>
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+            <div class="lcbg" style="float: left">
+            </div>
+            <div class="rcbg" style="float: right; width: 80%">
+            </div>
+            <div style="clear: both">
+            </div>
+        </div>
+        <div class="lmbg">
+            <div class="rmbg">
+                <div style="float: left; width: 20%;" id="sidemenu">
+                    <div style="margin-left: 10px">
+                        <div style="text-align: center; padding: 2px">
+                            <div>
+                                <asp:Image ID="img" runat="server" Width="172" />
+                                <div>
+                                    <span id="lblName" runat="server" class="btitle"></span>
+                                </div>
+                            </div>
+                            <div id="st">
+                            </div>
+                            <div style="clear: both">
+                            </div>
+                        </div>
+                        <div class="leftmenu">
+                            <div id="courcel">
+                                <div class="grayhead tp" rel="Select your cource and get update from cource">
+                                    <span class="sub" style="float: left"></span><span style="float: left">Cources </span>
+                                    <div style="clear: both">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="icource" class="vis">
+                            </div>
+                        </div>
+                        <div class="leftmenu">
+                            <div id="messageHead" class="tp" rel="Message System">
+                                <div class="grayhead">
+                                    <div class="sub" style="float: left">
+                                    </div>
+                                    <div style="float: left">
+                                        Messages
+                                    </div>
+                                    <div style="clear: both">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="messagepn" class="invis">
+                                <div class="cin">
+                                    <aspajax:HyperLink ID="lnkNewMessage" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/MessageInfo.aspx">New Message</aspajax:HyperLink>
+                                </div>
+                                <div class="cin">
+                                    <aspajax:HyperLink ID="lnkInbox" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/InboxMessageInfoView.aspx">Inbox Message</aspajax:HyperLink>
+                                </div>
+                                <div class="cin">
+                                    <aspajax:HyperLink ID="lnkSent" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/SentMessageInfoView.aspx">Sent Message</aspajax:HyperLink>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="leftmenu">
+                            <div id="mymenu">
+                                <div class="grayhead tp" rel="You can manage your data From My Stuff">
+                                    <div class="sub" style="float: left">
+                                    </div>
+                                    <div style="float: left">
+                                        My Stuff
+                                    </div>
+                                    <div style="clear: both">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="mymenupanel" class="invis">
+                                <div id="mylander">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <asp:HyperLink ID="lnkFullMode" runat="server">Full Mode</asp:HyperLink>
+                        </div>
+                    </div>
+                </div>
+                <div style="float: right; width: 80%;">
+                    <div style="margin-right: 10px; border-left: solid 1px #444;">
+                        <div class="bksl">
+                            <div style="height: 55px;">
+                            </div>
+                            <div>
+                                <div class="btn" id="dash" runat="server">
+                                    <div class="dash" style="float: left">
+                                    </div>
+                                    <div style="float: left">
+                                        <asp:HyperLink ID="lnkDashBoard" runat="server" CssClass="tp" rel="Dashboard for All"
+                                            NavigateUrl="~/User/DashBoard.aspx">Dashboard</asp:HyperLink></div>
+                                </div>
+                                <div class="btn" id="acc" runat="server">
+                                    <div class="acco" style="float: left">
+                                    </div>
+                                    <div style="float: left">
+                                        <asp:HyperLink ID="lnkAcountsetting" runat="server" CssClass="tp" rel="Manage Your account change your Personal Information"
+                                            NavigateUrl="~/User/AccountSetting.aspx">Account Setting</asp:HyperLink>
+                                    </div>
+                                </div>
+                                <div class="btn" id="divAdmin" runat="server" visible="false">
+                                    <div class="dash" style="float: left">
+                                    </div>
+                                    <div style="float: left">
+                                        <asp:HyperLink ID="lnkAdmin" runat="server" NavigateUrl="~/College/Admin.aspx">Administrator</asp:HyperLink></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="lander" class="graylg">
+                        </div>
+                        <div style="clear: both; min-height: 500px; margin: 5px;">
+                            <div id="contentBox">
+                            </div>
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <%--</div>
+            </div>
+        </div>--%>
+        <div class="bgbl">
+            <div class="bgbr">
+                <div class="bgbc">
+                </div>
+            </div>
         </div>
     </div>
     </form>
+
+    <script type="text/javascript">
+   
+    
+   
+    </script>
+
 </body>
 </html>

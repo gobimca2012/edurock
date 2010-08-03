@@ -50,10 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataProvider.cs" />
+    <Compile Include="Payment\DataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{DA82B465-2DF2-4D7C-81A9-1E617420A69C}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataEntity\DataEntity.csproj">
       <Project>{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}</Project>
       <Name>DataEntity</Name>

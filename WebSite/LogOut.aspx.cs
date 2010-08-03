@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 
-public partial class LogOut : System.Web.UI.Page
+public partial class LogOut : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {

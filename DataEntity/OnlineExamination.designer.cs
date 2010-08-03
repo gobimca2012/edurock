@@ -30,18 +30,21 @@ namespace DataEntity
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertEXM_Answer(EXM_Answer instance);
-    partial void UpdateEXM_Answer(EXM_Answer instance);
-    partial void DeleteEXM_Answer(EXM_Answer instance);
-    partial void InsertEXM_Question(EXM_Question instance);
-    partial void UpdateEXM_Question(EXM_Question instance);
-    partial void DeleteEXM_Question(EXM_Question instance);
-    partial void InsertEXM_UserAnswer(EXM_UserAnswer instance);
-    partial void UpdateEXM_UserAnswer(EXM_UserAnswer instance);
-    partial void DeleteEXM_UserAnswer(EXM_UserAnswer instance);
+    partial void InsertUserExam(UserExam instance);
+    partial void UpdateUserExam(UserExam instance);
+    partial void DeleteUserExam(UserExam instance);
     partial void InsertLoginUser(LoginUser instance);
     partial void UpdateLoginUser(LoginUser instance);
     partial void DeleteLoginUser(LoginUser instance);
+    partial void InsertEXM_Question(EXM_Question instance);
+    partial void UpdateEXM_Question(EXM_Question instance);
+    partial void DeleteEXM_Question(EXM_Question instance);
+    partial void InsertEXM_Answer(EXM_Answer instance);
+    partial void UpdateEXM_Answer(EXM_Answer instance);
+    partial void DeleteEXM_Answer(EXM_Answer instance);
+    partial void InsertEXM_UserAnswer(EXM_UserAnswer instance);
+    partial void UpdateEXM_UserAnswer(EXM_UserAnswer instance);
+    partial void DeleteEXM_UserAnswer(EXM_UserAnswer instance);
     partial void InsertExam(Exam instance);
     partial void UpdateExam(Exam instance);
     partial void DeleteExam(Exam instance);
@@ -71,27 +74,11 @@ namespace DataEntity
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<EXM_Answer> EXM_Answers
+		public System.Data.Linq.Table<UserExam> UserExams
 		{
 			get
 			{
-				return this.GetTable<EXM_Answer>();
-			}
-		}
-		
-		public System.Data.Linq.Table<EXM_Question> EXM_Questions
-		{
-			get
-			{
-				return this.GetTable<EXM_Question>();
-			}
-		}
-		
-		public System.Data.Linq.Table<EXM_UserAnswer> EXM_UserAnswers
-		{
-			get
-			{
-				return this.GetTable<EXM_UserAnswer>();
+				return this.GetTable<UserExam>();
 			}
 		}
 		
@@ -103,6 +90,30 @@ namespace DataEntity
 			}
 		}
 		
+		public System.Data.Linq.Table<EXM_Question> EXM_Questions
+		{
+			get
+			{
+				return this.GetTable<EXM_Question>();
+			}
+		}
+		
+		public System.Data.Linq.Table<EXM_Answer> EXM_Answers
+		{
+			get
+			{
+				return this.GetTable<EXM_Answer>();
+			}
+		}
+		
+		public System.Data.Linq.Table<EXM_UserAnswer> EXM_UserAnswers
+		{
+			get
+			{
+				return this.GetTable<EXM_UserAnswer>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Exam> Exams
 		{
 			get
@@ -110,256 +121,56 @@ namespace DataEntity
 				return this.GetTable<Exam>();
 			}
 		}
+		
+		[Function(Name="dbo.GetExamTotalmark", IsComposable=true)]
+		public System.Nullable<decimal> GetExamTotalmark([Parameter(Name="ExamID", DbType="Int")] System.Nullable<int> examID)
+		{
+			return ((System.Nullable<decimal>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), examID).ReturnValue));
+		}
+		
+		[Function(Name="dbo.GetExamResultByLoginUserID")]
+		public ISingleResult<GetExamResultByLoginUserIDResult> GetExamResultByLoginUserID([Parameter(Name="LoginUserID", DbType="Int")] System.Nullable<int> loginUserID, [Parameter(Name="ExamID", DbType="Int")] System.Nullable<int> examID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID, examID);
+			return ((ISingleResult<GetExamResultByLoginUserIDResult>)(result.ReturnValue));
+		}
+		
+		[Function(Name="dbo.ExamUserByExamID")]
+		public ISingleResult<ExamUserByExamIDResult> ExamUserByExamID([Parameter(Name="ExamID", DbType="Int")] System.Nullable<int> examID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), examID);
+			return ((ISingleResult<ExamUserByExamIDResult>)(result.ReturnValue));
+		}
+		
+		[Function(Name="dbo.GetExamsResultByLoginUserID")]
+		public ISingleResult<GetExamsResultByLoginUserIDResult> GetExamsResultByLoginUserID([Parameter(Name="LoginUserID", DbType="Int")] System.Nullable<int> loginUserID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID);
+			return ((ISingleResult<GetExamsResultByLoginUserIDResult>)(result.ReturnValue));
+		}
 	}
 	
-	[Table(Name="dbo.EXM_Answer")]
-	public partial class EXM_Answer : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.UserExam")]
+	public partial class UserExam : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _EXM_AnswerID;
-		
-		private int _EXM_QuestionID;
-		
-		private string _Answer;
-		
-		private bool _IsRight;
-		
-		private System.DateTime _ModifiedDate;
-		
-		private EntitySet<EXM_UserAnswer> _EXM_UserAnswers;
-		
-		private EntityRef<EXM_Question> _EXM_Question;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnEXM_AnswerIDChanging(int value);
-    partial void OnEXM_AnswerIDChanged();
-    partial void OnEXM_QuestionIDChanging(int value);
-    partial void OnEXM_QuestionIDChanged();
-    partial void OnAnswerChanging(string value);
-    partial void OnAnswerChanged();
-    partial void OnIsRightChanging(bool value);
-    partial void OnIsRightChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public EXM_Answer()
-		{
-			this._EXM_UserAnswers = new EntitySet<EXM_UserAnswer>(new Action<EXM_UserAnswer>(this.attach_EXM_UserAnswers), new Action<EXM_UserAnswer>(this.detach_EXM_UserAnswers));
-			this._EXM_Question = default(EntityRef<EXM_Question>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_EXM_AnswerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int EXM_AnswerID
-		{
-			get
-			{
-				return this._EXM_AnswerID;
-			}
-			set
-			{
-				if ((this._EXM_AnswerID != value))
-				{
-					this.OnEXM_AnswerIDChanging(value);
-					this.SendPropertyChanging();
-					this._EXM_AnswerID = value;
-					this.SendPropertyChanged("EXM_AnswerID");
-					this.OnEXM_AnswerIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EXM_QuestionID", DbType="Int NOT NULL")]
-		public int EXM_QuestionID
-		{
-			get
-			{
-				return this._EXM_QuestionID;
-			}
-			set
-			{
-				if ((this._EXM_QuestionID != value))
-				{
-					if (this._EXM_Question.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnEXM_QuestionIDChanging(value);
-					this.SendPropertyChanging();
-					this._EXM_QuestionID = value;
-					this.SendPropertyChanged("EXM_QuestionID");
-					this.OnEXM_QuestionIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Answer", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Answer
-		{
-			get
-			{
-				return this._Answer;
-			}
-			set
-			{
-				if ((this._Answer != value))
-				{
-					this.OnAnswerChanging(value);
-					this.SendPropertyChanging();
-					this._Answer = value;
-					this.SendPropertyChanged("Answer");
-					this.OnAnswerChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IsRight", DbType="Bit NOT NULL")]
-		public bool IsRight
-		{
-			get
-			{
-				return this._IsRight;
-			}
-			set
-			{
-				if ((this._IsRight != value))
-				{
-					this.OnIsRightChanging(value);
-					this.SendPropertyChanging();
-					this._IsRight = value;
-					this.SendPropertyChanged("IsRight");
-					this.OnIsRightChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[Association(Name="EXM_Answer_EXM_UserAnswer", Storage="_EXM_UserAnswers", OtherKey="EXM_AnswerID")]
-		public EntitySet<EXM_UserAnswer> EXM_UserAnswers
-		{
-			get
-			{
-				return this._EXM_UserAnswers;
-			}
-			set
-			{
-				this._EXM_UserAnswers.Assign(value);
-			}
-		}
-		
-		[Association(Name="EXM_Question_EXM_Answer", Storage="_EXM_Question", ThisKey="EXM_QuestionID", IsForeignKey=true)]
-		public EXM_Question EXM_Question
-		{
-			get
-			{
-				return this._EXM_Question.Entity;
-			}
-			set
-			{
-				EXM_Question previousValue = this._EXM_Question.Entity;
-				if (((previousValue != value) 
-							|| (this._EXM_Question.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._EXM_Question.Entity = null;
-						previousValue.EXM_Answers.Remove(this);
-					}
-					this._EXM_Question.Entity = value;
-					if ((value != null))
-					{
-						value.EXM_Answers.Add(this);
-						this._EXM_QuestionID = value.EXM_QuestionID;
-					}
-					else
-					{
-						this._EXM_QuestionID = default(int);
-					}
-					this.SendPropertyChanged("EXM_Question");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_EXM_UserAnswers(EXM_UserAnswer entity)
-		{
-			this.SendPropertyChanging();
-			entity.EXM_Answer = this;
-		}
-		
-		private void detach_EXM_UserAnswers(EXM_UserAnswer entity)
-		{
-			this.SendPropertyChanging();
-			entity.EXM_Answer = null;
-		}
-	}
-	
-	[Table(Name="dbo.EXM_Question")]
-	public partial class EXM_Question : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _EXM_QuestionID;
-		
-		private string _Question;
+		private int _UserExamID;
 		
 		private int _LoginUserID;
 		
 		private int _ExamID;
 		
-		private int _Q_Type;
+		private System.DateTime _StartTime;
 		
-		private string _Description;
+		private System.DateTime _EndDate;
+		
+		private System.Nullable<bool> _IsFinish;
 		
 		private System.DateTime _ModifiedDate;
 		
-		private EntitySet<EXM_Answer> _EXM_Answers;
+		private EntityRef<LoginUser> _LoginUser;
 		
 		private EntityRef<Exam> _Exam;
 		
@@ -367,65 +178,45 @@ namespace DataEntity
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnEXM_QuestionIDChanging(int value);
-    partial void OnEXM_QuestionIDChanged();
-    partial void OnQuestionChanging(string value);
-    partial void OnQuestionChanged();
+    partial void OnUserExamIDChanging(int value);
+    partial void OnUserExamIDChanged();
     partial void OnLoginUserIDChanging(int value);
     partial void OnLoginUserIDChanged();
     partial void OnExamIDChanging(int value);
     partial void OnExamIDChanged();
-    partial void OnQ_TypeChanging(int value);
-    partial void OnQ_TypeChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
+    partial void OnStartTimeChanging(System.DateTime value);
+    partial void OnStartTimeChanged();
+    partial void OnEndDateChanging(System.DateTime value);
+    partial void OnEndDateChanged();
+    partial void OnIsFinishChanging(System.Nullable<bool> value);
+    partial void OnIsFinishChanged();
     partial void OnModifiedDateChanging(System.DateTime value);
     partial void OnModifiedDateChanged();
     #endregion
 		
-		public EXM_Question()
+		public UserExam()
 		{
-			this._EXM_Answers = new EntitySet<EXM_Answer>(new Action<EXM_Answer>(this.attach_EXM_Answers), new Action<EXM_Answer>(this.detach_EXM_Answers));
+			this._LoginUser = default(EntityRef<LoginUser>);
 			this._Exam = default(EntityRef<Exam>);
 			OnCreated();
 		}
 		
-		[Column(Storage="_EXM_QuestionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int EXM_QuestionID
+		[Column(Storage="_UserExamID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserExamID
 		{
 			get
 			{
-				return this._EXM_QuestionID;
+				return this._UserExamID;
 			}
 			set
 			{
-				if ((this._EXM_QuestionID != value))
+				if ((this._UserExamID != value))
 				{
-					this.OnEXM_QuestionIDChanging(value);
+					this.OnUserExamIDChanging(value);
 					this.SendPropertyChanging();
-					this._EXM_QuestionID = value;
-					this.SendPropertyChanged("EXM_QuestionID");
-					this.OnEXM_QuestionIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Question", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Question
-		{
-			get
-			{
-				return this._Question;
-			}
-			set
-			{
-				if ((this._Question != value))
-				{
-					this.OnQuestionChanging(value);
-					this.SendPropertyChanging();
-					this._Question = value;
-					this.SendPropertyChanged("Question");
-					this.OnQuestionChanged();
+					this._UserExamID = value;
+					this.SendPropertyChanged("UserExamID");
+					this.OnUserExamIDChanged();
 				}
 			}
 		}
@@ -441,6 +232,10 @@ namespace DataEntity
 			{
 				if ((this._LoginUserID != value))
 				{
+					if (this._LoginUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnLoginUserIDChanging(value);
 					this.SendPropertyChanging();
 					this._LoginUserID = value;
@@ -474,273 +269,62 @@ namespace DataEntity
 			}
 		}
 		
-		[Column(Storage="_Q_Type", DbType="Int NOT NULL")]
-		public int Q_Type
+		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
 		{
 			get
 			{
-				return this._Q_Type;
+				return this._StartTime;
 			}
 			set
 			{
-				if ((this._Q_Type != value))
+				if ((this._StartTime != value))
 				{
-					this.OnQ_TypeChanging(value);
+					this.OnStartTimeChanging(value);
 					this.SendPropertyChanging();
-					this._Q_Type = value;
-					this.SendPropertyChanged("Q_Type");
-					this.OnQ_TypeChanged();
+					this._StartTime = value;
+					this.SendPropertyChanged("StartTime");
+					this.OnStartTimeChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Description
+		[Column(Storage="_EndDate", DbType="DateTime NOT NULL")]
+		public System.DateTime EndDate
 		{
 			get
 			{
-				return this._Description;
+				return this._EndDate;
 			}
 			set
 			{
-				if ((this._Description != value))
+				if ((this._EndDate != value))
 				{
-					this.OnDescriptionChanging(value);
+					this.OnEndDateChanging(value);
 					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
+		[Column(Storage="_IsFinish", DbType="Bit")]
+		public System.Nullable<bool> IsFinish
 		{
 			get
 			{
-				return this._ModifiedDate;
+				return this._IsFinish;
 			}
 			set
 			{
-				if ((this._ModifiedDate != value))
+				if ((this._IsFinish != value))
 				{
-					this.OnModifiedDateChanging(value);
+					this.OnIsFinishChanging(value);
 					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[Association(Name="EXM_Question_EXM_Answer", Storage="_EXM_Answers", OtherKey="EXM_QuestionID")]
-		public EntitySet<EXM_Answer> EXM_Answers
-		{
-			get
-			{
-				return this._EXM_Answers;
-			}
-			set
-			{
-				this._EXM_Answers.Assign(value);
-			}
-		}
-		
-		[Association(Name="Exam_EXM_Question", Storage="_Exam", ThisKey="ExamID", IsForeignKey=true)]
-		public Exam Exam
-		{
-			get
-			{
-				return this._Exam.Entity;
-			}
-			set
-			{
-				Exam previousValue = this._Exam.Entity;
-				if (((previousValue != value) 
-							|| (this._Exam.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Exam.Entity = null;
-						previousValue.EXM_Questions.Remove(this);
-					}
-					this._Exam.Entity = value;
-					if ((value != null))
-					{
-						value.EXM_Questions.Add(this);
-						this._ExamID = value.ExamID;
-					}
-					else
-					{
-						this._ExamID = default(int);
-					}
-					this.SendPropertyChanged("Exam");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_EXM_Answers(EXM_Answer entity)
-		{
-			this.SendPropertyChanging();
-			entity.EXM_Question = this;
-		}
-		
-		private void detach_EXM_Answers(EXM_Answer entity)
-		{
-			this.SendPropertyChanging();
-			entity.EXM_Question = null;
-		}
-	}
-	
-	[Table(Name="dbo.EXM_UserAnswer")]
-	public partial class EXM_UserAnswer : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _EXM_UserAnswerID;
-		
-		private int _LoginUserID;
-		
-		private int _EXM_AnswerID;
-		
-		private string _EXM_AnswerText;
-		
-		private System.DateTime _ModifiedDate;
-		
-		private EntityRef<EXM_Answer> _EXM_Answer;
-		
-		private EntityRef<LoginUser> _LoginUser;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnEXM_UserAnswerIDChanging(int value);
-    partial void OnEXM_UserAnswerIDChanged();
-    partial void OnLoginUserIDChanging(int value);
-    partial void OnLoginUserIDChanged();
-    partial void OnEXM_AnswerIDChanging(int value);
-    partial void OnEXM_AnswerIDChanged();
-    partial void OnEXM_AnswerTextChanging(string value);
-    partial void OnEXM_AnswerTextChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public EXM_UserAnswer()
-		{
-			this._EXM_Answer = default(EntityRef<EXM_Answer>);
-			this._LoginUser = default(EntityRef<LoginUser>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_EXM_UserAnswerID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int EXM_UserAnswerID
-		{
-			get
-			{
-				return this._EXM_UserAnswerID;
-			}
-			set
-			{
-				if ((this._EXM_UserAnswerID != value))
-				{
-					this.OnEXM_UserAnswerIDChanging(value);
-					this.SendPropertyChanging();
-					this._EXM_UserAnswerID = value;
-					this.SendPropertyChanged("EXM_UserAnswerID");
-					this.OnEXM_UserAnswerIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
-		public int LoginUserID
-		{
-			get
-			{
-				return this._LoginUserID;
-			}
-			set
-			{
-				if ((this._LoginUserID != value))
-				{
-					if (this._LoginUser.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLoginUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._LoginUserID = value;
-					this.SendPropertyChanged("LoginUserID");
-					this.OnLoginUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EXM_AnswerID", DbType="Int NOT NULL")]
-		public int EXM_AnswerID
-		{
-			get
-			{
-				return this._EXM_AnswerID;
-			}
-			set
-			{
-				if ((this._EXM_AnswerID != value))
-				{
-					if (this._EXM_Answer.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnEXM_AnswerIDChanging(value);
-					this.SendPropertyChanging();
-					this._EXM_AnswerID = value;
-					this.SendPropertyChanged("EXM_AnswerID");
-					this.OnEXM_AnswerIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EXM_AnswerText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string EXM_AnswerText
-		{
-			get
-			{
-				return this._EXM_AnswerText;
-			}
-			set
-			{
-				if ((this._EXM_AnswerText != value))
-				{
-					this.OnEXM_AnswerTextChanging(value);
-					this.SendPropertyChanging();
-					this._EXM_AnswerText = value;
-					this.SendPropertyChanged("EXM_AnswerText");
-					this.OnEXM_AnswerTextChanged();
+					this._IsFinish = value;
+					this.SendPropertyChanged("IsFinish");
+					this.OnIsFinishChanged();
 				}
 			}
 		}
@@ -765,41 +349,7 @@ namespace DataEntity
 			}
 		}
 		
-		[Association(Name="EXM_Answer_EXM_UserAnswer", Storage="_EXM_Answer", ThisKey="EXM_AnswerID", IsForeignKey=true)]
-		public EXM_Answer EXM_Answer
-		{
-			get
-			{
-				return this._EXM_Answer.Entity;
-			}
-			set
-			{
-				EXM_Answer previousValue = this._EXM_Answer.Entity;
-				if (((previousValue != value) 
-							|| (this._EXM_Answer.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._EXM_Answer.Entity = null;
-						previousValue.EXM_UserAnswers.Remove(this);
-					}
-					this._EXM_Answer.Entity = value;
-					if ((value != null))
-					{
-						value.EXM_UserAnswers.Add(this);
-						this._EXM_AnswerID = value.EXM_AnswerID;
-					}
-					else
-					{
-						this._EXM_AnswerID = default(int);
-					}
-					this.SendPropertyChanged("EXM_Answer");
-				}
-			}
-		}
-		
-		[Association(Name="LoginUser_EXM_UserAnswer", Storage="_LoginUser", ThisKey="LoginUserID", IsForeignKey=true)]
+		[Association(Name="LoginUser_UserExam", Storage="_LoginUser", ThisKey="LoginUserID", IsForeignKey=true)]
 		public LoginUser LoginUser
 		{
 			get
@@ -816,12 +366,12 @@ namespace DataEntity
 					if ((previousValue != null))
 					{
 						this._LoginUser.Entity = null;
-						previousValue.EXM_UserAnswers.Remove(this);
+						previousValue.UserExams.Remove(this);
 					}
 					this._LoginUser.Entity = value;
 					if ((value != null))
 					{
-						value.EXM_UserAnswers.Add(this);
+						value.UserExams.Add(this);
 						this._LoginUserID = value.LoginUserID;
 					}
 					else
@@ -829,6 +379,40 @@ namespace DataEntity
 						this._LoginUserID = default(int);
 					}
 					this.SendPropertyChanged("LoginUser");
+				}
+			}
+		}
+		
+		[Association(Name="Exam_UserExam", Storage="_Exam", ThisKey="ExamID", IsForeignKey=true)]
+		public Exam Exam
+		{
+			get
+			{
+				return this._Exam.Entity;
+			}
+			set
+			{
+				Exam previousValue = this._Exam.Entity;
+				if (((previousValue != value) 
+							|| (this._Exam.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Exam.Entity = null;
+						previousValue.UserExams.Remove(this);
+					}
+					this._Exam.Entity = value;
+					if ((value != null))
+					{
+						value.UserExams.Add(this);
+						this._ExamID = value.ExamID;
+					}
+					else
+					{
+						this._ExamID = default(int);
+					}
+					this.SendPropertyChanged("Exam");
 				}
 			}
 		}
@@ -874,7 +458,7 @@ namespace DataEntity
 		
 		private System.DateTime _CreatedDate;
 		
-		private EntitySet<EXM_UserAnswer> _EXM_UserAnswers;
+		private EntitySet<UserExam> _UserExams;
 		
 		private EntitySet<Exam> _Exams;
 		
@@ -900,7 +484,7 @@ namespace DataEntity
 		
 		public LoginUser()
 		{
-			this._EXM_UserAnswers = new EntitySet<EXM_UserAnswer>(new Action<EXM_UserAnswer>(this.attach_EXM_UserAnswers), new Action<EXM_UserAnswer>(this.detach_EXM_UserAnswers));
+			this._UserExams = new EntitySet<UserExam>(new Action<UserExam>(this.attach_UserExams), new Action<UserExam>(this.detach_UserExams));
 			this._Exams = new EntitySet<Exam>(new Action<Exam>(this.attach_Exams), new Action<Exam>(this.detach_Exams));
 			OnCreated();
 		}
@@ -1045,16 +629,16 @@ namespace DataEntity
 			}
 		}
 		
-		[Association(Name="LoginUser_EXM_UserAnswer", Storage="_EXM_UserAnswers", OtherKey="LoginUserID")]
-		public EntitySet<EXM_UserAnswer> EXM_UserAnswers
+		[Association(Name="LoginUser_UserExam", Storage="_UserExams", OtherKey="LoginUserID")]
+		public EntitySet<UserExam> UserExams
 		{
 			get
 			{
-				return this._EXM_UserAnswers;
+				return this._UserExams;
 			}
 			set
 			{
-				this._EXM_UserAnswers.Assign(value);
+				this._UserExams.Assign(value);
 			}
 		}
 		
@@ -1091,13 +675,13 @@ namespace DataEntity
 			}
 		}
 		
-		private void attach_EXM_UserAnswers(EXM_UserAnswer entity)
+		private void attach_UserExams(UserExam entity)
 		{
 			this.SendPropertyChanging();
 			entity.LoginUser = this;
 		}
 		
-		private void detach_EXM_UserAnswers(EXM_UserAnswer entity)
+		private void detach_UserExams(UserExam entity)
 		{
 			this.SendPropertyChanging();
 			entity.LoginUser = null;
@@ -1116,6 +700,830 @@ namespace DataEntity
 		}
 	}
 	
+	[Table(Name="dbo.EXM_Question")]
+	public partial class EXM_Question : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _EXM_QuestionID;
+		
+		private string _Question;
+		
+		private int _LoginUserID;
+		
+		private int _ExamID;
+		
+		private int _Q_Type;
+		
+		private System.Nullable<decimal> _Marks;
+		
+		private string _Description;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private System.Nullable<int> _Order;
+		
+		private System.Nullable<bool> _IsActive;
+		
+		private EntitySet<EXM_Answer> _EXM_Answers;
+		
+		private EntityRef<Exam> _Exam;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEXM_QuestionIDChanging(int value);
+    partial void OnEXM_QuestionIDChanged();
+    partial void OnQuestionChanging(string value);
+    partial void OnQuestionChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnExamIDChanging(int value);
+    partial void OnExamIDChanged();
+    partial void OnQ_TypeChanging(int value);
+    partial void OnQ_TypeChanged();
+    partial void OnMarksChanging(System.Nullable<decimal> value);
+    partial void OnMarksChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    partial void OnOrderChanging(System.Nullable<int> value);
+    partial void OnOrderChanged();
+    partial void OnIsActiveChanging(System.Nullable<bool> value);
+    partial void OnIsActiveChanged();
+    #endregion
+		
+		public EXM_Question()
+		{
+			this._EXM_Answers = new EntitySet<EXM_Answer>(new Action<EXM_Answer>(this.attach_EXM_Answers), new Action<EXM_Answer>(this.detach_EXM_Answers));
+			this._Exam = default(EntityRef<Exam>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_EXM_QuestionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int EXM_QuestionID
+		{
+			get
+			{
+				return this._EXM_QuestionID;
+			}
+			set
+			{
+				if ((this._EXM_QuestionID != value))
+				{
+					this.OnEXM_QuestionIDChanging(value);
+					this.SendPropertyChanging();
+					this._EXM_QuestionID = value;
+					this.SendPropertyChanged("EXM_QuestionID");
+					this.OnEXM_QuestionIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Question", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Question
+		{
+			get
+			{
+				return this._Question;
+			}
+			set
+			{
+				if ((this._Question != value))
+				{
+					this.OnQuestionChanging(value);
+					this.SendPropertyChanging();
+					this._Question = value;
+					this.SendPropertyChanged("Question");
+					this.OnQuestionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ExamID", DbType="Int NOT NULL")]
+		public int ExamID
+		{
+			get
+			{
+				return this._ExamID;
+			}
+			set
+			{
+				if ((this._ExamID != value))
+				{
+					if (this._Exam.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnExamIDChanging(value);
+					this.SendPropertyChanging();
+					this._ExamID = value;
+					this.SendPropertyChanged("ExamID");
+					this.OnExamIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Q_Type", DbType="Int NOT NULL")]
+		public int Q_Type
+		{
+			get
+			{
+				return this._Q_Type;
+			}
+			set
+			{
+				if ((this._Q_Type != value))
+				{
+					this.OnQ_TypeChanging(value);
+					this.SendPropertyChanging();
+					this._Q_Type = value;
+					this.SendPropertyChanged("Q_Type");
+					this.OnQ_TypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Marks", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Marks
+		{
+			get
+			{
+				return this._Marks;
+			}
+			set
+			{
+				if ((this._Marks != value))
+				{
+					this.OnMarksChanging(value);
+					this.SendPropertyChanging();
+					this._Marks = value;
+					this.SendPropertyChanged("Marks");
+					this.OnMarksChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Column(Name="[Order]", Storage="_Order", DbType="Int")]
+		public System.Nullable<int> Order
+		{
+			get
+			{
+				return this._Order;
+			}
+			set
+			{
+				if ((this._Order != value))
+				{
+					this.OnOrderChanging(value);
+					this.SendPropertyChanging();
+					this._Order = value;
+					this.SendPropertyChanged("Order");
+					this.OnOrderChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsActive", DbType="Bit")]
+		public System.Nullable<bool> IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this.OnIsActiveChanging(value);
+					this.SendPropertyChanging();
+					this._IsActive = value;
+					this.SendPropertyChanged("IsActive");
+					this.OnIsActiveChanged();
+				}
+			}
+		}
+		
+		[Association(Name="EXM_Question_EXM_Answer", Storage="_EXM_Answers", OtherKey="EXM_QuestionID")]
+		public EntitySet<EXM_Answer> EXM_Answers
+		{
+			get
+			{
+				return this._EXM_Answers;
+			}
+			set
+			{
+				this._EXM_Answers.Assign(value);
+			}
+		}
+		
+		[Association(Name="Exam_EXM_Question", Storage="_Exam", ThisKey="ExamID", IsForeignKey=true)]
+		public Exam Exam
+		{
+			get
+			{
+				return this._Exam.Entity;
+			}
+			set
+			{
+				Exam previousValue = this._Exam.Entity;
+				if (((previousValue != value) 
+							|| (this._Exam.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Exam.Entity = null;
+						previousValue.EXM_Questions.Remove(this);
+					}
+					this._Exam.Entity = value;
+					if ((value != null))
+					{
+						value.EXM_Questions.Add(this);
+						this._ExamID = value.ExamID;
+					}
+					else
+					{
+						this._ExamID = default(int);
+					}
+					this.SendPropertyChanged("Exam");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_EXM_Answers(EXM_Answer entity)
+		{
+			this.SendPropertyChanging();
+			entity.EXM_Question = this;
+		}
+		
+		private void detach_EXM_Answers(EXM_Answer entity)
+		{
+			this.SendPropertyChanging();
+			entity.EXM_Question = null;
+		}
+	}
+	
+	[Table(Name="dbo.EXM_Answer")]
+	public partial class EXM_Answer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _EXM_AnswerID;
+		
+		private int _EXM_QuestionID;
+		
+		private string _Answer;
+		
+		private bool _IsRight;
+		
+		private System.Nullable<decimal> _Marks;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntityRef<EXM_Question> _EXM_Question;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEXM_AnswerIDChanging(int value);
+    partial void OnEXM_AnswerIDChanged();
+    partial void OnEXM_QuestionIDChanging(int value);
+    partial void OnEXM_QuestionIDChanged();
+    partial void OnAnswerChanging(string value);
+    partial void OnAnswerChanged();
+    partial void OnIsRightChanging(bool value);
+    partial void OnIsRightChanged();
+    partial void OnMarksChanging(System.Nullable<decimal> value);
+    partial void OnMarksChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public EXM_Answer()
+		{
+			this._EXM_Question = default(EntityRef<EXM_Question>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_EXM_AnswerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int EXM_AnswerID
+		{
+			get
+			{
+				return this._EXM_AnswerID;
+			}
+			set
+			{
+				if ((this._EXM_AnswerID != value))
+				{
+					this.OnEXM_AnswerIDChanging(value);
+					this.SendPropertyChanging();
+					this._EXM_AnswerID = value;
+					this.SendPropertyChanged("EXM_AnswerID");
+					this.OnEXM_AnswerIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EXM_QuestionID", DbType="Int NOT NULL")]
+		public int EXM_QuestionID
+		{
+			get
+			{
+				return this._EXM_QuestionID;
+			}
+			set
+			{
+				if ((this._EXM_QuestionID != value))
+				{
+					if (this._EXM_Question.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEXM_QuestionIDChanging(value);
+					this.SendPropertyChanging();
+					this._EXM_QuestionID = value;
+					this.SendPropertyChanged("EXM_QuestionID");
+					this.OnEXM_QuestionIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Answer", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Answer
+		{
+			get
+			{
+				return this._Answer;
+			}
+			set
+			{
+				if ((this._Answer != value))
+				{
+					this.OnAnswerChanging(value);
+					this.SendPropertyChanging();
+					this._Answer = value;
+					this.SendPropertyChanged("Answer");
+					this.OnAnswerChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsRight", DbType="Bit NOT NULL")]
+		public bool IsRight
+		{
+			get
+			{
+				return this._IsRight;
+			}
+			set
+			{
+				if ((this._IsRight != value))
+				{
+					this.OnIsRightChanging(value);
+					this.SendPropertyChanging();
+					this._IsRight = value;
+					this.SendPropertyChanged("IsRight");
+					this.OnIsRightChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Marks", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Marks
+		{
+			get
+			{
+				return this._Marks;
+			}
+			set
+			{
+				if ((this._Marks != value))
+				{
+					this.OnMarksChanging(value);
+					this.SendPropertyChanging();
+					this._Marks = value;
+					this.SendPropertyChanged("Marks");
+					this.OnMarksChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="EXM_Question_EXM_Answer", Storage="_EXM_Question", ThisKey="EXM_QuestionID", IsForeignKey=true)]
+		public EXM_Question EXM_Question
+		{
+			get
+			{
+				return this._EXM_Question.Entity;
+			}
+			set
+			{
+				EXM_Question previousValue = this._EXM_Question.Entity;
+				if (((previousValue != value) 
+							|| (this._EXM_Question.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EXM_Question.Entity = null;
+						previousValue.EXM_Answers.Remove(this);
+					}
+					this._EXM_Question.Entity = value;
+					if ((value != null))
+					{
+						value.EXM_Answers.Add(this);
+						this._EXM_QuestionID = value.EXM_QuestionID;
+					}
+					else
+					{
+						this._EXM_QuestionID = default(int);
+					}
+					this.SendPropertyChanged("EXM_Question");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.EXM_UserAnswer")]
+	public partial class EXM_UserAnswer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _EXM_UserAnswerID;
+		
+		private System.Nullable<int> _UserExamID;
+		
+		private int _LoginUserID;
+		
+		private int _EXM_QuestionID;
+		
+		private int _EXM_AnswerID;
+		
+		private string _EXM_AnswerText;
+		
+		private System.Nullable<decimal> _RecieveMark;
+		
+		private System.Nullable<bool> _IsRightMark;
+		
+		private System.DateTime _ModifiedDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEXM_UserAnswerIDChanging(int value);
+    partial void OnEXM_UserAnswerIDChanged();
+    partial void OnUserExamIDChanging(System.Nullable<int> value);
+    partial void OnUserExamIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnEXM_QuestionIDChanging(int value);
+    partial void OnEXM_QuestionIDChanged();
+    partial void OnEXM_AnswerIDChanging(int value);
+    partial void OnEXM_AnswerIDChanged();
+    partial void OnEXM_AnswerTextChanging(string value);
+    partial void OnEXM_AnswerTextChanged();
+    partial void OnRecieveMarkChanging(System.Nullable<decimal> value);
+    partial void OnRecieveMarkChanged();
+    partial void OnIsRightMarkChanging(System.Nullable<bool> value);
+    partial void OnIsRightMarkChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public EXM_UserAnswer()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_EXM_UserAnswerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int EXM_UserAnswerID
+		{
+			get
+			{
+				return this._EXM_UserAnswerID;
+			}
+			set
+			{
+				if ((this._EXM_UserAnswerID != value))
+				{
+					this.OnEXM_UserAnswerIDChanging(value);
+					this.SendPropertyChanging();
+					this._EXM_UserAnswerID = value;
+					this.SendPropertyChanged("EXM_UserAnswerID");
+					this.OnEXM_UserAnswerIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserExamID", DbType="Int")]
+		public System.Nullable<int> UserExamID
+		{
+			get
+			{
+				return this._UserExamID;
+			}
+			set
+			{
+				if ((this._UserExamID != value))
+				{
+					this.OnUserExamIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserExamID = value;
+					this.SendPropertyChanged("UserExamID");
+					this.OnUserExamIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EXM_QuestionID", DbType="Int NOT NULL")]
+		public int EXM_QuestionID
+		{
+			get
+			{
+				return this._EXM_QuestionID;
+			}
+			set
+			{
+				if ((this._EXM_QuestionID != value))
+				{
+					this.OnEXM_QuestionIDChanging(value);
+					this.SendPropertyChanging();
+					this._EXM_QuestionID = value;
+					this.SendPropertyChanged("EXM_QuestionID");
+					this.OnEXM_QuestionIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EXM_AnswerID", DbType="Int NOT NULL")]
+		public int EXM_AnswerID
+		{
+			get
+			{
+				return this._EXM_AnswerID;
+			}
+			set
+			{
+				if ((this._EXM_AnswerID != value))
+				{
+					this.OnEXM_AnswerIDChanging(value);
+					this.SendPropertyChanging();
+					this._EXM_AnswerID = value;
+					this.SendPropertyChanged("EXM_AnswerID");
+					this.OnEXM_AnswerIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EXM_AnswerText", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string EXM_AnswerText
+		{
+			get
+			{
+				return this._EXM_AnswerText;
+			}
+			set
+			{
+				if ((this._EXM_AnswerText != value))
+				{
+					this.OnEXM_AnswerTextChanging(value);
+					this.SendPropertyChanging();
+					this._EXM_AnswerText = value;
+					this.SendPropertyChanged("EXM_AnswerText");
+					this.OnEXM_AnswerTextChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_RecieveMark", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> RecieveMark
+		{
+			get
+			{
+				return this._RecieveMark;
+			}
+			set
+			{
+				if ((this._RecieveMark != value))
+				{
+					this.OnRecieveMarkChanging(value);
+					this.SendPropertyChanging();
+					this._RecieveMark = value;
+					this.SendPropertyChanged("RecieveMark");
+					this.OnRecieveMarkChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsRightMark", DbType="Bit")]
+		public System.Nullable<bool> IsRightMark
+		{
+			get
+			{
+				return this._IsRightMark;
+			}
+			set
+			{
+				if ((this._IsRightMark != value))
+				{
+					this.OnIsRightMarkChanging(value);
+					this.SendPropertyChanging();
+					this._IsRightMark = value;
+					this.SendPropertyChanged("IsRightMark");
+					this.OnIsRightMarkChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[Table(Name="dbo.Exam")]
 	public partial class Exam : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1128,9 +1536,27 @@ namespace DataEntity
 		
 		private string _SubjectName;
 		
+		private System.Nullable<int> _InstituteCourceID;
+		
+		private System.Nullable<int> _InstituteSubjectID;
+		
+		private string _Description;
+		
 		private int _LoginUserID;
 		
 		private System.DateTime _ModifiedDate;
+		
+		private string _ExamTime;
+		
+		private System.Nullable<bool> _IsActive;
+		
+		private System.Nullable<int> _RequirePecentage;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private EntitySet<UserExam> _UserExams;
 		
 		private EntitySet<EXM_Question> _EXM_Questions;
 		
@@ -1146,14 +1572,31 @@ namespace DataEntity
     partial void OnExamNameChanged();
     partial void OnSubjectNameChanging(string value);
     partial void OnSubjectNameChanged();
+    partial void OnInstituteCourceIDChanging(System.Nullable<int> value);
+    partial void OnInstituteCourceIDChanged();
+    partial void OnInstituteSubjectIDChanging(System.Nullable<int> value);
+    partial void OnInstituteSubjectIDChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
     partial void OnLoginUserIDChanging(int value);
     partial void OnLoginUserIDChanged();
     partial void OnModifiedDateChanging(System.DateTime value);
     partial void OnModifiedDateChanged();
+    partial void OnExamTimeChanging(string value);
+    partial void OnExamTimeChanged();
+    partial void OnIsActiveChanging(System.Nullable<bool> value);
+    partial void OnIsActiveChanged();
+    partial void OnRequirePecentageChanging(System.Nullable<int> value);
+    partial void OnRequirePecentageChanged();
+    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateChanged();
     #endregion
 		
 		public Exam()
 		{
+			this._UserExams = new EntitySet<UserExam>(new Action<UserExam>(this.attach_UserExams), new Action<UserExam>(this.detach_UserExams));
 			this._EXM_Questions = new EntitySet<EXM_Question>(new Action<EXM_Question>(this.attach_EXM_Questions), new Action<EXM_Question>(this.detach_EXM_Questions));
 			this._LoginUser = default(EntityRef<LoginUser>);
 			OnCreated();
@@ -1219,6 +1662,66 @@ namespace DataEntity
 			}
 		}
 		
+		[Column(Storage="_InstituteCourceID", DbType="Int")]
+		public System.Nullable<int> InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this.OnInstituteCourceIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteCourceID = value;
+					this.SendPropertyChanged("InstituteCourceID");
+					this.OnInstituteCourceIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteSubjectID", DbType="Int")]
+		public System.Nullable<int> InstituteSubjectID
+		{
+			get
+			{
+				return this._InstituteSubjectID;
+			}
+			set
+			{
+				if ((this._InstituteSubjectID != value))
+				{
+					this.OnInstituteSubjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteSubjectID = value;
+					this.SendPropertyChanged("InstituteSubjectID");
+					this.OnInstituteSubjectIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
 		public int LoginUserID
 		{
@@ -1260,6 +1763,119 @@ namespace DataEntity
 					this.SendPropertyChanged("ModifiedDate");
 					this.OnModifiedDateChanged();
 				}
+			}
+		}
+		
+		[Column(Storage="_ExamTime", DbType="VarChar(50)")]
+		public string ExamTime
+		{
+			get
+			{
+				return this._ExamTime;
+			}
+			set
+			{
+				if ((this._ExamTime != value))
+				{
+					this.OnExamTimeChanging(value);
+					this.SendPropertyChanging();
+					this._ExamTime = value;
+					this.SendPropertyChanged("ExamTime");
+					this.OnExamTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsActive", DbType="Bit")]
+		public System.Nullable<bool> IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this.OnIsActiveChanging(value);
+					this.SendPropertyChanging();
+					this._IsActive = value;
+					this.SendPropertyChanged("IsActive");
+					this.OnIsActiveChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_RequirePecentage", DbType="Int")]
+		public System.Nullable<int> RequirePecentage
+		{
+			get
+			{
+				return this._RequirePecentage;
+			}
+			set
+			{
+				if ((this._RequirePecentage != value))
+				{
+					this.OnRequirePecentageChanging(value);
+					this.SendPropertyChanging();
+					this._RequirePecentage = value;
+					this.SendPropertyChanged("RequirePecentage");
+					this.OnRequirePecentageChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Exam_UserExam", Storage="_UserExams", OtherKey="ExamID")]
+		public EntitySet<UserExam> UserExams
+		{
+			get
+			{
+				return this._UserExams;
+			}
+			set
+			{
+				this._UserExams.Assign(value);
 			}
 		}
 		
@@ -1330,6 +1946,18 @@ namespace DataEntity
 			}
 		}
 		
+		private void attach_UserExams(UserExam entity)
+		{
+			this.SendPropertyChanging();
+			entity.Exam = this;
+		}
+		
+		private void detach_UserExams(UserExam entity)
+		{
+			this.SendPropertyChanging();
+			entity.Exam = null;
+		}
+		
 		private void attach_EXM_Questions(EXM_Question entity)
 		{
 			this.SendPropertyChanging();
@@ -1340,6 +1968,606 @@ namespace DataEntity
 		{
 			this.SendPropertyChanging();
 			entity.Exam = null;
+		}
+	}
+	
+	public partial class GetExamResultByLoginUserIDResult
+	{
+		
+		private System.Nullable<int> _Marks;
+		
+		private string _ExamName;
+		
+		private string _SubjectName;
+		
+		private System.DateTime _StartTime;
+		
+		private System.DateTime _EndTime;
+		
+		private System.Nullable<bool> _IsFinish;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private System.Nullable<int> _RequirePecentage;
+		
+		private System.Nullable<decimal> _ExamTotalMarks;
+		
+		public GetExamResultByLoginUserIDResult()
+		{
+		}
+		
+		[Column(Storage="_Marks", DbType="Int")]
+		public System.Nullable<int> Marks
+		{
+			get
+			{
+				return this._Marks;
+			}
+			set
+			{
+				if ((this._Marks != value))
+				{
+					this._Marks = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ExamName", DbType="VarChar(2000) NOT NULL", CanBeNull=false)]
+		public string ExamName
+		{
+			get
+			{
+				return this._ExamName;
+			}
+			set
+			{
+				if ((this._ExamName != value))
+				{
+					this._ExamName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_SubjectName", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string SubjectName
+		{
+			get
+			{
+				return this._SubjectName;
+			}
+			set
+			{
+				if ((this._SubjectName != value))
+				{
+					this._SubjectName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this._StartTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EndTime", DbType="DateTime NOT NULL")]
+		public System.DateTime EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this._EndTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_IsFinish", DbType="Bit")]
+		public System.Nullable<bool> IsFinish
+		{
+			get
+			{
+				return this._IsFinish;
+			}
+			set
+			{
+				if ((this._IsFinish != value))
+				{
+					this._IsFinish = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_StartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this._StartDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this._EndDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_RequirePecentage", DbType="Int")]
+		public System.Nullable<int> RequirePecentage
+		{
+			get
+			{
+				return this._RequirePecentage;
+			}
+			set
+			{
+				if ((this._RequirePecentage != value))
+				{
+					this._RequirePecentage = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ExamTotalMarks", DbType="Decimal(0,0)")]
+		public System.Nullable<decimal> ExamTotalMarks
+		{
+			get
+			{
+				return this._ExamTotalMarks;
+			}
+			set
+			{
+				if ((this._ExamTotalMarks != value))
+				{
+					this._ExamTotalMarks = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ExamUserByExamIDResult
+	{
+		
+		private System.Nullable<int> _UserExamID;
+		
+		private int _LoginUserID;
+		
+		private System.Nullable<decimal> _Marks;
+		
+		private int _ExamID;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private System.DateTime _StartTime;
+		
+		private System.DateTime _EndTime;
+		
+		private System.Nullable<decimal> _ExamTotalMarks;
+		
+		private System.Nullable<int> _RequirePecentage;
+		
+		private System.Nullable<bool> _IsFinish;
+		
+		public ExamUserByExamIDResult()
+		{
+		}
+		
+		[Column(Storage="_UserExamID", DbType="Int")]
+		public System.Nullable<int> UserExamID
+		{
+			get
+			{
+				return this._UserExamID;
+			}
+			set
+			{
+				if ((this._UserExamID != value))
+				{
+					this._UserExamID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this._LoginUserID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Marks", DbType="Decimal(0,0)")]
+		public System.Nullable<decimal> Marks
+		{
+			get
+			{
+				return this._Marks;
+			}
+			set
+			{
+				if ((this._Marks != value))
+				{
+					this._Marks = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ExamID", DbType="Int NOT NULL")]
+		public int ExamID
+		{
+			get
+			{
+				return this._ExamID;
+			}
+			set
+			{
+				if ((this._ExamID != value))
+				{
+					this._ExamID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstName", DbType="VarChar(1000)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LastName", DbType="VarChar(1000)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this._ModifiedDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this._StartTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EndTime", DbType="DateTime NOT NULL")]
+		public System.DateTime EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this._EndTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ExamTotalMarks", DbType="Decimal(0,0)")]
+		public System.Nullable<decimal> ExamTotalMarks
+		{
+			get
+			{
+				return this._ExamTotalMarks;
+			}
+			set
+			{
+				if ((this._ExamTotalMarks != value))
+				{
+					this._ExamTotalMarks = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_RequirePecentage", DbType="Int")]
+		public System.Nullable<int> RequirePecentage
+		{
+			get
+			{
+				return this._RequirePecentage;
+			}
+			set
+			{
+				if ((this._RequirePecentage != value))
+				{
+					this._RequirePecentage = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_IsFinish", DbType="Bit")]
+		public System.Nullable<bool> IsFinish
+		{
+			get
+			{
+				return this._IsFinish;
+			}
+			set
+			{
+				if ((this._IsFinish != value))
+				{
+					this._IsFinish = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetExamsResultByLoginUserIDResult
+	{
+		
+		private System.Nullable<int> _Marks;
+		
+		private string _ExamName;
+		
+		private string _SubjectName;
+		
+		private System.DateTime _StartTime;
+		
+		private System.DateTime _EndTime;
+		
+		private System.Nullable<bool> _IsFinish;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private System.Nullable<int> _RequirePecentage;
+		
+		private System.Nullable<decimal> _ExamTotalMarks;
+		
+		public GetExamsResultByLoginUserIDResult()
+		{
+		}
+		
+		[Column(Storage="_Marks", DbType="Int")]
+		public System.Nullable<int> Marks
+		{
+			get
+			{
+				return this._Marks;
+			}
+			set
+			{
+				if ((this._Marks != value))
+				{
+					this._Marks = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ExamName", DbType="VarChar(2000) NOT NULL", CanBeNull=false)]
+		public string ExamName
+		{
+			get
+			{
+				return this._ExamName;
+			}
+			set
+			{
+				if ((this._ExamName != value))
+				{
+					this._ExamName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_SubjectName", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string SubjectName
+		{
+			get
+			{
+				return this._SubjectName;
+			}
+			set
+			{
+				if ((this._SubjectName != value))
+				{
+					this._SubjectName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this._StartTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EndTime", DbType="DateTime NOT NULL")]
+		public System.DateTime EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this._EndTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_IsFinish", DbType="Bit")]
+		public System.Nullable<bool> IsFinish
+		{
+			get
+			{
+				return this._IsFinish;
+			}
+			set
+			{
+				if ((this._IsFinish != value))
+				{
+					this._IsFinish = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_StartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this._StartDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this._EndDate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_RequirePecentage", DbType="Int")]
+		public System.Nullable<int> RequirePecentage
+		{
+			get
+			{
+				return this._RequirePecentage;
+			}
+			set
+			{
+				if ((this._RequirePecentage != value))
+				{
+					this._RequirePecentage = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ExamTotalMarks", DbType="Decimal(0,0)")]
+		public System.Nullable<decimal> ExamTotalMarks
+		{
+			get
+			{
+				return this._ExamTotalMarks;
+			}
+			set
+			{
+				if ((this._ExamTotalMarks != value))
+				{
+					this._ExamTotalMarks = value;
+				}
+			}
 		}
 	}
 }
