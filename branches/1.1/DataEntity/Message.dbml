@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="edu" Class="MessageDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.LoginUser" Member="MessageLoginUsers">
+    <Type Name="MessageLoginUser">
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="UserType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="MessageLoginUser_Message" Member="Messages" OtherKey="FromLoginUserID" Type="Message" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Message" Member="Messages">
+    <Type Name="Message">
+      <Column Name="MessageID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MessageText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ToLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FromLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReplyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReadTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsReaded" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteFromTo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteFromFrom" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="MessageLoginUser_Message" Member="MessageLoginUser" ThisKey="FromLoginUserID" Type="MessageLoginUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetInboxMessage" Method="GetInboxMessage">
+    <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetInboxMessageResult">
+      <Column Name="MessageID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MessageText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ToLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FromLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReplyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReadTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsReaded" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteFromTo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteFromFrom" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ToProfilePic" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FromProfilePic" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ToFullName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FromFullName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetFullMessage" Method="GetFullMessage">
+    <Parameter Name="MessageID" Parameter="messageID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="GetFullMessageResult">
+      <Column Name="MessageID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MessageText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ToLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FromLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReplyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReadTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsReaded" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteFromTo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteFromFrom" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ToProfilePic" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FromProfilePic" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ToFullName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FromFullName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetSentMessage" Method="GetSentMessage">
+    <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetSentMessageResult">
+      <Column Name="MessageID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MessageText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ToLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FromLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReplyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReadTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsReaded" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteFromTo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeleteFromFrom" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ToProfilePic" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FromProfilePic" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ToFullName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FromFullName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

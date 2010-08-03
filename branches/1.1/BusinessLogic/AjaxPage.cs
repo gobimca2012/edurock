@@ -1,0 +1,295 @@
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Web.UI;
+using System.Collections.Generic;
+using System.Web.UI.WebControls;
+
+namespace BusinessLogic
+{
+    public class AjaxListViewCommandArg
+    {
+        public string Id
+        {
+            get;
+            set;
+        }
+        public string customId1
+        {
+            get;
+            set;
+        }
+        public string Command
+        {
+            get;
+            set;
+        }
+
+    }
+    public class AjaxPage : System.Web.UI.Page
+    {
+        public JScripter.Loader objLoader;
+        public bool IsFileUpload = false;
+        public bool EnableAjaxState = true;
+        protected bool IsLogginMandatory = true;
+        public bool IsEventChange
+        {
+            get;
+            set;
+        }
+        public int LoginUserID
+        {
+            get
+            {
+                if (Request.QueryString["ui"] != null)
+                {
+                    return Convert.ToInt32(Request.QueryString["ui"]);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+        public string ClickedControl
+        {
+            get
+            {
+                if (Request.QueryString["k"] != null)
+                {
+                    return Request.QueryString["k"];
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+        protected bool IsAjaxPostBack
+        {
+            get
+            {
+                if (Request.Params["ac"] != null)
+                {
+                    if (Request.Params["ac"] == "p")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        protected Dictionary<string, string> AjaxState = new Dictionary<string, string>();
+
+        public delegate void AjaxClickEventHandler(object sender, AjaxListViewCommandArg e);
+        public event AjaxClickEventHandler AjaxListViewCommand;
+        protected virtual void OnAjaxListViewCommand(AjaxListViewCommandArg e)
+        {
+            if (AjaxListViewCommand != null)
+                AjaxListViewCommand(this, e);
+        }
+
+        public string AjaxStateName = "__AjaxState";
+        protected override void OnInit(EventArgs e)
+        {
+            objLoader = new JScripter.Loader(this.Page, false);
+            if (Request.Params[AjaxStateName] != null && Request.Params[AjaxStateName] != "")
+            {
+                string AjaxStateValues = Request.Params[AjaxStateName].ToString();
+                string[] AjaxStateValueMulti = AjaxStateValues.Split(',');
+                for (int i = 0; i < AjaxStateValueMulti.Length; i++)
+                {
+                    SerializeAjaxState(AjaxStateValueMulti[i]);
+                }
+                
+            }
+            base.OnInit(e);
+        }
+        private void SerializeAjaxState(string AjaxStateValues)
+        {
+            string[] AjaxStatePart = AjaxStateValues.Split('&');
+
+            {
+                for (int i = 0; i < AjaxStatePart.Length; i++)
+                {
+                    string[] AjaxStatePartPart = AjaxStatePart[i].Split('=');
+                    if (AjaxStatePartPart.Length > 1)
+                    {
+                        //AjaxState.Add(AjaxStatePartPart[0], AjaxStatePartPart[1]);
+                        AjaxState[AjaxStatePartPart[0]] = AjaxStatePartPart[1];
+                    }
+                }
+            }
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            objLoader = new JScripter.Loader(this.Page, false);
+            if (new UserAuthontication().IsLoggedIn)
+            {
+                if (Session[SessionName.SucessMessage.ToString()] != null)
+                {
+                    string MessageInjectScript = string.Format("$('#msgstate').html('<div>{0}</div>');", Session[SessionName.SucessMessage.ToString()].ToString());
+                    objLoader.InjectScript(MessageInjectScript, this.Page);
+                    Session.Remove(SessionName.SucessMessage.ToString());
+                }
+                if (Session[SessionName.ErrorMessage.ToString()] != null)
+                {
+                    string MessageInjectScript = string.Format("$('#msgstate').html('<div class='error'>{0}</div>');", Session[SessionName.ErrorMessage.ToString()].ToString());
+                    objLoader.InjectScript(MessageInjectScript, this.Page);
+                    Session.Remove(SessionName.ErrorMessage.ToString());
+                }
+                IsEventChange = false;
+                this.Page.Header.Visible = false;
+                
+
+                if (Request.Params["lcmd"] != null)
+                {
+                    AjaxListViewCommandArg objcommandevent = new AjaxListViewCommandArg();
+                    objcommandevent.Command = Request.Params["lcmd"];
+                    objcommandevent.Id = Request.Params["lid"];
+                    if (Request.Params["lid1"] != null)
+                    {
+                        objcommandevent.customId1 = Request.Params["lid1"];
+                    }
+                    OnAjaxListViewCommand(objcommandevent);
+                }
+                if (Request.Params["ddp"] != null)
+                {
+                    OnAjaxDropDownChange("");
+                }
+
+            }
+            else
+            {
+                if (IsLogginMandatory)
+                {
+                    objLoader.RedirectPage(ResolveUrl("~/home.aspx"));
+                }
+            }
+            objLoader.InjectScript("$('.tp').ToolTip();", this.Page);
+            base.OnLoad(e);
+        }
+        protected override void OnLoadComplete(EventArgs e)
+        {
+            //System.Web.UI.WebControls.HiddenField AjaxStateControl=(System.Web.UI.WebControls.HiddenField)FindControl("_AjaxState");
+            System.Web.UI.WebControls.HiddenField AjaxStateControl = new System.Web.UI.WebControls.HiddenField();
+
+            if (AjaxStateControl != null)
+            {
+                string AjaxStateString = "";
+                List<string> Keylist = new List<string>(AjaxState.Keys);
+                List<string> valuelist = new List<string>(AjaxState.Values);
+
+
+                for (int i = 0; i < AjaxState.Keys.Count; i++)
+                {
+                    if (i > 0)
+                    {
+                        AjaxStateString += string.Format("&{0}={1}", Keylist[i], valuelist[i]);
+                    }
+                    else
+                    {
+                        AjaxStateString += string.Format("{0}={1}", Keylist[i], valuelist[i]);
+                    }
+                }
+                AjaxStateControl.Value = AjaxStateString;
+                AjaxStateControl.ID = AjaxStateName;
+                if (EnableAjaxState)
+                {
+                    this.Page.Form.Controls.Add(AjaxStateControl);
+                }
+            }
+
+            base.OnLoadComplete(e);
+        }
+        protected override void LoadViewState(object savedState)
+        {
+            base.LoadViewState(savedState);
+        }
+        protected override void Render(HtmlTextWriter writer)
+        {
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+            System.IO.StringWriter sw = new System.IO.StringWriter(sb);
+
+            HtmlTextWriter htmlWriter = new HtmlTextWriter(sw);
+
+            base.Render(htmlWriter);
+
+
+
+            //  //The HTML output is stored in the string object. Use it the way you want.
+
+            string s = sb.ToString();
+
+            s = Regex.Replace(s, @"<!.*?>", string.Empty, RegexOptions.Compiled |
+                  RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<input.*_EVENTTARGET.*/>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<input.*VIEWSTATE.*/>", string.Empty, RegexOptions.Compiled |
+            RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<input.*EVENTARGUMENT.*/>", string.Empty, RegexOptions.Compiled |
+            RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<input.*EVENTVALIDATION.*/>", string.Empty, RegexOptions.Compiled |
+            RegexOptions.Multiline);
+            string injscript = Regex.Match(s, "[<script type=\"text/javascript\" id=\"externalScript\">].*?</script>").Value;
+            s = Regex.Replace(s, @"<meta.*?>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = Regex.Replace(s, @"<link.*?>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            if (!IsFileUpload)
+            {
+                s = Regex.Replace(s, @"<form.*?>", string.Empty, RegexOptions.Compiled |
+                                  RegexOptions.Multiline);
+                s = s.Replace("</form>", "");
+            }
+            s = Regex.Replace(s, @"<html.*>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = s.Replace("</html>", "");
+            s = Regex.Replace(s, @"<title>.*?title>", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = s.Replace("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' >", "");
+            s = Regex.Replace(s, "^\\s*", string.Empty, RegexOptions.Compiled |
+          RegexOptions.Multiline);
+            //s = Regex.Replace(s, "\\r\\n", string.Empty, RegexOptions.Compiled |
+            //                           RegexOptions.Multiline);
+            //<script\stype(.*\n)*(</script>).
+            //s = Regex.Replace(s, "<script\\stype(.*\n)*(</script>).", string.Empty, RegexOptions.Compiled |
+            //RegexOptions.Multiline);
+            s = Regex.Replace(s, "var\\stheForm.*;(.*\n)*theForm.*(?<submit>)\n.*\n.*", string.Empty, RegexOptions.Compiled |
+            RegexOptions.Multiline);
+            s = Regex.Replace(s, "<!--*.*?-->", string.Empty, RegexOptions.Compiled |
+                              RegexOptions.Multiline);
+            s = s.Replace("<head>", "");
+            s = s.Replace("</head>", "");
+            s = s.Replace("<body>", "");
+            s = s.Replace("</body>", "");
+            writer.Write(s);
+
+        }
+
+
+        protected void DropDownPostBack(DropDownList dd, string PostContainnerID, string ResponseContainnerID)
+        {
+            dd.Attributes["onchange"] = string.Format("$('#{0}').dropdownPostback('{1}','{2}','{3}');", dd.ClientID, this.Request.Url.AbsolutePath, PostContainnerID, ResponseContainnerID);
+        }
+        public delegate void AjaxDropDownChangeEventHandler(object sender, string e);
+        public event AjaxDropDownChangeEventHandler AjaxDropDownChange;
+        protected virtual void OnAjaxDropDownChange(string e)
+        {
+            if (AjaxDropDownChange != null)
+            {
+                IsEventChange = true;
+                AjaxDropDownChange(this, e);
+            }
+        }
+
+    }
+}

@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="TwoColumn.master.cs" Inherits="MasterPage_TwoColumn" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Untitled Page</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="progress">
+    </div>
+    <div id="tooltip">
+    </div>
+    <div id="atool">
+        <div id="acont">
+        </div>
+    </div>
+    <div class="header" style="border: none; background: transparent">
+    </div>
+    <div style="clear: both">
+    </div>
+    <div id="msgstate">
+    </div>
+    <div id="ipop">
+    </div>
+    <div class="page">
+        <div>
+            <div class="lcbg" style="float: left">
+            </div>
+            <div class="rcbg" style="float: right; width: 80%">
+            </div>
+            <div style="clear: both">
+            </div>
+        </div>
+        <div class="lmbg">
+            <div class="rmbg">
+                <div style="float: left; width: 20%;" id="sidemenu">
+                </div>
+                <div style="float: right; width: 80%;">
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <%--</div>
+            </div>
+        </div>--%>
+        <div class="bgbl">
+            <div class="bgbr">
+                <div class="bgbc">
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

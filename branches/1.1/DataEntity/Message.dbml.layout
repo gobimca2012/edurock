@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Message">
+  <DataContextMoniker Name="/MessageDataContext" />
+  <nestedChildShapes>
+    <classShape Id="cbd287b6-ce1b-4c04-8211-03cb9f5d9f05" absoluteBounds="0.75, 1.125, 2, 1.9178898111979166">
+      <DataClassMoniker Name="/MessageDataContext/MessageLoginUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a75174f2-e2d7-49a4-a258-65d4b19b7f32" absoluteBounds="0.765, 1.585, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2cc2be9f-f121-45e5-9689-7dad949d14c5" absoluteBounds="6.125, 0.875, 2, 2.5752791341145826">
+      <DataClassMoniker Name="/MessageDataContext/Message" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ba0928ce-de3a-4e59-9003-d5b6cf4ff890" absoluteBounds="6.14, 1.335, 1.9700000000000002, 2.015279134114583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.08394490559896); (6.125 : 2.08394490559896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/MessageDataContext/MessageLoginUser/MessageLoginUser_Message" />
+      <nodes>
+        <classShapeMoniker Id="cbd287b6-ce1b-4c04-8211-03cb9f5d9f05" />
+        <classShapeMoniker Id="2cc2be9f-f121-45e5-9689-7dad949d14c5" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
