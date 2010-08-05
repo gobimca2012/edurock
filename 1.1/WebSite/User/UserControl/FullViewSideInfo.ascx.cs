@@ -55,8 +55,20 @@ public partial class User_UserControl_FullViewSideInfo : System.Web.UI.UserContr
         set;
 
     }
+    public int ContentType
+    {
+        get;
+        set;
+    }
+    public string ContentID
+    {
+        get;
+        set;
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
+        Ratting1.ContentID = ContentID;
+        Ratting1.ContentType = ContentType;
         lblCourceName.InnerText =new InstituteCourceController().GetInstituteCourceName(CourceID);
         lblSubjectName.InnerText =new InstituteSubjectController().GetInstituteSubjectName(SubjectID);
         UserToolTipLink1.LoginUserID = LoginUserID;

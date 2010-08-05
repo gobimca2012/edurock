@@ -8,6 +8,8 @@
 <body>
     <form id="form1" runat="server">
     <div class="contentbox">
+        <div class="gray">
+        </div>
         <div id="divMessage" runat="server">
         </div>
         <fieldset>
@@ -65,6 +67,8 @@
                     <asp:TextBox ID="txtTags" runat="server"></asp:TextBox>
                 </div>
             </div>
+        </fieldset>
+        <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddQuestion" runat="server" RequestContainner="#contentBox"
                     ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn">Add</div></aspajax:AjaxLinkButton>
@@ -73,7 +77,7 @@
                 <aspajax:AjaxLinkButton ID="lnkUpdateQuestion" runat="server" RequestContainner="#contentBox"
                     ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn">Update</div></aspajax:AjaxLinkButton>
             </div>
-        </fieldset>
+        </div>
     </div>
     </form>
 </body>

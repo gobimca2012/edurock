@@ -8,47 +8,62 @@
 <body>
     <form id="form1" runat="server">
     <div class="contentbox nobod">
-        <fieldset>
-            <legend id="Institutetitle" runat="server">
-                <%--<div id="Institutetitle" runat="server">
-                </div>--%>
-            </legend>
-            <%--<div class="hcurv">
-        </div>--%>
-            <div class="whitecont">
+        <div class="graycontent">
+            <div id="Institutetitle" runat="server" style="float: left" class="title">
+            </div>
+            <div style="float: right" id="instidettrigger" class="exand">
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="whitecont">
+            <div id="instide" style="display: none">
                 <p id="aboutInstitute" runat="server">
                 </p>
             </div>
-            <div class="hcurv">
-            </div>
-        </fieldset>
+        </div>
+       
     </div>
-    <div class="contentbox nobod">
-        <fieldset  id="divsubject" runat="server">
-            <legend>Subjects </legend>
-            <div class="whitecont">
-                <asp:ListView ID="listSubject" runat="server">
-                    <LayoutTemplate>
-                        <div>
-                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                        </div>
-                    </LayoutTemplate>
-                    <ItemTemplate>
-                        <div>
-                            <%#Eval("SubjectText") %>
-                        </div>
-                        <div style="clear: both">
-                        </div>
-                    </ItemTemplate>
-                </asp:ListView>
+    <div class="contentbox nobod" id="divsubject" runat="server">
+        <div class="graycontent">
+            <div style="float: left" class="title">
+                Subjects
             </div>
-            <div>
+            <div style="float: right" id="subjectboxtrigger" class="exand">
             </div>
-        </fieldset>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="whitecont" id="subjectbox" style="display:none">
+            <asp:ListView ID="listSubject" runat="server">
+                <LayoutTemplate>
+                    <div>
+                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                    </div>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <div>
+                        <%#Eval("SubjectText") %>
+                    </div>
+                    <div style="clear: both">
+                    </div>
+                </ItemTemplate>
+            </asp:ListView>
+        </div>
+        <div>
+        </div>
     </div>
     <div id="instituteUser">
-        <fieldset>
-            <legend>Users </legend>
+        <div class="graycontent">
+            <div style="float: left" class="title">
+                Users
+            </div>
+            <div style="float: right" id="userboxtrigger" class="exand">
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div id="userbox" style="display: none;" class="whitecont">
             <asp:ListView ID="listUser" runat="server">
                 <LayoutTemplate>
                     <div>
@@ -60,7 +75,7 @@
                         <asp:HyperLink ID="lnkU" runat="server" NavigateUrl='<%#ResolveUrl("~/User/User.aspx") + "?usid=" + Eval("LoginUserID")%>'>
                             <div>
                                 <asp:Image ID="img" runat="server" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString())%>'
-                                    Width="50" Height="50"/>
+                                    Width="50" Height="50" />
                             </div>
                             <div>
                                 <%#Eval("FirstName") %>&nbsp;<%#Eval("LastName")%>
@@ -69,7 +84,7 @@
                     </div>
                 </ItemTemplate>
             </asp:ListView>
-        </fieldset>
+        </div>
         <div style="clear: both">
         </div>
     </div>

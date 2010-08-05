@@ -9,13 +9,15 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <div class="btn">
+        <div class="btn" style="float: left">
             <aspajax:HyperLink ID="lnkQ" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/UserInfoView.aspx"> Personal Info</aspajax:HyperLink></li>
             <%--<li><a href="#tabs-2">Education Info</a></li>--%>
         </div>
-        <div class="btn">
+        <div class="btn" style="float: left">
             <aspajax:HyperLink ID="lnkChangePass" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ChangePassword.aspx"> Change password</aspajax:HyperLink></li>
             <%--<li><a href="#tabs-2">Education Info</a></li>--%>
+        </div>
+        <div class="clear">
         </div>
     </div>
     </form>

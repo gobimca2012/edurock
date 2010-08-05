@@ -127,6 +127,7 @@
                     <aspajax:HyperLink ID="lnkCancel" runat="server" NavigateUrl="UserInfoView.aspx"
                         ContainnerID="#contentBox"><div class="btn">Cancel</div> </aspajax:HyperLink>
                 </div>
+                <div class="clear"></div>
             </div>
         </div>
     </div>

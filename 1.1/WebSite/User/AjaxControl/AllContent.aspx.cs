@@ -79,6 +79,11 @@ public partial class User_AjaxControl_AllContent : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.DatePicker objdate = new JScripter.DatePicker(this.Page);
+        objdate.DatePickerTextBox(txtEnddate);
+        objdate.DatePickerTextBox(txtstartDate);
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];
@@ -112,7 +117,7 @@ public partial class User_AjaxControl_AllContent : AjaxPage
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new UserController().GetUserRelatedContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID,(int)ContentTypeEnum.All,new UserAuthontication().LoggedInUserID,  PageSize, PageNumber);
+        ListQuestion.DataSource = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.All, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate, PageSize, PageNumber);
         ListQuestion.DataBind();
     }
     private void PaggerLinkManager()
@@ -200,13 +205,13 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         }
         return CssClass;
     }
-    public string getURL(string ContentType,string ID)
+    public string getURL(string ContentType, string ID)
     {
         string URL = "";
-        
+
         if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Question)
         {
-            URL = ResolveUrl("~/User/AjaxControl/Question.aspx") + "?qid=" + ID;   
+            URL = ResolveUrl("~/User/AjaxControl/Question.aspx") + "?qid=" + ID;
         }
         else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Document)
         {
@@ -250,13 +255,57 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         AjaxControl.HyperLink lnkFull = (AjaxControl.HyperLink)currentItem.FindControl("lnkFull");
         if (lnkFull != null)
         {
-            
+
         }
 
 
 
     }
 
+    private string Keywork
+    {
+        get
+        {
+            string value=HtmlHelper.ControlValue(txtKeyword.ClientID);
+            txtKeyword.Text = value;
+            return value; ;
+        }
+    }
+    private DateTime StartDate
+    {
+        get
+        {
+            if (HtmlHelper.ControlValue(txtstartDate.ClientID) != null && HtmlHelper.ControlValue(txtstartDate.ClientID) != "")
+            {
+                txtstartDate.Text = HtmlHelper.ControlValue(txtstartDate.ClientID);
+                return Convert.ToDateTime(HtmlHelper.ControlValue(txtstartDate.ClientID));
+            }
+            else
+            {
+                return new DateTime(1800, 1, 1);
+            }
+        }
+    }
+    private DateTime EndDate
+    {
+        get
+        {
+            if (HtmlHelper.ControlValue(txtEnddate.ClientID) != null && HtmlHelper.ControlValue(txtEnddate.ClientID) != "")
+            {
+                txtEnddate.Text = HtmlHelper.ControlValue(txtEnddate.ClientID);
+                return Convert.ToDateTime(HtmlHelper.ControlValue(txtEnddate.ClientID));
+            }
+            else
+            {
+                return DateTime.Now;
+            }
+        }
+    }
 
+    protected void AjaxSearch(object sender, AjaxControl.AjaxEventArg e)
+    {
 
+        BindList();
+        PaggerLinkManager();
+    }
 }

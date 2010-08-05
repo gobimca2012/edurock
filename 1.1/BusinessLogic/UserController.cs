@@ -1016,6 +1016,30 @@ namespace BusinessLogic
             fl.SaveAs(FilePath);
             return ReturnFilePath;
         }
+        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate)
+        {
+            try
+            {
+
+                return new DataProvider().GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate);
+            }
+            catch
+            {
+                return new List<GetUserRelatedContentSearchResult>();
+            }
+        }
+        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetUserRelatedContentSearchResult>();
+            }
+        }
         #endregion
 				
 	

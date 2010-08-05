@@ -707,6 +707,18 @@ namespace BusinessLogic
                 return new List<GetShareUserResult>();
             }
         }
+        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID,string UserName)
+        {
+            try
+            {
+
+                return new DataProvider().GetShareUser(ObjectType, ObjectID,UserName);
+            }
+            catch
+            {
+                return new List<GetShareUserResult>();
+            }
+        }
         public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID, int PageSize, int PageNumber)
         {
             try

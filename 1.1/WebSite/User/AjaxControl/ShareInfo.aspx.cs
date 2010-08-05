@@ -43,6 +43,9 @@ public partial class User_ShareInfo : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#userboxtigger", "#userbox");
+        objEffect.Collapspanel("#roleboxtrigger", "#rolebox");
         if (Request.Params["conid"] != null)
         {
             AjaxState["conid"] = Request.Params["conid"];
@@ -77,6 +80,13 @@ public partial class User_ShareInfo : AjaxPage
         listUsers.DataBind();
 
     }
+    private void BindUserData(string UserName)
+    {
+        var data = new ShareUserController().GetShareUser(Type, QuestionID.ToString(),UserName);
+        listUsers.DataSource = data;
+        listUsers.DataBind();
+
+    }
     private void CreateBackLink()
     {
         if (Type == (int)ContentTypeEnum.Article)
@@ -91,7 +101,7 @@ public partial class User_ShareInfo : AjaxPage
             lnkBack.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWork.aspx") + "?hwid=" + QuestionID.ToString();
         else if (Type == (int)ContentTypeEnum.Question)
             lnkBack.NavigateUrl = ResolveUrl("~/User/AjaxControl/Question.aspx") + "?qid=" + QuestionID.ToString();
-        
+
     }
 
     private void BindGroupData()
@@ -163,5 +173,9 @@ public partial class User_ShareInfo : AjaxPage
         BindGroupData();
         BindAllUser();
 
+    }
+    protected void AjaxSearchUser(object sender, AjaxControl.AjaxEventArg e)
+    {
+        BindUserData(HtmlHelper.ControlValue(txtSearchUser.ClientID));
     }
 }

@@ -28,19 +28,18 @@
     </div>
     <div style="clear: both">
     </div>
-   
     <div id="ipop">
     </div>
     <div class="page" id="pagecon" runat="server">
-     <div class="brcum">
-        <div style="float: left">
-            <a href="~/User/DashBoard.aspx" runat="server" id="ddU">DashBoard</a>
+        <div class="brcum">
+            <div style="float: left">
+                <a href="~/User/DashBoard.aspx" runat="server" id="ddU">DashBoard</a>
+            </div>
+            <div id="headingBox" style="float: left">
+            </div>
+            <div class="clear">
+            </div>
         </div>
-        <div id="headingBox" style="float: left">
-        </div>
-        <div class="clear">
-        </div>
-    </div>
         <div id="msgstate">
         </div>
         <div>
@@ -68,9 +67,11 @@
                             </div>
                         </div>
                         <div class="leftmenu">
-                            <div id="courcel">
+                            <div>
                                 <div class="grayhead tp" rel="Select your cource and get update from cource">
                                     <span class="sub" style="float: left"></span><span style="float: left">Cources </span>
+                                    <div style="float: right" class="exand" id="courcel">
+                                    </div>
                                     <div style="clear: both">
                                     </div>
                                 </div>
@@ -79,12 +80,14 @@
                             </div>
                         </div>
                         <div class="leftmenu">
-                            <div id="messageHead" class="tp" rel="Message System">
+                            <div class="tp" rel="Message System">
                                 <div class="grayhead">
-                                    <div class="sub" style="float: left">
+                                    <div class="msg" style="float: left">
                                     </div>
                                     <div style="float: left">
                                         Messages
+                                    </div>
+                                    <div style="float: right" class="exand" id="messageHead">
                                     </div>
                                     <div style="clear: both">
                                     </div>
@@ -103,12 +106,14 @@
                             </div>
                         </div>
                         <div class="leftmenu">
-                            <div id="mymenu">
+                            <div>
                                 <div class="grayhead tp" rel="You can manage your data From My Stuff">
-                                    <div class="sub" style="float: left">
+                                    <div class="mystuff" style="float: left">
                                     </div>
                                     <div style="float: left">
                                         My Stuff
+                                    </div>
+                                    <div style="float: right" class="exand" id="mymenu">
                                     </div>
                                     <div style="clear: both">
                                     </div>
@@ -119,8 +124,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <asp:HyperLink ID="lnkFullMode" runat="server">Full Mode</asp:HyperLink>
+                        <div class="graycontent">
+                            <div style="float: left; margin-right: 10px">
+                                <asp:HyperLink ID="lnkHelp" runat="server" rel="Documentation about CramEasy" CssClass="tp"><div class="help"></div></asp:HyperLink>
+                            </div>
+                            <div style="float: left">
+                                <asp:HyperLink ID="lnkFullMode" runat="server" rel="Full screen use full area of your screen"
+                                    CssClass="tp"><div class="fullsc"></div></asp:HyperLink>
+                            </div>
+                            <div class="clear">
+                            </div>
                         </div>
                     </div>
                 </div>

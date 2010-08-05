@@ -16,7 +16,8 @@
                 <asp:Image ID="imgProfilepic" runat="server" Width="100" />
             </div>
             <div>
-                <asp:LinkButton ID="lnkChangeImage" runat="server">UpdatePic</asp:LinkButton>
+                <div class="btn" style="width:100px;">
+                    <asp:LinkButton ID="lnkChangeImage" runat="server">Change Avtar</asp:LinkButton></div>
             </div>
             <div id="propop">
             </div>
@@ -103,6 +104,8 @@
         </div>
         <div class="gray">
             <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox" NavigateUrl="UserInfo.aspx"><div class="btn"> Edit</div></aspajax:HyperLink>
+            <div class="clear">
+            </div>
         </div>
     </div>
     </form>

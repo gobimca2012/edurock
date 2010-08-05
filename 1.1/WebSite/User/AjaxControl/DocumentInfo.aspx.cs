@@ -67,7 +67,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new DocumentController().Add(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceID, InstituteSubjectID, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{1} has been Added Successfully",  Name);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} has been Added Successfully",  Name);
             Response.Redirect("~/User/AjaxControl/Document.aspx?did=" + DocumentID.ToString(), true);
         }
         catch (Exception ex)
@@ -125,7 +125,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new DocumentController().UpdateByDocumentID(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, ModifiedDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{1} has been Updated Successfully", Name);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} has been Updated Successfully", Name);
             Response.Redirect("~/User/AjaxControl/Document.aspx?did=" + DocumentID.ToString());
         }
         catch (Exception ex)

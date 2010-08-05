@@ -567,14 +567,14 @@ $.fn.ToolTip = function()
          $("#tooltip").html('<div class="tooltip"><div class="tdown"></div> <div class="ttip">' + tooltipcontent + '</div></div>');
          $("#tooltip").show('slow');
          var po = $(this).offset();
-         var len = tooltipcontent.length;
-         var len1 = $(this).width();
+         
+         var len = $("#tooltip").width();
          var left = po.left;
          var top = po.top ;
          // alert(len);
          $('#tooltip').css(
          {
-            left : left + 'px',
+            left : (left-len/2)+15 + 'px',
             top : top + 20 + 'px',
             position : 'absolute'
          }
@@ -610,13 +610,14 @@ $.fn.ajaxToolTip = function(ContainnerID, url)
 
    $(this).click(function()
    {
-
+    
+    
+      
       var pos = $(this).offset();
       var width = $(this).width();
-
       $("#atool").css(
       {
-         left : (pos.left - (300 + 121)) + 'px',
+         left : (pos.left - width) + 'px',
          top : (pos.top - 45) + 'px',
          position : 'absolute'
       }

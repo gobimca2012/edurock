@@ -8,13 +8,20 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:ListView ID="ListInstituteCource" runat="server" OnItemDataBound="ListInstituteCourceOnItemDataBound" DataKeyNames="InstituteCourceID">
+    <asp:ListView ID="ListInstituteCource" runat="server" OnItemDataBound="ListInstituteCourceOnItemDataBound"
+        DataKeyNames="InstituteCourceID">
         <LayoutTemplate>
             <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
         </LayoutTemplate>
         <ItemTemplate>
-            <div>
-                <aspajax:HyperLink ID="lnkFullvIew" runat="server" ContainnerID="#lander" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'> <div class="cin">   <%#Eval("Cource.CourceName")%></div></aspajax:HyperLink>
+            <div style="border-bottom:dashed 1px #cfcfcf;">
+                <%--<div class="sub" style="float: left; margin-left: 7px;">
+                </div>--%>
+                <div style="float: left;line-height:24px;margin-left:5px;">
+                    <aspajax:HyperLink ID="lnkFullvIew" runat="server" ContainnerID="#lander" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'> <div >   <%#Eval("Cource.CourceName")%></div></aspajax:HyperLink>
+                </div>
+                <div class="clear">
+                </div>
             </div>
         </ItemTemplate>
     </asp:ListView>

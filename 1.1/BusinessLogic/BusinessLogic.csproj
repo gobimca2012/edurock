@@ -98,6 +98,7 @@
     <Compile Include="QuestionController.cs" />
     <Compile Include="QuestionStatusController.cs" />
     <Compile Include="QuestionTypeController.cs" />
+    <Compile Include="RattingController.cs" />
     <Compile Include="SessionName.cs" />
     <Compile Include="SettingProvider.cs" />
     <Compile Include="ShareController.cs" />

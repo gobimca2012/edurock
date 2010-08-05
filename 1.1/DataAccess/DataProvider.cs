@@ -3642,7 +3642,24 @@ namespace DataAccess
             return data;
 
         }
+        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate)
+        {
 
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate).ToList();
+
+        }
+        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate, int PageSize, int PageNumber)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         #endregion
 
 
@@ -13089,6 +13106,7 @@ namespace DataAccess
             return data;
 
         }
+
         public void UpdateShareViewAllUser(int ObjectType, string ObjectID, bool EnableAllUseView)
         {
             UserDataContext db = new UserDataContext();
@@ -13842,6 +13860,17 @@ namespace DataAccess
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
             return db.GetShareUser(ObjectType, ObjectID).ToList();
+
+        }
+        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID,string userName)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = db.GetShareUser(ObjectType, ObjectID).ToList();
+            var returndata = (from p in data where p.Username.ToLower().Contains(userName) select p).ToList();
+            return returndata;
 
         }
         public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID, int PageSize, int PageNumber)
@@ -16891,6 +16920,396 @@ namespace DataAccess
         #endregion
 
 
+
+        #region Ratting
+
+        public void RattingAdd(Guid RattingID, int Rating, int ContentType, string ContentID, DateTime ModifiedDate)
+        {
+            Ratting ObjRatting = new Ratting();
+
+            ObjRatting.RattingID = RattingID;
+
+            ObjRatting.Rating = Rating;
+
+            ObjRatting.ContentType = ContentType;
+
+            ObjRatting.ContentID = ContentID;
+
+            ObjRatting.ModifiedDate = ModifiedDate;
+
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.Rattings.InsertOnSubmit(ObjRatting);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public Guid RattingAdd(int Rating, int ContentType, string ContentID, DateTime ModifiedDate)
+        {
+            Ratting ObjRatting = new Ratting();
+
+
+
+            ObjRatting.Rating = Rating;
+
+
+            ObjRatting.ContentType = ContentType;
+
+
+            ObjRatting.ContentID = ContentID;
+
+
+            ObjRatting.ModifiedDate = ModifiedDate;
+
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.Rattings.InsertOnSubmit(ObjRatting);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return ObjRatting.RattingID;
+        }
+
+
+
+        public List<Ratting> RattingGet(int PageSize, int PageNumber)
+        {
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.ObjectTrackingEnabled = false;
+            var data = (from p in db.Rattings select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Ratting> RattingGet()
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            db.ObjectTrackingEnabled = false;
+            var data = (from p in db.Rattings select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+
+        public List<Ratting> RattingGetbyRattingID(Guid RattingID, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.RattingID == RattingID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Ratting> RattingGetbyRating(int Rating, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.Rating == Rating select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Ratting> RattingGetbyContentType(int ContentType, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.ContentType == ContentType select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Ratting> RattingGetbyContentID(string ContentID, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.ContentID == ContentID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Ratting> RattingGetbyModifiedDate(DateTime ModifiedDate, int PageSize, int PageNumber)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.ModifiedDate == ModifiedDate select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+
+
+        public List<Ratting> RattingGetbyRattingID(Guid RattingID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.RattingID == RattingID select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Ratting> RattingGetbyRating(int Rating)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.Rating == Rating select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Ratting> RattingGetbyContentType(int ContentType)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.ContentType == ContentType select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Ratting> RattingGetbyContentID(string ContentID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.ContentID == ContentID select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+        public List<Ratting> RattingGetbyModifiedDate(DateTime ModifiedDate)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.ModifiedDate == ModifiedDate select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+
+
+
+        public void RattingDeletebyRattingID(Guid RattingID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.RattingID == RattingID select p);
+            db.Rattings.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void RattingDeletebyRating(int Rating)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.Rating == Rating select p);
+            db.Rattings.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void RattingDeletebyContentType(int ContentType)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.ContentType == ContentType select p);
+            db.Rattings.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void RattingDeletebyContentID(string ContentID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.ContentID == ContentID select p);
+            db.Rattings.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+        public void RattingDeletebyModifiedDate(DateTime ModifiedDate)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.ModifiedDate == ModifiedDate select p);
+            db.Rattings.DeleteAllOnSubmit(data);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+
+
+        public void RattingUpdateByRattingID(Guid RattingID, int Rating, int ContentType, string ContentID, DateTime ModifiedDate)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.DeferredLoadingEnabled = false;
+            Ratting data = db.Rattings.Single(p => p.RattingID == RattingID);
+            data.Rating = Rating;
+            data.ContentType = ContentType;
+            data.ContentID = ContentID;
+            data.ModifiedDate = ModifiedDate;
+
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+
+
+
+
+
+        #endregion
+        #region CustomRatting
+        public List<Ratting> RattingGetbyContentID(string ContentID,int ContentType)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Rattings where p.ContentID == ContentID && p.ContentType==ContentType select p).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+        public void RattingUpdateByRattingID( int Rating, int ContentType, string ContentID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.DeferredLoadingEnabled = false;
+            var dataBunch = (from p in db.Rattings where p.ContentID == ContentID && p.ContentType == ContentType select p).ToList();
+            if (dataBunch.Count > 0)
+            {
+                var data = dataBunch[0];
+                data.Rating = data.Rating + Rating;
+                data.ModifiedDate = DateTime.Now;
+                db.SubmitChanges();
+            }
+            else
+            {
+                RattingAdd(Guid.NewGuid(), 1, ContentType, ContentID, DateTime.Now);
+            }
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+        #endregion
+	
+	
+	
+	
 
 
     }

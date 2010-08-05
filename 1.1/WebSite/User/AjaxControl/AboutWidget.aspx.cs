@@ -30,6 +30,9 @@ public partial class User_AjaxControl_AboutInstitute : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#instidettrigger", "#instide");
+        objEffect.Collapspanel("#userboxtrigger", "#userbox");
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
@@ -50,6 +53,9 @@ public partial class User_AjaxControl_AboutInstitute : AjaxPage
                 listUser.DataSource = new InstituteUserController().GetUserByInsituteCourceID(InstituteCourceID);
                 listUser.DataBind();
             }
+            JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+            objEffect.Collapspanel("#subjectboxtrigger", "#subjectbox");
+            
         }
         else
         {

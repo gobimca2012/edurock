@@ -101,6 +101,8 @@ public partial class User_AjaxControl_Document : AjaxPage
                 FullViewSideInfo1.SubjectID = (int)data.DocumentCources[0].SubjectID;
                 FullViewSideInfo1.LoginUserID = data.LoginUserID;
                 FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
+                FullViewSideInfo1.ContentType = _ContentType;
+                FullViewSideInfo1.ContentID =data.DocumentID.ToString() ;
             }
             //if (data.ModifiedDate != null)
 

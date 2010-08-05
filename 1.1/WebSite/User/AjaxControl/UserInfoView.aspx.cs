@@ -79,7 +79,7 @@ public partial class User_AjaxControl_UserInfoView : AjaxPage
 
         if (data.BirthDate != null)
 
-            lblBirthDate.InnerHtml = data.BirthDate.ToString();
+            lblBirthDate.InnerHtml = CommonController.GetDate(data.BirthDate.Value);
 
         if (data.Address1 != null)
 
