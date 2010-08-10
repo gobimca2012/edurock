@@ -32,8 +32,11 @@ public partial class MasterPage_OutSideUser : System.Web.UI.MasterPage
     {
         var data = new InstituteController().Get();
         if (data.Count > 0)
+        {
             if (data[0].Logo != null)
                 imgLogo.ImageUrl = ResolveUrl(data[0].Logo);
+            JScripter.JScripter.ReplaceHtmlText("headingBox","WelCome to "+ data[0].Name,this.Page);
+        }
 
 
     }

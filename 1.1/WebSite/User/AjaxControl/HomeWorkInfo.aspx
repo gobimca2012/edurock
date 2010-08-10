@@ -18,7 +18,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">Title</span>
+                            <span class="label">Title</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtTitle" runat="server"></asp:TextBox>
@@ -26,7 +26,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Description</span>
+                            <span class="label">Description</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtDescription" runat="server" Height="187px" TextMode="MultiLine"></asp:TextBox>
@@ -42,7 +42,7 @@
                     </div>
                     <div id="ddInsti">
                         <div>
-                            <span class="label">InstituteCourceID</span>
+                            <span class="label">Course</span> <span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:DropDownList ID="ddInstituteCource" runat="server">
@@ -51,7 +51,7 @@
                     </div>
                     <div id="ddSub">
                         <div>
-                            <span class="label">InstituteSubjectID</span>
+                            <span class="label">Subject</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:DropDownList ID="ddInstituteSubject" runat="server">

@@ -14,35 +14,17 @@
         <fieldset>
             <legend>QuestionStatus</legend>
             <table>
+               
                 <tr>
                     <td>
-                        <span class="label">QuestionStatusID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">QuestionStatusText</span>
+                        <span class="label">Question Status</span><span class="valmsg" >(Required)*</span>
                     </td>
                     <td>
                         <asp:TextBox ID="txtQuestionStatusText" runat="server"></asp:TextBox>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <span class="label">LoginUserID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">ModifiedDate</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+                
+                
             </table>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#QuestionStatus"

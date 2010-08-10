@@ -26,6 +26,8 @@ public partial class College_Ajaxer_InstituteUser : AjaxPage
     {
         IsLogginMandatory = false;
         Binddata();
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#instituteuserboxtrigger", "#instituteuserbox");
         base.OnLoad(e);
     }
     

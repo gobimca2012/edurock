@@ -19,7 +19,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">Question</span>
+                            <span class="label">Question</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtQuestion" runat="server"></asp:TextBox>
@@ -27,7 +27,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Marks</span>
+                            <span class="label">Marks</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtMarks" runat="server"></asp:TextBox>

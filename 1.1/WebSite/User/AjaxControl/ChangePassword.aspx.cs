@@ -33,7 +33,7 @@ public partial class User_AjaxControl_ChangePassword :AjaxPage
             {
                 throw new Exception("system are not able to change password please contact to administrator");
             }
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been added Successfully", "Password");
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0}  has been added Successfully", "Password");
         }
         catch (Exception ex)
         {

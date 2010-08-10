@@ -70,7 +70,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
             DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID)=="") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
             int ExamID = new ExamController().Add(ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Added Successfully", "Exam", ExamName);
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0}  hasbeen Added Successfully", "Exam", ExamName);
             Response.Redirect("~/User/AjaxControl/Exam.aspx?eid=" + ExamID.ToString());
         }
         catch (Exception ex)

@@ -59,7 +59,7 @@ public partial class User_AjaxControl_ExmAnswerInfo : AjaxPage
             }
             else
             {
-                Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "Exam Answer");
+                Session[SessionName.SucessMessage.ToString()] = string.Format("{0}  hasbeen Updated Successfully", "Exam Answer");
                 Response.Redirect("~/User/AjaxControl/EXMAnswerInfoView.aspx?qid=" + _QuestionID.ToString());
             }
         }

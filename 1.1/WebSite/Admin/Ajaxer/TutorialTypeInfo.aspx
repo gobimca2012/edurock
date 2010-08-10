@@ -14,35 +14,16 @@
         <fieldset>
             <legend>TutorialType</legend>
             <table>
+               
                 <tr>
                     <td>
-                        <span class="label">TutorialTypeID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">Name</span>
+                        <span class="label">Name</span><span class="valmsg" >(Required)*</span>
                     </td>
                     <td>
                         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <span class="label">LoginUserID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">ModifiedDate</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+                
             </table>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#tutorial"

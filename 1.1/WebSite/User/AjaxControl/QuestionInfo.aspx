@@ -17,7 +17,7 @@
             <div>
                 <div>
                     <div>
-                        <span class="label">Title</span>
+                        <span class="label">Title</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtQuestionText" runat="server"></asp:TextBox>
@@ -25,7 +25,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">Description</span>
+                        <span class="label">Description</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="400px"></asp:TextBox>
@@ -33,7 +33,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">Question Type</span>
+                        <span class="label">Question Type</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:DropDownList ID="ddQuestionType" runat="server">
@@ -43,7 +43,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">Select your Cource</span>
+                            <span class="label">Select your Cource</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:DropDownList ID="ddCource" runat="server">
@@ -52,7 +52,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Select your Subject</span>
+                            <span class="label">Select your Subject</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div id="ddrep">
                             <asp:DropDownList ID="ddSubject" runat="server">

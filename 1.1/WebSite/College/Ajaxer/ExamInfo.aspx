@@ -18,7 +18,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">Exam Name</span>
+                            <span class="label">Exam Name</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtExamName" runat="server"></asp:TextBox>
@@ -26,7 +26,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Subject Name</span>
+                            <span class="label">Subject Name</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtSubjectName" runat="server"></asp:TextBox>
@@ -34,7 +34,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label"> Cource</span>
+                            <span class="label"> Cource</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div id="ddin">
                             <asp:DropDownList ID="ddInstituteCource" runat="server">
@@ -43,7 +43,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Subject</span>
+                            <span class="label">Subject</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <div>
@@ -54,7 +54,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Description</span>
+                            <span class="label">Description</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtDescription" runat="server" CssClass="mceEditor" TextMode="MultiLine" Height="400"></asp:TextBox>
@@ -88,7 +88,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Start Date</span>
+                            <span class="label">Start Date</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
@@ -96,7 +96,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">End Date</span>
+                            <span class="label">End Date</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>

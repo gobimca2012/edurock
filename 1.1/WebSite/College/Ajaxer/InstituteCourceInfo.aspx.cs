@@ -89,7 +89,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
 
             new InstituteCourceController().Add(InstituteID, CourceID, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been added Successfully", "Course");
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} has been added Successfully", "Course");
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
         catch (Exception ex)
@@ -156,7 +156,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
             DateTime Modifieddate = DateTime.Now;
 
             new InstituteCourceController().UpdateByInstituteCourceID(InstituteCourceID, InstituteID, CourceID, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
-            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been Updated Successfully", "Course");
+            Session[SessionName.SucessMessage.ToString()] = string.Format("{0} has been Updated Successfully", "Course");
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
         catch (Exception ex)

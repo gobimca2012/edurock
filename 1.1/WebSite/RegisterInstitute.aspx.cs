@@ -17,7 +17,7 @@ public partial class RegisterInstitute : BasePage
     protected override void OnLoad(EventArgs e)
     {
         IsLogginMandatory = false;
-        objLoader.LoadPage("#contentBox", ResolveUrl("~/All/Ajaxer/RegisterInstitute.aspx"));
+        //objLoader.LoadPage("#contentBox", ResolveUrl("~/All/Ajaxer/RegisterInstitute.aspx"));
         base.OnLoad(e);
     }
     

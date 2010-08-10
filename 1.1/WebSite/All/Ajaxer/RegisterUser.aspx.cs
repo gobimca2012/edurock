@@ -30,7 +30,7 @@ public partial class All_Ajaxer_RegisterUser : AjaxPage
         FormValidation();
         IsLogginMandatory = false;
         new InstituteController().BindInstitute(ddInstitute);
-        ddInstitute.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddInstitute.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?iid="));
+        ddInstitute.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddInstitute.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?aiid="));
         base.OnLoad(e);
     }
 

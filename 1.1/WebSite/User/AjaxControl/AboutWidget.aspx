@@ -77,9 +77,9 @@
                                 <asp:Image ID="img" runat="server" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString())%>'
                                     Width="50" Height="50" />
                             </div>
-                            <div>
+                            <%--<div>
                                 <%#Eval("FirstName") %>&nbsp;<%#Eval("LastName")%>
-                            </div>
+                            </div>--%>
                         </asp:HyperLink>
                     </div>
                 </ItemTemplate>

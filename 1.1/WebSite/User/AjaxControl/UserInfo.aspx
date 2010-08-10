@@ -22,7 +22,7 @@
                             <asp:Image ID="imgProfilepic" runat="server" Width="100" />
                         </div>
                         <div>
-                            <span class="label">FirstName</span>
+                            <span class="label">FirstName</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">LastName</span>
+                            <span class="label">LastName</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
@@ -46,7 +46,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">BirthDate</span>
+                            <span class="label">BirthDate</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <span>
@@ -79,7 +79,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">City</span>
+                            <span class="label">City</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
@@ -87,7 +87,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">State</span>
+                            <span class="label">State</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtState" runat="server"></asp:TextBox>
@@ -95,7 +95,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Country</span>
+                            <span class="label">Country</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>

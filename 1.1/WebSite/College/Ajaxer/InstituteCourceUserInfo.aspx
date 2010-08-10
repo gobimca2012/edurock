@@ -20,7 +20,7 @@
                     <div>
                         <div>
                             <div>
-                                <span class="label">select Cource</span>
+                                <span class="label">select Cource</span><span class="valmsg" >(Required)*</span>
                             </div>
                             <div>
                                 <asp:DropDownList ID="ddCource" runat="server">

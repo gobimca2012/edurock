@@ -17,7 +17,7 @@
             <div>
                 <div>
                     <div>
-                        <span class="label">Question</span>
+                        <span class="label">Question</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div class="style1">
                         <asp:TextBox ID="txtQuestionPart1" runat="server" Width="579px"></asp:TextBox>
@@ -27,7 +27,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">Description</span>
+                        <span class="label">Description</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div class="style1">
                         <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="329px"

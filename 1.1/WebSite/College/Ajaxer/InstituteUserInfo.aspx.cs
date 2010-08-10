@@ -52,7 +52,7 @@ public partial class College_Ajaxer_InstituteUserInfo : AjaxPage
             int UserType; if (true) { UserType = 1; }
             int InstituteUserType = Convert.ToInt32(HtmlHelper.ControlValue(ddUserType.ClientID));
 
-            new LoginUserController().CreateUser(Username, Password, FirstName, Lastname, ConfigurationSettings.AppSettings["UserAvatar"].ToString(), txtEmail.Text, UserType, InstituteUserType);
+            new LoginUserController().CreateUser(Username, Password, FirstName, Lastname, ConfigurationSettings.AppSettings["UserAvtar"].ToString(), txtEmail.Text, UserType, InstituteUserType);
             Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} has been added Successfully", Username, "User");
             Response.Redirect("~/College/Ajaxer/InstituteUserInfoView.aspx");
         }

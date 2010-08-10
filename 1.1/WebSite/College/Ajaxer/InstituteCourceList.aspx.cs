@@ -26,6 +26,8 @@ public partial class College_Ajaxer_InstituteCourceList : AjaxPage
     {
         this.IsLogginMandatory = false;
         BindCource();
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#courseboxtrigger", "#coursebox");
         base.OnLoad(e);
     }
     private void BindCource()

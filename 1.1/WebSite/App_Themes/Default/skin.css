@@ -94,7 +94,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(                               'images/headerbt.jpg' ) repeat-x;
+    background: url(                                'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -273,8 +273,13 @@ tr:hover
     top: 100px;
     padding: 30px;
 }
-
-img
+.lmenuitem
+{
+    line-height: 24px;
+    border-bottom: dashed 1px #cfcfcf;
+    padding-left: 10px;
+}
+.rimg
 {
     border: solid 5px #000;
     margin: 3px;
@@ -458,13 +463,20 @@ h5
     background: #ECECEC;
     text-align: left;
 }
-.graycontent
+.graycontent, .bluecontent
 {
-    background: #ECECEC;
     text-align: left;
     padding: 5px;
     margin: 5px;
     line-height: 20px;
+}
+.graycontent
+{
+    background: #ECECEC;
+}
+.bluecontent
+{
+    background: #ECECEC;
 }
 .cin
 {
@@ -566,7 +578,7 @@ h3
 }
 .trans
 {
-    background: url(               'images/trans.png' );
+    background: url(                'images/trans.png' );
     padding: 15px;
 }
 /* Icons */
@@ -582,21 +594,21 @@ h3
 .fullsc
 {
     background-color: Transparent;
-    background-image: url(  "images/icons.png" );
+    background-image: url(   "images/icons.png" );
     background-position: 0 -68px;
     padding: 18px;
 }
 .folder
 {
     background-color: Transparent;
-    background-image: url(  "images/icons.png" );
+    background-image: url(   "images/icons.png" );
     background-position: 0 -68px;
     padding: 18px;
 }
 .help
 {
     background-color: Transparent;
-    background-image: url(  "images/icons.png" );
+    background-image: url(   "images/icons.png" );
     background-position: -34px -68px;
     padding: 18px;
 }
@@ -627,7 +639,7 @@ h3
 .exand
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -272px -6px;
     empty-cells: show;
     height: 18px;
@@ -643,6 +655,10 @@ h3
     padding: 3px 10px;
     line-height: 12px;
     empty-cells: show;
+}
+img
+{
+    margin: 1px;
 }
 .doc
 {
@@ -667,7 +683,7 @@ h3
 .howo
 {
     background-color: Transparent;
-    background-image: url(    "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: -257px -9px;
     empty-cells: show;
     line-height: 12px;
@@ -696,7 +712,7 @@ h3
 .all
 {
     background-color: Transparent;
-    background-image: url(    "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: -198px -40px;
     empty-cells: show;
     line-height: 12px;
@@ -715,7 +731,7 @@ h3
 .aud
 {
     background-color: Transparent;
-    background-image: url(     "images/icons.png" );
+    background-image: url(      "images/icons.png" );
     background-position: -235px -9px;
     empty-cells: show;
     line-height: 12px;
@@ -734,7 +750,7 @@ h3
 .lbr
 {
     background-color: Transparent;
-    background-image: url(      "images/icons.png" );
+    background-image: url(       "images/icons.png" );
     background-position: -170px -40px;
     empty-cells: show;
     line-height: 12px;
@@ -763,7 +779,7 @@ h3
 .msg
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -273px -38px;
     empty-cells: show;
     height: 24px;
@@ -773,7 +789,7 @@ h3
 .mystuff
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -243px -35px;
     empty-cells: show;
     height: 28px;
@@ -783,7 +799,7 @@ h3
 .sub
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -299px -4px;
     empty-cells: show;
     height: 24px;
@@ -793,7 +809,7 @@ h3
 .uprate
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -327px -4px;
     empty-cells: show;
     height: 21px;
@@ -803,7 +819,7 @@ h3
 .downrate
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -354px -4px;
     empty-cells: show;
     height: 21px;
@@ -813,7 +829,7 @@ h3
 .close
 {
     background-color: Transparent;
-    background-image: url(         "images/icons.png" );
+    background-image: url(          "images/icons.png" );
     background-position: -209px -10px;
     empty-cells: show;
     line-height: 12px;
@@ -1104,4 +1120,8 @@ input[type=radio], input[type=checkbox]
     color: #497EC1;
     font-size: 12px;
     font-weight: bold;
+}
+.valmsg
+{
+    color:Red;
 }

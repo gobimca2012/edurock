@@ -15,7 +15,7 @@
             <div>
                 <div>
                     <div>
-                        <span class="label">InstitueName</span>
+                        <span class="label">Institue Name</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtInstitueName" runat="server"></asp:TextBox>
@@ -23,7 +23,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">SubjectName</span>
+                        <span class="label">Subject Name</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtSubjectName" runat="server"></asp:TextBox>
@@ -31,7 +31,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">Year</span>
+                        <span class="label">Year</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtYear" runat="server"></asp:TextBox>

@@ -35,7 +35,7 @@ public partial class College_Ajaxer_RegisterInstitute : AjaxPage
     }
     protected override void OnLoad(EventArgs e)
     {
-        FormValidation();
+        //FormValidation();
         IsLogginMandatory = false;
        // new JScripter.TinyMCE(this.Page).Create();
         BindData();

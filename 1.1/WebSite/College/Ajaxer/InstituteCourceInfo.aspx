@@ -18,7 +18,7 @@
             <div>
                 <div>
                     <div>
-                        <span class="label">Select Cource</span>
+                        <span class="label">Select Cource</span><span class="valmsg" >(Required)*</span>
                         <div>
                             In case your cource not available in Cource Dropdown add new Cource using Add new
                             Base Cource
@@ -34,7 +34,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">MetaDescription</span>
+                        <span class="label">Meta Description</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtMetaDescription" runat="server" Height="203px" TextMode="MultiLine"
@@ -43,7 +43,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">MetaKeyword</span>
+                        <span class="label">Meta Keyword</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtMetaKeyword" runat="server" Height="106px" TextMode="MultiLine"
@@ -52,7 +52,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">StartDate</span>
+                        <span class="label">Start Date</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
@@ -60,58 +60,54 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">EndDate</span>
+                        <span class="label">End Date</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div>
+                   
                     <div>
-                        <span class="label">IsPublished</span>
+                        <asp:CheckBox ID="chkIsPublished" runat="server" Text="IsPublished"/>
                     </div>
+                </div>
+                <div>
+                    
                     <div>
-                        <asp:CheckBox ID="chkIsPublished" runat="server" />
+                        <asp:CheckBox ID="chkHomeWorkEnable" runat="server" Text="HomeWork Enable" />
                     </div>
                 </div>
                 <div>
                     <div>
-                        <span class="label">HomeWorkEnable</span>
+                        <span class="label"></span>
                     </div>
                     <div>
-                        <asp:CheckBox ID="chkHomeWorkEnable" runat="server" />
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">AttendanceEnable</span>
-                    </div>
-                    <div>
-                        <asp:CheckBox ID="chkAttendanceEnable" runat="server" />
+                        <asp:CheckBox ID="chkAttendanceEnable" runat="server" Text="Attendance Enable" />
                     </div>
                 </div>
                 <div>
                     <div>
-                        <span class="label">QuestionAnswerEnable</span>
+                        <span class="label"></span>
                     </div>
                     <div>
-                        <asp:CheckBox ID="chkQuestionAnswerEnable" runat="server" />
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">SelfRegistrationEnable</span>
-                    </div>
-                    <div>
-                        <asp:CheckBox ID="chkSelfRegistrationEnable" runat="server" />
+                        <asp:CheckBox ID="chkQuestionAnswerEnable" runat="server" Text="QuestionAnswer Enable" />
                     </div>
                 </div>
                 <div>
                     <div>
-                        <span class="label">IsFree</span>
+                        <span class="label"></span>
                     </div>
                     <div>
-                        <asp:CheckBox ID="chkIsFree" runat="server" />
+                        <asp:CheckBox ID="chkSelfRegistrationEnable" runat="server" Text="SelfRegistration Enable"/>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label"></span>
+                    </div>
+                    <div>
+                        <asp:CheckBox ID="chkIsFree" runat="server" Text="Free Course"/>
                     </div>
                 </div>
                 <div>

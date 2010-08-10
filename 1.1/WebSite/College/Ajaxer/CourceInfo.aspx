@@ -16,7 +16,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">Cource Catagory</span>
+                            <span class="label">Cource Catagory</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:DropDownList ID="ddCatagory" runat="server" Height="22px" Width="451px">
@@ -25,7 +25,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Cource Name</span>
+                            <span class="label">Cource Name</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtCourceName" runat="server" Width="454px"></asp:TextBox>

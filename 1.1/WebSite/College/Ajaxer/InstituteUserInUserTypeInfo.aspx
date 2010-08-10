@@ -35,7 +35,7 @@
         <div class="whitecont">
             <div>
                 <div>
-                    <span class="label">User Role</span>
+                    <span class="label">User Role</span><span class="valmsg" >(Required)*</span>
                 </div>
                 <div>
                     <asp:DropDownList ID="ddRoles" runat="server">

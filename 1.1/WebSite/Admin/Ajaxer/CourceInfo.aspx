@@ -13,16 +13,10 @@
         <fieldset>
             <legend>Cource</legend>
             <table>
+               
                 <tr>
                     <td>
-                        <span class="label">CourceID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">CourceCatagoryID</span>
+                        <span class="label">Cource Catagory</span><span class="valmsg" >(Required)*</span>
                     </td>
                     <td>
                         <asp:DropDownList ID="ddCatagory" runat="server">
@@ -31,7 +25,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <span class="label">CourceName</span>
+                        <span class="label">CourceName</span><span class="valmsg" >(Required)*</span>
                     </td>
                     <td>
                         <asp:TextBox ID="txtCourceName" runat="server"></asp:TextBox>
@@ -45,21 +39,7 @@
                         <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <span class="label">CourceType</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">Modifieddate</span>
-                    </td>
-                    <td>
-                        
-                    </td>
-                </tr>
+               
             </table>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#courceinfo"

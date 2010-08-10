@@ -94,13 +94,13 @@
                                 </div>
                             </div>
                             <div id="messagepn" class="invis">
-                                <div class="cin">
+                                <div class="lmenuitem">
                                     <aspajax:HyperLink ID="lnkNewMessage" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/MessageInfo.aspx">New Message</aspajax:HyperLink>
                                 </div>
-                                <div class="cin">
+                                <div class="lmenuitem">
                                     <aspajax:HyperLink ID="lnkInbox" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/InboxMessageInfoView.aspx">Inbox Message</aspajax:HyperLink>
                                 </div>
-                                <div class="cin">
+                                <div class="lmenuitem">
                                     <aspajax:HyperLink ID="lnkSent" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/SentMessageInfoView.aspx">Sent Message</aspajax:HyperLink>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                     </div>
                 </div>
                 <div style="float: right; width: 80%;">
-                    <div style="margin-right: 10px; border-left: solid 1px #444;">
+                    <div style="margin-right: 9px; border-left: solid 1px #444;">
                         <div class="bksl">
                             <div style="height: 55px;">
                             </div>

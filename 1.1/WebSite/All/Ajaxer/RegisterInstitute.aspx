@@ -20,7 +20,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">Username</span>
+                            <span class="label">Username</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
@@ -28,7 +28,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Password</span>
+                            <span class="label">Password</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
@@ -36,7 +36,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Confirm password</span>
+                            <span class="label">Confirm password</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtConfirm" runat="server"></asp:TextBox>
@@ -44,7 +44,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">User Email </span>
+                            <span class="label">User Email </span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtUseremail" runat="server"></asp:TextBox>
@@ -52,7 +52,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Name</span>
+                            <span class="label">Institute Name</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
@@ -60,7 +60,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Address</span>
+                            <span class="label">Address</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
@@ -68,7 +68,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">CityName</span>
+                            <span class="label">City Name</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtCityName" runat="server"></asp:TextBox>
@@ -76,7 +76,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">StateName</span>
+                            <span class="label">State Name</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtStateName" runat="server"></asp:TextBox>
@@ -84,7 +84,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">CountryName</span>
+                            <span class="label">Country Name</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtCountryName" runat="server"></asp:TextBox>
@@ -92,7 +92,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">TelePhone</span>
+                            <span class="label">TelePhone</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtTelePhone" runat="server"></asp:TextBox>
@@ -108,7 +108,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Institute Email</span>
+                            <span class="label">Institute Email</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
@@ -124,7 +124,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">CollegeType</span>
+                            <span class="label">CollegeType</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:DropDownList ID="ddCollegeType" runat="server">
@@ -137,7 +137,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">ShortName</span>
+                            <span class="label">Short Name</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtShortName" runat="server"></asp:TextBox>

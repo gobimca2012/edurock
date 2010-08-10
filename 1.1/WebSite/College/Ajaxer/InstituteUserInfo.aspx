@@ -15,7 +15,7 @@
         <div id="divMessage" runat="server"></div>
             <div>
                 <div>
-                    <span class="label">Username</span>
+                    <span class="label">Username</span><span class="valmsg" >(Required)*</span>
                 </div>
                 <div>
                     <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
@@ -23,7 +23,7 @@
             </div>
             <div>
                 <div>
-                    <span class="label">Password</span>
+                    <span class="label">Password</span><span class="valmsg" >(Required)*</span>
                 </div>
                 <div>
                     <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
@@ -31,7 +31,7 @@
             </div>
             <div>
                 <div>
-                    <span class="label">First name</span>
+                    <span class="label">First name</span><span class="valmsg" >(Required)*</span>
                 </div>
                 <div>
                     <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
@@ -39,7 +39,7 @@
             </div>
             <div>
                 <div>
-                    <span class="label">Last name</span>
+                    <span class="label">Last name</span><span class="valmsg" >(Required)*</span>
                 </div>
                 <div>
                     <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>

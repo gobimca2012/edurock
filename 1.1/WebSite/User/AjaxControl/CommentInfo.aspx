@@ -15,7 +15,7 @@
             <div>
                 <div>
                     <div>
-                        <span class="label">Enter your Comment</span>
+                        <span class="label">Enter your Comment</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtCommentText" runat="server" TextMode="MultiLine"></asp:TextBox>

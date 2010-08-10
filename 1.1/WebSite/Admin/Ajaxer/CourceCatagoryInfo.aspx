@@ -14,28 +14,16 @@
         <fieldset>
             <legend>CourceCatagory</legend>
             <table>
+               
                 <tr>
                     <td>
-                        <span class="label">CourceCatagoryID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">CatagoryName</span>
+                        <span class="label">CatagoryName</span><span class="valmsg" >(Required)*</span>
                     </td>
                     <td>
                         <asp:TextBox ID="txtCatagoryName" runat="server"></asp:TextBox>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <span class="label">LoginUserID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+              
                 <tr>
                     <td>
                         <span class="label">Description</span>
@@ -44,20 +32,7 @@
                         <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <span class="label">CatagoryType</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">ModifiedDate</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+                
             </table>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#courcecatagory"

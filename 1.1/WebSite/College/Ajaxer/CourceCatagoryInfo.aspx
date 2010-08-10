@@ -20,7 +20,7 @@
                     <div>
                         <div>
                             <div>
-                                <span class="label">Catagory Name</span>
+                                <span class="label">Catagory Name</span><span class="valmsg" >(Required)*</span>
                             </div>
                             <div>
                                 <asp:TextBox ID="txtCatagoryName" runat="server" Width="385px"></asp:TextBox>

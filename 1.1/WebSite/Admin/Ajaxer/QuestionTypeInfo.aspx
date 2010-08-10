@@ -14,35 +14,16 @@
         <fieldset>
             <legend>QuestionType</legend>
             <table>
+               
                 <tr>
                     <td>
-                        <span class="label">QuestionTypeID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">QuestionTypeTnext</span>
+                        <span class="label">Question Type</span> <span class="valmsg" >(Required)*</span>
                     </td>
                     <td>
                         <asp:TextBox ID="txtQuestionTypeTnext" runat="server"></asp:TextBox>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <span class="label">LoginUserID</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="label">ModifiedDate</span>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+               
             </table>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddQuestionType" runat="server" RequestContainner="#QuestionType"
