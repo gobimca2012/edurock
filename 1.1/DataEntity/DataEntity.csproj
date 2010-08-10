@@ -103,6 +103,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>User.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Widget.cs">
+      <DependentUpon>Widget.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Widget.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Widget.dbml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="OnlineExamination.dbml">
@@ -172,6 +180,16 @@
   <ItemGroup>
     <None Include="OrderPayment.dbml.layout">
       <DependentUpon>OrderPayment.dbml</DependentUpon>
+    </None>
+    <None Include="Widget.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Widget.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Widget.dbml.layout">
+      <DependentUpon>Widget.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

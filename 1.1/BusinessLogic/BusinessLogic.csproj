@@ -111,8 +111,22 @@
     <Compile Include="UserController.cs" />
     <Compile Include="UserEducationController.cs" />
     <Compile Include="UserExamController.cs" />
+    <Compile Include="WidgetContainner.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WidgetControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Widget\HTMLWidgetController.cs" />
+    <Compile Include="Widget\WidgetController.cs" />
+    <Compile Include="Widget\WidgetHelper.cs" />
+    <Compile Include="Widget\WidgetPageController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AjaxControl\AjaxControl.csproj">
+      <Project>{BFC86F13-B894-4A2C-AED7-1F9E6940E2DF}</Project>
+      <Name>AjaxControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{DA82B465-2DF2-4D7C-81A9-1E617420A69C}</Project>
       <Name>Common</Name>

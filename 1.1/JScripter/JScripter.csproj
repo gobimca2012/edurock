@@ -60,6 +60,7 @@
     <Compile Include="TinyMCE.cs" />
     <Compile Include="ToolTip.cs" />
     <Compile Include="Validation1.3.cs" />
+    <Compile Include="Widget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

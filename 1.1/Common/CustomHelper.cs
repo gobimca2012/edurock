@@ -7,6 +7,9 @@ namespace Common
 {
     public class CustomHelper
     {
-
+        public static string GetGuidString(Guid ID)
+        {
+            return ID.ToString().Replace("-", "");
+        }
     }
 }

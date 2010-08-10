@@ -53,6 +53,7 @@
     <Compile Include="Payment\DataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingProvider.cs" />
+    <Compile Include="Widget\DataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

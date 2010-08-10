@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using DataAccess;
 using DataEntity;
-using System.Web.UI;
+
 using System.Web;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.IO;
 using Common;
+using System.Web.UI;
 namespace BusinessLogic
 {
     public class CommonController
@@ -136,7 +137,7 @@ namespace BusinessLogic
         }
         public string UploadImage(FileUpload fl)
         {
-            
+
             string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["Repository"] + "/Image/");
             FolderPath += new UserAuthontication().LoggedInUserName + "/";
             if (!Directory.Exists(FolderPath))
@@ -150,7 +151,7 @@ namespace BusinessLogic
         }
         public string UploadAudio(FileUpload fl)
         {
-            
+
             string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["Repository"] + "/Audio/");
             FolderPath += new UserAuthontication().LoggedInUserName + "/";
             if (!Directory.Exists(FolderPath))
