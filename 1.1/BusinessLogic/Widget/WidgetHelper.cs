@@ -15,16 +15,16 @@ namespace BusinessLogic
             get;
             set;
         }
-        public void GetPage(int LoginUserID,PageTypeEnum pagetype)
+        public void GetPage(int LoginUserID, PageTypeEnum pagetype)
         {
-            var data=new WidgetPageController().GetByLoginID(LoginUserID,(int) pagetype);            
+            var data = new WidgetPageController().GetByLoginID(LoginUserID, (int)pagetype);
             if (data.Count > 0)
             {
-                PageID = data[0].PageID;    
+                PageID = data[0].PageID;
             }
             else
             {
-                PageID=Guid.NewGuid();
+                PageID = Guid.NewGuid();
                 new WidgetPageController().Add(PageID, LoginUserID, (int)pagetype, "new Page", DateTime.Now);
             }
             var widgets = new WidgetController().GetbyPageID(PageID);
@@ -33,21 +33,22 @@ namespace BusinessLogic
         }
         public Guid AddNewWidget(Guid PageID, WidgetTypeEnum widgetType)
         {
-            Guid HtmlID=Guid.NewGuid();
+            Guid HtmlID = Guid.NewGuid();
             new HTMLWidgetController().Add(HtmlID, "", DateTime.Now);
 
-            Guid WidgetID=Guid.NewGuid();
-            new WidgetController().Add(WidgetID, PageID, "", (int)widgetType, HtmlID.ToString(), 1,1, DateTime.Now);
+            Guid WidgetID = Guid.NewGuid();
+            int orderdata = new WidgetController().WidgetOrderGetbyPageID(PageID);
+            new WidgetController().Add(WidgetID, PageID, "", (int)widgetType, HtmlID.ToString(), orderdata + 1, 1, DateTime.Now);
             return WidgetID;
         }
     }
     public enum PageTypeEnum
     {
-        ProfilePage=0
+        ProfilePage = 0
     }
     public enum WidgetTypeEnum
     {
-        HTMLWidget=0
+        HTMLWidget = 0
     }
 
 }

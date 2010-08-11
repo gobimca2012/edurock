@@ -15,6 +15,12 @@ namespace JScripter
             _thisPage = thisPage;
 
         }
+        public TinyMCE(Page thisPage,bool IsScriptLoad)
+        {
+            JScripter.IncludeJavascriptFile("tinyeditor", thisPage.ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"), thisPage);
+            _thisPage = thisPage;
+
+        }
         public void Create()
         {
             string Script = @"tinyMCE.init({

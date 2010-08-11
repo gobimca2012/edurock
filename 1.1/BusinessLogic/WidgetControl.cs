@@ -27,30 +27,38 @@ namespace BusinessLogic
             get
             {
                 var data = new WidgetController().GetbyWidgetID(WidgetID);
-                return data[0].WidgetColumn.ToString()+"_"+data[0].WidgetOrder.ToString();
+                return data[0].WidgetColumn.ToString() + "_" + data[0].WidgetOrder.ToString();
             }
         }
 
         protected override void OnInitComplete(EventArgs e)
         {
-            
-            
+
+
             foreach (Control cl in this.Form.Controls)
             {
-                if(cl.ID!=null)
-                cl.ID=WidgetControlPrefix+"_"+cl.ID;
+                if (cl.ID != null)
+                {
+                    cl.ID = WidgetControlPrefix + "_" + cl.ID;
+                    foreach (Control innerCl in cl.Controls)
+                    {
+                        if (innerCl.ID != null)
+                            innerCl.ID = WidgetControlPrefix + "_" + innerCl.ID;
+                    }
+                }
             }
             CloseButtonBuilder();
             base.OnInitComplete(e);
         }
-        
+
         private void CloseButtonBuilder()
         {
             HyperLink lnkClose = (HyperLink)this.Page.FindControl("lnkClose");
             if (lnkClose != null)
             {
-                new JScripter.Widget(this.Page, false).DeleteLinkButton(CustomHelper.GetGuidString(WidgetID),ResolveUrl("") ,lnkClose);
+                new JScripter.Widget(this.Page, false).DeleteLinkButton(CustomHelper.GetGuidString(WidgetID), ResolveUrl(""), lnkClose);
             }
         }
+       
     }
 }
