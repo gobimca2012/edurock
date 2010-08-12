@@ -24,16 +24,12 @@
             </div>
         </div>
         <asp:ListView ID="ListEXM_Answer" runat="server">
+            
             <LayoutTemplate>
                 <table>
                     <thead>
                         <tr>
-                            <td>
-                                EXM_AnswerID
-                            </td>
-                            <td>
-                                EXM_QuestionID
-                            </td>
+                           
                             <td>
                                 Answer
                             </td>
@@ -53,12 +49,7 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr>
-                    <td>
-                        <%#Eval("EXM_AnswerID") %>
-                    </td>
-                    <td>
-                        <%#Eval("EXM_QuestionID") %>
-                    </td>
+                   
                     <td>
                         <%#Eval("Answer") %>
                     </td>

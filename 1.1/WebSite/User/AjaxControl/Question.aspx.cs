@@ -96,6 +96,8 @@ public partial class User_AjaxControl_Question : AjaxPage
         FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
         FullViewSideInfo1.CourceID = (int)data.InstituteCourceID;
         FullViewSideInfo1.SubjectID = (int)data.InstituteSubjectID;
+        FullViewSideInfo1.ContentType = (int)ContentTypeEnum.Question;
+        FullViewSideInfo1.ContentID = data.QuestionID.ToString();
         ControlManager(data.LoginUserID);
 
     }

@@ -21,7 +21,7 @@ public partial class User_AjaxControl_Document : AjaxPage
         {
             //lnkDelete.Visible = true;
             lnkShare.Visible = UserAccess.IsEditablable;
-        
+
         }
         lnkEdit.Visible = UserAccess.IsEditablable;
     }
@@ -102,7 +102,7 @@ public partial class User_AjaxControl_Document : AjaxPage
                 FullViewSideInfo1.LoginUserID = data.LoginUserID;
                 FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
                 FullViewSideInfo1.ContentType = _ContentType;
-                FullViewSideInfo1.ContentID =data.DocumentID.ToString() ;
+                FullViewSideInfo1.ContentID = data.DocumentID.ToString();
             }
             //if (data.ModifiedDate != null)
 

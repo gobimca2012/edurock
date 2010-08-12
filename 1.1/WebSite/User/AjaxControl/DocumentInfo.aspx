@@ -30,7 +30,7 @@
                             <span class="label">Description</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="300px"></asp:TextBox>
                         </div>
                     </div>
                     <div>
@@ -38,7 +38,7 @@
                             <span class="label">Meta Description</span>
                         </div>
                         <div>
-                            <asp:TextBox ID="txtMetaDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txtMetaDescription" runat="server" TextMode="MultiLine" Height="200px"></asp:TextBox>
                         </div>
                     </div>
                     <div>

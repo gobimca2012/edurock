@@ -25,7 +25,7 @@
             <div class="fuleft">
                 <div>
                     <div>
-                        <asp:Image ID="img" runat="server" Visible="false" Width="90%" />
+                        <asp:Image ID="img" runat="server" Visible="false" Width="98%" />
                     </div>
                     <div id="videoPlayer">
                     </div>
@@ -37,11 +37,9 @@
                     </div>
                 </div>
                 <div>
+               
                     <div>
-                        <span class="label">Name</span>
-                    </div>
-                    <div>
-                        <span id="lblName" runat="server" class="btitle"></span>
+                        <h3 id="lblName" runat="server" class="btitle"></h3>
                     </div>
                 </div>
                 <div>

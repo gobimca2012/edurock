@@ -47,9 +47,9 @@
                 <%--  </table>--%>
             </LayoutTemplate>
             <ItemTemplate>
-                <div style="float: left">
+                <div style="float: left;">
                     <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
-                    <div>
+                    <div style="max-height:150px;min-height:150px;">
                         <asp:Image ID="img" runat="server" ImageUrl='<%#ResolveUrl(Eval("Param1").ToString()) %>' Width="100" />
                     </div>
                     <div>
@@ -57,7 +57,7 @@
                         <%#Eval("Title") %>
                     </div>
                     </aspajax:HyperLink>
-                    <div>
+                    <div class="btn" style="width:50px;">
                         <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
                     </div>
                 </div>

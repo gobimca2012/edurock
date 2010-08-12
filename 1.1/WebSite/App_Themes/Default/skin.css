@@ -16,7 +16,7 @@ body
 {
     width: 1000px;
     margin: 0 auto; /*border: solid 1px #848689;*/
-    background: #008000;
+    background: #48C828;
     max-width: 1336px;
 }
 .fpage
@@ -536,6 +536,7 @@ h3
 {
     padding: 0px;
     margin: 0px;
+    color:#497EC1;
 }
 .error
 {

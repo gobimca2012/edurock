@@ -26,10 +26,10 @@ public partial class User_AjaxControl_HomeWork : AjaxPage
 
         }
 
-     
+
         lnkEdit.Visible = UserAccess.IsEditablable;
     }
-   
+
     private void BindData()
     {
         var dataBunch = new HomeWorkController().GetbyHomeWorkID(ID);
@@ -72,15 +72,21 @@ public partial class User_AjaxControl_HomeWork : AjaxPage
 
             if (data.InstituteCourceID != null)
 
-                lblInstituteCourceID.InnerHtml =new InstituteCourceController().GetInstituteCourceName((int)data.InstituteCourceID);
+                lblInstituteCourceID.InnerHtml = new InstituteCourceController().GetInstituteCourceName((int)data.InstituteCourceID);
 
             if (data.InstituteSubjectID != null)
 
-                lblInstituteSubjectID.InnerHtml =new InstituteSubjectController().GetInstituteSubjectName((int)data.InstituteSubjectID);
+                lblInstituteSubjectID.InnerHtml = new InstituteSubjectController().GetInstituteSubjectName((int)data.InstituteSubjectID);
 
             if (data.ModifiedDate != null)
 
-                lblModifiedDate.InnerHtml =CommonController.GetDate(Convert.ToDateTime( data.ModifiedDate.ToString()));
+                lblModifiedDate.InnerHtml = CommonController.GetDate(Convert.ToDateTime(data.ModifiedDate.ToString()));
+            FullViewSideInfo1.LoginUserID = data.LoginUserID;
+            FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
+            FullViewSideInfo1.CourceID = (int)data.InstituteCourceID;
+            FullViewSideInfo1.SubjectID = (int)data.InstituteSubjectID;
+            FullViewSideInfo1.ContentType = (int)ContentTypeEnum.HomeWork;
+            FullViewSideInfo1.ContentID = data.HomeWorkID.ToString();
         }
 
     }

@@ -44,6 +44,8 @@ public partial class User_AjaxControl_Article : AjaxPage
                 FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
                 FullViewSideInfo1.CourceID = data.InstituteCourceID;
                 FullViewSideInfo1.SubjectID = (int)data.InstituteSubjectID;
+                FullViewSideInfo1.ContentID = data.ArticleID.ToString();
+                FullViewSideInfo1.ContentType = (int)ContentTypeEnum.Article;
             }
 
             if (data.Title != null)

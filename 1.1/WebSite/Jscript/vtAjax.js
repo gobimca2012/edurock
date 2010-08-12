@@ -666,10 +666,10 @@ function CreateVideoPlayer(aFile,  VideoContainnerID, PlayerPath)
    try
    {
 
-      var s = new SWFObject(PlayerPath, VideoContainnerID, "580px", "434px", "7");
+      var s = new SWFObject(PlayerPath, VideoContainnerID, "98%", "434px", "7");
       s.addParam("allowfullscreen", "true");
       s.addParam("bufferlength", "7");
-      s.addVariable("width", "580px");
+      s.addVariable("width", "98%");
       s.addVariable("height", "434px");
       s.addVariable("displayheight", "300");
       s.addVariable("file", aFile);

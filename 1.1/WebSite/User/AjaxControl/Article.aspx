@@ -11,6 +11,9 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
+            <div style="float: left">
+                Article 
+            </div>
             <div style="float: right">
                 <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox"><div class="btn">Edit</div></aspajax:HyperLink>
             </div>
@@ -23,10 +26,8 @@
             <div class="fuleft">
                 <div>
                     <div>
-                        <span class="label">Title</span>
-                    </div>
-                    <div>
-                        <span id="lblTitle" runat="server"></span>
+                        <h3 id="lblTitle" runat="server">
+                        </h3>
                     </div>
                 </div>
                 <div>
@@ -53,7 +54,7 @@
                         <span id="lblTag" runat="server"></span>
                     </div>
                 </div>
-                <div>
+                <div style="display: none">
                     <div>
                         <span class="label">Rating</span>
                     </div>

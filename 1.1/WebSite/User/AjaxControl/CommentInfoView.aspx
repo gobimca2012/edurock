@@ -18,17 +18,20 @@
                     </div>
                 </LayoutTemplate>
                 <ItemTemplate>
-                    <div style="float: left;padding:2px;width:70px">
+                    <div style="float: left; padding: 2px; width: 70px">
                         <uc1:UserBox ID="UserBox1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>' />
                     </div>
-                    <div style="float: left;padding:2px;width:75%">
+                    <div style="float: left; padding: 2px; width: 65%">
                         <%#Eval("CommentText") %>
                     </div>
-                    <div style="float: left;padding:2px;width:65px">
-                        <%#Eval("ModifiedDate") %>
-                    </div>
-                    <div style="float: left;padding:2px">
-                        <div class="btn"> <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("CommentID").ToString(), "#comment", "#comment")%></div>
+                    <div style="float: left; padding: 2px; ">
+                        <div>
+                            <div class="btn">
+                                <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("CommentID").ToString(), "#comment", "#comment")%></div>
+                        </div>
+                        <div>
+                            <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("ModifiedDate").ToString())) %>
+                        </div>
                     </div>
                     <div style="clear: both">
                     </div>

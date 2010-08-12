@@ -73,6 +73,8 @@ public partial class User_AjaxControl_Exam : AjaxPage
 
                 FullViewSideInfo1.LoginUserID = data.LoginUserID;
                 FullViewSideInfo1.ModifiedDate = data.ModifiedDate;
+                FullViewSideInfo1.ContentID = data.ExamID.ToString();
+                FullViewSideInfo1.ContentType = (int)ContentTypeEnum.Exam;
                 ControlManager(data.LoginUserID);
             }
 
