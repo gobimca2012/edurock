@@ -33,12 +33,12 @@ namespace DataEntity
     partial void InsertHTMLWidget(HTMLWidget instance);
     partial void UpdateHTMLWidget(HTMLWidget instance);
     partial void DeleteHTMLWidget(HTMLWidget instance);
-    partial void InsertWidgetPage(WidgetPage instance);
-    partial void UpdateWidgetPage(WidgetPage instance);
-    partial void DeleteWidgetPage(WidgetPage instance);
     partial void InsertWidget(Widget instance);
     partial void UpdateWidget(Widget instance);
     partial void DeleteWidget(Widget instance);
+    partial void InsertWidgetPage(WidgetPage instance);
+    partial void UpdateWidgetPage(WidgetPage instance);
+    partial void DeleteWidgetPage(WidgetPage instance);
     #endregion
 		
 		public WidgetDataContext(string connection) : 
@@ -73,19 +73,19 @@ namespace DataEntity
 			}
 		}
 		
-		public System.Data.Linq.Table<WidgetPage> WidgetPages
-		{
-			get
-			{
-				return this.GetTable<WidgetPage>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Widget> Widgets
 		{
 			get
 			{
 				return this.GetTable<Widget>();
+			}
+		}
+		
+		public System.Data.Linq.Table<WidgetPage> WidgetPages
+		{
+			get
+			{
+				return this.GetTable<WidgetPage>();
 			}
 		}
 	}
@@ -197,192 +197,6 @@ namespace DataEntity
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[Table(Name="dbo.WidgetPage")]
-	public partial class WidgetPage : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _PageID;
-		
-		private int _LoginUserID;
-		
-		private int _PageType;
-		
-		private string _Title;
-		
-		private System.DateTime _ModifiedDate;
-		
-		private EntitySet<Widget> _Widgets;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPageIDChanging(System.Guid value);
-    partial void OnPageIDChanged();
-    partial void OnLoginUserIDChanging(int value);
-    partial void OnLoginUserIDChanged();
-    partial void OnPageTypeChanging(int value);
-    partial void OnPageTypeChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public WidgetPage()
-		{
-			this._Widgets = new EntitySet<Widget>(new Action<Widget>(this.attach_Widgets), new Action<Widget>(this.detach_Widgets));
-			OnCreated();
-		}
-		
-		[Column(Storage="_PageID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid PageID
-		{
-			get
-			{
-				return this._PageID;
-			}
-			set
-			{
-				if ((this._PageID != value))
-				{
-					this.OnPageIDChanging(value);
-					this.SendPropertyChanging();
-					this._PageID = value;
-					this.SendPropertyChanged("PageID");
-					this.OnPageIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
-		public int LoginUserID
-		{
-			get
-			{
-				return this._LoginUserID;
-			}
-			set
-			{
-				if ((this._LoginUserID != value))
-				{
-					this.OnLoginUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._LoginUserID = value;
-					this.SendPropertyChanged("LoginUserID");
-					this.OnLoginUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PageType", DbType="Int NOT NULL")]
-		public int PageType
-		{
-			get
-			{
-				return this._PageType;
-			}
-			set
-			{
-				if ((this._PageType != value))
-				{
-					this.OnPageTypeChanging(value);
-					this.SendPropertyChanging();
-					this._PageType = value;
-					this.SendPropertyChanged("PageType");
-					this.OnPageTypeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[Association(Name="WidgetPage_Widget", Storage="_Widgets", OtherKey="PageID")]
-		public EntitySet<Widget> Widgets
-		{
-			get
-			{
-				return this._Widgets;
-			}
-			set
-			{
-				this._Widgets.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Widgets(Widget entity)
-		{
-			this.SendPropertyChanging();
-			entity.WidgetPage = this;
-		}
-		
-		private void detach_Widgets(Widget entity)
-		{
-			this.SendPropertyChanging();
-			entity.WidgetPage = null;
 		}
 	}
 	
@@ -654,6 +468,216 @@ namespace DataEntity
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="dbo.WidgetPage")]
+	public partial class WidgetPage : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _PageID;
+		
+		private int _LoginUserID;
+		
+		private int _PageType;
+		
+		private string _ContentTypeID;
+		
+		private string _Title;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntitySet<Widget> _Widgets;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPageIDChanging(System.Guid value);
+    partial void OnPageIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnPageTypeChanging(int value);
+    partial void OnPageTypeChanged();
+    partial void OnContentTypeIDChanging(string value);
+    partial void OnContentTypeIDChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public WidgetPage()
+		{
+			this._Widgets = new EntitySet<Widget>(new Action<Widget>(this.attach_Widgets), new Action<Widget>(this.detach_Widgets));
+			OnCreated();
+		}
+		
+		[Column(Storage="_PageID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid PageID
+		{
+			get
+			{
+				return this._PageID;
+			}
+			set
+			{
+				if ((this._PageID != value))
+				{
+					this.OnPageIDChanging(value);
+					this.SendPropertyChanging();
+					this._PageID = value;
+					this.SendPropertyChanged("PageID");
+					this.OnPageIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PageType", DbType="Int NOT NULL")]
+		public int PageType
+		{
+			get
+			{
+				return this._PageType;
+			}
+			set
+			{
+				if ((this._PageType != value))
+				{
+					this.OnPageTypeChanging(value);
+					this.SendPropertyChanging();
+					this._PageType = value;
+					this.SendPropertyChanged("PageType");
+					this.OnPageTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ContentTypeID", DbType="VarChar(50)")]
+		public string ContentTypeID
+		{
+			get
+			{
+				return this._ContentTypeID;
+			}
+			set
+			{
+				if ((this._ContentTypeID != value))
+				{
+					this.OnContentTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._ContentTypeID = value;
+					this.SendPropertyChanged("ContentTypeID");
+					this.OnContentTypeIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Title", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="WidgetPage_Widget", Storage="_Widgets", OtherKey="PageID")]
+		public EntitySet<Widget> Widgets
+		{
+			get
+			{
+				return this._Widgets;
+			}
+			set
+			{
+				this._Widgets.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Widgets(Widget entity)
+		{
+			this.SendPropertyChanging();
+			entity.WidgetPage = this;
+		}
+		
+		private void detach_Widgets(Widget entity)
+		{
+			this.SendPropertyChanging();
+			entity.WidgetPage = null;
 		}
 	}
 }

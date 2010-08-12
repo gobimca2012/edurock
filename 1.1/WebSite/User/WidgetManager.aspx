@@ -8,10 +8,22 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <div>
-            <aspajax:AjaxLinkButton ID="lnkHtml" runat="server" EnableValidation="False" RequestContainner="#widgetmanager" ResponseContainner="#widgetmanager"
-                EnableViewState="False" Increment="False" onajaxclick="AddAjaxWidget" 
-                Pagger="False"><div class="btn">Html</div></aspajax:AjaxLinkButton>
+        <div style="float: left">
+            <aspajax:AjaxLinkButton ID="lnkHtml" runat="server" EnableValidation="False" RequestContainner="#widgetmanager"
+                ResponseContainner="#widgetmanager" EnableViewState="False" Increment="False"
+                OnAjaxClick="AddAjaxWidget" Pagger="False"><div class="btn">Html</div></aspajax:AjaxLinkButton>
+        </div>
+        <div style="float: left">
+            <aspajax:AjaxLinkButton ID="lnkContent" runat="server" EnableValidation="False" RequestContainner="#widgetmanager"
+                ResponseContainner="#widgetmanager" EnableViewState="False" Increment="False"
+                OnAjaxClick="AddContentWidget" Pagger="False"><div class="btn">Content</div></aspajax:AjaxLinkButton>
+        </div>
+        <div style="float: left">
+            <aspajax:AjaxLinkButton ID="lnkProfile" runat="server" EnableValidation="False" RequestContainner="#widgetmanager"
+                ResponseContainner="#widgetmanager" EnableViewState="False" Increment="False"
+                OnAjaxClick="AddProfileWidget" Pagger="False"><div class="btn">Content</div></aspajax:AjaxLinkButton>
+        </div>
+        <div class="clear">
         </div>
     </div>
     </form>

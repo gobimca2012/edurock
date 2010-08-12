@@ -26,6 +26,10 @@ public partial class User_WidgetPage : WidgetContainner
         {
             if(wd.ContentType==(int)WidgetTypeEnum.HTMLWidget)
                 objWidgetScript.AddWidget("#widgetbox", CustomHelper.GetGuidString(wd.WidgetID), ResolveUrl("~/User/Widget/html.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
+            if (wd.ContentType == (int)WidgetTypeEnum.Content)
+                objWidgetScript.AddWidget("#widgetbox", CustomHelper.GetGuidString(wd.WidgetID), ResolveUrl("~/User/Widget/AllContent.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
+            if (wd.ContentType == (int)WidgetTypeEnum.UserInfo)
+                objWidgetScript.AddWidget("#widgetbox", CustomHelper.GetGuidString(wd.WidgetID), ResolveUrl("~/User/Widget/PublicUserInfoView.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
         }
     }
 }

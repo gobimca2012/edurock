@@ -7,27 +7,33 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <h3>
-            
-            Rohan Naik</h3>
-        <asp:HyperLink ID="lnkClose" runat="server">Close</asp:HyperLink>
-        <div id="divPreviewBox" runat="server">
-            <div id="divHtml" runat="server">
+    <div class="contentbox">
+        <div class="clear gray">
+            <div style="float: left">
+                <h3>
+                    Rohan Naik</h3>
             </div>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkEdit" runat="server" EnableValidation="False" 
-                    EnableViewState="False" Increment="False" onajaxclick="AjaxEdit" Pagger="False"><div class="btn">Edit</div></aspajax:AjaxLinkButton>
+            <div style="float: right">
+                <asp:HyperLink ID="lnkClose" runat="server"><div class="btn"> Close</div></asp:HyperLink>
             </div>
         </div>
-        <div id="divEditBox" runat="server">
-            <div>
-                <asp:TextBox ID="txtEditor" runat="server" TextMode="MultiLine" Height="300" CssClass="mceEditor"></asp:TextBox>
+        <div class="clear ">
+            <div id="divPreviewBox" runat="server">
+                <div id="divHtml" runat="server">
+                </div>
+                <div>
+                    <aspajax:AjaxLinkButton ID="lnkEdit" runat="server" EnableValidation="False" EnableViewState="False"
+                        Increment="False" OnAjaxClick="AjaxEdit" Pagger="False"><div class="btn">Edit</div></aspajax:AjaxLinkButton>
+                </div>
             </div>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" EnableValidation="False" 
-                    EnableViewState="False" Increment="False" onajaxclick="AjaxUpdate" 
-                    Pagger="False"><div class="btn">Update</div></aspajax:AjaxLinkButton>
+            <div id="divEditBox" runat="server">
+                <div>
+                    <asp:TextBox ID="txtEditor" runat="server" TextMode="MultiLine" Height="300" CssClass="mceEditor"></asp:TextBox>
+                </div>
+                <div>
+                    <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" EnableValidation="False" EnableViewState="False"
+                        Increment="False" OnAjaxClick="AjaxUpdate" Pagger="False"><div class="btn">Update</div></aspajax:AjaxLinkButton>
+                </div>
             </div>
         </div>
     </div>

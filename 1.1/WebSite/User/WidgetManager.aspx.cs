@@ -33,8 +33,20 @@ public partial class User_WidgetManager : AjaxPage
     }
     protected void AddAjaxWidget(object sender, AjaxControl.AjaxEventArg e)
     {
-       Guid WidgetID= new WidgetHelper().AddNewWidget(PageID, WidgetTypeEnum.HTMLWidget);
+       Guid WidgetID= new WidgetHelper().AddHTMLWidget(PageID, WidgetTypeEnum.HTMLWidget);
         JScripter.Widget widgetScriper = new JScripter.Widget(this.Page, false);
         widgetScriper.AddWidget("#widgetbox", CustomHelper.GetGuidString(WidgetID), ResolveUrl("~/User/Widget/html.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID));
+    }
+    protected void AddContentWidget(object sender, AjaxControl.AjaxEventArg e)
+    {
+        Guid WidgetID = new WidgetHelper().AddWidget(PageID, WidgetTypeEnum.Content,new UserAuthontication().LoggedInUserID.ToString());
+        JScripter.Widget widgetScriper = new JScripter.Widget(this.Page, false);
+        widgetScriper.AddWidget("#widgetbox", CustomHelper.GetGuidString(WidgetID), ResolveUrl("~/User/Widget/AllContent.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID));
+    }
+    protected void AddProfileWidget(object sender, AjaxControl.AjaxEventArg e)
+    {
+        Guid WidgetID = new WidgetHelper().AddWidget(PageID, WidgetTypeEnum.UserInfo, new UserAuthontication().LoggedInUserID.ToString(),"ProfileInfo");
+        JScripter.Widget widgetScriper = new JScripter.Widget(this.Page, false);
+        widgetScriper.AddWidget("#widgetbox", CustomHelper.GetGuidString(WidgetID), ResolveUrl("~/User/Widget/PublicUserInfoView.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID));
     }
 }
