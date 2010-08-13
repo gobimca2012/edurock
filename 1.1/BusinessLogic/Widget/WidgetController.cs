@@ -571,6 +571,24 @@ namespace BusinessLogic
         }
         #endregion
         #region Widget
+        public bool UpdateByWidgetID(Guid WidgetID, int WidgetOrder)
+        {
+
+            try
+            {
+                new DataProvider().WidgetUpdateByWidgetID(WidgetID, WidgetOrder);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false;
+            }
+        }
         public int WidgetOrderGetbyPageID(Guid PageID)
         {
             try

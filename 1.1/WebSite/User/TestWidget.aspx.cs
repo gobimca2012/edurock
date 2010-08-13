@@ -16,9 +16,10 @@ public partial class User_TestWidget : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        objLoader.LoadPage("#widi", ResolveUrl("~/User/WidgetPage.aspx"));
+        objLoader.LoadPage("#contentBox", ResolveUrl("~/User/WidgetPage.aspx"));
         JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"), this.Page);
         new JScripter.Widget(this.Page, true);
+        new JScripter.DragNDrop(this.Page, true);
 
     }
 }

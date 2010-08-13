@@ -9,8 +9,14 @@ using System.Web.UI.WebControls;
 
 namespace BusinessLogic
 {
+     
     public class WidgetControl : AjaxPage
     {
+        protected string GetWidgetBoxID(Guid WidgetID)
+        {
+            string ID = string.Format("foo_{0}", WidgetID.ToString().Replace("-", ""));
+            return ID;
+        }
         protected Guid WidgetID
         {
             get

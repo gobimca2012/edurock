@@ -16,11 +16,11 @@ using DataEntity;
 
 public partial class User_Widget_html : WidgetControl
 {
-    private HTMLWidget Data
+    private GetHTMLWidgetByWidgetIDResult Data
     {
         get
         {
-            var data = new HTMLWidgetController().GetbyWidgetID(WidgetID);
+            var data = new HTMLWidgetController().GetHTMLWidgetByWidgetID(WidgetID);
             if (data.Count > 0)
             {
                 return data[0];
@@ -38,11 +38,12 @@ public partial class User_Widget_html : WidgetControl
 
 
     }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         MakeLinks();
         new JScripter.TinyMCE(this.Page).Create();
-        new JScripter.Widget(this.Page, false).DeleteLinkButton(CustomHelper.GetGuidString(WidgetID), ResolveUrl("~/User/Widget/WidgetAction.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID), lnkClose);
+        new JScripter.Widget(this.Page, false).DeleteLinkButton(GetWidgetBoxID(WidgetID), ResolveUrl("~/User/Widget/WidgetAction.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID), lnkClose);
         if (!IsAjaxPostBack)
         {
             if (Data == null)
@@ -58,7 +59,11 @@ public partial class User_Widget_html : WidgetControl
     private void BindPriviewData()
     {
         if (Data != null)
+        {
             divHtml.InnerHtml = Data.HTMLDATA;
+            Widgetheader.InnerText = Data.Title;
+            
+        }
         divEditBox.Visible = false;
     }
     private void BindEditData()
@@ -82,7 +87,8 @@ public partial class User_Widget_html : WidgetControl
         if (Data!= null)
         {
             string htmldata = HtmlHelper.ControlValue(txtEditor.ClientID);
-            new HTMLWidgetController().UpdateByHTMLWidgetID(Data.HTMLWidgetID, htmldata, DateTime.Now);
+            string Title = HtmlHelper.ControlValue(txtHeader.ClientID);
+            new HTMLWidgetController().UpdateByHTMLWidgetID(Data.HTMLWidgetID, htmldata,Title,DateTime.Now);
         }
         BindPriviewData();
     }
@@ -93,9 +99,9 @@ public partial class User_Widget_html : WidgetControl
     }
     private void MakeLinks()
     {
-        lnkEdit.RequestContainner = "#" + CustomHelper.GetGuidString(WidgetID);
-        lnkEdit.ResponseContainner = "#" + CustomHelper.GetGuidString(WidgetID);
-        lnkUpdate.RequestContainner = "#" + CustomHelper.GetGuidString(WidgetID);
-        lnkUpdate.ResponseContainner = "#" + CustomHelper.GetGuidString(WidgetID);
+        lnkEdit.RequestContainner = "#" + GetWidgetBoxID(WidgetID);
+        lnkEdit.ResponseContainner = "#" + GetWidgetBoxID(WidgetID);
+        lnkUpdate.RequestContainner = "#" + GetWidgetBoxID(WidgetID);
+        lnkUpdate.ResponseContainner = "#" + GetWidgetBoxID(WidgetID);
     }
 }

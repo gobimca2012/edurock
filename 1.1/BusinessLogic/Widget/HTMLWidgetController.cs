@@ -301,6 +301,30 @@ namespace BusinessLogic
         }
         #endregion
         #region HTMLWidget
+        public List<GetHTMLWidgetByWidgetIDResult> GetHTMLWidgetByWidgetID(Guid WidgetID)
+        {
+            try
+            {
+
+                return new DataProvider().GetHTMLWidgetByWidgetID(WidgetID);
+            }
+            catch
+            {
+                return new List<GetHTMLWidgetByWidgetIDResult>();
+            }
+        }
+        public List<GetHTMLWidgetByWidgetIDResult> GetHTMLWidgetByWidgetID(Guid WidgetID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetHTMLWidgetByWidgetID(WidgetID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetHTMLWidgetByWidgetIDResult>();
+            }
+        }
         public List<HTMLWidget> GetbyWidgetID(Guid WidgetID)
         {
             try
@@ -316,6 +340,24 @@ namespace BusinessLogic
                     Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
                 }
                 return new List<HTMLWidget>();
+            }
+        }
+        public bool UpdateByHTMLWidgetID(Guid HTMLWidgetID, string HTMLDATA,string Title, DateTime ModifiedDate)
+        {
+
+            try
+            {
+                new DataProvider().HTMLWidgetUpdateByHTMLWidgetID(HTMLWidgetID, HTMLDATA,Title, ModifiedDate);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false;
             }
         }
         #endregion

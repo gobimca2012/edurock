@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AjaxValidation.cs" />
     <Compile Include="DatePicker.cs" />
+    <Compile Include="DragNDrop.cs" />
     <Compile Include="Effect.cs" />
     <Compile Include="FileUploader.cs" />
     <Compile Include="Jquery.cs" />

@@ -8,9 +8,15 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <asp:HyperLink ID="lnkProfile" runat="server"><div class="btn">Back to Priview</div></asp:HyperLink>
+        
         <div id="widgetmanager">
         </div>
-        <div id="widgetbox">
+        <div id="widgetLeft" style="float: left; width: 60%">
+        </div>
+        <div id="widgetright" style="float: right; width: 40%">
+        </div>
+        <div class="clear">
         </div>
     </div>
     </form>

@@ -415,7 +415,7 @@ namespace DataAccess.WidgetProvider
 
         #endregion
         #region CustomWidgetPage
-        public List<WidgetPage> WidgetPageGetbyLoginUserID(int LoginUserID,int PageType)
+        public List<WidgetPage> WidgetPageGetbyLoginUserID(int LoginUserID, int PageType, string ContentTypeID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             WidgetDataContext db = new WidgetDataContext();
@@ -424,9 +424,27 @@ namespace DataAccess.WidgetProvider
 
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data = (from p in db.WidgetPages where p.LoginUserID == LoginUserID && p.PageType==PageType select p).ToList();
+            var data = (from p in db.WidgetPages where p.LoginUserID == LoginUserID && p.PageType == PageType && p.ContentTypeID == ContentTypeID select p).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;
+
+        }
+        public List<GetHTMLWidgetByWidgetIDResult> GetHTMLWidgetByWidgetID(Guid WidgetID)
+        {
+
+            WidgetDataContext db = new WidgetDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetHTMLWidgetByWidgetID(WidgetID).ToList();
+
+        }
+        public List<GetHTMLWidgetByWidgetIDResult> GetHTMLWidgetByWidgetID(Guid WidgetID, int PageSize, int PageNumber)
+        {
+
+            WidgetDataContext db = new WidgetDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetHTMLWidgetByWidgetID(WidgetID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
         #endregion
@@ -940,6 +958,22 @@ namespace DataAccess.WidgetProvider
 
 
         #region CustomWidget
+        public void WidgetUpdateByWidgetID(Guid WidgetID, int WidgetOrder)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            WidgetDataContext db = new WidgetDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.DeferredLoadingEnabled = false;
+            Widget data = db.Widgets.Single(p => p.WidgetID == WidgetID);
+          
+            data.WidgetOrder = WidgetOrder;
+            data.ModifiedDate = DateTime.Now;
+
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
         #endregion
 
 
@@ -1189,6 +1223,24 @@ namespace DataAccess.WidgetProvider
 
         #endregion
         #region CustomHTMLWidget
+        public void HTMLWidgetUpdateByHTMLWidgetID(Guid HTMLWidgetID, string HTMLDATA,string Title, DateTime ModifiedDate)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            WidgetDataContext db = new WidgetDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+            db.DeferredLoadingEnabled = false;
+            HTMLWidget data = db.HTMLWidgets.Single(p => p.HTMLWidgetID == HTMLWidgetID);
+            data.HTMLDATA = HTMLDATA;
+            data.ModifiedDate = ModifiedDate;
+
+            Widget WidgetData = db.Widgets.Single(p => p.ContentID == HTMLWidgetID.ToString());
+            WidgetData.Title = Title;
+            
+
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
         public List<HTMLWidget> HTMLWidgetGetbyWidgetID(Guid WidgetID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }

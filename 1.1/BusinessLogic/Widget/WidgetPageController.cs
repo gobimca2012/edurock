@@ -466,11 +466,11 @@ namespace BusinessLogic
 
 
         #region Custom
-         public List<WidgetPage> GetbyLoginUserID(int LoginUserID,int PageType)
+        public List<WidgetPage> GetbyLoginUserID(int LoginUserID, int PageType, string ContentTypeID)
         {
              try
             {
-                var data=new DataProvider().WidgetPageGetbyLoginUserID( LoginUserID, PageType);
+                var data = new DataProvider().WidgetPageGetbyLoginUserID(LoginUserID, PageType, ContentTypeID);
                 return data;
             }
             catch (Exception ex)

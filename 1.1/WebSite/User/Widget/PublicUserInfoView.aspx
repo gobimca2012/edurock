@@ -15,7 +15,7 @@
                     Rohan Naik</h3>
             </div>
             <div style="float: right">
-                <asp:HyperLink ID="lnkClose" runat="server"><div class="btn"> Close</div></asp:HyperLink>
+                <asp:HyperLink ID="lnkClose" runat="server"><div class="close"></div></asp:HyperLink>
             </div>
         </div>
         <div id="User" class="whitecont">

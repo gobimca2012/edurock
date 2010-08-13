@@ -31,4 +31,15 @@
       <Association Name="WidgetPage_Widget" Member="Widgets" OtherKey="PageID" Type="Widget" />
     </Type>
   </Table>
+  <Function Name="dbo.GetHTMLWidgetByWidgetID" Method="GetHTMLWidgetByWidgetID">
+    <Parameter Name="WidgetID" Parameter="widgetID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="GetHTMLWidgetByWidgetIDResult">
+      <Column Name="Title" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="HTMLWidgetID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="HTMLDATA" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ContentID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="WidgetID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

@@ -67,11 +67,11 @@ public partial class User_AjaxControl_Lander : AjaxPage
         lnkExam.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
         lnkHomeWork.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWorkInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
         lnkImage.NavigateUrl = ResolveUrl("~/User/AjaxControl/ImageInfoView.aspx") + "?dtype=" + (int)ContentTypeEnum.Image + "&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
-        lnkDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfoView.aspx") + "?dtype="+(int)ContentTypeEnum.Document+"&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
-        lnkAudio.NavigateUrl = ResolveUrl("~/User/AjaxControl/AudioInfoView.aspx") + "?dtype="+(int)ContentTypeEnum.Audio+"&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
-        lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype="+(int)ContentTypeEnum.Video+"&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
+        lnkDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfoView.aspx") + "?dtype=" + (int)ContentTypeEnum.Document + "&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
+        lnkAudio.NavigateUrl = ResolveUrl("~/User/AjaxControl/AudioInfoView.aspx") + "?dtype=" + (int)ContentTypeEnum.Audio + "&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
+        lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=" + (int)ContentTypeEnum.Video + "&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
         lnkUsers.NavigateUrl = ResolveUrl("~/User/AjaxControl/ICUserInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
-      
+        if (Request.Params["ptype"] == null)
         {
             new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString());
         }
@@ -80,11 +80,11 @@ public partial class User_AjaxControl_Lander : AjaxPage
         {
             string CourceName = new InstituteCourceController().GetInstituteCourceName(ICID);
             var data = new UserController().GetbyLoginUserID(LoginUserID);
-            Script = string.Format("$('#headingBox').html('{0}');",">> "+ CourceName+" >> "+data[0].FirstName+" "+data[0].LastName);
+            Script = string.Format("$('#headingBox').html('{0}');", ">> " + CourceName + " >> " + data[0].FirstName + " " + data[0].LastName);
         }
-        else if (ICID>0)
+        else if (ICID > 0)
         {
-            string CourceName=new InstituteCourceController().GetInstituteCourceName(ICID);
+            string CourceName = new InstituteCourceController().GetInstituteCourceName(ICID);
             Script = string.Format("$('#headingBox').html('{0}');", ">> " + CourceName);
         }
         else if (LoginUserID > 0)
@@ -97,7 +97,7 @@ public partial class User_AjaxControl_Lander : AjaxPage
             var data = new InstituteController().GetbyInstituteID(new UserAuthontication().UserInstituteID);
             Script = string.Format("$('#headingBox').html('{0}');", ">> " + data[0].Name);
         }
-        
+
         objLoader.InjectScript(Script, this.Page);
     }
 }

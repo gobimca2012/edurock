@@ -7,24 +7,42 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <div style="float: left">
-            <aspajax:AjaxLinkButton ID="lnkHtml" runat="server" EnableValidation="False" RequestContainner="#widgetmanager"
-                ResponseContainner="#widgetmanager" EnableViewState="False" Increment="False"
-                OnAjaxClick="AddAjaxWidget" Pagger="False"><div class="btn">Html</div></aspajax:AjaxLinkButton>
-        </div>
-        <div style="float: left">
-            <aspajax:AjaxLinkButton ID="lnkContent" runat="server" EnableValidation="False" RequestContainner="#widgetmanager"
-                ResponseContainner="#widgetmanager" EnableViewState="False" Increment="False"
-                OnAjaxClick="AddContentWidget" Pagger="False"><div class="btn">Content</div></aspajax:AjaxLinkButton>
-        </div>
-        <div style="float: left">
-            <aspajax:AjaxLinkButton ID="lnkProfile" runat="server" EnableValidation="False" RequestContainner="#widgetmanager"
-                ResponseContainner="#widgetmanager" EnableViewState="False" Increment="False"
-                OnAjaxClick="AddProfileWidget" Pagger="False"><div class="btn">Content</div></aspajax:AjaxLinkButton>
-        </div>
-        <div class="clear">
-        </div>
+    <div style="float: left; width: 50%">
+        <fieldset>
+            <legend>Left Column</legend>
+            <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkHtml" runat="server" EnableValidation="False" RequestContainner="#widgetmanager"
+                    ResponseContainner="#widgetmanager" EnableViewState="False" Increment="False"
+                    OnAjaxClick="AddAjaxWidget" Pagger="False"><div class="btn">Html</div></aspajax:AjaxLinkButton>
+            </div>
+            <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkContent" runat="server" EnableValidation="False" RequestContainner="#widgetmanager"
+                    ResponseContainner="#widgetmanager" EnableViewState="False" Increment="False"
+                    OnAjaxClick="AddContentWidget" Pagger="False"><div class="btn">Content</div></aspajax:AjaxLinkButton>
+            </div>
+            <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkProfile" runat="server" EnableValidation="False" RequestContainner="#widgetmanager"
+                    ResponseContainner="#widgetmanager" EnableViewState="False" Increment="False"
+                    OnAjaxClick="AddProfileWidget" Pagger="False"><div class="btn">ProfileInfo</div></aspajax:AjaxLinkButton>
+            </div>
+            <div class="clear">
+            </div>
+        </fieldset>
+    </div>
+    <div style="float: left; width: 50%">
+        <fieldset>
+            <legend>Right Column</legend>
+            <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkRightHtml" runat="server" EnableValidation="False"
+                    RequestContainner="#widgetmanager" ResponseContainner="#widgetmanager" EnableViewState="False"
+                    Increment="False" OnAjaxClick="AddRightHtml" Pagger="False"><div class="btn">Html</div></aspajax:AjaxLinkButton>
+            </div>
+      
+            <div class="clear">
+            </div>
+        </fieldset>
+    </div>
+    <div class="clear">
     </div>
     </form>
 </body>

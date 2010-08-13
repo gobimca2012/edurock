@@ -29,8 +29,6 @@ namespace JScripter
 		}
         public void DeleteLinkButton(string WidgetID, string url, HyperLink lnk)
         {
-
-
             string Injectscript = string.Format("$('#{0}').DeleteWidget('{1}');", WidgetID, url);
             lnk.Attributes["href"] = "javascript:void(0);";
             lnk.Attributes["onclick"] = Injectscript;

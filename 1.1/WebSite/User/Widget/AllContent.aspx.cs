@@ -79,7 +79,7 @@ public partial class User_AjaxControl_AllContent : WidgetControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        new JScripter.Widget(this.Page, false).DeleteLinkButton(CustomHelper.GetGuidString(WidgetID), ResolveUrl("~/User/Widget/WidgetAction.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID), lnkClose);
+        new JScripter.Widget(this.Page, false).DeleteLinkButton(GetWidgetBoxID(WidgetID), ResolveUrl("~/User/Widget/WidgetAction.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID), lnkClose);
         JScripter.DatePicker objdate = new JScripter.DatePicker(this.Page);
         objdate.DatePickerTextBox(txtEnddate);
         objdate.DatePickerTextBox(txtstartDate);
