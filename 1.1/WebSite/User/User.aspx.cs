@@ -16,12 +16,12 @@ public partial class User_DashBoard : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //JScripter.JScripter.IncludeJavascriptFile("file", ResolveUrl("~/Jscript/jquery.iframe-post-form.js"), this.Page);
+        new JScripter.Widget(this.Page, true);
+        new JScripter.DragNDrop(this.Page, true);
         objLoader.LoadPage("#lander", ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?usid=" + Request.Params["usid"] + "&ptype=u");
-    //    objLoader.LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx"));
-        //objLoader.LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/PublicUserInfoView.aspx")+"?usid="+Request.Params["usid"]);
         JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"), this.Page);
         objLoader.LoadPage("#contentBox", ResolveUrl("~/User/WidgetPage.aspx") + "?usid=" + Request.Params["usid"] );
+
 
     }
 }

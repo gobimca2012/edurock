@@ -20,23 +20,43 @@ public partial class User_WidgetPage : WidgetContainner
     {
         get
         {
-            return Convert.ToInt32(Request.Params["usid"]);
+            if (Request.Params["usid"] != null)
+                return Convert.ToInt32(Request.Params["usid"]);
+            else
+                return new UserAuthontication().LoggedInUserID;
+        }
+    }
+    private void CreateControls(Guid pageID)
+    {
+        if (IsEditable)
+        {
+            JScripter.DragNDrop DragNDropScripter = new JScripter.DragNDrop(this.Page, false);
+            DragNDropScripter.MakeColumnDragNDrop(LeftColumnID, "dl", ResolveUrl("~/User/Action.aspx"));
+            DragNDropScripter.MakeColumnDragNDrop(RightColumnID, "dl", ResolveUrl("~/User/Action.aspx"));
+            objLoader.LoadPage("#widgetmanager", ResolveUrl("~/User/WidgetManager.aspx") + "?wpid=" + pageID.ToString());
+        }
+        if (!new UserAuthontication().IsOwn(LoginUserID))
+        {
+            lnkEdit.Visible = false;
+
+        }
+        else
+        {
+            lnkEdit.NavigateUrl = ResolveUrl("~/User/WidgetPage.aspx") + "?usid=" + new UserAuthontication().LoggedInUserID.ToString() + "&ed=e";
         }
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        lnkProfile.NavigateUrl = ResolveUrl("~/User/User.aspx") + "?usid=" + new UserAuthontication().LoggedInUserID.ToString();
+        
         LeftColumnID = "#widgetLeft";
         RightColumnID = "#widgetright";
-        WidgetHelper widgetData=new WidgetHelper();
-        if(Request.Params["usid"]!=null)
-        widgetData.GetPage(LoginUserID, PageTypeEnum.ProfilePage);
-        objLoader.LoadPage("#widgetmanager", ResolveUrl("~/User/WidgetManager.aspx")+"?wpid="+widgetData.PageID.ToString());
+        WidgetHelper widgetData=new WidgetHelper();        
+        widgetData.GetPage(LoginUserID, PageTypeEnum.ProfilePage);        
         JScripter.Widget objWidgetScript=new JScripter.Widget(this.Page,false);
         foreach(Widget wd in widgetData.LeftColumn)
         {
-            if(wd.ContentType==(int)WidgetTypeEnum.HTMLWidget)
-                objWidgetScript.AddWidget(LeftColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/html.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
+            if (wd.ContentType == (int)WidgetTypeEnum.HTMLWidget)
+                LoadWidget(LeftColumnID, wd.WidgetID, ResolveUrl("~/User/Widget/html.aspx"));                
             if (wd.ContentType == (int)WidgetTypeEnum.Content)
                 objWidgetScript.AddWidget(LeftColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/AllContent.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
             if (wd.ContentType == (int)WidgetTypeEnum.UserInfo)
@@ -45,14 +65,13 @@ public partial class User_WidgetPage : WidgetContainner
         foreach (Widget wd in widgetData.RightColumn)
         {
             if (wd.ContentType == (int)WidgetTypeEnum.HTMLWidget)
-                objWidgetScript.AddWidget(RightColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/html.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
+                LoadWidget(RightColumnID, wd.WidgetID, ResolveUrl("~/User/Widget/html.aspx"));
             if (wd.ContentType == (int)WidgetTypeEnum.Content)
                 objWidgetScript.AddWidget(RightColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/AllContent.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
             if (wd.ContentType == (int)WidgetTypeEnum.UserInfo)
                 objWidgetScript.AddWidget(RightColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/PublicUserInfoView.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
         }
-        JScripter.DragNDrop DragNDropScripter = new JScripter.DragNDrop(this.Page, false);
-        DragNDropScripter.MakeColumnDragNDrop(LeftColumnID, "dl", ResolveUrl("~/User/Action.aspx"));
-        DragNDropScripter.MakeColumnDragNDrop(RightColumnID, "dl", ResolveUrl("~/User/Action.aspx"));
+        CreateControls(widgetData.PageID);
+        
     }
 }

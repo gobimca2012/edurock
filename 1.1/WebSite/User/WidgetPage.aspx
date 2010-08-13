@@ -8,8 +8,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:HyperLink ID="lnkProfile" runat="server"><div class="btn">Back to Priview</div></asp:HyperLink>
-        
+        <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink>
         <div id="widgetmanager">
         </div>
         <div id="widgetLeft" style="float: left; width: 60%">

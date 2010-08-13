@@ -17,6 +17,20 @@ namespace BusinessLogic
             string ID = string.Format("foo_{0}", WidgetID.ToString().Replace("-", ""));
             return ID;
         }
+        protected bool IsEditable
+        {
+            get
+            {
+                if (Request.Params["ed"] != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
         protected Guid WidgetID
         {
             get

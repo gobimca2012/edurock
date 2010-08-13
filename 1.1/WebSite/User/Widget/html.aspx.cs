@@ -31,17 +31,11 @@ public partial class User_Widget_html : WidgetControl
             }
         }
     }
-    private bool IsEdit
-    {
-        get;
-        set;
 
-
-    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        MakeLinks();
+
         new JScripter.TinyMCE(this.Page).Create();
         new JScripter.Widget(this.Page, false).DeleteLinkButton(GetWidgetBoxID(WidgetID), ResolveUrl("~/User/Widget/WidgetAction.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID), lnkClose);
         if (!IsAjaxPostBack)
@@ -55,14 +49,16 @@ public partial class User_Widget_html : WidgetControl
                 BindPriviewData();
             }
         }
+        CreateControls();
     }
+
     private void BindPriviewData()
     {
         if (Data != null)
         {
             divHtml.InnerHtml = Data.HTMLDATA;
             Widgetheader.InnerText = Data.Title;
-            
+
         }
         divEditBox.Visible = false;
     }
@@ -84,24 +80,33 @@ public partial class User_Widget_html : WidgetControl
     }
     protected void AjaxUpdate(object sender, AjaxControl.AjaxEventArg e)
     {
-        if (Data!= null)
+        if (Data != null)
         {
             string htmldata = HtmlHelper.ControlValue(txtEditor.ClientID);
             string Title = HtmlHelper.ControlValue(txtHeader.ClientID);
-            new HTMLWidgetController().UpdateByHTMLWidgetID(Data.HTMLWidgetID, htmldata,Title,DateTime.Now);
+            new HTMLWidgetController().UpdateByHTMLWidgetID(Data.HTMLWidgetID, htmldata, Title, DateTime.Now);
         }
         BindPriviewData();
     }
     protected void AjaxEdit(object sender, AjaxControl.AjaxEventArg e)
     {
-       
+
         BindEditData();
     }
-    private void MakeLinks()
+    private void CreateControls()
     {
         lnkEdit.RequestContainner = "#" + GetWidgetBoxID(WidgetID);
         lnkEdit.ResponseContainner = "#" + GetWidgetBoxID(WidgetID);
         lnkUpdate.RequestContainner = "#" + GetWidgetBoxID(WidgetID);
         lnkUpdate.ResponseContainner = "#" + GetWidgetBoxID(WidgetID);
+        if (!IsEditable)
+        {
+            lnkEdit.Visible = false;
+            lnkUpdate.Visible = false;
+            lnkClose.Visible = false;
+            divEditBox.Visible = false;            
+            divPreviewBox.Visible = true;
+
+        }
     }
 }
