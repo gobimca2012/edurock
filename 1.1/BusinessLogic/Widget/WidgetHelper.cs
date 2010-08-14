@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataEntity;
+using System.Web;
 
 namespace BusinessLogic
 {
@@ -14,6 +15,24 @@ namespace BusinessLogic
         {
             get;
             set;
+        }
+        public static bool IsEditMode()
+        {
+            if (HttpContext.Current.Request.Cookies[CookieName.WidgetEditMode.ToString()] != null)
+            {
+                if (HttpContext.Current.Request.Cookies[CookieName.WidgetEditMode.ToString()].Value == "true")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
         public void GetPage(int LoginUserID, PageTypeEnum pagetype)
         {

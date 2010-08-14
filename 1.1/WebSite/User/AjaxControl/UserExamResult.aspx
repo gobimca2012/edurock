@@ -7,69 +7,69 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-       <asp:ListView ID="ListUserExam" runat="server" >
-        <LayoutTemplate>
-            <table>
-                <thead>
-                    <tr>
-                        <td>
-                            ExamName
-                        </td>
-                        <td>
-                            SubjectName
-                        </td>
-                        <td>
-                            Marks
-                        </td>
-                        <td>
-                            Result
-                        </td>
-                        <td>
-                            StartDate
-                        </td>
-                        <td>
-                            EndDate
-                        </td>
-                        <td>
-                            Complete Time
-                        </td>
-                        <td>
-                            Status
-                        </td>
-                    </tr>
-                </thead>
-                <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-            </table>
-        </LayoutTemplate>
-        <ItemTemplate>
-            <tr>
-                <td>
-                    <%#Eval("ExamName")%>
-                </td>
-                <td>
-                    <%#Eval("SubjectName")%>
-                </td>
-                <td>
-                    <%#Eval("Marks")%>/<%#Eval("ExamTotalMarks") %>
-                </td>
-                <td>
-                    <%#new BusinessLogic.UserExamController().GetExamPassorFail(Convert.ToDecimal(Eval("Marks").ToString()), Convert.ToInt32(Eval("RequirePecentage").ToString()), Convert.ToDecimal(Eval("ExamTotalMarks").ToString()))%>
-                </td>
-                <td>
-                    <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("StartDate").ToString()))%>
-                </td>
-                <td>
-                    <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("EndDate")))%>
-                </td>
-                <td>
-                    <%#BusinessLogic.CommonController.GetTime(Convert.ToDateTime(Eval("EndTime").ToString()),Convert.ToDateTime(Eval("StartTime").ToString()))%>
-                </td>
-                <td>
-                    <%#BusinessLogic.UserExamController.GetExamStatus(Convert.ToBoolean(Eval("IsFinish")))%>
-                </td>
-        </ItemTemplate>
-    </asp:ListView>
+    <div class="contentbox">
+        <asp:ListView ID="ListUserExam" runat="server">
+            <LayoutTemplate>
+                <table >
+                    <thead class="gray">
+                        <tr class="gray">
+                            <td>
+                                ExamName
+                            </td>
+                            <td>
+                                SubjectName
+                            </td>
+                            <td>
+                                Marks
+                            </td>
+                            <td>
+                                Result
+                            </td>
+                            <td>
+                                Start at
+                            </td>
+                            <td>
+                                End at
+                            </td>
+                            <td>
+                                Complete Time
+                            </td>
+                            <td>
+                                Status
+                            </td>
+                        </tr>
+                    </thead>
+                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <%#Eval("ExamName")%>
+                    </td>
+                    <td>
+                        <%#Eval("SubjectName")%>
+                    </td>
+                    <td>
+                        <%#Eval("Marks")%>/<%#Eval("ExamTotalMarks") %>
+                    </td>
+                    <td>
+                        <%#new BusinessLogic.UserExamController().GetExamPassorFail(Convert.ToDecimal(Eval("Marks").ToString()), Convert.ToInt32(Eval("RequirePecentage").ToString()), Convert.ToDecimal(Eval("ExamTotalMarks").ToString()))%>
+                    </td>
+                    <td>
+                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("StartDate").ToString()))%>
+                    </td>
+                    <td>
+                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("EndDate")))%>
+                    </td>
+                    <td>
+                        <%#BusinessLogic.CommonController.GetTime(Convert.ToDateTime(Eval("EndTime").ToString()),Convert.ToDateTime(Eval("StartTime").ToString()))%>
+                    </td>
+                    <td>
+                        <%#BusinessLogic.UserExamController.GetExamStatus(Convert.ToBoolean(Eval("IsFinish")))%>
+                    </td>
+            </ItemTemplate>
+        </asp:ListView>
         <div>
             <div style="float: right">
                 <div style="float: left">
@@ -85,7 +85,6 @@
             </div>
         </div>
         <div>
-          
         </div>
     </div>
     </form>

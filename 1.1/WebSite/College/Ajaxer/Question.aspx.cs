@@ -31,6 +31,26 @@ public partial class College_Ajaxer_Question : AjaxPage
             }
         }
     }
+    private Exam _ExamData
+    {
+        get
+        {
+            if (Session[SessionName.ExamName.ToString()] != null)
+            {
+                return (Exam)Session[SessionName.ExamName.ToString()];
+            }
+            else
+            {
+                var data = new ExamController().GetbyExamID(_ExamID);
+                if (data.Count > 0)
+                {
+                    Session[SessionName.ExamName.ToString()] = data[0];
+                }
+                return data[0];
+            }
+
+        }
+    }
     public EXM_Question CurrentQuestion
     {
         get
@@ -85,11 +105,12 @@ public partial class College_Ajaxer_Question : AjaxPage
         {
             string[] examTimePart = data[0].ExamTime.Split(':');
 
-           /// Response.Write(string.Format(" <script type='text/javascript'>Counter('{0}','{1}','{2}','{3}','{4}');   </script>", examTimePart[0], examTimePart[1], "1", "#examOpen", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa"));
+            /// Response.Write(string.Format(" <script type='text/javascript'>Counter('{0}','{1}','{2}','{3}','{4}');   </script>", examTimePart[0], examTimePart[1], "1", "#examOpen", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa"));
         }
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        Examname.InnerText = _ExamData.ExamName;
         if (!this.IsAjaxPostBack)
         {
             {
@@ -123,11 +144,12 @@ public partial class College_Ajaxer_Question : AjaxPage
             LoadQuestionUI();
             BindQuestion();
         }
-        
-        lnkSubmit.Attributes["onclick"] = string.Format("return SubmitAnswer('{0}','{1}');", "#examOpen", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa");
+
+        lnkSubmit.Attributes["onclick"] = string.Format("return SubmitAnswer('{0}','{1}');", "#examStart", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa");
         if (Request.Params["sb"] != null)
         {
             new UserExamController().Update(_ExamID, UserExamID, true);
+            Response.Redirect("~/User/AjaxControl/UserExamResult.aspx");
         }
 
 

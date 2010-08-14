@@ -32,6 +32,11 @@ body
     color: #fff;
     font-weight: bold;
 }
+.blbg
+{
+    background:#BBE2FF;
+    padding:5px;
+}
 .success, #msgstate div
 {
     width: 99%;
@@ -623,30 +628,42 @@ h3
 }
 .dash
 {
-    background-color: Transparent;
-    background-image: url(images/icons.png);
-    background-position: 0 0;
-    background-position: 0px -33px;
-    padding: 14px 18px;
+background-color:Transparent;
+background-image:url("images/icons.png");
+background-position:0 -33px;
+height:30px;
+
+width:30px;
 }
 .acco
 {
-    background-color: Transparent;
-    background-image: url(images/icons.png);
-    background-position: 0 0;
-    background-position: -33px -33px;
-    padding: 14px 22px;
+background-color:Transparent;
+background-image:url("images/icons.png");
+background-position:-33px -33px;
+height:30px;
+width:42px;
 }
-.exand
+.expand div,.exand
 {
-    background-color: Transparent;
-    background-image: url(   "images/icons.png" );
-    background-position: -272px -6px;
-    empty-cells: show;
-    height: 18px;
-    line-height: 12px;
-    width: 21px;
+background-color:Transparent;
+background-image:url("images/icons.png");
+background-position:-274px -9px;
+empty-cells:show;
+height:17px;
+
+width:18px;
 }
+.collapse div,.collap
+{
+   background-color:Transparent;
+background-image:url("images/icons.png");
+background-position:-299px -43px;
+empty-cells:show;
+height:18px;
+line-height:12px;
+width:18px;
+}
+
 .img
 {
     background-color: Transparent;
@@ -829,12 +846,14 @@ img
 }
 .close
 {
-    background-color: Transparent;
-    background-image: url(           "images/icons.png" );
-    background-position: -209px -10px;
-    empty-cells: show;
-    line-height: 12px;
-    padding: 9px;
+background-color:Transparent;
+background-image:url("images/icons.png");
+background-position:-320px -42px;
+empty-cells:show;
+height:18px;
+line-height:12px;
+
+width:18px;
 }
 /* end Account*/
 
@@ -1125,4 +1144,12 @@ input[type=radio], input[type=checkbox]
 .valmsg
 {
     color: Red;
+}
+.fleft
+{
+    float:left;
+}
+.fright
+{
+    float:right;
 }

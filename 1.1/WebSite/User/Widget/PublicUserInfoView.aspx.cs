@@ -33,6 +33,18 @@ public partial class Widget_PublicUserInfoView : WidgetControl
             }
         }
     }
+    private void CreateControls()
+    {
+        if (!IsEditable)
+        {
+            lnkClose.Visible = false;
+
+        }
+        lnkEdit.Visible = false;
+        lnkChangeImage.Visible = false;
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#" + lnkExpand.ClientID, "#userbox");
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         new JScripter.Widget(this.Page, false).DeleteLinkButton(GetWidgetBoxID(WidgetID), ResolveUrl("~/User/Widget/WidgetAction.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID), lnkClose);
@@ -55,6 +67,7 @@ public partial class Widget_PublicUserInfoView : WidgetControl
                 Response.Redirect("~/User/AjaxControl/UserInfo.aspx");
             }
         }
+        CreateControls();
     }
 
     private void BindData(User data)

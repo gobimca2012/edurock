@@ -111,15 +111,18 @@
     <Compile Include="UserController.cs" />
     <Compile Include="UserEducationController.cs" />
     <Compile Include="UserExamController.cs" />
-    <Compile Include="WidgetContainner.cs">
+    <Compile Include="Widget\WidgetContainner.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WidgetControl.cs">
+    <Compile Include="Widget\WidgetControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Widget\HTMLWidgetController.cs" />
     <Compile Include="Widget\WidgetController.cs" />
     <Compile Include="Widget\WidgetHelper.cs" />
+    <Compile Include="Widget\WidgetManager.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Widget\WidgetPageController.cs" />
   </ItemGroup>
   <ItemGroup>

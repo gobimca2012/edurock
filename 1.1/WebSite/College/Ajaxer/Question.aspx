@@ -7,9 +7,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="contentbox" style="width:100%;height:100%">
+    <div class="contentbox" style="width: 100%; height: 100%">
         <div class="gray">
-            Exam Start
+            <h3 id="Examname" runat="server">
+            </h3>
         </div>
         <div class="whitecont">
             <div style="float: left; width: 530px">
@@ -78,23 +79,22 @@
                 </div>
             </div>
             <div style="clear: both">
-                <asp:LinkButton ID="lnkSubmit" runat="server">Submit Answer</asp:LinkButton>
+                <asp:LinkButton ID="lnkSubmit" runat="server"><div class="btn"> Finish</div></asp:LinkButton>
             </div>
-        </div>
-        <div class="gray">
-            Exam Start
         </div>
     </div>
 
     <script type="text/javascript">
 //    Counter(0,6,60);
     function SubmitAnswer(PopUpID, Url)
-{
+    {   
    
-   $(PopUpID).LoadPage(Url);
-   $(PopUpID).dialog('close');
-   clearInterval(timmer);
-   alert("aa");
+   if(confirm("do you want to submit Examination answers?"))
+   {
+     $(PopUpID).html("");
+    $("#contentBox").LoadPageNoReplace(Url);       
+    
+   }
     return false;
 }
     </script>

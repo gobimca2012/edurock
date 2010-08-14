@@ -7,17 +7,20 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="contentbox">
+    <div class="">
         <div class="clear gray">
             <div style="float: left">
                 <h3 id="Widgetheader" runat="server">
                 </h3>
             </div>
             <div style="float: right">
-                <asp:HyperLink ID="lnkClose" runat="server"><div class="close"></div></asp:HyperLink>
+                <asp:HyperLink ID="lnkExpand" runat="server" CssClass="collapse"><div class=""></div></asp:HyperLink>
+            </div>
+            <div style="float: right">
+                <asp:HyperLink ID="lnkClose" runat="server"><div class="close tp" rel="remove this widget from page"></div></asp:HyperLink>
             </div>
         </div>
-        <div class="clear whitecont ">
+        <div class="clear whitecont vis" id="htmlbox" runat="server">
             <div id="divPreviewBox" runat="server">
                 <div id="divHtml" runat="server">
                 </div>

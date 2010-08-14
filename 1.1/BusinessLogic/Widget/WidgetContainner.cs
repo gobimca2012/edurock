@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Common;
+using System.Web;
 
 namespace BusinessLogic
 {
@@ -24,10 +25,12 @@ namespace BusinessLogic
             {
                 if (Request.Params["ed"] != null)
                 {
+                    HttpContext.Current.Session[SessionName.WidgetEditMode.ToString()] = "1";
                     return true;
                 }
                 else
                 {
+                    HttpContext.Current.Session[SessionName.WidgetEditMode.ToString()] = "0";
                     return false;
                 }
             }

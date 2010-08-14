@@ -8,17 +8,21 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="contentbox">
+    <div class="">
         <div class="clear gray">
             <div style="float: left">
                 <h3>
-                    Rohan Naik</h3>
+                    <span id="lblFirstName" runat="server"></span>&nbsp; <span id="lblMiddleName" runat="server">
+                    </span>&nbsp;<span id="lblLastName" runat="server"></span></h3>
+            </div>
+             <div style="float: right">
+                <asp:HyperLink ID="lnkExpand" runat="server" CssClass="collapse"><div class=""></div></asp:HyperLink>
             </div>
             <div style="float: right">
-                <asp:HyperLink ID="lnkClose" runat="server"><div class="close"></div></asp:HyperLink>
+                <asp:HyperLink ID="lnkClose" runat="server"><div class="close tp" rel="remove this widget from page"></div></asp:HyperLink>
             </div>
         </div>
-        <div id="User" class="whitecont">
+        <div id="userbox" class="whitecont vis">
             <div id="pic" runat="server" visible="false">
                 <div id="popupresponce">
                     <asp:Image ID="imgProfilepic" runat="server" Width="100" />
@@ -30,13 +34,6 @@
                 </div>
             </div>
             <div>
-                <div>
-                    <span class="label">Real Name</span>
-                </div>
-                <div>
-                    <span id="lblFirstName" runat="server"></span>&nbsp; <span id="lblMiddleName" runat="server">
-                    </span>&nbsp;<span id="lblLastName" runat="server"></span>
-                </div>
             </div>
             <div>
                 <div>

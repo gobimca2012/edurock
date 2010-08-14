@@ -2764,17 +2764,18 @@ namespace DataAccess
         #endregion
 
         #region CustomUserExam
-        public List<UserExam> UserExamGetbyExamID(int ExamID, int LoginUserID)
+        public List<UserExam> UserExamGetbyExamID(int ExamID,int LoginUserID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data = (from p in db.UserExams where p.ExamID == ExamID && p.LoginUserID == LoginUserID select p).ToList();
+            var data = (from p in db.UserExams where p.ExamID == ExamID && p.LoginUserID==LoginUserID select p).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;
 
         }
+        
 
         public List<ExamUserByExamIDResult> ExamUserByExamID(int ExamID)
         {

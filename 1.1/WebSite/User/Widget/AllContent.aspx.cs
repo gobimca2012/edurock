@@ -76,7 +76,16 @@ public partial class User_AjaxControl_AllContent : WidgetControl
     }
     private int TotalPage;
     private int PageSize = 20;
-
+    private void CreateControls()
+    {
+        if (!IsEditable)
+        {
+            lnkClose.Visible = false;
+        
+        }
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#" + lnkExpand.ClientID, "#activestram");
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         new JScripter.Widget(this.Page, false).DeleteLinkButton(GetWidgetBoxID(WidgetID), ResolveUrl("~/User/Widget/WidgetAction.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID), lnkClose);
@@ -85,6 +94,7 @@ public partial class User_AjaxControl_AllContent : WidgetControl
         objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
+        CreateControls();
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];

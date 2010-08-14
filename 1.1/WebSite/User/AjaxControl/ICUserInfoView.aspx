@@ -8,8 +8,8 @@
 <body>
     <form id="form1" runat="server">
     <div class="contentbox">
-        <fieldset>
-            <legend id="header" runat="server"></legend>
+        
+            <div id="header" runat="server"></div>
             <asp:ListView ID="ListUser" runat="server">
                 <LayoutTemplate>
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-        </fieldset>
+
     </div>
     </form>
 </body>

@@ -8,12 +8,16 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink>
-        <div id="widgetmanager">
+        <div class="btn tp" rel="Customize your profile and present it to your people">
+            <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink></div>
+        <div class="blbg roundedall">
+            <div id="widgetmanager">
+            </div>
         </div>
-        <div id="widgetLeft" style="float: left; width: 60%">
+        <br />
+        <div id="widgetLeft" style="float: left; width: 59%" class="contentbox">
         </div>
-        <div id="widgetright" style="float: right; width: 40%">
+        <div id="widgetright" style="float: right; width: 40%" class="contentbox">
         </div>
         <div class="clear">
         </div>

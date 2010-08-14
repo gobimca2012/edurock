@@ -61,12 +61,15 @@ public partial class User_Widget_html : WidgetControl
 
         }
         divEditBox.Visible = false;
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#" + lnkExpand.ClientID, "#"+htmlbox.ClientID);
     }
     private void BindEditData()
     {
         if (Data != null)
         {
             txtEditor.Text = Data.HTMLDATA;
+            txtHeader.Text = Data.Title;
 
         }
         divPreviewBox.Visible = false;

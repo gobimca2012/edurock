@@ -10,26 +10,31 @@
 <body>
     <form id="form1" runat="server">
     <div style="float: left; width: 100%;">
-        <div class="contentbox">
+        <div class=" nobod">
             <div class="clear gray">
                 <div style="float: left">
                     <h3>
-                        Rohan Naik</h3>
+                        Active Stream</h3>
                 </div>
                 <div style="float: right">
-                    <asp:HyperLink ID="lnkClose" runat="server"><div class="close"></div></asp:HyperLink>
+                    <asp:HyperLink ID="lnkExpand" runat="server" CssClass="collapse"><div class=""></div></asp:HyperLink>
+                </div>
+                <div style="float: right">
+                    <asp:HyperLink ID="lnkClose" runat="server"><div class="close tp" rel="remove this widget from page"></div></asp:HyperLink>
                 </div>
             </div>
-            <div class="whitecont">
+            <div class="whitecont vis" id="activestram">
                 <div class="graycontent">
                     <div style="float: left" class="title">
                         Search
                     </div>
-                    <div style="float: right" class="exand" id="searchboxtrigger">
+                    <div style="float: right" class="expand" id="searchboxtrigger">
+                        <div>
+                        </div>
                     </div>
                     <div class="clear">
                     </div>
-                    <div id="searchbox"  style="display: none">
+                    <div id="searchbox" class="invis">
                         <div>
                             <div style="float: left;">
                                 <div class="label">
@@ -62,7 +67,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <fieldset style="margin-right: 5px;">
                     <legend>All Activity </legend>
                     <div class="whitecont">

@@ -6,6 +6,7 @@ using System.Web.UI;
 
 using Common;
 using System.Web.UI.WebControls;
+using System.Web;
 
 namespace BusinessLogic
 {
@@ -21,9 +22,16 @@ namespace BusinessLogic
         {
             get
             {
-                if (Request.Params["ed"] != null)
+                if (HttpContext.Current.Session[SessionName.WidgetEditMode.ToString()] != null)
                 {
-                    return true;
+                    if (HttpContext.Current.Session[SessionName.WidgetEditMode.ToString()].ToString() == "1")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {

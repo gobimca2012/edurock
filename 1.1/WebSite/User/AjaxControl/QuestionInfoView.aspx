@@ -47,15 +47,16 @@
                     </LayoutTemplate>
                     <ItemTemplate>
                         <div class="dasbo">
-                            <div  style="float:left;width:550px" class="btitle">
+                            <div style="float: left; width: 550px" class="btitle">
                                 <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#contentBox"
                                     NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("ID")  %>'><%#Eval("Title") %></aspajax:HyperLink>
                             </div>
-                            <div style="float:right">
+                            <div style="float: right">
                                 <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>'
                                     ModifiedDate='<%#Eval("ModifiedDate") %>' />
                             </div>
-                            <div class="clear"></div>
+                            <div class="clear">
+                            </div>
                         </div>
                     </ItemTemplate>
                 </asp:ListView>
@@ -70,12 +71,11 @@
                         <aspajax:AjaxLinkButton ID="lnkNextQuestion" runat="server" OnAjaxClick="NextAjaxClick"
                             RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                     </div>
+                    <div class="fleft">
+                        <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox"><div class="btn">Add New Question</div></aspajax:HyperLink>
+                    </div>
                 </div>
-                <div style="clear: both">
-                </div>
-                <div>
-                    <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox"><div class="btn">Add New Question</div></aspajax:HyperLink>
-                </div>
+                <div class="clear"></div>
             </div>
         </div>
     </div>

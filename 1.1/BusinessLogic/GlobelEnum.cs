@@ -12,7 +12,8 @@ namespace BusinessLogic
     {
         ExamID=1,
         UserExamID=2,
-        FullMode=3
+        FullMode=3,
+        WidgetEditMode=4
 
     }
     public enum CatagoryTypeEnum

@@ -19,7 +19,9 @@ namespace BusinessLogic
         SucessMessage,
         ErrorMessage,
         InstituteAccess,
-        StatusMessage
+        StatusMessage,
+        WidgetEditMode,
+        ExamName
 
     }
 }

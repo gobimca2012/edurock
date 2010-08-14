@@ -28,13 +28,7 @@ public partial class User_WidgetPage : WidgetContainner
     }
     private void CreateControls(Guid pageID)
     {
-        if (IsEditable)
-        {
-            JScripter.DragNDrop DragNDropScripter = new JScripter.DragNDrop(this.Page, false);
-            DragNDropScripter.MakeColumnDragNDrop(LeftColumnID, "dl", ResolveUrl("~/User/Action.aspx"));
-            DragNDropScripter.MakeColumnDragNDrop(RightColumnID, "dl", ResolveUrl("~/User/Action.aspx"));
-            objLoader.LoadPage("#widgetmanager", ResolveUrl("~/User/WidgetManager.aspx") + "?wpid=" + pageID.ToString());
-        }
+       
         if (!new UserAuthontication().IsOwn(LoginUserID))
         {
             lnkEdit.Visible = false;
@@ -43,6 +37,18 @@ public partial class User_WidgetPage : WidgetContainner
         else
         {
             lnkEdit.NavigateUrl = ResolveUrl("~/User/WidgetPage.aspx") + "?usid=" + new UserAuthontication().LoggedInUserID.ToString() + "&ed=e";
+        }
+        if (IsEditable)
+        {
+            JScripter.DragNDrop DragNDropScripter = new JScripter.DragNDrop(this.Page, false);
+            DragNDropScripter.MakeColumnDragNDrop(LeftColumnID, "dl", ResolveUrl("~/User/Action.aspx"));
+            DragNDropScripter.MakeColumnDragNDrop(RightColumnID, "dl", ResolveUrl("~/User/Action.aspx"));
+            objLoader.LoadPage("#widgetmanager", ResolveUrl("~/User/WidgetManager.aspx") + "?wpid=" + pageID.ToString());
+            if (lnkEdit.Visible)
+            {
+                lnkEdit.NavigateUrl = ResolveUrl("~/User/WidgetPage.aspx") + "?usid=" + new UserAuthontication().LoggedInUserID.ToString() ;
+                lnkEdit.Text = "Priview";
+            }
         }
     }
     protected void Page_Load(object sender, EventArgs e)

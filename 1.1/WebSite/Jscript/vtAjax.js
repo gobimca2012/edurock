@@ -1,4 +1,5 @@
 ﻿// JavaScript Document
+// JavaScript Document
 function loadobject(url, loadid, clickid)
 {
    this.url = url;
@@ -477,12 +478,16 @@ $.fn.shower = function(ShowBlockID)
          $(ShowBlockID).addClass('invis');
          $(ShowBlockID).removeClass('vis');
          $(ShowBlockID).hide('slow');
+         $(this).addClass('expand');
+         $(this).removeClass('collapse');
       }
       else
       {
          $(ShowBlockID).addClass('vis');
          $(ShowBlockID).removeClass('invis');
          $(ShowBlockID).show('slow');
+         $(this).removeClass('expand');
+         $(this).addClass('collapse');
       }
    }
    );
@@ -567,14 +572,14 @@ $.fn.ToolTip = function()
          $("#tooltip").html('<div class="tooltip"><div class="tdown"></div> <div class="ttip">' + tooltipcontent + '</div></div>');
          $("#tooltip").show('slow');
          var po = $(this).offset();
-         
+
          var len = $("#tooltip").width();
          var left = po.left;
          var top = po.top ;
          // alert(len);
          $('#tooltip').css(
          {
-            left : (left-len/2)+15 + 'px',
+            left : (left - len / 2) + 15 + 'px',
             top : top + 20 + 'px',
             position : 'absolute'
          }
@@ -610,19 +615,31 @@ $.fn.ajaxToolTip = function(ContainnerID, url)
 
    $(this).click(function()
    {
-    
-    
-      
+
+
+
       var pos = $(this).offset();
       var width = $(this).width();
+      $(ContainnerID).LoadPage(url);
+      if(pos.top > 500)
+      {
+         $("#atool").css(
+         {
+            top : pos.top - $(ContainnerID).height + 'px'
+
+         }
+         );
+      }
       $("#atool").css(
       {
-         left : (pos.left - width) + 'px',
-         top : (pos.top - 45) + 'px',
-         position : 'absolute'
+         left : 450 + 'px',
+         top : 100 + 'px',
+         position : 'fixed'
       }
       );
-      $(ContainnerID).LoadPage(url);
+
+
+
 
    }
    );
@@ -766,22 +783,48 @@ $.fn.centerInClient = function(options)
    );
 }
 
-$.fn.fullMode=function(id,url,chwidth)
+//  ---------------------------------------
+
+$.fn.fullMode = function(id, url, chwidth)
 {
-    $(this).click(function()
-    {
-            if($(id).hasClass("page"))
-           {
-             $(id).addClass("fpage")
-             $(id).removeClass("page")
-           }
-           else
-           {
-              $(id).addClass("page")
-             $(id).removeClass("fpage")
-           }
-       $("#dummy").LoadPage(url);   
-    }
-    );
-    
+   $(this).click(function()
+   {
+      if($(id).hasClass("page"))
+      {
+         $(id).addClass("fpage")
+         $(id).removeClass("page")
+      }
+      else
+      {
+         $(id).addClass("page")
+         $(id).removeClass("fpage")
+      }
+      $("#dummy").LoadPage(url);
+   }
+   );
+
+}
+
+
+$.fn.LoadPageNoReplace = function(url)
+{
+   $.ajax(
+   {
+      type : "POST",
+      url : url,
+      contentType : "application/json; charset=utf-8",
+      dataType : "html",
+      success : function(message)
+      {
+
+      }
+      ,
+      error : function(errormessage)
+      {
+
+      }
+   }
+   );
+
+
 }

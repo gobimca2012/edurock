@@ -16,10 +16,12 @@
         <div>
             <span id="time"></span>
         </div>
+    </div>
 
-        <script type="text/javascript">
-        $(window).unload( function () { alert("Bye now!"); } );
-        </script>
+    <script type="text/javascript">
+        $(window).unload( function () { alert("Your examination hasbeen terminated you can continue this examination again"); } );
+    </script>
+
     </form>
 </body>
 </html>

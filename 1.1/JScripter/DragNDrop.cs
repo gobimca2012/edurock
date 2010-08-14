@@ -25,6 +25,12 @@ namespace JScripter
             string Script = string.Format("$('{0}').CreateColumn('{1}','{2}');", ColumnID, WidgetDomElement, UpdateURL);
             JScripter.InjectScript(Script, _thisPage);
         }
+        public void MakeColumnDragNDrop(string ColumnID, string WidgetDomElement, string UpdateURL,string ConnectedDomElement)
+        {
+
+            string Script = string.Format("$('{0}').CreateConnectedColumn('{1}','{2}','{3}');", ColumnID, WidgetDomElement, UpdateURL, ConnectedDomElement);
+            JScripter.InjectScript(Script, _thisPage);
+        }
 
     }
 }

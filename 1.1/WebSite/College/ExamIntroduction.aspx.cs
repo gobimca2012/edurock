@@ -22,10 +22,11 @@ public partial class College_ExamIntroduction : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        Session.Remove(SessionName.ExamName.ToString());
         Session.Remove(SessionName.ExamList.ToString());
         Session.Remove(SessionName.QuestionList.ToString());
         Session.Remove(SessionName.CurrentQuestion.ToString());
-        var userExamData = new UserExamController().GetbyExamID(_ExamId);
+        var userExamData = new UserExamController().GetByLoginUserID(new UserAuthontication().LoggedInUserID, _ExamId);
 
         if (!this.IsPostBack)
         {
@@ -40,7 +41,7 @@ public partial class College_ExamIntroduction : AjaxPage
                 else
                 {
                     _UserExamID = userExamData[0].UserExamID;
-                    warnningMessage.InnerHtml = "you already Attend Exam please finished this Examination";
+                    warnningMessage.InnerHtml = "you already start Examination please finished remaining question";
                 }
             }
             else

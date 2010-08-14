@@ -21,7 +21,7 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
         {
             lilogout.Visible = false;
             objLoader.LoadPage("#registernew", ResolveUrl("~/All/Ajaxer/RegisterUser.aspx"));
-            liAccountsetting.Visible = false;
+            
         }
         else
         {
@@ -32,9 +32,9 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
             if (new UserAuthontication().LoggedInUserName.Trim().ToLower() == "admin")
             {
                 ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/AdminNavigation.ascx"));
-                lnkAccountSetting.NavigateUrl = "~/User/AccountSetting.aspx";
-                lnkAccountSetting.Visible = false;
-                liAccountsetting.Visible = false;
+
+               
+               
             }
             else if (new UserAuthontication().UserType == UserTypeEnum.College)
             {
@@ -44,9 +44,9 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
             else if (new UserAuthontication().UserType == UserTypeEnum.Student)
             {
                 //ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/UserMenu.ascx"));
-                lnkAccountSetting.NavigateUrl = "~/User/AccountSetting.aspx";
-                lnkAccountSetting.Visible = false;
-                liAccountsetting.Visible = false;
+               
+               
+              
             }
             
         }

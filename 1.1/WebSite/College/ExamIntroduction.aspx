@@ -14,7 +14,7 @@
                 <div class="gray">
                 </div>
                 <div id="Exam" class="whitecont">
-                    <div id="warnningMessage" runat="server" style="color:Red;font-weight:bold">
+                    <div id="warnningMessage" runat="server" style="color: Red; font-weight: bold">
                     </div>
                     <div>
                         <div>
@@ -50,6 +50,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </form>
 </body>
 </html>
