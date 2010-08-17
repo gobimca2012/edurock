@@ -56,9 +56,9 @@
     <Compile Include="AjaxPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AnswerController.cs" />
-    <Compile Include="AnswerStateController.cs" />
-    <Compile Include="ArticleController.cs" />
+    <Compile Include="Controllers\AnswerController.cs" />
+    <Compile Include="Controllers\AnswerStateController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -69,48 +69,49 @@
     <Compile Include="CollegeBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CommentController.cs" />
-    <Compile Include="CommonController.cs" />
-    <Compile Include="CourceCatagoryController.cs" />
-    <Compile Include="CourceController.cs" />
-    <Compile Include="DocumentController.cs" />
-    <Compile Include="EmailController.cs" />
-    <Compile Include="EventController.cs" />
-    <Compile Include="ExamController.cs" />
-    <Compile Include="EXM_AnswerController.cs" />
-    <Compile Include="EXM_QuestionController.cs" />
-    <Compile Include="EXM_UserAnswerController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\ContentHistoryController.cs" />
+    <Compile Include="Controllers\CourceCatagoryController.cs" />
+    <Compile Include="Controllers\CourceController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\ExamController.cs" />
+    <Compile Include="Controllers\EXM_AnswerController.cs" />
+    <Compile Include="Controllers\EXM_QuestionController.cs" />
+    <Compile Include="Controllers\EXM_UserAnswerController.cs" />
     <Compile Include="GlobelEnum.cs" />
-    <Compile Include="HomeWorkController.cs" />
+    <Compile Include="Controllers\HomeWorkController.cs" />
     <Compile Include="HtmlHelper.cs" />
-    <Compile Include="InstituteController.cs" />
-    <Compile Include="InstituteCourceController.cs" />
-    <Compile Include="InstituteCourceUserController.cs" />
-    <Compile Include="InstituteSubjectController.cs" />
-    <Compile Include="InstituteUserTypeAccessController.cs" />
-    <Compile Include="InstituteUserController.cs" />
-    <Compile Include="InstituteUserInUserTypeController.cs" />
-    <Compile Include="InstituteUserTypeController.cs" />
+    <Compile Include="Controllers\InstituteController.cs" />
+    <Compile Include="Controllers\InstituteCourceController.cs" />
+    <Compile Include="Controllers\InstituteCourceUserController.cs" />
+    <Compile Include="Controllers\InstituteSubjectController.cs" />
+    <Compile Include="Controllers\InstituteUserTypeAccessController.cs" />
+    <Compile Include="Controllers\InstituteUserController.cs" />
+    <Compile Include="Controllers\InstituteUserInUserTypeController.cs" />
+    <Compile Include="Controllers\InstituteUserTypeController.cs" />
     <Compile Include="IStartExam.cs" />
-    <Compile Include="LoginUserController.cs" />
-    <Compile Include="MessageController.cs" />
+    <Compile Include="Controllers\LoginUserController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestionController.cs" />
-    <Compile Include="QuestionStatusController.cs" />
-    <Compile Include="QuestionTypeController.cs" />
-    <Compile Include="RattingController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\QuestionStatusController.cs" />
+    <Compile Include="Controllers\QuestionTypeController.cs" />
+    <Compile Include="Controllers\RattingController.cs" />
     <Compile Include="SessionName.cs" />
     <Compile Include="SettingProvider.cs" />
-    <Compile Include="ShareController.cs" />
-    <Compile Include="ShareGroupController.cs" />
-    <Compile Include="ShareUserController.cs" />
+    <Compile Include="Controllers\ShareController.cs" />
+    <Compile Include="Controllers\ShareGroupController.cs" />
+    <Compile Include="Controllers\ShareUserController.cs" />
     <Compile Include="StartExam.cs" />
-    <Compile Include="TutorialController.cs" />
-    <Compile Include="TutorialTypeController.cs" />
+    <Compile Include="Controllers\TutorialController.cs" />
+    <Compile Include="Controllers\TutorialTypeController.cs" />
     <Compile Include="UserAuthontication.cs" />
-    <Compile Include="UserController.cs" />
-    <Compile Include="UserEducationController.cs" />
-    <Compile Include="UserExamController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserEducationController.cs" />
+    <Compile Include="Controllers\UserExamController.cs" />
     <Compile Include="Widget\WidgetContainner.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

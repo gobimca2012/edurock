@@ -66,6 +66,9 @@ namespace DataEntity
     partial void InsertRatting(Ratting instance);
     partial void UpdateRatting(Ratting instance);
     partial void DeleteRatting(Ratting instance);
+    partial void InsertContentHistory(ContentHistory instance);
+    partial void UpdateContentHistory(ContentHistory instance);
+    partial void DeleteContentHistory(ContentHistory instance);
     #endregion
 		
 		public UserDataContext(string connection) : 
@@ -185,6 +188,14 @@ namespace DataEntity
 			get
 			{
 				return this.GetTable<Ratting>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ContentHistory> ContentHistories
+		{
+			get
+			{
+				return this.GetTable<ContentHistory>();
 			}
 		}
 		
@@ -3941,6 +3952,188 @@ namespace DataEntity
 					this._ModifiedDate = value;
 					this.SendPropertyChanged("ModifiedDate");
 					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ContentHistory")]
+	public partial class ContentHistory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ContentHistoryID;
+		
+		private string _ContentID;
+		
+		private int _ContentType;
+		
+		private int _EditorLoginUserID;
+		
+		private System.DateTime _EditDate;
+		
+		private System.Xml.Linq.XElement _BeforeEditContent;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnContentHistoryIDChanging(System.Guid value);
+    partial void OnContentHistoryIDChanged();
+    partial void OnContentIDChanging(string value);
+    partial void OnContentIDChanged();
+    partial void OnContentTypeChanging(int value);
+    partial void OnContentTypeChanged();
+    partial void OnEditorLoginUserIDChanging(int value);
+    partial void OnEditorLoginUserIDChanged();
+    partial void OnEditDateChanging(System.DateTime value);
+    partial void OnEditDateChanged();
+    partial void OnBeforeEditContentChanging(System.Xml.Linq.XElement value);
+    partial void OnBeforeEditContentChanged();
+    #endregion
+		
+		public ContentHistory()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_ContentHistoryID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ContentHistoryID
+		{
+			get
+			{
+				return this._ContentHistoryID;
+			}
+			set
+			{
+				if ((this._ContentHistoryID != value))
+				{
+					this.OnContentHistoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._ContentHistoryID = value;
+					this.SendPropertyChanged("ContentHistoryID");
+					this.OnContentHistoryIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ContentID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ContentID
+		{
+			get
+			{
+				return this._ContentID;
+			}
+			set
+			{
+				if ((this._ContentID != value))
+				{
+					this.OnContentIDChanging(value);
+					this.SendPropertyChanging();
+					this._ContentID = value;
+					this.SendPropertyChanged("ContentID");
+					this.OnContentIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ContentType", DbType="Int NOT NULL")]
+		public int ContentType
+		{
+			get
+			{
+				return this._ContentType;
+			}
+			set
+			{
+				if ((this._ContentType != value))
+				{
+					this.OnContentTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ContentType = value;
+					this.SendPropertyChanged("ContentType");
+					this.OnContentTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EditorLoginUserID", DbType="Int NOT NULL")]
+		public int EditorLoginUserID
+		{
+			get
+			{
+				return this._EditorLoginUserID;
+			}
+			set
+			{
+				if ((this._EditorLoginUserID != value))
+				{
+					this.OnEditorLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._EditorLoginUserID = value;
+					this.SendPropertyChanged("EditorLoginUserID");
+					this.OnEditorLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EditDate", DbType="DateTime NOT NULL")]
+		public System.DateTime EditDate
+		{
+			get
+			{
+				return this._EditDate;
+			}
+			set
+			{
+				if ((this._EditDate != value))
+				{
+					this.OnEditDateChanging(value);
+					this.SendPropertyChanging();
+					this._EditDate = value;
+					this.SendPropertyChanged("EditDate");
+					this.OnEditDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BeforeEditContent", DbType="Xml NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Xml.Linq.XElement BeforeEditContent
+		{
+			get
+			{
+				return this._BeforeEditContent;
+			}
+			set
+			{
+				if ((this._BeforeEditContent != value))
+				{
+					this.OnBeforeEditContentChanging(value);
+					this.SendPropertyChanging();
+					this._BeforeEditContent = value;
+					this.SendPropertyChanged("BeforeEditContent");
+					this.OnBeforeEditContentChanged();
 				}
 			}
 		}

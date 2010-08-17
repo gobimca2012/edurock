@@ -6,6 +6,10 @@ using System.Web.UI.WebControls;
 using DataEntity;
 using DataAccess;
 using System.Diagnostics;
+using Common;
+using System.Xml;
+using System.Xml.Linq;
+using BusinessLogic.Controllers;
 
 namespace BusinessLogic
 {
@@ -628,6 +632,7 @@ namespace BusinessLogic
 
             try
             {
+                StoreContentHistory(DocumentID.ToString(), DocumentType);
                 new DataProvider().DocumentUpdateByDocumentID(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, ModifiedDate);
                 return true;
             }
@@ -642,6 +647,32 @@ namespace BusinessLogic
             }
         }
 
+        public void StoreContentHistory(string ContentID, int ContentType)
+        {
+            if(ContentType==(int)ContentTypeEnum.Image)
+            {
+                var ContentData = new DocumentController().GetbyDocumentID(new Guid(ContentID));
+                Document HDoc=ContentData[0];                
+                XElement xml = new XElement("contact", 
+                        new XAttribute("Description", HDoc.Description),
+                        new XElement("DocumentID", HDoc.DocumentID.ToString()),
+                        new XElement("DocumentType", HDoc.DocumentType.ToString()),
+                        new XElement("EditLoginUserID", HDoc.EditLoginUserID.ToString()),
+                        new XElement("FilePath", HDoc.FilePath.ToString()),
+                        new XElement("LoginUserID", HDoc.LoginUserID.ToString()),
+                        new XElement("MetaDescription", HDoc.MetaDescription.ToString()),
+                        new XElement("ModifiedDate", HDoc.ModifiedDate.ToString()),
+                        new XElement("Name", HDoc.Name.ToString()),
+                        new XElement("Rating", HDoc.Rating.ToString()),
+                        new XElement("Tag", HDoc.Tag.ToString())                       
+
+                    );
+                new ContentHistoryController().Add(Guid.NewGuid(),ContentID, ContentType, HDoc.LoginUserID, HDoc.ModifiedDate, xml);
+
+                
+            }
+        }
+        
 
 
 
@@ -683,7 +714,7 @@ namespace BusinessLogic
         {
             try
             {
-                var data=new DataProvider().RecentDocumentGet(PageSize, PageNumber, DocumentType, Date);
+                var data = new DataProvider().RecentDocumentGet(PageSize, PageNumber, DocumentType, Date);
                 return data;
             }
             catch (Exception ex)
@@ -716,12 +747,12 @@ namespace BusinessLogic
 
         }
 
-        public bool Add(Guid DocumentID, string Name, string Description, string MetaDescription, string Tag, int LoginUserID, int Rating, string FilePath, int DocumentType,int InstituteCourceiD,int InstituteSubjectID, DateTime ModifiedDate)
+        public bool Add(Guid DocumentID, string Name, string Description, string MetaDescription, string Tag, int LoginUserID, int Rating, string FilePath, int DocumentType, int InstituteCourceiD, int InstituteSubjectID, DateTime ModifiedDate)
         {
 
             try
             {
-                new DataProvider().DocumentAdd(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType,InstituteCourceiD,InstituteSubjectID, ModifiedDate);
+                new DataProvider().DocumentAdd(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceiD, InstituteSubjectID, ModifiedDate);
                 return true;
             }
             catch (Exception ex)

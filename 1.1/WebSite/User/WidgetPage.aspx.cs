@@ -32,6 +32,8 @@ public partial class User_WidgetPage : WidgetContainner
         if (!new UserAuthontication().IsOwn(LoginUserID))
         {
             lnkEdit.Visible = false;
+            divEdit.Visible = false;
+            divwidmanager.Visible = false;
 
         }
         else

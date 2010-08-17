@@ -175,6 +175,16 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.ContentHistory" Member="ContentHistories">
+    <Type Name="ContentHistory">
+      <Column Name="ContentHistoryID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ContentID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ContentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EditorLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EditDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BeforeEditContent" Type="System.Xml.Linq.XElement" DbType="Xml NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetShareUser" Method="GetShareUser">
     <Parameter Name="ObjectType" Parameter="objectType" Type="System.Int32" DbType="Int" />
     <Parameter Name="ObjectID" Parameter="objectID" Type="System.String" DbType="VarChar(100)" />

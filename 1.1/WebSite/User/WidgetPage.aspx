@@ -8,9 +8,9 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <div class="btn tp" rel="Customize your profile and present it to your people">
+        <div class="btn tp" rel="Customize your profile and present it to your people" id="divEdit" runat="server">
             <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink></div>
-        <div class="blbg roundedall">
+        <div class="blbg roundedall" id="divwidmanager" runat="server">
             <div id="widgetmanager">
             </div>
         </div>

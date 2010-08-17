@@ -422,33 +422,35 @@ namespace BusinessLogic
             if (LoginUserID != ObjectLoginUserID)
             {
 
-                objShareContent.IsViewable = true;
+                objShareContent.IsViewable = false;
                 objShareContent.IsEditablable = false;
                 var dataShareData = new ShareController().Get(ObjectID, ObjectType);
                 var dataShareUser = GetUserObjectAccess(LoginUserID, ObjectID, ObjectType);
                 var dataGroupUser = GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType);
-                if (dataShareData.Count > 0 && (bool)dataShareData[0].EnableAllUseView)
+                foreach (GetGroupObjectAccessResult ga in dataGroupUser)
+                {
+                    if ((bool)ga.EnableView && !objShareContent.IsViewable)
+                    {
+                        objShareContent.IsViewable = true;
+                    }
+                }
+                if (dataShareUser.Count > 0 && (bool)dataShareUser[0].EnableView && !objShareContent.IsViewable)
+                {                    
+                    {
+                        objShareContent.IsViewable = true;
+                    }
+                }
+                if (dataShareData.Count > 0 && (bool)dataShareData[0].EnableAllUseView && !objShareContent.IsViewable)
                 {
                     //if ()
                     {
                         objShareContent.IsViewable = true;
                     }
                 }
-                else if (dataGroupUser.Count > 0 && (bool)dataGroupUser[0].EnableView)
+                if (dataShareData.Count == 0)
                 {
-                    //if ()
-                    {
-                        objShareContent.IsViewable = true;
-                    }
+                    objShareContent.IsViewable = true;
                 }
-                else if (dataShareUser.Count > 0 && (bool)dataShareUser[0].EnableView)
-                {
-                    //if ()
-                    {
-                        objShareContent.IsViewable = true;
-                    }
-                }
-
                 if (dataShareData.Count > 0 && (bool)dataShareData[0].EnableAllUserEdit)
                 {
 

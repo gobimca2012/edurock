@@ -105,7 +105,7 @@
         <classShapeMoniker Id="237c5249-a64a-4121-8c51-6037a510de66" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.2187475 : 14.6678898111979); (1.2187475 : 22.4126395670573); (3.5 : 22.4126395670573)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.2187475 : 14.6678898111979); (1.2187475 : 22.4126395670573); (1.66666666666667 : 22.4126395670573 : JumpStart); (1.83333333333333 : 22.4126395670573 : JumpEnd); (3.5 : 22.4126395670573)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/UserDataContext/StudentLogin/StudentLogin_Document" />
       <nodes>
         <classShapeMoniker Id="fb440ba4-a657-444e-88e3-79b8176a53bf" />
@@ -142,6 +142,12 @@
       <DataClassMoniker Name="/UserDataContext/Ratting" />
       <nestedChildShapes>
         <elementListCompartment Id="e465cdee-b78e-4bb0-84d4-3f5c7043a021" absoluteBounds="7.89, 17.21, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6e712ffd-e38b-4650-a7f9-e4e8ab4340a6" absoluteBounds="8.75, 2.25, 2, 1.75354248046875">
+      <DataClassMoniker Name="/UserDataContext/ContentHistory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="24706ea7-bc07-4c19-b972-40637d275c86" absoluteBounds="8.765, 2.71, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
