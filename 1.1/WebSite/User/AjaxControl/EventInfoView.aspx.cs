@@ -83,8 +83,16 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
             }
         }
     }
+    protected void AjaxSearch(object sender, AjaxControl.AjaxEventArg e)
+    {
+
+        BindList();
+        PaggerLinkManager();
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
         hpAddDocument.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddEvent;
         if (Request.Params["isid"] != null)
         {
@@ -115,13 +123,53 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
         }
 
     }
+    private string Keywork
+    {
+        get
+        {
+            string value = HtmlHelper.ControlValue(txtKeyword.ClientID);
+            txtKeyword.Text = value;
+            return value; ;
+        }
+    }
+    private DateTime StartDate
+    {
+        get
+        {
+            if (HtmlHelper.ControlValue(txtstartDate.ClientID) != null && HtmlHelper.ControlValue(txtstartDate.ClientID) != "")
+            {
+                txtstartDate.Text = HtmlHelper.ControlValue(txtstartDate.ClientID);
+                return Convert.ToDateTime(HtmlHelper.ControlValue(txtstartDate.ClientID));
+            }
+            else
+            {
+                return new DateTime(1800, 1, 1);
+            }
+        }
+    }
+    private DateTime EndDate
+    {
+        get
+        {
+            if (HtmlHelper.ControlValue(txtEnddate.ClientID) != null && HtmlHelper.ControlValue(txtEnddate.ClientID) != "")
+            {
+                txtEnddate.Text = HtmlHelper.ControlValue(txtEnddate.ClientID);
+                return Convert.ToDateTime(HtmlHelper.ControlValue(txtEnddate.ClientID));
+            }
+            else
+            {
+                return DateTime.Now;
+            }
+        }
+    }
     private void BindList()
     {
-        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Event).Count / PageSize));
-        ListDocument.DataSource = new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Event, PageSize, PageNumber);
+        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate).Count / PageSize));
+        ListDocument.DataSource = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate, PageSize, PageNumber);
         ListDocument.DataBind();
-
+        
     }
+    
     private void PaggerLinkManager()
     {
 
@@ -176,4 +224,8 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
 
     }
 
+    protected void CalDayRender(object sender, DayRenderEventArgs e)
+    {
+        
+    }
 }

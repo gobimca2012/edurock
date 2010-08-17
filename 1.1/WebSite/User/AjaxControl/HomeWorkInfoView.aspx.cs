@@ -77,8 +77,16 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
     private int TotalPage;
     private int PageSize = 100;
 
+    protected void AjaxSearch(object sender, AjaxControl.AjaxEventArg e)
+    {
+
+        BindList();
+        PaggerLinkManager();
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
         hpAddHomeWork.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddHomeWork;
         if (Request.Params["isid"] != null)
         {
@@ -104,10 +112,49 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
         }
 
     }
+    private string Keywork
+    {
+        get
+        {
+            string value = HtmlHelper.ControlValue(txtKeyword.ClientID);
+            txtKeyword.Text = value;
+            return value; ;
+        }
+    }
+    private DateTime StartDate
+    {
+        get
+        {
+            if (HtmlHelper.ControlValue(txtstartDate.ClientID) != null && HtmlHelper.ControlValue(txtstartDate.ClientID) != "")
+            {
+                txtstartDate.Text = HtmlHelper.ControlValue(txtstartDate.ClientID);
+                return Convert.ToDateTime(HtmlHelper.ControlValue(txtstartDate.ClientID));
+            }
+            else
+            {
+                return new DateTime(1800, 1, 1);
+            }
+        }
+    }
+    private DateTime EndDate
+    {
+        get
+        {
+            if (HtmlHelper.ControlValue(txtEnddate.ClientID) != null && HtmlHelper.ControlValue(txtEnddate.ClientID) != "")
+            {
+                txtEnddate.Text = HtmlHelper.ControlValue(txtEnddate.ClientID);
+                return Convert.ToDateTime(HtmlHelper.ControlValue(txtEnddate.ClientID));
+            }
+            else
+            {
+                return DateTime.Now;
+            }
+        }
+    }
     private void BindList()
     {
-        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.HomeWork).Count / PageSize));
-        ListHomeWork.DataSource = new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.HomeWork, PageSize, PageNumber);
+        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.HomeWork, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate).Count / PageSize));
+        ListHomeWork.DataSource = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.HomeWork, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate, PageSize, PageNumber);
         ListHomeWork.DataBind();
 
     }

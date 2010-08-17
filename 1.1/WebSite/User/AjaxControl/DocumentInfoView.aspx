@@ -13,18 +13,56 @@
     <div class="contentbox">
         <div class="gray" id="header" runat="server">
             Images</div>
+        <div class="graycontent">
+            <div style="float: left" class="title">
+                Search
+            </div>
+            <div style="float: right" class="exand" id="searchboxtrigger">
+            </div>
+            <div class="clear">
+            </div>
+            <div id="searchbox" runat="server" style="display: none">
+                <div>
+                    <div style="float: left;">
+                        <div class="label">
+                            Keyword</div>
+                        <div>
+                            <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div style="float: left;">
+                        <div class="label">
+                            Start Date</div>
+                        <div>
+                            <asp:TextBox ID="txtstartDate" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div style="float: left;">
+                        <div class="label">
+                            End Date</div>
+                        <div>
+                            <asp:TextBox ID="txtEnddate" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                    <div>
+                        <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" EnableValidation="False" EnableViewState="False"
+                            Increment="False" OnAjaxClick="AjaxSearch" RequestContainner="#contentBox" ResponseContainner="#contentBox"
+                            Pagger="False"><div class="btn">Search</div> </aspajax:AjaxLinkButton>
+                    </div>
+                </div>
+            </div>
+        </div>
         <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
             <LayoutTemplate>
-              
                 <div class="whitecont">
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                 </div>
-               
             </LayoutTemplate>
             <ItemTemplate>
-               
                 <div class="dasbo">
-                    <div style="float: left;width:550px">
+                    <div style="float: left; width: 550px">
                         <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
                         &nbsp;<%#Eval("Title") %></aspajax:HyperLink>
                     </div>

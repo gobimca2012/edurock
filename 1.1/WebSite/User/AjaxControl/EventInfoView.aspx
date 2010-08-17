@@ -13,33 +13,88 @@
         <div class="contentbox">
             <div class="gray" id="header" runat="server">
                 Events</div>
-            <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
-                <LayoutTemplate>
-                    
-                    <div class="whitecont">
-                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                    </div>
-                 
-                </LayoutTemplate>
-                <ItemTemplate>
-                   
-                    <div class="dasbo">
-                        <div style="float: left;width:550px">
-                            <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Event.aspx") + "?evid=" + Eval("ID").ToString()%>'>
-                        &nbsp;<%#Eval("Title") %></aspajax:HyperLink>
+            <div class="graycontent">
+                <div style="float: left" class="title">
+                    Search
+                </div>
+                <div style="float: right" class="exand" id="searchboxtrigger">
+                </div>
+                <div class="clear">
+                </div>
+                <div id="searchbox" runat="server" style="display: none">
+                    <div>
+                        <div style="float: left;">
+                            <div class="label">
+                                Keyword</div>
+                            <div>
+                                <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
+                            </div>
                         </div>
-                        <div style="float: right">
-                            <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" ModifiedDate='<%#Eval("ModifiedDate") %>'
-                                LoginUserID='<%#Eval("LoginUserID") %>' />
+                        <div style="float: left;">
+                            <div class="label">
+                                Start Date</div>
+                            <div>
+                                <asp:TextBox ID="txtstartDate" runat="server"></asp:TextBox>
+                            </div>
                         </div>
-                        <div style="clear: both">
+                        <div style="float: left;">
+                            <div class="label">
+                                End Date</div>
+                            <div>
+                                <asp:TextBox ID="txtEnddate" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="clear">
                         </div>
                         <div>
-                            <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
+                            <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" EnableValidation="False" EnableViewState="False"
+                                Increment="False" OnAjaxClick="AjaxSearch" RequestContainner="#contentBox" ResponseContainner="#contentBox"
+                                Pagger="False"><div class="btn">Search</div> </aspajax:AjaxLinkButton>
                         </div>
                     </div>
-                </ItemTemplate>
-            </asp:ListView>
+                </div>
+            </div>
+            <div>
+                <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
+                    <LayoutTemplate>
+                        <div class="whitecont">
+                            <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                        </div>
+                    </LayoutTemplate>
+                    <ItemTemplate>
+                        <div class="dasbo">
+                            <div style="float: left; width: 550px">
+                                <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Event.aspx") + "?evid=" + Eval("ID").ToString()%>'>
+                        &nbsp;&nbsp;<%#Eval("Title") %></aspajax:HyperLink>
+                            </div>
+                            <div style="float: right">
+                                <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" ModifiedDate='<%#Eval("ModifiedDate") %>'
+                                    LoginUserID='<%#Eval("LoginUserID") %>' />
+                            </div>
+                            <div style="clear: both">
+                            </div>
+                            <div>
+                                <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:ListView>
+            </div>
+            <div>
+                <asp:Calendar ID="Calendar1" runat="server" BackColor="White" 
+                    BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" 
+                    ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" 
+                    ondayrender="CalDayRender" Width="350px" >
+                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                    <TodayDayStyle BackColor="#CCCCCC" />
+                    <OtherMonthDayStyle ForeColor="#999999" />
+                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" 
+                        VerticalAlign="Bottom" />
+                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" 
+                        Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                </asp:Calendar>
+            </div>
             <div class="gray">
                 <div style="float: right">
                     <div style="float: left">

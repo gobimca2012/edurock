@@ -60,7 +60,7 @@
                         </p>
                     </div>
                 </div>
-                <div>
+                <div style="display:none">
                     <div>
                         <span class="label">Tag</span>
                     </div>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                 </div>--%>
-                <div>
+                <div style="display:none">
                     <div>
                         <span class="label">Rating</span>
                     </div>

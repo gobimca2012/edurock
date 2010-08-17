@@ -13,6 +13,47 @@
         <div class="gray" id="header" runat="server">
             Examinations
         </div>
+          <div class="graycontent">
+            <div style="float: left" class="title">
+                Search
+            </div>
+            <div style="float: right" class="exand" id="searchboxtrigger">
+            </div>
+            <div class="clear">
+            </div>
+            <div id="searchbox" runat="server" style="display: none">
+                <div>
+                    <div style="float: left;">
+                        <div class="label">
+                            Keyword</div>
+                        <div>
+                            <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div style="float: left;">
+                        <div class="label">
+                            Start Date</div>
+                        <div>
+                            <asp:TextBox ID="txtstartDate" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div style="float: left;">
+                        <div class="label">
+                            End Date</div>
+                        <div>
+                            <asp:TextBox ID="txtEnddate" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                    <div>
+                        <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" EnableValidation="False" EnableViewState="False"
+                            Increment="False" OnAjaxClick="AjaxSearch" RequestContainner="#contentBox" ResponseContainner="#contentBox"
+                            Pagger="False"><div class="btn">Search</div> </aspajax:AjaxLinkButton>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="whitecont clear">
             <asp:ListView ID="ListExam" runat="server" OnItemDataBound="ListExamOnItemDataBound" DataKeyNames="Param1">
                 <LayoutTemplate>

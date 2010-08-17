@@ -85,6 +85,8 @@ public partial class User_AjaxControl_ArticleInfoView : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
         hpAddDocument.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddArticle;
         if (Request.Params["isid"] != null)
         {
@@ -175,5 +177,11 @@ public partial class User_AjaxControl_ArticleInfoView : AjaxPage
         //BindList();
 
 
+    }
+    protected void AjaxSearch(object sender, AjaxControl.AjaxEventArg e)
+    {
+
+        BindList();
+        PaggerLinkManager();
     }
 }
