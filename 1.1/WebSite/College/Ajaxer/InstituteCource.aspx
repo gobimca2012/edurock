@@ -138,8 +138,8 @@
             </div>
         </div>
         <div class="gray">
-            <asp:LinkButton ID="lnkedit" runat="server"><div class="bnt">Edit</div></asp:LinkButton>
-            <asp:LinkButton ID="lnkAddNew" runat="server"><div class="btn">Add</div></asp:LinkButton>
+            <asp:LinkButton ID="lnkedit" runat="server"><div class="btn editbtn">Edit</div></asp:LinkButton>
+            <asp:LinkButton ID="lnkAddNew" runat="server"><div class="btn editbtn">Add</div></asp:LinkButton>
         </div>
     </div>
     </form>

@@ -7,6 +7,10 @@ using DataAccess;
 using DataEntity;
 using System.Diagnostics;
 using System.Xml.Linq;
+using Common;
+using System.Xml.Serialization;
+using System.IO;
+using System.Xml;
 
 namespace BusinessLogic.Controllers
 {
@@ -101,7 +105,7 @@ namespace BusinessLogic.Controllers
             }
         }
 
-       
+
 
 
 
@@ -190,7 +194,7 @@ namespace BusinessLogic.Controllers
             }
         }
 
-       
+
 
         public List<ContentHistory> Get(int PageSize, int PageNumber)
         {
@@ -362,7 +366,7 @@ namespace BusinessLogic.Controllers
         }
 
 
-        
+
 
 
 
@@ -419,11 +423,175 @@ namespace BusinessLogic.Controllers
         }
         #endregion
         #region ContentHistory
+        public void StoreContentHistory(string ContentID, int ContentType)
+        {
+            if (ContentType == (int)ContentTypeEnum.Image)
+            {
+                var data = new DocumentController().GetbyDocumentID(new Guid(ContentID));
+                Document Adata = data[0];                                
+                MemoryStream ms = new MemoryStream();
+                XmlTextWriter writer = new XmlTextWriter(ms, new UTF8Encoding());
+                XmlSerializer serializer = new XmlSerializer(typeof(Document));
+                writer.Formatting = Formatting.Indented;
+                writer.IndentChar = ' ';
+                writer.Indentation = 3;
+                serializer.Serialize(writer, Adata);
+                byte[] Result = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(Result, 0, (int)ms.Length);
+                string XmlResultString = Encoding.UTF8.GetString(Result, 0, (int)ms.Length);
+                XDocument xmlDoc = XDocument.Parse(XmlResultString);
+                var HistoryData = new ContentHistoryController().GetbyContentID(ContentID);
+                XElement HistoriesXml;
+                if (HistoryData.Count > 0)
+                {
+                    HistoriesXml = HistoryData[0].BeforeEditContent;
+                }
+                else
+                {
+                    HistoriesXml = new XElement("Documents");
+                }
+                HistoriesXml.AddFirst((from p in xmlDoc.Elements("Document") select p));
+
+                new ContentHistoryController().Add(Guid.NewGuid(), ContentID, ContentType, data[0].LoginUserID, data[0].ModifiedDate, HistoriesXml);
+
+
+            }
+            else if (ContentType == (int)ContentTypeEnum.Article)
+            {
+                var data = new ArticleController().GetbyArticleID(new Guid(ContentID));
+                Article Adata = data[0];
+                MemoryStream ms = new MemoryStream();
+                XmlTextWriter writer = new XmlTextWriter(ms, new UTF8Encoding());
+                XmlSerializer serializer = new XmlSerializer(typeof(Article));
+                writer.Formatting = Formatting.Indented;
+                writer.IndentChar = ' ';
+                writer.Indentation = 3;
+                serializer.Serialize(writer, Adata);
+                byte[] Result = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(Result, 0, (int)ms.Length);
+                string XmlResultString = Encoding.UTF8.GetString(Result, 0, (int)ms.Length);
+                XDocument xmlDoc = XDocument.Parse(XmlResultString);                
+                var HistoryData = new ContentHistoryController().GetbyContentID(ContentID);
+                XElement HistoriesXml;
+                if (HistoryData.Count > 0)
+                {
+                    HistoriesXml = HistoryData[0].BeforeEditContent;
+                }
+                else
+                {
+                    HistoriesXml = new XElement("Articles");
+                }
+                HistoriesXml.AddFirst((from p in xmlDoc.Elements("Article") select p));
+
+                new ContentHistoryController().Add(Guid.NewGuid(), ContentID, ContentType, data[0].LoginUserID, data[0].ModifiedDate, HistoriesXml);
+
+
+
+            }
+            else if (ContentType == (int)ContentTypeEnum.Event)
+            {
+                var data = new EventController().GetbyEventID(new Guid(ContentID));
+                Event Adata = data[0];
+                MemoryStream ms = new MemoryStream();
+                XmlTextWriter writer = new XmlTextWriter(ms, new UTF8Encoding());
+                XmlSerializer serializer = new XmlSerializer(typeof(Event));
+                writer.Formatting = Formatting.Indented;
+                writer.IndentChar = ' ';
+                writer.Indentation = 3;
+                serializer.Serialize(writer, Adata);
+                byte[] Result = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(Result, 0, (int)ms.Length);
+                string XmlResultString = Encoding.UTF8.GetString(Result, 0, (int)ms.Length);
+                XDocument xmlDoc = XDocument.Parse(XmlResultString);
+                var HistoryData = new ContentHistoryController().GetbyContentID(ContentID);
+                XElement HistoriesXml;
+                if (HistoryData.Count > 0)
+                {
+                    HistoriesXml = HistoryData[0].BeforeEditContent;
+                }
+                else
+                {
+                    HistoriesXml = new XElement("Events");
+                }
+                HistoriesXml.AddFirst((from p in xmlDoc.Elements("Event") select p));
+
+                new ContentHistoryController().Add(Guid.NewGuid(), ContentID, ContentType, data[0].LoginUserID,(DateTime) data[0].ModifiedDate, HistoriesXml);
+
+
+
+            }
+            else if (ContentType == (int)ContentTypeEnum.HomeWork)
+            {
+                var data = new HomeWorkController().GetbyHomeWorkID(Convert.ToInt32(ContentID));
+                HomeWork Adata = data[0];
+                MemoryStream ms = new MemoryStream();
+                XmlTextWriter writer = new XmlTextWriter(ms, new UTF8Encoding());
+                XmlSerializer serializer = new XmlSerializer(typeof(HomeWork));
+                writer.Formatting = Formatting.Indented;
+                writer.IndentChar = ' ';
+                writer.Indentation = 3;
+                serializer.Serialize(writer, Adata);
+                byte[] Result = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(Result, 0, (int)ms.Length);
+                string XmlResultString = Encoding.UTF8.GetString(Result, 0, (int)ms.Length);
+                XDocument xmlDoc = XDocument.Parse(XmlResultString);
+                var HistoryData = new ContentHistoryController().GetbyContentID(ContentID);
+                XElement HistoriesXml;
+                if (HistoryData.Count > 0)
+                {
+                    HistoriesXml = HistoryData[0].BeforeEditContent;
+                }
+                else
+                {
+                    HistoriesXml = new XElement("HomeWorks");
+                }
+                HistoriesXml.AddFirst((from p in xmlDoc.Elements("HomeWork") select p));
+
+                new ContentHistoryController().Add(Guid.NewGuid(), ContentID, ContentType, data[0].LoginUserID, data[0].ModifiedDate, HistoriesXml);
+
+
+
+            }
+        }
+        public void GetDocumentHistory(string ContentID)
+        {
+            var data = GetbyContentID(ContentID);
+            if (data.Count > 0)
+            {
+                XElement HistoriesXML = data[0].BeforeEditContent;
+                var Histories = (from p in HistoriesXML.Elements("History")
+                               orderby p.Element("ModifiedDate").Value
+                               select new Document()
+                                   {
+                                       Description = p.Element("Description").Value,
+                                       DocumentID = new Guid(p.Element("DocumentID").Value),
+                                       DocumentType = Convert.ToInt16(p.Element("DocumentType").Value),
+                                       EditLoginUserID = Convert.ToInt16(p.Element("EditLoginUserID").Value),
+                                       FilePath = p.Element("FilePath").Value,
+                                       LoginUserID = Convert.ToInt32(p.Element("LoginUserID").Value),
+                                       MetaDescription = p.Element("MetaDescription").Value,
+                                       ModifiedDate = Convert.ToDateTime(p.Element("ModifiedDate").Value),
+                                       Name = p.Element("Name").Value,
+                                       Rating = Convert.ToInt32(p.Element("Rating").Value),
+                                       Tag = p.Element("Tag").Value
+                                   }
+                    );
+                
+                
+
+
+            }
+        }
+      
         #endregion
-				
-	
-	
-	
-	
+
+
+
+
+
     }
 }

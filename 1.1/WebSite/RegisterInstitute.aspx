@@ -7,7 +7,7 @@
     <div>
         <div style="float: left">
             <aspajax:HyperLink ID="lnkUserReg" runat="server" NavigateUrl="~/All/Ajaxer/RegisterUser.aspx"
-                ContainnerID="#contentBox"><div class="btn">User</div></aspajax:HyperLink>
+                ContainnerID="#contentBox"><div class="btn editbtn">User</div></aspajax:HyperLink>
         </div>
         <div style="float: left">
             <aspajax:HyperLink ID="lnkInstiReg" runat="server" NavigateUrl="~/All/Ajaxer/RegisterInstitute.aspx"

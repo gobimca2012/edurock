@@ -100,7 +100,7 @@
         </div>
         <div>
             <aspajax:HyperLink ID="hpAddInstituteTypeAccess" runat="server" NavigateUrl="~/College/Ajaxer/InstituteTypeAccessInfo.aspx"
-                ContainnerID="#contentBox"><div class="btn">Add New</div></aspajax:HyperLink>
+                ContainnerID="#contentBox"><div class="btn editbtn">Add New</div></aspajax:HyperLink>
         </div>
     </div>
     </form>

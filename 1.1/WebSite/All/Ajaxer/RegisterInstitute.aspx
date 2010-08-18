@@ -160,7 +160,7 @@
             </div>
             <div style="float: left">
                 <aspajax:AjaxLinkButton ID="lnkRegisterInstitute" runat="server" RequestContainner="#contentBox" EnableValidation="true"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn"> Register</div></aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn editbtn"> Register</div></aspajax:AjaxLinkButton>
             </div>
             <div style="clear: both">
             </div>

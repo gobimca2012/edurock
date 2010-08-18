@@ -70,7 +70,7 @@
             </div>
             <div style="float: left">
                 <aspajax:HyperLink ID="hpAddQuestionType" runat="server" NavigateUrl="~/College/Ajaxer/QuestionTypeInfo.aspx"
-                    ContainnerID="#contentBox"><div class="btn">Add New</div> </aspajax:HyperLink>
+                    ContainnerID="#contentBox"><div class="btn editbtn">Add New</div> </aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

@@ -119,7 +119,7 @@
             </div>
         </div>
         <div class="gray ">
-            <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl="InstituteInfo.aspx" ContainnerID="#contentBox"><div class="btn">Edit</div></aspajax:HyperLink>
+            <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl="InstituteInfo.aspx" ContainnerID="#contentBox"><div class="btn editbtn">Edit</div></aspajax:HyperLink>
         </div>
     </div>
     </form>

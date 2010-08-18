@@ -83,7 +83,7 @@
                     <div style="float: left">
                         <aspajax:AjaxLinkButton ID="lnkRegisterNewUser" runat="server" EnableViewState="False" RequestContainner="#registernew"
                             ResponseContainner="#registernew" Increment="False" OnAjaxClick="RegisterAjax"
-                            EnableValidation="true" Pagger="False"><div class="btn"> Register</div> </aspajax:AjaxLinkButton>
+                            EnableValidation="true" Pagger="False"><div class="btn editbtn"> Register</div> </aspajax:AjaxLinkButton>
                     </div>
                 </div>
             </div>

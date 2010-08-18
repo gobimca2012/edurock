@@ -14,10 +14,10 @@
             <div style="float: left">
                 Image</div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn"> Edit</div> </aspajax:HyperLink>
+                <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn"> Edit</div> </aspajax:HyperLink>
             </div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn">  Share </div></aspajax:HyperLink></div>
+                <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></div>
             <div style="clear: both">
             </div>
         </div>
@@ -31,7 +31,7 @@
                     </div>
                     <div>
                         <a id="lblFilePath" runat="server" target="_blank">
-                            <div class="btn">
+                            <div class="btn editbtn">
                                 Download</div>
                         </a>
                     </div>

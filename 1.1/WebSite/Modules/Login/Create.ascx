@@ -41,7 +41,7 @@
             </div>
         </div>
         <div>
-            <asp:LinkButton ID="lnkRegister" runat="server" OnClick="lnkRegister_Click"><div class="btn"> Register</div></asp:LinkButton>
+            <asp:LinkButton ID="lnkRegister" runat="server" OnClick="lnkRegister_Click"><div class="btn editbtn"> Register</div></asp:LinkButton>
             <br />
             <%--<asp:LinkButton ID="lnkCancel" runat="server">Cancel</asp:LinkButton>--%>
         </div>

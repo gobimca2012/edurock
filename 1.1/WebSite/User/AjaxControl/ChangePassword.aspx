@@ -32,7 +32,7 @@
             <div>
                 <aspajax:AjaxLinkButton ID="btnChange" runat="server" EnableValidation="False" EnableViewState="False"
                     RequestContainner="#contentBox" ResponseContainner="#contentBox" Increment="False"
-                    OnAjaxClick="AjaxChangePassword" Pagger="False"><div class="btn">Change</div></aspajax:AjaxLinkButton>
+                    OnAjaxClick="AjaxChangePassword" Pagger="False"><div class="btn editbtn">Change</div></aspajax:AjaxLinkButton>
             </div>
         </div>
     </div>

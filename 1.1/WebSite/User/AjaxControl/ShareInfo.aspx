@@ -109,7 +109,7 @@
                 <div class="hcurv">
                     <aspajax:AjaxLinkButton ID="lnkSave" runat="server" RequestContainner="#contentBox"
                         ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SaveAjaxClick"
-                        Pagger="False"><div class="btn">Save</div> </aspajax:AjaxLinkButton>
+                        Pagger="False"><div class="btn editbtn">Save</div> </aspajax:AjaxLinkButton>
                 </div>
             </div>
         </div>
@@ -180,7 +180,7 @@
                 <div class="hcurv">
                     <aspajax:AjaxLinkButton ID="lnkUpdateGroup" runat="server" RequestContainner="#contentBox"
                         ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SaveGroupAjaxClick"
-                        Pagger="False"><div class="btn">Save</div> </aspajax:AjaxLinkButton>
+                        Pagger="False"><div class="btn editbtn">Save</div> </aspajax:AjaxLinkButton>
                 </div>
             </div>
         </div>

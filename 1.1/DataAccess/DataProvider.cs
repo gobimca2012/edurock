@@ -385,7 +385,7 @@ namespace DataAccess
             data.Password = NewPassword;
             db.SubmitChanges();
         }
-        
+
         #endregion
 
 
@@ -2766,18 +2766,18 @@ namespace DataAccess
         #endregion
 
         #region CustomUserExam
-        public List<UserExam> UserExamGetbyExamID(int ExamID,int LoginUserID)
+        public List<UserExam> UserExamGetbyExamID(int ExamID, int LoginUserID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             OnlineExaminationDataContext db = new OnlineExaminationDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data = (from p in db.UserExams where p.ExamID == ExamID && p.LoginUserID==LoginUserID select p).ToList();
+            var data = (from p in db.UserExams where p.ExamID == ExamID && p.LoginUserID == LoginUserID select p).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;
 
         }
-        
+
 
         public List<ExamUserByExamIDResult> ExamUserByExamID(int ExamID)
         {
@@ -13865,7 +13865,7 @@ namespace DataAccess
             return db.GetShareUser(ObjectType, ObjectID).ToList();
 
         }
-        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID,string userName)
+        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID, string userName)
         {
 
             UserDataContext db = new UserDataContext();
@@ -16462,7 +16462,7 @@ namespace DataAccess
 
             db.DeferredLoadingEnabled = false;
             Event data = db.Events.Single(p => p.EventID == EventID);
-            
+
             data.EditLoginUserID = LoginUserID;
             data.Title = Title;
             data.Description = Description;
@@ -17272,7 +17272,7 @@ namespace DataAccess
 
         #endregion
         #region CustomRatting
-        public List<Ratting> RattingGetbyContentID(string ContentID,int ContentType)
+        public List<Ratting> RattingGetbyContentID(string ContentID, int ContentType)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             UserDataContext db = new UserDataContext();
@@ -17281,12 +17281,12 @@ namespace DataAccess
 
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data = (from p in db.Rattings where p.ContentID == ContentID && p.ContentType==ContentType select p).ToList();
+            var data = (from p in db.Rattings where p.ContentID == ContentID && p.ContentType == ContentType select p).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;
 
         }
-        public void RattingUpdateByRattingID( int Rating, int ContentType, string ContentID)
+        public void RattingUpdateByRattingID(int Rating, int ContentType, string ContentID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             UserDataContext db = new UserDataContext();
@@ -17315,32 +17315,7 @@ namespace DataAccess
 
         #region ContentHistory
 
-        public void ContentHistoryAdd(Guid ContentHistoryID, string ContentID, int ContentType, int EditorLoginUserID, DateTime EditDate, XElement BeforeEditContent)
-        {
-            ContentHistory ObjContentHistory = new ContentHistory();
-
-            ObjContentHistory.ContentHistoryID = ContentHistoryID;
-
-            ObjContentHistory.ContentID = ContentID;
-
-            ObjContentHistory.ContentType = ContentType;
-
-            ObjContentHistory.EditorLoginUserID = EditorLoginUserID;
-
-            ObjContentHistory.EditDate = EditDate;
-
-            ObjContentHistory.BeforeEditContent = BeforeEditContent;
-
-            UserDataContext db = new UserDataContext();
-            DataLoadOptions option = new DataLoadOptions();
-            db.LoadOptions = option;
-
-            db.DeferredLoadingEnabled = false;
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-            db.ContentHistories.InsertOnSubmit(ObjContentHistory);
-            db.SubmitChanges();
-            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-        }
+       
 
         public Guid ContentHistoryAdd(string ContentID, int ContentType, int EditorLoginUserID, DateTime EditDate, XElement BeforeEditContent)
         {
@@ -17486,7 +17461,7 @@ namespace DataAccess
 
         }
 
-       
+
 
 
 
@@ -17565,7 +17540,7 @@ namespace DataAccess
 
         }
 
-       
+
 
         public void ContentHistoryDeletebyContentHistoryID(Guid ContentHistoryID)
         {
@@ -17642,7 +17617,7 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
 
-      
+
         public void ContentHistoryUpdateByContentHistoryID(Guid ContentHistoryID, string ContentID, int ContentType, int EditorLoginUserID, DateTime EditDate, XElement BeforeEditContent)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -17668,12 +17643,47 @@ namespace DataAccess
 
         #endregion
         #region CustomContentHistory
+        public void ContentHistoryAdd(Guid ContentHistoryID, string ContentID, int ContentType, int EditorLoginUserID, DateTime EditDate, XElement BeforeEditContent)
+        {
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            ContentHistory ObjContentHistory = new ContentHistory();
+            var data = (from p in db.ContentHistories where p.ContentID == ContentID && p.ContentType == ContentType select p).ToList();
+            if (data.Count > 0)
+            {
+                ObjContentHistory = data[0];
+            }
+
+            ObjContentHistory.ContentID = ContentID;
+
+            ObjContentHistory.ContentType = ContentType;
+
+            ObjContentHistory.EditorLoginUserID = EditorLoginUserID;
+
+            ObjContentHistory.EditDate = EditDate;
+
+            ObjContentHistory.BeforeEditContent = BeforeEditContent;
+
+            if (data.Count > 0)
+            {
+            }
+            else
+            {
+                ObjContentHistory.ContentHistoryID = ContentHistoryID;
+                db.ContentHistories.InsertOnSubmit(ObjContentHistory);
+            }
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
         #endregion
-	
-	
-	
-	
-	
+
+
+
+
+
 
 
     }

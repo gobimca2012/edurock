@@ -408,10 +408,14 @@ input, textarea
     color: #626262;
     font-weight: bold;
 }
+.editbtn
+{
+    max-width: 50px;
+}
 .btn
 {
     padding: 5px 10px;
-    max-width: 200px;
+   
     text-align: center;
     line-height: 12px;
     margin: 2px;

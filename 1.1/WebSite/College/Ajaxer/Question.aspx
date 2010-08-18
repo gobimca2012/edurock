@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div style="clear: both">
-                <asp:LinkButton ID="lnkSubmit" runat="server"><div class="btn"> Finish</div></asp:LinkButton>
+                <asp:LinkButton ID="lnkSubmit" runat="server"><div class="btn editbtn"> Finish</div></asp:LinkButton>
             </div>
         </div>
     </div>

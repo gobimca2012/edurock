@@ -19,6 +19,6 @@
         </div>
     </div>
     <div>
-        <asp:LinkButton ID="lnkLogin" runat="server" OnClick="lnkLogin_Click"><div class="btn"> Login</div></asp:LinkButton>
+        <asp:LinkButton ID="lnkLogin" runat="server" OnClick="lnkLogin_Click"><div class="btn editbtn"> Login</div></asp:LinkButton>
     </div>
 </div>

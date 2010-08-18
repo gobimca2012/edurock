@@ -6,6 +6,8 @@ using System.Web.UI.WebControls;
 using DataEntity;
 using DataAccess;
 using System.Diagnostics;
+using BusinessLogic.Controllers;
+using Common;
 
 namespace BusinessLogic
 {
@@ -684,6 +686,7 @@ namespace BusinessLogic
 
             try
             {
+                new ContentHistoryController().StoreContentHistory(ArticleID.ToString(),(int) ContentTypeEnum.Article);
                 new DataProvider().ArticleUpdateByArticleID(ArticleID, LoginUserID, Title, Description, MetaDescription, InstituteCourceID, InstituteSubjectID, Tag, ModifiedDate);
                 return true;
             }

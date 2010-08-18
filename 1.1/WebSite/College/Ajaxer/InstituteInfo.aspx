@@ -128,10 +128,10 @@
         <div class="gray">
             <div style="float: left">
                 <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn"> Update</div></aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn editbtn"> Update</div></aspajax:AjaxLinkButton>
             </div>
             <div style="float: left">
-                <aspajax:HyperLink ID="lnkCancel" runat="server" ContainnerID="#contentBox" NavigateUrl="InstituteInfoView.aspx"><div class="btn"> Cancel</div></aspajax:HyperLink>
+                <aspajax:HyperLink ID="lnkCancel" runat="server" ContainnerID="#contentBox" NavigateUrl="InstituteInfoView.aspx"><div class="btn editbtn"> Cancel</div></aspajax:HyperLink>
             </div>
             <div style="clear">
             </div>

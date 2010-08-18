@@ -46,11 +46,11 @@
         <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddcource" runat="server" RequestContainner="#iCource"
-                    EnableValidation="true" ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn"> Add</div></aspajax:AjaxLinkButton>
+                    EnableValidation="true" ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn editbtn"> Add</div></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#iCource" Visible="false"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn"> Update</div></aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn editbtn"> Update</div></aspajax:AjaxLinkButton>
             </div>
             <%--<asp:HiddenField ID="_AjaxState" runat="server" />--%>
         </div>

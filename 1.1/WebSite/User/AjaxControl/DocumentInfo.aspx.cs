@@ -100,7 +100,6 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
     {
         try
         {
-
             Guid DocumentID = ID;
 
             string Name; if (HtmlHelper.ControlValue(txtName.ClientID) == "") { throw new Exception("Please enter Name"); } Name = HtmlHelper.ControlValue(txtName.ClientID);

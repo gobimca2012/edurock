@@ -64,7 +64,7 @@
                     </td>
                     <td>
                         <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/CourceCatagoryInfo.aspx") + "?ccid=" + Eval("CourceCatagoryID")%>'
-                            ContainnerID="#courcecatagory">Edit</aspajax:HyperLink>
+                            ContainnerID="#courcecatagory"> Edit</aspajax:HyperLink>
                     </td>
                 </tr>
             </ItemTemplate>

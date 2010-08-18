@@ -20,7 +20,7 @@
                 <asp:FileUpload ID="fileUploader" runat="server" />
             </div>
             <div>
-                <asp:LinkButton ID="lnkUpload" runat="server" OnClick="lnkUpload_Click"><div class="btn"> Upload</div></asp:LinkButton>
+                <asp:LinkButton ID="lnkUpload" runat="server" OnClick="lnkUpload_Click"><div class="btn editbtn"> Upload</div></asp:LinkButton>
             </div>
             <asp:Label ID="injectScript" runat="server"></asp:Label>
         </div>

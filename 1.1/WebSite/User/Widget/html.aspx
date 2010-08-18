@@ -6,8 +6,9 @@
     <title>Untitled Page</title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="rohan1" runat="server">
     <div class="">
+    <asp:Panel 
         <div class="clear gray">
             <div style="float: left">
                 <h3 id="Widgetheader" runat="server">
@@ -26,7 +27,7 @@
                 </div>
                 <div>
                     <aspajax:AjaxLinkButton ID="lnkEdit" runat="server" EnableValidation="False" EnableViewState="False"
-                        Increment="False" OnAjaxClick="AjaxEdit" Pagger="False"><div class="btn">Edit</div></aspajax:AjaxLinkButton>
+                        Increment="False" OnAjaxClick="AjaxEdit" Pagger="False"><div class="btn editbtn">Edit</div></aspajax:AjaxLinkButton>
                 </div>
             </div>
             <div id="divEditBox" runat="server">
@@ -45,7 +46,7 @@
                 </div>
                 <div>
                     <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" EnableValidation="False" EnableViewState="False"
-                        Increment="False" OnAjaxClick="AjaxUpdate" Pagger="False"><div class="btn">Update</div></aspajax:AjaxLinkButton>
+                        Increment="False" OnAjaxClick="AjaxUpdate" Pagger="False"><div class="btn editbtn">Update</div></aspajax:AjaxLinkButton>
                 </div>
             </div>
         </div>

@@ -62,7 +62,7 @@
                             <div>
                                 <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" EnableValidation="False" EnableViewState="False"
                                     Increment="False" OnAjaxClick="AjaxSearch" RequestContainner="#contentBox" ResponseContainner="#contentBox"
-                                    Pagger="False"><div class="btn">Search</div> </aspajax:AjaxLinkButton>
+                                    Pagger="False"><div class="btn editbtn">Search</div> </aspajax:AjaxLinkButton>
                             </div>
                         </div>
                     </div>

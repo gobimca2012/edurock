@@ -10,7 +10,7 @@ using System.Web;
 
 namespace BusinessLogic
 {
-     
+
     public class WidgetControl : AjaxPage
     {
         protected string GetWidgetBoxID(Guid WidgetID)
@@ -50,35 +50,55 @@ namespace BusinessLogic
                 return new Guid(AjaxState["wid"]);
             }
         }
-        private string WidgetControlPrefix
-        {
-            get
-            {
-                var data = new WidgetController().GetbyWidgetID(WidgetID);
-                return data[0].WidgetColumn.ToString() + "_" + data[0].WidgetOrder.ToString();
-            }
-        }
+        //private string _WidgetControlPrefix
+        //{
+        //    get
+        //    {
+        //        var data = new WidgetController().GetbyWidgetID(WidgetID);
+        //        return data[0].WidgetColumn.ToString() + "_" + data[0].WidgetOrder.ToString();
+        //    }
+        //}
+
+        private string _WidgetControlPrefix;
 
         protected override void OnInitComplete(EventArgs e)
         {
+            var data = new WidgetController().GetbyWidgetID(WidgetID);
+            _WidgetControlPrefix = data[0].WidgetColumn.ToString() + "_" + data[0].WidgetOrder.ToString();
 
-
-            foreach (Control cl in this.Form.Controls)
-            {
-                if (cl.ID != null)
-                {
-                    cl.ID = WidgetControlPrefix + "_" + cl.ID;
-                    foreach (Control innerCl in cl.Controls)
-                    {
-                        if (innerCl.ID != null)
-                            innerCl.ID = WidgetControlPrefix + "_" + innerCl.ID;
-                    }
-                }
-            }
+            ControlPrefixLoop(this.Form);
             CloseButtonBuilder();
             base.OnInitComplete(e);
         }
+        private bool ControlPrefixLoop(Control cl)
+        {
+            AddControlPrefix(cl);
+            if (cl.Controls.Count > 0)
+            {
+                for (int i = 0; i < cl.Controls.Count; i++)
+                {
+                    Control innerCl = cl.Controls[i];
+                    if (innerCl.ID != null)
+                    {
+                        AddControlPrefix(innerCl);
+                        if (innerCl.Controls.Count > 0)
+                        {
+                            ControlPrefixLoop(innerCl);
+                        }
+                    }                   
+                }               
+                return true;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        private void AddControlPrefix(Control cl)
+        {
+            cl.ID = _WidgetControlPrefix + "_" + cl.ID;
 
+        }
         private void CloseButtonBuilder()
         {
             HyperLink lnkClose = (HyperLink)this.Page.FindControl("lnkClose");
@@ -87,6 +107,6 @@ namespace BusinessLogic
                 new JScripter.Widget(this.Page, false).DeleteLinkButton(CustomHelper.GetGuidString(WidgetID), ResolveUrl(""), lnkClose);
             }
         }
-       
+
     }
 }

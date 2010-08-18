@@ -20,7 +20,7 @@
         <div style="float: left; padding: 2px;">
         </div>
         <div style="float: left; padding: 2px;">
-            <aspajax:AjaxLinkButton ID="lnkSearch" runat="server"><div class="btn">Search</div> </aspajax:AjaxLinkButton>
+            <aspajax:AjaxLinkButton ID="lnkSearch" runat="server"><div class="btn editbtn">Search</div> </aspajax:AjaxLinkButton>
         </div>
     </div>
     </form>
