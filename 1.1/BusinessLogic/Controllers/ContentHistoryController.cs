@@ -427,8 +427,8 @@ namespace BusinessLogic.Controllers
         {
             if (ContentType == (int)ContentTypeEnum.Image)
             {
-                var data = new DocumentController().GetbyDocumentID(new Guid(ContentID));
-                Document Adata = data[0];                                
+                var data = new DocumentController().GetbyDocumentID(new Guid(ContentID),false);
+                Document Adata = data[0];
                 MemoryStream ms = new MemoryStream();
                 XmlTextWriter writer = new XmlTextWriter(ms, new UTF8Encoding());
                 XmlSerializer serializer = new XmlSerializer(typeof(Document));
@@ -449,7 +449,8 @@ namespace BusinessLogic.Controllers
                 }
                 else
                 {
-                    HistoriesXml = new XElement("Documents");
+                    
+                    HistoriesXml = new XElement(  new XElement("Documents").GetDefaultNamespace()+ "Documents");
                 }
                 HistoriesXml.AddFirst((from p in xmlDoc.Elements("Document") select p));
 
@@ -472,7 +473,7 @@ namespace BusinessLogic.Controllers
                 ms.Position = 0;
                 ms.Read(Result, 0, (int)ms.Length);
                 string XmlResultString = Encoding.UTF8.GetString(Result, 0, (int)ms.Length);
-                XDocument xmlDoc = XDocument.Parse(XmlResultString);                
+                XDocument xmlDoc = XDocument.Parse(XmlResultString);
                 var HistoryData = new ContentHistoryController().GetbyContentID(ContentID);
                 XElement HistoriesXml;
                 if (HistoryData.Count > 0)
@@ -518,7 +519,7 @@ namespace BusinessLogic.Controllers
                 }
                 HistoriesXml.AddFirst((from p in xmlDoc.Elements("Event") select p));
 
-                new ContentHistoryController().Add(Guid.NewGuid(), ContentID, ContentType, data[0].LoginUserID,(DateTime) data[0].ModifiedDate, HistoriesXml);
+                new ContentHistoryController().Add(Guid.NewGuid(), ContentID, ContentType, data[0].LoginUserID, (DateTime)data[0].ModifiedDate, HistoriesXml);
 
 
 
@@ -530,10 +531,16 @@ namespace BusinessLogic.Controllers
                 MemoryStream ms = new MemoryStream();
                 XmlTextWriter writer = new XmlTextWriter(ms, new UTF8Encoding());
                 XmlSerializer serializer = new XmlSerializer(typeof(HomeWork));
+                //Create our own namespaces for the output
+                XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+
+                //Add an empty namespace and empty value
+                ns.Add("", "");
+
                 writer.Formatting = Formatting.Indented;
                 writer.IndentChar = ' ';
                 writer.Indentation = 3;
-                serializer.Serialize(writer, Adata);
+                serializer.Serialize(writer, Adata,ns);
                 byte[] Result = new byte[ms.Length];
                 ms.Position = 0;
                 ms.Read(Result, 0, (int)ms.Length);
@@ -563,30 +570,45 @@ namespace BusinessLogic.Controllers
             if (data.Count > 0)
             {
                 XElement HistoriesXML = data[0].BeforeEditContent;
-                var Histories = (from p in HistoriesXML.Elements("History")
-                               orderby p.Element("ModifiedDate").Value
-                               select new Document()
-                                   {
-                                       Description = p.Element("Description").Value,
-                                       DocumentID = new Guid(p.Element("DocumentID").Value),
-                                       DocumentType = Convert.ToInt16(p.Element("DocumentType").Value),
-                                       EditLoginUserID = Convert.ToInt16(p.Element("EditLoginUserID").Value),
-                                       FilePath = p.Element("FilePath").Value,
-                                       LoginUserID = Convert.ToInt32(p.Element("LoginUserID").Value),
-                                       MetaDescription = p.Element("MetaDescription").Value,
-                                       ModifiedDate = Convert.ToDateTime(p.Element("ModifiedDate").Value),
-                                       Name = p.Element("Name").Value,
-                                       Rating = Convert.ToInt32(p.Element("Rating").Value),
-                                       Tag = p.Element("Tag").Value
-                                   }
-                    );
-                
-                
+                //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(HistoriesXML.ToString());                
+                //MemoryStream mem = new MemoryStream(bytes);
+                //System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(Document));
+                //ser.Deserialize(mem);
+
+
+                #region Solution1
+                XmlSerializer ser = new XmlSerializer(typeof(object));
+                StringReader strreader=new StringReader(HistoriesXML.ToString());
+                XmlTextReader xmlread=new XmlTextReader(strreader);
+                object dds=(Document) ser.Deserialize(xmlread);
+                #endregion
+
+
+                //var Histories = (from p in HistoriesXML.Elements("History")
+                //                 orderby p.Element("ModifiedDate").Value
+                //                 select new Document()
+                //                     {
+                //                         Description = p.Element("Description").Value,
+                //                         DocumentID = new Guid(p.Element("DocumentID").Value),
+                //                         DocumentType = Convert.ToInt16(p.Element("DocumentType").Value),
+                //                         EditLoginUserID = Convert.ToInt16(p.Element("EditLoginUserID").Value),
+                //                         FilePath = p.Element("FilePath").Value,
+                //                         LoginUserID = Convert.ToInt32(p.Element("LoginUserID").Value),
+                //                         MetaDescription = p.Element("MetaDescription").Value,
+                //                         ModifiedDate = Convert.ToDateTime(p.Element("ModifiedDate").Value),
+                //                         Name = p.Element("Name").Value,
+                //                         Rating = Convert.ToInt32(p.Element("Rating").Value),
+                //                         Tag = p.Element("Tag").Value
+                //                     }
+                //    );
+
+
+
 
 
             }
         }
-      
+
         #endregion
 
 
