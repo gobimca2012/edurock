@@ -415,7 +415,7 @@ input, textarea
 .btn
 {
     padding: 5px 10px;
-   
+max-width:200px;   
     text-align: center;
     line-height: 12px;
     margin: 2px;
@@ -483,9 +483,9 @@ h5
 {
     background: #ECECEC;
 }
-.bluecontent
+.bluecontent,.udate
 {
-    background: #ECECEC;
+    background: #D9EFFF;
 }
 .cin
 {
@@ -974,8 +974,7 @@ a
 }
 .udate
 {
-    /*    float: right;*/
-    border-bottom: dashed 1px #cfcfcf;
+    
 }
 .fuleft
 {
@@ -1156,4 +1155,16 @@ input[type=radio], input[type=checkbox]
 .fright
 {
     float:right;
+}
+.calender td
+{
+    width:100px;
+    height:100px;
+    text-align:center;
+vertical-align:middle;
+border:none;
+}
+.calender tr
+{
+    border:none;
 }

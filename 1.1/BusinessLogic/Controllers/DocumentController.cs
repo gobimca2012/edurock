@@ -649,7 +649,7 @@ namespace BusinessLogic
 
             try
             {
-                new ContentHistoryController().GetDocumentHistory(DocumentID.ToString());
+                //new ContentHistoryController().GetDocumentHistory(DocumentID.ToString());
                 new ContentHistoryController().StoreContentHistory(DocumentID.ToString(), DocumentType);
                 new DataProvider().DocumentUpdateByDocumentID(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, ModifiedDate);
                 return true;

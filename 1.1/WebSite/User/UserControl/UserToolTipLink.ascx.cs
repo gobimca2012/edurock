@@ -48,6 +48,7 @@ public partial class User_UserControl_UserToolTipLink : System.Web.UI.UserContro
         }
         else
         {
+            
             lnkETool.Text = dataUser[0].FirstName + " " + dataUser[0].LastName;
             new JScripter.ToolTip(this.Page).AjaxToolTip(lnkETool, ResolveUrl("~/User/AjaxControl/Upop.aspx") + "?lid=" + LoginUserID.ToString(), "acont");
         }

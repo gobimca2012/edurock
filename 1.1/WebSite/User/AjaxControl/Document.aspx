@@ -18,6 +18,8 @@
             </div>
             <div style="float: right">
                 <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></div>
+                 <div style="float: right">
+                <aspajax:HyperLink ID="lnkHistory" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  History </div></aspajax:HyperLink></div>
             <div style="clear: both">
             </div>
         </div>

@@ -21,7 +21,8 @@ namespace BusinessLogic
         InstituteAccess,
         StatusMessage,
         WidgetEditMode,
-        ExamName
+        ExamName,
+        DocumentHistory,
 
     }
 }

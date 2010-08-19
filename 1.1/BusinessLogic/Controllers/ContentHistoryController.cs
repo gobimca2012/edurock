@@ -423,36 +423,56 @@ namespace BusinessLogic.Controllers
         }
         #endregion
         #region ContentHistory
+        public string SerializeXML(object objdata)
+        {
+            MemoryStream ms = new MemoryStream();
+            XmlTextWriter writer = new XmlTextWriter(ms, new UTF8Encoding());
+            var data = objdata;
+            Type oType = data.GetType();
+            XmlSerializer serializer = new XmlSerializer(oType);
+            writer.Formatting = Formatting.Indented;
+            writer.IndentChar = ' ';
+            writer.Indentation = 3;
+            serializer.Serialize(writer, data);
+            byte[] Result = new byte[ms.Length];
+            ms.Position = 0;
+            ms.Read(Result, 0, (int)ms.Length);
+            string XmlResultString = Encoding.UTF8.GetString(Result, 0, (int)ms.Length);
+            return XmlResultString;
+        }
+        public XElement GetXElementFromString(string XmlString, string xElementName)
+        {
+            XDocument xmlDoc = XDocument.Parse(XmlString);
+            
+            XElement data=xmlDoc.Element(xElementName);
+            return data;
+        }
         public void StoreContentHistory(string ContentID, int ContentType)
         {
-            if (ContentType == (int)ContentTypeEnum.Image)
+            if (ContentType == (int)ContentTypeEnum.Image || ContentType == (int)ContentTypeEnum.Video || ContentType == (int)ContentTypeEnum.Document || ContentType == (int)ContentTypeEnum.Audio)
             {
                 var data = new DocumentController().GetbyDocumentID(new Guid(ContentID),false);
-                Document Adata = data[0];
-                MemoryStream ms = new MemoryStream();
-                XmlTextWriter writer = new XmlTextWriter(ms, new UTF8Encoding());
-                XmlSerializer serializer = new XmlSerializer(typeof(Document));
-                writer.Formatting = Formatting.Indented;
-                writer.IndentChar = ' ';
-                writer.Indentation = 3;
-                serializer.Serialize(writer, Adata);
-                byte[] Result = new byte[ms.Length];
-                ms.Position = 0;
-                ms.Read(Result, 0, (int)ms.Length);
-                string XmlResultString = Encoding.UTF8.GetString(Result, 0, (int)ms.Length);
-                XDocument xmlDoc = XDocument.Parse(XmlResultString);
+                Document Adata = data[0];              
+                
+         
                 var HistoryData = new ContentHistoryController().GetbyContentID(ContentID);
                 XElement HistoriesXml;
                 if (HistoryData.Count > 0)
                 {
                     HistoriesXml = HistoryData[0].BeforeEditContent;
+                    string XmlResultString = SerializeXML(Adata);
+                    HistoriesXml.AddFirst(GetXElementFromString(XmlResultString,"Document"));
+                    
                 }
                 else
                 {
+                    List<Document> LData = new List<Document>();
+                    LData.Add(Adata);
+                    string Xml=SerializeXML(LData);
                     
-                    HistoriesXml = new XElement(  new XElement("Documents").GetDefaultNamespace()+ "Documents");
+                    HistoriesXml=GetXElementFromString(Xml, "ArrayOfDocument");                    
                 }
-                HistoriesXml.AddFirst((from p in xmlDoc.Elements("Document") select p));
+                
 
                 new ContentHistoryController().Add(Guid.NewGuid(), ContentID, ContentType, data[0].LoginUserID, data[0].ModifiedDate, HistoriesXml);
 
@@ -564,48 +584,24 @@ namespace BusinessLogic.Controllers
 
             }
         }
-        public void GetDocumentHistory(string ContentID)
+        public List<Document> GetDocumentHistory(string ContentID)
         {
             var data = GetbyContentID(ContentID);
             if (data.Count > 0)
             {
                 XElement HistoriesXML = data[0].BeforeEditContent;
-                //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(HistoriesXML.ToString());                
-                //MemoryStream mem = new MemoryStream(bytes);
-                //System.Xml.Serialization.XmlSerializer ser = new System.Xml.Serialization.XmlSerializer(typeof(Document));
-                //ser.Deserialize(mem);
-
 
                 #region Solution1
-                XmlSerializer ser = new XmlSerializer(typeof(object));
-                StringReader strreader=new StringReader(HistoriesXML.ToString());
-                XmlTextReader xmlread=new XmlTextReader(strreader);
-                object dds=(Document) ser.Deserialize(xmlread);
+                XmlSerializer ser = new XmlSerializer(typeof(List<Document>));
+                StringReader strreader = new StringReader(HistoriesXML.ToString());
+                XmlTextReader xmlread = new XmlTextReader(strreader);
+                List<Document> dds = (List<Document>)ser.Deserialize(xmlread);
                 #endregion
-
-
-                //var Histories = (from p in HistoriesXML.Elements("History")
-                //                 orderby p.Element("ModifiedDate").Value
-                //                 select new Document()
-                //                     {
-                //                         Description = p.Element("Description").Value,
-                //                         DocumentID = new Guid(p.Element("DocumentID").Value),
-                //                         DocumentType = Convert.ToInt16(p.Element("DocumentType").Value),
-                //                         EditLoginUserID = Convert.ToInt16(p.Element("EditLoginUserID").Value),
-                //                         FilePath = p.Element("FilePath").Value,
-                //                         LoginUserID = Convert.ToInt32(p.Element("LoginUserID").Value),
-                //                         MetaDescription = p.Element("MetaDescription").Value,
-                //                         ModifiedDate = Convert.ToDateTime(p.Element("ModifiedDate").Value),
-                //                         Name = p.Element("Name").Value,
-                //                         Rating = Convert.ToInt32(p.Element("Rating").Value),
-                //                         Tag = p.Element("Tag").Value
-                //                     }
-                //    );
-
-
-
-
-
+                return dds;
+            }
+            else
+            {
+                return new List<Document>();
             }
         }
 

@@ -21,6 +21,7 @@ public partial class User_AjaxControl_Document : AjaxPage
         {
             //lnkDelete.Visible = true;
             lnkShare.Visible = UserAccess.IsEditablable;
+            lnkHistory.Visible = true;
 
         }
         lnkEdit.Visible = UserAccess.IsEditablable;
@@ -127,6 +128,7 @@ public partial class User_AjaxControl_Document : AjaxPage
             BindData();
             objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + (_ContentType).ToString());
             lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + (_ContentType).ToString();
+            lnkHistory.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentHistoryView.aspx") + "?conid=" + ID.ToString() ;
         }
 
     }

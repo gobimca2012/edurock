@@ -12,6 +12,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 using Common;
+using DataEntity;
+using System.Collections.Generic;
 
 public partial class User_AjaxControl_EventInfoView : AjaxPage
 {
@@ -101,7 +103,7 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
-            
+
         }
         if (Request.Params["usid"] != null)
         {
@@ -143,7 +145,7 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
             }
             else
             {
-                return new DateTime(1800, 1, 1);
+                return DateTime.Now;
             }
         }
     }
@@ -164,12 +166,18 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
     }
     private void BindList()
     {
-        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate).Count / PageSize));
-        ListDocument.DataSource = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate, PageSize, PageNumber);
-        ListDocument.DataBind();
         
+        data = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate);
+        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)data.Count / PageSize));
+        ListDocument.DataSource = data;
+        ListDocument.DataBind();
+
     }
-    
+    private List<GetUserRelatedContentSearchResult> data
+    {
+        get;
+        set;
+    }
     private void PaggerLinkManager()
     {
 
@@ -226,6 +234,25 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
 
     protected void CalDayRender(object sender, DayRenderEventArgs e)
     {
-        
+        if (data != null)
+        {
+            int SelectedMonth = DateTime.Now.Month;
+            var dateEvent = (from p in data where  p.ModifiedDate.Value.Day == e.Day.Date.Day select p).ToList();
+            string controlstr = "";
+            controlstr += "<div class='eventtip'>";
+            if (dateEvent.Count > 0)
+            {
+                for (int i = 0; i < dateEvent.Count; i++)
+                {
+                    controlstr += "<li style='text-align:left'>";                    
+                    controlstr += dateEvent[i].Title;                    
+                    controlstr += "</li>";
+                }
+                controlstr += "</div>";
+                e.Cell.Controls.Add(new LiteralControl(controlstr));
+                e.Cell.CssClass = "eventcal";
+                e.Cell.ToolTip = dateEvent[0].Title;
+            }
+        }
     }
 }
