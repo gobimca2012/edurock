@@ -110,49 +110,51 @@ public partial class College_Ajaxer_Question : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        Examname.InnerText = _ExamData.ExamName;
-        if (!this.IsAjaxPostBack)
+        if (PageArg == "")
         {
+            Examname.InnerText = _ExamData.ExamName;
+            if (!this.IsAjaxPostBack)
             {
-                if (Request.Params["oid"] != null)
                 {
-                    int OrderID = Convert.ToInt32(Request.Params["oid"]);
-                    UpdateAnswer();
-                    GetCurrentQuestionByOrder(OrderID);
+                    if (Request.Params["oid"] != null)
+                    {
+                        int OrderID = Convert.ToInt32(Request.Params["oid"]);
+                        UpdateAnswer();
+                        GetCurrentQuestionByOrder(OrderID);
 
-                    LoadQuestionUI();
-                    BindQuestion();
+                        LoadQuestionUI();
+                        BindQuestion();
+                    }
+                    else
+                    {
+                        BindQuestion();
+                        LoadQuestionUI();
+                    }
+
                 }
-                else
-                {
-                    BindQuestion();
-                    LoadQuestionUI();
-                }
+                // StartTimmer();
+
+
 
             }
-            // StartTimmer();
+            if (Request.Params["oid"] != null)
+            {
+                int OrderID = Convert.ToInt32(Request.Params["oid"]);
+                UpdateAnswer();
+                GetCurrentQuestionByOrder(OrderID);
 
+                LoadQuestionUI();
+                BindQuestion();
+            }
 
+            lnkSubmit.Attributes["onclick"] = string.Format("return SubmitAnswer('{0}','{1}');", "#examStart", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa");
+            if (Request.Params["sb"] != null)
+            {
+                new UserExamController().Update(_ExamID, UserExamID, true);
+                Response.Redirect("~/User/AjaxControl/UserExamResult.aspx");
+            }
 
         }
-        if (Request.Params["oid"] != null)
-        {
-            int OrderID = Convert.ToInt32(Request.Params["oid"]);
-            UpdateAnswer();
-            GetCurrentQuestionByOrder(OrderID);
-
-            LoadQuestionUI();
-            BindQuestion();
-        }
-
-        lnkSubmit.Attributes["onclick"] = string.Format("return SubmitAnswer('{0}','{1}');", "#examStart", ResolveUrl("~/College/Ajaxer/Question.aspx") + "?sb=aa");
-        if (Request.Params["sb"] != null)
-        {
-            new UserExamController().Update(_ExamID, UserExamID, true);
-            Response.Redirect("~/User/AjaxControl/UserExamResult.aspx");
-        }
-
-
     }
     private void BindQuestion()
     {
@@ -396,5 +398,9 @@ public partial class College_Ajaxer_Question : AjaxPage
         new UserExamController().Update(_ExamID, UserExamID, true);
         JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, false);
         objPopup.PopUpClose("#examOpen");
+    }
+    protected void AjaxFinish_Click(object sender, AjaxControl.AjaxEventArg e)
+    {
+
     }
 }

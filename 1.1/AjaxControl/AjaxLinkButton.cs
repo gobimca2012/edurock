@@ -85,6 +85,11 @@ namespace AjaxControl
             get;
             set;
         }
+        public string PageArg
+        {
+            get;
+            set;
+        }
         public string ResponseContainner
         {
             get;
@@ -149,7 +154,7 @@ namespace AjaxControl
                     QuesryString += "?id=" + QID;
                 }
             }
-            if (AjaxCommand != "")
+            if (AjaxCommand!=null && AjaxCommand != "")
             {
                 if (Url.Contains("?"))
                 {
@@ -159,6 +164,18 @@ namespace AjaxControl
                 else
                 {
                     QuesryString += "?cmd=" + AjaxCommand;
+                }
+            }
+            if (PageArg != null && PageArg != "")
+            {
+                if (Url.Contains("?"))
+                {
+
+                    QuesryString += "&prg=" + PageArg;
+                }
+                else
+                {
+                    QuesryString += "?prg=" + PageArg;
                 }
             }
             if (Pagger)
@@ -202,7 +219,7 @@ namespace AjaxControl
                     }
                     if (HttpContext.Current.Request.Params["cmd"] != "")
                     {
-                        objArg.AjaxCommand = HttpContext.Current.Request.QueryString["cmd"];
+                        objArg.AjaxCommand = HttpContext.Current.Request.Params["cmd"];
                     }
                     OnAjaxClick(objArg);
                 }

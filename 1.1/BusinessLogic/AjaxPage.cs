@@ -64,6 +64,20 @@ namespace BusinessLogic
                 }
             }
         }
+        protected string PageArg
+        {
+            get
+            {
+                if (Request.Params["prg"] != null)
+                {
+                    return Request.Params["prg"];
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
         protected bool IsAjaxPostBack
         {
             get

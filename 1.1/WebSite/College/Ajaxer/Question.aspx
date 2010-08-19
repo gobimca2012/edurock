@@ -80,6 +80,11 @@
             </div>
             <div style="clear: both">
                 <asp:LinkButton ID="lnkSubmit" runat="server"><div class="btn editbtn"> Finish</div></asp:LinkButton>
+                <aspajax:AjaxLinkButton ID="lnkFinish" runat="server" AjaxCommand="finish" 
+                    RequestContainner="#contentBox" ResponseContainner="#contentBox" 
+                    EnableValidation="False" EnableViewState="False" Increment="False" 
+                    onajaxclick="AjaxFinish_Click" Pagger="False" >Finish</aspajax:AjaxLinkButton>
+                
             </div>
         </div>
     </div>
@@ -91,6 +96,7 @@
    
    if(confirm("do you want to submit Examination answers?"))
    {
+   alert(Url);
      $(PopUpID).html("");
     $("#contentBox").LoadPageNoReplace(Url);       
     
