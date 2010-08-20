@@ -23,6 +23,8 @@ namespace BusinessLogic
         WidgetEditMode,
         ExamName,
         DocumentHistory,
+        EventStartDate,
+        EventEndDate
 
     }
 }

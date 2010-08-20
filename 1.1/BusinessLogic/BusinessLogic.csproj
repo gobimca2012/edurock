@@ -53,20 +53,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AjaxPage.cs">
+    <Compile Include="Entity\UserFiles.cs" />
+    <Compile Include="PageHandler\AjaxPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Controllers\AnswerController.cs" />
     <Compile Include="Controllers\AnswerStateController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
-    <Compile Include="BasePage.cs">
+    <Compile Include="PageHandler\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="BaseUserControl.cs">
+    <Compile Include="PageHandler\BaseUserControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ButtonVisibilityHelper.cs" />
-    <Compile Include="CollegeBasePage.cs">
+    <Compile Include="PageHandler\CollegeBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Controllers\CommentController.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserEducationController.cs" />
     <Compile Include="Controllers\UserExamController.cs" />
+    <Compile Include="UserContentDirectoryHelper.cs" />
     <Compile Include="Widget\WidgetContainner.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

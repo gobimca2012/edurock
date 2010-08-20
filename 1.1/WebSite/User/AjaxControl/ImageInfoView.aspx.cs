@@ -92,6 +92,9 @@ public partial class User_AjaxControl_ImageInfoView : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.DatePicker objdate = new JScripter.DatePicker(this.Page);
+        objdate.DatePickerTextBox(txtEnddate);
+        objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
         if (Request.Params["isid"] != null)

@@ -7,22 +7,53 @@
 <head runat="server">
     <title>Untitled Page</title>
 </head>
-<body style="background:#fff">
+<body style="background: #fff">
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="whitecont">
-            <div id="divMessage" runat="server">
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Upload new File</a></li>
+                    <li><a href="#tabs-2">Repository</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <div id="divMessage" runat="server">
+                    </div>
+                    <div>
+                        Upload File
+                    </div>
+                    <div>
+                        <asp:FileUpload ID="fileUploader" runat="server" />
+                    </div>
+                    <div>
+                        <asp:LinkButton ID="lnkUpload" runat="server" OnClick="lnkUpload_Click"><div class="btn editbtn"> Upload</div></asp:LinkButton>
+                    </div>
+                    <asp:Label ID="injectScript" runat="server"></asp:Label>
+                </div>
+                <div id="tabs-2">
+                    <asp:DataList ID="ListImage" runat="server" OnItemCommand="OnImageListItemCommand"
+                        DataKeyField="FilePath" RepeatColumns="3">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnkUplo" runat="server" CommandName="upload">
+                                <asp:Image ID="img" runat="server" Width="50px" Height="50px" ImageUrl='<%#ResolveUrl(Eval("FilePath").ToString()) %>' />
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:DataList>
+                    <asp:ListView ID="ImageList" runat="server" DataKeyField="FilePath" 
+                        OnItemCommand="ListViewItemCommand">
+                        <LayoutTemplate>
+                            <div>
+                                <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                            </div>
+                        </LayoutTemplate>
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnkUplo" runat="server" CommandName="upload">
+                                <asp:Image ID="img" runat="server" Width="50px" Height="50px" ImageUrl='<%#ResolveUrl(Eval("FilePath").ToString()) %>' />
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:ListView>
+                </div>
             </div>
-            <div>
-                Upload File
-            </div>
-            <div>
-                <asp:FileUpload ID="fileUploader" runat="server" />
-            </div>
-            <div>
-                <asp:LinkButton ID="lnkUpload" runat="server" OnClick="lnkUpload_Click"><div class="btn editbtn"> Upload</div></asp:LinkButton>
-            </div>
-            <asp:Label ID="injectScript" runat="server"></asp:Label>
         </div>
     </div>
     </form>

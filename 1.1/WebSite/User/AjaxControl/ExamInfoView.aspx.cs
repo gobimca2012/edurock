@@ -85,6 +85,9 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.DatePicker objdate = new JScripter.DatePicker(this.Page);
+        objdate.DatePickerTextBox(txtEnddate);
+        objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
         hpAddExam.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddExam;

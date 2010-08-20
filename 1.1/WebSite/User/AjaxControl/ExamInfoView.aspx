@@ -17,11 +17,13 @@
             <div style="float: left" class="title">
                 Search
             </div>
-            <div style="float: right" class="exand" id="searchboxtrigger">
-            </div>
-            <div class="clear">
-            </div>
-            <div id="searchbox" runat="server" style="display: none">
+           <div style="float: right" class="expand" id="searchboxtrigger">
+                    <div>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+                <div id="searchbox" runat="server" class="invis">
                 <div>
                     <div style="float: left;">
                         <div class="label">

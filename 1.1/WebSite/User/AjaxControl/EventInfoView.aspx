@@ -17,11 +17,13 @@
                 <div style="float: left" class="title">
                     Search
                 </div>
-                <div style="float: right" class="exand" id="searchboxtrigger">
+                <div style="float: right" class="expand" id="searchboxtrigger">
+                    <div>
+                    </div>
                 </div>
                 <div class="clear">
                 </div>
-                <div id="searchbox" runat="server" style="display: none">
+                <div id="searchbox" runat="server" class="invis">
                     <div>
                         <div style="float: left;">
                             <div class="label">
@@ -54,6 +56,31 @@
                     </div>
                 </div>
             </div>
+            <div class="graycontent">
+                <div class="fl" style="width: 100px">
+                    <aspajax:AjaxLinkButton ID="lnkPrevMonth" runat="server" RequestContainner="#contentBox"
+                        ResponseContainner="#contentBox" EnableValidation="False" EnableViewState="False"
+                        Increment="False" OnAjaxClick="PrevMonthAjax" Pagger="False"><div class="btn editbtn"> <<</div></aspajax:AjaxLinkButton>
+                </div>
+                <div class="fr" style="width: 100px">
+                    <aspajax:AjaxLinkButton ID="lnkNextMonth" runat="server" RequestContainner="#contentBox"
+                        ResponseContainner="#contentBox" EnableValidation="False" EnableViewState="False"
+                        Increment="False" OnAjaxClick="NextMonthAjax" Pagger="False"><div class="btn editbtn"> >></div></aspajax:AjaxLinkButton>
+                </div>
+                <div class="clear">
+                </div>
+                <div class="whitecont">
+                    <asp:Calendar ID="Calendar1" runat="server" BackColor="White" Width="700px" BorderWidth="0px"
+                        NextMonthText="" PrevMonthText="" CssClass="calender" OnDayRender="CalDayRender">
+                        <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                        <TodayDayStyle BackColor="#CCCCCC" />
+                        <OtherMonthDayStyle ForeColor="#999999" />
+                        <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                        <TitleStyle BackColor="White" BorderColor="White" BorderWidth="0px" Font-Bold="True" />
+                    </asp:Calendar>
+                </div>
+                
+            </div>
             <div>
                 <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
                     <LayoutTemplate>
@@ -63,46 +90,34 @@
                     </LayoutTemplate>
                     <ItemTemplate>
                         <div class="dasbo">
-                            <div style="float: left; width: 550px">
-                                <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Event.aspx") + "?evid=" + Eval("ID").ToString()%>'>
-                        &nbsp;&nbsp;<%#Eval("Title") %></aspajax:HyperLink>
+                            <div class="fr">
+                                <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
                             </div>
-                            <div style="float: right">
-                                <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" ModifiedDate='<%#Eval("ModifiedDate") %>'
-                                    LoginUserID='<%#Eval("LoginUserID") %>' />
+                            <div class="clear">
+                            </div>
+                            <div class="fl">
+                                <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Event.aspx") + "?evid=" + Eval("ID").ToString()%>'>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<%#Eval("Title") %></aspajax:HyperLink>
+                            </div>
+                            <div class="fr">
+                                <div class="fl">
+                                    Created by
+                                    <UNameLink:UNameLink ID="UNameLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>' />
+                                </div>
+                                <div class="clear">
+                                </div>
                             </div>
                             <div style="clear: both">
                             </div>
                             <div>
-                                <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
+                                Event Start Date
+                                <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("param1").ToString())) %>
                             </div>
                         </div>
                     </ItemTemplate>
                 </asp:ListView>
             </div>
-            <div>
-                <asp:Calendar ID="Calendar1" runat="server" BackColor="White" Width="100%" BorderWidth="0px" CssClass="calender"
-                    ondayrender="CalDayRender">
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <TodayDayStyle BackColor="#CCCCCC" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                   
-                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                    <TitleStyle BackColor="White" BorderColor="White" BorderWidth="0px" 
-                        Font-Bold="True" />
-                </asp:Calendar>
-            </div>
-            <div class="gray">
-                <div style="float: right">
-                    <div style="float: left">
-                        <aspajax:AjaxLinkButton ID="lnkPrevDocument" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
-                            Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
-                    </div>
-                    <div style="float: left">
-                        <aspajax:AjaxLinkButton ID="lnkNextDocument" runat="server" OnAjaxClick="NextAjaxClick"
-                            RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
-                    </div>
-                </div>
+            <div class="gray clear">
                 <div>
                     <aspajax:HyperLink ID="hpAddDocument" runat="server" NavigateUrl="~/User/AjaxControl/EventInfo.aspx"
                         ContainnerID="#contentBox"><div class="btn"> Add New Event</div></aspajax:HyperLink>

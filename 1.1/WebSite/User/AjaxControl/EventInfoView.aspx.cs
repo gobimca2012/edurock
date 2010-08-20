@@ -18,24 +18,7 @@ using System.Collections.Generic;
 public partial class User_AjaxControl_EventInfoView : AjaxPage
 {
     public HtmlHelper _HtmlHelper = new HtmlHelper();
-    private int PageNumber
-    {
-        get
-        {
-            if (Request.Params["pn"] != null)
-                return Convert.ToInt32(Request.Params["pn"].ToString());
-            else
-            {
-                lnkPrevDocument.Visible = false;
-                return 0;
-            }
-        }
 
-
-    }
-
-    private int TotalPage;
-    private int PageSize = 100;
     private int _DocumentType
     {
         get
@@ -89,10 +72,13 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
     {
 
         BindList();
-        PaggerLinkManager();
+      
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        JScripter.DatePicker objdate = new JScripter.DatePicker(this.Page);
+        objdate.DatePickerTextBox(txtEnddate);
+        objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
         hpAddDocument.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddEvent;
@@ -117,11 +103,12 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
         {
             AjaxState["dtype"] = Request.Params["dtype"];
         }
-        //hpAddDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?dtype=" + _DocumentType.ToString();
+        if (!IsAjaxPostBack)
         {
+            Session.Remove(SessionName.EventEndDate.ToString());
+            Session.Remove(SessionName.EventStartDate.ToString());
             BindList();
-
-            PaggerLinkManager();
+         
         }
 
     }
@@ -145,10 +132,24 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
             }
             else
             {
-                return DateTime.Now;
+                if (Session[SessionName.EventStartDate.ToString()] != null)
+                {
+                    return Convert.ToDateTime(Session[SessionName.EventStartDate.ToString()].ToString());
+                }
+                else
+                {
+                    Session[SessionName.EventStartDate.ToString()] = DateTime.Now;
+                    return DateTime.Now;
+                }
             }
         }
+        set
+        {
+            Session[SessionName.EventStartDate.ToString()] = value;
+        }
+
     }
+
     private DateTime EndDate
     {
         get
@@ -160,15 +161,30 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
             }
             else
             {
-                return DateTime.Now;
+                if (Session[SessionName.EventEndDate.ToString()] != null)
+                {
+                    return Convert.ToDateTime(Session[SessionName.EventEndDate.ToString()].ToString());
+                }
+                else
+                {
+                    Session[SessionName.EventEndDate.ToString()] = DateTime.Now;
+                    return DateTime.Now;
+                }
             }
         }
+        set
+        {
+
+            Session[SessionName.EventEndDate.ToString()] = value;
+
+        }
+
     }
     private void BindList()
     {
-        
+
         data = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate);
-        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)data.Count / PageSize));
+       
         ListDocument.DataSource = data;
         ListDocument.DataBind();
 
@@ -178,40 +194,8 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
         get;
         set;
     }
-    private void PaggerLinkManager()
-    {
-
-
-        if (PageNumber == 0)
-        {
-            lnkPrevDocument.Visible = false;
-        }
-        if (TotalPage - 1 == PageNumber || TotalPage == 0)
-        {
-            lnkNextDocument.Visible = false;
-        }
-        if (lnkNextDocument.Visible)
-        {
-            //lnkNextDocument.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
-        }
-
-        if (lnkPrevDocument.Visible)
-        {
-            //lnkPrevDocument.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
-        }
-    }
-    protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
-    {
-
-        BindList();
-        PaggerLinkManager();
-    }
-    protected void PrevAjaxClick(object sender, AjaxControl.AjaxEventArg e)
-    {
-
-        BindList();
-        PaggerLinkManager();
-    }
+ 
+   
     protected override void OnAjaxListViewCommand(AjaxListViewCommandArg e)
     {
         if (e.Command.Contains("delete"))
@@ -237,22 +221,43 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
         if (data != null)
         {
             int SelectedMonth = DateTime.Now.Month;
-            var dateEvent = (from p in data where  p.ModifiedDate.Value.Day == e.Day.Date.Day select p).ToList();
-            string controlstr = "";
-            controlstr += "<div class='eventtip'>";
+            var dateEvent = (from p in data where p.ModifiedDate.Value.Day == e.Day.Date.Day && p.ModifiedDate.Value.Month == e.Day.Date.Month && p.ModifiedDate.Value.Year == e.Day.Date.Year select p).ToList();
+            HtmlGenericControl div = new HtmlGenericControl("div");
             if (dateEvent.Count > 0)
             {
                 for (int i = 0; i < dateEvent.Count; i++)
                 {
-                    controlstr += "<li style='text-align:left'>";                    
-                    controlstr += dateEvent[i].Title;                    
-                    controlstr += "</li>";
+                    HtmlGenericControl divItem = new HtmlGenericControl("div");
+                    HyperLink fullViewLink = new HyperLink();
+                    fullViewLink.ID = "fullview_" + i.ToString();
+                    string ContainnerID = "#contentBox";
+                    string url = ResolveUrl("~/User/AjaxControl/Event.aspx") + "?evid=" + dateEvent[i].ID.ToString();
+                    fullViewLink.Text = dateEvent[i].Title;
+                    fullViewLink.Attributes["href"] = "javascript:void(0);";
+                    //new JScripter.Loader(this.Page, false).PostData(ContainnerID, ContainnerID, ResolveUrl(this.NavigateUrl), this.ClientID);
+                    new JScripter.Loader(this.Page, false).AjaxRedirect(ContainnerID, ContainnerID, url, fullViewLink.ClientID);
+                    fullViewLink.NavigateUrl = "";
+                    divItem.Controls.Add(fullViewLink);
+                    div.Controls.Add(divItem);
                 }
-                controlstr += "</div>";
-                e.Cell.Controls.Add(new LiteralControl(controlstr));
+
+                e.Cell.Controls.Add(div);
                 e.Cell.CssClass = "eventcal";
                 e.Cell.ToolTip = dateEvent[0].Title;
             }
         }
+    }
+    
+    protected void PrevMonthAjax(object sender, AjaxControl.AjaxEventArg e)
+    {
+        StartDate = StartDate.AddMonths(-1);
+        Calendar1.VisibleDate = StartDate;
+        BindList();
+    }
+    protected void NextMonthAjax(object sender, AjaxControl.AjaxEventArg e)
+    {
+        StartDate = StartDate.AddMonths(1);
+        Calendar1.VisibleDate = StartDate;
+        BindList();
     }
 }

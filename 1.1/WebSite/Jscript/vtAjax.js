@@ -1,5 +1,4 @@
-﻿// JavaScript Document
-// JavaScript Document
+﻿var vteditor;
 function loadobject(url, loadid, clickid)
 {
    this.url = url;
@@ -466,8 +465,46 @@ $.fn.PUIW = function(url, swidth, sheight, rurl, rid)
 
 }
 
-//  ---------------------------------------
 
+
+//  ---------------------------------------
+$.fn.PUIWEditor = function(url, swidth, sheight)
+{
+   // alert("aa");
+   var id = $(this).attr("id");
+   id = "#" + id;
+   $(this).html("");
+   $(this).html("Loading................");
+
+   var str = "<iframe id='Ipopup' ALLOWTRANSPARENCY='true' frameborder='0' src='";
+   str += url;
+   str += "' style='width:" + swidth + "px;height:" + sheight + "px; background:none; overflow:auto;'></iframe>";
+   $(this).html(str);
+   $(this).dialog(
+   {
+      position : 'center',
+      width : 'auto',
+      height : 'auto',
+      close : function(event, ui)
+      {
+         $(this).dialog('destroy');
+         
+      }
+   }
+   );
+   $(this).dialog('open');
+   $("#Ipopup").css(
+   {
+      width : "'"+swidth+"'px",
+      height : "'"+sheight+"'px"
+   }
+   );
+
+   return false;
+
+}
+
+//  ---------------------------------------
 $.fn.shower = function(ShowBlockID)
 {
    $(this).click(function()
@@ -522,6 +559,14 @@ $.fn.dropdownPostback = function(url, PostContainnerID, ResponseID)
 function closePop()
 {
    // alert('close popup');
+   $("#ipop").dialog('close');
+   $("#ipop").dialog('destroy');
+}
+function closeEditorPopUp(content)
+{
+  alert("aa");
+  alert(vteditor);
+   vteditor.selection.setContent('<img src="'+content+'" title="img"></img>');
    $("#ipop").dialog('close');
    $("#ipop").dialog('destroy');
 }
