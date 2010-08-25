@@ -7,10 +7,10 @@
 </div>
 <div class="graycontent roundedall">
     <div>
-        Cource Name: <span id="lblCourceName" runat="server"></span>
+        <cram:SpaceLabel ID="lblspace" runat="server"></cram:SpaceLabel> Name: <span id="lblCourceName" runat="server"></span>
     </div>
     <div>
-        Subject Name: <span id="lblSubjectName" runat="server"></span>
+        <cram:CategoryLabel ID="lblcat" runat="server"></cram:CategoryLabel> Name: <span id="lblSubjectName" runat="server"></span>
     </div>
 </div>
 <div class="graycontent roundedall">
