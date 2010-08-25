@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Institute Cources
+            Institute <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> 
         </div>
         <asp:ListView ID="ListInstituteCource" runat="server">
             <LayoutTemplate>
@@ -18,7 +18,7 @@
                     <thead>
                         <tr>
                             <td>
-                                Cource
+                                <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> 
                             </td>
                             <td>
                                 StartDate

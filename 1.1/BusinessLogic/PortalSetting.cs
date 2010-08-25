@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using BusinessLogic.Controllers;
+using System.Web;
 
 namespace BusinessLogic.Controller
 {
@@ -30,22 +31,33 @@ namespace BusinessLogic.Controller
     {
         public PortalSetting Get()
         {
-
-            var data=new BusinessLogic.Controllers.PortalSettingController().GetbyInstituteID(new UserAuthontication().InstituteID);
-            if (data.Count > 0)
+            if (HttpContext.Current.Session[SessionName.PortalSetting.ToString()] == null)
             {
-                XElement settings = data[0].Settings;
-                PortalSetting pdata = new PortalSetting();
-                var obj = (PortalSetting)new XMLHelper().Deserialize(settings,pdata);
-                return obj;
+                var data = new BusinessLogic.Controllers.PortalSettingController().GetbyInstituteID(new UserAuthontication().InstituteID);
+                if (data.Count > 0)
+                {
+                    XElement settings = data[0].Settings;
+                    PortalSetting pdata = new PortalSetting();
+                    var obj = (PortalSetting)new XMLHelper().Deserialize(settings, pdata);
+                    HttpContext.Current.Session[SessionName.PortalSetting.ToString()] = obj;
+                    return obj;
+                }
+                else
+                {
+                    PortalSetting datap = new PortalSetting();
+                    datap.CourseHeader = "Course";
+                    datap.SubjectHeader = "Subject";
+                    return null;
+                }
             }
             else
             {
-                return null;
+                return (PortalSetting)HttpContext.Current.Session[SessionName.PortalSetting.ToString()];
             }
         }
         public void Add(PortalSetting obj)
         {
+            HttpContext.Current.Session.Remove(SessionName.PortalSetting.ToString());
             XElement psetting= new XMLHelper().Serialize(obj);
             new PortalSettingController().Add(Guid.NewGuid(), new UserAuthontication().InstituteID, psetting, DateTime.Now);
         }

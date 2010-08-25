@@ -18,10 +18,10 @@
             <div>
                 <div>
                     <div>
-                        <span class="label">Select Cource</span><span class="valmsg" >(Required)*</span>
+                        <cram:SpaceLabel ID="lblcc" runat="server" EnableViewState="false" CssClass="label"></cram:SpaceLabel><span class="valmsg" >(Required)*</span>
                         <div>
-                            In case your cource not available in Cource Dropdown add new Cource using Add new
-                            Base Cource
+                            In case your cource not available in <cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel>  Dropdown add new Cource using Add new
+                            Base <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> 
                         </div>
                         <div>
                             <aspajax:HyperLink ID="lnkAddCat" runat="server" ContainnerID="#contentBox" NavigateUrl="~/College/Ajaxer/CourceInfo.aspx">Add new Base Cource</aspajax:HyperLink>

@@ -12,7 +12,7 @@
         <div id="divMessage" runat="server">
         </div>
         <fieldset>
-            <legend>CourceCatagory</legend>
+            <legend><cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>   Catagory</legend>
             <table>
                
                 <tr>

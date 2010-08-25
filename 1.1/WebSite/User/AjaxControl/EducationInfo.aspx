@@ -23,7 +23,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">Subject Name</span><span class="valmsg" >(Required)*</span>
+                        <span class="label"><cram:CategoryLabel ID="asa" runat="server" ></cram:CategoryLabel> Name</span><span class="valmsg" >(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtSubjectName" runat="server"></asp:TextBox>

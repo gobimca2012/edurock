@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Cource Catagory
+            <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>  Catagory
         </div>
         <div class="whitecont">
             <asp:ListView ID="ListCourceCatagory" runat="server">

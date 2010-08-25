@@ -33,6 +33,7 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         var data=new PortalSettingHelper().Get();
+        lblSpace.InnerText = data.CourseHeader;
         if (Request.Cookies[CookieName.FullMode.ToString()] != null && Request.Cookies[CookieName.FullMode.ToString()].Value == "1")
         {
             //pagecon.Style.Add("width", "100%");

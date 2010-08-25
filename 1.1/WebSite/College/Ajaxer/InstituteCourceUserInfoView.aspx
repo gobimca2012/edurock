@@ -20,7 +20,7 @@
                         <thead>
                             <tr>
                                 <td>
-                                    Cource
+                                    <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> 
                                 </td>
                                 <td>
                                     User

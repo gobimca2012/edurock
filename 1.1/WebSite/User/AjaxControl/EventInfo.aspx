@@ -59,7 +59,8 @@
                     <div>
                         <div>
                             <div>
-                                <span class="label">Select your Cource</span><span class="valmsg" >(Required)*</span>
+                                <%--<span class="label">Select your Cource</span><span class="valmsg" >(Required)*</span>--%>
+                                <cram:SpaceLabel ID="lblcc" runat="server" EnableViewState="false" CssClass="label"></cram:SpaceLabel><span class="valmsg" >(Required)*</span>
                             </div>
                             <div>
                                 <asp:DropDownList ID="ddCource" runat="server">
@@ -68,7 +69,8 @@
                         </div>
                         <div>
                             <div>
-                                <span class="label">Select your Subject</span><span class="valmsg" >(Required)*</span>
+                                <%--<span class="label">Select your Subject</span>--%>
+                                <cram:CategoryLabel ID="asa" runat="server" EnableViewState="false" CssClass="label"></cram:CategoryLabel><span class="valmsg" >(Required)*</span>
                             </div>
                             <div id="ddrep">
                                 <asp:DropDownList ID="ddSubject" runat="server">

@@ -17,7 +17,7 @@
                     <thead>
                         <tr>
                             <td>
-                                CourceCatagoryID
+                                <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>  Catagory
                             </td>
                             <td>
                                 CatagoryName

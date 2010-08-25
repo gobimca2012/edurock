@@ -119,7 +119,7 @@
             </div>
         </div>
         <div>
-            <aspajax:HyperLink ID="lnkInstituteCource" runat="server" ContainnerID="#Cource">Cources</aspajax:HyperLink>
+            <aspajax:HyperLink ID="lnkInstituteCource" runat="server" ContainnerID="#Cource"><cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel></aspajax:HyperLink>
         </div>
         <div id="Cource">
         </div>

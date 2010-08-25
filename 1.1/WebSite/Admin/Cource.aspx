@@ -7,7 +7,7 @@
     <div>
         <ul>
             <li>
-                <asp:HyperLink ID="lnkCourceCat" runat="server" NavigateUrl="~/Admin/CourceCatagory.aspx">Cource Catagory</asp:HyperLink></li>
+                <asp:HyperLink ID="lnkCourceCat" runat="server" NavigateUrl="~/Admin/CourceCatagory.aspx"><cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> Category</asp:HyperLink></li>
         </ul>
     </div>
     <div id="courceinfo">

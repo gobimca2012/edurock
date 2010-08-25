@@ -11,7 +11,7 @@
         <div style="float: left; width: 70%">
             <div style="border-right: dashed 1px">
                 <fieldset>
-                    <legend>About Cource</legend>
+                    <legend>About <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel></legend>
                     <div>
                         <div id="lblDescription" runat="server">
                         </div>

@@ -12,11 +12,11 @@
         </div>
         <div class="whitecont">
             <fieldset>
-                <legend>Cource</legend>
+                <legend><cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> </legend>
                 <div>
                     <div>
                         <div>
-                            <span class="label">Cource Catagory</span><span class="valmsg" >(Required)*</span>
+                            <span class="label"><cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel>  Catagory</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:DropDownList ID="ddCatagory" runat="server" Height="22px" Width="451px">
@@ -25,7 +25,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Cource Name</span><span class="valmsg" >(Required)*</span>
+                            <span class="label"><cram:SpaceLabel ID="SpaceLabel2" runat="server"></cram:SpaceLabel>  Name</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtCourceName" runat="server" Width="454px"></asp:TextBox>

@@ -19,7 +19,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">Cource</span><span class="valmsg" >(Required)*</span>
+                          <cram:SpaceLabel ID="lblcc" runat="server" EnableViewState="false" CssClass="label"></cram:SpaceLabel><span class="valmsg" >(Required)*</span>
                         </div>
                         <div id="ddin">
                             <asp:DropDownList ID="ddInstituteCource" runat="server">
@@ -28,7 +28,7 @@
                     </div>
                     <div id="SubjectDrop">
                         <div>
-                            <span class="label">Subject</span><span class="valmsg" >(Required)*</span>
+                            <cram:CategoryLabel ID="asa" runat="server" EnableViewState="false" CssClass="label"></cram:CategoryLabel><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <div>
@@ -47,7 +47,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Subject Name</span><span class="valmsg" >(Required)*</span>
+                            <span class="label"><cram:CategoryLabel ID="lblcat" runat="server" ></cram:CategoryLabel> Name</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtSubjectName" runat="server"></asp:TextBox>

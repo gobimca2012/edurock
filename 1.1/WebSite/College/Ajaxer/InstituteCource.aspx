@@ -18,7 +18,7 @@
             </div>
             <div>
                 <div>
-                    <span class="label">InstituteCourceID</span>
+                    <span class="label">Institute <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> </span>
                 </div>
                 <div>
                     <span id="lblInstituteCourceID" runat="server"></span>
@@ -34,7 +34,7 @@
             </div>
             <div>
                 <div>
-                    <span class="label">CourceID</span>
+                    <span class="label"><cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel>  ID</span>
                 </div>
                 <div>
                     <span id="lblCourceID" runat="server"></span>

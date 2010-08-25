@@ -15,7 +15,7 @@
             </li>
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkCource" runat="server" NavigateUrl="~/College/Ajaxer/InstituteCourceInfoView.aspx"
-                    ContainnerID="#contentBox">Cource</aspajax:HyperLink></li>
+                    ContainnerID="#contentBox"><cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel></aspajax:HyperLink></li>
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkUSer" runat="server" ContainnerID="#contentBox" NavigateUrl="~/College/Ajaxer/InstituteUserInfoView.aspx">User</aspajax:HyperLink>
             </li>
@@ -24,7 +24,7 @@
             </li>--%>
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkCourceCat" runat="server" NavigateUrl="~/College/Ajaxer/CourceCatagoryInfoView.aspx"
-                    ContainnerID="#contentBox">Cource Catagory</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>
+                    ContainnerID="#contentBox"><cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel> Catagory</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkQuestionType" runat="server" NavigateUrl="~/College/Ajaxer/QuestionTypeInfoView.aspx"
                     ContainnerID="#contentBox">Question Type</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>

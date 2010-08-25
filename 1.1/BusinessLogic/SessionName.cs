@@ -24,7 +24,8 @@ namespace BusinessLogic
         ExamName,
         DocumentHistory,
         EventStartDate,
-        EventEndDate
+        EventEndDate,
+        PortalSetting
 
     }
 }

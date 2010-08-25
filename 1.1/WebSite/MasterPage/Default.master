@@ -69,7 +69,7 @@
                         <div class="leftmenu">
                             <div>
                                 <div class="grayhead tp" rel="Select your cource and get update from cource">
-                                    <span class="sub" style="float: left"></span><span style="float: left">Cources </span>
+                                    <span class="sub" style="float: left"></span><span style="float: left" id="lblSpace" runat="server"> </span>
                                     <div style="float: right;margin-top:5px;" class="collapse" id="courcel" >
                                         <div>
                                         </div>

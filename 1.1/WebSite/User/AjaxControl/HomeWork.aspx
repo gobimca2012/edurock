@@ -54,7 +54,7 @@
                 <div id="divaaa" runat="server" visible="false">
                     <div>
                         <div>
-                            <span class="label">Cource</span>
+                            <span class="label"><cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> </span>
                         </div>
                         <div>
                             <span id="lblInstituteCourceID" runat="server"></span>
@@ -62,7 +62,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Subject</span>
+                          <cram:CategoryLabel ID="asa" runat="server" ></cram:CategoryLabel>
                         </div>
                         <div>
                             <span id="lblInstituteSubjectID" runat="server"></span>

@@ -17,19 +17,19 @@
                         <thead>
                             <tr>
                                 <td>
-                                    CourceID
+                                    <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> ID
                                 </td>
                                 <td>
-                                    CourceCatagoryID
+                                    <cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel> CatagoryID
                                 </td>
                                 <td>
-                                    CourceName
+                                    <cram:SpaceLabel ID="SpaceLabel2" runat="server"></cram:SpaceLabel> Name
                                 </td>
                                 <td>
                                     Description
                                 </td>
                                 <td>
-                                    CourceType
+                                  <cram:SpaceLabel ID="SpaceLabel3" runat="server"></cram:SpaceLabel> Type
                                 </td>
                                 <td>
                                     Modifieddate

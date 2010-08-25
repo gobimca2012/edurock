@@ -8,7 +8,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite", "WebSite\", "{1A4C8498-152A-413D-BD91-4D044006DB4D}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
-		ProjectReferences = "{1A9E6B33-7990-4479-8CB9-476E3214ECA0}|BusinessLogic.dll;{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}|DataEntity.dll;{8A0AE474-D87D-415B-A5D4-7AC5461431FE}|DataAccess.dll;{E9D7B77D-9F9E-4B81-8078-8A7602AB3CD7}|Logger.dll;{6E9EAAA3-3D77-4300-B1B4-88BFF9EA885D}|JScripter.dll;{DB315DB1-394C-4B9E-8D52-C77FBFEC128B}|MikeCompression.dll;{BFC86F13-B894-4A2C-AED7-1F9E6940E2DF}|AjaxControl.dll;{DA82B465-2DF2-4D7C-81A9-1E617420A69C}|Common.dll;{5985E8BE-C5F6-4BE7-9B6E-68C2CBD66E94}|PaypalPDT.dll;"
+		ProjectReferences = "{1A9E6B33-7990-4479-8CB9-476E3214ECA0}|BusinessLogic.dll;{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}|DataEntity.dll;{8A0AE474-D87D-415B-A5D4-7AC5461431FE}|DataAccess.dll;{E9D7B77D-9F9E-4B81-8078-8A7602AB3CD7}|Logger.dll;{6E9EAAA3-3D77-4300-B1B4-88BFF9EA885D}|JScripter.dll;{DB315DB1-394C-4B9E-8D52-C77FBFEC128B}|MikeCompression.dll;{BFC86F13-B894-4A2C-AED7-1F9E6940E2DF}|AjaxControl.dll;{DA82B465-2DF2-4D7C-81A9-1E617420A69C}|Common.dll;{5985E8BE-C5F6-4BE7-9B6E-68C2CBD66E94}|PaypalPDT.dll;{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}|CustomControls.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/WebSite"
 		Debug.AspNetCompiler.PhysicalPath = "WebSite\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\WebSite\"
@@ -44,6 +44,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PaymentGateway", "PaymentGateway", "{7612F69A-CC9B-4EC1-967F-1CAA95ABFD0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paypal", "PaypalPDT\Paypal.csproj", "{5985E8BE-C5F6-4BE7-9B6E-68C2CBD66E94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "CustomControls\CustomControls.csproj", "{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,6 +167,16 @@ Global
 		{5985E8BE-C5F6-4BE7-9B6E-68C2CBD66E94}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5985E8BE-C5F6-4BE7-9B6E-68C2CBD66E94}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5985E8BE-C5F6-4BE7-9B6E-68C2CBD66E94}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Release|.NET.ActiveCfg = Release|Any CPU
+		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

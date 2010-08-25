@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div class="grayhead ">
         <div style="float: left">
-            Cources</div>
+            <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> </div>
         <div style="float: right" class="exand" id="courseboxtrigger">
         </div>
         <div class="clear">

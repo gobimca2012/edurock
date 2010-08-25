@@ -16,7 +16,7 @@
                 <div id="divMessage" runat="server">
                 </div>
                 <fieldset>
-                    <legend>InstituteCourceUser</legend>
+                    <legend>Institute <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> User</legend>
                     <div>
                         <div>
                             <div>

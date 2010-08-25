@@ -10,17 +10,17 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Subject
+            <cram:CategoryLabel ID="asa" runat="server" EnableViewState="false" CssClass="label"></cram:CategoryLabel>
         </div>
         <div >
             <div id="divMessage" runat="server">
             </div>
             <fieldset>
-                <legend> Subject</legend>
+                <legend> <cram:CategoryLabel ID="sdf" runat="server" EnableViewState="false" CssClass="label"></cram:CategoryLabel></legend>
                 <div>
                     <div>
                         <div>
-                            <span class="label">Subject Title</span><span class="valmsg" >(Required)*</span>
+                            <span class="label"><cram:CategoryLabel ID="lblcat" runat="server" ></cram:CategoryLabel> Title</span><span class="valmsg" >(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtSubjectText" runat="server"></asp:TextBox>

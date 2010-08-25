@@ -72,7 +72,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">Select Cource </span><span class="valmsg" >(Required)*</span>
+                       <cram:SpaceLabel ID="ttspace" runat="server" CssClass="label"></cram:SpaceLabel><span class="valmsg" >(Required)*</span>
                     </div>
                     <div id="ddrep">
                         <asp:DropDownList ID="ddCource" runat="server">

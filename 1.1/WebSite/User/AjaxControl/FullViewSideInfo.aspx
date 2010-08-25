@@ -19,7 +19,7 @@
             Cource Name: <span id="lblCourceName" runat="server"></span>
         </div>
         <div>
-            Subject Name: <span id="lblSubjectName" runat="server"></span>
+            <cram:CategoryLabel ID="asa" runat="server" ></cram:CategoryLabel> Name: <span id="lblSubjectName" runat="server"></span>
         </div>
     </div>
     </form>

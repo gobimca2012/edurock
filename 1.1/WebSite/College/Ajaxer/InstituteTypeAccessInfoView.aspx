@@ -33,10 +33,10 @@
                                     CanAddUser
                                 </td>
                                 <td>
-                                    CanAddCource
+                                    CanAdd <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> 
                                 </td>
                                 <td>
-                                    CanAddSubject
+                                    CanAdd <cram:CategoryLabel ID="ttcat" runat="server"></cram:CategoryLabel>
                                 </td>
                                 <td>
                                     ModifiedDate

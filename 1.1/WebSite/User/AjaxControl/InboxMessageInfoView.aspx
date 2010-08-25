@@ -22,7 +22,7 @@
                                         To
                                     </td>
                                     <td>
-                                        Subject
+                                        <cram:CategoryLabel ID="asa" runat="server" ></cram:CategoryLabel>
                                     </td>
                                     <td>
                                         Date

@@ -16,13 +16,13 @@
                         <thead>
                             <tr>
                                 <td>
-                                    CourceName
+                                    <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>  Name
                                 </td>
                                 <td>
-                                    CourceCatagory
+                                    <cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel>  Catagory
                                 </td>
                                 <td>
-                                    CourceType
+                                    <cram:SpaceLabel ID="SpaceLabel2" runat="server"></cram:SpaceLabel>  Type
                                 </td>
                                 <td>
                                     Modifieddate
