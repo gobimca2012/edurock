@@ -191,6 +191,7 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Institute_InstituteCource" Member="InstituteCources" OtherKey="InstituteID" Type="InstituteCource" />
+      <Association Name="Institute_PortalSetting" Member="PortalSettings" OtherKey="InstituteID" Type="PortalSetting" />
       <Association Name="InstituteLoginUser_Institute" Member="InstituteLoginUser" ThisKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
     </Type>
   </Table>
@@ -205,6 +206,15 @@
       <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PortalSetting" Member="PortalSettings">
+    <Type Name="PortalSetting">
+      <Column Name="PortalSettingID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Settings" Type="System.Xml.Linq.XElement" DbType="Xml NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Institute_PortalSetting" Member="Institute" ThisKey="InstituteID" Type="Institute" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetTutorial" Method="GetTutorial">

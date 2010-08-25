@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using BusinessLogic;
+using BusinessLogic.Controller;
 
 public partial class MasterPage_Default : System.Web.UI.MasterPage
 {
@@ -31,6 +32,7 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        var data=new PortalSettingHelper().Get();
         if (Request.Cookies[CookieName.FullMode.ToString()] != null && Request.Cookies[CookieName.FullMode.ToString()].Value == "1")
         {
             //pagecon.Style.Add("width", "100%");
