@@ -85,7 +85,7 @@ namespace BusinessLogic
             }
             Url += "&lid=" + ParameterID;
             new JScripter.Loader((System.Web.UI.Page)HttpContext.Current.Handler, false).PostData(RequestContainner, ResponseContainner, Url, CID);
-            return string.Format("<a href='javascript:void(0);' id='{0}'>Delete</a>",CID);
+            return string.Format("<a href='javascript:void(0);' id='{0}'>Delete</a>", CID);
         }
         public string ListViewLinkButtonDelete(string ControlID, string Command, string ParameterID,string LoginUserID, string RequestContainner, string ResponseContainner)
         {
@@ -104,7 +104,7 @@ namespace BusinessLogic
                 }
                 Url += "&lid=" + ParameterID;
                 new JScripter.Loader((System.Web.UI.Page)HttpContext.Current.Handler, false).PostData(RequestContainner, ResponseContainner, Url, CID);
-                return string.Format("<a href='javascript:void(0);' id='{0}'>Delete</a>", CID);
+                return string.Format("<div class='closebck'><a href='javascript:void(0);' id='{0}' ><div class='close'></div></a></div>", CID);
             }
             else
             {

@@ -119,6 +119,7 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
 
             PaggerLinkManager();
         }
+        new JScripter.Effect(this.Page, false).VisibleOnMouseHover(".dasbo");
 
     }
     private string Keywork

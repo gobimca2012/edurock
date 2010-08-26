@@ -26,6 +26,11 @@ namespace JScripter
             Lnk.Attributes["onclick"] = string.Format("$('{0}').show('slow');",  ContainerId);
             Lnk.Attributes["href"] = "javascript:void(0);";
         }
+        public void VisibleOnMouseHover(string ContainerId)
+        {
+            string script=string.Format("$('{0}').mvis();", ContainerId);
+            JScripter.InjectScript(script, _thisPage);
+        }
         public void HideOnClick(LinkButton Lnk, string ContainerId)
         {
             Lnk.Attributes["onclick"] = string.Format("$('{0}').hide('slow');", ContainerId);

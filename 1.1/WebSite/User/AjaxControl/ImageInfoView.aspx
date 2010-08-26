@@ -15,12 +15,12 @@
                 Search
             </div>
             <div style="float: right" class="expand" id="searchboxtrigger">
-                    <div>
-                    </div>
+                <div>
                 </div>
-                <div class="clear">
-                </div>
-                <div id="searchbox" runat="server" class="invis">
+            </div>
+            <div class="clear">
+            </div>
+            <div id="searchbox" runat="server" class="invis">
                 <div>
                     <div style="float: left;">
                         <div class="label">
@@ -90,54 +90,22 @@
                 <%--  </table>--%>
             </LayoutTemplate>
             <ItemTemplate>
-                <div style="float: left;">
+                <div style="float: left;height:150px;height:130px;" class="graycontent cbox">
                     <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
-                    <div style="max-height:150px;min-height:150px;">
+                    <div style="max-height:100px;height:100px;background:#f0f0f0;overflow:hidden">
                         <asp:Image ID="img" runat="server" ImageUrl='<%#ResolveUrl(Eval("Param1").ToString()) %>' Width="100" />
                     </div>
-                    <div>
+                    <div class="invis fl" style="text-align:center">
                       
                         <%#Eval("Title") %>
                     </div>
                     </aspajax:HyperLink>
-                    
+                    <div class="invis fr">
                         <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
-                    
+                    </div>
+                    <div class="clear"></div>
                 </div>
-                <%--  <tr>
-                    <td>
-                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("DocumentID").ToString()%>'>
-                        <%#Eval("Name") %></aspajax:HyperLink>
-                    </td>
-                    <td>
-                        <%#Eval("Description") %>
-                    </td>
-                    <td>
-                        <%#Eval("MetaDescription") %>
-                    </td>
-                    <td>
-                        <%#Eval("Tag") %>
-                    </td>
-                    <td>
-                        <%#Eval("Rating") %>
-                    </td>
-                    <td>
-                        <%#Eval("FilePath") %>
-                    </td>
-                    <td>
-                        <%#Eval("DocumentType") %>
-                    </td>
-                    <td>
-                        <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
-                    </td>
-                    <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("DocumentID").ToString(), "#contentBox", "#contentBox")%>
-                    </td>
-                    <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?dtype=1&did=" + Eval("DocumentID")%>'
-                            ContainnerID="#contentBox">Edit</aspajax:HyperLink>
-                    </td>
-                </tr>--%>
+         
             </ItemTemplate>
         </asp:ListView>
         <div style="clear: both">

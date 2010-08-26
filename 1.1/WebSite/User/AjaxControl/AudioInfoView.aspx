@@ -62,10 +62,13 @@
                 </div>
             </LayoutTemplate>
             <ItemTemplate>
-                <div class="dasbo">
+                <div class="dasbo cbox">
                     <div style="float: left; width: 550px">
                         <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
                         &nbsp;<%#Eval("Title") %></aspajax:HyperLink>
+                    </div>
+                    <div class="fr invis">
+                        <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
                     </div>
                     <div style="float: right">
                         <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" ModifiedDate='<%#Eval("ModifiedDate") %>'
@@ -73,9 +76,7 @@
                     </div>
                     <div style="clear: both">
                     </div>
-                    <div>
-                        <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
-                    </div>
+                    
                 </div>
             </ItemTemplate>
         </asp:ListView>

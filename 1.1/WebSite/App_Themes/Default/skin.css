@@ -34,8 +34,8 @@ body
 }
 .blbg
 {
-    background:#BBE2FF;
-    padding:5px;
+    background: #BBE2FF;
+    padding: 5px;
 }
 .success, #msgstate div
 {
@@ -99,7 +99,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(                                 'images/headerbt.jpg' ) repeat-x;
+    background: url(                                  'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -415,7 +415,7 @@ input, textarea
 .btn
 {
     padding: 5px 10px;
-max-width:200px;   
+    max-width: 200px;
     text-align: center;
     line-height: 12px;
     margin: 2px;
@@ -483,9 +483,8 @@ h5
 {
     background: #ECECEC;
 }
-.bluecontent,.udate
+.bluecontent, .udate
 {
-
 }
 .cin
 {
@@ -588,7 +587,7 @@ h3
 }
 .trans
 {
-    background: url(                 'images/trans.png' );
+    background: url(                  'images/trans.png' );
     padding: 15px;
 }
 /* Icons */
@@ -604,21 +603,21 @@ h3
 .fullsc
 {
     background-color: Transparent;
-    background-image: url(    "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: 0 -68px;
     padding: 18px;
 }
 .folder
 {
     background-color: Transparent;
-    background-image: url(    "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: 0 -68px;
     padding: 18px;
 }
 .help
 {
     background-color: Transparent;
-    background-image: url(    "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: -34px -68px;
     padding: 18px;
 }
@@ -632,40 +631,38 @@ h3
 }
 .dash
 {
-background-color:Transparent;
-background-image:url("images/icons.png");
-background-position:0 -33px;
-height:30px;
-
-width:30px;
+    background-color: Transparent;
+    background-image: url( "images/icons.png" );
+    background-position: 0 -33px;
+    height: 30px;
+    width: 30px;
 }
 .acco
 {
-background-color:Transparent;
-background-image:url("images/icons.png");
-background-position:-33px -33px;
-height:30px;
-width:42px;
+    background-color: Transparent;
+    background-image: url( "images/icons.png" );
+    background-position: -33px -33px;
+    height: 30px;
+    width: 42px;
 }
-.expand div,.exand
+.expand div, .exand
 {
-background-color:Transparent;
-background-image:url("images/icons.png");
-background-position:-274px -9px;
-empty-cells:show;
-height:17px;
-
-width:18px;
+    background-color: Transparent;
+    background-image: url( "images/icons.png" );
+    background-position: -274px -9px;
+    empty-cells: show;
+    height: 17px;
+    width: 18px;
 }
-.collapse div,.collap
+.collapse div, .collap
 {
-   background-color:Transparent;
-background-image:url("images/icons.png");
-background-position:-299px -43px;
-empty-cells:show;
-height:18px;
-line-height:12px;
-width:18px;
+    background-color: Transparent;
+    background-image: url( "images/icons.png" );
+    background-position: -299px -43px;
+    empty-cells: show;
+    height: 18px;
+    line-height: 12px;
+    width: 18px;
 }
 
 .img
@@ -705,7 +702,7 @@ img
 .howo
 {
     background-color: Transparent;
-    background-image: url(      "images/icons.png" );
+    background-image: url(       "images/icons.png" );
     background-position: -257px -9px;
     empty-cells: show;
     line-height: 12px;
@@ -734,7 +731,7 @@ img
 .all
 {
     background-color: Transparent;
-    background-image: url(      "images/icons.png" );
+    background-image: url(       "images/icons.png" );
     background-position: -198px -40px;
     empty-cells: show;
     line-height: 12px;
@@ -753,7 +750,7 @@ img
 .aud
 {
     background-color: Transparent;
-    background-image: url(       "images/icons.png" );
+    background-image: url(        "images/icons.png" );
     background-position: -235px -9px;
     empty-cells: show;
     line-height: 12px;
@@ -772,7 +769,7 @@ img
 .lbr
 {
     background-color: Transparent;
-    background-image: url(        "images/icons.png" );
+    background-image: url(         "images/icons.png" );
     background-position: -170px -40px;
     empty-cells: show;
     line-height: 12px;
@@ -801,7 +798,7 @@ img
 .msg
 {
     background-color: Transparent;
-    background-image: url(   "images/icons.png" );
+    background-image: url(    "images/icons.png" );
     background-position: -273px -38px;
     empty-cells: show;
     height: 24px;
@@ -811,7 +808,7 @@ img
 .mystuff
 {
     background-color: Transparent;
-    background-image: url(   "images/icons.png" );
+    background-image: url(    "images/icons.png" );
     background-position: -243px -35px;
     empty-cells: show;
     height: 28px;
@@ -821,7 +818,7 @@ img
 .sub
 {
     background-color: Transparent;
-    background-image: url(   "images/icons.png" );
+    background-image: url(    "images/icons.png" );
     background-position: -299px -4px;
     empty-cells: show;
     height: 24px;
@@ -831,7 +828,7 @@ img
 .uprate
 {
     background-color: Transparent;
-    background-image: url(   "images/icons.png" );
+    background-image: url(    "images/icons.png" );
     background-position: -327px -4px;
     empty-cells: show;
     height: 21px;
@@ -841,7 +838,7 @@ img
 .downrate
 {
     background-color: Transparent;
-    background-image: url(   "images/icons.png" );
+    background-image: url(    "images/icons.png" );
     background-position: -354px -4px;
     empty-cells: show;
     height: 21px;
@@ -850,14 +847,20 @@ img
 }
 .close
 {
-background-color:Transparent;
+    background-color:Transparent;
 background-image:url("images/icons.png");
-background-position:-320px -42px;
+background-position:-326px -44px;
 empty-cells:show;
-height:18px;
+height:10px;
 line-height:12px;
-
-width:18px;
+margin:2px;
+width:10px;
+}
+.closebck
+{
+    background-color: #f0f0f0;
+    padding:3px;
+    border:solid 1px #cfcfcf;
 }
 /* end Account*/
 
@@ -974,7 +977,6 @@ a
 }
 .udate
 {
-    
 }
 .fuleft
 {
@@ -1150,21 +1152,21 @@ input[type=radio], input[type=checkbox]
 }
 .fleft
 {
-    float:left;
+    float: left;
 }
 .fright
 {
-    float:right;
+    float: right;
 }
 .calender td
 {
-    width:100px;
-    height:100px;
-    text-align:center;
-vertical-align:middle;
-border:none;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
 }
 .calender tr
 {
-    border:none;
+    border: none;
 }

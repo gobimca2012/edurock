@@ -17,13 +17,13 @@
             <div style="float: left" class="title">
                 Search
             </div>
-           <div style="float: right" class="expand" id="searchboxtrigger">
-                    <div>
-                    </div>
+            <div style="float: right" class="expand" id="searchboxtrigger">
+                <div>
                 </div>
-                <div class="clear">
-                </div>
-                <div id="searchbox" runat="server" class="invis">
+            </div>
+            <div class="clear">
+            </div>
+            <div id="searchbox" runat="server" class="invis">
                 <div>
                     <div style="float: left;">
                         <div class="label">
@@ -56,30 +56,32 @@
                 </div>
             </div>
         </div>
-        <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
-            <LayoutTemplate>
-                <div class="whitecont">
-                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                </div>
-            </LayoutTemplate>
-            <ItemTemplate>
-                <div class="dasbo">
-                    <div style="float: left; width: 550px">
-                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
+        <div class="cbox">
+            <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
+                <LayoutTemplate>
+                    <div class="whitecont">
+                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                    </div>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <div class="dasbo">
+                        <div style="float: left; width: 550px">
+                            <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
                         &nbsp;<%#Eval("Title") %></aspajax:HyperLink>
+                        </div>
+                        <div style="float: right">
+                            <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" ModifiedDate='<%#Eval("ModifiedDate") %>'
+                                LoginUserID='<%#Eval("LoginUserID") %>' />
+                        </div>
+                        <div style="clear: both">
+                        </div>
+                        <div class="invis">
+                            <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
+                        </div>
                     </div>
-                    <div style="float: right">
-                        <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" ModifiedDate='<%#Eval("ModifiedDate") %>'
-                            LoginUserID='<%#Eval("LoginUserID") %>' />
-                    </div>
-                    <div style="clear: both">
-                    </div>
-                    <div>
-                        <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
-                    </div>
-                </div>
-            </ItemTemplate>
-        </asp:ListView>
+                </ItemTemplate>
+            </asp:ListView>
+        </div>
         <div class="gray">
             <div style="float: right">
                 <div style="float: left">

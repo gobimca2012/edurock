@@ -90,6 +90,7 @@ public partial class User_AjaxControl_ArticleInfoView : AjaxPage
         objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
+        objEffect.VisibleOnMouseHover(".cbox");
         hpAddDocument.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddArticle;
         if (Request.Params["isid"] != null)
         {

@@ -123,7 +123,7 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
             
             PaggerLinkManager();
         }
-
+        new JScripter.Effect(this.Page, false).VisibleOnMouseHover(".cbox");
     }
     private string Keywork
     {

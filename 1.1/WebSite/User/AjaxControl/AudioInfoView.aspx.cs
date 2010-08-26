@@ -99,6 +99,7 @@ public partial class User_AjaxControl_AudioInfoView : AjaxPage
         objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
+        objEffect.VisibleOnMouseHover(".cbox");
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];

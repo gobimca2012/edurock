@@ -24,6 +24,7 @@ namespace BusinessLogic
         protected override void OnLoad(EventArgs e)
         {
             JScripter.JScripter.IncludeJavascriptFile("Validation", ResolveUrl("~/Jscript/Validation1.3Ajax.js"), this.Page);
+            JScripter.JScripter.IncludeJavascriptFile("VTEffect.js", ResolveUrl("~/Jscript/VTEffect.js"), this.Page);
             if (IsLogginMandatory && !new UserAuthontication().IsLoggedIn)
             {
                 Response.Redirect("~/Home.aspx");

@@ -15,13 +15,13 @@
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                 </LayoutTemplate>
                 <ItemTemplate>
-                    <div style="float: left; width: 130px;">
+                    <div style="float: left;height:150px;height:130px;" class="graycontent cbox">
                         <asp:HyperLink ID="lnkU" runat="server" NavigateUrl='<%#ResolveUrl("~/User/User.aspx") + "?usid=" + Eval("LoginUserID")%>'>
                             <div>
-                                <div>
+                               <div style="max-height:100px;height:100px;background:#f0f0f0;overflow:hidden">
                                     <asp:Image ID="imgPic" runat="server" Width="100" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>' />
                                 </div>
-                                <div>
+                                <div class="invis" style="text-align:center">
                                     <%#Eval("FirstName") %>
                                     &nbsp;<%#Eval("LastName") %></div>
                             </div>
