@@ -38,9 +38,12 @@ public partial class Widget_PublicUserInfoView : WidgetControl
         if (!IsEditable)
         {
             lnkClose.Visible = false;
-
+            lnkEdit.Visible = false;
         }
-        lnkEdit.ContainnerID = "#" + GetWidgetBoxID(WidgetID);
+        else
+        {
+            lnkEdit.ContainnerID = "#" + GetWidgetBoxID(WidgetID);
+        }
         
         lnkChangeImage.Visible = false;
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);

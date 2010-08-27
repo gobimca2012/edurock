@@ -7,8 +7,7 @@
 </head>
 <body>
     <form id="rohan1" runat="server">
-    <div class="">
-    <asp:Panel 
+    <div class="contentbox">
         <div class="clear gray">
             <div style="float: left">
                 <h3 id="Widgetheader" runat="server">
