@@ -12,16 +12,7 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray" id="header" runat="server">
-            Images</div>
-        <div class="graycontent">
-            <div style="float: left" class="title">
-                Search
-            </div>
-            <div style="float: right" class="exand" id="searchboxtrigger">
-            </div>
-            <div class="clear">
-            </div>
-        </div>
+            History</div>
         <asp:ListView ID="ListDocument" runat="server" DataKeyNames="DocumentID" OnItemDataBound="ListDocumentOnItemDataBound">
             <LayoutTemplate>
                 <div class="whitecont">
@@ -31,9 +22,8 @@
             <ItemTemplate>
                 <div class="dasbo">
                     <div style="float: left; width: 550px">
-                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" >
+                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox">
                         &nbsp;&nbsp;<%#Eval("Name")%></aspajax:HyperLink>
-                        
                     </div>
                     <div>
                         Edit On

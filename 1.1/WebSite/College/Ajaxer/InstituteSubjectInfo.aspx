@@ -40,7 +40,7 @@
         <div class="gray">
             <div style="float: left">
                 <aspajax:AjaxLinkButton ID="lnkAddInstituteSubject" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn editbtn"> Add</div></aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn editbtn"> <%=Resources.Default.Add_Text%></div></aspajax:AjaxLinkButton>
             </div>
             <div style="float: left">
                 <aspajax:AjaxLinkButton ID="lnkUpdateInstituteSubject" runat="server" RequestContainner="#contentBox"

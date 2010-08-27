@@ -107,7 +107,7 @@
             </div>
             <div style="float: left">
                 <aspajax:HyperLink ID="hpAddExam" runat="server" NavigateUrl="~/User/AjaxControl/ExamInfo.aspx"
-                    ContainnerID="#contentBox"><div class="btn"> Add New Exam</div></aspajax:HyperLink>
+                    ContainnerID="#contentBox"><div class="btn"><%=Resources.Default.Add_Text%> Exam</div></aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

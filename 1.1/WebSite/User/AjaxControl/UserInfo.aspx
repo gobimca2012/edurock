@@ -121,7 +121,7 @@
                 </div>
                 <div>
                     <aspajax:AjaxLinkButton ID="lnkAddUserInfo" runat="server" OnAjaxClick="AjaxAddClick"
-                        RequestContainner="#contentBox" ResponseContainner="#contentBox"><div class="btn editbtn">Add</div> </aspajax:AjaxLinkButton>
+                        RequestContainner="#contentBox" ResponseContainner="#contentBox"><div class="btn editbtn"><%=Resources.Default.Add_Text%></div> </aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
                     <aspajax:HyperLink ID="lnkCancel" runat="server" NavigateUrl="UserInfoView.aspx"

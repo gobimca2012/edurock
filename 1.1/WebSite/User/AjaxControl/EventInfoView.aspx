@@ -120,7 +120,7 @@
             <div class="gray clear">
                 <div>
                     <aspajax:HyperLink ID="hpAddDocument" runat="server" NavigateUrl="~/User/AjaxControl/EventInfo.aspx"
-                        ContainnerID="#contentBox"><div class="btn"> Add New Event</div></aspajax:HyperLink>
+                        ContainnerID="#contentBox"><div class="btn"> <%=Resources.Default.Add_Text%></div></aspajax:HyperLink>
                 </div>
             </div>
             <div style="clear: both">

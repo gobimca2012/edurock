@@ -27,7 +27,7 @@
             </table>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddQuestionType" runat="server" RequestContainner="#QuestionType"
-                    ResponseContainner="#QuestionType" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                    ResponseContainner="#QuestionType" OnAjaxClick="AddAjaxClick"><%=Resources.Default.Add_Text%></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdateQuestionType" runat="server" RequestContainner="#QuestionType"

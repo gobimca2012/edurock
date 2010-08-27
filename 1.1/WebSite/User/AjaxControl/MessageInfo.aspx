@@ -47,7 +47,7 @@
         <div class="gray">
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddMessage" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><%=Resources.Default.Add_Text%></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdateMessage" runat="server" RequestContainner="#contentBox"

@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="hcurv">
-            <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox" NavigateUrl="UserInfo.aspx"><div class="btn editbtn"> Edit</div></aspajax:HyperLink>
+            <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox" NavigateUrl="UserInfo.aspx"><div class="btn editbtn"> <%=Resources.Default.Edit_Text %></div></aspajax:HyperLink>
         </div>
     </div>
     <div class="graycontent roundedall">

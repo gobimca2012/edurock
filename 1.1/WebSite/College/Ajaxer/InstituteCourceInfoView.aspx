@@ -101,7 +101,7 @@
                     </td>
                     <td>
                         <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteCourceInfo.aspx") + "?icid=" + Eval("InstituteCourceID")%>'
-                            ContainnerID="#contentBox">Edit</aspajax:HyperLink>
+                            ContainnerID="#contentBox"><%=Resources.Default.Edit_Text %></aspajax:HyperLink>
                     </td>
                     <td>
                         <aspajax:HyperLink ID="lnkSubject" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteSubjectInfoView.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'
@@ -125,7 +125,7 @@
             </div>
             <div style="float: left">
                 <aspajax:HyperLink ID="hpAddInstituteCource" runat="server" NavigateUrl="~/College/Ajaxer/InstituteCourceInfo.aspx"
-                    ContainnerID="#contentBox"><div class="btn editbtn"> Add New</div></aspajax:HyperLink>
+                    ContainnerID="#contentBox"><div class="btn editbtn"><%=Resources.Default.Add_Text%></div></aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

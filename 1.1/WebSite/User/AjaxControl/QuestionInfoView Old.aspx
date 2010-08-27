@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div class="btn roundedall">
-                <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox"><%=Resources.Default.Add_Text%></aspajax:HyperLink>
             </div>
         </div>
     </div>

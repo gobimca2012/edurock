@@ -53,7 +53,8 @@ namespace Common
         HomeWork=6,
         Exam=7,
         Article=8,
-        Event=9
+        Event=9,
+        BookMark=10
     }
     public enum AnswerStatusEnum
     {

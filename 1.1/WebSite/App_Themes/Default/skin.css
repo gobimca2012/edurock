@@ -410,7 +410,7 @@ input, textarea
 }
 .editbtn
 {
-    max-width: 50px;
+    width: 50px;
 }
 .btn
 {
@@ -858,9 +858,10 @@ width:10px;
 }
 .closebck
 {
-    background-color: #f0f0f0;
-    padding:3px;
-    border:solid 1px #cfcfcf;
+background-color:#F0F0F0;
+border:1px solid #CFCFCF;
+padding:2px;
+width:14px;
 }
 /* end Account*/
 

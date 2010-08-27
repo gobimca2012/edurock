@@ -27,7 +27,7 @@
                 </div>
                 <div>
                     <aspajax:AjaxLinkButton ID="lnkEdit" runat="server" EnableValidation="False" EnableViewState="False"
-                        Increment="False" OnAjaxClick="AjaxEdit" Pagger="False"><div class="btn editbtn">Edit</div></aspajax:AjaxLinkButton>
+                        Increment="False" OnAjaxClick="AjaxEdit" Pagger="False"><div class="btn editbtn"><%=Resources.Default.Edit_Text %></div></aspajax:AjaxLinkButton>
                 </div>
             </div>
             <div id="divEditBox" runat="server">

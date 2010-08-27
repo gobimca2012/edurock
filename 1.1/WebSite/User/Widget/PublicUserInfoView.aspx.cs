@@ -22,7 +22,7 @@ public partial class Widget_PublicUserInfoView : WidgetControl
         {
             if (AjaxState.ContainsKey("usid"))
             {
-                lnkEdit.Visible = false;
+
                 lnkChangeImage.Visible = false;
                 return Convert.ToInt32(AjaxState["usid"]);
 
@@ -40,7 +40,8 @@ public partial class Widget_PublicUserInfoView : WidgetControl
             lnkClose.Visible = false;
 
         }
-        lnkEdit.Visible = false;
+        lnkEdit.ContainnerID = "#" + GetWidgetBoxID(WidgetID);
+        
         lnkChangeImage.Visible = false;
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#" + lnkExpand.ClientID, "#userbox");
@@ -134,10 +135,11 @@ public partial class Widget_PublicUserInfoView : WidgetControl
         ugo = "";
         foreach (InstituteCourceUser ucouce in userCource)
         {
-            if (ugo != "")
-                ugo += ", " + new InstituteCourceController().GetInstituteCourceName(ucouce.InstituteCourceID);
-            else
-                ugo += " " + new InstituteCourceController().GetInstituteCourceName(ucouce.InstituteCourceID);
+            //if (ugo != "")
+            //    ugo += ", " + new InstituteCourceController().GetInstituteCourceName(ucouce.InstituteCourceID);
+            //else
+            //    ugo += " " + new InstituteCourceController().GetInstituteCourceName(ucouce.InstituteCourceID);
+            ugo += "<div>" + new InstituteCourceController().GetInstituteCourceName(ucouce.InstituteCourceID) + "</div>";
         }
 
         lblUserCource.InnerHtml = ugo;

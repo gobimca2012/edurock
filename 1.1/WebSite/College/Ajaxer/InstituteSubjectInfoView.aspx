@@ -39,7 +39,7 @@
                         </td>
                         <td>
                             <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteSubjectInfo.aspx") + "?isid=" + Eval("InstituteSubjectID")%>'
-                                ContainnerID="#contentBox">Edit</aspajax:HyperLink>
+                                ContainnerID="#contentBox"><%=Resources.Default.Edit_Text %></aspajax:HyperLink>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div style="float: left">
-                <aspajax:HyperLink ID="hpAddInstituteSubject" runat="server" ContainnerID="#contentBox"><div class="btn editbtn"> Add New</div></aspajax:HyperLink>
+                <aspajax:HyperLink ID="hpAddInstituteSubject" runat="server" ContainnerID="#contentBox"><div class="btn editbtn"> <%=Resources.Default.Add_Text%></div></aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>

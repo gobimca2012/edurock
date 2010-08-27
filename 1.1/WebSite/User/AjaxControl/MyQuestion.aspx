@@ -57,7 +57,7 @@
                         </td>
                         <td>
                             <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/QuestionInfo.aspx") + "?qid=" + Eval("QuestionID")%>'
-                                ContainnerID="#contentBox">Edit</aspajax:HyperLink>
+                                ContainnerID="#contentBox"><%=Resources.Default.Edit_Text %></aspajax:HyperLink>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -79,7 +79,7 @@
             <div class="gray ">
                 <div>
                     <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="~/User/AjaxControl/QuestionInfo.aspx"
-                        ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                        ContainnerID="#contentBox"><%=Resources.Default.Add_Text%></aspajax:HyperLink>
                 </div>
             </div>
         </div>

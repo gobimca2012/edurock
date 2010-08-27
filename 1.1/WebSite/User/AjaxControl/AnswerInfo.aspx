@@ -36,7 +36,7 @@
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddAnswer" runat="server" RequestContainner="#Answer"
-                    ResponseContainner="#Answer" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                    ResponseContainner="#Answer" OnAjaxClick="AddAjaxClick"><%=Resources.Default.Add_Text%></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdateAnswer" runat="server" RequestContainner="#Answer"

@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="contentbox">
         <div>
-            <asp:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/College/AddExam.aspx">Add Exam</asp:HyperLink>
+            <asp:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/College/AddExam.aspx"><%=Resources.Default.Add_Text%> Exam</asp:HyperLink>
         </div>
         <br />
         <asp:ListView ID="ListExam" runat="server" OnItemCommand="List_ItemCommand" DataKeyNames="ExamID">
@@ -49,13 +49,13 @@
                         <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("ModifiedDate"))) %>
                     </td>
                     <td>
-                        <asp:HyperLink ID="lnkEdit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/AddExam.aspx")+"?eid="+Eval("ExamID")%>'>Edit</asp:HyperLink>
+                        <asp:HyperLink ID="lnkEdit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/AddExam.aspx")+"?eid="+Eval("ExamID")%>'><%=Resources.Default.Edit_Text %></asp:HyperLink>
                     </td>
                     <td>
                         <asp:LinkButton ID="lnkDelete" runat="server" CommandName="Deletedata">Delete</asp:LinkButton>
                     </td>
                     <td>
-                        <asp:HyperLink ID="lnkAddQuestion" runat="server" NavigateUrl='<%#ResolveUrl("~/College/QuestionWizard/Step1.aspx")+"?eid="+Eval("ExamID")%>'>Add Question</asp:HyperLink>
+                        <asp:HyperLink ID="lnkAddQuestion" runat="server" NavigateUrl='<%#ResolveUrl("~/College/QuestionWizard/Step1.aspx")+"?eid="+Eval("ExamID")%>'><%=Resources.Default.Add_Text%> Question</asp:HyperLink>
                     </td>
                     <td>
                         <asp:HyperLink ID="lnkListQuestion" runat="server" NavigateUrl='<%#ResolveUrl("~/College/QuestionWizard/ListQuestion.aspx")+"?eid="+Eval("ExamID")%>'>List Question</asp:HyperLink>

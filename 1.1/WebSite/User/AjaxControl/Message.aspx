@@ -77,8 +77,8 @@
                     <span id="lblModifiedDate" runat="server"></span>
                 </div>
             </div>
-            <asp:LinkButton ID="lnkedit" runat="server" Text="Edit" CssClass="btnlnk"></asp:LinkButton>
-            <asp:LinkButton ID="lnkAddNew" runat="server" Text="Add" CssClass="btnlnk"></asp:LinkButton>
+            <asp:LinkButton ID="lnkedit" runat="server" Text="<%=Resources.Default.Edit_Text %>" CssClass="btnlnk"></asp:LinkButton>
+            <asp:LinkButton ID="lnkAddNew" runat="server" Text="<%=Resources.Default.Add_Text%>" CssClass="btnlnk"></asp:LinkButton>
         </div>
     </div>
     </form>

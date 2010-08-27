@@ -14,7 +14,7 @@
             Question List
             </div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkAddnew" runat="server" ContainnerID="#contentBox"><div class="btn"> Add new Question</div></aspajax:HyperLink>
+                <aspajax:HyperLink ID="lnkAddnew" runat="server" ContainnerID="#contentBox"><div class="btn"> <%=Resources.Default.Add_Text%> Question</div></aspajax:HyperLink>
             </div>
             <div style="clear: both">
             </div>
@@ -62,7 +62,7 @@
                             <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("ModifiedDate"))) %>
                         </td>
                         <td>
-                            <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink>
+                            <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox"><%=Resources.Default.Edit_Text %></aspajax:HyperLink>
                         </td>
                         <td>
                             <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("EXM_QuestionID").ToString(), "#contentBox", "#contentBox")%>

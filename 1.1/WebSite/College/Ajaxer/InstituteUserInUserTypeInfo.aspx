@@ -50,7 +50,7 @@
         <div class="gray">
             <aspajax:AjaxLinkButton ID="lnkP" runat="server" EnableViewState="False" RequestContainner="#contentBox"
                 ResponseContainner="#contentBox" Increment="False" OnAjaxClick="AddAjaxClick"
-                Pagger="False"><div class="btn editbtn"> Add</div></aspajax:AjaxLinkButton>
+                Pagger="False"><div class="btn editbtn"> <%=Resources.Default.Add_Text%></div></aspajax:AjaxLinkButton>
         </div>
     </div>
     </form>

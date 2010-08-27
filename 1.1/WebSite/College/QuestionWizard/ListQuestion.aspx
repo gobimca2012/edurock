@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="contentbox">
         <div>
-            <asp:HyperLink ID="lnkAddQuestion" runat="server">Add Question</asp:HyperLink>
+            <asp:HyperLink ID="lnkAddQuestion" runat="server"><%=Resources.Default.Add_Text%> Question</asp:HyperLink>
         </div>
         <br />
         <div>
@@ -53,7 +53,7 @@
                             <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("ModifiedDate"))) %>
                         </td>
                         <td>
-                            <asp:HyperLink ID="lnkEdit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/QuestionWizard/Step1.aspx")+"?qid="+Eval("EXM_QuestionID")%>'>Edit</asp:HyperLink>
+                            <asp:HyperLink ID="lnkEdit" runat="server" NavigateUrl='<%#ResolveUrl("~/College/QuestionWizard/Step1.aspx")+"?qid="+Eval("EXM_QuestionID")%>'><%=Resources.Default.Edit_Text %></asp:HyperLink>
                         </td>
                         <td>
                             <asp:LinkButton ID="lnkDelete" runat="server" CommandName="DeleteQuestion" runat="server">Delete</asp:LinkButton>

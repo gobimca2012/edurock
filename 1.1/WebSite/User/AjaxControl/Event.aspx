@@ -16,7 +16,7 @@
             </div>
             <div style="float: right">
                 <span style="float: left">
-                    <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn"> Edit</div></aspajax:HyperLink></span>
+                    <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn"> <%=Resources.Default.Edit_Text %></div></aspajax:HyperLink></span>
                 <span style="float: left">
                     <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  Share Event</div></aspajax:HyperLink></span>
                 <div style="clear: both">

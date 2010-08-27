@@ -29,7 +29,7 @@
                     </tr>
                 </table>
             </fieldset>
-            <asp:LinkButton ID="lnkAdd" runat="server" Text="Add" OnClick="lnkAdd_Click"></asp:LinkButton>
+            <asp:LinkButton ID="lnkAdd" runat="server" Text="<%=Resources.Default.Add_Text%>" OnClick="lnkAdd_Click"></asp:LinkButton>
         </div>
     </div>
     <div>

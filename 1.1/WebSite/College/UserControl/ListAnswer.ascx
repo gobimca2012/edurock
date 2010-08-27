@@ -40,7 +40,7 @@
                     <asp:LinkButton ID="lnkDelete" runat="server" CommandName="DeleteAnswer">Delete</asp:LinkButton>
                 </td>
                 <td>
-                    <asp:HyperLink ID="lnkEdit" runat="server">Edit</asp:HyperLink>
+                    <asp:HyperLink ID="lnkEdit" runat="server"><%=Resources.Default.Edit_Text %></asp:HyperLink>
                 </td>
             </tr>
         </ItemTemplate>

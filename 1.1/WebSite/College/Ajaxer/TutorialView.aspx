@@ -57,7 +57,7 @@
         <div>
            <%-- <%--<aspajax:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/Admin/Ajaxer/CourceInfo.aspx"
                 ContainnerID="#contentBox">Add New</aspajax:HyperLink>--%>
-            <asp:LinkButton ID="lnkAdd" runat="server">Add</asp:LinkButton>
+            <asp:LinkButton ID="lnkAdd" runat="server"><%=Resources.Default.Add_Text%></asp:LinkButton>
         </div>
     </div>
     </form>

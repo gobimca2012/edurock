@@ -24,7 +24,7 @@
                             Base <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> 
                         </div>
                         <div>
-                            <aspajax:HyperLink ID="lnkAddCat" runat="server" ContainnerID="#contentBox" NavigateUrl="~/College/Ajaxer/CourceInfo.aspx">Add new Base Cource</aspajax:HyperLink>
+                            <aspajax:HyperLink ID="lnkAddCat" runat="server" ContainnerID="#contentBox" NavigateUrl="~/College/Ajaxer/CourceInfo.aspx"><%=Resources.Default.Add_Text%> Base Cource</aspajax:HyperLink>
                         </div>
                     </div>
                     <div>
@@ -123,7 +123,7 @@
         <div class="gray">
             <div style="float: left">
                 <aspajax:AjaxLinkButton ID="lnkAddInstituteCource" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn editbtn"> Add</div></aspajax:AjaxLinkButton>
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn editbtn"> <%=Resources.Default.Add_Text%></div></aspajax:AjaxLinkButton>
             </div>
             <div style="float: left">
                 <aspajax:AjaxLinkButton ID="lnkUpdateInstituteCource" runat="server" RequestContainner="#contentBox" Visible="false"

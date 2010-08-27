@@ -47,6 +47,9 @@
             <div class="btn fl roundedall tp" rel="Get All Event current Space">
                 <span class="evt">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkEvent" runat="server" ContainnerID="#contentBox">Event</aspajax:HyperLink></div>
+            <div class="btn fl roundedall tp" rel="Get All Event current Space">
+                <span class="evt">&nbsp;</span>
+                <aspajax:HyperLink ID="lnkBookmark" runat="server" ContainnerID="#contentBox">BookMark</aspajax:HyperLink></div>
         </div>
         <div class="clear">
         </div>

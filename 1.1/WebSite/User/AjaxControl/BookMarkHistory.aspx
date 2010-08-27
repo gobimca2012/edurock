@@ -1,0 +1,109 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="BookMarkHistory.aspx.cs"
+    Inherits="User_AjaxControl_Document" %>
+
+<%@ Register Src="../UserControl/FullViewSideInfo.ascx" TagName="FullViewSideInfo"
+    TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Untitled Page</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="contentbox">
+        <div class="gray">
+            <div style="float: left">
+                Image</div>
+            <div style="float: right">
+                <aspajax:HyperLink ID="lnkBackHistry" runat="server" ContainnerID="#contentBox"><div class="btn "> Back To History</div> </aspajax:HyperLink>
+            </div>
+            <div style="float: right">
+                <aspajax:HyperLink ID="lnkFullView" runat="server" ContainnerID="#contentBox"><div class="btn ">Back to FullView </div> </aspajax:HyperLink>
+            </div>
+            <div style="clear: both">
+            </div>
+        </div>
+        <div class="whitecont">
+            <div class="fuleft">
+                <div>
+                    <div>
+                        <asp:Image ID="img" runat="server" Visible="false" Width="98%" />
+                    </div>
+                    <div id="videoPlayer">
+                    </div>
+                    <div>
+                        <a id="lblFilePath" runat="server" target="_blank">
+                            <div class="btn editbtn">
+                                Download</div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h3 id="lblName" runat="server" class="btitle">
+                        </h3>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">Description</span>
+                    </div>
+                    <div>
+                        <p id="lblDescription" runat="server">
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">MetaDescription</span>
+                    </div>
+                    <div>
+                        <p id="lblMetaDescription" runat="server">
+                        </p>
+                    </div>
+                </div>
+                <div style="display: none">
+                    <div>
+                        <span class="label">Tag</span>
+                    </div>
+                    <div>
+                        <span id="lblTag" runat="server"></span>
+                    </div>
+                </div>
+                <%-- <div>
+                    <div>
+                     
+                    </div>
+                    <div>
+                        <div>
+                            POST BY &nbsp;<asp:HyperLink ID="lnkTool" runat="server"></asp:HyperLink>&nbsp;on
+                            &nbsp;<span id="lblModifiedDate" runat="server"></span>
+                        </div>
+                    </div>
+                </div>--%>
+                <div style="display: none">
+                    <div>
+                        <span class="label">Rating</span>
+                    </div>
+                    <div>
+                        <span id="lblRating" runat="server"></span>
+                    </div>
+                </div>
+            </div>
+            <%--     <div class="furight">
+                <uc1:FullViewSideInfo ID="FullViewSideInfo1" runat="server" />
+            </div>--%>
+            <div style="clear: both">
+            </div>
+            <div id="comment">
+            </div>
+            <div id="newcommentbox">
+            </div>
+        </div>
+        <div class="gray">
+            Image
+        </div>
+    </div>
+    </form>
+</body>
+</html>

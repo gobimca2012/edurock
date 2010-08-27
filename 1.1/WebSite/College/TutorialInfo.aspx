@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div>
-                <asp:LinkButton ID="lnkAdd" runat="server" OnClick="lnkAdd_Click">Add</asp:LinkButton>
+                <asp:LinkButton ID="lnkAdd" runat="server" OnClick="lnkAdd_Click"><%=Resources.Default.Add_Text%></asp:LinkButton>
             </div>
         </fieldset>
     </div>

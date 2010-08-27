@@ -14,11 +14,11 @@
             <div style="float: left">
                 Image</div>
             <div style="float: right">
-                <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn"> Edit</div> </aspajax:HyperLink>
+                <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn"> <%=Resources.Default.Edit_Text %></div> </aspajax:HyperLink>
             </div>
             <div style="float: right">
                 <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></div>
-                 <div style="float: right">
+            <div style="float: right">
                 <aspajax:HyperLink ID="lnkHistory" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  History </div></aspajax:HyperLink></div>
             <div style="clear: both">
             </div>
@@ -39,9 +39,9 @@
                     </div>
                 </div>
                 <div>
-               
                     <div>
-                        <h3 id="lblName" runat="server" class="btitle"></h3>
+                        <h3 id="lblName" runat="server" class="btitle">
+                        </h3>
                     </div>
                 </div>
                 <div>
@@ -62,7 +62,7 @@
                         </p>
                     </div>
                 </div>
-                <div style="display:none">
+                <div style="display: none">
                     <div>
                         <span class="label">Tag</span>
                     </div>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>--%>
-                <div style="display:none">
+                <div style="display: none">
                     <div>
                         <span class="label">Rating</span>
                     </div>

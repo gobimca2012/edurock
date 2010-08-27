@@ -50,7 +50,7 @@
                     </td>
                     <td>
                         <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/TutorialTypeInfo.aspx") + "?tid=" + Eval("TutorialTypeID")%>'
-                            ContainnerID="#tutorial">Edit</aspajax:HyperLink>
+                            ContainnerID="#tutorial"><%=Resources.Default.Edit_Text %></aspajax:HyperLink>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -71,7 +71,7 @@
         </div>
         <div>
             <aspajax:HyperLink ID="lnkAdd" runat="server" NavigateUrl="~/Admin/Ajaxer/TutorialTypeInfo.aspx"
-                ContainnerID="#tutorial">Add New</aspajax:HyperLink>
+                ContainnerID="#tutorial"><%=Resources.Default.Add_Text%></aspajax:HyperLink>
         </div>
     </div>
     </form>

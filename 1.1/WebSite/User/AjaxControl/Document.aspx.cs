@@ -17,6 +17,7 @@ public partial class User_AjaxControl_Document : AjaxPage
 {
     private void ControlManager(int LoginUserID)
     {
+        
         if (new UserAuthontication().IsOwn(LoginUserID))
         {
             //lnkDelete.Visible = true;

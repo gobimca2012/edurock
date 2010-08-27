@@ -72,7 +72,7 @@
                             RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                     </div>
                     <div class="fleft">
-                        <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox"><div class="btn">Add New Question</div></aspajax:HyperLink>
+                        <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox"><div class="btn"><%=Resources.Default.Add_Text%> Question</div></aspajax:HyperLink>
                     </div>
                 </div>
                 <div class="clear"></div>

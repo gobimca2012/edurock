@@ -69,7 +69,7 @@
                 </div>
                 <div style="float: left">
                     <aspajax:HyperLink ID="hpAddMessage" runat="server" NavigateUrl="~/Admin/Ajaxer/MessageInfo.aspx"
-                        ContainnerID="#contentBox">Add New</aspajax:HyperLink>
+                        ContainnerID="#contentBox"><%=Resources.Default.Add_Text%></aspajax:HyperLink>
                 </div>
                 <div style="clear: both">
                 </div>

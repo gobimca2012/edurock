@@ -95,7 +95,7 @@
             </div>
             <div>
                 <aspajax:HyperLink ID="hpAddDocument" runat="server" NavigateUrl="~/User/AjaxControl/DocumentInfo.aspx?dtype=1"
-                    ContainnerID="#contentBox"><div class="btn"> Add New Video</div></aspajax:HyperLink>
+                    ContainnerID="#contentBox"><div class="btn"> <%=Resources.Default.Add_Text%> Video</div></aspajax:HyperLink>
             </div>
         </div>
         <div style="clear: both">
