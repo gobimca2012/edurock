@@ -51,7 +51,7 @@ namespace BusinessLogic
         {
             get
             {
-                var data = new InstituteController().GetbyLoginUserID(LoggedInUserID);
+                var data = new InstituteUserController().GetbyLoginUserID(LoggedInUserID);
                 if (data.Count > 0)
                 {
                     return data[0].InstituteID;
