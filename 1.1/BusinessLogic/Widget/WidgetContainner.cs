@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using Common;
 using System.Web;
+using DataEntity;
 
 namespace BusinessLogic
 {
-    public class WidgetContainner:AjaxPage
+    public abstract class WidgetContainner:AjaxPage
     {
+        WidgetHelper widgetData;
         protected string LeftColumnID
         {
             get;
@@ -35,6 +37,8 @@ namespace BusinessLogic
                 }
             }
         }
+        protected abstract void GetWidgetsData(out WidgetHelper widgetData);
+        protected abstract void CreateControls(Guid pageID);
         protected void LoadWidget(string ColumnID,Guid WidgetID,string WidgetUrl)
         {
             string _WidUrl = WidgetUrl;
@@ -63,6 +67,36 @@ namespace BusinessLogic
             objWidgetScript = new JScripter.Widget(this.Page, false);
             base.OnInit(e);
         }
-
+        protected void GenerateWidgetPage(WidgetHelper widgetData)
+        {
+            JScripter.Widget objWidgetScript = new JScripter.Widget(this.Page, false);
+            foreach (Widget wd in widgetData.LeftColumn)
+            {
+                if (wd.ContentType == (int)WidgetTypeEnum.HTMLWidget)
+                    LoadWidget(LeftColumnID, wd.WidgetID, ResolveUrl("~/User/Widget/html.aspx"));
+                if (wd.ContentType == (int)WidgetTypeEnum.Content)
+                    objWidgetScript.AddWidget(LeftColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/AllContent.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
+                if (wd.ContentType == (int)WidgetTypeEnum.UserInfo)
+                    objWidgetScript.AddWidget(LeftColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/PublicUserInfoView.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
+                if (wd.ContentType == (int)WidgetTypeEnum.InstituteInfo)
+                    objWidgetScript.AddWidget(LeftColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/college/Widget/AboutInstitute.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
+            }
+            foreach (Widget wd in widgetData.RightColumn)
+            {
+                if (wd.ContentType == (int)WidgetTypeEnum.HTMLWidget)
+                    LoadWidget(RightColumnID, wd.WidgetID, ResolveUrl("~/User/Widget/html.aspx"));
+                if (wd.ContentType == (int)WidgetTypeEnum.Content)
+                    objWidgetScript.AddWidget(RightColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/AllContent.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
+                if (wd.ContentType == (int)WidgetTypeEnum.UserInfo)
+                    objWidgetScript.AddWidget(RightColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/PublicUserInfoView.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
+            }
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            GetWidgetsData(out widgetData);
+            GenerateWidgetPage(widgetData);
+            CreateControls(widgetData.PageID);
+            base.OnLoad(e);
+        }
     }
 }

@@ -3,64 +3,64 @@
   <Class Name="BusinessLogic.AjaxListViewCommandArg" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>AjaxPage.cs</FileName>
+      <HashCode>AAACAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PageHandler\AjaxPage.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLogic.AjaxPage" Collapsed="true">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAMAABAAAAAAAgAAAAAAACCAEAAAAAABAAAAAAAAE=</HashCode>
-      <FileName>AjaxPage.cs</FileName>
+      <HashCode>AAQAICABIGABCAAgAAAAABASCQBQBAQAARAAAAAAAAE=</HashCode>
+      <FileName>PageHandler\AjaxPage.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLogic.BasePage" Collapsed="true">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAgAQAAAAAAAAIAAAQAAAAAAAAAAAA=</HashCode>
-      <FileName>BasePage.cs</FileName>
+      <HashCode>AAAAAAAAAAAIAAAgAQAAABACAIIAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>PageHandler\BasePage.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLogic.BaseUserControl" Collapsed="true">
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAQAAAAAAAAAAAA=</HashCode>
-      <FileName>BaseUserControl.cs</FileName>
+      <FileName>PageHandler\BaseUserControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLogic.CommonController" Collapsed="true">
     <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAQAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAgA=</HashCode>
-      <FileName>CommonController.cs</FileName>
+      <HashCode>CQQQAAAAQAEAAABEAAAAAAgAAAAAAAAAAAAAACAEQgA=</HashCode>
+      <FileName>Controllers\CommonController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLogic.EmailController" Collapsed="true">
     <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
-      <FileName>EmailController.cs</FileName>
+      <FileName>Controllers\EmailController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLogic.ExamController" Collapsed="true">
     <Position X="4" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAIAwAAAAEAAAQBgAAAAAAAAAAAAAAAAACBAIAAAAQI=</HashCode>
-      <FileName>ExamController.cs</FileName>
+      <HashCode>EBIAwEAAQEIQQQBhAIEAFAEgAIAAAIAABCFAoAAAAUI=</HashCode>
+      <FileName>Controllers\ExamController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLogic.EXM_AnswerController" Collapsed="true">
     <Position X="5.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAIAACAAAEAEAIBAAABEAAgAAAEIAAAAAAAQAAgAAAA=</HashCode>
-      <FileName>EXM_AnswerController.cs</FileName>
+      <FileName>Controllers\EXM_AnswerController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLogic.EXM_QuestionController" Collapsed="true">
     <Position X="0.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAIAgAAAAEEEAABgAEAgAAAAAIEAAAAAEAAAoAAACAI=</HashCode>
-      <FileName>EXM_QuestionController.cs</FileName>
+      <FileName>Controllers\EXM_QuestionController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLogic.GlobelEnum" Collapsed="true">
@@ -73,8 +73,8 @@
   <Class Name="BusinessLogic.LoginUserController" Collapsed="true">
     <Position X="4" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAIAgAAAAUAAAQBgAEoAIAAAAAAAAgAAAAAAAgAIIAo=</HashCode>
-      <FileName>LoginUserController.cs</FileName>
+      <HashCode>EAIAgAAAAUAAgQBgAEoAIAAAAAAAAgAAAACAAgAIIAo=</HashCode>
+      <FileName>Controllers\LoginUserController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BusinessLogic.SettingProvider" Collapsed="true">
@@ -87,7 +87,7 @@
   <Class Name="BusinessLogic.UserAuthontication" Collapsed="true">
     <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAQAAEAAAgAAkAgAAAIAAAAAACAAACAASAAAAAAA=</HashCode>
+      <HashCode>ACACAQAAEAAAgAAkAgAIAIAAAAAACgBACAASAAQAAAA=</HashCode>
       <FileName>UserAuthontication.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -98,17 +98,17 @@
       <FileName>StartExam.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="BusinessLogic.QuestionType" Collapsed="true">
+  <Enum Name="BusinessLogic.QuestionTypeEnum" Collapsed="true">
     <Position X="2.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAEAAAAAAAAEAAAAACCAA=</HashCode>
-      <FileName>EXM_QuestionController.cs</FileName>
+      <FileName>Controllers\EXM_QuestionController.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="BusinessLogic.CookieName" Collapsed="true">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAIAAAAAIAAAAAAAAAACAAAA=</HashCode>
       <FileName>GlobelEnum.cs</FileName>
     </TypeIdentifier>
   </Enum>
@@ -116,13 +116,13 @@
     <Position X="4" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>LoginUserController.cs</FileName>
+      <FileName>Controllers\LoginUserController.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="BusinessLogic.SessionName">
     <Position X="6.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gSJAABgAAgACAAAAEAAgAJAIAAAAAAQAAgAABIQQAAA=</HashCode>
       <FileName>SessionName.cs</FileName>
     </TypeIdentifier>
   </Enum>

@@ -26,15 +26,21 @@ public partial class User_WidgetPage : WidgetContainner
                 return new UserAuthontication().LoggedInUserID;
         }
     }
-    private void CreateControls(Guid pageID)
+    
+    
+    protected override void OnLoad(EventArgs e)
     {
-       
+        LeftColumnID = "#widgetLeft";
+        RightColumnID = "#widgetright";                
+        base.OnLoad(e);
+    }
+    protected override void CreateControls(Guid pageID)
+    {
         if (!new UserAuthontication().IsOwn(LoginUserID))
         {
             lnkEdit.Visible = false;
             divEdit.Visible = false;
             divwidmanager.Visible = false;
-
         }
         else
         {
@@ -48,38 +54,15 @@ public partial class User_WidgetPage : WidgetContainner
             objLoader.LoadPage("#widgetmanager", ResolveUrl("~/User/WidgetManager.aspx") + "?wpid=" + pageID.ToString());
             if (lnkEdit.Visible)
             {
-                lnkEdit.NavigateUrl = ResolveUrl("~/User/WidgetPage.aspx") + "?usid=" + new UserAuthontication().LoggedInUserID.ToString() ;
+                lnkEdit.NavigateUrl = ResolveUrl("~/User/WidgetPage.aspx") + "?usid=" + new UserAuthontication().LoggedInUserID.ToString();
                 lnkEdit.Text = "Priview";
             }
         }
     }
-    protected void Page_Load(object sender, EventArgs e)
+
+    protected override void GetWidgetsData(out WidgetHelper widgetData)
     {
-        
-        LeftColumnID = "#widgetLeft";
-        RightColumnID = "#widgetright";
-        WidgetHelper widgetData=new WidgetHelper();        
-        widgetData.GetPage(LoginUserID, PageTypeEnum.ProfilePage);        
-        JScripter.Widget objWidgetScript=new JScripter.Widget(this.Page,false);
-        foreach(Widget wd in widgetData.LeftColumn)
-        {
-            if (wd.ContentType == (int)WidgetTypeEnum.HTMLWidget)
-                LoadWidget(LeftColumnID, wd.WidgetID, ResolveUrl("~/User/Widget/html.aspx"));                
-            if (wd.ContentType == (int)WidgetTypeEnum.Content)
-                objWidgetScript.AddWidget(LeftColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/AllContent.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
-            if (wd.ContentType == (int)WidgetTypeEnum.UserInfo)
-                objWidgetScript.AddWidget(LeftColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/PublicUserInfoView.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
-        }
-        foreach (Widget wd in widgetData.RightColumn)
-        {
-            if (wd.ContentType == (int)WidgetTypeEnum.HTMLWidget)
-                LoadWidget(RightColumnID, wd.WidgetID, ResolveUrl("~/User/Widget/html.aspx"));
-            if (wd.ContentType == (int)WidgetTypeEnum.Content)
-                objWidgetScript.AddWidget(RightColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/AllContent.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
-            if (wd.ContentType == (int)WidgetTypeEnum.UserInfo)
-                objWidgetScript.AddWidget(RightColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/PublicUserInfoView.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
-        }
-        CreateControls(widgetData.PageID);
-        
+        widgetData = new WidgetHelper();
+        widgetData.GetPage(LoginUserID, PageTypeEnum.ProfilePage);
     }
 }

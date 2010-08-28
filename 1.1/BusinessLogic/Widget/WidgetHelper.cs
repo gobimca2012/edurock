@@ -35,7 +35,7 @@ namespace BusinessLogic
             }
         }
         public void GetPage(int LoginUserID, PageTypeEnum pagetype)
-        {
+        {            
             var data = new WidgetPageController().GetbyLoginUserID(LoginUserID, (int)pagetype, LoginUserID.ToString());
             if (data.Count > 0)
             {
@@ -45,6 +45,22 @@ namespace BusinessLogic
             {
                 PageID = Guid.NewGuid();
                 new WidgetPageController().Add(PageID, LoginUserID, (int)pagetype,LoginUserID.ToString(), "new Page", DateTime.Now);
+            }
+            var widgets = new WidgetController().GetbyPageID(PageID);
+            LeftColumn = (from p in widgets where p.WidgetColumn == 1 select p).ToList();
+            RightColumn = (from p in widgets where p.WidgetColumn == 2 select p).ToList();
+        }
+        public void GetPage(string ContentID, PageTypeEnum pagetype)
+        {
+            var data = new WidgetPageController().GetbyContentID((int)pagetype, ContentID);
+            if (data.Count > 0)
+            {
+                PageID = data[0].PageID;
+            }
+            else
+            {
+                PageID = Guid.NewGuid();
+                new WidgetPageController().Add(PageID, new UserAuthontication().LoggedInUserID, (int)pagetype, ContentID, "new Page", DateTime.Now);
             }
             var widgets = new WidgetController().GetbyPageID(PageID);
             LeftColumn = (from p in widgets where p.WidgetColumn == 1 select p).ToList();
@@ -89,13 +105,15 @@ namespace BusinessLogic
     }
     public enum PageTypeEnum
     {
-        ProfilePage = 0
+        ProfilePage = 0,
+        InstitutePage=1
     }
     public enum WidgetTypeEnum
     {
         HTMLWidget = 0,
         Content=15,
-        UserInfo=16
+        UserInfo=16,
+        InstituteInfo=17
     }
     public enum WidgetColumnEnum
     {

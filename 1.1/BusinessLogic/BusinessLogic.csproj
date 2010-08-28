@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Controllers\PortalSettingController.cs" />
     <Compile Include="Entity\UserFiles.cs" />
+    <Compile Include="IWidgetPage.cs" />
     <Compile Include="PageHandler\AjaxPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -159,6 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
