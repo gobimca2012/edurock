@@ -67,10 +67,14 @@
                             </div>
                         </div>
                         <div class="leftmenu">
+                            <asp:HyperLink ID="lnkInstitute" runat="server" NavigateUrl="~/Institute.aspx"><div class="btn">Institute Page</div> </asp:HyperLink>
+                        </div>
+                        <div class="leftmenu">
                             <div>
                                 <div class="grayhead tp" rel="Select your cource and get update from cource">
-                                    <span class="sub" style="float: left"></span><span style="float: left" id="lblSpace" runat="server"> </span>
-                                    <div style="float: right;margin-top:5px;" class="collapse" id="courcel" >
+                                    <span class="sub" style="float: left"></span><span style="float: left" id="lblSpace"
+                                        runat="server"></span>
+                                    <div style="float: right; margin-top: 5px;" class="collapse" id="courcel">
                                         <div>
                                         </div>
                                     </div>
@@ -89,8 +93,9 @@
                                     <div style="float: left">
                                         Messages
                                     </div>
-                                    <div style="float: right;margin-top:5px;" class="expand" id="messageHead">
-                                    <div></div>
+                                    <div style="float: right; margin-top: 5px;" class="expand" id="messageHead">
+                                        <div>
+                                        </div>
                                     </div>
                                     <div style="clear: both">
                                     </div>
@@ -116,8 +121,9 @@
                                     <div style="float: left">
                                         My Stuff
                                     </div>
-                                    <div style="float: right;margin-top:5px;" class="expand" id="mymenu">
-                                    <div></div>
+                                    <div style="float: right; margin-top: 5px;" class="expand" id="mymenu">
+                                        <div>
+                                        </div>
                                     </div>
                                     <div style="clear: both">
                                     </div>

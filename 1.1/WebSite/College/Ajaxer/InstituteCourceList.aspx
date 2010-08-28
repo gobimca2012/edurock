@@ -10,13 +10,16 @@
     <form id="form1" runat="server">
     <div class="grayhead ">
         <div style="float: left">
-            <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> </div>
-        <div style="float: right" class="exand" id="courseboxtrigger">
+            <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>
+        </div>
+        <div style="float: right; margin-top: 5px;" class="expand" id="courseboxtrigger">
+            <div>
+            </div>
         </div>
         <div class="clear">
         </div>
     </div>
-    <div id="coursebox" style="display:none">
+    <div id="coursebox" style="display: none">
         <asp:ListView ID="listCource" runat="server">
             <LayoutTemplate>
                 <div>
