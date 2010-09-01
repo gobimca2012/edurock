@@ -245,6 +245,10 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         {
             URL = ResolveUrl("~/User/AjaxControl/Event.aspx") + "?evid=" + ID;
         }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.BookMark)
+        {
+            URL = ResolveUrl("~/User/AjaxControl/BookMark.aspx") + "?did=" + ID;
+        }
         return URL;
     }
     protected void ListQuestionOnItemDataBound(object sender, ListViewItemEventArgs e)

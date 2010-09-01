@@ -31,7 +31,7 @@ namespace PaypalPDT
         private string GetPaypalUrl()
         {
             return "https://www.sandbox.paypal.com/us/cgi-bin/webscr";
-                //"https://www.paypal.com/us/cgi-bin/webscr";
+            //"https://www.paypal.com/us/cgi-bin/webscr";
         }
         public string PostProcessPayment(Order order)
         {
@@ -43,7 +43,7 @@ namespace PaypalPDT
             builder.AppendFormat("&item_name=Order Number {0}", order.OrderID.ToString());
             builder.AppendFormat("&custom={0}", order.OrderID.ToString());
             builder.AppendFormat("&amount={0}", order.OrderTotal.ToString("N", new CultureInfo("en-us")));
-            builder.Append(string.Format("&no_note=1&currency_code={0}",order.PrimaryStoreCurrency));
+            builder.Append(string.Format("&no_note=1&currency_code={0}", order.PrimaryStoreCurrency));
             builder.AppendFormat("&invoice={0}", order.OrderID.ToString());
             builder.AppendFormat("&rm=2", new object[0]);
             builder.AppendFormat("&no_shipping=1", new object[0]);
@@ -53,12 +53,8 @@ namespace PaypalPDT
             builder.AppendFormat("&address1={0}", order.BillingAddress1);
             builder.AppendFormat("&address2={0}", order.BillingAddress2);
             builder.AppendFormat("&city={0}", order.BillingCity);
-
             builder.AppendFormat("&state={0}", order.BillingStateProvince);
-          
-           
-                builder.AppendFormat("&country={0}",order.BillingCountry);
-           
+            builder.AppendFormat("&country={0}", order.BillingCountry);
             builder.AppendFormat("&Email={0}", order.BillingEmail);
             HttpContext.Current.Response.Redirect(builder.ToString());
             return string.Empty;

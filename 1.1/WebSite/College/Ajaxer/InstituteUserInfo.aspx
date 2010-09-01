@@ -26,7 +26,7 @@
                     <span class="label">Password</span><span class="valmsg" >(Required)*</span>
                 </div>
                 <div>
-                    <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                 </div>
             </div>
             <div>

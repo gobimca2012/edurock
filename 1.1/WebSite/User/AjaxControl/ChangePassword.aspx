@@ -15,19 +15,19 @@
                 Current password
             </div>
             <div>
-                <asp:TextBox ID="txtCurrentPassword" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtCurrentPassword" runat="server" TextMode="Password"></asp:TextBox>
             </div>
             <div class="label">
                 New password
             </div>
             <div>
-                <asp:TextBox ID="txtNewPassword" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password"></asp:TextBox>
             </div>
             <div class="label">
                 Confirm password
             </div>
             <div>
-                <asp:TextBox ID="txtConfirmPassword" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="btnChange" runat="server" EnableValidation="False" EnableViewState="False"

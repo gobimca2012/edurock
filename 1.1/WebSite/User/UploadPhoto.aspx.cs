@@ -46,8 +46,8 @@ public partial class User_UploadPhoto : BasePage
             Session[SessionName.FileUploader.ToString()] = Path;
             Session[SessionName.FileUploaderDefaultImage.ToString()] = Path;
             Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
-            Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;
-            string Script = "window.parent.closePop();";
+            Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;            
+            string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
             JScripter.JScripter.InjectScript(Script, this.Page);
             //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
         }
@@ -58,7 +58,7 @@ public partial class User_UploadPhoto : BasePage
             Session[SessionName.FileUploaderDefaultImage.ToString()] = Path;
             Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
             Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;
-            string Script = "window.parent.closePop();";
+            string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
             JScripter.JScripter.InjectScript(Script, this.Page);
             //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
         }
@@ -71,7 +71,7 @@ public partial class User_UploadPhoto : BasePage
                 Session[SessionName.FileUploaderDefaultImage.ToString()] = Path;
                 Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
                 Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;
-                string Script = "window.parent.closePop();";
+                string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
                 JScripter.JScripter.InjectScript(Script, this.Page);
                 //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
             }
@@ -89,7 +89,7 @@ public partial class User_UploadPhoto : BasePage
                 Session[SessionName.FileUploaderDefaultImage.ToString()] = ConfigurationSettings.AppSettings["AudioIcon"].ToLower();
                 Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
                 Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Document;
-                string Script = "window.parent.closePop();";
+                string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
                 JScripter.JScripter.InjectScript(Script, this.Page);
                 //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
             }
@@ -107,7 +107,7 @@ public partial class User_UploadPhoto : BasePage
                 Session[SessionName.FileUploaderDefaultImage.ToString()] = ConfigurationSettings.AppSettings["AudioIcon"].ToLower();
                 Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
                 Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Audio;
-                string Script = "window.parent.closePop();";
+                string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
                 JScripter.JScripter.InjectScript(Script, this.Page);
                 //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
             }
@@ -125,7 +125,7 @@ public partial class User_UploadPhoto : BasePage
                 Session[SessionName.FileUploaderDefaultImage.ToString()] = ConfigurationSettings.AppSettings["VideoIcon"].ToLower();
                 Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
                 Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Video;
-                string Script = "window.parent.closePop();";
+                string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
                 JScripter.JScripter.InjectScript(Script, this.Page);
                 //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
             }
@@ -166,7 +166,7 @@ public partial class User_UploadPhoto : BasePage
                 Session[SessionName.FileUploaderDefaultImage.ToString()] = Path;
                 Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
                 Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;
-                string Script = "window.parent.closePop();";
+                string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
                 JScripter.JScripter.InjectScript(Script, this.Page);
                 //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
             }
@@ -177,7 +177,7 @@ public partial class User_UploadPhoto : BasePage
                 Session[SessionName.FileUploaderDefaultImage.ToString()] = Path;
                 Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
                 Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;
-                string Script = "window.parent.closePop();";
+                string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
                 JScripter.JScripter.InjectScript(Script, this.Page);
                 //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
             }
@@ -190,7 +190,7 @@ public partial class User_UploadPhoto : BasePage
                     Session[SessionName.FileUploaderDefaultImage.ToString()] = Path;
                     Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
                     Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Image;
-                    string Script = "window.parent.closePop();";
+                    string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
                     JScripter.JScripter.InjectScript(Script, this.Page);
                     //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
                 }
@@ -208,7 +208,7 @@ public partial class User_UploadPhoto : BasePage
                     Session[SessionName.FileUploaderDefaultImage.ToString()] = ConfigurationSettings.AppSettings["AudioIcon"].ToLower();
                     Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
                     Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Document;
-                    string Script = "window.parent.closePop();";
+                    string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
                     JScripter.JScripter.InjectScript(Script, this.Page);
                     //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
                 }
@@ -226,7 +226,7 @@ public partial class User_UploadPhoto : BasePage
                     Session[SessionName.FileUploaderDefaultImage.ToString()] = ConfigurationSettings.AppSettings["AudioIcon"].ToLower();
                     Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
                     Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Audio;
-                    string Script = "window.parent.closePop();";
+                    string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
                     JScripter.JScripter.InjectScript(Script, this.Page);
                     //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
                 }
@@ -244,7 +244,7 @@ public partial class User_UploadPhoto : BasePage
                     Session[SessionName.FileUploaderDefaultImage.ToString()] = ConfigurationSettings.AppSettings["VideoIcon"].ToLower();
                     Session[SessionName.FileUploaderFileName.ToString()] = fileUploader.FileName;
                     Session[SessionName.FileUploaderType.ToString()] = (int)DocumentTypeEnum.Video;
-                    string Script = "window.parent.closePop();";
+                    string Script = string.Format("window.parent.closePop('#{0}','{1}');",Request.Params["rid"],Request.Params["rurl"]);
                     JScripter.JScripter.InjectScript(Script, this.Page);
                     //injectScript.Text = "<script type='text/javascript'>window.parent.closePop()</script>";
                 }

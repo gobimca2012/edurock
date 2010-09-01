@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div>
-                <aspajax:HyperLink ID="hpAddDocument" runat="server" NavigateUrl="~/User/AjaxControl/DocumentInfo.aspx?dtype=1"
+                <aspajax:HyperLink ID="hpAddDocument" runat="server" NavigateUrl="~/User/AjaxControl/DocumentInfo.aspx?dtype=10"
                     ContainnerID="#contentBox"><div class="btn"><%=Resources.Default.Add_Text%></div></aspajax:HyperLink>
             </div>
         </div>

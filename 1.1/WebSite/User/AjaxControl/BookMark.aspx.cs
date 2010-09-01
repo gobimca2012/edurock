@@ -42,9 +42,10 @@ public partial class User_AjaxControl_Document : AjaxPage
             //    lblDocumentID.InnerHtml = data.DocumentID.ToString();
 
             if (data.Name != null)
-
-                lblName.InnerHtml = data.Name.ToString();
-
+            {
+                lblName.NavigateUrl = data.Name.ToString();
+                lblName.Text = data.Name.ToString();
+            }
             if (data.Description != null)
 
                 lblDescription.InnerHtml = data.Description.ToString();
@@ -69,7 +70,7 @@ public partial class User_AjaxControl_Document : AjaxPage
 
                 lblRating.InnerHtml = data.Rating.ToString();
 
-            
+
             if (data.DocumentType != null)
             {
                 //lblDocumentType.InnerHtml = data.DocumentType.ToString();
@@ -107,7 +108,7 @@ public partial class User_AjaxControl_Document : AjaxPage
             BindData();
             objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + (_ContentType).ToString());
             lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + (_ContentType).ToString();
-            lnkHistory.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentHistoryView.aspx") + "?conid=" + ID.ToString() ;
+            lnkHistory.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentHistoryView.aspx") + "?conid=" + ID.ToString();
         }
 
     }

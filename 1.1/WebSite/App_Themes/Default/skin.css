@@ -277,6 +277,8 @@ tr:hover
     left: 500px;
     top: 100px;
     padding: 30px;
+    height:70px;
+    width:70px;
 }
 .lmenuitem
 {

@@ -18,18 +18,16 @@
             </div>
             <div style="float: right">
                 <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></div>
-                 <div style="float: right">
+            <div style="float: right">
                 <aspajax:HyperLink ID="lnkHistory" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  History </div></aspajax:HyperLink></div>
             <div style="clear: both">
             </div>
         </div>
         <div class="whitecont">
             <div class="fuleft">
-                
                 <div>
-               
                     <div>
-                        <h3 id="lblName" runat="server" class="btitle"></h3>
+                        <asp:HyperLink ID="lblName" runat="server" class="btitle" Target="_blank"></asp:HyperLink>
                     </div>
                 </div>
                 <div>
@@ -41,8 +39,7 @@
                         </p>
                     </div>
                 </div>
-                
-                <div style="display:none">
+                <div style="display: none">
                     <div>
                         <span class="label">Tag</span>
                     </div>
@@ -50,8 +47,7 @@
                         <span id="lblTag" runat="server"></span>
                     </div>
                 </div>
-            
-                <div style="display:none">
+                <div style="display: none">
                     <div>
                         <span class="label">Rating</span>
                     </div>

@@ -47,7 +47,7 @@ namespace BusinessLogic.Controller
                     PortalSetting datap = new PortalSetting();
                     datap.CourseHeader = "Course";
                     datap.SubjectHeader = "Subject";
-                    return null;
+                    return datap;
                 }
             }
             else

@@ -157,11 +157,11 @@ function ProgressBar(status, id)
    }
    else
    {
-      $(document).ready(function()
+     // $(document).ready(function()
       {
          $("#progress").removeClass("loading");
       }
-      );
+      //);
    }
 }
 
@@ -437,8 +437,16 @@ $.fn.PUIW = function(url, swidth, sheight, rurl, rid)
    $(this).html("");
    $(this).html("Loading................");
 
-   var str = "<iframe id='Ipopup' ALLOWTRANSPARENCY='true' frameborder='0' src='";
-   str += url;
+   var str = "<iframe id='Ipopup' ALLOWTRANSPARENCY='true' frameborder='0' src='";   
+   rid=rid.toString().replace("#","");
+   if(url.toString().indexOf("?",0))
+   {   
+   str += url+"&rid="+rid+"&rurl="+rurl;
+   }
+   else
+   {
+   str += url+"?rid="+rid+"&rurl="+rurl;
+   }
    str += "' style='width:" + swidth + "px;height:" + sheight + "px; background:none; overflow:auto;'></iframe>";
    $(this).html(str);
    $(this).dialog(
@@ -449,7 +457,7 @@ $.fn.PUIW = function(url, swidth, sheight, rurl, rid)
       close : function(event, ui)
       {
          $(this).dialog('destroy');
-         $(rid).LoadPage(rurl);
+        
       }
    }
    );
@@ -556,11 +564,12 @@ $.fn.dropdownPostback = function(url, PostContainnerID, ResponseID)
 
 //  ---------------------------------------
 
-function closePop()
+function closePop(rid,rurl)
 {
    // alert('close popup');
    $("#ipop").dialog('close');
-   $("#ipop").dialog('destroy');
+   $("#ipop").dialog('destroy');   
+    $(rid).LoadPage(rurl);
 }
 function closeEditorPopUp(content)
 {

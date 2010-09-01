@@ -1023,16 +1023,24 @@ namespace BusinessLogic
         }
         public string Upload(FileUpload fl)
         {
-            string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["ProfilePic"]);
-            FolderPath += new UserAuthontication().LoggedInUserName + "/";
-            if (!Directory.Exists(FolderPath))
-            {
-                Directory.CreateDirectory(FolderPath);
-            }
-            string FilePath = FolderPath + "/" + fl.FileName;
-            string ReturnFilePath = ConfigurationSettings.AppSettings["ProfilePic"] + new UserAuthontication().LoggedInUserName  + "/" + fl.FileName;
-            fl.SaveAs(FilePath);
-            return ReturnFilePath;
+                string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["ProfilePic"]);
+                FolderPath += new UserAuthontication().LoggedInUserName + "/";
+                Logger.TimeLog.ErrorWrite("Folder POath",FolderPath,"");
+                if (!Directory.Exists(FolderPath))
+                {
+                    Directory.CreateDirectory(FolderPath);
+                    Logger.TimeLog.ErrorWrite("Folder Create",FolderPath,"");
+                }
+
+                string FilePath = FolderPath + "/" + fl.FileName;
+                Logger.TimeLog.ErrorWrite("FillPath", FilePath, "");
+                string ReturnFilePath = ConfigurationSettings.AppSettings["ProfilePic"] + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+                Logger.TimeLog.ErrorWrite("ReturnFilePath", ReturnFilePath, "");
+                fl.SaveAs(FilePath);
+                Logger.TimeLog.ErrorWrite("File Saved", FilePath, "");
+                return ReturnFilePath;
+            
+            
         }
         public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate)
         {

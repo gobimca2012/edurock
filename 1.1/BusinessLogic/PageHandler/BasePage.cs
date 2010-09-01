@@ -17,8 +17,8 @@ namespace BusinessLogic
             CallStatus = new Dictionary<string, string>();
 			base.OnInit(e);
             objLoader = new Loader(this.Page, true);
-			MikeCompression.WhiteSpaceCompression objCom = new MikeCompression.WhiteSpaceCompression();
-			objCom.Compress();
+            //MikeCompression.WhiteSpaceCompression objCom = new MikeCompression.WhiteSpaceCompression();
+            //objCom.Compress();
 			this.Title = "Musester";
 		}
         protected override void OnLoad(EventArgs e)
