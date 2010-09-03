@@ -1,0 +1,7 @@
+
+-------------------------------------  
+Title :Folder POath
+Exectiption :D:\Hosting\6644362\html\Repository\Image\rakesh/
+LineNumber :
+Page URL :/User/UploadPhoto.aspx?uptype=0
+-------------------------------------  
