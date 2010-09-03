@@ -109,6 +109,7 @@
     <Compile Include="Controllers\ShareController.cs" />
     <Compile Include="Controllers\ShareGroupController.cs" />
     <Compile Include="Controllers\ShareUserController.cs" />
+    <Compile Include="ShoppingCartController\ItemController.cs" />
     <Compile Include="StartExam.cs" />
     <Compile Include="Controllers\TutorialController.cs" />
     <Compile Include="Controllers\TutorialTypeController.cs" />

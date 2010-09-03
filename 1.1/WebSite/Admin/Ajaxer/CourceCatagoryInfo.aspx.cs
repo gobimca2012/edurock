@@ -33,7 +33,7 @@ public partial class Admin_Ajaxer_CourceCatagoryInfo : AjaxPage
 
             DateTime ModifiedDate = DateTime.Now;
 
-            new CourceCatagoryController().Add(CatagoryName, LoginUserID, Description, CatagoryType, ModifiedDate);
+             new CourceCatagoryController().Add(CatagoryName, LoginUserID, Description, CatagoryType, ModifiedDate);
             Response.Redirect("~/Admin/Ajaxer/CourceCatagoryInfoView.aspx");
         }
         catch (Exception ex)

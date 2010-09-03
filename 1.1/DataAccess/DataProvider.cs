@@ -21,28 +21,28 @@ namespace DataAccess
 
         public int LoginUserAdd(string Username, string Password, int UserType, Guid UserId, DateTime ModifiedDate, DateTime CreatedDate)
         {
-            LoginUser ObjLoginUser = new LoginUser();
+            using (OnlineExaminationDataContext db = new OnlineExaminationDataContext())
+            {
+                LoginUser ObjLoginUser = new LoginUser();
 
+                ObjLoginUser.Username = Username;
 
+                ObjLoginUser.Password = Password;
 
-            ObjLoginUser.Username = Username;
+                ObjLoginUser.UserType = UserType;
 
-            ObjLoginUser.Password = Password;
+                ObjLoginUser.UserId = UserId;
 
-            ObjLoginUser.UserType = UserType;
+                ObjLoginUser.ModifiedDate = ModifiedDate;
 
-            ObjLoginUser.UserId = UserId;
+                ObjLoginUser.CreatedDate = CreatedDate;
 
-            ObjLoginUser.ModifiedDate = ModifiedDate;
-
-            ObjLoginUser.CreatedDate = CreatedDate;
-
-            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-            db.LoginUsers.InsertOnSubmit(ObjLoginUser);
-            db.SubmitChanges();
-            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-            return ObjLoginUser.LoginUserID;
+                if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+                db.LoginUsers.InsertOnSubmit(ObjLoginUser);
+                db.SubmitChanges();
+                if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+                return ObjLoginUser.LoginUserID;
+            }
         }
         public int LoginUserAdd(string Username, string Password, string Firstname, string Lastname, string ProfilePic, int UserType, Guid UserId, DateTime ModifiedDate, DateTime CreatedDate)
         {

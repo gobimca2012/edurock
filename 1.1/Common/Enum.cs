@@ -14,6 +14,11 @@ namespace Common
         UserExamID=2
 
     }
+    public enum ShoppingCartItemTypeEnum
+    {
+        Product=1,
+        Service=2
+    }
     public enum CatagoryTypeEnum
     {
         CollegeCourceCatagory=1,
