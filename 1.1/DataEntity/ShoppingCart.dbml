@@ -1,36 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="Cart" Class="ShoppingCartDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="dbo.Item" Member="Items">
-    <Type Name="Item">
-      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(2000) NOT NULL" CanBeNull="false" />
-      <Column Name="ItemType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="ApplicationURL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Item_UserCart" Member="UserCarts" OtherKey="ItemID" Type="UserCart" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UserCart" Member="UserCarts">
-    <Type Name="UserCart">
-      <Column Name="UserCartID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="LoggedInUserID" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
-      <Column Name="ItemID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PaidAmount" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="PaidDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UnpaidAmount" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="UnPaidDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="ValidTill" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="QuantityTerm" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Item_UserCart" Member="Item" ThisKey="ItemID" Type="Item" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UserBillingInfo" Member="UserBillingInfos">
-    <Type Name="UserBillingInfo">
-      <Column Name="UserDetailID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="LoggedInUserID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+  <Table Name="dbo.CustomerBillingInfo" Member="CustomerBillingInfos">
+    <Type Name="CustomerBillingInfo">
+      <Column Name="CustomerDetailID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
       <Column Name="businessEmail" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="CurrencyCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="BillingFirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
@@ -41,6 +14,48 @@
       <Column Name="billingStateProvince" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="billingCountry" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="BillingEmail" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="QuantityText" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ApplicationURL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="MetaDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Product_CustomerCart" Member="CustomerCarts" OtherKey="ProductID" Type="CustomerCart" />
+      <Association Name="Product_CustomerProduct" Member="CustomerProducts" OtherKey="ProductID" Type="CustomerProduct" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerCart" Member="CustomerCarts">
+    <Type Name="CustomerCart">
+      <Column Name="CustomerCartID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PricePerItem" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TotalPrice" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Product_CustomerCart" Member="Product" ThisKey="ProductID" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerProduct" Member="CustomerProducts">
+    <Type Name="CustomerProduct">
+      <Column Name="CustomerProductID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="PricePerItem" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TotalPrice" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExpireDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BroughtDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Product_CustomerProduct" Member="Product" ThisKey="ProductID" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

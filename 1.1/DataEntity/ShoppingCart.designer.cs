@@ -30,15 +30,18 @@ namespace DataEntity
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertItem(Item instance);
-    partial void UpdateItem(Item instance);
-    partial void DeleteItem(Item instance);
-    partial void InsertUserCart(UserCart instance);
-    partial void UpdateUserCart(UserCart instance);
-    partial void DeleteUserCart(UserCart instance);
-    partial void InsertUserBillingInfo(UserBillingInfo instance);
-    partial void UpdateUserBillingInfo(UserBillingInfo instance);
-    partial void DeleteUserBillingInfo(UserBillingInfo instance);
+    partial void InsertCustomerBillingInfo(CustomerBillingInfo instance);
+    partial void UpdateCustomerBillingInfo(CustomerBillingInfo instance);
+    partial void DeleteCustomerBillingInfo(CustomerBillingInfo instance);
+    partial void InsertProduct(Product instance);
+    partial void UpdateProduct(Product instance);
+    partial void DeleteProduct(Product instance);
+    partial void InsertCustomerCart(CustomerCart instance);
+    partial void UpdateCustomerCart(CustomerCart instance);
+    partial void DeleteCustomerCart(CustomerCart instance);
+    partial void InsertCustomerProduct(CustomerProduct instance);
+    partial void UpdateCustomerProduct(CustomerProduct instance);
+    partial void DeleteCustomerProduct(CustomerProduct instance);
     #endregion
 		
 		public ShoppingCartDataContext(string connection) : 
@@ -65,593 +68,48 @@ namespace DataEntity
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Item> Items
+		public System.Data.Linq.Table<CustomerBillingInfo> CustomerBillingInfos
 		{
 			get
 			{
-				return this.GetTable<Item>();
+				return this.GetTable<CustomerBillingInfo>();
 			}
 		}
 		
-		public System.Data.Linq.Table<UserCart> UserCarts
+		public System.Data.Linq.Table<Product> Products
 		{
 			get
 			{
-				return this.GetTable<UserCart>();
+				return this.GetTable<Product>();
 			}
 		}
 		
-		public System.Data.Linq.Table<UserBillingInfo> UserBillingInfos
+		public System.Data.Linq.Table<CustomerCart> CustomerCarts
 		{
 			get
 			{
-				return this.GetTable<UserBillingInfo>();
+				return this.GetTable<CustomerCart>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CustomerProduct> CustomerProducts
+		{
+			get
+			{
+				return this.GetTable<CustomerProduct>();
 			}
 		}
 	}
 	
-	[Table(Name="dbo.Item")]
-	public partial class Item : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.CustomerBillingInfo")]
+	public partial class CustomerBillingInfo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ItemID;
+		private System.Guid _CustomerDetailID;
 		
-		private string _Name;
-		
-		private int _ItemType;
-		
-		private decimal _Price;
-		
-		private string _ApplicationURL;
-		
-		private System.DateTime _ModifiedDate;
-		
-		private EntitySet<UserCart> _UserCarts;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnItemIDChanging(int value);
-    partial void OnItemIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnItemTypeChanging(int value);
-    partial void OnItemTypeChanged();
-    partial void OnPriceChanging(decimal value);
-    partial void OnPriceChanged();
-    partial void OnApplicationURLChanging(string value);
-    partial void OnApplicationURLChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public Item()
-		{
-			this._UserCarts = new EntitySet<UserCart>(new Action<UserCart>(this.attach_UserCarts), new Action<UserCart>(this.detach_UserCarts));
-			OnCreated();
-		}
-		
-		[Column(Storage="_ItemID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ItemID
-		{
-			get
-			{
-				return this._ItemID;
-			}
-			set
-			{
-				if ((this._ItemID != value))
-				{
-					this.OnItemIDChanging(value);
-					this.SendPropertyChanging();
-					this._ItemID = value;
-					this.SendPropertyChanged("ItemID");
-					this.OnItemIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="VarChar(2000) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ItemType", DbType="Int NOT NULL")]
-		public int ItemType
-		{
-			get
-			{
-				return this._ItemType;
-			}
-			set
-			{
-				if ((this._ItemType != value))
-				{
-					this.OnItemTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ItemType = value;
-					this.SendPropertyChanged("ItemType");
-					this.OnItemTypeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Price", DbType="Decimal(18,0) NOT NULL")]
-		public decimal Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ApplicationURL", DbType="VarChar(MAX)")]
-		public string ApplicationURL
-		{
-			get
-			{
-				return this._ApplicationURL;
-			}
-			set
-			{
-				if ((this._ApplicationURL != value))
-				{
-					this.OnApplicationURLChanging(value);
-					this.SendPropertyChanging();
-					this._ApplicationURL = value;
-					this.SendPropertyChanged("ApplicationURL");
-					this.OnApplicationURLChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Item_UserCart", Storage="_UserCarts", OtherKey="ItemID")]
-		public EntitySet<UserCart> UserCarts
-		{
-			get
-			{
-				return this._UserCarts;
-			}
-			set
-			{
-				this._UserCarts.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserCarts(UserCart entity)
-		{
-			this.SendPropertyChanging();
-			entity.Item = this;
-		}
-		
-		private void detach_UserCarts(UserCart entity)
-		{
-			this.SendPropertyChanging();
-			entity.Item = null;
-		}
-	}
-	
-	[Table(Name="dbo.UserCart")]
-	public partial class UserCart : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _UserCartID;
-		
-		private string _LoggedInUserID;
-		
-		private int _ItemID;
-		
-		private decimal _PaidAmount;
-		
-		private System.DateTime _PaidDate;
-		
-		private decimal _UnpaidAmount;
-		
-		private System.DateTime _UnPaidDate;
-		
-		private System.DateTime _ValidTill;
-		
-		private int _Quantity;
-		
-		private int _QuantityTerm;
-		
-		private System.DateTime _ModifiedDate;
-		
-		private EntityRef<Item> _Item;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserCartIDChanging(System.Guid value);
-    partial void OnUserCartIDChanged();
-    partial void OnLoggedInUserIDChanging(string value);
-    partial void OnLoggedInUserIDChanged();
-    partial void OnItemIDChanging(int value);
-    partial void OnItemIDChanged();
-    partial void OnPaidAmountChanging(decimal value);
-    partial void OnPaidAmountChanged();
-    partial void OnPaidDateChanging(System.DateTime value);
-    partial void OnPaidDateChanged();
-    partial void OnUnpaidAmountChanging(decimal value);
-    partial void OnUnpaidAmountChanged();
-    partial void OnUnPaidDateChanging(System.DateTime value);
-    partial void OnUnPaidDateChanged();
-    partial void OnValidTillChanging(System.DateTime value);
-    partial void OnValidTillChanged();
-    partial void OnQuantityChanging(int value);
-    partial void OnQuantityChanged();
-    partial void OnQuantityTermChanging(int value);
-    partial void OnQuantityTermChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public UserCart()
-		{
-			this._Item = default(EntityRef<Item>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_UserCartID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid UserCartID
-		{
-			get
-			{
-				return this._UserCartID;
-			}
-			set
-			{
-				if ((this._UserCartID != value))
-				{
-					this.OnUserCartIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserCartID = value;
-					this.SendPropertyChanged("UserCartID");
-					this.OnUserCartIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LoggedInUserID", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
-		public string LoggedInUserID
-		{
-			get
-			{
-				return this._LoggedInUserID;
-			}
-			set
-			{
-				if ((this._LoggedInUserID != value))
-				{
-					this.OnLoggedInUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._LoggedInUserID = value;
-					this.SendPropertyChanged("LoggedInUserID");
-					this.OnLoggedInUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ItemID", DbType="Int NOT NULL")]
-		public int ItemID
-		{
-			get
-			{
-				return this._ItemID;
-			}
-			set
-			{
-				if ((this._ItemID != value))
-				{
-					if (this._Item.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnItemIDChanging(value);
-					this.SendPropertyChanging();
-					this._ItemID = value;
-					this.SendPropertyChanged("ItemID");
-					this.OnItemIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PaidAmount", DbType="Decimal(18,0) NOT NULL")]
-		public decimal PaidAmount
-		{
-			get
-			{
-				return this._PaidAmount;
-			}
-			set
-			{
-				if ((this._PaidAmount != value))
-				{
-					this.OnPaidAmountChanging(value);
-					this.SendPropertyChanging();
-					this._PaidAmount = value;
-					this.SendPropertyChanged("PaidAmount");
-					this.OnPaidAmountChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PaidDate", DbType="DateTime NOT NULL")]
-		public System.DateTime PaidDate
-		{
-			get
-			{
-				return this._PaidDate;
-			}
-			set
-			{
-				if ((this._PaidDate != value))
-				{
-					this.OnPaidDateChanging(value);
-					this.SendPropertyChanging();
-					this._PaidDate = value;
-					this.SendPropertyChanged("PaidDate");
-					this.OnPaidDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UnpaidAmount", DbType="Decimal(18,0) NOT NULL")]
-		public decimal UnpaidAmount
-		{
-			get
-			{
-				return this._UnpaidAmount;
-			}
-			set
-			{
-				if ((this._UnpaidAmount != value))
-				{
-					this.OnUnpaidAmountChanging(value);
-					this.SendPropertyChanging();
-					this._UnpaidAmount = value;
-					this.SendPropertyChanged("UnpaidAmount");
-					this.OnUnpaidAmountChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UnPaidDate", DbType="DateTime NOT NULL")]
-		public System.DateTime UnPaidDate
-		{
-			get
-			{
-				return this._UnPaidDate;
-			}
-			set
-			{
-				if ((this._UnPaidDate != value))
-				{
-					this.OnUnPaidDateChanging(value);
-					this.SendPropertyChanging();
-					this._UnPaidDate = value;
-					this.SendPropertyChanged("UnPaidDate");
-					this.OnUnPaidDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ValidTill", DbType="DateTime NOT NULL")]
-		public System.DateTime ValidTill
-		{
-			get
-			{
-				return this._ValidTill;
-			}
-			set
-			{
-				if ((this._ValidTill != value))
-				{
-					this.OnValidTillChanging(value);
-					this.SendPropertyChanging();
-					this._ValidTill = value;
-					this.SendPropertyChanged("ValidTill");
-					this.OnValidTillChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Quantity", DbType="Int NOT NULL")]
-		public int Quantity
-		{
-			get
-			{
-				return this._Quantity;
-			}
-			set
-			{
-				if ((this._Quantity != value))
-				{
-					this.OnQuantityChanging(value);
-					this.SendPropertyChanging();
-					this._Quantity = value;
-					this.SendPropertyChanged("Quantity");
-					this.OnQuantityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_QuantityTerm", DbType="Int NOT NULL")]
-		public int QuantityTerm
-		{
-			get
-			{
-				return this._QuantityTerm;
-			}
-			set
-			{
-				if ((this._QuantityTerm != value))
-				{
-					this.OnQuantityTermChanging(value);
-					this.SendPropertyChanging();
-					this._QuantityTerm = value;
-					this.SendPropertyChanged("QuantityTerm");
-					this.OnQuantityTermChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Item_UserCart", Storage="_Item", ThisKey="ItemID", IsForeignKey=true)]
-		public Item Item
-		{
-			get
-			{
-				return this._Item.Entity;
-			}
-			set
-			{
-				Item previousValue = this._Item.Entity;
-				if (((previousValue != value) 
-							|| (this._Item.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Item.Entity = null;
-						previousValue.UserCarts.Remove(this);
-					}
-					this._Item.Entity = value;
-					if ((value != null))
-					{
-						value.UserCarts.Add(this);
-						this._ItemID = value.ItemID;
-					}
-					else
-					{
-						this._ItemID = default(int);
-					}
-					this.SendPropertyChanged("Item");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="dbo.UserBillingInfo")]
-	public partial class UserBillingInfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _UserDetailID;
-		
-		private string _LoggedInUserID;
+		private string _UserID;
 		
 		private string _businessEmail;
 		
@@ -673,14 +131,16 @@ namespace DataEntity
 		
 		private string _BillingEmail;
 		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnUserDetailIDChanging(System.Guid value);
-    partial void OnUserDetailIDChanged();
-    partial void OnLoggedInUserIDChanging(string value);
-    partial void OnLoggedInUserIDChanged();
+    partial void OnCustomerDetailIDChanging(System.Guid value);
+    partial void OnCustomerDetailIDChanged();
+    partial void OnUserIDChanging(string value);
+    partial void OnUserIDChanged();
     partial void OnbusinessEmailChanging(string value);
     partial void OnbusinessEmailChanged();
     partial void OnCurrencyCodeChanging(System.Nullable<int> value);
@@ -701,49 +161,51 @@ namespace DataEntity
     partial void OnbillingCountryChanged();
     partial void OnBillingEmailChanging(string value);
     partial void OnBillingEmailChanged();
+    partial void OnModifiedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifiedDateChanged();
     #endregion
 		
-		public UserBillingInfo()
+		public CustomerBillingInfo()
 		{
 			OnCreated();
 		}
 		
-		[Column(Storage="_UserDetailID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid UserDetailID
+		[Column(Storage="_CustomerDetailID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid CustomerDetailID
 		{
 			get
 			{
-				return this._UserDetailID;
+				return this._CustomerDetailID;
 			}
 			set
 			{
-				if ((this._UserDetailID != value))
+				if ((this._CustomerDetailID != value))
 				{
-					this.OnUserDetailIDChanging(value);
+					this.OnCustomerDetailIDChanging(value);
 					this.SendPropertyChanging();
-					this._UserDetailID = value;
-					this.SendPropertyChanged("UserDetailID");
-					this.OnUserDetailIDChanged();
+					this._CustomerDetailID = value;
+					this.SendPropertyChanged("CustomerDetailID");
+					this.OnCustomerDetailIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_LoggedInUserID", DbType="VarChar(40)")]
-		public string LoggedInUserID
+		[Column(Storage="_UserID", DbType="VarChar(40)")]
+		public string UserID
 		{
 			get
 			{
-				return this._LoggedInUserID;
+				return this._UserID;
 			}
 			set
 			{
-				if ((this._LoggedInUserID != value))
+				if ((this._UserID != value))
 				{
-					this.OnLoggedInUserIDChanging(value);
+					this.OnUserIDChanging(value);
 					this.SendPropertyChanging();
-					this._LoggedInUserID = value;
-					this.SendPropertyChanged("LoggedInUserID");
-					this.OnLoggedInUserIDChanged();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
 				}
 			}
 		}
@@ -944,6 +406,878 @@ namespace DataEntity
 					this._BillingEmail = value;
 					this.SendPropertyChanged("BillingEmail");
 					this.OnBillingEmailChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Product")]
+	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProductID;
+		
+		private string _Name;
+		
+		private int _ItemType;
+		
+		private decimal _Price;
+		
+		private string _QuantityText;
+		
+		private string _ApplicationURL;
+		
+		private string _Description;
+		
+		private string _MetaDescription;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntitySet<CustomerCart> _CustomerCarts;
+		
+		private EntitySet<CustomerProduct> _CustomerProducts;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProductIDChanging(int value);
+    partial void OnProductIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnItemTypeChanging(int value);
+    partial void OnItemTypeChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    partial void OnQuantityTextChanging(string value);
+    partial void OnQuantityTextChanged();
+    partial void OnApplicationURLChanging(string value);
+    partial void OnApplicationURLChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnMetaDescriptionChanging(string value);
+    partial void OnMetaDescriptionChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public Product()
+		{
+			this._CustomerCarts = new EntitySet<CustomerCart>(new Action<CustomerCart>(this.attach_CustomerCarts), new Action<CustomerCart>(this.detach_CustomerCarts));
+			this._CustomerProducts = new EntitySet<CustomerProduct>(new Action<CustomerProduct>(this.attach_CustomerProducts), new Action<CustomerProduct>(this.detach_CustomerProducts));
+			OnCreated();
+		}
+		
+		[Column(Storage="_ProductID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this.OnProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductID = value;
+					this.SendPropertyChanged("ProductID");
+					this.OnProductIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="VarChar(2000) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ItemType", DbType="Int NOT NULL")]
+		public int ItemType
+		{
+			get
+			{
+				return this._ItemType;
+			}
+			set
+			{
+				if ((this._ItemType != value))
+				{
+					this.OnItemTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ItemType = value;
+					this.SendPropertyChanged("ItemType");
+					this.OnItemTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Price", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_QuantityText", DbType="VarChar(1000)")]
+		public string QuantityText
+		{
+			get
+			{
+				return this._QuantityText;
+			}
+			set
+			{
+				if ((this._QuantityText != value))
+				{
+					this.OnQuantityTextChanging(value);
+					this.SendPropertyChanging();
+					this._QuantityText = value;
+					this.SendPropertyChanged("QuantityText");
+					this.OnQuantityTextChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ApplicationURL", DbType="VarChar(MAX)")]
+		public string ApplicationURL
+		{
+			get
+			{
+				return this._ApplicationURL;
+			}
+			set
+			{
+				if ((this._ApplicationURL != value))
+				{
+					this.OnApplicationURLChanging(value);
+					this.SendPropertyChanging();
+					this._ApplicationURL = value;
+					this.SendPropertyChanged("ApplicationURL");
+					this.OnApplicationURLChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MetaDescription", DbType="VarChar(MAX)")]
+		public string MetaDescription
+		{
+			get
+			{
+				return this._MetaDescription;
+			}
+			set
+			{
+				if ((this._MetaDescription != value))
+				{
+					this.OnMetaDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._MetaDescription = value;
+					this.SendPropertyChanged("MetaDescription");
+					this.OnMetaDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Product_CustomerCart", Storage="_CustomerCarts", OtherKey="ProductID")]
+		public EntitySet<CustomerCart> CustomerCarts
+		{
+			get
+			{
+				return this._CustomerCarts;
+			}
+			set
+			{
+				this._CustomerCarts.Assign(value);
+			}
+		}
+		
+		[Association(Name="Product_CustomerProduct", Storage="_CustomerProducts", OtherKey="ProductID")]
+		public EntitySet<CustomerProduct> CustomerProducts
+		{
+			get
+			{
+				return this._CustomerProducts;
+			}
+			set
+			{
+				this._CustomerProducts.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CustomerCarts(CustomerCart entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = this;
+		}
+		
+		private void detach_CustomerCarts(CustomerCart entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = null;
+		}
+		
+		private void attach_CustomerProducts(CustomerProduct entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = this;
+		}
+		
+		private void detach_CustomerProducts(CustomerProduct entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = null;
+		}
+	}
+	
+	[Table(Name="dbo.CustomerCart")]
+	public partial class CustomerCart : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _CustomerCartID;
+		
+		private string _UserID;
+		
+		private int _ProductID;
+		
+		private System.Nullable<decimal> _PricePerItem;
+		
+		private System.Nullable<decimal> _TotalPrice;
+		
+		private int _Quantity;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntityRef<Product> _Product;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCustomerCartIDChanging(System.Guid value);
+    partial void OnCustomerCartIDChanged();
+    partial void OnUserIDChanging(string value);
+    partial void OnUserIDChanged();
+    partial void OnProductIDChanging(int value);
+    partial void OnProductIDChanged();
+    partial void OnPricePerItemChanging(System.Nullable<decimal> value);
+    partial void OnPricePerItemChanged();
+    partial void OnTotalPriceChanging(System.Nullable<decimal> value);
+    partial void OnTotalPriceChanged();
+    partial void OnQuantityChanging(int value);
+    partial void OnQuantityChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public CustomerCart()
+		{
+			this._Product = default(EntityRef<Product>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_CustomerCartID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid CustomerCartID
+		{
+			get
+			{
+				return this._CustomerCartID;
+			}
+			set
+			{
+				if ((this._CustomerCartID != value))
+				{
+					this.OnCustomerCartIDChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerCartID = value;
+					this.SendPropertyChanged("CustomerCartID");
+					this.OnCustomerCartIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductID = value;
+					this.SendPropertyChanged("ProductID");
+					this.OnProductIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PricePerItem", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> PricePerItem
+		{
+			get
+			{
+				return this._PricePerItem;
+			}
+			set
+			{
+				if ((this._PricePerItem != value))
+				{
+					this.OnPricePerItemChanging(value);
+					this.SendPropertyChanging();
+					this._PricePerItem = value;
+					this.SendPropertyChanged("PricePerItem");
+					this.OnPricePerItemChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TotalPrice", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> TotalPrice
+		{
+			get
+			{
+				return this._TotalPrice;
+			}
+			set
+			{
+				if ((this._TotalPrice != value))
+				{
+					this.OnTotalPriceChanging(value);
+					this.SendPropertyChanging();
+					this._TotalPrice = value;
+					this.SendPropertyChanged("TotalPrice");
+					this.OnTotalPriceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Product_CustomerCart", Storage="_Product", ThisKey="ProductID", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.CustomerCarts.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.CustomerCarts.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("Product");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.CustomerProduct")]
+	public partial class CustomerProduct : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _CustomerProductID;
+		
+		private int _ProductID;
+		
+		private string _UserID;
+		
+		private System.Nullable<decimal> _PricePerItem;
+		
+		private System.Nullable<decimal> _TotalPrice;
+		
+		private int _Quantity;
+		
+		private System.Nullable<System.DateTime> _ExpireDate;
+		
+		private System.Nullable<System.DateTime> _BroughtDate;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntityRef<Product> _Product;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCustomerProductIDChanging(System.Guid value);
+    partial void OnCustomerProductIDChanged();
+    partial void OnProductIDChanging(int value);
+    partial void OnProductIDChanged();
+    partial void OnUserIDChanging(string value);
+    partial void OnUserIDChanged();
+    partial void OnPricePerItemChanging(System.Nullable<decimal> value);
+    partial void OnPricePerItemChanged();
+    partial void OnTotalPriceChanging(System.Nullable<decimal> value);
+    partial void OnTotalPriceChanged();
+    partial void OnQuantityChanging(int value);
+    partial void OnQuantityChanged();
+    partial void OnExpireDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnExpireDateChanged();
+    partial void OnBroughtDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnBroughtDateChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public CustomerProduct()
+		{
+			this._Product = default(EntityRef<Product>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_CustomerProductID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid CustomerProductID
+		{
+			get
+			{
+				return this._CustomerProductID;
+			}
+			set
+			{
+				if ((this._CustomerProductID != value))
+				{
+					this.OnCustomerProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerProductID = value;
+					this.SendPropertyChanged("CustomerProductID");
+					this.OnCustomerProductIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductID = value;
+					this.SendPropertyChanged("ProductID");
+					this.OnProductIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", DbType="VarChar(40) NOT NULL", CanBeNull=false)]
+		public string UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PricePerItem", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> PricePerItem
+		{
+			get
+			{
+				return this._PricePerItem;
+			}
+			set
+			{
+				if ((this._PricePerItem != value))
+				{
+					this.OnPricePerItemChanging(value);
+					this.SendPropertyChanging();
+					this._PricePerItem = value;
+					this.SendPropertyChanged("PricePerItem");
+					this.OnPricePerItemChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TotalPrice", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> TotalPrice
+		{
+			get
+			{
+				return this._TotalPrice;
+			}
+			set
+			{
+				if ((this._TotalPrice != value))
+				{
+					this.OnTotalPriceChanging(value);
+					this.SendPropertyChanging();
+					this._TotalPrice = value;
+					this.SendPropertyChanged("TotalPrice");
+					this.OnTotalPriceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ExpireDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ExpireDate
+		{
+			get
+			{
+				return this._ExpireDate;
+			}
+			set
+			{
+				if ((this._ExpireDate != value))
+				{
+					this.OnExpireDateChanging(value);
+					this.SendPropertyChanging();
+					this._ExpireDate = value;
+					this.SendPropertyChanged("ExpireDate");
+					this.OnExpireDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BroughtDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BroughtDate
+		{
+			get
+			{
+				return this._BroughtDate;
+			}
+			set
+			{
+				if ((this._BroughtDate != value))
+				{
+					this.OnBroughtDateChanging(value);
+					this.SendPropertyChanging();
+					this._BroughtDate = value;
+					this.SendPropertyChanged("BroughtDate");
+					this.OnBroughtDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Product_CustomerProduct", Storage="_Product", ThisKey="ProductID", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.CustomerProducts.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.CustomerProducts.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("Product");
 				}
 			}
 		}

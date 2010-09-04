@@ -13,9 +13,8 @@ using System.Xml.Linq;
 using BusinessLogic;
 using BusinessLogic.ShoppingCartController;
 
-public partial class ShoppingCart_AjaxControl_ItemInfoView :AjaxPage
+public partial class ShoppingCart_AjaxControl_ProductInfoView : AjaxPage
 {
-    
 
     public HtmlHelper _HtmlHelper = new HtmlHelper();
     private int PageNumber
@@ -26,7 +25,7 @@ public partial class ShoppingCart_AjaxControl_ItemInfoView :AjaxPage
                 return Convert.ToInt32(Request.Params["pn"].ToString());
             else
             {
-                lnkPrevItem.Visible = false;
+                lnkPrevProduct.Visible = false;
                 return 0;
             }
         }
@@ -42,15 +41,15 @@ public partial class ShoppingCart_AjaxControl_ItemInfoView :AjaxPage
 
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new ItemController().Get().Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new ProductController().Get().Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListItem.DataSource = new ItemController().Get(PageSize, PageNumber);
-        ListItem.DataBind();
+        ListProduct.DataSource = new ProductController().Get(PageSize, PageNumber);
+        ListProduct.DataBind();
     }
     private void PaggerLinkManager()
     {
@@ -58,20 +57,20 @@ public partial class ShoppingCart_AjaxControl_ItemInfoView :AjaxPage
 
         if (PageNumber == 0)
         {
-            lnkPrevItem.Visible = false;
+            lnkPrevProduct.Visible = false;
         }
         if (TotalPage - 1 == PageNumber || TotalPage == 0)
         {
-            lnkNextItem.Visible = false;
+            lnkNextProduct.Visible = false;
         }
-        if (lnkNextItem.Visible)
+        if (lnkNextProduct.Visible)
         {
-            //lnkNextItem.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
+            //lnkNextProduct.ExternameUrlParam += "&pn=" + (PageNumber + 1).ToString();
         }
 
-        if (lnkPrevItem.Visible)
+        if (lnkPrevProduct.Visible)
         {
-            //lnkPrevItem.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
+            //lnkPrevProduct.ExternameUrlParam += "&pn=" + (PageNumber - 1).ToString();
         }
     }
     protected void NextAjaxClick(object sender, AjaxControl.AjaxEventArg e)
@@ -96,10 +95,10 @@ public partial class ShoppingCart_AjaxControl_ItemInfoView :AjaxPage
         base.OnAjaxListViewCommand(e);
     }
 
-    protected void ListItemOnItemDataBound(object sender, ListViewItemEventArgs e)
+    protected void ListProductOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         ListViewDataItem currentItem = (ListViewDataItem)e.Item;
-        //string CourceCatagoryID = ListCourceCatagory.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
+        //string CourceCatagoryID = ListProduct.DataKeys[currentItem.DataItemIndex]["CourceCatagoryID"].ToString();
 
 
 

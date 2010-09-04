@@ -22,5 +22,15 @@ namespace DataEntity.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VSERVER;Initial Catalog=Cart;Persist Security Info=True;User ID=sa")]
+        public string CartConnectionString {
+            get {
+                return ((string)(this["CartConnectionString"]));
+            }
+        }
     }
 }

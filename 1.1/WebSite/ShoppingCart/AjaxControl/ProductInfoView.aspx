@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ItemInfoView.aspx.cs" Inherits="ShoppingCart_AjaxControl_ItemInfoView" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ProductInfoView.aspx.cs"
+    Inherits="ShoppingCart_AjaxControl_ProductInfoView" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,13 +9,13 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:ListView ID="ListItem" runat="server">
+        <asp:ListView ID="ListProduct" runat="server">
             <LayoutTemplate>
                 <table>
                     <thead>
                         <tr>
                             <td>
-                                ItemID
+                                ProductID
                             </td>
                             <td>
                                 Name
@@ -26,7 +27,16 @@
                                 Price
                             </td>
                             <td>
+                                QuantityText
+                            </td>
+                            <td>
                                 ApplicationURL
+                            </td>
+                            <td>
+                                Description
+                            </td>
+                            <td>
+                                MetaDescription
                             </td>
                             <td>
                                 ModifiedDate
@@ -39,7 +49,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <%#Eval("ItemID") %>
+                        <%#Eval("ProductID") %>
                     </td>
                     <td>
                         <%#Eval("Name") %>
@@ -51,16 +61,25 @@
                         <%#Eval("Price") %>
                     </td>
                     <td>
+                        <%#Eval("QuantityText") %>
+                    </td>
+                    <td>
                         <%#Eval("ApplicationURL") %>
+                    </td>
+                    <td>
+                        <%#Eval("Description") %>
+                    </td>
+                    <td>
+                        <%#Eval("MetaDescription") %>
                     </td>
                     <td>
                         <%#Eval("ModifiedDate") %>
                     </td>
                     <td>
-                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("ItemID").ToString(), "#contentBox", "#contentBox")%>
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("ProductID").ToString(), "#contentBox", "#contentBox")%>
                     </td>
                     <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/ItemInfo.aspx") + "?cid=" + Eval("ItemID")%>'
+                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/ProductInfo.aspx") + "?cid=" + Eval("ProductID")%>'
                             ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
                     </td>
                 </tr>
@@ -69,11 +88,11 @@
         <div>
             <div style="float: right">
                 <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkPrevItem" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
+                    <aspajax:AjaxLinkButton ID="lnkPrevProduct" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"
                         Pagger="true" Increment="false" RequestContainner="#contentBox" ResponseContainner="#contentBox"></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: left">
-                    <aspajax:AjaxLinkButton ID="lnkNextItem" runat="server" OnAjaxClick="NextAjaxClick"
+                    <aspajax:AjaxLinkButton ID="lnkNextProduct" runat="server" OnAjaxClick="NextAjaxClick"
                         RequestContainner="#contentBox" Pagger="true" Increment="true" ResponseContainner="#contentBox">Next</aspajax:AjaxLinkButton>
                 </div>
             </div>
@@ -81,7 +100,7 @@
             </div>
         </div>
         <div>
-            <aspajax:HyperLink ID="hpAddItem" runat="server" NavigateUrl="~/ShoppingCart/AjaxControl/ItemInfo.aspx"
+            <aspajax:HyperLink ID="hpAddProduct" runat="server" NavigateUrl="~/Admin/Ajaxer/ProductInfo.aspx"
                 ContainnerID="#contentBox">Add New</aspajax:HyperLink>
         </div>
     </div>

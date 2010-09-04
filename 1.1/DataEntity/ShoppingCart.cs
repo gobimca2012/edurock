@@ -7,7 +7,7 @@ namespace DataEntity
     partial class ShoppingCartDataContext
     {
         public ShoppingCartDataContext() :
-            base(global::System.Configuration.ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString, mappingSource)
+            base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ShoppingSqlServer"].ConnectionString, mappingSource)
         {
             OnCreated();
         }

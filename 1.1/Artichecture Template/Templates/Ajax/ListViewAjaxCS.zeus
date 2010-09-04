@@ -108,7 +108,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		}
 		private void BindList()
 		{
-			List<%=table.Alias%>.DataSource = new <%=table.Alias%>Controller().<%=table.Alias%>Get(PageSize, PageNumber);
+			List<%=table.Alias%>.DataSource = new <%=table.Alias%>Controller().Get(PageSize, PageNumber);
 			List<%=table.Alias%>.DataBind();
 		}
 		private void PaggerLinkManager()
