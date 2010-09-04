@@ -78,7 +78,10 @@ public class GeneratedTemplate : DotNetScriptTemplate
 			}
 			return tablestr;
 		}
+	public string BuildUpdateAssignment(ITable table)
+	{
 	
+	}
 	public void ParamToDBvalue(ITable table,string columnName)
 	{
 		foreach(IColumn column in table.Columns)
@@ -244,6 +247,8 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		<%	}
 		
 		}%>
+		
+		
 		
 		
 		

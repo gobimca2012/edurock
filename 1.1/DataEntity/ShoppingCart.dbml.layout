@@ -2,12 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ShoppingCart">
   <DataContextMoniker Name="/ShoppingCartDataContext" />
   <nestedChildShapes>
-    <classShape Id="a953c251-aa1b-48b5-b066-a3941bed7b95" absoluteBounds="6.75, 0.75, 2, 2.9039737955729166">
-      <DataClassMoniker Name="/ShoppingCartDataContext/CustomerBillingInfo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="abc48714-a122-4be8-b105-7d8ffb8da738" absoluteBounds="6.765, 1.21, 1.9700000000000002, 2.3439737955729165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="1de13eff-d229-4012-bcf1-0d04712de4aa" absoluteBounds="0.75, 2.375, 2, 2.2465844726562505">
       <DataClassMoniker Name="/ShoppingCartDataContext/Product" />
       <nestedChildShapes>
@@ -40,5 +34,11 @@
         <classShapeMoniker Id="e7c04a39-7d1a-4498-9319-5da403469e75" />
       </nodes>
     </associationConnector>
+    <classShape Id="d7b48468-ed47-4fd7-b6f2-a231373e96e3" absoluteBounds="7.125, 1.625, 2, 3.7257104492187496">
+      <DataClassMoniker Name="/ShoppingCartDataContext/CustomerInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="76f3ee03-8b48-4f55-9513-63f668ff359e" absoluteBounds="7.14, 2.085, 1.9700000000000002, 3.16571044921875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

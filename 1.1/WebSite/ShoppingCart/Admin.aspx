@@ -10,7 +10,7 @@
     <div>
         <div>
             <div class="fl">
-                <aspajax:HyperLink ID="lnkItem" runat="server" ContainnerID="#contentBox" NavigateUrl="~/ShoppingCart/AjaxControl/ItemInfoView.aspx"><div class="btn">Item</div></aspajax:HyperLink>
+                <aspajax:HyperLink ID="lnkItem" runat="server" ContainnerID="#contentBox" NavigateUrl="~/ShoppingCart/AjaxControl/ProductInfoView.aspx"><div class="btn">Item</div></aspajax:HyperLink>
             </div>
         </div>
         <div id="contentBox" class="clear">

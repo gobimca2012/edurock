@@ -44,7 +44,7 @@ public partial class ShoppingCart_AjaxControl_ProductInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;
 
             new ProductController().Add(ProductID, Name, ItemType, Price, QuantityText, ApplicationURL, Description, MetaDescription, ModifiedDate);
-            Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
+            Response.Redirect("~/ShoppingCart/AjaxControl/ProductInfoView.aspx");
         }
         catch (Exception ex)
         {
@@ -77,7 +77,7 @@ public partial class ShoppingCart_AjaxControl_ProductInfo : AjaxPage
 
             new ProductController().UpdateByProductID(ProductID, Name, ItemType, Price, QuantityText, ApplicationURL, Description, MetaDescription, ModifiedDate);
 
-            Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
+            Response.Redirect("~/ShoppingCart/AjaxControl/ProductInfoView.aspx");
         }
         catch (Exception ex)
         {

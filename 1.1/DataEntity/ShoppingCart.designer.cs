@@ -30,9 +30,6 @@ namespace DataEntity
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertCustomerBillingInfo(CustomerBillingInfo instance);
-    partial void UpdateCustomerBillingInfo(CustomerBillingInfo instance);
-    partial void DeleteCustomerBillingInfo(CustomerBillingInfo instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
@@ -42,6 +39,9 @@ namespace DataEntity
     partial void InsertCustomerProduct(CustomerProduct instance);
     partial void UpdateCustomerProduct(CustomerProduct instance);
     partial void DeleteCustomerProduct(CustomerProduct instance);
+    partial void InsertCustomerInfo(CustomerInfo instance);
+    partial void UpdateCustomerInfo(CustomerInfo instance);
+    partial void DeleteCustomerInfo(CustomerInfo instance);
     #endregion
 		
 		public ShoppingCartDataContext(string connection) : 
@@ -68,14 +68,6 @@ namespace DataEntity
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<CustomerBillingInfo> CustomerBillingInfos
-		{
-			get
-			{
-				return this.GetTable<CustomerBillingInfo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Product> Products
 		{
 			get
@@ -99,354 +91,12 @@ namespace DataEntity
 				return this.GetTable<CustomerProduct>();
 			}
 		}
-	}
-	
-	[Table(Name="dbo.CustomerBillingInfo")]
-	public partial class CustomerBillingInfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _CustomerDetailID;
-		
-		private string _UserID;
-		
-		private string _businessEmail;
-		
-		private System.Nullable<int> _CurrencyCode;
-		
-		private string _BillingFirstName;
-		
-		private string _BillingLastName;
-		
-		private string _BillingAddress1;
-		
-		private string _BillingAddress2;
-		
-		private string _BillingCity;
-		
-		private string _billingStateProvince;
-		
-		private string _billingCountry;
-		
-		private string _BillingEmail;
-		
-		private System.Nullable<System.DateTime> _ModifiedDate;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCustomerDetailIDChanging(System.Guid value);
-    partial void OnCustomerDetailIDChanged();
-    partial void OnUserIDChanging(string value);
-    partial void OnUserIDChanged();
-    partial void OnbusinessEmailChanging(string value);
-    partial void OnbusinessEmailChanged();
-    partial void OnCurrencyCodeChanging(System.Nullable<int> value);
-    partial void OnCurrencyCodeChanged();
-    partial void OnBillingFirstNameChanging(string value);
-    partial void OnBillingFirstNameChanged();
-    partial void OnBillingLastNameChanging(string value);
-    partial void OnBillingLastNameChanged();
-    partial void OnBillingAddress1Changing(string value);
-    partial void OnBillingAddress1Changed();
-    partial void OnBillingAddress2Changing(string value);
-    partial void OnBillingAddress2Changed();
-    partial void OnBillingCityChanging(string value);
-    partial void OnBillingCityChanged();
-    partial void OnbillingStateProvinceChanging(string value);
-    partial void OnbillingStateProvinceChanged();
-    partial void OnbillingCountryChanging(string value);
-    partial void OnbillingCountryChanged();
-    partial void OnBillingEmailChanging(string value);
-    partial void OnBillingEmailChanged();
-    partial void OnModifiedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public CustomerBillingInfo()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_CustomerDetailID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid CustomerDetailID
+		public System.Data.Linq.Table<CustomerInfo> CustomerInfos
 		{
 			get
 			{
-				return this._CustomerDetailID;
-			}
-			set
-			{
-				if ((this._CustomerDetailID != value))
-				{
-					this.OnCustomerDetailIDChanging(value);
-					this.SendPropertyChanging();
-					this._CustomerDetailID = value;
-					this.SendPropertyChanged("CustomerDetailID");
-					this.OnCustomerDetailIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserID", DbType="VarChar(40)")]
-		public string UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					this.OnUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserID = value;
-					this.SendPropertyChanged("UserID");
-					this.OnUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_businessEmail", DbType="VarChar(1000)")]
-		public string businessEmail
-		{
-			get
-			{
-				return this._businessEmail;
-			}
-			set
-			{
-				if ((this._businessEmail != value))
-				{
-					this.OnbusinessEmailChanging(value);
-					this.SendPropertyChanging();
-					this._businessEmail = value;
-					this.SendPropertyChanged("businessEmail");
-					this.OnbusinessEmailChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CurrencyCode", DbType="Int")]
-		public System.Nullable<int> CurrencyCode
-		{
-			get
-			{
-				return this._CurrencyCode;
-			}
-			set
-			{
-				if ((this._CurrencyCode != value))
-				{
-					this.OnCurrencyCodeChanging(value);
-					this.SendPropertyChanging();
-					this._CurrencyCode = value;
-					this.SendPropertyChanged("CurrencyCode");
-					this.OnCurrencyCodeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_BillingFirstName", DbType="VarChar(1000)")]
-		public string BillingFirstName
-		{
-			get
-			{
-				return this._BillingFirstName;
-			}
-			set
-			{
-				if ((this._BillingFirstName != value))
-				{
-					this.OnBillingFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._BillingFirstName = value;
-					this.SendPropertyChanged("BillingFirstName");
-					this.OnBillingFirstNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_BillingLastName", DbType="VarChar(1000)")]
-		public string BillingLastName
-		{
-			get
-			{
-				return this._BillingLastName;
-			}
-			set
-			{
-				if ((this._BillingLastName != value))
-				{
-					this.OnBillingLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._BillingLastName = value;
-					this.SendPropertyChanged("BillingLastName");
-					this.OnBillingLastNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_BillingAddress1", DbType="VarChar(1000)")]
-		public string BillingAddress1
-		{
-			get
-			{
-				return this._BillingAddress1;
-			}
-			set
-			{
-				if ((this._BillingAddress1 != value))
-				{
-					this.OnBillingAddress1Changing(value);
-					this.SendPropertyChanging();
-					this._BillingAddress1 = value;
-					this.SendPropertyChanged("BillingAddress1");
-					this.OnBillingAddress1Changed();
-				}
-			}
-		}
-		
-		[Column(Storage="_BillingAddress2", DbType="VarChar(1000)")]
-		public string BillingAddress2
-		{
-			get
-			{
-				return this._BillingAddress2;
-			}
-			set
-			{
-				if ((this._BillingAddress2 != value))
-				{
-					this.OnBillingAddress2Changing(value);
-					this.SendPropertyChanging();
-					this._BillingAddress2 = value;
-					this.SendPropertyChanged("BillingAddress2");
-					this.OnBillingAddress2Changed();
-				}
-			}
-		}
-		
-		[Column(Storage="_BillingCity", DbType="VarChar(1000)")]
-		public string BillingCity
-		{
-			get
-			{
-				return this._BillingCity;
-			}
-			set
-			{
-				if ((this._BillingCity != value))
-				{
-					this.OnBillingCityChanging(value);
-					this.SendPropertyChanging();
-					this._BillingCity = value;
-					this.SendPropertyChanged("BillingCity");
-					this.OnBillingCityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_billingStateProvince", DbType="VarChar(1000)")]
-		public string billingStateProvince
-		{
-			get
-			{
-				return this._billingStateProvince;
-			}
-			set
-			{
-				if ((this._billingStateProvince != value))
-				{
-					this.OnbillingStateProvinceChanging(value);
-					this.SendPropertyChanging();
-					this._billingStateProvince = value;
-					this.SendPropertyChanged("billingStateProvince");
-					this.OnbillingStateProvinceChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_billingCountry", DbType="VarChar(1000)")]
-		public string billingCountry
-		{
-			get
-			{
-				return this._billingCountry;
-			}
-			set
-			{
-				if ((this._billingCountry != value))
-				{
-					this.OnbillingCountryChanging(value);
-					this.SendPropertyChanging();
-					this._billingCountry = value;
-					this.SendPropertyChanged("billingCountry");
-					this.OnbillingCountryChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_BillingEmail", DbType="VarChar(1000)")]
-		public string BillingEmail
-		{
-			get
-			{
-				return this._BillingEmail;
-			}
-			set
-			{
-				if ((this._BillingEmail != value))
-				{
-					this.OnBillingEmailChanging(value);
-					this.SendPropertyChanging();
-					this._BillingEmail = value;
-					this.SendPropertyChanged("BillingEmail");
-					this.OnBillingEmailChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ModifiedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<CustomerInfo>();
 			}
 		}
 	}
@@ -1278,6 +928,476 @@ namespace DataEntity
 						this._ProductID = default(int);
 					}
 					this.SendPropertyChanged("Product");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.CustomerInfo")]
+	public partial class CustomerInfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _CustomerInfoID;
+		
+		private string _UserID;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _MobileNumber;
+		
+		private string _OfficeNumber;
+		
+		private string _Fax;
+		
+		private string _businessEmail;
+		
+		private System.Nullable<int> _CurrencyCode;
+		
+		private string _BillingFirstName;
+		
+		private string _BillingLastName;
+		
+		private string _BillingAddress1;
+		
+		private string _BillingAddress2;
+		
+		private string _BillingCity;
+		
+		private string _billingStateProvince;
+		
+		private string _billingCountry;
+		
+		private string _BillingEmail;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCustomerInfoIDChanging(System.Guid value);
+    partial void OnCustomerInfoIDChanged();
+    partial void OnUserIDChanging(string value);
+    partial void OnUserIDChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnMobileNumberChanging(string value);
+    partial void OnMobileNumberChanged();
+    partial void OnOfficeNumberChanging(string value);
+    partial void OnOfficeNumberChanged();
+    partial void OnFaxChanging(string value);
+    partial void OnFaxChanged();
+    partial void OnbusinessEmailChanging(string value);
+    partial void OnbusinessEmailChanged();
+    partial void OnCurrencyCodeChanging(System.Nullable<int> value);
+    partial void OnCurrencyCodeChanged();
+    partial void OnBillingFirstNameChanging(string value);
+    partial void OnBillingFirstNameChanged();
+    partial void OnBillingLastNameChanging(string value);
+    partial void OnBillingLastNameChanged();
+    partial void OnBillingAddress1Changing(string value);
+    partial void OnBillingAddress1Changed();
+    partial void OnBillingAddress2Changing(string value);
+    partial void OnBillingAddress2Changed();
+    partial void OnBillingCityChanging(string value);
+    partial void OnBillingCityChanged();
+    partial void OnbillingStateProvinceChanging(string value);
+    partial void OnbillingStateProvinceChanged();
+    partial void OnbillingCountryChanging(string value);
+    partial void OnbillingCountryChanged();
+    partial void OnBillingEmailChanging(string value);
+    partial void OnBillingEmailChanged();
+    partial void OnModifiedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public CustomerInfo()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_CustomerInfoID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid CustomerInfoID
+		{
+			get
+			{
+				return this._CustomerInfoID;
+			}
+			set
+			{
+				if ((this._CustomerInfoID != value))
+				{
+					this.OnCustomerInfoIDChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerInfoID = value;
+					this.SendPropertyChanged("CustomerInfoID");
+					this.OnCustomerInfoIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", DbType="VarChar(40)")]
+		public string UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstName", DbType="VarChar(1000)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LastName", DbType="VarChar(1000)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this.OnLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MobileNumber", DbType="VarChar(20)")]
+		public string MobileNumber
+		{
+			get
+			{
+				return this._MobileNumber;
+			}
+			set
+			{
+				if ((this._MobileNumber != value))
+				{
+					this.OnMobileNumberChanging(value);
+					this.SendPropertyChanging();
+					this._MobileNumber = value;
+					this.SendPropertyChanged("MobileNumber");
+					this.OnMobileNumberChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_OfficeNumber", DbType="VarChar(20)")]
+		public string OfficeNumber
+		{
+			get
+			{
+				return this._OfficeNumber;
+			}
+			set
+			{
+				if ((this._OfficeNumber != value))
+				{
+					this.OnOfficeNumberChanging(value);
+					this.SendPropertyChanging();
+					this._OfficeNumber = value;
+					this.SendPropertyChanged("OfficeNumber");
+					this.OnOfficeNumberChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Fax", DbType="VarChar(20)")]
+		public string Fax
+		{
+			get
+			{
+				return this._Fax;
+			}
+			set
+			{
+				if ((this._Fax != value))
+				{
+					this.OnFaxChanging(value);
+					this.SendPropertyChanging();
+					this._Fax = value;
+					this.SendPropertyChanged("Fax");
+					this.OnFaxChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_businessEmail", DbType="VarChar(1000)")]
+		public string businessEmail
+		{
+			get
+			{
+				return this._businessEmail;
+			}
+			set
+			{
+				if ((this._businessEmail != value))
+				{
+					this.OnbusinessEmailChanging(value);
+					this.SendPropertyChanging();
+					this._businessEmail = value;
+					this.SendPropertyChanged("businessEmail");
+					this.OnbusinessEmailChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CurrencyCode", DbType="Int")]
+		public System.Nullable<int> CurrencyCode
+		{
+			get
+			{
+				return this._CurrencyCode;
+			}
+			set
+			{
+				if ((this._CurrencyCode != value))
+				{
+					this.OnCurrencyCodeChanging(value);
+					this.SendPropertyChanging();
+					this._CurrencyCode = value;
+					this.SendPropertyChanged("CurrencyCode");
+					this.OnCurrencyCodeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BillingFirstName", DbType="VarChar(1000)")]
+		public string BillingFirstName
+		{
+			get
+			{
+				return this._BillingFirstName;
+			}
+			set
+			{
+				if ((this._BillingFirstName != value))
+				{
+					this.OnBillingFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._BillingFirstName = value;
+					this.SendPropertyChanged("BillingFirstName");
+					this.OnBillingFirstNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BillingLastName", DbType="VarChar(1000)")]
+		public string BillingLastName
+		{
+			get
+			{
+				return this._BillingLastName;
+			}
+			set
+			{
+				if ((this._BillingLastName != value))
+				{
+					this.OnBillingLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._BillingLastName = value;
+					this.SendPropertyChanged("BillingLastName");
+					this.OnBillingLastNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BillingAddress1", DbType="VarChar(1000)")]
+		public string BillingAddress1
+		{
+			get
+			{
+				return this._BillingAddress1;
+			}
+			set
+			{
+				if ((this._BillingAddress1 != value))
+				{
+					this.OnBillingAddress1Changing(value);
+					this.SendPropertyChanging();
+					this._BillingAddress1 = value;
+					this.SendPropertyChanged("BillingAddress1");
+					this.OnBillingAddress1Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_BillingAddress2", DbType="VarChar(1000)")]
+		public string BillingAddress2
+		{
+			get
+			{
+				return this._BillingAddress2;
+			}
+			set
+			{
+				if ((this._BillingAddress2 != value))
+				{
+					this.OnBillingAddress2Changing(value);
+					this.SendPropertyChanging();
+					this._BillingAddress2 = value;
+					this.SendPropertyChanged("BillingAddress2");
+					this.OnBillingAddress2Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_BillingCity", DbType="VarChar(1000)")]
+		public string BillingCity
+		{
+			get
+			{
+				return this._BillingCity;
+			}
+			set
+			{
+				if ((this._BillingCity != value))
+				{
+					this.OnBillingCityChanging(value);
+					this.SendPropertyChanging();
+					this._BillingCity = value;
+					this.SendPropertyChanged("BillingCity");
+					this.OnBillingCityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_billingStateProvince", DbType="VarChar(1000)")]
+		public string billingStateProvince
+		{
+			get
+			{
+				return this._billingStateProvince;
+			}
+			set
+			{
+				if ((this._billingStateProvince != value))
+				{
+					this.OnbillingStateProvinceChanging(value);
+					this.SendPropertyChanging();
+					this._billingStateProvince = value;
+					this.SendPropertyChanged("billingStateProvince");
+					this.OnbillingStateProvinceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_billingCountry", DbType="VarChar(1000)")]
+		public string billingCountry
+		{
+			get
+			{
+				return this._billingCountry;
+			}
+			set
+			{
+				if ((this._billingCountry != value))
+				{
+					this.OnbillingCountryChanging(value);
+					this.SendPropertyChanging();
+					this._billingCountry = value;
+					this.SendPropertyChanged("billingCountry");
+					this.OnbillingCountryChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BillingEmail", DbType="VarChar(1000)")]
+		public string BillingEmail
+		{
+			get
+			{
+				return this._BillingEmail;
+			}
+			set
+			{
+				if ((this._BillingEmail != value))
+				{
+					this.OnBillingEmailChanging(value);
+					this.SendPropertyChanging();
+					this._BillingEmail = value;
+					this.SendPropertyChanged("BillingEmail");
+					this.OnBillingEmailChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
 				}
 			}
 		}

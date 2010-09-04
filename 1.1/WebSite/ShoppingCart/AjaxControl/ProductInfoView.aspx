@@ -15,13 +15,7 @@
                     <thead>
                         <tr>
                             <td>
-                                ProductID
-                            </td>
-                            <td>
                                 Name
-                            </td>
-                            <td>
-                                ItemType
                             </td>
                             <td>
                                 Price
@@ -49,13 +43,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <%#Eval("ProductID") %>
-                    </td>
-                    <td>
-                        <%#Eval("Name") %>
-                    </td>
-                    <td>
-                        <%#Eval("ItemType") %>
+                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/ShoppingCart/AjaxControl/Product.aspx")+"?pdid="+Eval("ProductID").ToString() %>'>  <%#Eval("Name") %></aspajax:HyperLink>
                     </td>
                     <td>
                         <%#Eval("Price") %>
@@ -79,8 +67,8 @@
                         <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("ProductID").ToString(), "#contentBox", "#contentBox")%>
                     </td>
                     <td>
-                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/ProductInfo.aspx") + "?cid=" + Eval("ProductID")%>'
-                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
+                        <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/ShoppingCart/AjaxControl/ProductInfo.aspx") + "?pdid=" + Eval("ProductID")%>'
+                            ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -100,7 +88,7 @@
             </div>
         </div>
         <div>
-            <aspajax:HyperLink ID="hpAddProduct" runat="server" NavigateUrl="~/Admin/Ajaxer/ProductInfo.aspx"
+            <aspajax:HyperLink ID="hpAddProduct" runat="server" NavigateUrl="~/ShoppingCart/AjaxControl/ProductInfo.aspx"
                 ContainnerID="#contentBox">Add New</aspajax:HyperLink>
         </div>
     </div>
