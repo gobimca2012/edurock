@@ -1973,6 +1973,35 @@ namespace DataAccess.ShoppingCart
 
         #endregion
         #region CustomCustomerInfo
+        public void CustomerInfoUpdateByUserID( string UserID, string FirstName, string LastName, string MobileNumber, string OfficeNumber, string Fax, string businessEmail, int CurrencyCode, string BillingFirstName, string BillingLastName, string BillingAddress1, string BillingAddress2, string BillingCity, string billingStateProvince, string billingCountry, string BillingEmail, DateTime ModifiedDate)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            using (ShoppingCartDataContext db = new ShoppingCartDataContext())
+            {
+                db.DeferredLoadingEnabled = false;
+                CustomerInfo data = db.CustomerInfos.Single(p => p.UserID == UserID);
+                data.UserID = UserID;
+                data.FirstName = FirstName;
+                data.LastName = LastName;
+                data.MobileNumber = MobileNumber;
+                data.OfficeNumber = OfficeNumber;
+                data.Fax = Fax;
+                data.businessEmail = businessEmail;
+                data.CurrencyCode = CurrencyCode;
+                data.BillingFirstName = BillingFirstName;
+                data.BillingLastName = BillingLastName;
+                data.BillingAddress1 = BillingAddress1;
+                data.BillingAddress2 = BillingAddress2;
+                data.BillingCity = BillingCity;
+                data.billingStateProvince = billingStateProvince;
+                data.billingCountry = billingCountry;
+                data.BillingEmail = BillingEmail;
+                data.ModifiedDate = ModifiedDate;
+
+                db.SubmitChanges();
+            }
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
         #endregion
 	
 	

@@ -59,7 +59,7 @@ public partial class ShoppingCart_AjaxControl_CustomerInfo : AjaxPage
             DateTime ModifiedDate = DateTime.Now;// ; if (false) { throw new Exception(""); } ModifiedDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtModifiedDate.ClientID));
 
             new CustomerInfoController().Add(CustomerInfoID, UserID, FirstName, LastName, MobileNumber, OfficeNumber, Fax, businessEmail, CurrencyCode, BillingFirstName, BillingLastName, BillingAddress1, BillingAddress2, BillingCity, billingStateProvince, billingCountry, BillingEmail, ModifiedDate);
-            Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
+            
         }
         catch (Exception ex)
         {
@@ -72,7 +72,7 @@ public partial class ShoppingCart_AjaxControl_CustomerInfo : AjaxPage
         try
         {
 
-            Guid CustomerInfoID = ID;
+            //Guid CustomerInfoID = ID;
 
             string UserID = new UserAuthontication().LoggedInUserID.ToString();
 
@@ -88,7 +88,7 @@ public partial class ShoppingCart_AjaxControl_CustomerInfo : AjaxPage
 
             string businessEmail; if (false) { throw new Exception(""); } businessEmail = HtmlHelper.ControlValue(txtbusinessEmail.ClientID);
 
-            int CurrencyCode=1;
+            int CurrencyCode = 1;
 
             string BillingFirstName; if (false) { throw new Exception(""); } BillingFirstName = HtmlHelper.ControlValue(txtBillingFirstName.ClientID);
 
@@ -108,9 +108,9 @@ public partial class ShoppingCart_AjaxControl_CustomerInfo : AjaxPage
 
             DateTime ModifiedDate = DateTime.Now;// ; if (false) { throw new Exception(""); } ModifiedDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtModifiedDate.ClientID));
 
-            new CustomerInfoController().UpdateByCustomerInfoID(CustomerInfoID, UserID, FirstName, LastName, MobileNumber, OfficeNumber, Fax, businessEmail, CurrencyCode, BillingFirstName, BillingLastName, BillingAddress1, BillingAddress2, BillingCity, billingStateProvince, billingCountry, BillingEmail, ModifiedDate);
+            new CustomerInfoController().UpdateByUserID(UserID, FirstName, LastName, MobileNumber, OfficeNumber, Fax, businessEmail, CurrencyCode, BillingFirstName, BillingLastName, BillingAddress1, BillingAddress2, BillingCity, billingStateProvince, billingCountry, BillingEmail, ModifiedDate);
 
-            Response.Redirect("~/Admin/Ajaxer/CourceInfoView.aspx");
+            
         }
         catch (Exception ex)
         {
@@ -136,7 +136,7 @@ public partial class ShoppingCart_AjaxControl_CustomerInfo : AjaxPage
 
             txtbusinessEmail.Text = data.businessEmail;
 
-            
+
 
             txtBillingFirstName.Text = data.BillingFirstName;
 
@@ -153,9 +153,15 @@ public partial class ShoppingCart_AjaxControl_CustomerInfo : AjaxPage
             txtbillingCountry.Text = data.billingCountry;
 
             txtBillingEmail.Text = data.BillingEmail;
+            lnkAddCustomerInfo.Visible = false;
+            lnkUpdateCustomerInfo.Visible = true;
 
 
-
+        }
+        else
+        {
+            lnkAddCustomerInfo.Visible = true;
+            lnkUpdateCustomerInfo.Visible = false;
         }
     }
 
@@ -169,12 +175,13 @@ public partial class ShoppingCart_AjaxControl_CustomerInfo : AjaxPage
     protected void AddAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
         AddData();
+        Response.Redirect("~/ShoppingCart/AjaxControl/ConfirmShopping.aspx");
 
     }
     protected void UpdateAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
         EditData();
-
+        Response.Redirect("~/ShoppingCart/AjaxControl/ConfirmShopping.aspx");
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -192,7 +199,13 @@ public partial class ShoppingCart_AjaxControl_CustomerInfo : AjaxPage
         }
         if (new UserAuthontication().IsLoggedIn)
         {
-            BindData();
+
+            if (!this.IsAjaxPostBack)
+            {
+                BindData();
+            }
+           
+
         }
     }
 

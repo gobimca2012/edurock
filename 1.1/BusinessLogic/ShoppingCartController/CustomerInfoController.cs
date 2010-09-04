@@ -1111,6 +1111,24 @@ namespace BusinessLogic.ShoppingCartController
         }
         #endregion
         #region CustomerInfo
+        public bool UpdateByUserID(string UserID, string FirstName, string LastName, string MobileNumber, string OfficeNumber, string Fax, string businessEmail, int CurrencyCode, string BillingFirstName, string BillingLastName, string BillingAddress1, string BillingAddress2, string BillingCity, string billingStateProvince, string billingCountry, string BillingEmail, DateTime ModifiedDate)
+        {
+
+            try
+            {
+                new DataProvider().CustomerInfoUpdateByUserID(UserID, FirstName, LastName, MobileNumber, OfficeNumber, Fax, businessEmail, CurrencyCode, BillingFirstName, BillingLastName, BillingAddress1, BillingAddress2, BillingCity, billingStateProvince, billingCountry, BillingEmail, ModifiedDate);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false;
+            }
+        }
         #endregion
 				
 	

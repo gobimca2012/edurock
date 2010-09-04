@@ -137,12 +137,12 @@
               
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddCustomerInfo" runat="server" RequestContainner="#CustomerInfo"
-                    ResponseContainner="#CustomerInfo" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkAddCustomerInfo" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateCustomerInfo" runat="server" RequestContainner="#CustomerInfo"
-                    ResponseContainner="#CustomerInfo" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkUpdateCustomerInfo" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
         </fieldset>
     </div>
