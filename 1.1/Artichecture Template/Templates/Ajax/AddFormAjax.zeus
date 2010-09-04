@@ -88,7 +88,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
                     <span class="label"><%=column.Alias%></span>
                 </td>
                 <td>                    
-                    <%if (column.LanguageType == "string")
+                    <%if (column.LanguageType == "string" || column.LanguageType == "decimal" || column.LanguageType == "DateTime")
                       {
                     %>
                     <asp:TextBox ID="txt<%=column.Alias%>" runat="server"></asp:TextBox>

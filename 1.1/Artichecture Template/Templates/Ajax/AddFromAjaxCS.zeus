@@ -86,13 +86,23 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	public string GetFunctionAssignment(IColumn column)
 	{
 		string script="";
-		if(column.LanguageType.ToLower()=="string" )
+		if(column.LanguageType.ToLower()=="string")
 		{		    
 			script+="string "+column.Alias+";";	
 			script+="if(false){";
 			script+="throw new Exception(\"\");";
 			script+="}";			
 			script+=string.Format("{0} = HtmlHelper.ControlValue(txt{0}.ClientID);",column.Alias);
+			
+			
+		}
+		if(column.LanguageType.ToLower()=="decimal")
+		{		    
+			script+="decimal "+column.Alias+";";	
+			script+="if(false){";
+			script+="throw new Exception(\"\");";
+			script+="}";			
+			script+=string.Format("{0} =Convert.ToDecimal(HtmlHelper.ControlValue(txt{0}.ClientID));",column.Alias);
 			
 			
 		}
@@ -146,9 +156,13 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	public string GetControlAssignment(IColumn column)
 	{
 		string script="";
-		if(column.LanguageType.ToLower()=="string" || column.LanguageType.ToLower()=="datetime")
+		if(column.LanguageType.ToLower()=="string" )
 		{		    
 			script+="txt"+column.Alias+".Text=data."+column.Alias+";";							
+		}
+		else if(column.LanguageType.ToLower()=="decimal" || column.LanguageType.ToLower()=="datetime")
+		{		    
+			script+="txt"+column.Alias+".Text=data."+column.Alias+".ToString();";							
 		}
 		else if(column.LanguageType.ToLower()=="guid")
 		{
@@ -197,11 +211,12 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	public string GetPreventDataControlAssignment(IColumn column)
 	{
 		string script="";
-		if(column.LanguageType.ToLower()=="string" || column.LanguageType.ToLower()=="datetime")
+		if(column.LanguageType.ToLower()=="string" || column.LanguageType.ToLower()=="datetime" ||  column.LanguageType.ToLower()=="decimal")
 		{		   
 		    script+=string.Format("txt{0}.Text = HtmlHelper.ControlValue(txt{0}.ClientID);",column.Alias);
 			
 		}
+		
 		else if(column.LanguageType.ToLower()=="guid")
 		{
 			script+=string.Format("dd{0}.SelectedValue = HtmlHelper.ControlValue(dd{0}.ClientID);",column.Alias);
@@ -282,7 +297,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
         if (Request.Params["<parameterName>"]!=null)
         {
 		    AjaxState["<parameterName>"] = Request.Params["<parameterName>"];
-            BindData(ID);
+            BindData();
 			lnkAdd<%=table.Alias%>.Visible = false;
         }
         else
@@ -363,7 +378,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 	public void BindFunction(ITable table)
 	{
 	    %>
-		private void BindData(Guid ID)
+		private void BindData()
 		{
 		    var dataBunch = new <%=table.Alias%>Controller().Getby<%=table.Alias%>(ID);
 			if (dataBunch.Count > 0)
@@ -392,7 +407,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
     {
         get
         {
-            return Convert.ToInt32(AjaxState[""<parameterName>"]);
+            return Convert.ToInt32(AjaxState["<parameterName>"]);
         }
     }
 	protected void AddAjaxClick(object sender, AjaxControl.AjaxEventArg e)
