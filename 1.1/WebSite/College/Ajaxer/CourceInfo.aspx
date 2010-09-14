@@ -12,11 +12,15 @@
         </div>
         <div class="whitecont">
             <fieldset>
-                <legend><cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> </legend>
+                <legend>
+                    <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>
+                </legend>
                 <div>
                     <div>
                         <div>
-                            <span class="label"><cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel>  Catagory</span><span class="valmsg" >(Required)*</span>
+                            <span class="label">
+                                <cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel>
+                                Catagory</span><span class="valmsg">(Required)*</span>
                         </div>
                         <div>
                             <asp:DropDownList ID="ddCatagory" runat="server" Height="22px" Width="451px">
@@ -25,7 +29,9 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label"><cram:SpaceLabel ID="SpaceLabel2" runat="server"></cram:SpaceLabel>  Name</span><span class="valmsg" >(Required)*</span>
+                            <span class="label">
+                                <cram:SpaceLabel ID="SpaceLabel2" runat="server"></cram:SpaceLabel>
+                                Name</span><span class="valmsg">(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtCourceName" runat="server" Width="454px"></asp:TextBox>
@@ -49,8 +55,8 @@
                     EnableValidation="true" ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn editbtn"> <%=Resources.Default.Add_Text%></div></aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#iCource" Visible="false"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn editbtn"> Update</div></aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" RequestContainner="#iCource"
+                    Visible="false" ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn editbtn"> Update</div></aspajax:AjaxLinkButton>
             </div>
             <%--<asp:HiddenField ID="_AjaxState" runat="server" />--%>
         </div>

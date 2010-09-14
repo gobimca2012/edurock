@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Login.ascx.cs" Inherits="Modules_Login_Login" %>
-<div class="contentbox" style="position: absolute;padding:5px;width:200px">
+<div >
     <div>
         <div>
-            <div>
+            <div style="color:#fff">
                 Username :
             </div>
             <div>
@@ -10,7 +10,7 @@
             </div>
         </div>
         <div>
-            <div>
+            <div style="color:#fff">
                 Password :
             </div>
             <div>
@@ -19,6 +19,6 @@
         </div>
     </div>
     <div>
-        <asp:LinkButton ID="lnkLogin" runat="server" OnClick="lnkLogin_Click"><div class="btn editbtn"> Login</div></asp:LinkButton>
+        <asp:LinkButton ID="lnkLogin" runat="server" OnClick="lnkLogin_Click"><div class="btnlogin"> </div></asp:LinkButton>
     </div>
 </div>

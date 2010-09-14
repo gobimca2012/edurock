@@ -23,7 +23,9 @@ namespace BusinessLogic
             for(int i=0;i<AllFiles.Length;i++)
             {
                 string filepath = AllFiles[i];
-                filepath = filepath.Replace(ConfigurationSettings.AppSettings["WebSitePhysicalPath"], "~");
+                string temp = filepath.Substring(0, filepath.IndexOf(ConfigurationSettings.AppSettings["PhysicalFolder"]) + ConfigurationSettings.AppSettings["PhysicalFolder"].Length);
+                filepath = filepath.Replace(temp, "~");
+                
                 UserFiles dfile=new UserFiles();
                 dfile.FilePath = filepath;
                 data.Add(dfile);

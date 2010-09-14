@@ -953,6 +953,24 @@ namespace BusinessLogic
       
 	
         #region InstituteCource
+        public bool UpdateByInstituteCourceID(int InstituteCourceID, int CourceCategoryID, string CourceName, string MetaDescription, string MetaKeyword, DateTime StartDate, DateTime EndDate, bool IsPublished, bool HomeWorkEnable, bool AttendanceEnable, bool QuestionAnswerEnable, bool SelfRegistrationEnable, bool IsFree, decimal Price, DateTime Modifieddate)
+        {
+
+            try
+            {
+                new DataProvider().InstituteCourceUpdateByInstituteCourceID(InstituteCourceID, CourceCategoryID, CourceName, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" CreateControls: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false;
+            }
+        }
         public string GetInstituteCourceName(int InstituteCourceID)
         {
             try
@@ -1064,6 +1082,25 @@ namespace BusinessLogic
                     Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
                 }
                 return new List<InstituteCource>();
+            }
+        }
+
+        public int Add(int InstituteID, int CourceCatagoryID, string CourceName, string MetaDescription, string MetaKeyword, DateTime StartDate, DateTime EndDate, bool IsPublished, bool HomeWorkEnable, bool AttendanceEnable, bool QuestionAnswerEnable, bool SelfRegistrationEnable, bool IsFree, decimal Price, DateTime Modifieddate)
+        {
+
+            try
+            {
+                int ID = new DataProvider().InstituteCourceAdd(InstituteID,CourceCatagoryID, CourceName, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
+                return ID;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" CreateControls: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return 0;
             }
         }
         #endregion

@@ -23,8 +23,10 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddInstituteCource.ClientID);
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateInstituteCource.ClientID);
         objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
+        objValidate.Medatory(txtCourceName, "Please enter Course Name", this.Page);
+        objValidate.DrowDownMendatory(ddCatagory, "Please select Category", this.Page,"0");
         objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
-        objValidate.DrowDownMendatory(ddCource, "Please select Course", this.Page,"0");
+      //  objValidate.DrowDownMendatory(ddCource, "Please select Course", this.Page,"0");
         objValidate.DigitOnly(txtPrice, "Please enter Number only", this.Page);
         
 
@@ -39,7 +41,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
             int InstituteID = new UserAuthontication().InstituteID;
 
-            int CourceID; if (false) { throw new Exception(""); } CourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+          //  int CourceID; if (false) { throw new Exception(""); } CourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
             string MetaDescription; if (false) { throw new Exception(""); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
 
@@ -86,9 +88,10 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
             }
 
             DateTime Modifieddate = DateTime.Now;
+            string CourseName = HtmlHelper.ControlValue(txtCourceName.ClientID);
+            int CourceCategoryID = Convert.ToInt32(HtmlHelper.ControlValue(ddCatagory.ClientID));
 
-
-            new InstituteCourceController().Add(InstituteID, CourceID, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
+            new InstituteCourceController().Add(InstituteID, CourceCategoryID,CourseName, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
             Session[SessionName.SucessMessage.ToString()] = string.Format("{0} has been added Successfully", "Course");
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
@@ -107,7 +110,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
             int InstituteID = new UserAuthontication().InstituteID;
 
-            int CourceID; if (false) { throw new Exception(""); } CourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            //int CourceID; if (false) { throw new Exception(""); } CourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
             string MetaDescription; if (false) { throw new Exception(""); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
 
@@ -154,8 +157,9 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
                 Price = Convert.ToDecimal(HtmlHelper.ControlValue(txtPrice.ClientID));
             }
             DateTime Modifieddate = DateTime.Now;
-
-            new InstituteCourceController().UpdateByInstituteCourceID(InstituteCourceID, InstituteID, CourceID, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
+            string CourseName = HtmlHelper.ControlValue(txtCourceName.ClientID);
+            int CourceCategoryID = Convert.ToInt32(HtmlHelper.ControlValue(ddCatagory.ClientID));
+            new InstituteCourceController().UpdateByInstituteCourceID(InstituteCourceID, CourceCategoryID, CourseName, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
             Session[SessionName.SucessMessage.ToString()] = string.Format("{0} has been Updated Successfully", "Course");
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
@@ -173,9 +177,10 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
         {
             var data = dataBunch[0];
 
-            new CourceController().BindCource(ddCource, data.CourceID.ToString());
+           // new CourceController().BindCource(ddCource, data.CourceID.ToString());
 
-
+            txtCourceName.Text = data.Cource.CourceName;
+            new CourceCatagoryController().BindCourceCatagory(ddCatagory, data.Cource.CourceCatagoryID.ToString());
             txtMetaDescription.Text = data.MetaDescription;
 
             txtMetaKeyword.Text = data.MetaKeyword;
@@ -234,7 +239,8 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
         }
         else
         {
-            new CourceController().BindCource(ddCource);
+           // new CourceController().BindCource(ddCource);
+            new CourceCatagoryController().BindCourceCatagory(ddCatagory);
             lnkUpdateInstituteCource.Visible = false;
         }
     }

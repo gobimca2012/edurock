@@ -16,7 +16,7 @@
         <fieldset>
             <legend>Cource</legend>
             <div>
-                <div>
+                <%-- <div>
                     <div>
                         <cram:SpaceLabel ID="lblcc" runat="server" EnableViewState="false" CssClass="label"></cram:SpaceLabel><span class="valmsg" >(Required)*</span>
                         <div>
@@ -31,10 +31,27 @@
                         <asp:DropDownList ID="ddCource" runat="server">
                         </asp:DropDownList>
                     </div>
+                </div>--%>
+                <div>
+                    <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>
+                </div>
+                <div>
+                    <asp:TextBox ID="txtCourceName" runat="server"></asp:TextBox>
                 </div>
                 <div>
                     <div>
-                        <span class="label">Meta Description</span><span class="valmsg" >(Required)*</span>
+                        <span class="label">
+                            <cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel>
+                            Catagory</span><span class="valmsg">(Required)*</span>
+                    </div>
+                    <div>
+                        <asp:DropDownList ID="ddCatagory" runat="server" Height="22px" Width="451px">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">Meta Description</span><span class="valmsg">(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtMetaDescription" runat="server" Height="203px" TextMode="MultiLine"
@@ -52,7 +69,7 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">Start Date</span><span class="valmsg" >(Required)*</span>
+                        <span class="label">Start Date</span><span class="valmsg">(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
@@ -60,20 +77,18 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">End Date</span><span class="valmsg" >(Required)*</span>
+                        <span class="label">End Date</span><span class="valmsg">(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div>
-                   
                     <div>
-                        <asp:CheckBox ID="chkIsPublished" runat="server" Text="IsPublished"/>
+                        <asp:CheckBox ID="chkIsPublished" runat="server" Text="IsPublished" />
                     </div>
                 </div>
                 <div>
-                    
                     <div>
                         <asp:CheckBox ID="chkHomeWorkEnable" runat="server" Text="HomeWork Enable" />
                     </div>
@@ -99,7 +114,7 @@
                         <span class="label"></span>
                     </div>
                     <div>
-                        <asp:CheckBox ID="chkSelfRegistrationEnable" runat="server" Text="SelfRegistration Enable"/>
+                        <asp:CheckBox ID="chkSelfRegistrationEnable" runat="server" Text="SelfRegistration Enable" />
                     </div>
                 </div>
                 <div>
@@ -107,7 +122,7 @@
                         <span class="label"></span>
                     </div>
                     <div>
-                        <asp:CheckBox ID="chkIsFree" runat="server" Text="Free Course"/>
+                        <asp:CheckBox ID="chkIsFree" runat="server" Text="Free Course" />
                     </div>
                 </div>
                 <div>
@@ -126,8 +141,8 @@
                     ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn editbtn"> <%=Resources.Default.Add_Text%></div></aspajax:AjaxLinkButton>
             </div>
             <div style="float: left">
-                <aspajax:AjaxLinkButton ID="lnkUpdateInstituteCource" runat="server" RequestContainner="#contentBox" Visible="false"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn editbtn">Update</div></aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkUpdateInstituteCource" runat="server" RequestContainner="#contentBox"
+                    Visible="false" ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn editbtn">Update</div></aspajax:AjaxLinkButton>
             </div>
             <div style="clear: both">
             </div>

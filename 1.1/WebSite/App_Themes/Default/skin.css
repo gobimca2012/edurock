@@ -99,7 +99,7 @@ body
     height: 63px;
     width: 100%;
     padding: 0px 0px;
-    background: url(                                  'images/headerbt.jpg' ) repeat-x;
+    background: url(                                   'images/headerbt.jpg' ) repeat-x;
     clear: both;
 }
 li
@@ -277,8 +277,8 @@ tr:hover
     left: 500px;
     top: 100px;
     padding: 30px;
-    height:70px;
-    width:70px;
+    height: 70px;
+    width: 70px;
 }
 .lmenuitem
 {
@@ -589,7 +589,7 @@ h3
 }
 .trans
 {
-    background: url(                  'images/trans.png' );
+    background: url(                   'images/trans.png' );
     padding: 15px;
 }
 /* Icons */
@@ -605,21 +605,21 @@ h3
 .fullsc
 {
     background-color: Transparent;
-    background-image: url(     "images/icons.png" );
+    background-image: url(      "images/icons.png" );
     background-position: 0 -68px;
     padding: 18px;
 }
 .folder
 {
     background-color: Transparent;
-    background-image: url(     "images/icons.png" );
+    background-image: url(      "images/icons.png" );
     background-position: 0 -68px;
     padding: 18px;
 }
 .help
 {
     background-color: Transparent;
-    background-image: url(     "images/icons.png" );
+    background-image: url(      "images/icons.png" );
     background-position: -34px -68px;
     padding: 18px;
 }
@@ -634,7 +634,7 @@ h3
 .dash
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: 0 -33px;
     height: 30px;
     width: 30px;
@@ -642,7 +642,7 @@ h3
 .acco
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -33px -33px;
     height: 30px;
     width: 42px;
@@ -650,7 +650,7 @@ h3
 .expand div, .exand
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -274px -9px;
     empty-cells: show;
     height: 17px;
@@ -659,7 +659,7 @@ h3
 .collapse div, .collap
 {
     background-color: Transparent;
-    background-image: url( "images/icons.png" );
+    background-image: url(  "images/icons.png" );
     background-position: -299px -43px;
     empty-cells: show;
     height: 18px;
@@ -704,7 +704,7 @@ img
 .howo
 {
     background-color: Transparent;
-    background-image: url(       "images/icons.png" );
+    background-image: url(        "images/icons.png" );
     background-position: -257px -9px;
     empty-cells: show;
     line-height: 12px;
@@ -733,7 +733,7 @@ img
 .all
 {
     background-color: Transparent;
-    background-image: url(       "images/icons.png" );
+    background-image: url(        "images/icons.png" );
     background-position: -198px -40px;
     empty-cells: show;
     line-height: 12px;
@@ -752,7 +752,7 @@ img
 .aud
 {
     background-color: Transparent;
-    background-image: url(        "images/icons.png" );
+    background-image: url(         "images/icons.png" );
     background-position: -235px -9px;
     empty-cells: show;
     line-height: 12px;
@@ -771,7 +771,7 @@ img
 .lbr
 {
     background-color: Transparent;
-    background-image: url(         "images/icons.png" );
+    background-image: url(          "images/icons.png" );
     background-position: -170px -40px;
     empty-cells: show;
     line-height: 12px;
@@ -800,7 +800,7 @@ img
 .msg
 {
     background-color: Transparent;
-    background-image: url(    "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: -273px -38px;
     empty-cells: show;
     height: 24px;
@@ -810,7 +810,7 @@ img
 .mystuff
 {
     background-color: Transparent;
-    background-image: url(    "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: -243px -35px;
     empty-cells: show;
     height: 28px;
@@ -820,7 +820,7 @@ img
 .sub
 {
     background-color: Transparent;
-    background-image: url(    "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: -299px -4px;
     empty-cells: show;
     height: 24px;
@@ -830,7 +830,7 @@ img
 .uprate
 {
     background-color: Transparent;
-    background-image: url(    "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: -327px -4px;
     empty-cells: show;
     height: 21px;
@@ -840,7 +840,7 @@ img
 .downrate
 {
     background-color: Transparent;
-    background-image: url(    "images/icons.png" );
+    background-image: url(     "images/icons.png" );
     background-position: -354px -4px;
     empty-cells: show;
     height: 21px;
@@ -849,21 +849,21 @@ img
 }
 .close
 {
-    background-color:Transparent;
-background-image:url("images/icons.png");
-background-position:-326px -44px;
-empty-cells:show;
-height:10px;
-line-height:12px;
-margin:2px;
-width:10px;
+    background-color: Transparent;
+    background-image: url( "images/icons.png" );
+    background-position: -326px -44px;
+    empty-cells: show;
+    height: 10px;
+    line-height: 12px;
+    margin: 2px;
+    width: 10px;
 }
 .closebck
 {
-background-color:#F0F0F0;
-border:1px solid #CFCFCF;
-padding:2px;
-width:14px;
+    background-color: #F0F0F0;
+    border: 1px solid #CFCFCF;
+    padding: 2px;
+    width: 14px;
 }
 /* end Account*/
 
@@ -1172,4 +1172,45 @@ input[type=radio], input[type=checkbox]
 .calender tr
 {
     border: none;
+}
+.login
+{
+    width: 517px;
+}
+.login .top
+{
+    background: url( "images/lo_top.jpg" ) repeat scroll 0 0 transparent;
+    height: 121px;
+    width: 517px;
+}
+.login .mid div
+{
+    margin:5px 0px;
+}
+.login .mid input
+{
+    width:92%;
+}
+.login .mid
+{
+    background: url(images/lo_mid.jpg);
+    background-repeat: repeat-y;
+    padding: 10px;
+    width: 517px;
+    color:#fff;
+    font-size:14px;
+    font-weight:bold;
+}
+.login .bot
+{
+    background: url( "images/lo_bottom.jpg" ) repeat scroll 0 0 transparent;
+    height: 46px;
+    width: 517px;
+}
+.btnlogin
+{
+    background: url( "images/btnlogin.png" ) repeat scroll 0 0 transparent;
+    height: 58px;
+    width: 214px;
+    margin: 10px 5px;
 }
