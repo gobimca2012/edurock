@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UploadPhoto.aspx.cs" Inherits="User_UploadPhoto"
-    EnableEventValidation="false" EnableViewState="false" EnableViewStateMac="false"
-    ValidateRequest="false" ViewStateEncryptionMode="Never" %>
+    %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,27 +30,26 @@
                     <asp:Label ID="injectScript" runat="server"></asp:Label>
                 </div>
                 <div id="tabs-2">
-                  <%--  <asp:DataList ID="ListImage" runat="server" OnItemCommand="OnImageListItemCommand"
+                    <asp:DataList ID="ListImage" runat="server" OnItemCommand="OnImageListItemCommand"
                         DataKeyField="FilePath" RepeatColumns="3">
                         <ItemTemplate>
                             <asp:LinkButton ID="lnkUplo" runat="server" CommandName="upload">
                                 <asp:Image ID="img" runat="server" Width="50px" Height="50px" ImageUrl='<%#ResolveUrl(Eval("FilePath").ToString()) %>' />
                             </asp:LinkButton>
                         </ItemTemplate>
-                    </asp:DataList>--%>
-                    <asp:ListView ID="ImageList" runat="server" DataKeyField="FilePath" 
-                        OnItemCommand="ListViewItemCommand">
+                    </asp:DataList>
+                   <%-- <asp:ListView ID="ImageList" runat="server" DataKeyField="FilePath" OnItemCommand="ImageListViewItemCommand">
                         <LayoutTemplate>
                             <div>
                                 <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                             </div>
                         </LayoutTemplate>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkUplo" runat="server" CommandName="upload">
-                                <asp:Image ID="img" runat="server" Width="50px" Height="50px" ImageUrl='<%#ResolveUrl(Eval("FilePath").ToString()) %>' />
+                            <asp:Image ID="img" runat="server" Width="50px" Height="50px" ImageUrl='<%#ResolveUrl(Eval("FilePath").ToString()) %>' />
+                            <asp:LinkButton ID="lnkUplo" runat="server" CommandName="upload">Upload
                             </asp:LinkButton>
                         </ItemTemplate>
-                    </asp:ListView>
+                    </asp:ListView>--%>
                 </div>
             </div>
         </div>

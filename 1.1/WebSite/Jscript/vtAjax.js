@@ -461,7 +461,7 @@ $.fn.PUIW = function(url, swidth, sheight, rurl, rid)
       }
    }
    );
-   $(this).dialog('open');
+  // $(this).dialog('open');
    $("#Ipopup").css(
    {
       width : "'"+swidth+"'px",
