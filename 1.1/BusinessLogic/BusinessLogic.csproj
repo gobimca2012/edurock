@@ -109,10 +109,6 @@
     <Compile Include="Controllers\ShareController.cs" />
     <Compile Include="Controllers\ShareGroupController.cs" />
     <Compile Include="Controllers\ShareUserController.cs" />
-    <Compile Include="ShoppingCartController\CustomerInfoController.cs" />
-    <Compile Include="ShoppingCartController\CustomerProductController.cs" />
-    <Compile Include="ShoppingCartController\ProductController.cs" />
-    <Compile Include="ShoppingCartController\ShoppingCartEnums.cs" />
     <Compile Include="StartExam.cs" />
     <Compile Include="Controllers\TutorialController.cs" />
     <Compile Include="Controllers\TutorialTypeController.cs" />

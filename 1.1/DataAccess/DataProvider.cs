@@ -378,6 +378,7 @@ namespace DataAccess
                 return true;
             }
         }
+        
         public void ChangePassword(int LoginUserID, string NewPassword)
         {
             UserDataContext db = new UserDataContext();

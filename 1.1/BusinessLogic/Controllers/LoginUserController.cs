@@ -461,6 +461,7 @@ namespace BusinessLogic
                 return false;
             }
         }
+      
         public bool ChangePassword(int LoginUserID,string OldPassword, string newPassword)
         {
             try
@@ -509,11 +510,45 @@ namespace BusinessLogic
                     }
 
                 }
+
                 return true;
             }
             catch
             {
                 return false;
+            }
+        }
+        public MembershipCreateStatus CreateShoppingUser(string Username, string Password, string Email)
+        {
+            try
+            {
+
+                MembershipCreateStatus status;
+                MembershipUser MemUser = Membership.CreateUser(Username, Password, Email, "No Question", "No Answer", true, out status);
+                if (status == MembershipCreateStatus.Success)
+                {
+                    try
+                    {
+                        int LoginUserID = Add(Username, Password, (Int16)UserTypeEnum.Student, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
+                        if (LoginUserID == 0)
+                        {
+                            Membership.DeleteUser(MemUser.UserName);
+                        }
+                        return status;
+                    }
+                    catch
+                    {
+                        Membership.DeleteUser(MemUser.UserName);
+                        return MembershipCreateStatus.ProviderError;
+                    }
+
+                }
+                return status;
+                
+            }
+            catch
+            {
+                return MembershipCreateStatus.ProviderError;
             }
         }
         public Dictionary<string, string> CreateUser(string Username, string Password, string Email, int UType)

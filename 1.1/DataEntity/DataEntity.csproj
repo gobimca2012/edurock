@@ -95,14 +95,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuestionAnswer.dbml</DependentUpon>
     </Compile>
-    <Compile Include="ShoppingCart.cs">
-      <DependentUpon>ShoppingCart.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="ShoppingCart.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShoppingCart.dbml</DependentUpon>
-    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>User.dbml</DependentUpon>
     </Compile>
@@ -196,18 +188,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ShoppingCart.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>ShoppingCart.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Widget.dbml.layout">
       <DependentUpon>Widget.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ShoppingCart.dbml.layout">
-      <DependentUpon>ShoppingCart.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
