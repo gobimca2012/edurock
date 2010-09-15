@@ -108,7 +108,7 @@ tinyMCE.init(
       // Add a custom button
       ed.addButton('mybutton',
       {
-         title : 'My button',         
+         title : 'My button',                 
          onclick : function()
          {
             vteditor=ed;
