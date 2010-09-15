@@ -83,54 +83,56 @@
                         <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
                     </div>
                 </div>
-                <div>
+                <div style="display:none">
                     <div>
-                        <asp:CheckBox ID="chkIsPublished" runat="server" Text="IsPublished" />
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <asp:CheckBox ID="chkHomeWorkEnable" runat="server" Text="HomeWork Enable" />
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label"></span>
+                        <div>
+                            <asp:CheckBox ID="chkIsPublished" runat="server" Text="IsPublished" />
+                        </div>
                     </div>
                     <div>
-                        <asp:CheckBox ID="chkAttendanceEnable" runat="server" Text="Attendance Enable" />
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label"></span>
+                        <div>
+                            <asp:CheckBox ID="chkHomeWorkEnable" runat="server" Text="HomeWork Enable" />
+                        </div>
                     </div>
                     <div>
-                        <asp:CheckBox ID="chkQuestionAnswerEnable" runat="server" Text="QuestionAnswer Enable" />
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label"></span>
-                    </div>
-                    <div>
-                        <asp:CheckBox ID="chkSelfRegistrationEnable" runat="server" Text="SelfRegistration Enable" />
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label"></span>
+                        <div>
+                            <span class="label"></span>
+                        </div>
+                        <div>
+                            <asp:CheckBox ID="chkAttendanceEnable" runat="server" Text="Attendance Enable" />
+                        </div>
                     </div>
                     <div>
-                        <asp:CheckBox ID="chkIsFree" runat="server" Text="Free Course" />
+                        <div>
+                            <span class="label"></span>
+                        </div>
+                        <div>
+                            <asp:CheckBox ID="chkQuestionAnswerEnable" runat="server" Text="QuestionAnswer Enable" />
+                        </div>
                     </div>
-                </div>
-                <div>
                     <div>
-                        <span class="label">Price</span>
+                        <div>
+                            <span class="label"></span>
+                        </div>
+                        <div>
+                            <asp:CheckBox ID="chkSelfRegistrationEnable" runat="server" Text="SelfRegistration Enable" />
+                        </div>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
+                        <div>
+                            <span class="label"></span>
+                        </div>
+                        <div>
+                            <asp:CheckBox ID="chkIsFree" runat="server" Text="Free Course" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">Price</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
+                        </div>
                     </div>
                 </div>
             </div>

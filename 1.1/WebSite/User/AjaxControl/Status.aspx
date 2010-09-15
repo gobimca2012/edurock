@@ -20,7 +20,7 @@
         <div style="text-align: right">
             <aspajax:AjaxLinkButton ID="lnkUpdateStatus" runat="server" CssClass="tp" rel="Update your status"
                 EnableViewState="False" Increment="False" RequestContainner="#changestatus" ResponseContainner="#changestatus"
-                OnAjaxClick="UpdateAjaxClick" Pagger="False"><div class="btn" style="width:90px;float:right"> Update Status</div></aspajax:AjaxLinkButton>
+                OnAjaxClick="UpdateAjaxClick" Pagger="False"><div class="btn" style="float:right"> Update Status</div></aspajax:AjaxLinkButton>
             <div style="clear: both">
             </div>
         </div>

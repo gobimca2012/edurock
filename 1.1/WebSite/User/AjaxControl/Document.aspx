@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         <a id="lblFilePath" runat="server" target="_blank">
-                            <div class="btn editbtn">
+                            <div class="btn ">
                                 Download</div>
                         </a>
                     </div>

@@ -76,6 +76,11 @@ public partial class User_AjaxControl_Lander : AjaxPage
         {
             new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString());
         }
+        CreateBreadCum();
+       
+    }
+    private void CreateBreadCum()
+    {
         string Script = "";
         if (ICID > 0 && LoginUserID > 0)
         {

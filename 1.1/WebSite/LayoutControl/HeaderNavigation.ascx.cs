@@ -28,7 +28,7 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
             lnkLogout.Visible = true;
             lilogout.Visible = true;
             liCreate.Visible = false;
-            lnkLogin.Text = new UserAuthontication().LoggedInUserName;
+            lnkLogin.Text =string.Format("<div class='btn'>Welcome {0}</div>", new UserAuthontication().LoggedInUserName);
             if (new UserAuthontication().LoggedInUserName.Trim().ToLower() == "admin")
             {
                 ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/AdminNavigation.ascx"));

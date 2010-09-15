@@ -57,6 +57,7 @@ public partial class User_AjaxControl_MyLander : AjaxPage
             lnkMyQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx") + "?icid=" + ICID.ToString()+"&usid="+LoginUserID.ToString();
             lnkMyArticle.NavigateUrl = ResolveUrl("~/User/AjaxControl/ArticleInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
             lnkMyAll.NavigateUrl = ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
+            //lnkMyAll.NavigateUrl= ResolveUrl("~/User/WidgetPage.aspx") + "?usid=" + Request.Params["usid"];
             //lnktut.NavigateUrl = ResolveUrl("~/All/Ajaxer/TutorialInfoView.aspx") + "?icid=" + ICID.ToString();
             lnkMyExam.NavigateUrl = ResolveUrl("~/User/AjaxControl/ExamInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
             lnkMyHomeWork.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWorkInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();

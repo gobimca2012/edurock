@@ -573,7 +573,7 @@ function closePop(rid,rurl)
 }
 function closeEditorPopUp(content)
 {
-  alert("aa");
+  //alert("aa");
   alert(vteditor);
    vteditor.selection.setContent('<img src="'+content+'" title="img"></img>');
    $("#ipop").dialog('close');
