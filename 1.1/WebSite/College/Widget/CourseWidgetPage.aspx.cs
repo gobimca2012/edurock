@@ -14,7 +14,7 @@ using BusinessLogic;
 using DataEntity;
 using Common;
 
-public partial class College_Widget_WidgetPage : WidgetContainner
+public partial class College_Widget_CourseWidgetPage : WidgetContainner
 {
     private int LoginUserID
     {
@@ -82,6 +82,7 @@ public partial class College_Widget_WidgetPage : WidgetContainner
             lnkEdit.Visible = false;
             divEdit.Visible = false;
             divwidmanager.Visible = false;
+            lnkShare.Visible = false;
         }
         else
         {

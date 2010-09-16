@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CourseWidgetPage.aspx.cs"
-    Inherits="College_Widget_WidgetPage" %>
+    Inherits="College_Widget_CourseWidgetPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -15,7 +15,9 @@
                     id="divEdit" runat="server">
                     <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink></div>
                 <div class="fl">
-                    <aspajax:HyperLink ID="lnkShare" runat="server"  ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></div>
+                    <aspajax:HyperLink ID="lnkShare" runat="server" ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></div>
+            </div>
+            <div class="clear">
             </div>
             <div id="divwidmanager" runat="server" class="clear">
                 <div id="widgetmanager">
