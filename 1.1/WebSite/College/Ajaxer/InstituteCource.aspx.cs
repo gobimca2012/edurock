@@ -41,41 +41,7 @@ public partial class College_Ajaxer_InstituteCource : AjaxPage
 
                 lblMetaKeyword.InnerHtml = data.MetaKeyword.ToString();
 
-            if (data.StartDate != null)
 
-                lblStartDate.InnerHtml = data.StartDate.ToString();
-
-            if (data.EndDate != null)
-
-                lblEndDate.InnerHtml = data.EndDate.ToString();
-
-            if (data.IsPublished != null)
-
-                lblIsPublished.InnerHtml = data.IsPublished.ToString();
-
-            if (data.HomeWorkEnable != null)
-
-                lblHomeWorkEnable.InnerHtml = data.HomeWorkEnable.ToString();
-
-            if (data.AttendanceEnable != null)
-
-                lblAttendanceEnable.InnerHtml = data.AttendanceEnable.ToString();
-
-            if (data.QuestionAnswerEnable != null)
-
-                lblQuestionAnswerEnable.InnerHtml = data.QuestionAnswerEnable.ToString();
-
-            if (data.SelfRegistrationEnable != null)
-
-                lblSelfRegistrationEnable.InnerHtml = data.SelfRegistrationEnable.ToString();
-
-            if (data.IsFree != null)
-
-                lblIsFree.InnerHtml = data.IsFree.ToString();
-
-            if (data.Price != null)
-
-                lblPrice.InnerHtml = data.Price.ToString();
 
             if (data.Modifieddate != null)
 

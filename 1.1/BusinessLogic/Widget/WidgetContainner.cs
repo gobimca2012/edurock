@@ -37,7 +37,7 @@ namespace BusinessLogic
                 }
             }
         }
-        protected abstract void GetWidgetsData(out WidgetHelper widgetData);
+        protected abstract void GetWidgetsPageData(out WidgetHelper widgetData);
         protected abstract void CreateControls(Guid pageID);
         protected void LoadWidget(string ColumnID,Guid WidgetID,string WidgetUrl)
         {
@@ -67,7 +67,7 @@ namespace BusinessLogic
             objWidgetScript = new JScripter.Widget(this.Page, false);
             base.OnInit(e);
         }
-        protected void GenerateWidgetPage(WidgetHelper widgetData)
+        protected  virtual void GenerateWidgetPage(WidgetHelper widgetData)
         {
             JScripter.Widget objWidgetScript = new JScripter.Widget(this.Page, false);
             foreach (Widget wd in widgetData.LeftColumn)
@@ -93,7 +93,7 @@ namespace BusinessLogic
         }
         protected override void OnLoad(EventArgs e)
         {
-            GetWidgetsData(out widgetData);
+            GetWidgetsPageData(out widgetData);
             GenerateWidgetPage(widgetData);
             CreateControls(widgetData.PageID);
             base.OnLoad(e);

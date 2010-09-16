@@ -22,12 +22,10 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
         lnkUpdateInstituteCource.EnableValidation = true;
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddInstituteCource.ClientID);
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateInstituteCource.ClientID);
-        objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
+       
         objValidate.Medatory(txtCourceName, "Please enter Course Name", this.Page);
         objValidate.DrowDownMendatory(ddCatagory, "Please select Category", this.Page,"0");
-        objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
-      //  objValidate.DrowDownMendatory(ddCource, "Please select Course", this.Page,"0");
-        objValidate.DigitOnly(txtPrice, "Please enter Number only", this.Page);
+       
         
 
 
@@ -47,53 +45,15 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
             string MetaKeyword; if (false) { throw new Exception(""); } MetaKeyword = HtmlHelper.ControlValue(txtMetaKeyword.ClientID);
 
-            DateTime StartDate; if (false) { throw new Exception(""); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
-
-            DateTime EndDate; if (false) { throw new Exception(""); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
-
-            bool IsPublished = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkIsPublished.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkIsPublished.ClientID) == "on")
-                    IsPublished = true;
-
-            bool HomeWorkEnable = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkHomeWorkEnable.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkHomeWorkEnable.ClientID) == "on")
-                    HomeWorkEnable = true;
-
-            bool AttendanceEnable = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkAttendanceEnable.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkAttendanceEnable.ClientID) == "on")
-                    AttendanceEnable = true;
-
-            bool QuestionAnswerEnable = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkQuestionAnswerEnable.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkQuestionAnswerEnable.ClientID) == "on")
-                    QuestionAnswerEnable = true;
-
-            bool SelfRegistrationEnable = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkSelfRegistrationEnable.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkSelfRegistrationEnable.ClientID) == "on")
-                    SelfRegistrationEnable = true;
-
-            bool IsFree = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkIsFree.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkIsFree.ClientID) == "on")
-                    IsFree = true;
-
-            decimal Price = 0;
-            if (HtmlHelper.ControlValue(txtPrice.ClientID) != "")
-            {
-                Price = Convert.ToDecimal(HtmlHelper.ControlValue(txtPrice.ClientID));
-            }
+           
 
             DateTime Modifieddate = DateTime.Now;
             string CourseName = HtmlHelper.ControlValue(txtCourceName.ClientID);
             int CourceCategoryID = Convert.ToInt32(HtmlHelper.ControlValue(ddCatagory.ClientID));
 
-            new InstituteCourceController().Add(InstituteID, CourceCategoryID,CourseName, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
+            int InstituteCourseID=new InstituteCourceController().Add(InstituteID, CourceCategoryID,CourseName, MetaDescription, MetaKeyword, Modifieddate);
             Session[SessionName.SucessMessage.ToString()] = string.Format("{0} has been added Successfully", "Course");
-            Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
+            Response.Redirect("~/College/Widget/CourseWidgetPage.aspx?icid=" + InstituteCourseID.ToString());
         }
         catch (Exception ex)
         {
@@ -116,50 +76,11 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
             string MetaKeyword; if (false) { throw new Exception(""); } MetaKeyword = HtmlHelper.ControlValue(txtMetaKeyword.ClientID);
 
-            DateTime StartDate; if (false) { throw new Exception(""); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
-
-            DateTime EndDate; if (false) { throw new Exception(""); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
-
-
-            bool IsPublished = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkIsPublished.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkIsPublished.ClientID) == "on")
-                    IsPublished = true;
-
-            bool HomeWorkEnable = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkHomeWorkEnable.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkHomeWorkEnable.ClientID) == "on")
-                    HomeWorkEnable = true;
-
-            bool AttendanceEnable = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkAttendanceEnable.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkAttendanceEnable.ClientID) == "on")
-                    AttendanceEnable = true;
-
-            bool QuestionAnswerEnable = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkQuestionAnswerEnable.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkQuestionAnswerEnable.ClientID) == "on")
-                    QuestionAnswerEnable = true;
-
-            bool SelfRegistrationEnable = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkSelfRegistrationEnable.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkSelfRegistrationEnable.ClientID) == "on")
-                    SelfRegistrationEnable = true;
-
-            bool IsFree = false; if (false) { throw new Exception(""); }
-            if (HtmlHelper.ControlValue(chkIsFree.ClientID) != "")
-                if (HtmlHelper.ControlValue(chkIsFree.ClientID) == "on")
-                    IsFree = true;
-
-            decimal Price = 0;
-            if (HtmlHelper.ControlValue(txtPrice.ClientID) != "")
-            {
-                Price = Convert.ToDecimal(HtmlHelper.ControlValue(txtPrice.ClientID));
-            }
+           
             DateTime Modifieddate = DateTime.Now;
             string CourseName = HtmlHelper.ControlValue(txtCourceName.ClientID);
             int CourceCategoryID = Convert.ToInt32(HtmlHelper.ControlValue(ddCatagory.ClientID));
-            new InstituteCourceController().UpdateByInstituteCourceID(InstituteCourceID, CourceCategoryID, CourseName, MetaDescription, MetaKeyword, StartDate, EndDate, IsPublished, HomeWorkEnable, AttendanceEnable, QuestionAnswerEnable, SelfRegistrationEnable, IsFree, Price, Modifieddate);
+            new InstituteCourceController().UpdateByInstituteCourceID(InstituteCourceID, CourceCategoryID, CourseName, MetaDescription, MetaKeyword, Modifieddate);
             Session[SessionName.SucessMessage.ToString()] = string.Format("{0} has been Updated Successfully", "Course");
             Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
         }
@@ -185,21 +106,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
             txtMetaKeyword.Text = data.MetaKeyword;
 
-            txtStartDate.Text = data.StartDate.ToString();
 
-            txtEndDate.Text = data.EndDate.ToString();
-
-            chkIsPublished.Checked = Convert.ToBoolean(data.IsPublished);
-
-            chkHomeWorkEnable.Checked = Convert.ToBoolean(data.HomeWorkEnable);
-
-            chkAttendanceEnable.Checked = Convert.ToBoolean(data.AttendanceEnable);
-
-            chkQuestionAnswerEnable.Checked = Convert.ToBoolean(data.QuestionAnswerEnable);
-
-            chkSelfRegistrationEnable.Checked = Convert.ToBoolean(data.SelfRegistrationEnable);
-
-            chkIsFree.Checked = Convert.ToBoolean(data.IsFree);
 
 
 
@@ -227,10 +134,8 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
     protected void Page_Load(object sender, EventArgs e)
     {
         FormValidation();
-        JScripter.DatePicker objdate = new JScripter.DatePicker(this.Page, true);
+       
         new JScripter.TinyMCE(this.Page).Create();
-        objdate.DatePickerTextBox(txtStartDate);
-        objdate.DatePickerTextBox(txtEndDate);
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];

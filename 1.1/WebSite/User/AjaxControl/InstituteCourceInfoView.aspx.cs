@@ -46,7 +46,8 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
     }
     private void BindList()
     {
-        ListInstituteCource.DataSource = new InstituteCourceController().GetByCourceUserID(new UserAuthontication().UserInstituteID, new UserAuthontication().LoggedInUserID);
+        //ListInstituteCource.DataSource = new InstituteCourceController().GetByCourceUserID(new UserAuthontication().UserInstituteID, new UserAuthontication().LoggedInUserID);
+        ListInstituteCource.DataSource = new InstituteCourceController().GetbyInstituteID(new UserAuthontication().UserInstituteID);
         ListInstituteCource.DataBind();
     }
  

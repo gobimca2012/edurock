@@ -280,7 +280,7 @@ namespace BusinessLogic
             try
             {
                 int ID = new DataProvider().CourceAdd(CourceCatagoryID, CourceName, Description, CourceType, Modifieddate);
-                new DataProvider().InstituteCourceAdd(new UserAuthontication().InstituteID, ID, CourceName, "", DateTime.Now, DateTime.Now.AddYears(3), true, true, true, true, true, true, 0, DateTime.Now);
+                new DataProvider().InstituteCourceAdd(new UserAuthontication().InstituteID, ID, CourceName, "", DateTime.Now);
                 return ID;
             }
             catch (Exception ex)

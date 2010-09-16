@@ -107,10 +107,10 @@ public partial class User_AjaxControl_AllContent : WidgetControl
         {
             AjaxState["usid"] = Request.Params["usid"];
         }
-        if (_InstituteCourceID > 0)
-        {
-            objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/AboutWidget.aspx") + "?icid=" + _InstituteCourceID.ToString());
-        }
+        //if (_InstituteCourceID > 0)
+        //{
+        //    objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/AboutWidget.aspx") + "?icid=" + _InstituteCourceID.ToString());
+        //}
         else if (_LoginUserID > 0)
         {
            // objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/PublicUserInfoView.aspx") + "?usid=" + _LoginUserID.ToString());

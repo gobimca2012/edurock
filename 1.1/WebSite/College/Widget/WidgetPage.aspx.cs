@@ -32,11 +32,13 @@ public partial class College_Widget_WidgetPage : WidgetContainner
         RightColumnID = "#widgetright";
         base.OnLoad(e);
     }
-    protected override void GetWidgetsData(out WidgetHelper widgetData)
+    protected override void GetWidgetsPageData(out WidgetHelper widgetData)
     {
         widgetData = new WidgetHelper();
         widgetData.GetPage(new UserAuthontication().InstituteID.ToString(), PageTypeEnum.InstitutePage);
     }
+
+   
     protected override void CreateControls(Guid pageID)
     {
         if (new UserAuthontication().UserType != UserTypeEnum.College)
@@ -47,7 +49,7 @@ public partial class College_Widget_WidgetPage : WidgetContainner
         }
         else
         {
-            lnkEdit.NavigateUrl = ResolveUrl("~/college/widget/WidgetPage.aspx") + "?usid=" + new UserAuthontication().LoggedInUserID.ToString() + "&ed=e";
+            lnkEdit.NavigateUrl = ResolveUrl("~/college/widget/WidgetPage.aspx") + "?icid=" + new UserAuthontication().LoggedInUserID.ToString() + "&ed=e";
         }
         if (IsEditable)
         {

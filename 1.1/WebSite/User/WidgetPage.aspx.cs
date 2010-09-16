@@ -59,10 +59,10 @@ public partial class User_WidgetPage : WidgetContainner
             }
         }
     }
-
-    protected override void GetWidgetsData(out WidgetHelper widgetData)
+    protected override void GetWidgetsPageData(out WidgetHelper widgetData)
     {
         widgetData = new WidgetHelper();
         widgetData.GetPage(LoginUserID, PageTypeEnum.ProfilePage);
     }
+    
 }

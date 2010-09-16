@@ -72,7 +72,11 @@ public partial class User_AjaxControl_Lander : AjaxPage
         lnkVideo.NavigateUrl = ResolveUrl("~/User/AjaxControl/VideoInfoView.aspx") + "?dtype=" + (int)ContentTypeEnum.Video + "&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
         lnkUsers.NavigateUrl = ResolveUrl("~/User/AjaxControl/ICUserInfoView.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
         lnkBookmark.NavigateUrl = ResolveUrl("~/User/AjaxControl/BookMarkInfoView.aspx") + "?dtype=" + (int)ContentTypeEnum.BookMark + "&icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString();
-        if (Request.Params["ptype"] == null)
+        if (ICID > 0)
+        {
+            new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/College/Widget/CourseWidgetPage.aspx") + "?icid=" + ICID.ToString());
+        }
+        else if (Request.Params["ptype"] == null)
         {
             new JScripter.Loader(this.Page, false).LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/AllContent.aspx") + "?icid=" + ICID.ToString() + "&usid=" + LoginUserID.ToString());
         }

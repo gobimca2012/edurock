@@ -16,6 +16,11 @@ namespace BusinessLogic
             get;
             set;
         }
+        public int LoginUserID
+        {
+            get;
+            set;
+        }
         public static bool IsEditMode()
         {
             if (HttpContext.Current.Request.Cookies[CookieName.WidgetEditMode.ToString()] != null)
@@ -56,10 +61,12 @@ namespace BusinessLogic
             if (data.Count > 0)
             {
                 PageID = data[0].PageID;
+                LoginUserID = data[0].LoginUserID;
             }
             else
             {
                 PageID = Guid.NewGuid();
+                LoginUserID = new UserAuthontication().LoggedInUserID;
                 new WidgetPageController().Add(PageID, new UserAuthontication().LoggedInUserID, (int)pagetype, ContentID, "new Page", DateTime.Now);
             }
             var widgets = new WidgetController().GetbyPageID(PageID);
@@ -106,7 +113,8 @@ namespace BusinessLogic
     public enum PageTypeEnum
     {
         ProfilePage = 0,
-        InstitutePage=1
+        InstitutePage=1,
+        InsituteCoursePage=2
     }
     public enum WidgetTypeEnum
     {
