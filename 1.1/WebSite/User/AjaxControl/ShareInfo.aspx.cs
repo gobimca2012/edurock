@@ -56,6 +56,10 @@ public partial class User_ShareInfo : AjaxPage
         }
         //if (!this.IsAjaxPostBack)
         {
+            if (Type != (int)ContentTypeEnum.InstituteCourse)
+            {
+                chkAddAllUser.Visible = false;
+            }
             BindUserData();
             BindGroupData();
             BindAllUser();
@@ -68,6 +72,8 @@ public partial class User_ShareInfo : AjaxPage
         {
             if (data[0].EnableAllUseView != null)
                 chkViewAllUser.Checked = (bool)data[0].EnableAllUseView;
+            if (data[0].EnableAllUserAdd != null)
+                chkAddAllUser.Checked = (bool)data[0].EnableAllUserAdd;
             if (data[0].EnableAllUserEdit != null)
                 chkEditAllUser.Checked = (bool)data[0].EnableAllUserEdit;
         }
@@ -115,25 +121,35 @@ public partial class User_ShareInfo : AjaxPage
 
     protected void SaveAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
-        List<CheckBoxDoubleValue> EditValueAll = HtmlHelper.CheckBoxDoubleList("chkAllEdit");
-        if (EditValueAll.Count > 0)
-            new ShareController().UpdateShareEditAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(EditValueAll[0].FirstValue));
+        #region Edit Save
+
+        
+        //List<CheckBoxDoubleValue> EditValueAll = HtmlHelper.CheckBoxDoubleList("chkAllEdit");
+        //if (EditValueAll.Count > 0)
+        //    new ShareController().UpdateShareEditAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(EditValueAll[0].FirstValue));
 
         List<CheckBoxDoubleValue> EditValue = HtmlHelper.CheckBoxDoubleList("chkEdit");
         for (int i = 0; i < EditValue.Count; i++)
         {
             new ShareUserController().UpdateEnableEdit(Convert.ToInt32(EditValue[i].SecondValue), QuestionID.ToString(), Type, Convert.ToBoolean(EditValue[i].FirstValue));
         }
+        #endregion
+        #region View Save
 
-
-        List<CheckBoxDoubleValue> ViewValueAll = HtmlHelper.CheckBoxDoubleList("chkAllView");
-        if (ViewValueAll.Count > 0)
-            new ShareController().UpdateShareViewAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(ViewValueAll[0].FirstValue));
+        
+        //List<CheckBoxDoubleValue> ViewValueAll = HtmlHelper.CheckBoxDoubleList("chkAllView");
+        //if (ViewValueAll.Count > 0)
+        //    new ShareController().UpdateShareViewAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(ViewValueAll[0].FirstValue));
         List<CheckBoxDoubleValue> ViewValue = HtmlHelper.CheckBoxDoubleList("chkView");
         for (int i = 0; i < ViewValue.Count; i++)
         {
             new ShareUserController().UpdateEnableView(Convert.ToInt32(ViewValue[i].SecondValue), QuestionID.ToString(), Type, Convert.ToBoolean(ViewValue[i].FirstValue));
         }
+
+        #endregion
+        //List<CheckBoxDoubleValue> AddValueAll = HtmlHelper.CheckBoxDoubleList("chkAllAdd");
+        //if (AddValueAll.Count > 0)
+        //    new ShareController().UpdateShareAddAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(ViewValueAll[0].FirstValue));
         List<CheckBoxDoubleValue> AddValue = HtmlHelper.CheckBoxDoubleList("chkAdd");
         for (int i = 0; i < AddValue.Count; i++)
         {
@@ -177,5 +193,63 @@ public partial class User_ShareInfo : AjaxPage
     protected void AjaxSearchUser(object sender, AjaxControl.AjaxEventArg e)
     {
         BindUserData(HtmlHelper.ControlValue(txtSearchUser.ClientID));
+    }
+    protected void LayoutCreated(object sender, EventArgs e)
+    {
+        HtmlTableCell tdcanadd=(HtmlTableCell) listUsers.FindControl("tdcanadd");
+        if (tdcanadd != null)
+        {
+            if (Type == (int)ContentTypeEnum.InstituteCourse)
+            {
+                tdcanadd.Visible = false;
+            }
+        }
+    }
+    protected void GroupLayoutCreated(object sender, EventArgs e)
+    {
+        HtmlTableCell tdcanadd = (HtmlTableCell)listUsers.FindControl("tdcanadd");
+        if (tdcanadd != null)
+        {
+            if (Type != (int)ContentTypeEnum.InstituteCourse)
+            {
+                tdcanadd.Visible = false;
+            }
+        }
+    }
+    protected void UserItemDataBound(object sender, ListViewItemEventArgs e)
+    {
+        ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        HtmlTableCell tdcanadd = (HtmlTableCell)currentItem.FindControl("tdcanadd");
+        if (tdcanadd != null)
+        {
+            if (Type != (int)ContentTypeEnum.InstituteCourse)
+            {
+                tdcanadd.Visible = false;
+            }
+        }
+    }
+    protected void GroupItemDataBound(object sender, ListViewItemEventArgs e)
+    {
+        ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+        HtmlTableCell tdcanadd = (HtmlTableCell)currentItem.FindControl("tdcanadd");
+        if (tdcanadd != null)
+        {
+            if (Type != (int)ContentTypeEnum.InstituteCourse)
+            {
+                tdcanadd.Visible = false;
+            }
+        }
+    }
+    protected void UpdateAllAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        List<CheckBoxDoubleValue> EditValueAll = HtmlHelper.CheckBoxDoubleList("chkAllEdit");
+        if (EditValueAll.Count > 0)
+            new ShareController().UpdateShareEditAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(EditValueAll[0].FirstValue));
+        List<CheckBoxDoubleValue> ViewValueAll = HtmlHelper.CheckBoxDoubleList("chkAllView");
+        if (ViewValueAll.Count > 0)
+            new ShareController().UpdateShareViewAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(ViewValueAll[0].FirstValue));
+        List<CheckBoxDoubleValue> AddValueAll = HtmlHelper.CheckBoxDoubleList("chkAllAdd");
+        if (AddValueAll.Count > 0)
+            new ShareController().UpdateShareAddAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(ViewValueAll[0].FirstValue));
     }
 }

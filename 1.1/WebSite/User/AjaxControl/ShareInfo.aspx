@@ -21,6 +21,11 @@
             <legend>All User Access</legend>
             <div>
                 <%--<asp:CheckBox ID="chkEditAllUser" runat="server" Text="Can Edit" Checked="false" />--%>
+                <aspajax:CheckBox ID="chkAddAllUser" CustomID="chkAllAdd$AllUSer" runat="server"
+                    Checked="false"></aspajax:CheckBox><span>All User Can Add</span>
+            </div>
+            <div>
+                <%--<asp:CheckBox ID="chkEditAllUser" runat="server" Text="Can Edit" Checked="false" />--%>
                 <aspajax:CheckBox ID="chkEditAllUser" CustomID="chkAllEdit$AllUSer" runat="server"
                     Checked="false"></aspajax:CheckBox><span>All User Can Edit</span>
             </div>
@@ -28,6 +33,11 @@
                 <%--<asp:CheckBox ID="chkViewAllUser" runat="server" Text="Can View" Checked="true"/>--%>
                 <aspajax:CheckBox ID="chkViewAllUser" CustomID="chkAllView$AllUSer" runat="server"
                     Checked="true"></aspajax:CheckBox><span>All User can View</span>
+            </div>
+            <div>
+                <aspajax:AjaxLinkButton ID="lnkUpdateAll" runat="server" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" EnableValidation="False" EnableViewState="False"
+                    Increment="False" OnAjaxClick="UpdateAllAjaxClick" Pagger="False"><div class="btn editbtn">Save</div></aspajax:AjaxLinkButton>
             </div>
         </fieldset>
         <div>
@@ -54,7 +64,7 @@
                     </div>
                 </div>
                 <div class="whitecont">
-                    <asp:ListView ID="listUsers" runat="server">
+                    <asp:ListView ID="listUsers" runat="server" OnLayoutCreated="LayoutCreated" OnItemDataBound="UserItemDataBound">
                         <LayoutTemplate>
                             <div>
                                 <table>
@@ -63,9 +73,9 @@
                                             <td>
                                                 Users
                                             </td>
-                                            <%-- <td>
-                                            Can Add
-                                        </td>--%>
+                                            <td id="tdcanadd" runat="server">
+                                                Can Add
+                                            </td>
                                             <td>
                                                 Can Edit
                                             </td>
@@ -86,10 +96,10 @@
                                 <td>
                                     <%#Eval("Username") %>
                                 </td>
-                                <%-- <td>
-                                <aspajax:CheckBox CustomID='<%#"chkAdd$"+Eval("LoginUserID").ToString()%>' ID="chkA"
-                                    runat="server" Checked='<%#Eval("EnableAdd") %>'></aspajax:CheckBox>
-                            </td>--%>
+                                <td id="tdcanadd" runat="server">
+                                    <aspajax:CheckBox CustomID='<%#"chkAdd$"+Eval("LoginUserID").ToString() %>' ID="chkA"
+                                        runat="server" Checked='<%#Eval("EnableAdd") %>'></aspajax:CheckBox>
+                                </td>
                                 <td>
                                     <aspajax:CheckBox CustomID='<%#"chkEdit$"+Eval("LoginUserID").ToString() %>' ID="chkE"
                                         runat="server" Checked='<%#Eval("EnableEdit") %>'></aspajax:CheckBox>
@@ -125,7 +135,8 @@
             </div>
             <div id="rolebox" style="display: none">
                 <div class="whitecont">
-                    <asp:ListView ID="ListGroup" runat="server">
+                    <asp:ListView ID="ListGroup" runat="server" OnLayoutCreated="GroupLayoutCreated"
+                        OnItemDataBound="GroupItemDataBound">
                         <LayoutTemplate>
                             <div>
                                 <table>
@@ -134,9 +145,9 @@
                                             <td>
                                                 Group
                                             </td>
-                                            <%--  <td>
-                                            Can Add
-                                        </td>--%>
+                                            <td id="tdcanadd" runat="server">
+                                                Can Add
+                                            </td>
                                             <td>
                                                 Can Edit
                                             </td>
@@ -157,10 +168,10 @@
                                 <td>
                                     <%#Eval("Name") %>
                                 </td>
-                                <%--<td>
-                                <aspajax:CheckBox CustomID='<%#"chkgAdd$"+Eval("InstituteUserTypeID").ToString()%>'
-                                    ID="chkgA" runat="server" Checked='<%#Eval("EnableAdd") %>'></aspajax:CheckBox>
-                            </td>--%>
+                                <td id="tdcanadd" runat="server">
+                                    <aspajax:CheckBox CustomID='<%#"chkgAdd$"+Eval("InstituteUserTypeID").ToString()%>'
+                                        ID="chkgA" runat="server" Checked='<%#Eval("EnableAdd") %>'></aspajax:CheckBox>
+                                </td>
                                 <td>
                                     <aspajax:CheckBox CustomID='<%#"chkgEdit$"+Eval("InstituteUserTypeID").ToString() %>'
                                         ID="chkgE" runat="server" Checked='<%#Eval("EnableEdit") %>'></aspajax:CheckBox>

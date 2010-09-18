@@ -13547,7 +13547,33 @@ namespace DataAccess
                 Share objShare = new Share();
                 objShare.EnableAllUserComment = true;
                 objShare.EnableAllUserEdit = false;
+                objShare.EnableAllUserAdd = false;
                 objShare.EnableAllUseView = EnableAllUseView;
+                objShare.ModifiedDate = DateTime.Now;
+                objShare.ObjectID = ObjectID;
+                objShare.ObjectType = ObjectType;
+                objShare.ShareID = Guid.NewGuid();
+                db.Shares.InsertOnSubmit(objShare);
+                db.SubmitChanges();
+            }
+
+        }
+        public void UpdateShareAddAllUser(int ObjectType, string ObjectID, bool EnableAllUseAdd)
+        {
+            UserDataContext db = new UserDataContext();
+            var data = (from p in db.Shares where p.ObjectID == ObjectID && p.ObjectType == ObjectType select p).ToList();
+            if (data.Count > 0)
+            {
+                data[0].EnableAllUserAdd = EnableAllUseAdd;
+                db.SubmitChanges();
+            }
+            else
+            {
+                Share objShare = new Share();
+                objShare.EnableAllUserComment = true;
+                objShare.EnableAllUserEdit = false;
+                objShare.EnableAllUseView = true;
+                objShare.EnableAllUserAdd = EnableAllUseAdd;
                 objShare.ModifiedDate = DateTime.Now;
                 objShare.ObjectID = ObjectID;
                 objShare.ObjectType = ObjectType;
@@ -13572,6 +13598,7 @@ namespace DataAccess
                 objShare.EnableAllUserComment = true;
                 objShare.EnableAllUserEdit = EnableAllUseEdit;
                 objShare.EnableAllUseView = true;
+                objShare.EnableAllUserAdd = false;
                 objShare.ModifiedDate = DateTime.Now;
                 objShare.ObjectID = ObjectID;
                 objShare.ObjectType = ObjectType;

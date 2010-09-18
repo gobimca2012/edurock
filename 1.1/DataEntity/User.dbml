@@ -100,19 +100,6 @@
       <Association Name="StudentLogin_Comment" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Share" Member="Shares">
-    <Type Name="Share">
-      <Column Name="ShareID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ObjectType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ObjectID" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="EnableAllUseView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EnableAllUserEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EnableAllUserComment" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Share_ShareGroup" Member="ShareGroups" OtherKey="ShareID" Type="ShareGroup" />
-      <Association Name="Share_ShareUser" Member="ShareUsers" OtherKey="ShareID" Type="ShareUser" />
-    </Type>
-  </Table>
   <Table Name="dbo.Document" Member="Documents">
     <Type Name="Document">
       <Column Name="DocumentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -183,6 +170,20 @@
       <Column Name="EditorLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="EditDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="BeforeEditContent" Type="System.Xml.Linq.XElement" DbType="Xml NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Share" Member="Shares">
+    <Type Name="Share">
+      <Column Name="ShareID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ObjectType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ObjectID" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="EnableAllUseView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAllUserEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAllUserAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAllUserComment" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Share_ShareGroup" Member="ShareGroups" OtherKey="ShareID" Type="ShareGroup" />
+      <Association Name="Share_ShareUser" Member="ShareUsers" OtherKey="ShareID" Type="ShareUser" />
     </Type>
   </Table>
   <Function Name="dbo.GetShareUser" Method="GetShareUser">

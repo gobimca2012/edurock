@@ -20,7 +20,7 @@
                             <td>
                                 <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> 
                             </td>
-                            <td>
+                           <%-- <td>
                                 StartDate
                             </td>
                             <td>
@@ -28,7 +28,7 @@
                             </td>
                             <td>
                                 IsPublished
-                            </td>
+                            </td>--%>
                             <%--<td>
                             HomeWorkEnable
                         </td>
@@ -66,7 +66,7 @@
                 <td>
                     <%#Eval("MetaKeyword") %>
                 </td>--%>
-                    <td>
+                   <%-- <td>
                         <%#Eval("StartDate") %>
                     </td>
                     <td>
@@ -74,7 +74,7 @@
                     </td>
                     <td>
                         <%#Eval("IsPublished") %>
-                    </td>
+                    </td>--%>
                     <%--<td>
                     <%#Eval("HomeWorkEnable") %>
                 </td>
