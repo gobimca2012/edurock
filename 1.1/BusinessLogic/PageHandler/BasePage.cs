@@ -19,7 +19,7 @@ namespace BusinessLogic
             objLoader = new Loader(this.Page, true);
             //MikeCompression.WhiteSpaceCompression objCom = new MikeCompression.WhiteSpaceCompression();
             //objCom.Compress();
-			this.Title = "Musester";
+			this.Title = "Cram Easy: Collaboration Knowledge Management System";
 		}
         protected override void OnLoad(EventArgs e)
         {

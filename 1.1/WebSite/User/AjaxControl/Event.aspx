@@ -18,98 +18,98 @@
                 <span style="float: left">
                     <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn"> <%=Resources.Default.Edit_Text %></div></aspajax:HyperLink></span>
                 <span style="float: left">
-                    <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  Share Event</div></aspajax:HyperLink></span>
+                    <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></span>
                 <div style="clear: both">
                 </div>
             </div>
-        <div style="clear: both">
-        </div>
-    </div>
-    <div id="Event" class="whitecont">
-        <div class="fuleft">
-            <div>
-                <div>
-                    <span class="label">Title</span>
-                </div>
-                <div>
-                    <span id="lblTitle" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">Description</span>
-                </div>
-                <div>
-                    <span id="lblDescription" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">MetaDescription</span>
-                </div>
-                <div>
-                    <span id="lblMetaDescription" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">StartDate</span>
-                </div>
-                <div>
-                    <span id="lblStartDate" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">EndDate</span>
-                </div>
-                <div>
-                    <span id="lblEndDate" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">Tag</span>
-                </div>
-                <div>
-                    <span id="lblTag" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">ContactPerson</span>
-                </div>
-                <div>
-                    <span id="lblContactPerson" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">ContactEmail</span>
-                </div>
-                <div>
-                    <span id="lblContactEmail" runat="server"></span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <span class="label">ContactPhone</span>
-                </div>
-                <div>
-                    <span id="lblContactPhone" runat="server"></span>
-                </div>
+            <div style="clear: both">
             </div>
         </div>
-        <div class="furight">
-            <uc1:FullViewSideInfo ID="FullViewSideInfo1" runat="server" />
+        <div id="Event" class="whitecont">
+            <div class="fuleft">
+                <div>
+                    <div>
+                        <span class="label">Title</span>
+                    </div>
+                    <div>
+                        <span id="lblTitle" runat="server"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">Description</span>
+                    </div>
+                    <div>
+                        <span id="lblDescription" runat="server"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">MetaDescription</span>
+                    </div>
+                    <div>
+                        <span id="lblMetaDescription" runat="server"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">StartDate</span>
+                    </div>
+                    <div>
+                        <span id="lblStartDate" runat="server"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">EndDate</span>
+                    </div>
+                    <div>
+                        <span id="lblEndDate" runat="server"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">Tag</span>
+                    </div>
+                    <div>
+                        <span id="lblTag" runat="server"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">ContactPerson</span>
+                    </div>
+                    <div>
+                        <span id="lblContactPerson" runat="server"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">ContactEmail</span>
+                    </div>
+                    <div>
+                        <span id="lblContactEmail" runat="server"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="label">ContactPhone</span>
+                    </div>
+                    <div>
+                        <span id="lblContactPhone" runat="server"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="furight">
+                <uc1:FullViewSideInfo ID="FullViewSideInfo1" runat="server" />
+            </div>
+            <div style="clear: both">
+            </div>
+            <div id="comment">
+            </div>
+            <div id="newcommentbox">
+            </div>
         </div>
-        <div style="clear: both">
-        </div>
-        <div id="comment">
-        </div>
-        <div id="newcommentbox">
-        </div>
-    </div>
     </div>
     </form>
 </body>

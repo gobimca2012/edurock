@@ -24,6 +24,7 @@ public partial class College_Ajaxer_PortalSetting : AjaxPage
     }
     private void BindData()
     {
+        Session.Remove(SessionName.PortalSetting.ToString());
         PortalSetting data = new PortalSettingHelper().Get();
         if (data != null)
         {

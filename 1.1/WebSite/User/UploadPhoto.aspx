@@ -34,22 +34,11 @@
                         DataKeyField="FilePath" RepeatColumns="3">
                         <ItemTemplate>
                             <asp:LinkButton ID="lnkUplo" runat="server" CommandName="upload">
-                                <asp:Image ID="img" runat="server" Width="50px" Height="50px" ImageUrl='<%#ResolveUrl(Eval("FilePath").ToString()) %>' />
+                                <asp:Image ID="img" runat="server" Width="50px" Height="50px" ImageUrl='<%#ResolveUrl(Eval("ImagePath").ToString()) %>' />
                             </asp:LinkButton>
                         </ItemTemplate>
                     </asp:DataList>
-                   <%-- <asp:ListView ID="ImageList" runat="server" DataKeyField="FilePath" OnItemCommand="ImageListViewItemCommand">
-                        <LayoutTemplate>
-                            <div>
-                                <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                            </div>
-                        </LayoutTemplate>
-                        <ItemTemplate>
-                            <asp:Image ID="img" runat="server" Width="50px" Height="50px" ImageUrl='<%#ResolveUrl(Eval("FilePath").ToString()) %>' />
-                            <asp:LinkButton ID="lnkUplo" runat="server" CommandName="upload">Upload
-                            </asp:LinkButton>
-                        </ItemTemplate>
-                    </asp:ListView>--%>
+                  
                 </div>
             </div>
         </div>

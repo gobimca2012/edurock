@@ -36,6 +36,7 @@
                             <div class="btn ">
                                 Download</div>
                         </a>
+                        <a id="lnkViewDoc" runat="server" target="_blank">View</a>
                     </div>
                 </div>
                 <div>

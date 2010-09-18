@@ -20,7 +20,7 @@
                 <span style="float: left">
                     <aspajax:HyperLink ID="lnkQuestion" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn"> Questions</div></aspajax:HyperLink></span></span>
                 <span style="float: left">
-                    <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  Share Exam</div></aspajax:HyperLink>
+                    <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink>
                 </span>
                 <div style="clear: both">
                 </div>

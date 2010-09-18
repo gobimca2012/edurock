@@ -201,7 +201,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             {
                 AjaxState["dtype"] = Request.Params["dtype"];
             }
-            objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx") + "?uptype=" + _DocumentType.ToString(), "ipop", "300", "100", ResolveUrl("~/User/AjaxControl/UploadResponse.aspx"), "#popupresponce");
+            objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx") + "?uptype=" + _DocumentType.ToString(), "ipop", "600", "600", ResolveUrl("~/User/AjaxControl/UploadResponse.aspx"), "#popupresponce");
             //objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx")+"?uptype="+_DocumentType.ToString(), "#ipop");
             if (Request.Params["did"] != null)
             {

@@ -12,5 +12,10 @@ namespace BusinessLogic.Entity
             get;
             set;
         }
+        public string Imagepath
+        {
+            get;
+            set;
+        }
     }
 }

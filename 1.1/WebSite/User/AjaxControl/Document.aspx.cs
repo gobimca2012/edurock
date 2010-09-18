@@ -17,7 +17,7 @@ public partial class User_AjaxControl_Document : AjaxPage
 {
     private void ControlManager(int LoginUserID)
     {
-        
+
         if (new UserAuthontication().IsOwn(LoginUserID))
         {
             //lnkDelete.Visible = true;
@@ -84,6 +84,7 @@ public partial class User_AjaxControl_Document : AjaxPage
                 else if (data.DocumentType == (int)DocumentTypeEnum.Document)
                 {
                     lblFilePath.HRef = ResolveUrl(data.FilePath.ToString());
+                    lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + ResolveUrl(data.FilePath.ToString());
                 }
                 else if (data.DocumentType == (int)DocumentTypeEnum.Audio || data.DocumentType == (int)DocumentTypeEnum.Video)
                 {
@@ -129,7 +130,7 @@ public partial class User_AjaxControl_Document : AjaxPage
             BindData();
             objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + (_ContentType).ToString());
             lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + (_ContentType).ToString();
-            lnkHistory.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentHistoryView.aspx") + "?conid=" + ID.ToString() ;
+            lnkHistory.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentHistoryView.aspx") + "?conid=" + ID.ToString();
         }
 
     }

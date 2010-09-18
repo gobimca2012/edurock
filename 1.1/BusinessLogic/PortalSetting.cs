@@ -25,6 +25,16 @@ namespace BusinessLogic.Controller
             get;
             set;
         }
+        public string UserLimit
+        {
+            get;
+            set;
+        }
+        public string SpaceLimit
+        {
+            get;
+            set;
+        }
         
     }
     public class PortalSettingHelper
@@ -60,6 +70,13 @@ namespace BusinessLogic.Controller
             HttpContext.Current.Session.Remove(SessionName.PortalSetting.ToString());
             XElement psetting= new XMLHelper().Serialize(obj);
             new PortalSettingController().Add(Guid.NewGuid(), new UserAuthontication().InstituteID, psetting, DateTime.Now);
+        }
+        public bool Add(int InstituteID,PortalSetting obj)
+        {
+            //HttpContext.Current.Session.Remove(SessionName.PortalSetting.ToString());
+            XElement psetting = new XMLHelper().Serialize(obj);
+            bool Status=new PortalSettingController().Add(Guid.NewGuid(), InstituteID, psetting, DateTime.Now);
+            return Status;
         }
     }
 }

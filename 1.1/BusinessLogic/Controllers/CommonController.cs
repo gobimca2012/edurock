@@ -149,6 +149,12 @@ namespace BusinessLogic
             fl.SaveAs(FilePath);
             return ReturnFilePath;
         }
+        public static string GetFileNameFromFilePath(string FilePath)
+        {
+            int startIndex=FilePath.LastIndexOf('\\')+2;
+            string repath=FilePath.Substring(startIndex, FilePath.Length - startIndex);
+            return repath;
+        }
         public string UploadAudio(FileUpload fl)
         {
 
