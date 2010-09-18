@@ -199,7 +199,7 @@ public partial class User_ShareInfo : AjaxPage
         HtmlTableCell tdcanadd=(HtmlTableCell) listUsers.FindControl("tdcanadd");
         if (tdcanadd != null)
         {
-            if (Type == (int)ContentTypeEnum.InstituteCourse)
+            if (Type != (int)ContentTypeEnum.InstituteCourse)
             {
                 tdcanadd.Visible = false;
             }
@@ -250,6 +250,7 @@ public partial class User_ShareInfo : AjaxPage
             new ShareController().UpdateShareViewAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(ViewValueAll[0].FirstValue));
         List<CheckBoxDoubleValue> AddValueAll = HtmlHelper.CheckBoxDoubleList("chkAllAdd");
         if (AddValueAll.Count > 0)
-            new ShareController().UpdateShareAddAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(ViewValueAll[0].FirstValue));
+            new ShareController().UpdateShareAddAllUser(Type, QuestionID.ToString(), Convert.ToBoolean(AddValueAll[0].FirstValue));
+        BindAllUser();
     }
 }

@@ -152,7 +152,7 @@ namespace BusinessLogic
 
             try
             {
-                int ID = new DataProvider().InstituteCourceAdd(InstituteID, CourceCatagoryID, CourceName, MetaDescription, MetaKeyword,Modifieddate);
+                int ID = new DataProvider().InstituteCourceAdd(InstituteID, CourceCatagoryID,new UserAuthontication().LoggedInUserID, CourceName, MetaDescription, MetaKeyword,Modifieddate);
                 return ID;
             }
             catch (Exception ex)

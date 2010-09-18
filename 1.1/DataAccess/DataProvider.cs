@@ -6358,7 +6358,7 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
-        public int InstituteCourceAdd(int InstituteID, int CourceCatagoryID, string CourceName, string MetaDescription, string MetaKeyword, DateTime Modifieddate)
+        public int InstituteCourceAdd(int InstituteID, int CourceCatagoryID,int LoginUserID, string CourceName, string MetaDescription, string MetaKeyword, DateTime Modifieddate)
         {
             InstituteCource ObjInstituteCource = new InstituteCource();
 
@@ -6367,7 +6367,7 @@ namespace DataAccess
 
 
             ObjInstituteCource.CourceID = CourceID;
-
+            ObjInstituteCource.LoginUserID = LoginUserID;
 
             ObjInstituteCource.MetaDescription = MetaDescription;
 

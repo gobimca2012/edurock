@@ -421,6 +421,15 @@ namespace BusinessLogic
                 return new List<GetGroupObjectAccessResult>();
             }
         }
+        public ShareContent GetSpaceAccess(string ObjectID, int ObjectType, int LoginUserID)
+        {
+            var data = new InstituteCourceController().GetbyInstituteCourceID(Convert.ToInt32(ObjectID));
+
+            ShareContent access = GetAccess(ObjectID, ObjectType, LoginUserID, data[0].LoginUserID.Value);
+            return access;
+
+
+        }
         public ShareContent GetAccess(string ObjectID, int ObjectType, int LoginUserID, int ObjectLoginUserID)
         {
             ShareContent objShareContent = new ShareContent();
@@ -431,11 +440,22 @@ namespace BusinessLogic
                 objShareContent.IsEditablable = false;
                 objShareContent.IsAddable = false;
                 var dataShareData = new ShareController().Get(ObjectID, ObjectType);
+                if (dataShareData.Count > 0)
+                {
+                    if (dataShareData[0].EnableAllUserAdd == null)
+                        dataShareData[0].EnableAllUserAdd = false;
+                    if (dataShareData[0].EnableAllUserComment == null)
+                        dataShareData[0].EnableAllUserComment = true;
+                    if (dataShareData[0].EnableAllUserEdit == null)
+                        dataShareData[0].EnableAllUserEdit = false;
+                    if (dataShareData[0].EnableAllUseView == null)
+                        dataShareData[0].EnableAllUseView =true;
+                }
                 var dataShareUser = GetUserObjectAccess(LoginUserID, ObjectID, ObjectType);
                 var dataGroupUser = GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType);
                 #region View Rights
-                
-                
+
+
                 foreach (GetGroupObjectAccessResult ga in dataGroupUser)
                 {
                     if ((bool)ga.EnableView && !objShareContent.IsViewable)
@@ -444,7 +464,7 @@ namespace BusinessLogic
                     }
                 }
                 if (dataShareUser.Count > 0 && (bool)dataShareUser[0].EnableView && !objShareContent.IsViewable)
-                {                    
+                {
                     {
                         objShareContent.IsViewable = true;
                     }

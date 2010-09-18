@@ -56,16 +56,24 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
             }
         }
     }
+    private ShareContent UserAccess
+    {
+        get;
+        set;
+
+    }
     private int _InstituteCourceID
     {
         get
         {
             if (AjaxState.ContainsKey("icid"))
             {
+               
                 return Convert.ToInt32(AjaxState["icid"]);
             }
             else
             {
+                hpAddDocument.Visible = true;
                 return 0;
             }
         }
@@ -99,7 +107,7 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
-            
+
         }
         if (Request.Params["usid"] != null)
         {
@@ -121,6 +129,18 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
         }
         new JScripter.Effect(this.Page, false).VisibleOnMouseHover(".dasbo");
 
+    }
+    protected override void OnPreRender(EventArgs e)
+    {
+        if (_InstituteCourceID > 0)
+        {
+            UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse,new UserAuthontication().LoggedInUserID);
+            if (!UserAccess.IsAddable)
+            {
+                hpAddDocument.Visible = false;
+            }
+        }
+        base.OnPreRender(e);
     }
     private string Keywork
     {
@@ -168,7 +188,7 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
         ListDocument.DataBind();
 
     }
-    
+
     private void PaggerLinkManager()
     {
 

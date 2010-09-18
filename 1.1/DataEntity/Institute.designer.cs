@@ -4302,6 +4302,8 @@ namespace DataEntity
 		
 		private int _CourceID;
 		
+		private System.Nullable<int> _LoginUserID;
+		
 		private string _MetaDescription;
 		
 		private string _MetaKeyword;
@@ -4328,6 +4330,8 @@ namespace DataEntity
     partial void OnInstituteIDChanged();
     partial void OnCourceIDChanging(int value);
     partial void OnCourceIDChanged();
+    partial void OnLoginUserIDChanging(System.Nullable<int> value);
+    partial void OnLoginUserIDChanged();
     partial void OnMetaDescriptionChanging(string value);
     partial void OnMetaDescriptionChanged();
     partial void OnMetaKeywordChanging(string value);
@@ -4410,6 +4414,26 @@ namespace DataEntity
 					this._CourceID = value;
 					this.SendPropertyChanged("CourceID");
 					this.OnCourceIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int")]
+		public System.Nullable<int> LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
 				}
 			}
 		}

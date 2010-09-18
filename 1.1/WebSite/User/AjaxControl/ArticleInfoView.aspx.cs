@@ -188,4 +188,22 @@ public partial class User_AjaxControl_ArticleInfoView : AjaxPage
         BindList();
         PaggerLinkManager();
     }
+    private ShareContent UserAccess
+    {
+        get;
+        set;
+
+    }
+    protected override void OnPreRender(EventArgs e)
+    {
+        if (_InstituteCourceID > 0)
+        {
+            UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse,new UserAuthontication().LoggedInUserID);
+            if (!UserAccess.IsAddable)
+            {
+                hpAddDocument.Visible = false;
+            }
+        }
+        base.OnPreRender(e);
+    }
 }
