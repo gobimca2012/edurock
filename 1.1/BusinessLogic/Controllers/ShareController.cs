@@ -21,6 +21,11 @@ namespace BusinessLogic
             get;
             set;
         }
+        public bool IsAddable
+        {
+            get;
+            set;
+        }
     }
     public class ShareController
     {
@@ -424,9 +429,13 @@ namespace BusinessLogic
 
                 objShareContent.IsViewable = false;
                 objShareContent.IsEditablable = false;
+                objShareContent.IsAddable = false;
                 var dataShareData = new ShareController().Get(ObjectID, ObjectType);
                 var dataShareUser = GetUserObjectAccess(LoginUserID, ObjectID, ObjectType);
                 var dataGroupUser = GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType);
+                #region View Rights
+                
+                
                 foreach (GetGroupObjectAccessResult ga in dataGroupUser)
                 {
                     if ((bool)ga.EnableView && !objShareContent.IsViewable)
@@ -451,6 +460,10 @@ namespace BusinessLogic
                 {
                     objShareContent.IsViewable = true;
                 }
+                #endregion
+                #region Edit rights
+
+
                 if (dataShareData.Count > 0 && (bool)dataShareData[0].EnableAllUserEdit)
                 {
 
@@ -472,11 +485,36 @@ namespace BusinessLogic
                         objShareContent.IsEditablable = true;
                     }
                 }
+                #endregion
+                #region Add Rights
+                if (dataShareData.Count > 0 && (bool)dataShareData[0].EnableAllUserAdd)
+                {
+
+                    {
+                        objShareContent.IsAddable = true;
+                    }
+                }
+                else if (dataGroupUser.Count > 0 && (bool)dataGroupUser[0].EnableAdd)
+                {
+                    //if ()
+                    {
+                        objShareContent.IsAddable = true;
+                    }
+                }
+                else if (dataShareUser.Count > 0 && (bool)dataShareUser[0].EnableAdd)
+                {
+                    //if ()
+                    {
+                        objShareContent.IsAddable = true;
+                    }
+                }
+                #endregion
             }
             else
             {
                 objShareContent.IsEditablable = true;
                 objShareContent.IsViewable = true;
+                objShareContent.IsAddable = true;
             }
             return objShareContent;
         }

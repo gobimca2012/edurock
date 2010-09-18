@@ -39,6 +39,16 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             return Convert.ToInt32(AjaxState["icid"]);
         }
     }
+
+    //private void SetFormAccess()
+    //{
+    //    UserAccess = new ShareController().GetAccess(ID.ToString(), _ContentType, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+    //    if (!UserAccess.IsViewable)
+    //    {
+    //        Response.Redirect("~/Status/NoAccess.aspx");
+    //    }
+    //    ControlManager(data.LoginUserID);
+    //}
     private void AddData()
     {
         try
