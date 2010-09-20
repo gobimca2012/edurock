@@ -44,12 +44,13 @@ public class Shopping : System.Web.Services.WebService
         return status;
     }
     [WebMethod]
-    public bool CreateNewInstitute(string InstituteName,string Username, string Password, string email)
+    public bool CreateNewInstitute(string InstituteName,string Username, string Password, string email,int totalUser)
     {
         int LoginUserID=AddUserData(Username, Password, email);
-        int ID=new InstituteController().Add(LoginUserID, InstituteName, DateTime.Now, false);
+        int ID=new InstituteController().Add(LoginUserID, InstituteName,totalUser, DateTime.Now, false);
         if (ID > 0)
         {
+            new LoginUserController().DeletebyLoginUserID(LoginUserID);
             return true;
         }
         else

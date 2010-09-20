@@ -161,7 +161,7 @@
         <elementListCompartment Id="324709b5-993e-4d2a-8f46-9a35ba58b808" absoluteBounds="9.765, 15.21, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11.75 : 15.958944905599); (12 : 15.958944905599)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.75 : 15.958944905599); (12 : 15.958944905599)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/InstituteDataContext/InstituteCource/InstituteCource_Instructor" />
       <nodes>
         <classShapeMoniker Id="a30d5bb6-26da-4eed-84db-0825d0a58922" />
@@ -175,21 +175,21 @@
         <classShapeMoniker Id="15aff8be-4e84-46e3-a29a-7ec739f439fc" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10.7187475 : 14.75); (10.7187475 : 8.62677124023437); (8.5 : 8.62677124023437)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10.7187475 : 14.75); (10.7187475 : 8.62677124023437); (8.5 : 8.62677124023437)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/InstituteDataContext/InstituteCource/InstituteCource_InstituteCourceUser" />
       <nodes>
         <classShapeMoniker Id="a30d5bb6-26da-4eed-84db-0825d0a58922" />
         <classShapeMoniker Id="2a1ad58d-c819-4c70-b1d2-060b150b3d44" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.40625 : 18); (8.40625 : 16.2026188151042); (9.75 : 16.2026188151042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.40625 : 18); (8.40625 : 16.2026188151042); (9.75 : 16.2026188151042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/InstituteDataContext/Cource/Cource_InstituteCource" />
       <nodes>
         <classShapeMoniker Id="b527ebbb-9733-46e1-b70f-fb8a97a37496" />
         <classShapeMoniker Id="a30d5bb6-26da-4eed-84db-0825d0a58922" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 15.9074833170573); (9.75 : 15.9074833170573)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 15.9074833170573); (9.75 : 15.9074833170573)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/InstituteDataContext/Institute/Institute_InstituteCource" />
       <nodes>
         <classShapeMoniker Id="3b139861-c304-4e00-9ff6-b7284889d9e1" />

@@ -4782,7 +4782,6 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             db.Institutes.InsertOnSubmit(ObjInstitute);
             db.SubmitChanges();
-            InstituteUserAdd(ObjInstitute.InstituteID, LoginUserID, "", DateTime.Now);
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return ObjInstitute.InstituteID;
         }
@@ -4797,8 +4796,7 @@ namespace DataAccess
             db.DeferredLoadingEnabled = false;
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             db.Institutes.InsertOnSubmit(ObjInstitute);
-            db.SubmitChanges();
-            
+            db.SubmitChanges(); 
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return ObjInstitute.InstituteID;
         }
@@ -5310,6 +5308,24 @@ namespace DataAccess
 
         #endregion
         #region CustomCourceCatagory
+        public List<GetCourceCatagoryByInstituteIDResult> GetCourceCatagoryByInstituteID(int InstituteID)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetCourceCatagoryByInstituteID(InstituteID).ToList();
+
+        }
+        public List<GetCourceCatagoryByInstituteIDResult> GetCourceCatagoryByInstituteID(int InstituteID, int PageSize, int PageNumber)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetCourceCatagoryByInstituteID(InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         public void CourceCatagoryUpdateByLoginUserID(string CatagoryName, int LoginUserID, string Description, int CatagoryType, DateTime ModifiedDate)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -8560,6 +8576,24 @@ namespace DataAccess
 
         #endregion
         #region CustomQuestionType
+        public List<GetQuestionTypeByInstituteIDResult> GetQuestionTypeByInstituteID(int InstituteID)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetQuestionTypeByInstituteID(InstituteID).ToList();
+
+        }
+        public List<GetQuestionTypeByInstituteIDResult> GetQuestionTypeByInstituteID(int InstituteID, int PageSize, int PageNumber)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetQuestionTypeByInstituteID(InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         #endregion
 
 

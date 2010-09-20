@@ -67,7 +67,7 @@ namespace BusinessLogic.Controller
         }
         public void Add(PortalSetting obj)
         {
-            HttpContext.Current.Session.Remove(SessionName.PortalSetting.ToString());
+            //HttpContext.Current.Session.Remove(SessionName.PortalSetting.ToString());
             XElement psetting= new XMLHelper().Serialize(obj);
             new PortalSettingController().Add(Guid.NewGuid(), new UserAuthontication().InstituteID, psetting, DateTime.Now);
         }

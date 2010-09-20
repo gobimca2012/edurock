@@ -17,6 +17,7 @@ delete from dbo.EXM_Answer
 delete from dbo.EXM_Question
 delete from dbo.Exam
 delete from dbo.HomeWork
+delete from portalsetting
 delete from dbo.Institute
 delete from dbo.InstituteCource
 delete from dbo.InstituteUser

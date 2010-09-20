@@ -23,7 +23,7 @@ public partial class College_Ajaxer_InstituteUserInfo : AjaxPage
         objValidate.Medatory(txtEmail, "Please enter Email", this.Page);
         objValidate.Email(txtEmail, "Please enter valid Email", this.Page);
         objValidate.Medatory(txtPassword, "Please enter Password", this.Page);
-        objValidate.Medatory(txtUsername, "Please enter Username", this.Page);
+        //objValidate.Medatory(txtUsername, "Please enter Username", this.Page);
         objValidate.DrowDownMendatory(ddUserType, "Please select UserType", this.Page, "0");
 
 
@@ -40,7 +40,7 @@ public partial class College_Ajaxer_InstituteUserInfo : AjaxPage
     {
 
         
-        string Username; if (true) { Username = HtmlHelper.ControlValue(txtUsername.ClientID); }
+        string Username; if (true) { Username = HtmlHelper.ControlValue(txtEmail.ClientID); }
         if (new LoginUserController().IsUserNameAvailable(Username))
         {
             string Password; if (true) { Password = HtmlHelper.ControlValue(txtPassword.ClientID); }

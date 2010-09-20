@@ -355,7 +355,7 @@ namespace BusinessLogic
         }
         public void BindQuestionType(DropDownList dd,int UserInstituteLoginId)
         {
-            var data = GetbyLoginUserID(UserInstituteLoginId);
+            var data = GetQuestionTypeByInstituteID(new UserAuthontication().InstituteID);
             dd.DataSource = data;
             dd.DataTextField = "QuestionTypeTnext";
             dd.DataValueField = "QuestionTypeID";
@@ -367,7 +367,7 @@ namespace BusinessLogic
         }
         public void BindQuestionType(DropDownList dd, string SelectedValue, int UserInstituteLoginId)
         {
-            var data = GetbyLoginUserID(UserInstituteLoginId);
+            var data = GetQuestionTypeByInstituteID(new UserAuthontication().InstituteID);
             dd.DataSource = data;
             dd.DataTextField = "QuestionTypeTnext";
             dd.DataValueField = "QuestionTypeID";
@@ -380,6 +380,30 @@ namespace BusinessLogic
         }
         #endregion
         #region QuestionType
+        public List<GetQuestionTypeByInstituteIDResult> GetQuestionTypeByInstituteID(int InstituteID)
+        {
+            try
+            {
+
+                return new DataProvider().GetQuestionTypeByInstituteID(InstituteID);
+            }
+            catch
+            {
+                return new List<GetQuestionTypeByInstituteIDResult>();
+            }
+        }
+        public List<GetQuestionTypeByInstituteIDResult> GetQuestionTypeByInstituteID(int InstituteID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetQuestionTypeByInstituteID(InstituteID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetQuestionTypeByInstituteIDResult>();
+            }
+        }
         #endregion
 				
 	

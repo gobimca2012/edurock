@@ -439,6 +439,30 @@ namespace BusinessLogic
 
         #endregion
         #region CourceCatagory
+        public List<GetCourceCatagoryByInstituteIDResult> GetCourceCatagoryByInstituteID(int InstituteID)
+        {
+            try
+            {
+
+                return new DataProvider().GetCourceCatagoryByInstituteID(InstituteID);
+            }
+            catch
+            {
+                return new List<GetCourceCatagoryByInstituteIDResult>();
+            }
+        }
+        public List<GetCourceCatagoryByInstituteIDResult> GetCourceCatagoryByInstituteID(int InstituteID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetCourceCatagoryByInstituteID(InstituteID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetCourceCatagoryByInstituteIDResult>();
+            }
+        }
         public bool UpdateByLoginUserID(string CatagoryName, int LoginUserID, string Description, int CatagoryType, DateTime ModifiedDate)
         {
 
@@ -459,7 +483,7 @@ namespace BusinessLogic
         }
         public void BindCourceCatagory(DropDownList dd)
         {
-            var data = Get();
+            var data = GetCourceCatagoryByInstituteID(new UserAuthontication().InstituteID);
             dd.DataSource = data;
             dd.DataTextField = "CatagoryName";
             dd.DataValueField = "CourceCatagoryID";
@@ -471,7 +495,7 @@ namespace BusinessLogic
         }
         public void BindCourceCatagory(DropDownList dd,string SelectedValue)
         {
-            var data = Get();
+            var data = GetCourceCatagoryByInstituteID(new UserAuthontication().InstituteID);
             dd.DataSource = data;
             dd.DataTextField = "CatagoryName";
             dd.DataValueField = "CourceCatagoryID";

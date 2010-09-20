@@ -31,8 +31,6 @@ public partial class College_Ajaxer_CourceCatagoryInfo : AjaxPage
         try
         {
 
-
-
             string CatagoryName; if (false) { throw new Exception(""); } CatagoryName = HtmlHelper.ControlValue(txtCatagoryName.ClientID);
 
             int LoginUserID; if (false) { throw new Exception(""); } LoginUserID = new UserAuthontication().LoggedInUserID;

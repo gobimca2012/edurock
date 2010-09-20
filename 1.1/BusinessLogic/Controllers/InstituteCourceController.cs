@@ -15,6 +15,7 @@ namespace BusinessLogic
 
 
         #region InstituteCource
+       
         public bool UpdateByInstituteCourceID(int InstituteCourceID, int CourceCategoryID, string CourceName, string MetaDescription, string MetaKeyword, DateTime Modifieddate)
         {
 

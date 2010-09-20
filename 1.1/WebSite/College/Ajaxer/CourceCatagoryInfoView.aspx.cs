@@ -40,14 +40,14 @@ public partial class College_Ajaxer_CourceCatagoryInfoView : AjaxPage
 
         {
             BindList();
-            TotalPage =Convert.ToInt32(Math.Ceiling((decimal)new CourceCatagoryController().Get().Count / PageSize));
+            TotalPage =Convert.ToInt32(Math.Ceiling((decimal)new CourceCatagoryController().GetCourceCatagoryByInstituteID(new UserAuthontication().InstituteID).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListCourceCatagory.DataSource = new CourceCatagoryController().Get(PageSize, PageNumber);
+        ListCourceCatagory.DataSource = new CourceCatagoryController().GetCourceCatagoryByInstituteID(new UserAuthontication().InstituteID,PageSize, PageNumber);
         ListCourceCatagory.DataBind();
     }
     private void PaggerLinkManager()

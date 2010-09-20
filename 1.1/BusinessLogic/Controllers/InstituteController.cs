@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Configuration;
 using System.Web;
+using BusinessLogic.Controller;
 
 namespace BusinessLogic
 {
@@ -981,13 +982,33 @@ namespace BusinessLogic
 
         #endregion
         #region Institute
-        public int Add(int LoginUserID, string Name, DateTime ModifiedDate, bool IsDeleted)
+        public int Add(int LoginUserID, string Name,int TotalUser, DateTime ModifiedDate, bool IsDeleted)
         {
 
             try
             {
-                int ID = new DataProvider().InstituteAdd(LoginUserID, Name, ModifiedDate, IsDeleted);
-                return ID;
+                int InstituteID = new DataProvider().InstituteAdd(LoginUserID, Name, ModifiedDate, IsDeleted);
+                if (InstituteID > 0)
+                {
+                    int InstituteUserID=new InstituteUserController().Add(InstituteID, LoginUserID, "", DateTime.Now);
+                    if (InstituteUserID == 0)
+                    {
+                        new InstituteController().DeletebyInstituteID(InstituteID);
+                    }
+                    else
+                    {
+                        BusinessLogic.Controller.PortalSetting newposetting = new BusinessLogic.Controller.PortalSetting();
+                        newposetting.CourseHeader = "Space";
+                        newposetting.SubjectHeader = "Sub Space";
+                        newposetting.IsSelfRegistrationAllow = false;
+                        newposetting.SpaceLimit = "400";
+                        newposetting.UserLimit = TotalUser.ToString();
+                        new PortalSettingHelper().Add(InstituteID, newposetting);
+                    }
+                }
+
+
+                return InstituteID;
             }
             catch (Exception ex)
             {

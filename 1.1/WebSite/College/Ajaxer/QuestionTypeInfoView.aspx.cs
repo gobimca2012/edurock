@@ -40,14 +40,14 @@ public partial class Admin_Ajaxer_QuestionTypeInfoView : AjaxPage
 
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionTypeController().Get().Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new QuestionTypeController().GetQuestionTypeByInstituteID(new UserAuthontication().InstituteID).Count / PageSize));
             PaggerLinkManager();
         }
 
     }
     private void BindList()
     {
-        ListQuestionType.DataSource = new QuestionTypeController().Get(PageSize, PageNumber);
+        ListQuestionType.DataSource = new QuestionTypeController().Get(new UserAuthontication().InstituteID,PageSize, PageNumber);
         ListQuestionType.DataBind();
     }
     private void PaggerLinkManager()
