@@ -47,7 +47,7 @@ public partial class Admin_Ajaxer_QuestionTypeInfoView : AjaxPage
     }
     private void BindList()
     {
-        ListQuestionType.DataSource = new QuestionTypeController().Get(new UserAuthontication().InstituteID,PageSize, PageNumber);
+        ListQuestionType.DataSource = new QuestionTypeController().GetQuestionTypeByInstituteID(new UserAuthontication().InstituteID, PageSize, PageNumber);
         ListQuestionType.DataBind();
     }
     private void PaggerLinkManager()
