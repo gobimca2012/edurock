@@ -116,7 +116,6 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
             divMessage.InnerHtml = "<div class='error'>" + ex.Message + "</div>";
         }
     }
-
     private void BindData()
     {
         var dataBunch = new ArticleController().GetbyArticleID(ID);
@@ -140,7 +139,6 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
 
         }
     }
-
     private Guid ID
     {
         get
@@ -158,7 +156,6 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
         EditData();
 
     }
-
     protected void Page_Load(object sender, EventArgs e)
     {
         FormValidation();
@@ -177,5 +174,6 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
         }
         ddCource.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddCource.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?icid="));
     }
+    
 
 }

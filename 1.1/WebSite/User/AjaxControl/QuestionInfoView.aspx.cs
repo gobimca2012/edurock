@@ -110,7 +110,7 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        hpAddQuestion.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddQuestion;
+        
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];
@@ -214,4 +214,38 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
     {
 
     }
+    private ShareContent UserAccess
+    {
+        get;
+        set;
+
+    }
+    private void SetUserAccess()
+    {
+        if ((bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddQuestion)
+        {
+            if (_InstituteCourceID > 0)
+            {
+                UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
+                if (!UserAccess.IsAddable)
+                {
+                    hpAddQuestion.Visible = false;
+                }
+            }
+            else
+            {
+                hpAddQuestion.Visible = false;
+            }
+        }
+        else
+        {
+            hpAddQuestion.Visible = false;
+        }
+    }
+    protected override void OnPreRender(EventArgs e)
+    {
+        SetUserAccess();
+        base.OnPreRender(e);
+    }
+
 }

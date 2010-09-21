@@ -46,7 +46,7 @@
         <classShapeMoniker Id="1c215dfc-d0b4-40cb-972a-1c74a6b1e7eb" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 11.5874239095052); (3.04166666666667 : 11.5874239095052 : JumpStart); (3.20833333333333 : 11.5874239095052 : JumpEnd); (4.5 : 11.5874239095052); (4.5 : 10.5428898111979)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 11.5874239095052); (4.5 : 11.5874239095052); (4.5 : 10.5428898111979)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/InstituteDataContext/TutorialType/TutorialType_Tutorial" />
       <nodes>
         <classShapeMoniker Id="b3d7044e-0e66-4642-aecc-e50b75e87dd6" />

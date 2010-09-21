@@ -56,12 +56,7 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
             }
         }
     }
-    private ShareContent UserAccess
-    {
-        get;
-        set;
-
-    }
+    
     private int _InstituteCourceID
     {
         get
@@ -130,16 +125,30 @@ public partial class User_AjaxControl_DocumentInfoView : AjaxPage
         new JScripter.Effect(this.Page, false).VisibleOnMouseHover(".dasbo");
 
     }
-    protected override void OnPreRender(EventArgs e)
+    private ShareContent UserAccess
+    {
+        get;
+        set;
+
+    }
+    private void SetUserAccess()
     {
         if (_InstituteCourceID > 0)
         {
-            UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse,new UserAuthontication().LoggedInUserID);
+            UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
             if (!UserAccess.IsAddable)
             {
                 hpAddDocument.Visible = false;
             }
         }
+        else
+        {
+            hpAddDocument.Visible = false;
+        }
+    }
+    protected override void OnPreRender(EventArgs e)
+    {
+        SetUserAccess();
         base.OnPreRender(e);
     }
     private string Keywork

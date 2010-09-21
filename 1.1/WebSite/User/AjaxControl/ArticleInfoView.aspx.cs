@@ -91,7 +91,7 @@ public partial class User_AjaxControl_ArticleInfoView : AjaxPage
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
         objEffect.VisibleOnMouseHover(".cbox");
-        hpAddDocument.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddArticle;
+
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];
@@ -99,7 +99,7 @@ public partial class User_AjaxControl_ArticleInfoView : AjaxPage
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
-           
+
         }
         if (Request.Params["usid"] != null)
         {
@@ -114,7 +114,7 @@ public partial class User_AjaxControl_ArticleInfoView : AjaxPage
             AjaxState["dtype"] = Request.Params["dtype"];
         }
         hpAddDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/ArticleInfo.aspx");
-        
+
         {
             BindList();
 
@@ -194,16 +194,31 @@ public partial class User_AjaxControl_ArticleInfoView : AjaxPage
         set;
 
     }
-    protected override void OnPreRender(EventArgs e)
+    private void SetUserAccess()
     {
-        if (_InstituteCourceID > 0)
+        if ((bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddArticle)
         {
-            UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse,new UserAuthontication().LoggedInUserID);
-            if (!UserAccess.IsAddable)
+            if (_InstituteCourceID > 0)
+            {
+                UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
+                if (!UserAccess.IsAddable)
+                {
+                    hpAddDocument.Visible = false;
+                }
+            }
+            else
             {
                 hpAddDocument.Visible = false;
             }
         }
+        else
+        {
+            hpAddDocument.Visible = false;
+        }
+    }
+    protected override void OnPreRender(EventArgs e)
+    {
+        SetUserAccess();
         base.OnPreRender(e);
     }
 }

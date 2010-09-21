@@ -90,7 +90,7 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
         objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
-        hpAddExam.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddExam;
+        
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];
@@ -237,7 +237,40 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
 
 
     }
+    private ShareContent UserAccess
+    {
+        get;
+        set;
 
+    }
+    private void SetUserAccess()
+    {
+        if ((bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddExam)
+        {
+            if (_InstituteCourceID > 0)
+            {
+                UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
+                if (!UserAccess.IsAddable)
+                {
+                    hpAddExam.Visible = false;
+                }
+            }
+            else
+            {
+                hpAddExam.Visible = false;
+            }
+        }
+        else
+        {
+            hpAddExam.Visible = false;
+        }
+        
+    }
+    protected override void OnPreRender(EventArgs e)
+    {
+        SetUserAccess();
+        base.OnPreRender(e);
+    }
 
 
 

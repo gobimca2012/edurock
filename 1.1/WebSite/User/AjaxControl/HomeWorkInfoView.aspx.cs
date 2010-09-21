@@ -90,7 +90,7 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
         objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
-        hpAddHomeWork.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddHomeWork;
+
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];
@@ -213,7 +213,39 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
 
 
     }
+    private ShareContent UserAccess
+    {
+        get;
+        set;
 
+    }
+    private void SetUserAccess()
+    {
+        if ((bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddHomeWork)
+        {
+            if (_InstituteCourceID > 0)
+            {
+                UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
+                if (!UserAccess.IsAddable)
+                {
+                    hpAddHomeWork.Visible = false;
+                }
+            }
+            else
+            {
+                hpAddHomeWork.Visible = false;
+            }
+        }
+        else
+        {
+            hpAddHomeWork.Visible = false;
+        }
+    }
+    protected override void OnPreRender(EventArgs e)
+    {
+        SetUserAccess();
+        base.OnPreRender(e);
+    }
 
 
 }

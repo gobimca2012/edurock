@@ -6357,6 +6357,27 @@ namespace DataAccess
 
         //#endregion
         #region CustomInstituteCource
+        public void DeleteInstituteCourseByInstituteCourseID(int InstituteCourseID)
+        {
+
+            using (InstituteDataContext db = new InstituteDataContext())
+            {
+                db.ObjectTrackingEnabled = false;
+                db.DeferredLoadingEnabled = false;
+                 db.DeleteInstituteCourseByInstituteCourseID(InstituteCourseID);
+            }
+        }
+        public void DeleteInstituteCourseByInstituteCourseID(int InstituteCourseID, int PageSize, int PageNumber)
+        {
+
+            using (InstituteDataContext db = new InstituteDataContext())
+            {
+                db.ObjectTrackingEnabled = false;
+                db.DeferredLoadingEnabled = false;
+                 db.DeleteInstituteCourseByInstituteCourseID(InstituteCourseID);
+            }
+
+        }
         public void InstituteCourceUpdateByInstituteCourceID(int InstituteCourceID, int CourceCategoryID, string CourceName, string MetaDescription, string MetaKeyword, DateTime Modifieddate)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -6512,6 +6533,23 @@ namespace DataAccess
             return data;
 
         }
+        public IEnumerable InstituteCourceGet()
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            using (InstituteDataContext db = new InstituteDataContext())
+            {
+                DataLoadOptions option = new DataLoadOptions();
+                option.LoadWith<InstituteCource>(p => p.Cource);
+                db.LoadOptions = option;
+                db.ObjectTrackingEnabled = false;
+                db.DeferredLoadingEnabled = false;
+
+                var data = (from p in db.InstituteCources select new { CourceName = p.Cource.CourceName, InstituteCourseID = p.InstituteCourceID }).ToList();
+                if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+                return data;
+            }
+
+        }
         #endregion
 
         #region InstituteCource
@@ -6600,20 +6638,7 @@ namespace DataAccess
             }
         }
 
-        public List<InstituteCource> InstituteCourceGet()
-        {
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-            using (InstituteDataContext db = new InstituteDataContext())
-            {
-                db.ObjectTrackingEnabled = false;
-                db.DeferredLoadingEnabled = false;
-                db.ObjectTrackingEnabled = false;
-                var data = (from p in db.InstituteCources select p).ToList();
-                if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-                return data;
-            }
-
-        }
+       
 
 
         public List<InstituteCource> InstituteCourceGetbyInstituteCourceID(int InstituteCourceID, int PageSize, int PageNumber)
@@ -6751,7 +6776,7 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (InstituteDataContext db = new InstituteDataContext())
             {
-                db.DeferredLoadingEnabled = false;
+                //db.DeferredLoadingEnabled = false;
                 var data = (from p in db.InstituteCources where p.InstituteCourceID == InstituteCourceID select p);
                 db.InstituteCources.DeleteAllOnSubmit(data);
                 db.SubmitChanges();

@@ -90,7 +90,6 @@ public partial class User_AjaxControl_AudioInfoView : AjaxPage
         BindList();
         PaggerLinkManager();
     }
-    
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -119,7 +118,7 @@ public partial class User_AjaxControl_AudioInfoView : AjaxPage
         hpAddDocument.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?dtype=" + _DocumentType.ToString();
         {
             BindList();
-            
+
             PaggerLinkManager();
         }
 
@@ -223,7 +222,39 @@ public partial class User_AjaxControl_AudioInfoView : AjaxPage
 
 
     }
-	
+    private ShareContent UserAccess
+    {
+        get;
+        set;
+
+    }
+    private void SetUserAccess()
+    {
+        if ((bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddAudio)
+        {
+            if (_InstituteCourceID > 0)
+            {
+                UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
+                if (!UserAccess.IsAddable)
+                {
+                    hpAddDocument.Visible = false;
+                }
+            }
+            else
+            {
+                hpAddDocument.Visible = false;
+            }
+        }
+        else
+        {
+            hpAddDocument.Visible = false;
+        }
+    }
+    protected override void OnPreRender(EventArgs e)
+    {
+        SetUserAccess();
+        base.OnPreRender(e);
+    }
 
 
 }

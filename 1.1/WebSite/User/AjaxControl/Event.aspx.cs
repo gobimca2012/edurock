@@ -49,6 +49,8 @@ public partial class User_AjaxControl_Event : AjaxPage
                 FullViewSideInfo1.ModifiedDate = (DateTime)data.ModifiedDate;
                 FullViewSideInfo1.CourceID = (int)data.InstituteCourceID;
                 FullViewSideInfo1.SubjectID = (int)data.InstituteSubjectID;
+                FullViewSideInfo1.ContentID = data.EventID.ToString();
+                FullViewSideInfo1.ContentType = (int)ContentTypeEnum.Event;
             }
             if (data.Title != null)
 

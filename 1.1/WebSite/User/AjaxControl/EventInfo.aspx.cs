@@ -31,7 +31,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
         objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
         objValidate.DrowDownMendatory(ddCource, "Please select Course ", this.Page, "0");
         objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
-        
+
 
 
 
@@ -45,19 +45,19 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
 
-            string Title; if (HtmlHelper.ControlValue(txtTitle.ClientID)=="") { throw new Exception("Please enter title"); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
+            string Title; if (HtmlHelper.ControlValue(txtTitle.ClientID) == "") { throw new Exception("Please enter title"); } Title = HtmlHelper.ControlValue(txtTitle.ClientID);
 
-            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID)=="") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
+            string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID) == "") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
             string MetaDescription; if (false) { throw new Exception(""); } MetaDescription = HtmlHelper.ControlValue(txtMetaDescription.ClientID);
 
-            DateTime StartDate; if (HtmlHelper.ControlValue(txtStartDate.ClientID)=="") { throw new Exception("Please enter start date"); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
+            DateTime StartDate; if (HtmlHelper.ControlValue(txtStartDate.ClientID) == "") { throw new Exception("Please enter start date"); } StartDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtStartDate.ClientID));
 
-            DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID)=="") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
+            DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID) == "") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
-            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "" || HtmlHelper.ControlValue(ddCource.ClientID)=="0") { throw new Exception("Please enter course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
+            int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "" || HtmlHelper.ControlValue(ddCource.ClientID) == "0") { throw new Exception("Please enter course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
-            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddSubject.ClientID) == "" || HtmlHelper.ControlValue(ddSubject.ClientID)=="0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
+            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddSubject.ClientID) == "" || HtmlHelper.ControlValue(ddSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
             string Tag; if (false) { throw new Exception(""); } Tag = HtmlHelper.ControlValue(txtTag.ClientID);
 
@@ -105,7 +105,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
 
 
     }
-		
+
     private void EditData()
     {
         try
@@ -182,7 +182,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
 
             txtContactPhone.Text = data.ContactPhone;
 
-          
+
         }
     }
 
@@ -216,6 +216,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
         else
         {
             new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+            new InstituteCourceController().BindInstituteCource(ddCource);
             lnkUpdateEvent.Visible = false;
         }
         JScripter.DatePicker objDate = new JScripter.DatePicker(this.Page);

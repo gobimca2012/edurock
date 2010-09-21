@@ -97,7 +97,7 @@ public partial class User_AjaxControl_VideoInfoView : AjaxPage
         objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
-        hpAddDocument.Visible = (bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddVideo;
+
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];
@@ -228,7 +228,39 @@ public partial class User_AjaxControl_VideoInfoView : AjaxPage
 
 
     }
-	
+    private ShareContent UserAccess
+    {
+        get;
+        set;
+
+    }
+    private void SetUserAccess()
+    {
+        if ((bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddVideo)
+        {
+            if (_InstituteCourceID > 0)
+            {
+                UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
+                if (!UserAccess.IsAddable)
+                {
+                    hpAddDocument.Visible = false;
+                }
+            }
+            else
+            {
+                hpAddDocument.Visible = false;
+            }
+        }
+        else
+        {
+            hpAddDocument.Visible = false;
+        }
+    }
+    protected override void OnPreRender(EventArgs e)
+    {
+        SetUserAccess();
+        base.OnPreRender(e);
+    }
 
 
 }
