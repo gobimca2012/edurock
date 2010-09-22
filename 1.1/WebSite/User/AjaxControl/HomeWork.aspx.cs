@@ -44,7 +44,7 @@ public partial class User_AjaxControl_HomeWork : AjaxPage
             if (data.LoginUserID != null)
             {
                 //lblLoginUserID.InnerHtml = data.LoginUserID.ToString();
-                UserAccess = new ShareController().GetAccess(ID.ToString(), (int)ContentTypeEnum.HomeWork, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+                UserAccess = new ShareController().GetItemAccess(ID.ToString(), (int)ContentTypeEnum.HomeWork, new UserAuthontication().LoggedInUserID, data.LoginUserID);
                 if (!UserAccess.IsViewable)
                 {
                     Response.Redirect("~/Status/NoAccess.aspx");

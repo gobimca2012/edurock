@@ -65,7 +65,7 @@ public partial class User_AjaxControl_Exam : AjaxPage
 
             if (data.LoginUserID != null)
             {
-                UserAccess = new ShareController().GetAccess(ID.ToString(), (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+                UserAccess = new ShareController().GetItemAccess(ID.ToString(), (int)ContentTypeEnum.Event, new UserAuthontication().LoggedInUserID, data.LoginUserID);
                 if (!UserAccess.IsViewable)
                 {
                     Response.Redirect("~/Status/NoAccess.aspx");

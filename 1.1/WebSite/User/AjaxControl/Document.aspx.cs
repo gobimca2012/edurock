@@ -60,7 +60,7 @@ public partial class User_AjaxControl_Document : AjaxPage
             _ContentType = data.DocumentType;
             if (data.LoginUserID != null)
             {
-                UserAccess = new ShareController().GetAccess(ID.ToString(), _ContentType, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+                UserAccess = new ShareController().GetItemAccess(ID.ToString(), _ContentType, new UserAuthontication().LoggedInUserID, data.LoginUserID);
                 if (!UserAccess.IsViewable)
                 {
                     Response.Redirect("~/Status/NoAccess.aspx");

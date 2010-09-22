@@ -215,7 +215,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
         }
         else
         {
-            new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+            //new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
             new InstituteCourceController().BindInstituteCource(ddCource);
             lnkUpdateEvent.Visible = false;
         }

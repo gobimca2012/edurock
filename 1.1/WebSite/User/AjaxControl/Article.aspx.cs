@@ -35,7 +35,7 @@ public partial class User_AjaxControl_Article : AjaxPage
 
             if (data.LoginUserID != null)
             {
-                UserAccess = new ShareController().GetAccess(ID.ToString(), (int)ContentTypeEnum.Article, new UserAuthontication().LoggedInUserID, data.LoginUserID);
+                UserAccess = new ShareController().GetItemAccess(ID.ToString(), (int)ContentTypeEnum.Article, new UserAuthontication().LoggedInUserID, data.LoginUserID, data.InstituteCourceID);
                 if (!UserAccess.IsViewable)
                 {
                     Response.Redirect("~/Status/NoAccess.aspx");
