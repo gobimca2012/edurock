@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using System.Diagnostics;
 using DataEntity;
 using DataAccess;
+using Common;
 
 namespace BusinessLogic
 {
@@ -421,18 +422,19 @@ namespace BusinessLogic
                 return new List<GetGroupObjectAccessResult>();
             }
         }
-        public ShareContent GetSpaceAccess(string ObjectID, int ObjectType, int LoginUserID)
+        public ShareContent GetSpaceAccess(string InstituteCourseObjectID, int ObjectType, int LoginUserID)
         {
-            var data = new InstituteCourceController().GetbyInstituteCourceID(Convert.ToInt32(ObjectID));
+            var data = new InstituteCourceController().GetbyInstituteCourceID(Convert.ToInt32(InstituteCourseObjectID));
 
-            ShareContent access = GetAccess(ObjectID, ObjectType, LoginUserID, data[0].LoginUserID.Value);
+            ShareContent access = GetItemAccess(InstituteCourseObjectID, ObjectType, LoginUserID, data[0].LoginUserID.Value);
             return access;
 
 
         }
-        public ShareContent GetAccess(string ObjectID, int ObjectType, int LoginUserID, int ObjectLoginUserID)
+        public ShareContent GetItemAccess(string ObjectID, int ObjectType, int LoginUserID, int ObjectLoginUserID)
         {
             ShareContent objShareContent = new ShareContent();
+
             if (LoginUserID != ObjectLoginUserID)
             {
 
@@ -449,7 +451,7 @@ namespace BusinessLogic
                     if (dataShareData[0].EnableAllUserEdit == null)
                         dataShareData[0].EnableAllUserEdit = false;
                     if (dataShareData[0].EnableAllUseView == null)
-                        dataShareData[0].EnableAllUseView =true;
+                        dataShareData[0].EnableAllUseView = true;
                 }
                 var dataShareUser = GetUserObjectAccess(LoginUserID, ObjectID, ObjectType);
                 var dataGroupUser = GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType);
@@ -537,6 +539,120 @@ namespace BusinessLogic
                 objShareContent.IsAddable = true;
             }
             return objShareContent;
+        }
+        public ShareContent GetItemAccess(string ObjectID, int ObjectType, int LoginUserID, int ObjectLoginUserID,int InstituteCourseID)
+        {
+            ShareContent objItemShareContent = new ShareContent();
+            ShareContent objSpaceShareContent = new ShareContent();
+
+
+            objSpaceShareContent = GetSpaceAccess(InstituteCourseID.ToString(),(int)ContentTypeEnum.InstituteCourse, LoginUserID);
+            if (LoginUserID != ObjectLoginUserID)
+            {
+
+                objItemShareContent.IsViewable = false;
+                objItemShareContent.IsEditablable = false;
+                objItemShareContent.IsAddable = false;
+                var dataShareData = new ShareController().Get(ObjectID, ObjectType);
+                if (dataShareData.Count > 0)
+                {
+                    if (dataShareData[0].EnableAllUserAdd == null)
+                        dataShareData[0].EnableAllUserAdd = false;
+                    if (dataShareData[0].EnableAllUserComment == null)
+                        dataShareData[0].EnableAllUserComment = true;
+                    if (dataShareData[0].EnableAllUserEdit == null)
+                        dataShareData[0].EnableAllUserEdit = false;
+                    if (dataShareData[0].EnableAllUseView == null)
+                        dataShareData[0].EnableAllUseView = true;
+                }
+                var dataShareUser = GetUserObjectAccess(LoginUserID, ObjectID, ObjectType);
+                var dataGroupUser = GetGroupObjectAccess(LoginUserID, ObjectID, ObjectType);
+                #region View Rights
+
+
+                foreach (GetGroupObjectAccessResult ga in dataGroupUser)
+                {
+                    if ((bool)ga.EnableView && !objItemShareContent.IsViewable)
+                    {
+                        objItemShareContent.IsViewable = true;
+                    }
+                }
+                if (dataShareUser.Count > 0 && (bool)dataShareUser[0].EnableView && !objItemShareContent.IsViewable)
+                {
+                    {
+                        objItemShareContent.IsViewable = true;
+                    }
+                }
+                if (dataShareData.Count > 0 && (bool)dataShareData[0].EnableAllUseView && !objItemShareContent.IsViewable)
+                {
+                    //if ()
+                    {
+                        objItemShareContent.IsViewable = true;
+                    }
+                }
+                if (dataShareData.Count == 0)
+                {
+                    objItemShareContent.IsViewable = true;
+                }
+                #endregion
+                #region Edit rights
+
+                if (objSpaceShareContent.IsAddable)
+                {
+                    if (dataShareData.Count > 0 && (bool)dataShareData[0].EnableAllUserEdit)
+                    {
+
+                        {
+                            objItemShareContent.IsEditablable = true;
+                        }
+                    }
+                    else if (dataGroupUser.Count > 0 && (bool)dataGroupUser[0].EnableEdit)
+                    {
+                        //if ()
+                        {
+                            objItemShareContent.IsEditablable = true;
+                        }
+                    }
+                    else if (dataShareUser.Count > 0 && (bool)dataShareUser[0].EnableEdit)
+                    {
+                        //if ()
+                        {
+                            objItemShareContent.IsEditablable = true;
+                        }
+                    }
+                }
+                #endregion
+                #region Add Rights
+                if (dataShareData.Count > 0 && (bool)dataShareData[0].EnableAllUserAdd)
+                {
+
+                    {
+                        objItemShareContent.IsAddable = true;
+                    }
+                }
+                else if (dataGroupUser.Count > 0 && (bool)dataGroupUser[0].EnableAdd)
+                {
+                    //if ()
+                    {
+                        objItemShareContent.IsAddable = true;
+                    }
+                }
+                else if (dataShareUser.Count > 0 && (bool)dataShareUser[0].EnableAdd)
+                {
+                    //if ()
+                    {
+                        objItemShareContent.IsAddable = true;
+                    }
+                }
+                #endregion
+            }
+            else
+            {
+                objItemShareContent.IsEditablable = true;
+                objItemShareContent.IsViewable = true;
+                objItemShareContent.IsAddable = true;
+            }
+            return objItemShareContent;
         }
         public bool UpdateShareCommentAllUser(int ObjectType, string ObjectID, bool EnableAllUseComment)
         {
