@@ -585,6 +585,11 @@ namespace BusinessLogic
                     StatusReturn.Add("status", "duplicateusername");
                     return StatusReturn;
                 }
+                else if (status == MembershipCreateStatus.DuplicateEmail)
+                {
+                    StatusReturn.Add("status", "duplicateemail");
+                    return StatusReturn;
+                }
                 else
                 {
                     StatusReturn.Add("status", "error");

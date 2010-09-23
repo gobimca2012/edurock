@@ -44,19 +44,31 @@ public class Shopping : System.Web.Services.WebService
         return status;
     }
     [WebMethod]
-    public bool CreateNewInstitute(string InstituteName,string Username, string Password, string email,int totalUser,int TotalMonth)
+    public int CreateNewInstitute(string InstituteName,string Username, string Password, string email,int totalUser,int TotalMonth)
     {
         int LoginUserID=AddUserData(Username, Password, email);
-        int ID=new InstituteController().Add(LoginUserID, InstituteName,totalUser,TotalMonth, DateTime.Now, false);
-        if (ID == 0)
+        if (LoginUserID > 0)
         {
-            new LoginUserController().DeletebyLoginUserID(LoginUserID);
-            return true;
+            int ID = new InstituteController().Add(LoginUserID, InstituteName, totalUser, TotalMonth, DateTime.Now, false);
+            if (ID == 0)
+            {
+                new LoginUserController().DeletebyLoginUserID(LoginUserID);
+                return -3;
+            }
+            else
+            {
+                return ID;
+            }
         }
         else
         {
-            return false;
+            return LoginUserID;
         }
+    }
+    [WebMethod]
+    public void RenewInstitute(string InstituteID, int totalUser, int TotalMonth)
+    {
+        
     }
     private int AddUserData(string Username, string Password, string email)
     {
@@ -65,7 +77,15 @@ public class Shopping : System.Web.Services.WebService
         if (status["status"].Contains("success"))
         {
             return Convert.ToInt32(status["loginuserid"]);
-        }        
+        }
+        else if (status["status"].Contains("duplicateusername"))
+        {
+            return -1;
+        }
+        else if (status["status"].Contains("duplicateemail"))
+        {
+            return -2;
+        }
         else
         {
             return 0;
