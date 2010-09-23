@@ -438,7 +438,7 @@ namespace BusinessLogic
 
         public void BindInstituteUserType(DropDownList dd)
         {
-            var data = Get();
+            var data = GetbyInstituteID(new UserAuthontication().InstituteID);
             dd.DataSource = data;
             dd.DataTextField = "Name";
             dd.DataValueField = "InstituteUserTypeID";
@@ -450,7 +450,7 @@ namespace BusinessLogic
         }
         public void BindInstituteUserType(DropDownList dd, string SelectedValue)
         {
-            var data = Get();
+            var data = GetbyInstituteID(new UserAuthontication().InstituteID);
             dd.DataSource = data;
             dd.DataTextField = "Name";
             dd.DataValueField = "InstituteUserTypeID";

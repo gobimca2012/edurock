@@ -982,7 +982,7 @@ namespace BusinessLogic
 
         #endregion
         #region Institute
-        public int Add(int LoginUserID, string Name,int TotalUser, DateTime ModifiedDate, bool IsDeleted)
+        public int Add(int LoginUserID, string Name,int TotalUser,int TotalMonth, DateTime ModifiedDate, bool IsDeleted)
         {
 
             try
@@ -1002,6 +1002,8 @@ namespace BusinessLogic
                         newposetting.SubjectHeader = "Sub Space";
                         newposetting.IsSelfRegistrationAllow = false;
                         newposetting.SpaceLimit = "400";
+                        newposetting.ValidityMonth = TotalMonth.ToString();
+                        newposetting.ExpiryDate = DateTime.Now.AddMonths(TotalMonth).ToString();
                         newposetting.UserLimit = TotalUser.ToString();
                         new PortalSettingHelper().Add(InstituteID, newposetting);
                     }

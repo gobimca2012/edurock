@@ -313,6 +313,22 @@ namespace BusinessLogic
             }
         }
 
+        public IEnumerable GetbyInstitute(int InstituteID)
+        {
+            try
+            {
+                return new DataProvider().InstituteCourceGetbyInstitute(InstituteID);
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return null;
+            }
+        }
         public List<InstituteCource> GetbyInstituteID(int InstituteID)
         {
             try
@@ -326,7 +342,7 @@ namespace BusinessLogic
                     StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
                     Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
                 }
-                return new List<InstituteCource>();
+                return null;
             }
         }
 
@@ -616,9 +632,9 @@ namespace BusinessLogic
 
         public void BindInstituteCource(DropDownList dd)
         {
-            var data = Get();
+            var data = GetbyInstitute(new UserAuthontication().InstituteID);
             dd.DataSource = data;
-            dd.DataTextField = "CourceName";
+            dd.DataTextField = "CourseName";
             dd.DataValueField = "InstituteCourseID";
             dd.DataBind();
             ListItem noneItem = new ListItem();
@@ -628,7 +644,7 @@ namespace BusinessLogic
         }
         public void BindInstituteCource(DropDownList dd, string SelectedValue)
         {
-            var data = Get();
+            var data = GetbyInstitute(new UserAuthontication().InstituteID);
             dd.DataSource = data;
             dd.DataTextField = "CatagoryName";
             dd.DataValueField = "InstituteCourceID";

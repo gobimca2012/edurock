@@ -6469,7 +6469,7 @@ namespace DataAccess
             return db.GetCourceByInstituteID(InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
-        public List<InstituteCource> InstituteCourceGetbyInstituteID(int InstituteID)
+        public IEnumerable InstituteCourceGetbyInstitute(int InstituteID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             InstituteDataContext db = new InstituteDataContext();
@@ -6479,6 +6479,21 @@ namespace DataAccess
             option.LoadWith<InstituteCource>(p => p.Cource);
             option.LoadWith<Cource>(p => p.CourceCatagory);
             db.LoadOptions = option;
+            var data = (from p in db.InstituteCources where p.InstituteID == InstituteID select new { CourseName = p.Cource.CourceName, InstituteCourseID = p.InstituteCourceID }).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
+        }
+        public List<InstituteCource> InstituteCourceGetbyInstituteID(int InstituteID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            InstituteDataContext db = new InstituteDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            option.LoadWith<InstituteCource>(p => p.Cource);
+            option.LoadWith<Cource>(p => p.CourceCatagory);
+            db.LoadOptions = option;
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
             var data = (from p in db.InstituteCources where p.InstituteID == InstituteID select p).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;

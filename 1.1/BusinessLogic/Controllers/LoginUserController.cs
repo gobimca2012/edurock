@@ -570,15 +570,26 @@ namespace BusinessLogic
                         }
                         StatusReturn.Add("loginuserid", LoginUserID.ToString());
                         StatusReturn.Add("status", "success");
+                        return StatusReturn;
                     }
                     catch
                     {
                         Membership.DeleteUser(MemUser.UserName);
                         StatusReturn.Add("status", "error");
+                        return StatusReturn;
                     }
 
                 }
-                return StatusReturn;
+                else if (status == MembershipCreateStatus.DuplicateUserName)
+                {
+                    StatusReturn.Add("status", "duplicateusername");
+                    return StatusReturn;
+                }
+                else
+                {
+                    StatusReturn.Add("status", "error");
+                    return StatusReturn;
+                }
             }
             catch
             {

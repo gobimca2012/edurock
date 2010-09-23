@@ -44,11 +44,11 @@ public class Shopping : System.Web.Services.WebService
         return status;
     }
     [WebMethod]
-    public bool CreateNewInstitute(string InstituteName,string Username, string Password, string email,int totalUser)
+    public bool CreateNewInstitute(string InstituteName,string Username, string Password, string email,int totalUser,int TotalMonth)
     {
         int LoginUserID=AddUserData(Username, Password, email);
-        int ID=new InstituteController().Add(LoginUserID, InstituteName,totalUser, DateTime.Now, false);
-        if (ID > 0)
+        int ID=new InstituteController().Add(LoginUserID, InstituteName,totalUser,TotalMonth, DateTime.Now, false);
+        if (ID == 0)
         {
             new LoginUserController().DeletebyLoginUserID(LoginUserID);
             return true;
@@ -65,7 +65,7 @@ public class Shopping : System.Web.Services.WebService
         if (status["status"].Contains("success"))
         {
             return Convert.ToInt32(status["loginuserid"]);
-        }
+        }        
         else
         {
             return 0;

@@ -35,6 +35,16 @@ namespace BusinessLogic.Controller
             get;
             set;
         }
+        public string ValidityMonth
+        {
+            get;
+            set;
+        }
+        public string ExpiryDate
+        {
+            get;
+            set;
+        }
         
     }
     public class PortalSettingHelper
