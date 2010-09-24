@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using BusinessLogic.Controller;
 using BusinessLogic;
 using System.Collections.Generic;
+using BusinessLogic.Controllers;
 
 /// <summary>
 /// Summary description for Shopping
@@ -32,16 +33,25 @@ public class Shopping : System.Web.Services.WebService
         return "Hello World";
     }
     [WebMethod]
-    public bool UpdatePortal(int InstituteID, string UserLimit, string SpaceLimit)
+    public bool RenewInstitute(int InstituteID, string UserLimit, string SpaceLimit,int ValidityMonth)
     {
-        PortalSetting newposetting = new PortalSetting();
-        newposetting.CourseHeader = "Space";
-        newposetting.SubjectHeader = "Sub Space";
-        newposetting.IsSelfRegistrationAllow = false;
-        newposetting.UserLimit = UserLimit;
-        newposetting.SpaceLimit = SpaceLimit;
-        bool status=new PortalSettingHelper().Add(InstituteID, newposetting);
-        return status;
+        var data = new PortalSettingController().GetbyInstituteID(InstituteID);
+        if (data.Count > 0)
+        {
+            PortalSetting newposetting = new PortalSetting();
+            newposetting =(PortalSetting) new XMLHelper().Deserialize(data[0].Settings, newposetting);
+            newposetting.UserLimit = UserLimit;
+            newposetting.SpaceLimit = SpaceLimit;
+            newposetting.ValidityMonth = ValidityMonth.ToString();
+            newposetting.ExpiryDate = Convert.ToDateTime(newposetting.ExpiryDate).AddMonths(ValidityMonth).ToString();
+            bool status = new PortalSettingHelper().Add(InstituteID, newposetting);
+            return status;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
     [WebMethod]
     public int CreateNewInstitute(string InstituteName,string Username, string Password, string email,int totalUser,int TotalMonth)
@@ -65,11 +75,7 @@ public class Shopping : System.Web.Services.WebService
             return LoginUserID;
         }
     }
-    [WebMethod]
-    public void RenewInstitute(string InstituteID, int totalUser, int TotalMonth)
-    {
-        
-    }
+    
     private int AddUserData(string Username, string Password, string email)
     {
         int UserType = (int)UserTypeEnum.College;
