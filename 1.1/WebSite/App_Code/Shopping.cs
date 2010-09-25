@@ -60,6 +60,9 @@ public class Shopping : System.Web.Services.WebService
         if (LoginUserID > 0)
         {
             int ID = new InstituteController().Add(LoginUserID, InstituteName, totalUser, TotalMonth, DateTime.Now, false);
+            new InstituteController().UpdateByFilePath(ID, LoginUserID, "~/Images/Inst.png");
+            int instituteUserTypeID=new InstituteUserTypeController().Add(LoginUserID, ID, "Administrator", "", DateTime.Now);
+            new InstituteUserInUserTypeController().Add(LoginUserID, LoginUserID, instituteUserTypeID, DateTime.Now);
             if (ID == 0)
             {
                 new LoginUserController().DeletebyLoginUserID(LoginUserID);
@@ -80,8 +83,12 @@ public class Shopping : System.Web.Services.WebService
     {
         int UserType = (int)UserTypeEnum.College;
         Dictionary<string, string> status = new LoginUserController().CreateUser(Username, Password, email, UserType);
+
         if (status["status"].Contains("success"))
         {
+            int loginUserId=Convert.ToInt32(status["loginuserid"]);
+            new UserController().Add(loginUserId, Username);
+            new UserController().UpdateProfilePic(loginUserId, "~/Images/DefaultAvtar.png");
             return Convert.ToInt32(status["loginuserid"]);
         }
         else if (status["status"].Contains("duplicateusername"))

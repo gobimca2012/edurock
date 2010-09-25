@@ -25,19 +25,23 @@ public partial class Modules_Login_Login : System.Web.UI.UserControl
         {
             UserAuthontication objNewAuth = new UserAuthontication();
             LoginUser loginData = new UserAuthontication().ValidateUser(txtUsername.Text, txtPassword.Text);
-            if (loginData!=null)
+            if (loginData != null)
             {
                 if (loginData.UserType == 1)
                 {
                     JScripter.Loader.RedirectPage(ResolveUrl("~/User/DashBoard.aspx"), this.Page);
-                  
+
                 }
                 else
                 {
                     JScripter.Loader.RedirectPage(ResolveUrl("~/College/DashBoard.aspx"), this.Page);
-                    
+
                 }
                 Response.Redirect("~/User/DashBoard.aspx");
+            }
+            else
+            {
+                divMessage.InnerHtml = string.Format("<div class='error'>{0}</div>", "Username password does not match");
             }
             
         }

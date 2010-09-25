@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Login.ascx.cs" Inherits="Modules_Login_Login" %>
 <div >
+<div id="divMessage" runat="server" style="width:80%"></div>
     <div>
         <div>
             <div style="color:#fff">

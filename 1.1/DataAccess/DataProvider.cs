@@ -3622,6 +3622,42 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return ObjUser.UserID;
         }
+        public int UserAdd(int LoginUserID, string FirstName)
+        {
+            UserDataContext db = new UserDataContext();
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.Users where p.LoginUserID == LoginUserID select p).ToList();
+            User ObjUser = new User();
+            if (data.Count > 0)
+            {
+                ObjUser = data[0];
+            }
+            ObjUser.LoginUserID = LoginUserID;
+
+
+            ObjUser.FirstName = FirstName;
+
+
+            
+
+            ObjUser.ModifiedDate = DateTime.Now;
+
+
+
+
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            if (data.Count > 0)
+            {
+                ObjUser = data[0];
+            }
+            else
+            {
+                db.Users.InsertOnSubmit(ObjUser);
+            }
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return ObjUser.UserID;
+        }
         public void UpdateProfilePic(int LoginUserID, string FilePath)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }

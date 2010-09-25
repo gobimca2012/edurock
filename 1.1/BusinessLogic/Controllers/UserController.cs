@@ -1021,6 +1021,24 @@ namespace BusinessLogic
                 return 0;
             }
         }
+        public int Add(int LoginUserID, string FirstName)
+        {
+
+            try
+            {
+                int ID = new DataProvider().UserAdd(LoginUserID, FirstName);
+                return ID;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" CreateControls: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return 0;
+            }
+        }
         public string Upload(FileUpload fl)
         {
                 string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["ProfilePic"]);
