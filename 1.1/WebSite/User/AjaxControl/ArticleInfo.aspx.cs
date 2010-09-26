@@ -22,7 +22,7 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddArticle.ClientID);
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateArticle.ClientID);
         objValidate.DrowDownMendatory(ddCource, "Please select Course ", this.Page, "0");
-        objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
+        //objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
         objValidate.Medatory(txtTitle, "Please enter Title", this.Page);
         
 
@@ -45,7 +45,8 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select Course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
-            int InstituteSubjectID; if ((HtmlHelper.ControlValue(ddSubject.ClientID)) == "" || (HtmlHelper.ControlValue(ddSubject.ClientID)) == "0") { throw new Exception("Please Select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
+            int InstituteSubjectID=0;
+            //if ((HtmlHelper.ControlValue(ddSubject.ClientID)) == "" || (HtmlHelper.ControlValue(ddSubject.ClientID)) == "0") { throw new Exception("Please Select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
             string Tag; if (false) { throw new Exception(""); } Tag = HtmlHelper.ControlValue(txtTag.ClientID);
 
@@ -98,7 +99,8 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select Course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
-            int InstituteSubjectID; if ((HtmlHelper.ControlValue(ddSubject.ClientID)) == "" || (HtmlHelper.ControlValue(ddSubject.ClientID)) == "0") { throw new Exception("Please Select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
+            int InstituteSubjectID=0;
+            //if ((HtmlHelper.ControlValue(ddSubject.ClientID)) == "" || (HtmlHelper.ControlValue(ddSubject.ClientID)) == "0") { throw new Exception("Please Select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
             string Tag; if (false) { throw new Exception(""); } Tag = HtmlHelper.ControlValue(txtTag.ClientID);
 
@@ -170,7 +172,8 @@ public partial class User_AjaxControl_ArticleInfo : AjaxPage
         {
 
             lnkUpdateArticle.Visible = false;
-            new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+            //new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+            new InstituteCourceController().BindInstituteCource(ddCource);
         }
         ddCource.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddCource.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?icid="));
     }

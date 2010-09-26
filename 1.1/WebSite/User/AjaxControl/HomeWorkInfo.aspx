@@ -49,7 +49,7 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <div id="ddSub">
+                    <div id="ddSub" runat="server" visible="false">
                         <div>
                             <cram:CategoryLabel ID="asa" runat="server" EnableViewState="false" CssClass="label"></cram:CategoryLabel><span class="valmsg" >(Required)*</span>
                         </div>

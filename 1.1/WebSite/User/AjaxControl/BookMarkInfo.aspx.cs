@@ -19,7 +19,7 @@ public partial class User_AjaxControl_BookMarkInfo : AjaxPage
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddDocument.ClientID);
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateDocument.ClientID);
         objValidate.DrowDownMendatory(ddCource, "Please select Course ", this.Page, "0");
-        objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
+        //objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
         objValidate.Medatory(txtName, "Please enter Bookmark url", this.Page);
 
 
@@ -63,7 +63,8 @@ public partial class User_AjaxControl_BookMarkInfo : AjaxPage
             int DocumentType = _DocumentType;
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
-            int InstituteSubjectID; if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject") == "0") { throw new Exception("Please select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
+            int InstituteSubjectID=0;
+            //if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject") == "0") { throw new Exception("Please select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
             DateTime ModifiedDate = DateTime.Now;
 
             new DocumentController().Add(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceID, InstituteSubjectID, ModifiedDate);
@@ -119,7 +120,8 @@ public partial class User_AjaxControl_BookMarkInfo : AjaxPage
             int DocumentType = _DocumentType;
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
-            int InstituteSubjectID; if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject") == "0") { throw new Exception("Please select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
+            int InstituteSubjectID=0;
+            //if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject") == "0") { throw new Exception("Please select Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
 
             DateTime ModifiedDate = DateTime.Now;
 
@@ -155,7 +157,8 @@ public partial class User_AjaxControl_BookMarkInfo : AjaxPage
             }
             else
             {
-                new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+                //new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+                new InstituteCourceController().BindInstituteCource(ddCource);
             }
         }
     }
@@ -213,7 +216,8 @@ public partial class User_AjaxControl_BookMarkInfo : AjaxPage
                 //new CourceCatagoryController().BindCourceCatagory(ddCatagory);
                 lnkUpdateDocument.Visible = false;
 //                newAdd.Visible = false;
-                new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+                //new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+                new InstituteCourceController().BindInstituteCource(ddCource);
 
             }
 

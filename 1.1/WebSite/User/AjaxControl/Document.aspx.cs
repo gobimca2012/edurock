@@ -38,10 +38,7 @@ public partial class User_AjaxControl_Document : AjaxPage
         if (dataBunch.Count > 0)
         {
             var data = dataBunch[0];
-            //if (data.DocumentID != null)
-
-            //    lblDocumentID.InnerHtml = data.DocumentID.ToString();
-
+         
             if (data.Name != null)
 
                 lblName.InnerHtml = data.Name.ToString();
@@ -80,11 +77,20 @@ public partial class User_AjaxControl_Document : AjaxPage
                 {
                     img.Visible = true;
                     img.ImageUrl = ResolveUrl(data.FilePath.ToString());
+                    lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + ResolveUrl(data.FilePath.ToString());
                 }
                 else if (data.DocumentType == (int)DocumentTypeEnum.Document)
                 {
                     lblFilePath.HRef = ResolveUrl(data.FilePath.ToString());
                     lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + ResolveUrl(data.FilePath.ToString());
+                }
+                else if (data.DocumentType == (int)ContentTypeEnum.BookMark)
+                {
+                    //lblFilePath.HRef = ResolveUrl(data.Name);
+                    lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + ResolveUrl(data.FilePath.ToString());
+                    lnkViewDoc.Visible = false;
+                    lblFilePath.Visible = false;
+                    lblName.InnerHtml = string.Format("<a href='{0}' target='_blank'>{0}</a>",data.Name);
                 }
                 else if (data.DocumentType == (int)DocumentTypeEnum.Audio || data.DocumentType == (int)DocumentTypeEnum.Video)
                 {
@@ -95,8 +101,14 @@ public partial class User_AjaxControl_Document : AjaxPage
             }
             if (data.DocumentType != null)
             {
-                //lblDocumentType.InnerHtml = data.DocumentType.ToString();
-                lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?did=" + ID.ToString() + "&dtype=" + data.DocumentType.ToString();
+                if (data.DocumentType == (int)ContentTypeEnum.BookMark)
+                {
+                    lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/BookMarkInfo.aspx") + "?did=" + ID.ToString() + "&dtype=" + data.DocumentType.ToString();
+                }
+                else
+                {
+                    lnkEdit.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentInfo.aspx") + "?did=" + ID.ToString() + "&dtype=" + data.DocumentType.ToString();
+                }
             }
             if (data.DocumentCources.Count > 0)
             {

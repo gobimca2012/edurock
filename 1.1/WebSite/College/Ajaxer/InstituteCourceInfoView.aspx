@@ -10,7 +10,8 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            Institute <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> 
+            Institute
+            <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>
         </div>
         <asp:ListView ID="ListInstituteCource" runat="server">
             <LayoutTemplate>
@@ -18,9 +19,9 @@
                     <thead>
                         <tr>
                             <td>
-                                <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel> 
+                                <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>
                             </td>
-                           <%-- <td>
+                            <%-- <td>
                                 StartDate
                             </td>
                             <td>
@@ -66,7 +67,7 @@
                 <td>
                     <%#Eval("MetaKeyword") %>
                 </td>--%>
-                   <%-- <td>
+                    <%-- <td>
                         <%#Eval("StartDate") %>
                     </td>
                     <td>
@@ -104,7 +105,7 @@
                             ContainnerID="#contentBox"><%=Resources.Default.Edit_Text %></aspajax:HyperLink>
                     </td>
                     <td>
-                        <aspajax:HyperLink ID="lnkSubject" runat="server" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteSubjectInfoView.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'
+                        <aspajax:HyperLink ID="lnkSubject" runat="server" Visible="false" NavigateUrl='<%#ResolveUrl("~/College/Ajaxer/InstituteSubjectInfoView.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'
                             ContainnerID="#contentBox">Subjects</aspajax:HyperLink>
                     </td>
                 </tr>

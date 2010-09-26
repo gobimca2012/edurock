@@ -30,7 +30,7 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
         objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
         objValidate.Medatory(txtStartDate, "Please enter Start Date", this.Page);
         objValidate.DrowDownMendatory(ddCource, "Please select Course ", this.Page, "0");
-        objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
+//        objValidate.DrowDownMendatory(ddSubject, "Please select Subject ", this.Page, "0");
 
 
 
@@ -57,8 +57,9 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "" || HtmlHelper.ControlValue(ddCource.ClientID) == "0") { throw new Exception("Please enter course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
-            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddSubject.ClientID) == "" || HtmlHelper.ControlValue(ddSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
+            //int InstituteSubjectID; if (HtmlHelper.ControlValue(ddSubject.ClientID) == "" || HtmlHelper.ControlValue(ddSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
 
+            int InstituteSubjectID = 0;
             string Tag; if (false) { throw new Exception(""); } Tag = HtmlHelper.ControlValue(txtTag.ClientID);
 
             string ContactPerson; if (false) { throw new Exception(""); } ContactPerson = HtmlHelper.ControlValue(txtContactPerson.ClientID);
@@ -127,8 +128,8 @@ public partial class User_AjaxControl_EventInfo : AjaxPage
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "" || HtmlHelper.ControlValue(ddCource.ClientID) == "0") { throw new Exception("Please enter course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
 
-            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddSubject.ClientID) == "" || HtmlHelper.ControlValue(ddSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
-
+            //int InstituteSubjectID; if (HtmlHelper.ControlValue(ddSubject.ClientID) == "" || HtmlHelper.ControlValue(ddSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddSubject.ClientID));
+            int InstituteSubjectID = 0;
             string Tag; if (false) { throw new Exception(""); } Tag = HtmlHelper.ControlValue(txtTag.ClientID);
 
             string ContactPerson; if (false) { throw new Exception(""); } ContactPerson = HtmlHelper.ControlValue(txtContactPerson.ClientID);

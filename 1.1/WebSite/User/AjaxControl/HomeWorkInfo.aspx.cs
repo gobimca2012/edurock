@@ -23,7 +23,7 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
         objValidate.Medatory(txtTitle, "Please enter Title", this.Page);
         objValidate.Medatory(txtDescription, "Please enter Description", this.Page);
         objValidate.DrowDownMendatory(ddInstituteCource, "Please select Cource", this.Page,"0");
-        objValidate.DrowDownMendatory(ddInstituteSubject, "Please select Subject", this.Page,"0");
+       // objValidate.DrowDownMendatory(ddInstituteSubject, "Please select Subject", this.Page,"0");
 
     }
 
@@ -44,7 +44,8 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "0") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
 
-            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+            int InstituteSubjectID=0;
+            //if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
 
             DateTime ModifiedDate = DateTime.Now;
 
@@ -90,7 +91,8 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "0") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
 
-            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+            int InstituteSubjectID=0;
+            //if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "0") { throw new Exception("Please enter subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
 
             DateTime ModifiedDate = DateTime.Now;
 
@@ -120,8 +122,9 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
 
             txtShortDescription.Text = data.ShortDescription;
 
-            new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(data.InstituteCourceID.ToString()), data.InstituteSubjectID.ToString());
-            new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, data.InstituteCourceID.ToString());
+            //new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(data.InstituteCourceID.ToString()), data.InstituteSubjectID.ToString());
+            //new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, data.InstituteCourceID.ToString());
+            new InstituteCourceController().BindInstituteCource(ddInstituteCource,data.InstituteCourceID.ToString());
 
 
         }
@@ -168,7 +171,8 @@ public partial class User_AjaxControl_HomeWorkInfo : AjaxPage
             }
             else
             {
-                new InstituteCourceController().BindInstituteCourceByLoginUserID(ddInstituteCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+                //new InstituteCourceController().BindInstituteCourceByLoginUserID(ddInstituteCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+                new InstituteCourceController().BindInstituteCource(ddInstituteCource);
 
                 lnkUpdateHomeWork.Visible = false;
             }

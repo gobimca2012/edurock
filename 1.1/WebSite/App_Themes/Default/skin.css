@@ -269,7 +269,7 @@ tr:hover
 
 .loading
 {
-    background: url(images/3.gif);
+/*    background: url(images/3.gif);
     z-index: 10001;
     background-repeat: no-repeat;
     background-position: center;
@@ -278,7 +278,14 @@ tr:hover
     top: 100px;
     padding: 30px;
     height: 70px;
-    width: 70px;
+    width: 70px;*/
+    background:url("images/35.gif") no-repeat scroll left center #444444;
+    background-repeat:no-repeat;
+    padding:10px 30px;
+    position:fixed;
+    
+    color:#E0DEDA;
+    font-weight:bold;
 }
 .lmenuitem
 {

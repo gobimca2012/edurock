@@ -79,7 +79,6 @@
                         <TitleStyle BackColor="White" BorderColor="White" BorderWidth="0px" Font-Bold="True" />
                     </asp:Calendar>
                 </div>
-                
             </div>
             <div>
                 <asp:ListView ID="ListDocument" runat="server" DataKeyNames="ID" OnItemDataBound="ListDocumentOnItemDataBound">
@@ -90,26 +89,20 @@
                     </LayoutTemplate>
                     <ItemTemplate>
                         <div class="dasbo">
-                            <div class="fr">
-                                <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
-                            </div>
-                            <div class="clear">
-                            </div>
-                            <div class="fl">
+                            <div style="float: left; width: 550px">
                                 <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Event.aspx") + "?evid=" + Eval("ID").ToString()%>'>
                         &nbsp;&nbsp;&nbsp;&nbsp;<%#Eval("Title") %></aspajax:HyperLink>
                             </div>
+                            <div class="invis fr">
+                                <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
+                            </div>
                             <div class="fr">
-                                <div class="fl">
-                                    Created by
-                                    <UNameLink:UNameLink ID="UNameLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>' />
-                                </div>
-                                <div class="clear">
-                                </div>
+                                <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" ModifiedDate='<%#Eval("ModifiedDate") %>'
+                                    LoginUserID='<%#Eval("LoginUserID") %>' />
                             </div>
                             <div style="clear: both">
                             </div>
-                            <div>
+                            <div class="label">
                                 Event Start Date
                                 <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("param1").ToString())) %>
                             </div>

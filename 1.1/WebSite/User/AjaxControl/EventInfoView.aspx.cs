@@ -80,6 +80,7 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
         objdate.DatePickerTextBox(txtEnddate);
         objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.VisibleOnMouseHover(".dasbo");
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
 
         if (Request.Params["isid"] != null)

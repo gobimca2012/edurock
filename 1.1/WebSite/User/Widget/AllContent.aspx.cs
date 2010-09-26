@@ -42,7 +42,8 @@ public partial class User_AjaxControl_AllContent : WidgetControl
             }
             else
             {
-                return new UserAuthontication().LoggedInUserID;
+                //return new UserAuthontication().LoggedInUserID;
+                return 0;
             }
         }
     }
@@ -81,7 +82,7 @@ public partial class User_AjaxControl_AllContent : WidgetControl
         if (!IsEditable)
         {
             lnkClose.Visible = false;
-        
+
         }
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#" + lnkExpand.ClientID, "#activestram");
@@ -107,23 +108,11 @@ public partial class User_AjaxControl_AllContent : WidgetControl
         {
             AjaxState["usid"] = Request.Params["usid"];
         }
-        //if (_InstituteCourceID > 0)
-        //{
-        //    objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/AboutWidget.aspx") + "?icid=" + _InstituteCourceID.ToString());
-        //}
-        else if (_LoginUserID > 0)
-        {
-           // objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/PublicUserInfoView.aspx") + "?usid=" + _LoginUserID.ToString());
-        }
-        else
-        {
-            objLoader.LoadPage("#sidewidget", ResolveUrl("~/User/AjaxControl/AboutWidget.aspx"));
-        }
-        {
-            BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.All).Count / PageSize));
-            PaggerLinkManager();
-        }
+
+        BindList();
+        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.All).Count / PageSize));
+        PaggerLinkManager();
+
 
     }
     private void BindList()
@@ -277,7 +266,7 @@ public partial class User_AjaxControl_AllContent : WidgetControl
     {
         get
         {
-            string value=HtmlHelper.ControlValue(txtKeyword.ClientID);
+            string value = HtmlHelper.ControlValue(txtKeyword.ClientID);
             txtKeyword.Text = value;
             return value; ;
         }

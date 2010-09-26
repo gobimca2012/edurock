@@ -646,8 +646,8 @@ namespace BusinessLogic
         {
             var data = GetbyInstitute(new UserAuthontication().InstituteID);
             dd.DataSource = data;
-            dd.DataTextField = "CatagoryName";
-            dd.DataValueField = "InstituteCourceID";
+            dd.DataTextField = "CourseName";
+            dd.DataValueField = "InstituteCourseID";
             dd.DataBind();
             ListItem noneItem = new ListItem();
             noneItem.Text = "select";

@@ -24,7 +24,7 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
         objValidate.Medatory(txtQuestionText, "Please enter Question Title", this.Page);
         objValidate.Medatory(txtDescription, "Please enter Question Description", this.Page);
         objValidate.DrowDownMendatory(ddCource, "Please select Cource", this.Page,"0");
-        objValidate.DrowDownMendatory(ddSubject, "Please select Subject", this.Page,"0");
+        //objValidate.DrowDownMendatory(ddSubject, "Please select Subject", this.Page,"0");
         objValidate.DrowDownMendatory(ddQuestionType, "Please select Question Type", this.Page,"0");
 
 
@@ -41,7 +41,8 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
             int InstituteCourceID; if (HtmlHelper.ControlValue("ddCource") == "" || HtmlHelper.ControlValue("ddCource")=="0") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue("ddCource"));
-            int InstituteSubjectID; if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject")=="0") { throw new Exception("Please select subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
+            int InstituteSubjectID=0;
+            //if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject")=="0") { throw new Exception("Please select subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
             int QuestionTypeID; if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "" || HtmlHelper.ControlValue(ddQuestionType.ClientID)=="0") { throw new Exception("Please select question type"); } QuestionTypeID = Convert.ToInt32(HtmlHelper.ControlValue(ddQuestionType.ClientID));
             string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID)=="" ) { throw new Exception("Please enter descrition"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
@@ -88,7 +89,8 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
 
             int LoginUserID = new UserAuthontication().LoggedInUserID;
             int InstituteCourceID; if (HtmlHelper.ControlValue("ddCource") == "" || HtmlHelper.ControlValue("ddCource") == "0") { throw new Exception("Please select cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue("ddCource"));
-            int InstituteSubjectID; if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject") == "0") { throw new Exception("Please select subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
+            int InstituteSubjectID=0;
+            //if (HtmlHelper.ControlValue("ddSubject") == "" || HtmlHelper.ControlValue("ddSubject") == "0") { throw new Exception("Please select subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue("ddSubject"));
             int QuestionTypeID; if (HtmlHelper.ControlValue(ddQuestionType.ClientID) == "" || HtmlHelper.ControlValue(ddQuestionType.ClientID) == "0") { throw new Exception("Please select question type"); } QuestionTypeID = Convert.ToInt32(HtmlHelper.ControlValue(ddQuestionType.ClientID));
             string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID) == "") { throw new Exception("Please enter descrition"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
@@ -168,7 +170,8 @@ public partial class User_AjaxControl_QuestionInfo : AjaxPage
         {
             new QuestionTypeController().BindQuestionType(ddQuestionType, new UserAuthontication().UserInstituteLoginID);
             lnkUpdateQuestion.Visible = false;
-            new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+            //new InstituteCourceController().BindInstituteCourceByLoginUserID(ddCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+            new InstituteCourceController().BindInstituteCource(ddCource);
         }
         ddCource.Attributes["onchange"] = string.Format("ddChange('#{0}','#{1}','{2}');", ddCource.ClientID, "ddrep", (ResolveUrl("~/User/Service.aspx") + "?icid="));
        

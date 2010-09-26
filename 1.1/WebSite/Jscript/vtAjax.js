@@ -1,4 +1,13 @@
-﻿var vteditor;
+﻿// JavaScript Document
+$('#contentBox').ajaxError(function(e, xhr, settings, exception)
+{
+   alert("error");
+}
+
+//  ---------------------------------------
+
+);
+var vteditor;
 function loadobject(url, loadid, clickid)
 {
    this.url = url;
@@ -152,16 +161,21 @@ function ProgressBar(status, id)
    {
       // $("#progress").html("<div style='position:absolute;left:400px;top:200px;padding:10px 30px;background:#fff;border:solid 5px #1E4B81;color:#1E4B81;'>Loadding...</div>");
       $("#progress").addClass("loading");
-      $("#progress").centerInClient();
+      $("#progress").addClass("roundedb");
+
+      $("#progress").html("Loading ...");
+
+      // $("#progress").centerInClient();
 
    }
    else
    {
-     // $(document).ready(function()
+      // $(document).ready(function()
       {
          $("#progress").removeClass("loading");
+         $("#progress").html("");
       }
-      //);
+      // );
    }
 }
 
@@ -258,15 +272,46 @@ function Timmer(containnerid, url, Milisecond)
 
 $.fn.LinkPostH = function(url, PostContainnerID, ContainnerID)
 {
-   // alert("hello");
+
+
    $(this).click(function()
    {
-
-
       ProgressBar(true, PostContainnerID);
       var data = $(PostContainnerID).serializeNoViewState();
       var urlparts = url.toString().split('?');
       data += "&" + urlparts[1];
+
+      //        $.ajax(
+      //   {
+      //      type : "POST",
+      //      url : urlparts[0],
+      //      data : data,
+      //      contentType : "application/json; charset=utf-8",
+      //      dataType : "html",
+      //      success : function(message)
+      //      {
+      //         HtmlPaste(message, ContainnerID);
+      //         BuildLinks(ContainnerID);
+      //         ProgressBar(false, ContainnerID);
+
+      //      }
+      //      ,
+      //      error : function(errormessage)
+      //      {
+      //         alert(errormessage);
+      //         $(ContainnerID).removeClass("loading");
+      //         ProgressBar(false, ContainnerID);
+      //      }
+      //   }
+      //   );
+      //
+      //
+      //
+
+
+
+
+
       $.post(urlparts[0], data,
       function(result)
       {
@@ -437,15 +482,15 @@ $.fn.PUIW = function(url, swidth, sheight, rurl, rid)
    $(this).html("");
    $(this).html("Loading................");
 
-   var str = "<iframe id='Ipopup' ALLOWTRANSPARENCY='true' frameborder='0' src='";   
-   rid=rid.toString().replace("#","");
-   if(url.toString().indexOf("?",0))
-   {   
-   str += url+"&rid="+rid+"&rurl="+rurl;
+   var str = "<iframe id='Ipopup' ALLOWTRANSPARENCY='true' frameborder='0' src='";
+   rid = rid.toString().replace("#", "");
+   if(url.toString().indexOf("?", 0))
+   {
+      str += url + "&rid=" + rid + "&rurl=" + rurl;
    }
    else
    {
-   str += url+"?rid="+rid+"&rurl="+rurl;
+      str += url + "?rid=" + rid + "&rurl=" + rurl;
    }
    str += "' style='width:" + swidth + "px;height:" + sheight + "px; background:none; overflow:auto;'></iframe>";
    $(this).html(str);
@@ -457,11 +502,11 @@ $.fn.PUIW = function(url, swidth, sheight, rurl, rid)
       close : function(event, ui)
       {
          $(this).dialog('destroy');
-        
+
       }
    }
    );
-  // $(this).dialog('open');
+   // $(this).dialog('open');
    $("#Ipopup").css(
    {
       width : "'"+swidth+"'px",
@@ -473,6 +518,7 @@ $.fn.PUIW = function(url, swidth, sheight, rurl, rid)
 
 }
 
+//  ---------------------------------------
 
 
 //  ---------------------------------------
@@ -496,7 +542,7 @@ $.fn.PUIWEditor = function(url, swidth, sheight)
       close : function(event, ui)
       {
          $(this).dialog('destroy');
-         
+
       }
    }
    );
@@ -564,17 +610,20 @@ $.fn.dropdownPostback = function(url, PostContainnerID, ResponseID)
 
 //  ---------------------------------------
 
-function closePop(rid,rurl)
+function closePop(rid, rurl)
 {
    // alert('close popup');
    $("#ipop").dialog('close');
-   $("#ipop").dialog('destroy');   
-    $(rid).LoadPage(rurl);
+   $("#ipop").dialog('destroy');
+   $(rid).LoadPage(rurl);
 }
+
+//  ---------------------------------------
+
 function closeEditorPopUp(content)
 {
-  //alert("aa");
-  alert(vteditor);
+   // alert("aa");
+   alert(vteditor);
    vteditor.selection.setContent('<img src="'+content+'" title="img"></img>');
    $("#ipop").dialog('close');
    $("#ipop").dialog('destroy');
@@ -859,6 +908,7 @@ $.fn.fullMode = function(id, url, chwidth)
 
 }
 
+//  ---------------------------------------
 
 $.fn.LoadPageNoReplace = function(url)
 {

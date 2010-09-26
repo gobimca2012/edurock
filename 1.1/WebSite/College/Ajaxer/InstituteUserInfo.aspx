@@ -22,14 +22,14 @@
                     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                 </div>
             </div>
-           <%-- <div>
+            <div>
                 <div>
                     <span class="label">Username</span><span class="valmsg">(Required)*</span>
                 </div>
                 <div>
                     <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
                 </div>
-            </div>--%>
+            </div>
             <div>
                 <div>
                     <span class="label">Password</span><span class="valmsg">(Required)*</span>

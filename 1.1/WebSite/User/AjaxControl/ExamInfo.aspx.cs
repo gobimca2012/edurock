@@ -237,7 +237,9 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
             }
             else
             {
-                new InstituteCourceController().BindInstituteCourceByLoginUserID(ddInstituteCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+                //new InstituteCourceController().BindInstituteCourceByLoginUserID(ddInstituteCource, new UserAuthontication().UserInstituteID,new UserAuthontication().LoggedInUserID);
+                new InstituteCourceController().BindInstituteCource(ddInstituteCource);
+
 
                 new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject);
             }

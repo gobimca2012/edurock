@@ -69,14 +69,14 @@
                             <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
                         &nbsp;<%#Eval("Title") %></aspajax:HyperLink>
                         </div>
+                        <div class="invis fr">
+                            <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
+                        </div>
                         <div style="float: right">
                             <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" ModifiedDate='<%#Eval("ModifiedDate") %>'
                                 LoginUserID='<%#Eval("LoginUserID") %>' />
                         </div>
                         <div style="clear: both">
-                        </div>
-                        <div class="invis">
-                            <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
                         </div>
                     </div>
                 </ItemTemplate>

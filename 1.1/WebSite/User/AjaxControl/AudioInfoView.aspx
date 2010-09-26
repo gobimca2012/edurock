@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AudioInfoView.aspx.cs" Inherits="User_AjaxControl_AudioInfoView" %>
 
-<%@ Register Src="../UserControl/UserToolTipLink.ascx" TagName="UserToolTipLink"
+<%@ Register Src="../UserControl/UserToolTipLink1.1.ascx" TagName="UserToolTipLink"
     TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,12 +17,12 @@
                 Search
             </div>
             <div style="float: right" class="expand" id="searchboxtrigger">
-                    <div>
-                    </div>
+                <div>
                 </div>
-                <div class="clear">
-                </div>
-                <div id="searchbox" runat="server" class="invis">
+            </div>
+            <div class="clear">
+            </div>
+            <div id="searchbox" runat="server" class="invis">
                 <div>
                     <div style="float: left;">
                         <div class="label">
@@ -76,7 +76,6 @@
                     </div>
                     <div style="clear: both">
                     </div>
-                    
                 </div>
             </ItemTemplate>
         </asp:ListView>
