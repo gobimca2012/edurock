@@ -26,10 +26,10 @@
                                 Result
                             </td>
                             <td>
-                                Start at
+                                Start Date
                             </td>
                             <td>
-                                End at
+                                End Date
                             </td>
                             <td>
                                 Complete Time
@@ -70,7 +70,7 @@
                     </td>
             </ItemTemplate>
         </asp:ListView>
-        <div>
+        <div style="display:none">
             <div style="float: right">
                 <div style="float: left">
                     <aspajax:AjaxLinkButton ID="lnkPrevExam" runat="server" Text="Prev" OnAjaxClick="PrevAjaxClick"

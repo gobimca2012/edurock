@@ -247,18 +247,19 @@ public partial class College_Ajaxer_ExamInfoView : AjaxPage
     {
         if ((bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddExam)
         {
-            if (_InstituteCourceID > 0)
-            {
-                UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
-                if (!UserAccess.IsAddable)
-                {
-                    hpAddExam.Visible = false;
-                }
-            }
-            else
-            {
-                hpAddExam.Visible = false;
-            }
+            //if (_InstituteCourceID > 0)
+            //{
+            //    UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
+            //    if (!UserAccess.IsAddable)
+            //    {
+            //        hpAddExam.Visible = false;
+            //    }
+            //}
+            //else
+            //{
+            //    hpAddExam.Visible = false;
+            //}
+            hpAddExam.Visible = true;
         }
         else
         {

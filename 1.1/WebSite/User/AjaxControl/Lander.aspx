@@ -21,7 +21,7 @@
             </div>
             <%--<div class="btn fl roundedall"><span class="ques">&nbsp;</span>
                 <aspajax:HyperLink ID="lnktut" runat="server" ContainnerID="#contentBox" NavigateUrl="~/All/Ajaxer/TutorialInfoView.aspx">Tutorials</aspajax:HyperLink></div>--%>
-            <div class="btn fl roundedall tp" rel="Get All User in current Space">
+            <div class="btn fl roundedall tp invis" rel="Get All User in current Space">
                 <span class="us">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkUsers" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ICUserInfoView.aspx">Users</aspajax:HyperLink></div>
             <div class="btn fl roundedall tp" rel="Get All Home work in current Space">

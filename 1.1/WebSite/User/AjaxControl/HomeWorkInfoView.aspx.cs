@@ -224,18 +224,19 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
     {
         if ((bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddHomeWork)
         {
-            if (_InstituteCourceID > 0)
-            {
-                UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
-                if (!UserAccess.IsAddable)
-                {
-                    hpAddHomeWork.Visible = false;
-                }
-            }
-            else
-            {
-                hpAddHomeWork.Visible = false;
-            }
+            //if (_InstituteCourceID > 0)
+            //{
+            //    UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
+            //    if (!UserAccess.IsAddable)
+            //    {
+            //        hpAddHomeWork.Visible = false;
+            //    }
+            //}
+            //else
+            //{
+            //    hpAddHomeWork.Visible = false;
+            //}
+            hpAddHomeWork.Visible = true;
         }
         else
         {

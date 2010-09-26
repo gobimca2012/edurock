@@ -281,6 +281,13 @@ namespace DataEntity
 		{
 			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), objectID, objectType, loginUserID).ReturnValue));
 		}
+		
+		[Function(Name="dbo.GetInstituteCourseByLoginUserAddAccess")]
+		public ISingleResult<GetInstituteCourseByLoginUserAddAccessResult> GetInstituteCourseByLoginUserAddAccess([Parameter(Name="LoginUserID", DbType="Int")] System.Nullable<int> loginUserID, [Parameter(Name="InstituteID", DbType="Int")] System.Nullable<int> instituteID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), loginUserID, instituteID);
+			return ((ISingleResult<GetInstituteCourseByLoginUserAddAccessResult>)(result.ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.LoginUser")]
@@ -5869,6 +5876,158 @@ namespace DataEntity
 		private string _CourceName;
 		
 		public GetInstituteCourseByLoginUserEditAccessResult()
+		{
+		}
+		
+		[Column(Storage="_InstituteCourceID", DbType="Int NOT NULL")]
+		public int InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this._InstituteCourceID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_InstituteID", DbType="Int NOT NULL")]
+		public int InstituteID
+		{
+			get
+			{
+				return this._InstituteID;
+			}
+			set
+			{
+				if ((this._InstituteID != value))
+				{
+					this._InstituteID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CourceID", DbType="Int NOT NULL")]
+		public int CourceID
+		{
+			get
+			{
+				return this._CourceID;
+			}
+			set
+			{
+				if ((this._CourceID != value))
+				{
+					this._CourceID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginUserID", DbType="Int")]
+		public System.Nullable<int> LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					this._LoginUserID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_MetaDescription", DbType="VarChar(MAX)")]
+		public string MetaDescription
+		{
+			get
+			{
+				return this._MetaDescription;
+			}
+			set
+			{
+				if ((this._MetaDescription != value))
+				{
+					this._MetaDescription = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_MetaKeyword", DbType="VarChar(MAX)")]
+		public string MetaKeyword
+		{
+			get
+			{
+				return this._MetaKeyword;
+			}
+			set
+			{
+				if ((this._MetaKeyword != value))
+				{
+					this._MetaKeyword = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Modifieddate", DbType="DateTime NOT NULL")]
+		public System.DateTime Modifieddate
+		{
+			get
+			{
+				return this._Modifieddate;
+			}
+			set
+			{
+				if ((this._Modifieddate != value))
+				{
+					this._Modifieddate = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CourceName", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string CourceName
+		{
+			get
+			{
+				return this._CourceName;
+			}
+			set
+			{
+				if ((this._CourceName != value))
+				{
+					this._CourceName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetInstituteCourseByLoginUserAddAccessResult
+	{
+		
+		private int _InstituteCourceID;
+		
+		private int _InstituteID;
+		
+		private int _CourceID;
+		
+		private System.Nullable<int> _LoginUserID;
+		
+		private string _MetaDescription;
+		
+		private string _MetaKeyword;
+		
+		private System.DateTime _Modifieddate;
+		
+		private string _CourceName;
+		
+		public GetInstituteCourseByLoginUserAddAccessResult()
 		{
 		}
 		

@@ -6647,6 +6647,24 @@ namespace DataAccess
             return db.GetItemEditAccessByLoginUserID(ObjectID, ObjectType, LoginUserID).Value;
 
         }
+        public List<GetInstituteCourseByLoginUserAddAccessResult> GetInstituteCourseByLoginUserAddAccess(int LoginUserID, int InstituteID)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInstituteCourseByLoginUserAddAccess(LoginUserID, InstituteID).ToList();
+
+        }
+        public List<GetInstituteCourseByLoginUserAddAccessResult> GetInstituteCourseByLoginUserAddAccess(int LoginUserID, int InstituteID, int PageSize, int PageNumber)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInstituteCourseByLoginUserAddAccess(LoginUserID, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
         #endregion
 
         #region InstituteCource

@@ -83,7 +83,7 @@
                 <aspajax:HyperLink ID="lnkEdit" runat="server" NavigateUrl="~/User/Widget/PublicUserInfo.aspx"><div class="btn editbtn"> <%=Resources.Default.Edit_Text %></div></aspajax:HyperLink>
             </div>
         </div>
-        <div class="graycontent roundedall">
+        <div class="graycontent roundedall invis">
             <div>
                 <div class="hcurv">
                     User's Cource

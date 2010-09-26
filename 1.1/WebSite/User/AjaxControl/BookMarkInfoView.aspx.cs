@@ -239,18 +239,19 @@ public partial class User_AjaxControl_BookMarkInfoView : AjaxPage
     {
         if ((bool)new ButtonVisibilityHelper(new UserAuthontication().LoggedInUserID).Access.CanAddImage)
         {
-            if (_InstituteCourceID > 0)
-            {
-                UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
-                if (!UserAccess.IsAddable)
-                {
-                    hpAddDocument.Visible = false;
-                }
-            }
-            else
-            {
-                hpAddDocument.Visible = false;
-            }
+            //if (_InstituteCourceID > 0)
+            //{
+            //    UserAccess = new ShareController().GetSpaceAccess(AjaxState["icid"], (int)ContentTypeEnum.InstituteCourse, new UserAuthontication().LoggedInUserID);
+            //    if (!UserAccess.IsAddable)
+            //    {
+            //        hpAddDocument.Visible = false;
+            //    }
+            //}
+            //else
+            //{
+            //    hpAddDocument.Visible = false;
+            //}
+            hpAddDocument.Visible = true;
         }
         else
         {

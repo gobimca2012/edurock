@@ -63,9 +63,6 @@ public partial class College_Widget_WidgetPage : WidgetContainner
                 lnkEdit.Text = "Priview";
             }
         }
-        else
-        {
-            divspacecontrol.Visible = false;
-        }
+        
     }
 }

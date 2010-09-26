@@ -46,7 +46,7 @@ public partial class User_AjaxControl_UserExamResult : AjaxPage
         }
     }
     private int TotalPage;
-    private int PageSize = 1;
+    private int PageSize = 1000;
 
     protected void Page_Load(object sender, EventArgs e)
     {

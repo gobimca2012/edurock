@@ -17,7 +17,7 @@
         <div id="lilogout" runat="server" class="fleft">
             <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click"><div class="btn"> Log out</div></asp:LinkButton>
         </div>
-        <div id="li1" runat="server" class="fleft">
+        <div id="li1" runat="server" class="fleft" visible="false">
             <asp:HyperLink ID="lnkRegisterInstitute" runat="server" NavigateUrl="~/RegisterInstitute.aspx"><div class="btn"> Sign up Institute</div></asp:HyperLink>
         </div>
         <div id="logindiv" style="display: none">

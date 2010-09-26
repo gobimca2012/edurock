@@ -29,7 +29,7 @@
             <li><span class="lbr">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkMyDocument" runat="server" ContainnerID="#contentBox">Library</aspajax:HyperLink></li>
             <li><span class="doc">&nbsp;</span>
-                <aspajax:HyperLink ID="lnkMyResult" runat="server" ContainnerID="#contentBox">Result</aspajax:HyperLink></li>
+                <aspajax:HyperLink ID="lnkMyResult" runat="server" ContainnerID="#contentBox">Results</aspajax:HyperLink></li>
         </ul>
     </div>
     </form>

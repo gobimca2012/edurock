@@ -70,6 +70,11 @@
                             <asp:HyperLink ID="lnkInstitute" runat="server" NavigateUrl="~/Institute.aspx"><div class="btn">Institute Page</div> </asp:HyperLink>
                         </div>
                         <div class="leftmenu">
+                            <div class="btn roundedall tp" rel="Get All User in organization">
+                                <span class="us">&nbsp;</span>
+                                <aspajax:HyperLink ID="lnkUsers" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/ICUserInfoView.aspx">Users</aspajax:HyperLink></div>
+                        </div>
+                        <div class="leftmenu">
                             <div>
                                 <div class="grayhead tp" rel="Select your cource and get update from cource">
                                     <span class="sub" style="float: left"></span><span style="float: left" id="lblSpace"
@@ -85,7 +90,7 @@
                             <div id="icource" class="vis">
                             </div>
                         </div>
-                        <div class="leftmenu">
+                        <div class="leftmenu" style="display: none">
                             <div class="tp" rel="Message System">
                                 <div class="grayhead">
                                     <div class="msg" style="float: left">
