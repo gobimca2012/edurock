@@ -6601,6 +6601,52 @@ namespace DataAccess
             }
 
         }
+        public List<GetInstituteCourseByLoginUserViewAccessResult> GetInstituteCourseByLoginUserViewAccess(int LoginUserID, int InstituteID)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInstituteCourseByLoginUserViewAccess(LoginUserID, InstituteID).ToList();
+
+        }
+        public List<GetInstituteCourseByLoginUserViewAccessResult> GetInstituteCourseByLoginUserViewAccess(int LoginUserID, int InstituteID, int PageSize, int PageNumber)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInstituteCourseByLoginUserViewAccess(LoginUserID, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
+        public List<GetInstituteCourseByLoginUserEditAccessResult> GetInstituteCourseByLoginUserEditAccess(int LoginUserID, int InstituteID)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInstituteCourseByLoginUserEditAccess(LoginUserID, InstituteID).ToList();
+
+        }
+        public List<GetInstituteCourseByLoginUserEditAccessResult> GetInstituteCourseByLoginUserEditAccess(int LoginUserID, int InstituteID, int PageSize, int PageNumber)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetInstituteCourseByLoginUserEditAccess(LoginUserID, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
+       
+        public bool GetItemEditAccessByLoginUserID(string ObjectID, int ObjectType, int LoginUserID)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetItemEditAccessByLoginUserID(ObjectID, ObjectType, LoginUserID).Value;
+
+        }
         #endregion
 
         #region InstituteCource

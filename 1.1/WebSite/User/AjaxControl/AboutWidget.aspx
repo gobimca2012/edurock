@@ -24,7 +24,7 @@
         </div>
        
     </div>
-    <div class="contentbox nobod" id="divsubject" runat="server">
+    <div class="contentbox nobod" id="divsubject" runat="server" visible="false">
         <div class="graycontent">
             <div style="float: left" class="title">
                 Subjects

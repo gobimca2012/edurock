@@ -136,14 +136,14 @@
         <elementListCompartment Id="a9ee4206-f6e1-4582-8252-d38db4c1b6ae" absoluteBounds="5.765, 2.21, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.125 : 3.83223714192708); (7.125 : 4.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.125 : 3.83223714192708); (7.125 : 4.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/UserDataContext/Share/Share_ShareGroup" />
       <nodes>
         <classShapeMoniker Id="fb46b41c-5796-4194-81c8-33be6679e711" />
         <classShapeMoniker Id="169b458f-495b-44f3-a6a2-c563111d07ad" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.0937475 : 3.83223714192708); (6.0937475 : 13.2639147363282); (6.5 : 13.2639147363282)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.0937475 : 3.83223714192708); (6.0937475 : 13.2639147363282); (6.5 : 13.2639147363282)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/UserDataContext/Share/Share_ShareUser" />
       <nodes>
         <classShapeMoniker Id="fb46b41c-5796-4194-81c8-33be6679e711" />

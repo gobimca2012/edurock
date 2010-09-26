@@ -14,11 +14,11 @@
             <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
         </LayoutTemplate>
         <ItemTemplate>
-            <div style="border-bottom:dashed 1px #cfcfcf;">
+            <div style="border-bottom: dashed 1px #cfcfcf;">
                 <%--<div class="sub" style="float: left; margin-left: 7px;">
                 </div>--%>
-                <div style="float: left;line-height:24px;margin-left:5px;">
-                    <aspajax:HyperLink ID="lnkFullvIew" runat="server" ContainnerID="#lander" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'> <div >   <%#Eval("Cource.CourceName")%></div></aspajax:HyperLink>
+                <div style="float: left; line-height: 24px; margin-left: 5px;">
+                    <aspajax:HyperLink ID="lnkFullvIew" runat="server" ContainnerID="#lander" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'> <div class="tp" rel='<%#Eval("MetaKeyword") %>'>   <%#Eval("CourceName")%></div></aspajax:HyperLink>
                 </div>
                 <div class="clear">
                 </div>

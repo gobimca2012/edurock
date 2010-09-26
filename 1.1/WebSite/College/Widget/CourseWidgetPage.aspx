@@ -9,17 +9,19 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <div class="gbg roundedall">
+        <div class="gbg roundedall" id="divwidmanager" runat="server">
             <div style="padding: 5px;">
                 <div class="btn tp editbtn fl" rel="Customize your profile and present it to your people"
                     id="divEdit" runat="server">
                     <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink></div>
                 <div class="fl">
                     <aspajax:HyperLink ID="lnkShare" runat="server" ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></div>
+                <div class="fl">
+                    <aspajax:HyperLink ID="lnkEditContent" runat="server" ContainnerID="#contentBox"><div class="btn editbtn" style="width:150px">  Edit Content </div></aspajax:HyperLink></div>
             </div>
             <div class="clear">
             </div>
-            <div id="divwidmanager" runat="server" class="clear">
+            <div class="clear">
                 <div id="widgetmanager">
                 </div>
             </div>

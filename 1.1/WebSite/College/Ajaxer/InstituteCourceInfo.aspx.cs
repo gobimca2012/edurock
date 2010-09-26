@@ -82,7 +82,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
             int CourceCategoryID = Convert.ToInt32(HtmlHelper.ControlValue(ddCatagory.ClientID));
             new InstituteCourceController().UpdateByInstituteCourceID(InstituteCourceID, CourceCategoryID, CourseName, MetaDescription, MetaKeyword, Modifieddate);
             Session[SessionName.SucessMessage.ToString()] = string.Format("{0} has been Updated Successfully", "Course");
-            Response.Redirect("~/College/Ajaxer/InstituteCourceInfoView.aspx");
+            Response.Redirect("~/College/Widget/CourseWidgetPage.aspx?icid=" + InstituteCourceID.ToString());
         }
         catch (Exception ex)
         {

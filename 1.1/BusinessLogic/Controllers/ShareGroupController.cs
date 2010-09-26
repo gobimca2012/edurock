@@ -654,6 +654,8 @@ namespace BusinessLogic
             try
             {
                 new DataProvider().UpdateShareGroupEnableEdit(InsitiuteUserTypeID, QuestionID, ObjectType, EnableEdit);
+                if(EnableEdit)
+                    new DataProvider().UpdateShareGroupEnableView(InsitiuteUserTypeID, QuestionID, ObjectType, EnableEdit);
                 return true;
             }
             catch (Exception ex)
@@ -706,6 +708,11 @@ namespace BusinessLogic
             try
             {
                 new DataProvider().UpdateShareGroupEnableView(InsitiuteUserTypeID, QuestionID, ObjectType, EnableView);
+                if (!EnableView)
+                {
+                    new DataProvider().UpdateShareGroupEnableEdit(InsitiuteUserTypeID, QuestionID, ObjectType, EnableView);
+                    new DataProvider().UpdateShareGroupEnableAdd(InsitiuteUserTypeID, QuestionID, ObjectType, EnableView);
+                }
                 return true;
             }
             catch (Exception ex)

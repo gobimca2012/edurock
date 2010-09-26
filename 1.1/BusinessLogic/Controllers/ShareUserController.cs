@@ -631,6 +631,8 @@ namespace BusinessLogic
             try
             {
                 new DataProvider().UpdateShareUserEnableEdit(LoginUserID, QuestionID,ObjectType, EnableEdit);
+                if(EnableEdit)
+                    new DataProvider().UpdateShareUserEnableView(LoginUserID, QuestionID, ObjectType, EnableEdit);
                 return true;
             }
             catch (Exception ex)
@@ -683,6 +685,8 @@ namespace BusinessLogic
             try
             {
                 new DataProvider().UpdateShareUserEnableView(LoginUserID, QuestionID, ObjectType, EnableView);
+                if(!EnableView)
+                    new DataProvider().UpdateShareUserEnableEdit(LoginUserID, QuestionID, ObjectType, EnableView);
                 return true;
             }
             catch (Exception ex)
