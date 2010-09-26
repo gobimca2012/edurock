@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray">
-            User Type</div>
+            User Role</div>
         <div>
             <asp:ListView ID="ListInstituteUserType" runat="server">
                 <LayoutTemplate>
@@ -20,11 +20,11 @@
                                 <td>
                                     Name
                                 </td>
-                                <td>
+                                <%-- <td>
                                     Description
-                                </td>
+                                </td>--%>
                                 <td>
-                                    ModifiedDate
+                                    Date
                                 </td>
                             </tr>
                         </thead>
@@ -36,9 +36,9 @@
                         <td>
                             <%#Eval("Name") %>
                         </td>
-                        <td>
+                        <%--<td>
                             <%#Eval("Description") %>
-                        </td>
+                        </td>--%>
                         <td>
                             <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                         </td>

@@ -137,6 +137,8 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
             TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Question).Count / PageSize));
             PaggerLinkManager();
         }
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.VisibleOnMouseHover(".dasbo");
 
     }
     private void BindList()

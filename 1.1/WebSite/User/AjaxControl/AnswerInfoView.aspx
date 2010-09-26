@@ -58,7 +58,7 @@
                                 <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/AnswerInfo.aspx") + "?cid=" + Eval("AnswerID")%>'
                                     ContainnerID="#courceinfo"><div class="btn"> Edit</div></aspajax:HyperLink>
                             </div>--%>
-                            <div id="acceptAnswer" runat="server">
+                            <div id="acceptAnswer" runat="server" visible="false">
                                 <div class="btn">
                                     <%#_HtmlHelper.ListViewLinkButton("lnkd", "accept Answer","accept", Eval("AnswerID").ToString(), "#Answer", "#Answer")%></div>
                             </div>

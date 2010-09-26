@@ -16,17 +16,17 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>
+                           <%-- <td>
                                 QuestionTypeID
-                            </td>
+                            </td>--%>
                             <td>
-                                QuestionTypeTnext
+                                Question Type
                             </td>
-                            <td>
+                            <%--<td>
                                 LoginUserID
-                            </td>
+                            </td>--%>
                             <td>
-                                ModifiedDate
+                                Date
                             </td>
                         </tr>
                     </thead>
@@ -35,15 +35,15 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <tr>
-                    <td>
+                    <%--<td>
                         <%#Eval("QuestionTypeID") %>
-                    </td>
+                    </td>--%>
                     <td>
                         <%#Eval("QuestionTypeTnext") %>
                     </td>
-                    <td>
+                    <%--<td>
                         <%#Eval("LoginUserID") %>
-                    </td>
+                    </td>--%>
                     <td>
                         <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
                     </td>

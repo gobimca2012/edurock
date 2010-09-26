@@ -49,7 +49,7 @@
                             Price
                         </td>--%>
                             <td>
-                                Modifieddate
+                                Date
                             </td>
                         </tr>
                     </thead>

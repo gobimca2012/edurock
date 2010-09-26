@@ -90,7 +90,8 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
         objdate.DatePickerTextBox(txtstartDate);
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
-
+        
+        objEffect.VisibleOnMouseHover(".dasbo");
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];
@@ -199,7 +200,7 @@ public partial class User_AjaxControl_HomeWorkInfoView : AjaxPage
     {
         if (e.Command.Contains("delete"))
         {
-
+            new HomeWorkController().DeletebyHomeWorkID(Convert.ToInt32( e.Id));
             BindList();
         }
         base.OnAjaxListViewCommand(e);

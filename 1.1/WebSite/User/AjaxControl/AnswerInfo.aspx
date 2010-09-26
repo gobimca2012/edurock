@@ -13,10 +13,9 @@
         <fieldset>
             <legend>Answer</legend>
             <div>
-                
                 <div>
                     <div>
-                        <span class="label">AnswerText</span><span class="valmsg" >(Required)*</span>
+                        <span class="label">AnswerText</span><span class="valmsg">(Required)*</span>
                     </div>
                     <div>
                         <asp:TextBox ID="txtAnswerText" runat="server" Width="346px"></asp:TextBox>
@@ -24,19 +23,17 @@
                 </div>
                 <div>
                     <div>
-                        <span class="label">Description</span><span class="valmsg" >(Required)*</span>
+                        <span class="label">Description</span><span class="valmsg">(Required)*</span>
                     </div>
                     <div>
-                        <asp:TextBox ID="txtDescription" runat="server" Height="191px" 
-                            TextMode="MultiLine" Width="350px"></asp:TextBox>
+                        <asp:TextBox ID="txtDescription" runat="server" Height="191px" TextMode="MultiLine"
+                            Width="350px"></asp:TextBox>
                     </div>
                 </div>
-               
-               
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddAnswer" runat="server" RequestContainner="#Answer"
-                    ResponseContainner="#Answer" OnAjaxClick="AddAjaxClick"><%=Resources.Default.Add_Text%></aspajax:AjaxLinkButton>
+                    ResponseContainner="#Answer" OnAjaxClick="AddAjaxClick"><div class="btn"> <%=Resources.Default.Add_Text%></div></aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdateAnswer" runat="server" RequestContainner="#Answer"

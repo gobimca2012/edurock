@@ -11,17 +11,17 @@
     <div class="contentbox">
         <div class="gray" id="header" runat="server">
             Homeworks</div>
-              <div class="graycontent">
+        <div class="graycontent">
             <div style="float: left" class="title">
                 Search
             </div>
             <div style="float: right" class="expand" id="searchboxtrigger">
-                    <div>
-                    </div>
+                <div>
                 </div>
-                <div class="clear">
-                </div>
-                <div id="searchbox" runat="server" class="invis">
+            </div>
+            <div class="clear">
+            </div>
+            <div id="searchbox" runat="server" class="invis">
                 <div>
                     <div style="float: left;">
                         <div class="label">
@@ -62,9 +62,12 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <div style="clear: both" class="dasbo">
-                    <div style="float: left;width:550px" class="btitle" >
+                    <div style="float: left; width: 550px" class="btitle">
                         <aspajax:HyperLink ID="lnkFull" runat="server" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/HomeWork.aspx")+"?hwid="+Eval("ID").ToString()%>'
                             ContainnerID="#contentBox"><%#Eval("Title") %></aspajax:HyperLink>
+                    </div>
+                    <div class="invis fr">
+                        <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
                     </div>
                     <div style="float: right">
                         Post on &nbsp;<%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
@@ -72,7 +75,6 @@
                     <div style="clear: both">
                     </div>
                 </div>
-                
             </ItemTemplate>
         </asp:ListView>
         <div class="gray">

@@ -18,11 +18,15 @@
                 </div>
             </LayoutTemplate>
             <ItemTemplate>
-                <div>
-                    <%#Eval("InstituteUserType.Name") %>
-                </div>
-                <div>
-                    <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteUserInUserTypeID").ToString(), "#contentBox", "#contentBox")%>
+                <div class="dashbo">
+                    <div class="fl">
+                        <%#Eval("InstituteUserType.Name") %>
+                    </div>
+                    <div class="fr">
+                        <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("InstituteUserInUserTypeID").ToString(), "#contentBox", "#contentBox")%>
+                    </div>
+                    <div class="clear">
+                    </div>
                 </div>
             </ItemTemplate>
         </asp:ListView>
@@ -35,7 +39,7 @@
         <div class="whitecont">
             <div>
                 <div>
-                    <span class="label">User Role</span><span class="valmsg" >(Required)*</span>
+                    <span class="label">User Role</span><span class="valmsg">(Required)*</span>
                 </div>
                 <div>
                     <asp:DropDownList ID="ddRoles" runat="server">

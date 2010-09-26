@@ -107,6 +107,8 @@ public partial class User_ShareInfo : AjaxPage
             lnkBack.NavigateUrl = ResolveUrl("~/User/AjaxControl/HomeWork.aspx") + "?hwid=" + QuestionID.ToString();
         else if (Type == (int)ContentTypeEnum.Question)
             lnkBack.NavigateUrl = ResolveUrl("~/User/AjaxControl/Question.aspx") + "?qid=" + QuestionID.ToString();
+        else if (Type == (int)ContentTypeEnum.InstituteCourse)
+            lnkBack.NavigateUrl = ResolveUrl("~/College/Widget/CourseWidgetPage.aspx") + "?icid=" + QuestionID.ToString();
 
     }
 

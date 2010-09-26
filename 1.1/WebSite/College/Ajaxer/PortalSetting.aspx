@@ -7,7 +7,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="contentbox">
+        <div class="gray">
+            System Setting
+        </div>
         <div>
             <div>
                 <span class="label">Space Header</span>
