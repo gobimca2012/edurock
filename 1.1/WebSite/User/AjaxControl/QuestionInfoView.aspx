@@ -13,32 +13,53 @@
     <div style="padding: 5px;">
         <div class="contentbox">
             <div class="gray" id="header" runat="server">
-                Questions
-                <div id="dumi" runat="server" visible="false">
-                    <ul>
-                        <li>
-                            <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
-                        </li>
-                        <li>
-                            <asp:DropDownList ID="ddQuestionType" runat="server">
-                            </asp:DropDownList>
-                        </li>
-                        <li>
-                            <asp:DropDownList ID="ddQuestionStatus" runat="server">
-                            </asp:DropDownList>
-                        </li>
-                        <li class="btn roundedall">
-                            <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" RequestContainner="#contentBox"
-                                ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SearchAjaxClick"
-                                Pagger="False">Search</aspajax:AjaxLinkButton>
-                        </li>
-                        <li class="btn roundedall">
-                            <aspajax:HyperLink ID="lnkMyQuestion" runat="server" ContainnerID="#contentBox" NavigateUrl="~/User/AjaxControl/MyQuestion.aspx">Your Questions</aspajax:HyperLink>
-                        </li>
-                    </ul>
+                Images</div>
+            <div class="graycontent">
+                <div style="float: left" class="title">
+                    Search
+                </div>
+                <div style="float: right" class="expand" id="searchboxtrigger">
+                    <div>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+                <div id="searchbox" runat="server" class="invis">
+                    <div>
+                        <div style="float: left;">
+                            <div class="label">
+                                Keyword</div>
+                            <div>
+                                <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div style="float: left;">
+                            <div class="label">
+                                Start Date</div>
+                            <div>
+                                <asp:TextBox ID="txtstartDate" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div style="float: left;">
+                            <div class="label">
+                                End Date</div>
+                            <div>
+                                <asp:TextBox ID="txtEnddate" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div>
+                            <aspajax:AjaxLinkButton ID="lnkSearch" runat="server" EnableValidation="False" EnableViewState="False"
+                                Increment="False" OnAjaxClick="AjaxSearch" RequestContainner="#contentBox" ResponseContainner="#contentBox"
+                                Pagger="False"><div class="btn">Search</div> </aspajax:AjaxLinkButton>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="whitecont">
+            <div class="clear">
+            </div>
+            <div class="cbox">
                 <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="LoginUserID,ID" OnItemDataBound="ListQuestionOnItemDataBound">
                     <LayoutTemplate>
                         <div>
@@ -51,7 +72,7 @@
                                 <aspajax:HyperLink ID="lnkQuestionFull" runat="server" ContainnerID="#contentBox"
                                     NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Question.aspx")+"?qid="+Eval("ID")  %>'><%#Eval("Title") %></aspajax:HyperLink>
                             </div>
-                             <div class="invis fr">
+                            <div class="invis fr">
                                 <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
                             </div>
                             <div style="float: right">
@@ -78,7 +99,8 @@
                         <aspajax:HyperLink ID="hpAddQuestion" runat="server" NavigateUrl="" ContainnerID="#contentBox"><div class="btn"><%=Resources.Default.Add_Text%> Question</div></aspajax:HyperLink>
                     </div>
                 </div>
-                <div class="clear"></div>
+                <div class="clear">
+                </div>
             </div>
         </div>
     </div>

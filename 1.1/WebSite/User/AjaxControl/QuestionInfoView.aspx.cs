@@ -59,36 +59,36 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
             }
         }
     }
-    private int QuestionStatusID
-    {
-        get
-        {
-            string data = HtmlHelper.ControlValue(ddQuestionStatus.ClientID);
-            if (data == "0" || data == "")
-            {
-                return -1;
-            }
-            else
-            {
-                return Convert.ToInt32(data);
-            }
-        }
-    }
-    private int QuestionTypeID
-    {
-        get
-        {
-            string data = HtmlHelper.ControlValue(ddQuestionType.ClientID);
-            if (data == "0" || data == "")
-            {
-                return -1;
-            }
-            else
-            {
-                return Convert.ToInt32(data);
-            }
-        }
-    }
+    //private int QuestionStatusID
+    //{
+    //    get
+    //    {
+    //        string data = HtmlHelper.ControlValue(ddQuestionStatus.ClientID);
+    //        if (data == "0" || data == "")
+    //        {
+    //            return -1;
+    //        }
+    //        else
+    //        {
+    //            return Convert.ToInt32(data);
+    //        }
+    //    }
+    //}
+    //private int QuestionTypeID
+    //{
+    //    get
+    //    {
+    //        string data = HtmlHelper.ControlValue(ddQuestionType.ClientID);
+    //        if (data == "0" || data == "")
+    //        {
+    //            return -1;
+    //        }
+    //        else
+    //        {
+    //            return Convert.ToInt32(data);
+    //        }
+    //    }
+    //}
     private int PageNumber
     {
         get
@@ -104,13 +104,55 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 
 
     }
-
+    private string Keywork
+    {
+        get
+        {
+            string value = HtmlHelper.ControlValue(txtKeyword.ClientID);
+            txtKeyword.Text = value;
+            return value; ;
+        }
+    }
+    private DateTime StartDate
+    {
+        get
+        {
+            if (HtmlHelper.ControlValue(txtstartDate.ClientID) != null && HtmlHelper.ControlValue(txtstartDate.ClientID) != "")
+            {
+                txtstartDate.Text = HtmlHelper.ControlValue(txtstartDate.ClientID);
+                return Convert.ToDateTime(HtmlHelper.ControlValue(txtstartDate.ClientID));
+            }
+            else
+            {
+                return new DateTime(1800, 1, 1);
+            }
+        }
+    }
+    private DateTime EndDate
+    {
+        get
+        {
+            if (HtmlHelper.ControlValue(txtEnddate.ClientID) != null && HtmlHelper.ControlValue(txtEnddate.ClientID) != "")
+            {
+                txtEnddate.Text = HtmlHelper.ControlValue(txtEnddate.ClientID);
+                return Convert.ToDateTime(HtmlHelper.ControlValue(txtEnddate.ClientID));
+            }
+            else
+            {
+                return DateTime.Now;
+            }
+        }
+    }
     private int TotalPage;
     private int PageSize = 10;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        JScripter.DatePicker objdate = new JScripter.DatePicker(this.Page);
+        objdate.DatePickerTextBox(txtEnddate);
+        objdate.DatePickerTextBox(txtstartDate);
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#searchboxtrigger", "#searchbox");
         if (Request.Params["isid"] != null)
         {
             AjaxState["isid"] = Request.Params["isid"];
@@ -132,18 +174,20 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
         //hpAddQuestion.NavigateUrl = ResolveUrl("~/User/AjaxControl/MyQuestion.aspx") + "?icid=" + ICID;
         {
             BindList();
-            new QuestionTypeController().BindQuestionType(ddQuestionType);
-            new QuestionStatusController().BindQuestionStatus(ddQuestionStatus);
+            //new QuestionTypeController().BindQuestionType(ddQuestionType);
+            //new QuestionStatusController().BindQuestionStatus(ddQuestionStatus);
             TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Question).Count / PageSize));
             PaggerLinkManager();
         }
-        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        
         objEffect.VisibleOnMouseHover(".dasbo");
 
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new UserController().GetContent(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Question, PageSize, PageNumber);
+        TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Question, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate).Count / PageSize));
+        ListQuestion.DataSource = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Question, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate, PageSize, PageNumber);
+        //ListQuestion.DataSource = new UserController().GetUserRelatedContentSearch(_LoginUserID ,_InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.Question,new UserAuthontication().LoggedInUserID,K PageSize, PageNumber);
         ListQuestion.DataBind();
     }
     private void PaggerLinkManager()
@@ -212,9 +256,11 @@ public partial class User_AjaxControl_QuestionInfoView : AjaxPage
 
 
 
-    protected void SearchAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    protected void AjaxSearch(object sender, AjaxControl.AjaxEventArg e)
     {
 
+        BindList();
+        PaggerLinkManager();
     }
     private ShareContent UserAccess
     {
