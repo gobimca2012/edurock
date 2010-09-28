@@ -1,25 +1,26 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Login.ascx.cs" Inherits="Modules_Login_Login" %>
-<div >
-<div id="divMessage" runat="server" style="width:80%"></div>
+<div style="padding:40px;line-height:40px;">
+    <div id="divMessage" runat="server" style="width: 80%">
+    </div>
     <div>
         <div>
-            <div style="color:#fff">
-                Username :
+            <div style="color: #fff;font-weight:bold">
+                Username 
             </div>
             <div>
-                <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtUsername" runat="server" Width="300px"></asp:TextBox>
             </div>
         </div>
         <div>
-            <div style="color:#fff">
-                Password :
+            <div style="color: #fff;font-weight:bold">
+                Password 
             </div>
             <div>
-                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" Width="300px"></asp:TextBox>
             </div>
         </div>
     </div>
-    <div>
-        <asp:LinkButton ID="lnkLogin" runat="server" OnClick="lnkLogin_Click"><div class="btnlogin"> </div></asp:LinkButton>
+    <div style="text-align:center;margin-top:10px;">
+        <asp:LinkButton ID="lnkLogin" runat="server" OnClick="lnkLogin_Click"><div class="loginbtn"> </div></asp:LinkButton>
     </div>
 </div>
