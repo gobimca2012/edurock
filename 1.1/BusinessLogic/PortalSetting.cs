@@ -15,6 +15,16 @@ namespace BusinessLogic.Controller
             get;
             set;
         }
+        public string CustomerProductID
+        {
+            get;
+            set;
+        }
+        public string VT3Username
+        {
+            get;
+            set;
+        }
         public string SubjectHeader
         {
             get;

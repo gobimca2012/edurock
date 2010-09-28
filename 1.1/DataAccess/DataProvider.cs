@@ -3682,22 +3682,22 @@ namespace DataAccess
             return data;
 
         }
-        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate)
+        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID,int InstituteID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate).ToList();
+            return db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID).ToList();
 
         }
-        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate, int PageSize, int PageNumber)
+        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID,int InstituteID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate, int PageSize, int PageNumber)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            return db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
         #endregion

@@ -311,26 +311,6 @@
       <Column Name="Param1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.GetUserRelatedContentSearch" Method="GetUserRelatedContentSearch">
-    <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="InstituteCourceID" Parameter="instituteCourceID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="InstituteSubjectID" Parameter="instituteSubjectID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ContentType" Parameter="contentType" Type="System.Int32" DbType="Int" />
-    <Parameter Name="LoggedInUserLoginID" Parameter="loggedInUserLoginID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Keyword" Parameter="keyword" Type="System.String" DbType="VarChar(MAX)" />
-    <Parameter Name="Starddate" Parameter="starddate" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="Enddate" Parameter="enddate" Type="System.DateTime" DbType="DateTime" />
-    <ElementType Name="GetUserRelatedContentSearchResult">
-      <Column Name="ID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
-      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ContentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Param1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.GetInstituteCourseByLoginUserViewAccess" Method="GetInstituteCourseByLoginUserViewAccess">
     <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
     <Parameter Name="InstituteID" Parameter="instituteID" Type="System.Int32" DbType="Int" />
@@ -377,6 +357,27 @@
       <Column Name="MetaKeyword" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="Modifieddate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CourceName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetUserRelatedContentSearch" Method="GetUserRelatedContentSearch">
+    <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstituteCourceID" Parameter="instituteCourceID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="InstituteSubjectID" Parameter="instituteSubjectID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ContentType" Parameter="contentType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LoggedInUserLoginID" Parameter="loggedInUserLoginID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Keyword" Parameter="keyword" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="Starddate" Parameter="starddate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Enddate" Parameter="enddate" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="InstituteID" Parameter="instituteID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetUserRelatedContentSearchResult">
+      <Column Name="ID" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InstituteSubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ContentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Param1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -1065,7 +1065,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate);
+                return new DataProvider().GetUserRelatedContentSearch(LoginUserID,new UserAuthontication().InstituteID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate);
             }
             catch
             {
@@ -1077,7 +1077,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, PageSize, PageNumber);
+                return new DataProvider().GetUserRelatedContentSearch(LoginUserID,new UserAuthontication().InstituteID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, PageSize, PageNumber);
             }
             catch
             {

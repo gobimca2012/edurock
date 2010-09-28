@@ -54,13 +54,14 @@ public class Shopping : System.Web.Services.WebService
         
     }
     [WebMethod]
-    public int CreateNewInstitute(string InstituteName,string Username, string Password, string email,int totalUser,int TotalMonth)
+    public int CreateNewInstitute(string InstituteName,string Username, string Password, string email,int totalUser,int TotalMonth,string customerProductID,string VT3Username)
     {
         int LoginUserID=AddUserData(Username, Password, email);
         if (LoginUserID > 0)
         {
-            int ID = new InstituteController().Add(LoginUserID, InstituteName, totalUser, TotalMonth, DateTime.Now, false);
+            int ID = new InstituteController().Add(LoginUserID, InstituteName, totalUser, TotalMonth,customerProductID,VT3Username, DateTime.Now, false);
             new InstituteController().UpdateByFilePath(ID, LoginUserID, "~/Images/Inst.png");
+            new CourceCatagoryController().Add("All", LoginUserID, "", (int)CatagoryTypeEnum.BusinessIndustry, DateTime.Now);
             int instituteUserTypeID=new InstituteUserTypeController().Add(LoginUserID, ID, "Administrator", "", DateTime.Now);
             new InstituteUserInUserTypeController().Add(LoginUserID, LoginUserID, instituteUserTypeID, DateTime.Now);
             if (ID == 0)

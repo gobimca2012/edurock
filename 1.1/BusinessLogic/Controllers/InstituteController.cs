@@ -982,7 +982,7 @@ namespace BusinessLogic
 
         #endregion
         #region Institute
-        public int Add(int LoginUserID, string Name,int TotalUser,int TotalMonth, DateTime ModifiedDate, bool IsDeleted)
+        public int Add(int LoginUserID, string Name,int TotalUser,int TotalMonth,string CustomerProductID,string VT3Username, DateTime ModifiedDate, bool IsDeleted)
         {
 
             try
@@ -1005,6 +1005,8 @@ namespace BusinessLogic
                         newposetting.ValidityMonth = TotalMonth.ToString();
                         newposetting.ExpiryDate = DateTime.Now.AddMonths(TotalMonth).ToString();
                         newposetting.UserLimit = TotalUser.ToString();
+                        newposetting.CustomerProductID = CustomerProductID;
+                        newposetting.VT3Username = VT3Username;
                         new PortalSettingHelper().Add(InstituteID, newposetting);
                     }
                 }

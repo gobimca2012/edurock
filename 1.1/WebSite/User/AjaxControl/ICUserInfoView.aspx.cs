@@ -105,7 +105,7 @@ public partial class User_AjaxControl_ICUserInfoView : AjaxPage
         }
         {
             BindList();
-            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetUser(_InstituteCourceID,new UserAuthontication().UserInstituteID).Count / PageSize));
+            TotalPage = Convert.ToInt32(Math.Ceiling((decimal)new UserController().GetUser(_InstituteCourceID,new UserAuthontication().InstituteID).Count / PageSize));
             PaggerLinkManager();
         }
         new JScripter.Effect(this.Page, false).VisibleOnMouseHover(".cbox");
