@@ -14480,33 +14480,33 @@ namespace DataAccess
 
             }
         }
-        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID)
+        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID,int InstituteID)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetShareUser(ObjectType, ObjectID).ToList();
+            return db.GetShareUser(ObjectType, ObjectID,InstituteID).ToList();
 
         }
-        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID, string userName)
+        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID, string userName,int InstituteID)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data = db.GetShareUser(ObjectType, ObjectID).ToList();
+            var data = db.GetShareUser(ObjectType, ObjectID,InstituteID).ToList();
             var returndata = (from p in data where p.Username.ToLower().Contains(userName) select p).ToList();
             return returndata;
 
         }
-        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID, int PageSize, int PageNumber)
+        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID,int InstituteID, int PageSize, int PageNumber)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetShareUser(ObjectType, ObjectID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            return db.GetShareUser(ObjectType, ObjectID,InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
         public List<GetUserObjectAccessResult> GetUserObjectAccess(int LoginUserID, string ObjectID, int ObjectType)
@@ -15100,22 +15100,22 @@ namespace DataAccess
 
         #endregion
         #region CustomShareGroup
-        public List<GetShareGroupResult> GetShareGroup(int ObjectType, string ObjectID)
+        public List<GetShareGroupResult> GetShareGroup(int ObjectType, string ObjectID, int InstituteID)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetShareGroup(ObjectType, ObjectID).ToList();
+            return db.GetShareGroup(ObjectType, ObjectID,InstituteID).ToList();
 
         }
-        public List<GetShareGroupResult> GetShareGroup(int ObjectType, string ObjectID, int PageSize, int PageNumber)
+        public List<GetShareGroupResult> GetShareGroup(int ObjectType, string ObjectID, int InstituteID, int PageSize, int PageNumber)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetShareGroup(ObjectType, ObjectID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            return db.GetShareGroup(ObjectType, ObjectID,InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
         public void UpdateShareGroupEnableEdit(int InstituteUserTypeID, string QuestionID, int ObjectType, bool EnableEdit)

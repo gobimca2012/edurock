@@ -9,13 +9,13 @@
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="StudentLogin_UserEducation" Member="UserEducations" OtherKey="LoginUserID" Type="UserEducation" />
-      <Association Name="StudentLogin_ShareUser" Member="ShareUsers" OtherKey="LoginUserID" Type="ShareUser" />
-      <Association Name="StudentLogin_User" Member="Users" OtherKey="LoginUserID" Type="User" />
-      <Association Name="StudentLogin_Comment" Member="Comments" OtherKey="LoginUserID" Type="Comment" />
-      <Association Name="StudentLogin_Document" Member="Documents" OtherKey="LoginUserID" Type="Document" />
-      <Association Name="StudentLogin_Article" Member="Articles" OtherKey="LoginUserID" Type="Article" />
-      <Association Name="StudentLogin_Event" Member="Events" OtherKey="LoginUserID" Type="Event" />
+      <Association Name="StudentLogin_UserEducation" Member="UserEducations" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="UserEducation" />
+      <Association Name="StudentLogin_ShareUser" Member="ShareUsers" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="ShareUser" />
+      <Association Name="StudentLogin_User" Member="Users" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="User" />
+      <Association Name="StudentLogin_Comment" Member="Comments" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Comment" />
+      <Association Name="StudentLogin_Document" Member="Documents" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Document" />
+      <Association Name="StudentLogin_Article" Member="Articles" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Article" />
+      <Association Name="StudentLogin_Event" Member="Events" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Event" />
     </Type>
   </Table>
   <Table Name="dbo.UserEducation" Member="UserEducations">
@@ -26,7 +26,7 @@
       <Column Name="SubjectName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="Year" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="StudentLogin_UserEducation" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+      <Association Name="StudentLogin_UserEducation" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DocumentCource" Member="DocumentCources">
@@ -36,7 +36,7 @@
       <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="SubjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Document_DocumentCource" Member="Document" ThisKey="DocumentID" Type="Document" IsForeignKey="true" />
+      <Association Name="Document_DocumentCource" Member="Document" ThisKey="DocumentID" OtherKey="DocumentID" Type="Document" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ShareGroup" Member="ShareGroups">
@@ -50,7 +50,7 @@
       <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Share_ShareGroup" Member="Share" ThisKey="ShareID" Type="Share" IsForeignKey="true" />
+      <Association Name="Share_ShareGroup" Member="Share" ThisKey="ShareID" OtherKey="ShareID" Type="Share" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ShareUser" Member="ShareUsers">
@@ -64,8 +64,8 @@
       <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="StudentLogin_ShareUser" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
-      <Association Name="Share_ShareUser" Member="Share" ThisKey="ShareID" Type="Share" IsForeignKey="true" />
+      <Association Name="StudentLogin_ShareUser" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+      <Association Name="Share_ShareUser" Member="Share" ThisKey="ShareID" OtherKey="ShareID" Type="Share" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.[User]" Member="Users">
@@ -86,7 +86,7 @@
       <Column Name="AboutMe" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="Status" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="StudentLogin_User" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+      <Association Name="StudentLogin_User" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Comment" Member="Comments">
@@ -97,7 +97,7 @@
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CommentText" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="StudentLogin_Comment" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+      <Association Name="StudentLogin_Comment" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Document" Member="Documents">
@@ -113,8 +113,8 @@
       <Column Name="FilePath" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="DocumentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Document_DocumentCource" Member="DocumentCources" OtherKey="DocumentID" Type="DocumentCource" />
-      <Association Name="StudentLogin_Document" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+      <Association Name="Document_DocumentCource" Member="DocumentCources" ThisKey="DocumentID" OtherKey="DocumentID" Type="DocumentCource" />
+      <Association Name="StudentLogin_Document" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Article" Member="Articles">
@@ -130,7 +130,7 @@
       <Column Name="Tag" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="StudentLogin_Article" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+      <Association Name="StudentLogin_Article" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Event" Member="Events">
@@ -150,7 +150,7 @@
       <Column Name="ContactEmail" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="ContactPhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="StudentLogin_Event" Member="StudentLogin" ThisKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
+      <Association Name="StudentLogin_Event" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Ratting" Member="Rattings">
@@ -182,25 +182,10 @@
       <Column Name="EnableAllUserAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="EnableAllUserComment" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Share_ShareGroup" Member="ShareGroups" OtherKey="ShareID" Type="ShareGroup" />
-      <Association Name="Share_ShareUser" Member="ShareUsers" OtherKey="ShareID" Type="ShareUser" />
+      <Association Name="Share_ShareGroup" Member="ShareGroups" ThisKey="ShareID" OtherKey="ShareID" Type="ShareGroup" />
+      <Association Name="Share_ShareUser" Member="ShareUsers" ThisKey="ShareID" OtherKey="ShareID" Type="ShareUser" />
     </Type>
   </Table>
-  <Function Name="dbo.GetShareUser" Method="GetShareUser">
-    <Parameter Name="ObjectType" Parameter="objectType" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ObjectID" Parameter="objectID" Type="System.String" DbType="VarChar(100)" />
-    <ElementType Name="GetShareUserResult">
-      <Column Name="ObjectID" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ObjectType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="EnableEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EnableAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EnableView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.GetUserContent" Method="GetUserContent">
     <Parameter Name="LoginUserID" Parameter="loginUserID" Type="System.Int32" DbType="Int" />
     <ElementType Name="GetUserContentResult">
@@ -251,19 +236,6 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.GetShareGroup" Method="GetShareGroup">
-    <Parameter Name="ObjectType" Parameter="objectType" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ObjectID" Parameter="objectID" Type="System.String" DbType="VarChar(100)" />
-    <ElementType Name="GetShareGroupResult">
-      <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
-      <Column Name="InstituteUserTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="EnableEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EnableAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EnableView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.GetUserObjectAccess" Method="GetUserObjectAccess">
@@ -378,6 +350,36 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ContentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Param1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetShareUser" Method="GetShareUser">
+    <Parameter Name="ObjectType" Parameter="objectType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ObjectID" Parameter="objectID" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="InstituteID" Parameter="instituteID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetShareUserResult">
+      <Column Name="Username" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EnableEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetShareGroup" Method="GetShareGroup">
+    <Parameter Name="ObjectType" Parameter="objectType" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ObjectID" Parameter="objectID" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="InstituteID" Parameter="instituteID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetShareGroupResult">
+      <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="InstituteUserTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EnableEdit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableAdd" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableView" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableEditByLoggedIn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

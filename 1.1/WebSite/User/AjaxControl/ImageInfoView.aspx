@@ -22,21 +22,21 @@
             </div>
             <div id="searchbox" runat="server" class="invis">
                 <div>
-                    <div style="float: left;">
+                    <div style="float: left; width: 150px">
                         <div class="label">
                             Keyword</div>
                         <div>
                             <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <div style="float: left;">
+                    <div style="float: left; width: 150px">
                         <div class="label">
                             Start Date</div>
                         <div>
                             <asp:TextBox ID="txtstartDate" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <div style="float: left;">
+                    <div style="float: left; width: 150px">
                         <div class="label">
                             End Date</div>
                         <div>
@@ -90,7 +90,7 @@
                 <%--  </table>--%>
             </LayoutTemplate>
             <ItemTemplate>
-                <div style="float: left;height:150px;height:130px;" class="graycontent cbox">
+                <div style="float: left; height: 150px; height: 130px;" class="graycontent cbox">
                     <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
                     <div style="max-height:100px;height:100px;background:#f0f0f0;overflow:hidden">
                         <asp:Image ID="img" runat="server" ImageUrl='<%#ResolveUrl(Eval("Param1").ToString()) %>' Width="100" />
@@ -103,9 +103,9 @@
                     <div class="invis fr">
                         <%#_HtmlHelper.ListViewLinkButtonDelete("lnkd", "delete", Eval("ID").ToString(), Eval("LoginUserID").ToString(), "#contentBox", "#contentBox")%>
                     </div>
-                    <div class="clear"></div>
+                    <div class="clear">
+                    </div>
                 </div>
-         
             </ItemTemplate>
         </asp:ListView>
         <div style="clear: both">

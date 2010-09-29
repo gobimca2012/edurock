@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="UserToolTipLink1.1.ascx.cs"
     Inherits="User_UserControl_UserToolTipLink1_1" %>
 <%--<div class="udate" style="width:100%">--%>
-<div class="udate" style="width:100%">
+<div class="udate" style="width:300px">
     <div style="float: left;">
         <div id="lnkc" runat="server" visible="false">
             Last created by &nbsp;
@@ -14,6 +14,4 @@
     </div>
     <div style="clear: both">
 </div>
-</div>
-<div style="clear: both">
 </div>

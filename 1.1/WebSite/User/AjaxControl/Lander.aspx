@@ -38,7 +38,7 @@
                 <aspajax:HyperLink ID="lnkAudio" runat="server" ContainnerID="#contentBox">Audios</aspajax:HyperLink></div>
         </div>
         <div>
-            <div class="btn fl roundedall tp" rel="Get All Video in current space">
+            <div class="btn fl roundedall tp" rel="Get All Video in current space" style="width:80px">
                 <span class="vid">&nbsp;</span>
                 <aspajax:HyperLink ID="lnkVideo" runat="server" ContainnerID="#contentBox">Videos</aspajax:HyperLink></div>
             <div class="btn fl roundedall tp" rel="Get All Books in current Space">

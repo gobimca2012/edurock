@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Login.ascx.cs" Inherits="Modules_Login_Login" %>
-<div style="padding:40px;line-height:40px;">
-    <div id="divMessage" runat="server" style="width: 80%">
+<div style="margin:20px 20px;line-height:40px;">
+    <div id="divMessage" runat="server" style="width: 80%;line-height:0px">
     </div>
     <div>
         <div>
@@ -8,7 +8,7 @@
                 Username 
             </div>
             <div>
-                <asp:TextBox ID="txtUsername" runat="server" Width="300px"></asp:TextBox>
+                <asp:TextBox ID="txtUsername" runat="server" ></asp:TextBox>
             </div>
         </div>
         <div>
@@ -16,11 +16,11 @@
                 Password 
             </div>
             <div>
-                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" Width="300px"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" ></asp:TextBox>
             </div>
         </div>
     </div>
-    <div style="text-align:center;margin-top:10px;">
+    <div style="text-align:left;margin-top:10px;">
         <asp:LinkButton ID="lnkLogin" runat="server" OnClick="lnkLogin_Click"><div class="loginbtn"> </div></asp:LinkButton>
     </div>
 </div>

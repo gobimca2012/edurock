@@ -51,6 +51,12 @@
                             <td>
                                 Date
                             </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
                         </tr>
                     </thead>
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>

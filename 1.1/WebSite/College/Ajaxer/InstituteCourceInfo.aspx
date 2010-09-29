@@ -13,10 +13,11 @@
         </div>
         <div id="divMessage" runat="server">
         </div>
-        <fieldset>
-            <legend>Cource</legend>
-            <div>
-                <%-- <div>
+        <div class="whitecont">
+            <fieldset>
+                <legend>Cource</legend>
+                <div>
+                    <%-- <div>
                     <div>
                         <cram:SpaceLabel ID="lblcc" runat="server" EnableViewState="false" CssClass="label"></cram:SpaceLabel><span class="valmsg" >(Required)*</span>
                         <div>
@@ -32,44 +33,44 @@
                         </asp:DropDownList>
                     </div>
                 </div>--%>
-                <div>
-                    <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>
+                    <div>
+                        <cram:SpaceLabel ID="ttspace" runat="server"></cram:SpaceLabel>
+                    </div>
+                    <div>
+                        <asp:TextBox ID="txtCourceName" runat="server"></asp:TextBox>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">
+                                <cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel>
+                                Catagory</span><span class="valmsg">(Required)*</span>
+                        </div>
+                        <div>
+                            <asp:DropDownList ID="ddCatagory" runat="server" Height="22px" Width="451px">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">Meta Description</span><span class="valmsg">(Required)*</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtMetaDescription" runat="server" Height="203px" TextMode="MultiLine"
+                                Width="670px" CssClass="mceEditor"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <span class="label">Meta Keyword</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtMetaKeyword" runat="server" Height="106px" TextMode="MultiLine"
+                                Width="667px"></asp:TextBox>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <asp:TextBox ID="txtCourceName" runat="server"></asp:TextBox>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">
-                            <cram:SpaceLabel ID="SpaceLabel1" runat="server"></cram:SpaceLabel>
-                            Catagory</span><span class="valmsg">(Required)*</span>
-                    </div>
-                    <div>
-                        <asp:DropDownList ID="ddCatagory" runat="server" Height="22px" Width="451px">
-                        </asp:DropDownList>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">Meta Description</span><span class="valmsg">(Required)*</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtMetaDescription" runat="server" Height="203px" TextMode="MultiLine"
-                            Width="670px" CssClass="mceEditor"></asp:TextBox>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">Meta Keyword</span>
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtMetaKeyword" runat="server" Height="106px" TextMode="MultiLine"
-                            Width="667px"></asp:TextBox>
-                    </div>
-                </div>
-             
-            </div>
-        </fieldset>
+            </fieldset>
+        </div>
         <div class="gray">
             <div style="float: left">
                 <aspajax:AjaxLinkButton ID="lnkAddInstituteCource" runat="server" RequestContainner="#contentBox"

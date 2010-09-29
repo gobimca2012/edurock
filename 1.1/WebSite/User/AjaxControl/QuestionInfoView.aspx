@@ -26,21 +26,21 @@
                 </div>
                 <div id="searchbox" runat="server" class="invis">
                     <div>
-                        <div style="float: left;">
+                        <div style="float: left;width:150px">
                             <div class="label">
                                 Keyword</div>
                             <div>
                                 <asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>
                             </div>
                         </div>
-                        <div style="float: left;">
+                        <div style="float: left;width:150px">
                             <div class="label">
                                 Start Date</div>
                             <div>
                                 <asp:TextBox ID="txtstartDate" runat="server"></asp:TextBox>
                             </div>
                         </div>
-                        <div style="float: left;">
+                        <div style="float: left;width:150px">
                             <div class="label">
                                 End Date</div>
                             <div>
@@ -62,7 +62,7 @@
             <div class="cbox">
                 <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="LoginUserID,ID" OnItemDataBound="ListQuestionOnItemDataBound">
                     <LayoutTemplate>
-                        <div>
+                        <div class="whitecont">
                             <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
                         </div>
                     </LayoutTemplate>

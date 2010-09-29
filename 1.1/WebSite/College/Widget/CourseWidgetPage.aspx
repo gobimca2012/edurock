@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div>
         <div class="gbg roundedall" id="divwidmanager" runat="server">
-            <div style="padding: 5px;">
+            <div style="padding: 1px;">
                 <div class="btn tp editbtn fl" rel="Customize your profile and present it to your people"
                     id="divEdit" runat="server">
                     <aspajax:HyperLink ID="lnkEdit" runat="server" ContainnerID="#contentBox">Edit</aspajax:HyperLink></div>
@@ -21,23 +21,23 @@
             </div>
             <div class="clear">
             </div>
-            <div class="clear">
+            <div>
                 <div id="widgetmanager">
                 </div>
             </div>
         </div>
-        <br />
-        <div style="float: left; width: 59%; margin-left: 5px;">
-            <div id="widgetLeft">
+        <div style="margin-top:5px;">
+            <div style="float: left; width: 59%; margin-left: 5px;">
+                <div id="widgetLeft">
+                </div>
+            </div>
+            <div style="float: right; width: 40%">
+                <div id="widgetright" class="">
+                </div>
+            </div>
+            <div class="clear">
             </div>
         </div>
-        <div style="float: right; width: 40%">
-            <div id="widgetright" class="">
-            </div>
-        </div>
-        <div class="clear">
-        </div>
-    </div>
     </div>
     </form>
 </body>

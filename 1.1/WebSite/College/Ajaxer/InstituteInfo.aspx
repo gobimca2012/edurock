@@ -14,7 +14,7 @@
         </div>
         <div id="divMessage" runat="server">
         </div>
-        <div>
+        <div class="whitecont">
             <fieldset>
                 <legend>Institute</legend>
                 <div>

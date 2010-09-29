@@ -11,26 +11,28 @@
         <div class="gray">
             System Setting
         </div>
-        <div>
+        <div class="whitecont">
             <div>
-                <span class="label">Space Header</span>
+                <div>
+                    <span class="label">Space Header</span>
+                </div>
+                <div>
+                    <asp:TextBox ID="txtSpace" runat="server"></asp:TextBox>
+                </div>
             </div>
             <div>
-                <asp:TextBox ID="txtSpace" runat="server"></asp:TextBox>
+                <div>
+                    <span class="label">Catagory Header</span>
+                </div>
+                <div>
+                    <asp:TextBox ID="txtCatagory" runat="server"></asp:TextBox>
+                </div>
             </div>
-        </div>
-        <div>
             <div>
-                <span class="label">Catagory Header</span>
+                <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" EnableValidation="False" RequestContainner="#contentBox"
+                    ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SaveAjaxClick"
+                    Pagger="False"><div class="btn">Save</div> </aspajax:AjaxLinkButton>
             </div>
-            <div>
-                <asp:TextBox ID="txtCatagory" runat="server"></asp:TextBox>
-            </div>
-        </div>
-        <div>
-            <aspajax:AjaxLinkButton ID="lnkUpdate" runat="server" EnableValidation="False" RequestContainner="#contentBox"
-                ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SaveAjaxClick"
-                Pagger="False"><div class="btn">Save</div> </aspajax:AjaxLinkButton>
         </div>
     </div>
     </form>

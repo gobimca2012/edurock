@@ -704,7 +704,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetShareUser(ObjectType, ObjectID);
+                return new DataProvider().GetShareUser(ObjectType, ObjectID,new UserAuthontication().InstituteID);
             }
             catch
             {
@@ -716,7 +716,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetShareUser(ObjectType, ObjectID,UserName);
+                return new DataProvider().GetShareUser(ObjectType, ObjectID,UserName,new UserAuthontication().InstituteID);
             }
             catch
             {
@@ -728,7 +728,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetShareUser(ObjectType, ObjectID, PageSize, PageNumber);
+                return new DataProvider().GetShareUser(ObjectType, ObjectID,new UserAuthontication().InstituteID, PageSize, PageNumber);
             }
             catch
             {

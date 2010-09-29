@@ -630,7 +630,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetShareGroup(ObjectType, ObjectID);
+                return new DataProvider().GetShareGroup(ObjectType, ObjectID,new UserAuthontication().InstituteID);
             }
             catch
             {
@@ -642,7 +642,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetShareGroup(ObjectType, ObjectID, PageSize, PageNumber);
+                return new DataProvider().GetShareGroup(ObjectType, ObjectID,new UserAuthontication().InstituteID,  PageSize, PageNumber);
             }
             catch
             {

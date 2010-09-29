@@ -19,27 +19,101 @@
         </div>
         <fieldset>
             <legend>All User Access</legend>
-            <div>
-                <%--<asp:CheckBox ID="chkEditAllUser" runat="server" Text="Can Edit" Checked="false" />--%>
-                <aspajax:CheckBox ID="chkAddAllUser" CustomID="chkAllAdd$AllUSer" runat="server"
-                    Checked="false"></aspajax:CheckBox><span>All User Can Add</span>
-            </div>
-            <div>
-                <%--<asp:CheckBox ID="chkEditAllUser" runat="server" Text="Can Edit" Checked="false" />--%>
-                <aspajax:CheckBox ID="chkEditAllUser" CustomID="chkAllEdit$AllUSer" runat="server"
-                    Checked="false"></aspajax:CheckBox><span>All User Can Edit</span>
-            </div>
-            <div>
-                <%--<asp:CheckBox ID="chkViewAllUser" runat="server" Text="Can View" Checked="true"/>--%>
-                <aspajax:CheckBox ID="chkViewAllUser" CustomID="chkAllView$AllUSer" runat="server"
-                    Checked="true"></aspajax:CheckBox><span>All User can View</span>
-            </div>
-            <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateAll" runat="server" RequestContainner="#contentBox"
-                    ResponseContainner="#contentBox" EnableValidation="False" EnableViewState="False"
-                    Increment="False" OnAjaxClick="UpdateAllAjaxClick" Pagger="False"><div class="btn editbtn">Save</div></aspajax:AjaxLinkButton>
+            <div class="whitecont">
+                <div>
+                    <%--<asp:CheckBox ID="chkEditAllUser" runat="server" Text="Can Edit" Checked="false" />--%>
+                    <aspajax:CheckBox ID="chkAddAllUser" CustomID="chkAllAdd$AllUSer" runat="server"
+                        Checked="false"></aspajax:CheckBox><span>All User Can Add</span>
+                </div>
+                <div>
+                    <%--<asp:CheckBox ID="chkEditAllUser" runat="server" Text="Can Edit" Checked="false" />--%>
+                    <aspajax:CheckBox ID="chkEditAllUser" CustomID="chkAllEdit$AllUSer" runat="server"
+                        Checked="false"></aspajax:CheckBox><span>All User Can Edit</span>
+                </div>
+                <div>
+                    <%--<asp:CheckBox ID="chkViewAllUser" runat="server" Text="Can View" Checked="true"/>--%>
+                    <aspajax:CheckBox ID="chkViewAllUser" CustomID="chkAllView$AllUSer" runat="server"
+                        Checked="true"></aspajax:CheckBox><span>All User can View</span>
+                </div>
+                <div>
+                    <aspajax:AjaxLinkButton ID="lnkUpdateAll" runat="server" RequestContainner="#contentBox"
+                        ResponseContainner="#contentBox" EnableValidation="False" EnableViewState="False"
+                        Increment="False" OnAjaxClick="UpdateAllAjaxClick" Pagger="False"><div class="btn editbtn">Save</div></aspajax:AjaxLinkButton>
+                </div>
             </div>
         </fieldset>
+        <div>
+            <div class="graycontent">
+                <div class="title" style="float: left">
+                    Share with Group
+                </div>
+                <div id="roleboxtrigger" style="float: right" class="exand">
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div id="rolebox" style="display: none">
+                <div class="whitecont">
+                    <asp:ListView ID="ListGroup" runat="server" OnLayoutCreated="GroupLayoutCreated"
+                        OnItemDataBound="GroupItemDataBound">
+                        <LayoutTemplate>
+                            <div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                Group
+                                            </td>
+                                            <td id="tdcanadd" runat="server">
+                                                Can Add
+                                            </td>
+                                            <td>
+                                                Can Edit
+                                            </td>
+                                            <td>
+                                                Can View
+                                            </td>
+                                            <%-- <td>
+                                            Can Delete
+                                        </td>--%>
+                                        </tr>
+                                    </thead>
+                                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                                </table>
+                            </div>
+                        </LayoutTemplate>
+                        <ItemTemplate>
+                            <tr>
+                                <td>
+                                    <%#Eval("Name") %>
+                                </td>
+                                <td id="tdcanadd" runat="server">
+                                    <aspajax:CheckBox CustomID='<%#"chkgAdd$"+Eval("InstituteUserTypeID").ToString()%>'
+                                        ID="chkgA" runat="server" Checked='<%#Eval("EnableAdd") %>'></aspajax:CheckBox>
+                                </td>
+                                <td>
+                                    <aspajax:CheckBox CustomID='<%#"chkgEdit$"+Eval("InstituteUserTypeID").ToString() %>'
+                                        ID="chkgE" runat="server" Checked='<%#Eval("EnableEdit") %>'></aspajax:CheckBox>
+                                </td>
+                                <td>
+                                    <aspajax:CheckBox CustomID='<%#"chkgView$"+Eval("InstituteUserTypeID").ToString() %>'
+                                        ID="chkgV" runat="server" Checked='<%#Eval("EnableView") %>'></aspajax:CheckBox>
+                                </td>
+                                <%-- <td>
+                                <aspajax:CheckBox CustomID='<%#"chkgDelete$"+Eval("InstituteUserTypeID").ToString() %>'
+                                    ID="chkgD" runat="server" Checked='<%#Eval("EnableDelete") %>'></aspajax:CheckBox>
+                            </td>--%>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:ListView>
+                </div>
+                <div class="hcurv">
+                    <aspajax:AjaxLinkButton ID="lnkUpdateGroup" runat="server" RequestContainner="#contentBox"
+                        ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SaveGroupAjaxClick"
+                        Pagger="False"><div class="btn editbtn">Save</div> </aspajax:AjaxLinkButton>
+                </div>
+            </div>
+        </div>
         <div>
             <div class="graycontent">
                 <div class="title" style="float: left">
@@ -119,78 +193,6 @@
                 <div class="hcurv">
                     <aspajax:AjaxLinkButton ID="lnkSave" runat="server" RequestContainner="#contentBox"
                         ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SaveAjaxClick"
-                        Pagger="False"><div class="btn editbtn">Save</div> </aspajax:AjaxLinkButton>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="graycontent">
-                <div class="title" style="float: left">
-                    Share with Group
-                </div>
-                <div id="roleboxtrigger" style="float: right" class="exand">
-                </div>
-                <div class="clear">
-                </div>
-            </div>
-            <div id="rolebox" style="display: none">
-                <div class="whitecont">
-                    <asp:ListView ID="ListGroup" runat="server" OnLayoutCreated="GroupLayoutCreated"
-                        OnItemDataBound="GroupItemDataBound">
-                        <LayoutTemplate>
-                            <div>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <td>
-                                                Group
-                                            </td>
-                                            <td id="tdcanadd" runat="server">
-                                                Can Add
-                                            </td>
-                                            <td>
-                                                Can Edit
-                                            </td>
-                                            <td>
-                                                Can View
-                                            </td>
-                                            <%-- <td>
-                                            Can Delete
-                                        </td>--%>
-                                        </tr>
-                                    </thead>
-                                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                                </table>
-                            </div>
-                        </LayoutTemplate>
-                        <ItemTemplate>
-                            <tr>
-                                <td>
-                                    <%#Eval("Name") %>
-                                </td>
-                                <td id="tdcanadd" runat="server">
-                                    <aspajax:CheckBox CustomID='<%#"chkgAdd$"+Eval("InstituteUserTypeID").ToString()%>'
-                                        ID="chkgA" runat="server" Checked='<%#Eval("EnableAdd") %>'></aspajax:CheckBox>
-                                </td>
-                                <td>
-                                    <aspajax:CheckBox CustomID='<%#"chkgEdit$"+Eval("InstituteUserTypeID").ToString() %>'
-                                        ID="chkgE" runat="server" Checked='<%#Eval("EnableEdit") %>'></aspajax:CheckBox>
-                                </td>
-                                <td>
-                                    <aspajax:CheckBox CustomID='<%#"chkgView$"+Eval("InstituteUserTypeID").ToString() %>'
-                                        ID="chkgV" runat="server" Checked='<%#Eval("EnableView") %>'></aspajax:CheckBox>
-                                </td>
-                                <%-- <td>
-                                <aspajax:CheckBox CustomID='<%#"chkgDelete$"+Eval("InstituteUserTypeID").ToString() %>'
-                                    ID="chkgD" runat="server" Checked='<%#Eval("EnableDelete") %>'></aspajax:CheckBox>
-                            </td>--%>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:ListView>
-                </div>
-                <div class="hcurv">
-                    <aspajax:AjaxLinkButton ID="lnkUpdateGroup" runat="server" RequestContainner="#contentBox"
-                        ResponseContainner="#contentBox" EnableViewState="False" Increment="False" OnAjaxClick="SaveGroupAjaxClick"
                         Pagger="False"><div class="btn editbtn">Save</div> </aspajax:AjaxLinkButton>
                 </div>
             </div>

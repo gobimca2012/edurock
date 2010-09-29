@@ -544,6 +544,7 @@ h3
     padding: 0px;
     margin: 0px;
     color: #497EC1;
+    font-size:13px;
 }
 .error
 {
@@ -564,6 +565,7 @@ h3
 .dasbo
 {
     border-bottom: dashed 1px #cfcfcf;
+    min-height:70px;
 }
 .grayhead
 {
@@ -872,7 +874,7 @@ fieldset
 }
 legend
 {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     color: #497EC1;
 }
@@ -942,19 +944,17 @@ a
 {
     background: transparent url(images/bgbl.png);
     background-repeat: no-repeat;
-    background-position: left;
+    background-position:0px 0;
     height: 20px;
 }
 .bgbr
 {
-    background: transparent url(images/bgbr.png);
-    background-repeat: no-repeat;
-    background-position: right;
+    background: transparent url(images/bgbr.png) no-repeat 0px right;    
     height: 20px;
 }
 .bgbc
 {
-    background: transparent url(images/bgbc.png);
+   background: transparent url(images/bgbc.png);
     height: 20px;
     margin: 0px 20px;
 }
@@ -1251,4 +1251,9 @@ input[type=radio], input[type=checkbox]
     color:#fff;
     font-size:12px;
 line-height:25px;
+}
+dl
+{
+    margin:0px !important;
+    clear:both;
 }
