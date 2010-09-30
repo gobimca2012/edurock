@@ -3,7 +3,7 @@
 <%@ Register Assembly="AjaxControl" Namespace="AjaxControl" TagPrefix="cc1" %>
 <%@ Register Src="../Modules/Login/Create.ascx" TagName="Create" TagPrefix="uc1" %>
 <%@ Register Src="../Modules/Login/Login.ascx" TagName="Login" TagPrefix="uc2" %>
-<div style="width: 1000px; margin: 0 auto; height: 50px">
+<div style="width: 100%; margin: 0 auto; height: 50px">
     <div style="float: right; margin-right: 4px;">
         <div id="liHome" runat="server" class="fleft" visible="false">
             <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Home.aspx"><div class="btn"> Home</div></asp:HyperLink>

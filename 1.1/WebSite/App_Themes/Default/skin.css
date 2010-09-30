@@ -1257,3 +1257,7 @@ dl
     margin:0px !important;
     clear:both;
 }
+#atool .dasbo
+{
+    min-height:10px;
+}

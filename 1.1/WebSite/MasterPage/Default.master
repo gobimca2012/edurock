@@ -23,14 +23,16 @@
         <div id="acont">
         </div>
     </div>
-    <div class="header" style="border: none; background: transparent">
-        <uc1:HeaderNavigation ID="HeaderNavigation1" runat="server" />
-    </div>
     <div style="clear: both">
     </div>
     <div id="ipop">
     </div>
     <div class="page" id="pagecon" runat="server">
+        <div class="header" style="border: none; background: transparent;width:100%">
+            <uc1:HeaderNavigation ID="HeaderNavigation1" runat="server" />
+        </div>
+        <div style="clear: both">
+        </div>
         <div class="brcum">
             <div style="float: left">
                 <a href="~/User/DashBoard.aspx" runat="server" id="ddU">DashBoard</a>
