@@ -1246,11 +1246,12 @@ input[type=radio], input[type=checkbox]
     width:161px;
     height:54px;
 }
-.loginbxbg a
+.loginbxbg a,.loginbxbg a:hover
 {
     color:#fff;
     font-size:12px;
 line-height:25px;
+background:transparent;
 }
 dl
 {
@@ -1260,4 +1261,15 @@ dl
 #atool .dasbo
 {
     min-height:10px;
+}
+.footerbg
+{
+    background:url(images/footersl.png);
+    background-repeat:repeat-x;
+    height:114px;
+    color:#fff !important;
+}
+.footerbg a
+{
+       color:#fff;
 }
