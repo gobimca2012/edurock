@@ -33,7 +33,10 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         var data=new PortalSettingHelper().Get();
+        divexpiry.InnerHtml = string.Format("<div class='error'>{0} Days remainin expiration</div>", CommonController.GetRemainningDays(Convert.ToDateTime(data.ExpiryDate)));
         lblSpace.InnerText = data.CourseHeader;
+        JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, true);
+        objPopup.PopUpOpen(lnkBrowser, "#browsersupport", this.ResolveUrl("~/BrowserSupport.aspx"), "600", "300");
         if (Request.Cookies[CookieName.FullMode.ToString()] != null && Request.Cookies[CookieName.FullMode.ToString()].Value == "1")
         {
             //pagecon.Style.Add("width", "100%");

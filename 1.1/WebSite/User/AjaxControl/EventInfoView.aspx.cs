@@ -222,6 +222,7 @@ public partial class User_AjaxControl_EventInfoView : AjaxPage
         if (data != null)
         {
             int SelectedMonth = DateTime.Now.Month;
+//            e.SelectUrl = "javascript:void(0);";
             var dateEvent = (from p in data where p.ModifiedDate.Value.Day == e.Day.Date.Day && p.ModifiedDate.Value.Month == e.Day.Date.Month && p.ModifiedDate.Value.Year == e.Day.Date.Year select p).ToList();
             HtmlGenericControl div = new HtmlGenericControl("div");
             if (dateEvent.Count > 0)

@@ -55,6 +55,11 @@ namespace BusinessLogic
         {
             return Date.ToString(" dddd, dd MMMM yyyy");
         }
+        public static string GetRemainningDays(DateTime Date)
+        {
+            TimeSpan dd = Date.Subtract(DateTime.Now);
+            return dd.Days.ToString();
+        }
         public static string GetQuestionType(int QuestionType)
         {
             if (QuestionType == 1)

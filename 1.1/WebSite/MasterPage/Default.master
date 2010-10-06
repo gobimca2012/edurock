@@ -6,6 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+    <link rel="icon" type="image/png" href="/favicon.ico">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -28,7 +29,7 @@
     <div id="ipop">
     </div>
     <div class="page" id="pagecon" runat="server">
-        <div class="header" style="border: none; background: transparent;width:100%">
+        <div class="header" style="border: none; background: transparent; width: 100%">
             <uc1:HeaderNavigation ID="HeaderNavigation1" runat="server" />
         </div>
         <div style="clear: both">
@@ -152,6 +153,8 @@
                             <div class="clear">
                             </div>
                         </div>
+                        <div id="divexpiry" runat="server">
+                        </div>
                     </div>
                 </div>
                 <div style="float: right; width: 80%;">
@@ -215,6 +218,37 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="page" style="min-height: 0px;">
+        <div style="margin: 5px">
+            <div style="width: 100%; clear: both; position: relative; font-size: 11px; color: #fff;"
+                class="footin roundedall">
+                <div style="padding: 10px">
+                    <div class="fl">
+                        <span>
+                            <asp:Image ID="clogo" runat="server" ImageUrl="~/App_Themes/Default/Images/crameasylogo.png"
+                                Height="50px" />
+                        </span><span>Powered by crameasy on demand solution</span>
+                    </div>
+                    <div class="fr">
+                        <%--<asp:Image ID="Image1" runat="server" ImageUrl="~/App_Themes/Default/Images/vt3logo.png"
+                            Height="60px" />--%>
+                    </div>
+                    <div class="fr" style="vertical-align: bottom; margin-right: 11px; margin-top: 30px;">
+                        <span>Supported web browsers</span>
+                        <asp:HyperLink ID="lnkBrowser" alt="vt3soft" runat="server">View List and download</asp:HyperLink>
+                        <br />
+                        <span>Copyright ©</span>
+                        <asp:HyperLink ID="HyperLink6" alt="vt3soft" runat="server" NavigateUrl="http://vt3soft.com">VT3Soft</asp:HyperLink>
+                        <span>2008 -2010. All Rights Reserved</span>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="browsersupport">
     </div>
     </form>
 

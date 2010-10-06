@@ -71,7 +71,7 @@
                 </div>
                 <div class="whitecont">
                     <asp:Calendar ID="Calendar1" runat="server" BackColor="White" Width="100%" BorderWidth="0px"
-                        NextMonthText="" PrevMonthText="" CssClass="calender" OnDayRender="CalDayRender">
+                        NextMonthText="" PrevMonthText="" CssClass="calender" OnDayRender="CalDayRender" SelectionMode="None">
                         <SelectedDayStyle BackColor="#333399" ForeColor="White" />
                         <TodayDayStyle BackColor="#CCCCCC" />
                         <OtherMonthDayStyle ForeColor="#999999" />

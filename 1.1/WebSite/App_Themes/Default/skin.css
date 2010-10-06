@@ -949,7 +949,9 @@ a
 }
 .bgbr
 {
-    background: transparent url(images/bgbr.png) no-repeat 0px right;    
+    background:url(images/bgbr.png);    
+    background-repeat:no-repeat;
+    background-position:top right;
     height: 20px;
 }
 .bgbc
@@ -1269,7 +1271,14 @@ dl
     height:114px;
     color:#fff !important;
 }
-.footerbg a
+.footerbg a,.bksl a,.bksl
 {
        color:#fff;
+}
+.footin
+{
+    background:#f8f8f8;
+    
+    color:#fff !important;
+    border:solid 1px #c5c5c5;
 }

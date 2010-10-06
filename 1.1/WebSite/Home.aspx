@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+    <link rel="icon" type="image/png" href="/favicon.ico">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -74,7 +75,7 @@
                     </div>
                     <div class="fr" style="vertical-align: bottom; margin-right: 11px; margin-top: 50px;">
                         <span>Supported web browsers</span>
-                        <asp:HyperLink ID="HyperLink7" alt="vt3soft" runat="server" NavigateUrl="http://vt3soft.com">View List and download</asp:HyperLink>
+                        <asp:HyperLink ID="lnkBrowser" alt="vt3soft" runat="server">View List and download</asp:HyperLink>
                         <br />
                         <span>Copyright ©</span>
                         <asp:HyperLink ID="HyperLink6" alt="vt3soft" runat="server" NavigateUrl="http://vt3soft.com">VT3Soft</asp:HyperLink>
@@ -85,6 +86,8 @@
             <div class="clear">
             </div>
         </div>
+    </div>
+    <div id="browsersupport">
     </div>
 
     <script type="text/javascript">
