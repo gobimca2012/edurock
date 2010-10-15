@@ -35,7 +35,7 @@
                         <span class="label">Description</span>
                     </div>
                     <div>
-                        <span id="lblDescription" runat="server"></span>
+                        <div id="lblDescription" runat="server"></div>
                     </div>
                 </div>
                 <div>
@@ -43,7 +43,7 @@
                         <span class="label">MetaDescription</span>
                     </div>
                     <div>
-                        <span id="lblMetaDescription" runat="server"></span>
+                        <div id="lblMetaDescription" runat="server"></div>
                     </div>
                 </div>
                 <div>

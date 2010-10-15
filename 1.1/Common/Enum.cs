@@ -106,7 +106,7 @@ namespace Common
         public static bool IsDocument(string ext)
         {
             bool result = false;
-            if (ext.ToLower() == "pdf" || ext.ToLower() == "txt" || ext.ToLower() == "doc" || ext.ToLower() == "docx")
+            if (ext.ToLower() == "pdf" || ext.ToLower() == "txt" || ext.ToLower() == "doc" || ext.ToLower() == "docx" || ext.ToLower() == "xls" || ext.ToLower() == "xlsx")
             {
                 result = true;
             }

@@ -27,8 +27,12 @@
                         </div>
                         <div>
                             <div>
-                                <span class="label">Description</span><span class="valmsg">(Required)*</span>
+                                <span class="label">Description </span><span class="valmsg">(Required)*</span>
                             </div>
+                            <div class="graycontent">
+                                For embeded code use html.click on html button it will open new window and paste
+                                your embeded code in new window testbox.click update,[embeded code like scribd,youtube
+                                etc.]</div>
                             <div>
                                 <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="400"
                                     CssClass="mceEditor"></asp:TextBox>
@@ -45,7 +49,8 @@
                         <div>
                             <div>
                                 <div>
-                                   <cram:SpaceLabel ID="lblcc" runat="server" EnableViewState="false" CssClass="label"></cram:SpaceLabel><span class="valmsg" >(Required)*</span>
+                                    <cram:SpaceLabel ID="lblcc" runat="server" EnableViewState="false" CssClass="label"></cram:SpaceLabel><span
+                                        class="valmsg">(Required)*</span>
                                 </div>
                                 <div>
                                     <asp:DropDownList ID="ddCource" runat="server">
@@ -54,7 +59,8 @@
                             </div>
                             <div id="divsubject" runat="server" visible="false">
                                 <div>
-                                    <cram:CategoryLabel ID="asa" runat="server" EnableViewState="false" CssClass="label"></cram:CategoryLabel><span class="valmsg" >(Required)*</span>
+                                    <cram:CategoryLabel ID="asa" runat="server" EnableViewState="false" CssClass="label"></cram:CategoryLabel><span
+                                        class="valmsg">(Required)*</span>
                                 </div>
                                 <div id="ddrep">
                                     <asp:DropDownList ID="ddSubject" runat="server">
@@ -87,37 +93,36 @@
     </div>
 
     <script type="text/javascript">
-    
-   
 
-// JavaScript Document
-tinyMCE.init(
+
+
+        // JavaScript Document
+        tinyMCE.init(
 {
-   mode : "textareas",
-   theme : "advanced",
-   theme_advanced_buttons1 : "mybutton,bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,undo,redo,link,unlink",
-   theme_advanced_buttons2 : "",
-   theme_advanced_buttons3 : "",
-   theme_advanced_toolbar_location : "top",
-   theme_advanced_toolbar_align : "left",
-   theme_advanced_statusbar_location : "bottom",
-   plugins : 'inlinepopups',
-   editor_selector : 'mceEditor',
-   setup : function(ed)
-   {
-      // Add a custom button
-      ed.addButton('mybutton',
+    mode: "textareas",
+    theme: "advanced",
+    theme_advanced_buttons1: "mybutton,bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,undo,redo,link,unlink,code,fullscreen",
+    theme_advanced_buttons2: "",
+    theme_advanced_buttons3: "",
+    theme_advanced_toolbar_location: "top",
+    theme_advanced_toolbar_align: "left",
+    theme_advanced_statusbar_location: "bottom",
+    plugins: 'inlinepopups',
+    editor_selector: 'mceEditor',
+    setup: function(ed) {
+        // Add a custom button
+        ed.addButton('mybutton',
       {
-         title : 'My button',                 
-         onclick : function()
-         {
-            vteditor=ed;
-            ed.focus();
-            //ed.selection.setContent('<strong>Hello world!</strong>');
-            $('#ipop').PUIWEditor('/WebSite/User/UploadPhoto.aspx?uptype=6','500','500');
-         }
+          title: 'add image',
+          'class': 'mce_image',
+          onclick: function() {
+              vteditor = ed;
+              ed.focus();
+              //ed.selection.setContent('<strong>Hello world!</strong>');
+              $('#ipop').PUIWEditor('/WebSite/User/UploadPhoto.aspx?uptype=6', '500', '500');
+          }
       });
-   }
+    }
 }
 );
 

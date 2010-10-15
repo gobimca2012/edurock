@@ -3684,20 +3684,25 @@ namespace DataAccess
         }
         public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID,int InstituteID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate)
         {
-
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID).ToList();
+            var data=db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
 
         }
         public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID,int InstituteID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate, int PageSize, int PageNumber)
         {
-
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            var data=db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return data;
+
 
         }
         #endregion

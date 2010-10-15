@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using Common;
 
 public partial class User_AjaxControl_DocumentInfo : AjaxPage
 {
@@ -68,8 +69,19 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
             int Rating = 0;
 
-            string FilePath; if (HtmlHelper.ControlValue("filePath") == "") { throw new Exception("Please select File"); } FilePath = HtmlHelper.ControlValue("filePath");
-
+            string FilePath="";
+            if (_DocumentType == (int)ContentTypeEnum.Video)
+            {
+                FilePath = HtmlHelper.ControlValue(txtYoutube.ClientID);
+                if (FilePath == "")
+                {
+                    if (HtmlHelper.ControlValue("filePath") == "") { throw new Exception("Please select File"); } FilePath = HtmlHelper.ControlValue("filePath");
+                }
+            }
+            else
+            {
+                if (HtmlHelper.ControlValue("filePath") == "") { throw new Exception("Please select File"); } FilePath = HtmlHelper.ControlValue("filePath");
+            }
             int DocumentType = _DocumentType;
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddCource.ClientID) == "0" || HtmlHelper.ControlValue(ddCource.ClientID) == "") { throw new Exception("Please select course"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddCource.ClientID));
@@ -125,7 +137,20 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
 
             int Rating = 0;
 
-            string FilePath; if (HtmlHelper.ControlValue("filePath") == "") { throw new Exception("Please select File"); } FilePath = HtmlHelper.ControlValue("filePath");
+            string FilePath = "";
+            if (_DocumentType == (int)ContentTypeEnum.Video)
+            {
+                FilePath = HtmlHelper.ControlValue(txtYoutube.ClientID);
+                if (FilePath == "")
+                {
+                    if (HtmlHelper.ControlValue("filePath") == "") { throw new Exception("Please select File"); } FilePath = HtmlHelper.ControlValue("filePath");
+                }
+            }
+            else
+            {
+                if (HtmlHelper.ControlValue("filePath") == "") { throw new Exception("Please select File"); } FilePath = HtmlHelper.ControlValue("filePath");
+            }
+            //string FilePath; if (HtmlHelper.ControlValue("filePath") == "") { throw new Exception("Please select File"); } FilePath = HtmlHelper.ControlValue("filePath");
 
             int DocumentType = _DocumentType;
 
@@ -160,7 +185,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             txtMetaDescription.Text = data.MetaDescription;
 
             txtTag.Text = data.Tag;
-            img.ImageUrl = ResolveUrl(data.FilePath);
+            img.ImageUrl = ResolveUrl(data.FilePath);            
             filePath.Value = data.FilePath;
             if (data.DocumentCources.Count > 0)
             {
@@ -213,6 +238,10 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             if (Request.Params["dtype"] != null)
             {
                 AjaxState["dtype"] = Request.Params["dtype"];
+            }
+            if (_DocumentType == (int)ContentTypeEnum.Video)
+            {
+                divYoutube.Visible = true;
             }
             objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx") + "?uptype=" + _DocumentType.ToString(), "ipop", "600", "600", ResolveUrl("~/User/AjaxControl/UploadResponse.aspx"), "#popupresponce");
             //objPopUp.IframePopUp(lnkFilePopUp, ResolveUrl("~/User/UploadPhoto.aspx")+"?uptype="+_DocumentType.ToString(), "#ipop");

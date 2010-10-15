@@ -19,7 +19,7 @@
                 <div>
                     <div>
                         <div>
-                            <span class="label">Title</span><span class="valmsg" >(Required)*</span>
+                            <span class="label">Title</span><span class="valmsg">(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
@@ -27,7 +27,7 @@
                     </div>
                     <div>
                         <div>
-                            <span class="label">Description</span><span class="valmsg" >(Required)*</span>
+                            <span class="label">Description</span><span class="valmsg">(Required)*</span>
                         </div>
                         <div>
                             <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Height="300px"></asp:TextBox>
@@ -52,7 +52,8 @@
                     <div>
                         <div>
                             <div>
-                               <cram:SpaceLabel ID="lblcc" runat="server" EnableViewState="false" CssClass="label"></cram:SpaceLabel><span class="valmsg" >(Required)*</span>
+                                <cram:SpaceLabel ID="lblcc" runat="server" EnableViewState="false" CssClass="label"></cram:SpaceLabel><span
+                                    class="valmsg">(Required)*</span>
                             </div>
                             <div>
                                 <asp:DropDownList ID="ddCource" runat="server">
@@ -61,7 +62,8 @@
                         </div>
                         <div id="divsubject" runat="server" visible="false">
                             <div>
-                                <cram:CategoryLabel ID="asa" runat="server" EnableViewState="false" CssClass="label"></cram:CategoryLabel><span class="valmsg" >(Required)*</span>
+                                <cram:CategoryLabel ID="asa" runat="server" EnableViewState="false" CssClass="label"></cram:CategoryLabel><span
+                                    class="valmsg">(Required)*</span>
                             </div>
                             <div id="ddrep">
                                 <asp:DropDownList ID="ddSubject" runat="server">
@@ -81,8 +83,19 @@
                             </div>
                         </div>
                         <div>
-                            <span class="label">FilePath</span><span><span class="valmsg" >(Required)*</span>
-                                <asp:LinkButton ID="lnkFilePopUp" runat="server">Upload Image</asp:LinkButton></span>
+                            <span class="label">FilePath</span><span><span class="valmsg">(Required)*</span>
+                                <br />
+                                <asp:LinkButton ID="lnkFilePopUp" runat="server"><div class="btn"> Upload Image</div></asp:LinkButton></span>
+                        </div>
+                        <div id="divYoutube" runat="server" visible="false">
+                            <div class="graycontent">
+                                Upload your new video file or user youtube Video Shared link here
+                            </div>
+                            <div class="label">
+                                Youtube Link</div>
+                            <div>
+                                <asp:TextBox ID="txtYoutube" runat="server"></asp:TextBox>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,12 +103,12 @@
         </div>
         <div class="gray">
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddDocument" runat="server" RequestContainner="#contentBox" EnableValidation="true"
-                    ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn editbtn"> <%=Resources.Default.Add_Text%></div></aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkAddDocument" runat="server" RequestContainner="#contentBox"
+                    EnableValidation="true" ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick"><div class="btn editbtn"> <%=Resources.Default.Add_Text%></div></aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateDocument" runat="server" RequestContainner="#contentBox" EnableValidation="true"
-                    ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn editbtn"> Update</div></aspajax:AjaxLinkButton>
+                <aspajax:AjaxLinkButton ID="lnkUpdateDocument" runat="server" RequestContainner="#contentBox"
+                    EnableValidation="true" ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick"><div class="btn editbtn"> Update</div></aspajax:AjaxLinkButton>
             </div>
         </div>
     </div>

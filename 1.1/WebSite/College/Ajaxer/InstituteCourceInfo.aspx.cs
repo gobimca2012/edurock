@@ -53,6 +53,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
 
             int InstituteCourseID=new InstituteCourceController().Add(InstituteID, CourceCategoryID,CourseName, MetaDescription, MetaKeyword, Modifieddate);
             Session[SessionName.SucessMessage.ToString()] = string.Format("{0} has been added Successfully", "Course");
+            new JScripter.Loader(this.Page, true).LoadPage("#icource", ResolveUrl("~/User/AjaxControl/InstituteCourceInfoView.aspx") + "?usid=" + new UserAuthontication().LoggedInUserID.ToString());
             Response.Redirect("~/College/Widget/CourseWidgetPage.aspx?icid=" + InstituteCourseID.ToString());
         }
         catch (Exception ex)

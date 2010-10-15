@@ -202,5 +202,15 @@ namespace BusinessLogic
             fl.SaveAs(FilePath);
             return ReturnFilePath;
         }
+        public static string GetSiteName()
+        {
+            string Hostname = HttpContext.Current.Request.UserHostName;
+            if (!Hostname.Contains("http"))
+            {
+                Hostname = "http://" + Hostname;
+                Hostname = ConfigurationSettings.AppSettings["WebsiteHostAddress"].ToString();
+            }
+            return Hostname+"/";
+        }
     }
 }

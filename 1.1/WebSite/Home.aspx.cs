@@ -21,6 +21,7 @@ public partial class Home : BasePage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        Session.RemoveAll();
         JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, true);
         objPopup.PopUpOpen(lnkBrowser, "#browsersupport", this.ResolveUrl("~/BrowserSupport.aspx"), "600", "300");
     }

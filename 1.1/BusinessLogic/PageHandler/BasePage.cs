@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using JScripter;
 using System.Web.UI;
+using BusinessLogic.Controller;
 namespace BusinessLogic
 {
     public class BasePage : System.Web.UI.Page
@@ -28,6 +29,12 @@ namespace BusinessLogic
             if (IsLogginMandatory && !new UserAuthontication().IsLoggedIn)
             {
                 Response.Redirect("~/Home.aspx");
+            }
+            PortalSetting portalSetting = new PortalSetting();
+            portalSetting = new PortalSettingHelper().Get();
+            if (Convert.ToInt32(CommonController.GetRemainningDays(Convert.ToDateTime(portalSetting.ExpiryDate)))<0)
+            {
+                //Response.Redirect("~/Expired.aspx");
             }
             base.OnLoad(e);
          

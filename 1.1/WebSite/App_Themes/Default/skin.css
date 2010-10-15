@@ -428,10 +428,12 @@ input, textarea
 .btn:hover, .cin:hover
 {
     color: #fff;
+    text-shadow:1px 1px 1px #000;
 }
 .btn a
 {
     color: #323232;
+    text-shadow:1px 1px 1px #FFFFFF;
 }
 a, .grayhead, .btn a, .gray, #msgstate div, .success, .label, .hcurv, .head
 {
@@ -458,6 +460,7 @@ a, .grayhead, .btn a, .gray, #msgstate div, .success, .label, .hcurv, .head
 .bksl .btn a
 {
     color: #fff;
+    text-shadow:1px 1px 1px #000000;
 }
 h5
 {
@@ -1254,6 +1257,7 @@ input[type=radio], input[type=checkbox]
     font-size:12px;
 line-height:25px;
 background:transparent;
+text-shadow:1px 1px 1px #000000;
 }
 dl
 {

@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="gray">
-            Image
+          
         </div>
     </div>
     </form>
