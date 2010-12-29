@@ -5,9 +5,9 @@
     <div style="float: left;">
         <div id="lnkc" runat="server" visible="false">
             Last created by &nbsp;
-            <asp:HyperLink ID="lnkTool" runat="server" Visible="false"></asp:HyperLink></div>
+            <asp:HyperLink ID="lnkTool" runat="server" Visible="false" CssClass="caps"></asp:HyperLink></div>
         <div id="lnke" runat="server" visible="false">
-            Last edited by &nbsp;<asp:HyperLink ID="lnkETool" runat="server" Visible="false"></asp:HyperLink></div>
+            Last edited by &nbsp;<asp:HyperLink ID="lnkETool" runat="server" Visible="false" CssClass="caps"></asp:HyperLink></div>
     </div>
     <div style="float: left">
         &nbsp;on&nbsp;<span id="lblDate" runat="server"></span>

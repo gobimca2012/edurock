@@ -81,5 +81,10 @@ namespace JScripter
             String Script = string.Format("$('{0}').shower('{1}');", TriggerID, BoxiD);
             InjectScript(Script, _thisPage);
         }
+        public void ReplaceHtmlControlText(string ControlID, string ReplaceText)
+        {
+            String Script = string.Format("$('{0}').val('{1}');", ControlID, ReplaceText);
+            InjectScript(Script, _thisPage);
+        }
     }
 }

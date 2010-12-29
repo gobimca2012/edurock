@@ -9,16 +9,23 @@
 <body>
     <form id="form1" runat="server">
     <div class="contentbox">
+    <style type="text/css">
+    .contentbox .label
+    {
+    margin : 2px 0px;
+    
+    }
+    </style>
         <div class="gray ">
             Personal Info
         </div>
-        <div id="Institute" style="padding: 5px;">
+        <div id="Institute" style="padding: 5px 5px 5px 10px;">
             <div>
                 <div id="popupresponce">
-                    <asp:Image ID="imgProfilepic" runat="server" Width="100" />
+                    <asp:Image ID="imgProfilepic" runat="server" Width="200" />
                 </div>
                 <div>
-                    <asp:LinkButton ID="lnkChangeImage" runat="server">UpdatePic</asp:LinkButton>
+                    <asp:LinkButton ID="lnkChangeImage" runat="server"><div class="btn"> UpdatePic</div></asp:LinkButton>
                 </div>
             </div>
             <div>

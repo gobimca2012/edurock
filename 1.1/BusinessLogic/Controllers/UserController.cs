@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web;
 using System.IO;
 using System.Configuration;
+using BusinessLogic.Cache;
 
 namespace BusinessLogic
 {
@@ -843,7 +844,7 @@ namespace BusinessLogic
                 return new List<GetUserResult>();
             }
         }
-        public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID,int ContentType)
+        public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType)
         {
             try
             {
@@ -855,12 +856,12 @@ namespace BusinessLogic
                 return new List<GetContentResult>();
             }
         }
-        public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID,int ContentType, int PageSize, int PageNumber)
+        public List<GetContentResult> GetContent(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int PageSize, int PageNumber)
         {
             try
             {
 
-                return new DataProvider().GetContent(LoginUserID, InstituteCourceID, InstituteSubjectID,ContentType, PageSize, PageNumber);
+                return new DataProvider().GetContent(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, PageSize, PageNumber);
             }
             catch
             {
@@ -892,34 +893,35 @@ namespace BusinessLogic
             }
         }
         public List<GetUserContentResult> GetUserContent(int LoginUserID)
-		{
-			try
-			{
-			   
-			   return new DataProvider().GetUserContent(LoginUserID);
-			}
-			catch
-			{
-				return new List<GetUserContentResult>();
-			}
-		}public List<GetUserContentResult> GetUserContent(int LoginUserID,int PageSize, int PageNumber)
-		{
-			try
-			{
-			   
-			   return new DataProvider().GetUserContent(LoginUserID,PageSize,PageNumber);
-			}
-			catch
-			{
-				return new List<GetUserContentResult>();
-			}
-		}
+        {
+            try
+            {
+
+                return new DataProvider().GetUserContent(LoginUserID);
+            }
+            catch
+            {
+                return new List<GetUserContentResult>();
+            }
+        }
+        public List<GetUserContentResult> GetUserContent(int LoginUserID, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetUserContent(LoginUserID, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetUserContentResult>();
+            }
+        }
 
         public bool UpdateUserStatus(int LoginUserID, string Status)
         {
             try
             {
-                new DataProvider().UpdateUserStatus( LoginUserID,  Status);
+                new DataProvider().UpdateUserStatus(LoginUserID, Status);
                 return true;
             }
             catch (Exception ex)
@@ -936,7 +938,7 @@ namespace BusinessLogic
         {
             try
             {
-                string data=new DataProvider().GetUserStatus( LoginUserID);
+                string data = new DataProvider().GetUserStatus(LoginUserID);
                 return data;
             }
             catch (Exception ex)
@@ -989,7 +991,7 @@ namespace BusinessLogic
         {
             try
             {
-                
+
                 new DataProvider().UpdateProfilePic(LoginUserID, FilePath);
                 return FilePath;
             }
@@ -1041,31 +1043,31 @@ namespace BusinessLogic
         }
         public string Upload(FileUpload fl)
         {
-                string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["ProfilePic"]);
-                FolderPath += new UserAuthontication().LoggedInUserName + "/";
-                Logger.TimeLog.ErrorWrite("Folder POath",FolderPath,"");
-                if (!Directory.Exists(FolderPath))
-                {
-                    Directory.CreateDirectory(FolderPath);
-                    Logger.TimeLog.ErrorWrite("Folder Create",FolderPath,"");
-                }
+            string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["ProfilePic"]);
+            FolderPath += new UserAuthontication().LoggedInUserName + "/";
+            Logger.TimeLog.ErrorWrite("Folder POath", FolderPath, "");
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+                Logger.TimeLog.ErrorWrite("Folder Create", FolderPath, "");
+            }
 
-                string FilePath = FolderPath + "/" + fl.FileName;
-                Logger.TimeLog.ErrorWrite("FillPath", FilePath, "");
-                string ReturnFilePath = ConfigurationSettings.AppSettings["ProfilePic"] + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
-                Logger.TimeLog.ErrorWrite("ReturnFilePath", ReturnFilePath, "");
-                fl.SaveAs(FilePath);
-                Logger.TimeLog.ErrorWrite("File Saved", FilePath, "");
-                return ReturnFilePath;
-            
-            
+            string FilePath = FolderPath + "/" + fl.FileName;
+            Logger.TimeLog.ErrorWrite("FillPath", FilePath, "");
+            string ReturnFilePath = ConfigurationSettings.AppSettings["ProfilePic"] + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            Logger.TimeLog.ErrorWrite("ReturnFilePath", ReturnFilePath, "");
+            fl.SaveAs(FilePath);
+            Logger.TimeLog.ErrorWrite("File Saved", FilePath, "");
+            return ReturnFilePath;
+
+
         }
         public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate)
         {
             try
             {
 
-                return new DataProvider().GetUserRelatedContentSearch(LoginUserID,new UserAuthontication().InstituteID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate);
+                return new DataProvider().GetUserRelatedContentSearch(LoginUserID, new UserAuthontication().InstituteID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate);
             }
             catch
             {
@@ -1076,8 +1078,14 @@ namespace BusinessLogic
         {
             try
             {
-
-                return new DataProvider().GetUserRelatedContentSearch(LoginUserID,new UserAuthontication().InstituteID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, PageSize, PageNumber);
+                
+                //List<GetUserRelatedContentSearchResult> data =(List<GetUserRelatedContentSearchResult>)new CacheHelper().GetCacheData(CacheEnum.Event.ToString(), new List<GetUserRelatedContentSearchResult>());
+                //if (data == null)
+                //{
+                List<GetUserRelatedContentSearchResult> data = new DataProvider().GetUserRelatedContentSearch(LoginUserID, new UserAuthontication().InstituteID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, PageSize, PageNumber);
+                //    new CacheHelper().AddData(CacheEnum.Event.ToString(), data);
+                //}
+                return data;
             }
             catch
             {
@@ -1085,8 +1093,8 @@ namespace BusinessLogic
             }
         }
         #endregion
-				
-	
-	
+
+
+
     }
 }

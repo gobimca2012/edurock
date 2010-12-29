@@ -107,7 +107,7 @@ public partial class User_AjaxControl_BookMarkInfoView : AjaxPage
         }
         if (_InstituteCourceID > 0)
         {
-            header.InnerHtml = "Documents in " + new InstituteCourceController().GetInstituteCourceName(_InstituteCourceID);
+            header.InnerHtml = "Bookmarks in " + new InstituteCourceController().GetInstituteCourceName(_InstituteCourceID);
         }
         if (Request.Params["dtype"] != null)
         {

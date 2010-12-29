@@ -13,6 +13,7 @@
     <div>
         <div class="contentbox">
             <div class="gray" id="header" runat="server">
+            Articles
             </div>
             <div class="graycontent">
                 <div style="float: left" class="title">

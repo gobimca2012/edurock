@@ -22,5 +22,6 @@ public partial class User_DashBoard : BasePage
         new JScripter.DragNDrop(this.Page, true);
     //    objLoader.LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx"));
         JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"), this.Page);
+        
     }
 }

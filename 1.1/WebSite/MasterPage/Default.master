@@ -182,16 +182,17 @@
                                     <div class="dash" style="float: left">
                                     </div>
                                     <div style="float: left">
-                                        <asp:HyperLink ID="lnkAdmin" runat="server" NavigateUrl="~/College/Admin.aspx">Administrator</asp:HyperLink></div>
+                                        <asp:HyperLink ID="lnkAdmin" runat="server" NavigateUrl="~/College/Admin.aspx" CssClass="tp" rel="Click here to manage your back office activity">Administrator</asp:HyperLink></div>
                                 </div>
                                 <div class="btn" id="divSpace" runat="server">
                                     <div class="dash" style="float: left">
                                     </div>
                                     <div style="float: left">
-                                        <aspajax:HyperLink ID="lnkSpace" runat="server" NavigateUrl="~/College/Ajaxer/InstituteCourceInfo.aspx"
+                                        <aspajax:HyperLink ID="lnkSpace" runat="server" NavigateUrl="~/College/Ajaxer/InstituteCourceInfo.aspx" CssClass="tp" rel="Click here to Add new Space/Category to your system"
                                             ContainnerID="#contentBox">Space</aspajax:HyperLink></div>
                                 </div>
                             </div>
+                            
                         </div>
                         <div id="lander" class="graylg">
                         </div>

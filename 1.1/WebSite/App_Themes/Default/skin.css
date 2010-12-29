@@ -336,7 +336,7 @@ input, textarea
     text-align: left;
     display: none;
 }
-.roundedall, .btn, .cin:hover, .contentbox, .trans, #msgstate div, .success, .hcurv, .ttip, .brcum
+.roundedall, .btn, .cin:hover, .contentbox, .trans, #msgstate div, .success, .hcurv, .ttip, .brcum, .dasbo:hover
 {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -428,12 +428,12 @@ input, textarea
 .btn:hover, .cin:hover
 {
     color: #fff;
-    text-shadow:1px 1px 1px #000;
+    text-shadow: 1px 1px 1px #000;
 }
 .btn a
 {
     color: #323232;
-    text-shadow:1px 1px 1px #FFFFFF;
+    text-shadow: 1px 1px 1px #FFFFFF;
 }
 a, .grayhead, .btn a, .gray, #msgstate div, .success, .label, .hcurv, .head
 {
@@ -460,7 +460,7 @@ a, .grayhead, .btn a, .gray, #msgstate div, .success, .label, .hcurv, .head
 .bksl .btn a
 {
     color: #fff;
-    text-shadow:1px 1px 1px #000000;
+    text-shadow: 1px 1px 1px #000000;
 }
 h5
 {
@@ -547,7 +547,7 @@ h3
     padding: 0px;
     margin: 0px;
     color: #497EC1;
-    font-size:13px;
+    font-size: 13px;
 }
 .error
 {
@@ -568,8 +568,14 @@ h3
 .dasbo
 {
     border-bottom: dashed 1px #cfcfcf;
-    min-height:70px;
+    min-height: 70px;
+    padding: 5px;
 }
+.dasbo:hover
+{
+    background: #efefef;
+}
+
 .grayhead
 {
     background: url(images/grayHead.gif);
@@ -747,7 +753,7 @@ img
     background-image: url(images/icons.png);
     background-position: 0 0;
     background-position: -220px -40px;
-    padding: 2px 6px;
+    padding: 2px 9px;
     line-height: 12px;
     empty-cells: show;
 }
@@ -947,19 +953,19 @@ a
 {
     background: transparent url(images/bgbl.png);
     background-repeat: no-repeat;
-    background-position:0px 0;
+    background-position: 0px 0;
     height: 20px;
 }
 .bgbr
 {
-    background:url(images/bgbr.png);    
-    background-repeat:no-repeat;
-    background-position:top right;
+    background: url(images/bgbr.png);
+    background-repeat: no-repeat;
+    background-position: top right;
     height: 20px;
 }
 .bgbc
 {
-   background: transparent url(images/bgbc.png);
+    background: transparent url(images/bgbc.png);
     height: 20px;
     margin: 0px 20px;
 }
@@ -1235,54 +1241,66 @@ input[type=radio], input[type=checkbox]
     background-image: url(images/loginbxbg-06.png);
     height: 405px;
     width: 808px;
-    background-position:bottom;
-    background-repeat:no-repeat;
+    background-position: bottom;
+    background-repeat: no-repeat;
 }
 .loginhead
 {
     background-image: url(images/loginhead.png);
     width: 406px;
     height: 90px;
-    margin-left:200px;
+    margin-left: 200px;
 }
 .loginbtn
 {
-    background-image:url(images/loginbtn.png);
-    width:161px;
-    height:54px;
+    background-image: url(images/loginbtn.png);
+    width: 161px;
+    height: 54px;
 }
-.loginbxbg a,.loginbxbg a:hover
+.loginbxbg a, .loginbxbg a:hover
 {
-    color:#fff;
-    font-size:12px;
-line-height:25px;
-background:transparent;
-text-shadow:1px 1px 1px #000000;
+    color: #fff;
+    font-size: 12px;
+    line-height: 25px;
+    background: transparent;
+    text-shadow: 1px 1px 1px #000000;
 }
 dl
 {
-    margin:0px !important;
-    clear:both;
+    margin: 0px !important;
+    clear: both;
 }
 #atool .dasbo
 {
-    min-height:10px;
+    min-height: 10px;
 }
 .footerbg
 {
-    background:url(images/footersl.png);
-    background-repeat:repeat-x;
-    height:114px;
-    color:#fff !important;
+    background: url(images/footersl.png);
+    background-repeat: repeat-x;
+    height: 114px;
+    color: #fff !important;
 }
-.footerbg a,.bksl a,.bksl
+.footerbg a, .bksl a, .bksl
 {
-       color:#fff;
+    color: #fff;
 }
 .footin
 {
-    background:#f8f8f8;
-    
-    color:#fff !important;
-    border:solid 1px #c5c5c5;
+    background: #f8f8f8;
+    color: #fff !important;
+    border: solid 1px #c5c5c5;
+}
+.caps,#icource div
+{
+    text-transform: capitalize;
+}
+#icource div:hover,#mymenupanel li:hover
+{
+    /*background-image:url("images/gsad.png");   */
+    background-image:url("images/blackbtn.jpg");
+}
+#icource div:hover a div,#mymenupanel li:hover a 
+{
+    color:#fff;
 }

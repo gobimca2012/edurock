@@ -12,7 +12,7 @@
     <form id="form1" runat="server">
     <div class="contentbox">
         <div class="gray" id="header" runat="server">
-            Images</div>
+            Documents</div>
         <div class="graycontent">
             <div style="float: left" class="title">
                 Search

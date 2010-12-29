@@ -12,6 +12,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 using Common;
+using DataEntity;
+using System.Collections.Generic;
 
 public partial class User_AjaxControl_AllContent : AjaxPage
 {
@@ -117,8 +119,70 @@ public partial class User_AjaxControl_AllContent : AjaxPage
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.All, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate, PageSize, PageNumber);
+        List<GetUserRelatedContentSearchResult> data = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.All, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate, PageSize, PageNumber);
+        ListQuestion.DataSource = data;
         ListQuestion.DataBind();
+        var individualData = (from p in data where p.ContentType == (int)ContentTypeEnum.Event &&  Convert.ToDateTime(p.Param1.ToString()) <= DateTime.Now select p).ToList();
+        if (individualData.Count > 0)
+        {
+            string InjectEventSccript = string.Format("$('#{0}').html('Events({1})');", "lnkEvent", individualData.Count.ToString());
+            JScripter.JScripter.InjectScript(InjectEventSccript, this.Page);
+        }
+        individualData = (from p in data where p.ContentType == (int)ContentTypeEnum.Article where p.ModifiedDate.Value.Date==DateTime.Now.Date select p).ToList();
+        if (individualData.Count > 0)
+        {
+            string InjectEventSccript = string.Format("$('#{0}').html('Articles({1})');", "lnkArticle", individualData.Count.ToString());
+            JScripter.JScripter.InjectScript(InjectEventSccript, this.Page);
+        }
+        individualData = (from p in data where p.ContentType == (int)ContentTypeEnum.Question where p.ModifiedDate.Value.Date == DateTime.Now.Date select p).ToList();
+        if (individualData.Count > 0)
+        {
+            string InjectEventSccript = string.Format("$('#{0}').html('Questions({1})');", "lnkQ", individualData.Count.ToString());
+            JScripter.JScripter.InjectScript(InjectEventSccript, this.Page);
+        }
+        individualData = (from p in data where p.ContentType == (int)ContentTypeEnum.Video where p.ModifiedDate.Value.Date == DateTime.Now.Date select p).ToList();
+        if (individualData.Count > 0)
+        {
+            string InjectEventSccript = string.Format("$('#{0}').html('Videos({1})');", "lnkVideo", individualData.Count.ToString());
+            JScripter.JScripter.InjectScript(InjectEventSccript, this.Page);
+        }
+        individualData = (from p in data where p.ContentType == (int)ContentTypeEnum.Audio where p.ModifiedDate.Value.Date == DateTime.Now.Date select p).ToList();
+        if (individualData.Count > 0)
+        {
+            string InjectEventSccript = string.Format("$('#{0}').html('Audios({1})');", "lnkAudio", individualData.Count.ToString());
+            JScripter.JScripter.InjectScript(InjectEventSccript, this.Page);
+        }
+        individualData = (from p in data where p.ContentType == (int)ContentTypeEnum.BookMark where p.ModifiedDate.Value.Date == DateTime.Now.Date select p).ToList();
+        if (individualData.Count > 0)
+        {
+            string InjectEventSccript = string.Format("$('#{0}').html('BookMarks({1})');", "lnkBookmark", individualData.Count.ToString());
+            JScripter.JScripter.InjectScript(InjectEventSccript, this.Page);
+        }
+        individualData = (from p in data where p.ContentType == (int)ContentTypeEnum.Document where p.ModifiedDate.Value.Date == DateTime.Now.Date select p).ToList();
+        if (individualData.Count > 0)
+        {
+            string InjectEventSccript = string.Format("$('#{0}').html('Documents({1})');", "lnkDocument", individualData.Count.ToString());
+            JScripter.JScripter.InjectScript(InjectEventSccript, this.Page);
+        }
+        individualData = (from p in data where p.ContentType == (int)ContentTypeEnum.Exam where p.ModifiedDate.Value.Date == DateTime.Now.Date select p).ToList();
+        if (individualData.Count > 0)
+        {
+            string InjectEventSccript = string.Format("$('#{0}').html('Exams({1})');", "lnkExam", individualData.Count.ToString());
+            JScripter.JScripter.InjectScript(InjectEventSccript, this.Page);
+        }
+        individualData = (from p in data where p.ContentType == (int)ContentTypeEnum.HomeWork where p.ModifiedDate.Value.Date == DateTime.Now.Date select p).ToList();
+        if (individualData.Count > 0)
+        {
+            string InjectEventSccript = string.Format("$('#{0}').html('HomeWorks({1})');", "lnkHomeWork", individualData.Count.ToString());
+            JScripter.JScripter.InjectScript(InjectEventSccript, this.Page);
+        }
+        individualData = (from p in data where p.ContentType == (int)ContentTypeEnum.Image where p.ModifiedDate.Value.Date == DateTime.Now.Date select p).ToList();
+        if (individualData.Count > 0)
+        {
+            string InjectEventSccript = string.Format("$('#{0}').html('Images({1})');", "lnkImage", individualData.Count.ToString());
+            JScripter.JScripter.InjectScript(InjectEventSccript, this.Page);
+        }
+
     }
     private void PaggerLinkManager()
     {
