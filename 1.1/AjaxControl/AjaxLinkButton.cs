@@ -199,6 +199,20 @@ namespace AjaxControl
                 }
                 else
                 {
+                    if (HttpContext.Current.Request.Params["pn"] != null)
+                    {
+                        if (Increment)
+                            QuesryString += "?pn=" + (Convert.ToInt16(HttpContext.Current.Request.Params["pn"]) + 1).ToString();
+                        else
+                            QuesryString += "?pn=" + (Convert.ToInt16(HttpContext.Current.Request.Params["pn"]) - 1).ToString();
+                    }
+                    else
+                    {
+                        if (Increment)
+                            QuesryString += "?pn=" + " 1";
+                        else
+                            QuesryString += "?pn=" + "0";
+                    }
                     QuesryString += "?cmd=" + AjaxCommand;
                 }
             }

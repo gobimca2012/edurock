@@ -3699,7 +3699,8 @@ namespace DataAccess
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data=db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            var data=(from p in db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID) orderby p.ModifiedDate descending select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            //var shorteddata = (from p in data orderby p.ModifiedDate descending select p).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;
 

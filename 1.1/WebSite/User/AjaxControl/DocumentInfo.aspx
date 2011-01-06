@@ -85,7 +85,7 @@
                         <div>
                             <span class="label">FilePath</span><span><span class="valmsg">(Required)*</span>
                                 <br />
-                                <asp:LinkButton ID="lnkFilePopUp" runat="server"><div class="btn"> Upload Image</div></asp:LinkButton></span>
+                                <asp:LinkButton ID="lnkFilePopUp" runat="server"><div class="btn" style="width:80px"> Upload</div></asp:LinkButton></span>
                         </div>
                         <div id="divYoutube" runat="server" visible="false">
                             <div class="graycontent">

@@ -12,7 +12,7 @@
     <div class="contentbox">
         <div class="gray">
             <div style="float: left">
-                Image</div>
+            </div>
             <div style="float: right">
                 <aspajax:HyperLink ID="lnkEdit" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn"> <%=Resources.Default.Edit_Text %></div> </aspajax:HyperLink>
             </div>
@@ -27,22 +27,31 @@
             <div class="fuleft">
                 <div>
                     <div>
+                        <div>
+                            <h3 id="lblName" runat="server" class="btitle">
+                            </h3>
+                        </div>
+                    </div>
+                    <div>
                         <asp:Image ID="img" runat="server" Visible="false" Width="98%" />
                     </div>
                     <div id="videoPlayer">
                     </div>
                     <div>
-                        <a id="lblFilePath" runat="server" target="_blank">
-                            <div class="btn ">
-                                Download</div>
-                        </a>
-                        <a id="lnkViewDoc" runat="server" target="_blank">View</a>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <h3 id="lblName" runat="server" class="btitle">
-                        </h3>
+                        <div style="float: left">
+                            <a id="lblFilePath" runat="server" target="_blank">
+                                <div class="btn " style="width: 80px">
+                                    Download</div>
+                            </a>
+                        </div>
+                        <div style="float: left">
+                            <a id="lnkViewDoc" runat="server" target="_blank">
+                                <div class="btn " style="width: 80px">
+                                    View</div>
+                            </a>
+                        </div>
+                        <div style="clear: both">
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -102,7 +111,6 @@
             </div>
         </div>
         <div class="gray">
-            Image
         </div>
     </div>
     </form>

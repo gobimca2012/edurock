@@ -825,6 +825,18 @@ img
     line-height: 12px;
     width: 24px;
 }
+.flico
+{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    background-image: url("images/folder.png");
+    empty-cells: show;
+    height: 16px;
+    margin-left: 4px;
+    margin-top: 4px;
+    padding: 0;
+    width: 16px;
+}
 .sub
 {
     background-color: Transparent;
@@ -1291,16 +1303,16 @@ dl
     color: #fff !important;
     border: solid 1px #c5c5c5;
 }
-.caps,#icource div
+.caps, #icource div
 {
     text-transform: capitalize;
 }
-#icource div:hover,#mymenupanel li:hover
+#icource div:hover, #mymenupanel li:hover
 {
     /*background-image:url("images/gsad.png");   */
-    background-image:url("images/blackbtn.jpg");
+    background-image: url("images/blackbtn.jpg");
 }
-#icource div:hover a div,#mymenupanel li:hover a 
+#icource div:hover a div, #mymenupanel li:hover a
 {
-    color:#fff;
+    color: #fff;
 }
