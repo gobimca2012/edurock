@@ -59,6 +59,7 @@ public partial class User_ShareInfo : AjaxPage
             if (Type != (int)ContentTypeEnum.InstituteCourse)
             {
                 chkAddAllUser.Visible = false;
+                chkspanAddAllUser.Visible = false;
             }
             BindUserData();
             BindGroupData();
@@ -211,7 +212,7 @@ public partial class User_ShareInfo : AjaxPage
     }
     protected void GroupLayoutCreated(object sender, EventArgs e)
     {
-        HtmlTableCell tdcanadd = (HtmlTableCell)listUsers.FindControl("tdcanadd");
+        HtmlTableCell tdcanadd = (HtmlTableCell)ListGroup.FindControl("tdcanadd");
         if (tdcanadd != null)
         {
             if (Type != (int)ContentTypeEnum.InstituteCourse)

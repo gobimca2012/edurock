@@ -23,7 +23,7 @@
                 <div>
                     <%--<asp:CheckBox ID="chkEditAllUser" runat="server" Text="Can Edit" Checked="false" />--%>
                     <aspajax:CheckBox ID="chkAddAllUser" CustomID="chkAllAdd$AllUSer" runat="server"
-                        Checked="false"></aspajax:CheckBox><span>All User Can Add</span>
+                        Checked="false"></aspajax:CheckBox><span runat="server" id="chkspanAddAllUser">All User Can Add</span>
                 </div>
                 <div>
                     <%--<asp:CheckBox ID="chkEditAllUser" runat="server" Text="Can Edit" Checked="false" />--%>
