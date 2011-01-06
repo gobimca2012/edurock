@@ -207,11 +207,11 @@ namespace BusinessLogic
             }
         }
 
-        public List<Document> GetbyDocumentID(Guid DocumentID,bool LoadOtherData)
+        public List<Document> GetbyDocumentID(Guid DocumentID, bool LoadOtherData)
         {
             try
             {
-                return new DataProvider().DocumentGetbyDocumentID(DocumentID,LoadOtherData);
+                return new DataProvider().DocumentGetbyDocumentID(DocumentID, LoadOtherData);
             }
             catch (Exception ex)
             {
@@ -665,8 +665,8 @@ namespace BusinessLogic
             }
         }
 
-       
-        
+
+
 
 
 
@@ -747,6 +747,8 @@ namespace BusinessLogic
             try
             {
                 new DataProvider().DocumentAdd(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceiD, InstituteSubjectID, ModifiedDate);
+                new ShareController().AddDefaultShareAccess(DocumentType, DocumentID.ToString());
+
                 return true;
             }
             catch (Exception ex)

@@ -545,12 +545,27 @@ namespace BusinessLogic
                 {
                     if (AllUserShareData[0].EnableAllUserAdd == null)
                         AllUserShareData[0].EnableAllUserAdd = false;
+                    else
+                        objShareContent.IsAddable = AllUserShareData[0].EnableAllUserAdd.Value;
                     if (AllUserShareData[0].EnableAllUserComment == null)
                         AllUserShareData[0].EnableAllUserComment = true;
+
+
                     if (AllUserShareData[0].EnableAllUserEdit == null)
                         AllUserShareData[0].EnableAllUserEdit = false;
+                    else
+                        objShareContent.IsEditablable = AllUserShareData[0].EnableAllUserEdit.Value;
                     if (AllUserShareData[0].EnableAllUseView == null)
                         AllUserShareData[0].EnableAllUseView = true;
+                    else
+                        objShareContent.IsViewable = AllUserShareData[0].EnableAllUseView.Value;
+                }
+                else
+                {
+                    objShareContent.IsViewable = true;
+                    objShareContent.IsEditablable = true;
+                    objShareContent.IsAddable = true;
+
                 }
             }
             else
@@ -945,6 +960,14 @@ namespace BusinessLogic
                 }
                 return new List<Share>();
             }
+        }
+
+        public void AddDefaultShareAccess(int DocumentType, string ID)
+        {
+            UpdateShareViewAllUser(DocumentType, ID, true);
+            UpdateShareEditAllUser(DocumentType, ID, false);
+            UpdateShareAddAllUser(DocumentType, ID, true);
+
         }
         #endregion
 
