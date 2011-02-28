@@ -4,9 +4,8 @@ $.fn.Collapspanel = function()
    $(this).click(function()
    {
       if($(this).attr("class") == "hide")
-      {
-         $(this).attr("class", "");
-         $(this).attr("class", "show");
+      {         
+         $(this).next().attr("class", "show");
          $(this).next().show("slow");
       }
       else

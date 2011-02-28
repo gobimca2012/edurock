@@ -6,6 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -24,6 +25,8 @@
             </div>
         </div>
         <div class="whitecont">
+        
+
             <div class="fuleft">
                 <div>
                     <div>
@@ -45,7 +48,7 @@
                             </a>
                         </div>
                         <div style="float: left">
-                            <a id="lnkViewDoc" runat="server" target="_blank">
+                            <a id="lnkViewDoc" runat="server" >
                                 <div class="btn " style="width: 80px">
                                     View</div>
                             </a>
