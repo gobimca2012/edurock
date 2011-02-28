@@ -35,6 +35,7 @@ public partial class College_Ajaxer_PortalSetting : AjaxPage
     protected void SaveAjaxClick(object sender, AjaxControl.AjaxEventArg e)
     {
         PortalSetting newposetting = new PortalSetting();
+        newposetting= new PortalSettingHelper().Get();
         newposetting.CourseHeader = HtmlHelper.ControlValue(txtSpace.ClientID);
         newposetting.SubjectHeader = HtmlHelper.ControlValue(txtCatagory.ClientID);
         newposetting.IsSelfRegistrationAllow = false;
