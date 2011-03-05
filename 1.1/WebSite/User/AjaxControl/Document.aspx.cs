@@ -82,9 +82,9 @@ public partial class User_AjaxControl_Document : AjaxPage
                 else if (data.DocumentType == (int)DocumentTypeEnum.Document)
                 {
                     lblFilePath.HRef = ResolveUrl(data.FilePath.ToString());
-                    //lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString());
-                    lnkViewDoc.HRef = "#";
-                    lnkViewDoc.Attributes["onclick"] = string.Format("openExcel('{0}');", CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString()));
+                    lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString());
+                    //lnkViewDoc.HRef = "#";
+                    //lnkViewDoc.Attributes["onclick"] = string.Format("openExcel('{0}');", CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString()));
                 }
                 else if (data.DocumentType == (int)ContentTypeEnum.BookMark)
                 {

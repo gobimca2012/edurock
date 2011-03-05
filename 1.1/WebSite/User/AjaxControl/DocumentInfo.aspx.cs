@@ -24,7 +24,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
         objValidate.Medatory(txtName, "Please enter Title", this.Page);
 
 
-
+        
     }
     private int _DocumentType
     {

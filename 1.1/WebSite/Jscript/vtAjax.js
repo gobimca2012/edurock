@@ -236,8 +236,10 @@ function redirect(url)
 
 function decHTMLifEnc(str)
 {
-   // if(isEncHTML(str))
-   return str.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/####/g,'$');
+    // if(isEncHTML(str))
+    if (str != null) {
+        return str.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/####/g, '$');
+    }
    return str;
 }
 

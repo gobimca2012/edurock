@@ -20,8 +20,8 @@ public partial class User_DashBoard : BasePage
         objLoader.LoadPage("#lander", ResolveUrl("~/User/AjaxControl/Lander.aspx"));
         new JScripter.Widget(this.Page, true);
         new JScripter.DragNDrop(this.Page, true);
-    //    objLoader.LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx"));
-        JScripter.JScripter.IncludeJavascriptFile("tinyeditor", ResolveUrl("~/Jscript/tinymce/jscripts/tiny_mce/tiny_mce.js"), this.Page);
-        
+        //    objLoader.LoadPage("#contentBox", ResolveUrl("~/User/AjaxControl/QuestionInfoView.aspx"));
+       
+
     }
 }
