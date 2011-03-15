@@ -227,7 +227,7 @@ namespace BusinessLogic
 
             try
             {
-                new DataProvider().RattingAdd(RattingID, Rating, ContentType, ContentID, ModifiedDate);
+                new DataProvider().RattingAdd(RattingID, Rating, ContentType, ContentID,new UserAuthontication().LoggedInUserID, ModifiedDate);
                 return true;
             }
             catch (Exception ex)
@@ -414,7 +414,7 @@ namespace BusinessLogic
         {
             try
             {
-                new DataProvider().RattingUpdateByRattingID( Rating,  ContentType,  ContentID);
+                new DataProvider().RattingUpdateByRattingID( Rating,  ContentType,  ContentID,new UserAuthontication().LoggedInUserID);
                 return true;
             }
             catch (Exception ex)

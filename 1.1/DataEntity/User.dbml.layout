@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 26.75" name="User">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.375, 26.75" name="User">
   <DataContextMoniker Name="/UserDataContext" />
   <nestedChildShapes>
     <classShape Id="fb440ba4-a657-444e-88e3-79b8176a53bf" absoluteBounds="0.75, 12.75, 2, 2.2120281011859575">
@@ -65,7 +65,7 @@
         <elementListCompartment Id="de06eac3-49ef-4c87-b190-4a60eeb7da48" absoluteBounds="3.5149999999999997, 4.71, 1.9700000000000002, 1.4530762657523155" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.75 : 12.75); (1.75 : 5.12677124023438); (3.5 : 5.12677124023438)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.48437375 : 12.75); (1.48437375 : 5.25653813287616); (3.5 : 5.25653813287616)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/UserDataContext/StudentLogin/StudentLogin_Comment" />
       <nodes>
         <classShapeMoniker Id="fb440ba4-a657-444e-88e3-79b8176a53bf" />
@@ -118,12 +118,6 @@
         <classShapeMoniker Id="fb23d0de-4ea9-4f93-8cc7-d7ae7e3c733e" />
       </nodes>
     </associationConnector>
-    <classShape Id="57286f9f-c3a6-4308-8efc-71d3519bb35f" absoluteBounds="7.875, 16.75, 2, 1.8141244303186745">
-      <DataClassMoniker Name="/UserDataContext/Ratting" />
-      <nestedChildShapes>
-        <elementListCompartment Id="e465cdee-b78e-4bb0-84d4-3f5c7043a021" absoluteBounds="7.89, 17.21, 1.9700000000000002, 1.2541244303186734" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="6e712ffd-e38b-4650-a7f9-e4e8ab4340a6" absoluteBounds="8.75, 2.25, 2, 2.0130762657523151">
       <DataClassMoniker Name="/UserDataContext/ContentHistory" />
       <nestedChildShapes>
@@ -143,11 +137,30 @@
         <classShapeMoniker Id="169b458f-495b-44f3-a6a2-c563111d07ad" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.0937475 : 3.83223714192708); (6.0937475 : 13.2639147363282); (6.5 : 13.2639147363282)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.03125 : 4.1609799366196); (6.03125 : 13.2639147363282); (6.5 : 13.2639147363282)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/UserDataContext/Share/Share_ShareUser" />
       <nodes>
         <classShapeMoniker Id="fb46b41c-5796-4194-81c8-33be6679e711" />
         <classShapeMoniker Id="6d85062c-e103-4eff-bc6c-762ccbc21e69" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ddd96c14-1395-465a-97bc-78da2dd31263" absoluteBounds="9.125, 9.125, 2, 1.416220759451388">
+      <DataClassMoniker Name="/UserDataContext/RattingUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7823cb1b-7b17-4c22-8b14-235e37b48ee9" absoluteBounds="9.14, 9.585, 1.9700000000000002, 0.85622075945138931" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="236c11a4-d20f-4ca9-ab15-c37547368fdf" absoluteBounds="6.375, 8.875, 2, 1.8141244303186745">
+      <DataClassMoniker Name="/UserDataContext/Ratting" />
+      <nestedChildShapes>
+        <elementListCompartment Id="04cfebe9-f51a-473b-933b-5b3909b2645e" absoluteBounds="6.39, 9.335, 1.9700000000000002, 1.2541244303186734" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.375 : 9.83311037972569); (9.125 : 9.83311037972569)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/UserDataContext/Ratting/Ratting_RattingUser" />
+      <nodes>
+        <classShapeMoniker Id="236c11a4-d20f-4ca9-ab15-c37547368fdf" />
+        <classShapeMoniker Id="ddd96c14-1395-465a-97bc-78da2dd31263" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

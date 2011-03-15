@@ -60,15 +60,18 @@ namespace DataEntity
     partial void InsertEvent(Event instance);
     partial void UpdateEvent(Event instance);
     partial void DeleteEvent(Event instance);
-    partial void InsertRatting(Ratting instance);
-    partial void UpdateRatting(Ratting instance);
-    partial void DeleteRatting(Ratting instance);
     partial void InsertContentHistory(ContentHistory instance);
     partial void UpdateContentHistory(ContentHistory instance);
     partial void DeleteContentHistory(ContentHistory instance);
     partial void InsertShare(Share instance);
     partial void UpdateShare(Share instance);
     partial void DeleteShare(Share instance);
+    partial void InsertRattingUser(RattingUser instance);
+    partial void UpdateRattingUser(RattingUser instance);
+    partial void DeleteRattingUser(RattingUser instance);
+    partial void InsertRatting(Ratting instance);
+    partial void UpdateRatting(Ratting instance);
+    partial void DeleteRatting(Ratting instance);
     #endregion
 		
 		public UserDataContext(string connection) : 
@@ -175,14 +178,6 @@ namespace DataEntity
 			}
 		}
 		
-		public System.Data.Linq.Table<Ratting> Rattings
-		{
-			get
-			{
-				return this.GetTable<Ratting>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ContentHistory> ContentHistories
 		{
 			get
@@ -196,6 +191,22 @@ namespace DataEntity
 			get
 			{
 				return this.GetTable<Share>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RattingUser> RattingUsers
+		{
+			get
+			{
+				return this.GetTable<RattingUser>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Ratting> Rattings
+		{
+			get
+			{
+				return this.GetTable<Ratting>();
 			}
 		}
 		
@@ -3584,164 +3595,6 @@ namespace DataEntity
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ratting")]
-	public partial class Ratting : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _RattingID;
-		
-		private int _Rating;
-		
-		private int _ContentType;
-		
-		private string _ContentID;
-		
-		private System.DateTime _ModifiedDate;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnRattingIDChanging(System.Guid value);
-    partial void OnRattingIDChanged();
-    partial void OnRatingChanging(int value);
-    partial void OnRatingChanged();
-    partial void OnContentTypeChanging(int value);
-    partial void OnContentTypeChanged();
-    partial void OnContentIDChanging(string value);
-    partial void OnContentIDChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public Ratting()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RattingID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid RattingID
-		{
-			get
-			{
-				return this._RattingID;
-			}
-			set
-			{
-				if ((this._RattingID != value))
-				{
-					this.OnRattingIDChanging(value);
-					this.SendPropertyChanging();
-					this._RattingID = value;
-					this.SendPropertyChanged("RattingID");
-					this.OnRattingIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="Int NOT NULL")]
-		public int Rating
-		{
-			get
-			{
-				return this._Rating;
-			}
-			set
-			{
-				if ((this._Rating != value))
-				{
-					this.OnRatingChanging(value);
-					this.SendPropertyChanging();
-					this._Rating = value;
-					this.SendPropertyChanged("Rating");
-					this.OnRatingChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentType", DbType="Int NOT NULL")]
-		public int ContentType
-		{
-			get
-			{
-				return this._ContentType;
-			}
-			set
-			{
-				if ((this._ContentType != value))
-				{
-					this.OnContentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ContentType = value;
-					this.SendPropertyChanged("ContentType");
-					this.OnContentTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string ContentID
-		{
-			get
-			{
-				return this._ContentID;
-			}
-			set
-			{
-				if ((this._ContentID != value))
-				{
-					this.OnContentIDChanging(value);
-					this.SendPropertyChanging();
-					this._ContentID = value;
-					this.SendPropertyChanged("ContentID");
-					this.OnContentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ContentHistory")]
 	public partial class ContentHistory : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4207,6 +4060,343 @@ namespace DataEntity
 		{
 			this.SendPropertyChanging();
 			entity.Share = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RattingUser")]
+	public partial class RattingUser : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _RattingUserID;
+		
+		private int _RatterID;
+		
+		private System.Guid _RattingID;
+		
+		private EntityRef<Ratting> _Ratting;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRattingUserIDChanging(System.Guid value);
+    partial void OnRattingUserIDChanged();
+    partial void OnRatterIDChanging(int value);
+    partial void OnRatterIDChanged();
+    partial void OnRattingIDChanging(System.Guid value);
+    partial void OnRattingIDChanged();
+    #endregion
+		
+		public RattingUser()
+		{
+			this._Ratting = default(EntityRef<Ratting>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RattingUserID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid RattingUserID
+		{
+			get
+			{
+				return this._RattingUserID;
+			}
+			set
+			{
+				if ((this._RattingUserID != value))
+				{
+					this.OnRattingUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._RattingUserID = value;
+					this.SendPropertyChanged("RattingUserID");
+					this.OnRattingUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RatterID", DbType="Int NOT NULL")]
+		public int RatterID
+		{
+			get
+			{
+				return this._RatterID;
+			}
+			set
+			{
+				if ((this._RatterID != value))
+				{
+					this.OnRatterIDChanging(value);
+					this.SendPropertyChanging();
+					this._RatterID = value;
+					this.SendPropertyChanged("RatterID");
+					this.OnRatterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RattingID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid RattingID
+		{
+			get
+			{
+				return this._RattingID;
+			}
+			set
+			{
+				if ((this._RattingID != value))
+				{
+					if (this._Ratting.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRattingIDChanging(value);
+					this.SendPropertyChanging();
+					this._RattingID = value;
+					this.SendPropertyChanged("RattingID");
+					this.OnRattingIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ratting_RattingUser", Storage="_Ratting", ThisKey="RattingID", OtherKey="RattingID", IsForeignKey=true)]
+		public Ratting Ratting
+		{
+			get
+			{
+				return this._Ratting.Entity;
+			}
+			set
+			{
+				Ratting previousValue = this._Ratting.Entity;
+				if (((previousValue != value) 
+							|| (this._Ratting.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ratting.Entity = null;
+						previousValue.RattingUsers.Remove(this);
+					}
+					this._Ratting.Entity = value;
+					if ((value != null))
+					{
+						value.RattingUsers.Add(this);
+						this._RattingID = value.RattingID;
+					}
+					else
+					{
+						this._RattingID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Ratting");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ratting")]
+	public partial class Ratting : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _RattingID;
+		
+		private int _Rating;
+		
+		private int _ContentType;
+		
+		private string _ContentID;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntitySet<RattingUser> _RattingUsers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRattingIDChanging(System.Guid value);
+    partial void OnRattingIDChanged();
+    partial void OnRatingChanging(int value);
+    partial void OnRatingChanged();
+    partial void OnContentTypeChanging(int value);
+    partial void OnContentTypeChanged();
+    partial void OnContentIDChanging(string value);
+    partial void OnContentIDChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public Ratting()
+		{
+			this._RattingUsers = new EntitySet<RattingUser>(new Action<RattingUser>(this.attach_RattingUsers), new Action<RattingUser>(this.detach_RattingUsers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RattingID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid RattingID
+		{
+			get
+			{
+				return this._RattingID;
+			}
+			set
+			{
+				if ((this._RattingID != value))
+				{
+					this.OnRattingIDChanging(value);
+					this.SendPropertyChanging();
+					this._RattingID = value;
+					this.SendPropertyChanged("RattingID");
+					this.OnRattingIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="Int NOT NULL")]
+		public int Rating
+		{
+			get
+			{
+				return this._Rating;
+			}
+			set
+			{
+				if ((this._Rating != value))
+				{
+					this.OnRatingChanging(value);
+					this.SendPropertyChanging();
+					this._Rating = value;
+					this.SendPropertyChanged("Rating");
+					this.OnRatingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentType", DbType="Int NOT NULL")]
+		public int ContentType
+		{
+			get
+			{
+				return this._ContentType;
+			}
+			set
+			{
+				if ((this._ContentType != value))
+				{
+					this.OnContentTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ContentType = value;
+					this.SendPropertyChanged("ContentType");
+					this.OnContentTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContentID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ContentID
+		{
+			get
+			{
+				return this._ContentID;
+			}
+			set
+			{
+				if ((this._ContentID != value))
+				{
+					this.OnContentIDChanging(value);
+					this.SendPropertyChanging();
+					this._ContentID = value;
+					this.SendPropertyChanged("ContentID");
+					this.OnContentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ratting_RattingUser", Storage="_RattingUsers", ThisKey="RattingID", OtherKey="RattingID")]
+		public EntitySet<RattingUser> RattingUsers
+		{
+			get
+			{
+				return this._RattingUsers;
+			}
+			set
+			{
+				this._RattingUsers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_RattingUsers(RattingUser entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ratting = this;
+		}
+		
+		private void detach_RattingUsers(RattingUser entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ratting = null;
 		}
 	}
 	

@@ -3638,7 +3638,7 @@ namespace DataAccess
             ObjUser.FirstName = FirstName;
 
 
-            
+
 
             ObjUser.ModifiedDate = DateTime.Now;
 
@@ -3682,28 +3682,28 @@ namespace DataAccess
             return data;
 
         }
-        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID,int InstituteID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate)
+        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID, int InstituteID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data=db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID).ToList();
+            var data = db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;
 
         }
-        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID,int InstituteID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate, int PageSize, int PageNumber)
+        public List<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch(int LoginUserID, int InstituteID, int InstituteCourceID, int InstituteSubjectID, int ContentType, int LoggedInUserLoginID, string Keyword, DateTime Starddate, DateTime Enddate, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data=(from p in db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID) orderby p.ModifiedDate descending select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            var data = (from p in db.GetUserRelatedContentSearch(LoginUserID, InstituteCourceID, InstituteSubjectID, ContentType, LoggedInUserLoginID, Keyword, Starddate, Enddate, InstituteID) orderby p.ModifiedDate descending select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
             //var shorteddata = (from p in data orderby p.ModifiedDate descending select p).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;
-            
+
 
         }
         #endregion
@@ -4134,7 +4134,7 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
 
-     
+
 
 
 
@@ -4827,18 +4827,18 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return ObjInstitute.InstituteID;
         }
-        public int InstituteAdd(int LoginUserID, string Name,DateTime ModifiedDate, bool IsDeleted)
+        public int InstituteAdd(int LoginUserID, string Name, DateTime ModifiedDate, bool IsDeleted)
         {
             Institute ObjInstitute = new Institute();
             ObjInstitute.LoginUserID = LoginUserID;
-            ObjInstitute.Name = Name;            
+            ObjInstitute.Name = Name;
             ObjInstitute.ModifiedDate = ModifiedDate;
             ObjInstitute.IsDeleted = IsDeleted;
             InstituteDataContext db = new InstituteDataContext();
             db.DeferredLoadingEnabled = false;
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             db.Institutes.InsertOnSubmit(ObjInstitute);
-            db.SubmitChanges(); 
+            db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return ObjInstitute.InstituteID;
         }
@@ -6406,7 +6406,7 @@ namespace DataAccess
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                 db.DeleteInstituteCourseByInstituteCourseID(InstituteCourseID);
+                db.DeleteInstituteCourseByInstituteCourseID(InstituteCourseID);
             }
         }
         public void DeleteInstituteCourseByInstituteCourseID(int InstituteCourseID, int PageSize, int PageNumber)
@@ -6416,7 +6416,7 @@ namespace DataAccess
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                 db.DeleteInstituteCourseByInstituteCourseID(InstituteCourseID);
+                db.DeleteInstituteCourseByInstituteCourseID(InstituteCourseID);
             }
 
         }
@@ -6437,7 +6437,7 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
-        public int InstituteCourceAdd(int InstituteID, int CourceCatagoryID,int LoginUserID, string CourceName, string MetaDescription, string MetaKeyword, DateTime Modifieddate)
+        public int InstituteCourceAdd(int InstituteID, int CourceCatagoryID, int LoginUserID, string CourceName, string MetaDescription, string MetaKeyword, DateTime Modifieddate)
         {
             InstituteCource ObjInstituteCource = new InstituteCource();
 
@@ -6643,7 +6643,7 @@ namespace DataAccess
             return db.GetInstituteCourseByLoginUserEditAccess(LoginUserID, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
-       
+
         public bool GetItemEditAccessByLoginUserID(string ObjectID, int ObjectType, int LoginUserID)
         {
 
@@ -6759,7 +6759,7 @@ namespace DataAccess
             }
         }
 
-       
+
 
 
         public List<InstituteCource> InstituteCourceGetbyInstituteCourceID(int InstituteCourceID, int PageSize, int PageNumber)
@@ -14486,33 +14486,33 @@ namespace DataAccess
 
             }
         }
-        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID,int InstituteID)
+        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID, int InstituteID)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetShareUser(ObjectType, ObjectID,InstituteID).ToList();
+            return db.GetShareUser(ObjectType, ObjectID, InstituteID).ToList();
 
         }
-        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID, string userName,int InstituteID)
+        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID, string userName, int InstituteID)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data = db.GetShareUser(ObjectType, ObjectID,InstituteID).ToList();
+            var data = db.GetShareUser(ObjectType, ObjectID, InstituteID).ToList();
             var returndata = (from p in data where p.Username.ToLower().Contains(userName) select p).ToList();
             return returndata;
 
         }
-        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID,int InstituteID, int PageSize, int PageNumber)
+        public List<GetShareUserResult> GetShareUser(int ObjectType, string ObjectID, int InstituteID, int PageSize, int PageNumber)
         {
 
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetShareUser(ObjectType, ObjectID,InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            return db.GetShareUser(ObjectType, ObjectID, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
         public List<GetUserObjectAccessResult> GetUserObjectAccess(int LoginUserID, string ObjectID, int ObjectType)
@@ -15112,7 +15112,7 @@ namespace DataAccess
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetShareGroup(ObjectType, ObjectID,InstituteID).ToList();
+            return db.GetShareGroup(ObjectType, ObjectID, InstituteID).ToList();
 
         }
         public List<GetShareGroupResult> GetShareGroup(int ObjectType, string ObjectID, int InstituteID, int PageSize, int PageNumber)
@@ -15121,7 +15121,7 @@ namespace DataAccess
             UserDataContext db = new UserDataContext();
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            return db.GetShareGroup(ObjectType, ObjectID,InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+            return db.GetShareGroup(ObjectType, ObjectID, InstituteID).Skip(PageNumber * PageSize).Take(PageSize).ToList();
 
         }
         public void UpdateShareGroupEnableEdit(int InstituteUserTypeID, string QuestionID, int ObjectType, bool EnableEdit)
@@ -17556,7 +17556,7 @@ namespace DataAccess
 
         #region Ratting
 
-        public void RattingAdd(Guid RattingID, int Rating, int ContentType, string ContentID, DateTime ModifiedDate)
+        public void RattingAdd(Guid RattingID, int Rating, int ContentType, string ContentID, int RatterID, DateTime ModifiedDate)
         {
             Ratting ObjRatting = new Ratting();
 
@@ -17567,6 +17567,12 @@ namespace DataAccess
             ObjRatting.ContentType = ContentType;
 
             ObjRatting.ContentID = ContentID;
+
+            RattingUser objenewRattingUser = new RattingUser();
+            objenewRattingUser.RatterID = RatterID;
+            objenewRattingUser.RattingID = RattingID;
+            objenewRattingUser.RattingUserID = Guid.NewGuid();
+            ObjRatting.RattingUsers.Add(objenewRattingUser);
 
             ObjRatting.ModifiedDate = ModifiedDate;
 
@@ -17916,25 +17922,35 @@ namespace DataAccess
             return data;
 
         }
-        public void RattingUpdateByRattingID(int Rating, int ContentType, string ContentID)
+        public void RattingUpdateByRattingID(int Rating, int ContentType, string ContentID, int RatterID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             UserDataContext db = new UserDataContext();
             DataLoadOptions option = new DataLoadOptions();
+            option.LoadWith<Ratting>(p => p.RattingUsers);
             db.LoadOptions = option;
 
             db.DeferredLoadingEnabled = false;
             var dataBunch = (from p in db.Rattings where p.ContentID == ContentID && p.ContentType == ContentType select p).ToList();
             if (dataBunch.Count > 0)
             {
+
                 var data = dataBunch[0];
-                data.Rating = data.Rating + Rating;
-                data.ModifiedDate = DateTime.Now;
-                db.SubmitChanges();
+                if (data.RattingUsers.Select(p=>p.RatterID==RatterID).ToList().Count==0)
+                {
+                    data.Rating = data.Rating + Rating;
+                    data.ModifiedDate = DateTime.Now;
+                    RattingUser objenewRattingUser = new RattingUser();
+                    objenewRattingUser.RatterID = RatterID;
+                    objenewRattingUser.RattingID = data.RattingID;
+                    objenewRattingUser.RattingUserID = Guid.NewGuid();
+                    db.RattingUsers.InsertOnSubmit(objenewRattingUser);
+                    db.SubmitChanges();
+                }
             }
             else
             {
-                RattingAdd(Guid.NewGuid(), 1, ContentType, ContentID, DateTime.Now);
+                RattingAdd(Guid.NewGuid(), 1, ContentType, ContentID, RatterID, DateTime.Now);
             }
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }

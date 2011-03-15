@@ -152,15 +152,6 @@
       <Association Name="StudentLogin_Event" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Ratting" Member="Rattings">
-    <Type Name="Ratting">
-      <Column Name="RattingID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Rating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ContentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ContentID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.ContentHistory" Member="ContentHistories">
     <Type Name="ContentHistory">
       <Column Name="ContentHistoryID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -183,6 +174,24 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Share_ShareGroup" Member="ShareGroups" ThisKey="ShareID" OtherKey="ShareID" Type="ShareGroup" />
       <Association Name="Share_ShareUser" Member="ShareUsers" ThisKey="ShareID" OtherKey="ShareID" Type="ShareUser" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RattingUser" Member="RattingUsers">
+    <Type Name="RattingUser">
+      <Column Name="RattingUserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RatterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RattingID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Ratting_RattingUser" Member="Ratting" ThisKey="RattingID" OtherKey="RattingID" Type="Ratting" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ratting" Member="Rattings">
+    <Type Name="Ratting">
+      <Column Name="RattingID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Rating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ContentType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ContentID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Ratting_RattingUser" Member="RattingUsers" ThisKey="RattingID" OtherKey="RattingID" Type="RattingUser" />
     </Type>
   </Table>
   <Function Name="dbo.GetUserContent" Method="GetUserContent">
