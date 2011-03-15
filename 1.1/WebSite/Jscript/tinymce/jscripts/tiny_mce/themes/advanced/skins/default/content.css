@@ -1,7 +1,4 @@
-body, td, pre {color:#000; 
-                   font-family: verdana,clean,sans-serif; /*font-family:"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Tahoma,"DejaVu Sans","Bitstream Vera Sans",Arial,Verdana,"Verdana Ref",sans-serif;*/
-    font-size: 11.25px;
- margin:8px;}
+
 body {background:#FFF;}
 body.mceForceColors {background:#FFF; color:#000;}
 h1 {font-size: 2em}

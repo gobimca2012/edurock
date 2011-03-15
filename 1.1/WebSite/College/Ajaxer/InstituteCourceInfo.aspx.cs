@@ -136,7 +136,7 @@ public partial class College_Ajaxer_InstituteCourceInfo : AjaxPage
     {
         FormValidation();
        
-        new JScripter.TinyMCE(this.Page).Create();
+        new JScripter.TinyMCE(this.Page,true).Create();
         if (Request.Params["icid"] != null)
         {
             AjaxState["icid"] = Request.Params["icid"];
