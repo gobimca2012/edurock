@@ -109,6 +109,38 @@
                             <asp:TextBox ID="txtWebSite" runat="server"></asp:TextBox>
                         </div>
                     </div>
+                     <div>
+                        <div>
+                            <span class="label">Mobile Number 1</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtMobileNumber1" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                     <div>
+                        <div>
+                            <span class="label">Mobile Number 2</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtMobileNumber2" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                     <div>
+                        <div>
+                            <span class="label">Land Line Number 1</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtLandLineNumber1" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                     <div>
+                        <div>
+                            <span class="label">Land Line Number 2</span>
+                        </div>
+                        <div>
+                            <asp:TextBox ID="txtLandLineNumber2" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
                 </div>
             </fieldset>
         </div>

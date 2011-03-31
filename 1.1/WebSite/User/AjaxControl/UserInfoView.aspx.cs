@@ -24,7 +24,7 @@ public partial class User_AjaxControl_UserInfoView : AjaxPage
                 lnkEdit.Visible = false;
                 lnkChangeImage.Visible = false;
                 return Convert.ToInt32(AjaxState["usid"]);
-                
+
             }
             else
             {
@@ -41,7 +41,7 @@ public partial class User_AjaxControl_UserInfoView : AjaxPage
         {
             AjaxState["usid"] = Request.Params["usid"];
         }
-        
+
         {
             var data = new UserController().GetbyLoginUserID(LoginUserID);
             if (data.Count > 0)
@@ -104,7 +104,26 @@ public partial class User_AjaxControl_UserInfoView : AjaxPage
         if (data.WebSite != null)
 
             lblWebSite.InnerHtml = data.WebSite.ToString();
+        if (data.MobileNumber1 != null && data.MobileNumber1 != "")
 
+            lblMobileNumber1.InnerHtml = data.MobileNumber1.ToString();
+        else
+            divMobile1.Visible = false;
+        if (data.MobileNumber2 != null && data.MobileNumber2 != "")
+
+            lblMobileNumber2.InnerHtml = data.MobileNumber2.ToString();
+        else
+            divMobile2.Visible = false;
+        if (data.LandLineNumber1 != null && data.LandLineNumber1 != "")
+
+            lblLandLineNumber1.InnerHtml = data.LandLineNumber1.ToString();
+        else
+            divlandLine1.Visible = false;
+        if (data.LandLineNumber2 != null && data.LandLineNumber2!="")
+
+            lblLandLineNumber2.InnerHtml = data.LandLineNumber2.ToString();
+        else
+            divLandLine2.Visible = false;
 
 
     }

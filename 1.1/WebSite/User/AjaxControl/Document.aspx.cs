@@ -82,9 +82,15 @@ public partial class User_AjaxControl_Document : AjaxPage
                 else if (data.DocumentType == (int)DocumentTypeEnum.Document)
                 {
                     lblFilePath.HRef = ResolveUrl(data.FilePath.ToString());
-                    lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString());
+                    //lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString());
+
+                    lnkViewDoc.HRef = "#";
+                    lnkViewDoc.Attributes["onclick"] = string.Format("openExcel('{0}');", CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString()));
                     //lnkViewDoc.HRef = "#";
-                    //lnkViewDoc.Attributes["onclick"] = string.Format("openExcel('{0}');", CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString()));
+                    //lnkViewDoc.Attributes["onclick"] = string.Format("$('#contentbox').LinkPostH('/WebSite/User/AjaxControl/ZohoWriter.aspx?ac=p&k=lnkUpdateStatus','#contentbox','#contentbox');");
+                    //HyperLink1.NavigateUrl = ResolveUrl("~/User/AjaxControl/ZohoWriter.aspx") + "?did=" + ID.ToString();
+                   lnknnn.NavigateUrl = ResolveUrl("~/User/AjaxControl/ZohoWriter.aspx") + "?did=" + ID.ToString();
+                    
                 }
                 else if (data.DocumentType == (int)ContentTypeEnum.BookMark)
                 {
@@ -145,6 +151,9 @@ public partial class User_AjaxControl_Document : AjaxPage
             objLoader.LoadPage("#comment", ResolveUrl("~/User/AjaxControl/CommentInfoView.aspx") + "?conid=" + ID.ToString() + "&ctype=" + (_ContentType).ToString());
             lnkShare.NavigateUrl = ResolveUrl("~/User/AjaxControl/ShareInfo.aspx") + "?conid=" + ID.ToString() + "&type=" + (_ContentType).ToString();
             lnkHistory.NavigateUrl = ResolveUrl("~/User/AjaxControl/DocumentHistoryView.aspx") + "?conid=" + ID.ToString();
+            //JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, false);
+            //objPopup.PopUpOen(lnkSendEmail, "", ResolveUrl("~/User/AjaxControl/DocumentHistoryView.aspx") + "?conid=" + ID.ToString());
+            new JScripter.ToolTip(this.Page).AjaxToolTip(lnkSendEmail, ResolveUrl("~/User/AjaxControl/SendDocEmail.aspx") + "?conid=" + ID.ToString(), "acont");
         }
 
     }

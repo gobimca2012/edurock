@@ -6,7 +6,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
-    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -21,12 +20,12 @@
                 <aspajax:HyperLink ID="lnkShare" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></div>
             <div style="float: right">
                 <aspajax:HyperLink ID="lnkHistory" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  History </div></aspajax:HyperLink></div>
+            <div style="float: right">
+                <asp:HyperLink ID="lnkSendEmail" runat="server" ContainnerID="#contentBox"><div class="btn editbtn">  Send as Email </div></asp:HyperLink></div>
             <div style="clear: both">
             </div>
         </div>
         <div class="whitecont">
-        
-
             <div class="fuleft">
                 <div>
                     <div>
@@ -48,10 +47,12 @@
                             </a>
                         </div>
                         <div style="float: left">
-                            <a id="lnkViewDoc" runat="server" >
+                            <a id="lnkViewDoc" runat="server">
                                 <div class="btn " style="width: 80px">
                                     View</div>
                             </a>
+                            <asp:HyperLink ID="lnknnn" runat="server">dsdsd</asp:HyperLink>
+                            <%--<aspajax:HyperLink ID="HyperLink1" runat="server"  ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></div>--%>
                         </div>
                         <div style="clear: both">
                         </div>

@@ -75,7 +75,12 @@ public partial class User_AjaxControl_UserInfo : AjaxPage
 
         string WebSite; if (false) { throw new Exception(""); } WebSite =HtmlHelper.ControlValue(txtWebSite.ClientID);
 
-        new UserController().Add(new UserAuthontication().LoggedInUserID, FirstName, LastName, MiddleName, BirthDate, Address1, Address2, City, State, Country, WebSite);
+        string MobileNumber1; if (false) { throw new Exception(""); } MobileNumber1 = HtmlHelper.ControlValue(txtMobileNumber1.ClientID);
+        string MobileNumber2; if (false) { throw new Exception(""); } MobileNumber2 = HtmlHelper.ControlValue(txtMobileNumber2.ClientID);
+        string LandLineNumber1; if (false) { throw new Exception(""); } LandLineNumber1 = HtmlHelper.ControlValue(txtLandLineNumber1.ClientID);
+        string LandLineNumber2; if (false) { throw new Exception(""); } LandLineNumber2 = HtmlHelper.ControlValue(txtLandLineNumber2.ClientID);
+
+        new UserController().Add(new UserAuthontication().LoggedInUserID, FirstName, LastName, MiddleName, BirthDate, Address1, Address2, City, State, Country, WebSite,MobileNumber1,MobileNumber2,LandLineNumber1,LandLineNumber2);
     }
 
     private void AddData()
@@ -106,6 +111,10 @@ public partial class User_AjaxControl_UserInfo : AjaxPage
             string WebSite; if (false) { throw new Exception(""); } WebSite = HtmlHelper.ControlValue(txtWebSite.ClientID);
 
             DateTime ModifiedDate; if (false) { throw new Exception(""); } Convert.ToDateTime(ModifiedDate = DateTime.Now);
+            string MobileNumber1; if (false) { throw new Exception(""); } MobileNumber1 = HtmlHelper.ControlValue(txtMobileNumber1.ClientID);
+            string MobileNumber2; if (false) { throw new Exception(""); } MobileNumber2 = HtmlHelper.ControlValue(txtMobileNumber2.ClientID);
+            string LandLineNumber1; if (false) { throw new Exception(""); } LandLineNumber1 = HtmlHelper.ControlValue(txtLandLineNumber1.ClientID);
+            string LandLineNumber2; if (false) { throw new Exception(""); } LandLineNumber2 = HtmlHelper.ControlValue(txtLandLineNumber2.ClientID);
 
             new UserController().Add(LoginUserID, FirstName, LastName, MiddleName, BirthDate, Address1, Address2, City, State, Country, WebSite, ModifiedDate);
             Response.Redirect("~/User/AjaxControl/UserInfoView.aspx");

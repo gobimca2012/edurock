@@ -14,7 +14,7 @@
                 objExcel.Visible = true;
                 alert(strLocation);
 
-                objExcel.Workbooks.Open(strLocation, false, false);
+                objExcel.Workbooks.Open(strLocation);
                 objExcel.UserControl = true
             }
         }
