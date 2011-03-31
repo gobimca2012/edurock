@@ -140,6 +140,7 @@ namespace BusinessLogic
         {
             return new DateTime(Year, month, day);
         }
+        
         public string UploadImage(FileUpload fl)
         {
 
@@ -149,8 +150,9 @@ namespace BusinessLogic
             {
                 Directory.CreateDirectory(FolderPath);
             }
-            string FilePath = FolderPath + "/" + fl.FileName;
-            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Image/" + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            string uploadfileName = FileInformation.GetNewFileName(fl.FileName);
+            string FilePath = FolderPath + "/" + uploadfileName;
+            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Image/" + new UserAuthontication().LoggedInUserName + "/" +uploadfileName;
             fl.SaveAs(FilePath);
             return ReturnFilePath;
         }
@@ -169,8 +171,8 @@ namespace BusinessLogic
             {
                 Directory.CreateDirectory(FolderPath);
             }
-            string FilePath = FolderPath + "/" + fl.FileName;
-            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Audio/" + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            string FilePath = FolderPath + "/" +FileInformation.GetNewFileName(fl.FileName);
+            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Audio/" + new UserAuthontication().LoggedInUserName + "/" + FileInformation.GetNewFileName(fl.FileName);
             fl.SaveAs(FilePath);
             return ReturnFilePath;
         }
@@ -183,8 +185,8 @@ namespace BusinessLogic
             {
                 Directory.CreateDirectory(FolderPath);
             }
-            string FilePath = FolderPath + "/" + fl.FileName;
-            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Video/" + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            string FilePath = FolderPath + "/" + FileInformation.GetNewFileName(fl.FileName);
+            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Video/" + new UserAuthontication().LoggedInUserName + "/" +FileInformation.GetNewFileName(fl.FileName);
             fl.SaveAs(FilePath);
             return ReturnFilePath;
         }
@@ -197,8 +199,8 @@ namespace BusinessLogic
             {
                 Directory.CreateDirectory(FolderPath);
             }
-            string FilePath = FolderPath + "/" + fl.FileName;
-            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Document/" + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            string FilePath = FolderPath + "/" + FileInformation.GetNewFileName(fl.FileName);
+            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Document/" + new UserAuthontication().LoggedInUserName + "/" + FileInformation.GetNewFileName(fl.FileName);
             fl.SaveAs(FilePath);
             return ReturnFilePath;
         }

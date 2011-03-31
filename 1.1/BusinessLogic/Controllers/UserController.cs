@@ -1005,12 +1005,12 @@ namespace BusinessLogic
                 return "";
             }
         }
-        public int Add(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite)
+        public int Add(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite,string MobileNumber1,string MobileNumber2,string LandLineNumber1,string LandLineNumer2)
         {
 
             try
             {
-                int ID = new DataProvider().UserAdd(LoginUserID, FirstName, LastName, MiddleName, BirthDate, Address1, Address2, City, State, Country, WebSite);
+                int ID = new DataProvider().UserAdd(LoginUserID, FirstName, LastName, MiddleName, BirthDate, Address1, Address2, City, State, Country, WebSite, MobileNumber1, MobileNumber2, LandLineNumber1, LandLineNumer2);
                 return ID;
             }
             catch (Exception ex)

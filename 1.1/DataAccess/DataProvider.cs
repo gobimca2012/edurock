@@ -3561,7 +3561,7 @@ namespace DataAccess
             }
             return "";
         }
-        public int UserAdd(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite)
+        public int UserAdd(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite,string MobileNumber1,string MobileNumber2,string LandlineNumber1,string LandlineNumber2)
         {
             UserDataContext db = new UserDataContext();
             db.DeferredLoadingEnabled = false;
@@ -3603,7 +3603,10 @@ namespace DataAccess
 
             ObjUser.WebSite = WebSite;
 
-
+            ObjUser.MobileNumber1 = MobileNumber1;
+            ObjUser.MobileNumber2 = MobileNumber2;
+            ObjUser.LandLineNumber1 = LandlineNumber1;
+            ObjUser.LandLineNumber2 = LandlineNumber2;
             ObjUser.ModifiedDate = DateTime.Now;
 
 

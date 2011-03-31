@@ -10,11 +10,11 @@
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="StudentLogin_UserEducation" Member="UserEducations" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="UserEducation" />
       <Association Name="StudentLogin_ShareUser" Member="ShareUsers" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="ShareUser" />
-      <Association Name="StudentLogin_User" Member="Users" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="User" />
       <Association Name="StudentLogin_Comment" Member="Comments" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Comment" />
       <Association Name="StudentLogin_Document" Member="Documents" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Document" />
       <Association Name="StudentLogin_Article" Member="Articles" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Article" />
       <Association Name="StudentLogin_Event" Member="Events" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Event" />
+      <Association Name="StudentLogin_User" Member="Users" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="User" />
     </Type>
   </Table>
   <Table Name="dbo.UserEducation" Member="UserEducations">
@@ -65,27 +65,6 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="StudentLogin_ShareUser" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
       <Association Name="Share_ShareUser" Member="Share" ThisKey="ShareID" OtherKey="ShareID" Type="Share" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.[User]" Member="Users">
-    <Type Name="User">
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="BirthDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Address1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Address2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="City" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="State" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="Country" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="WebSite" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="AboutMe" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Status" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="StudentLogin_User" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Comment" Member="Comments">
@@ -192,6 +171,33 @@
       <Column Name="ContentID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Ratting_RattingUser" Member="RattingUsers" ThisKey="RattingID" OtherKey="RattingID" Type="RattingUser" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="WebSite" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="AboutMe" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="MobileNumber1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MobileNumber2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LandLineNumber1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LandLineNumber2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IPAddress" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="StudentLogin_User" Member="StudentLogin" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="StudentLogin" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetUserContent" Method="GetUserContent">

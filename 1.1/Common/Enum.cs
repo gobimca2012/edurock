@@ -70,6 +70,11 @@ namespace Common
 
     public class FileInformation
     {
+        public static string GetNewFileName(string FileName)
+        {
+            string name=CustomHelper.GetGuidString(Guid.NewGuid()) + "." + FileInformation.getFileExtention(FileName);
+            return name;
+        }
         public static string getFileExtention(string path)
         {
             string[] parts = path.Split('.');
