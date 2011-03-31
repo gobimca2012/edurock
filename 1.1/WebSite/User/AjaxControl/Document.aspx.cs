@@ -12,6 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
 using Common;
+using System.IO;
 
 public partial class User_AjaxControl_Document : AjaxPage
 {
@@ -105,6 +106,7 @@ public partial class User_AjaxControl_Document : AjaxPage
                     //lblFilePath.InnerHtml = data.FilePath.ToString();
                     new JScripter.Player(this.Page).CreatePlayer(ResolveUrl(data.FilePath.ToString()), "videoPlayer");
                 }
+                DisplayFileInforation(data.FilePath);
 
             }
             if (data.DocumentType != null)
@@ -133,7 +135,19 @@ public partial class User_AjaxControl_Document : AjaxPage
         }
 
     }
-
+    private void DisplayFileInforation(string filePath)
+    {
+        try
+        {
+            FileInfo fileInfo = FileInformation.GetFileInfo(Server.MapPath(filePath));
+            lblfileType.InnerText = fileInfo.Extension;
+            lblFileSize.InnerText = (fileInfo.Length / 1024).ToString() + " KB";
+        }
+        catch
+        {
+            divfiletype.Visible = false;
+        }
+    }
     private Guid ID
     {
         get
@@ -154,6 +168,7 @@ public partial class User_AjaxControl_Document : AjaxPage
             //JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, false);
             //objPopup.PopUpOen(lnkSendEmail, "", ResolveUrl("~/User/AjaxControl/DocumentHistoryView.aspx") + "?conid=" + ID.ToString());
             new JScripter.ToolTip(this.Page).AjaxToolTip(lnkSendEmail, ResolveUrl("~/User/AjaxControl/SendDocEmail.aspx") + "?conid=" + ID.ToString(), "acont");
+            new JScripter.Loader(this.Page, false).LoadPage("#tempviewload", "http://localhost:1829/WebSite/User/AjaxControl/ZohoWriter.aspx?did=a50f7ca2-d9e4-4763-ad17-e15eb127fecf");
         }
 
     }

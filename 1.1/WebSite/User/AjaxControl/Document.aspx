@@ -21,7 +21,7 @@
             <div style="float: right">
                 <aspajax:HyperLink ID="lnkHistory" runat="server" Visible="false" ContainnerID="#contentBox"><div class="btn editbtn">  History </div></aspajax:HyperLink></div>
             <div style="float: right">
-                <asp:HyperLink ID="lnkSendEmail" runat="server" ContainnerID="#contentBox"><div class="btn editbtn">  Send as Email </div></asp:HyperLink></div>
+                <asp:HyperLink ID="lnkSendEmail" runat="server" ContainnerID="#contentBox"><div class="btn editbtn" style="width:78px">  Send as Email </div></asp:HyperLink></div>
             <div style="clear: both">
             </div>
         </div>
@@ -57,6 +57,13 @@
                         <div style="clear: both">
                         </div>
                     </div>
+                </div>
+                <div id="tempviewload">
+                </div>
+                <div class="graycontent roundedall" id="divfiletype" runat="server">
+                    <span class="label">File Type : </span><span id="lblfileType" runat="server"></span>
+                    <br />
+                      <span class="label">File Size : </span><span id="lblFileSize" runat="server"></span>
                 </div>
                 <div>
                     <div>

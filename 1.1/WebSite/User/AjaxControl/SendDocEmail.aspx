@@ -26,9 +26,14 @@
                     <div>
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                     </div>
+                    <div class="graycontent roundedall">
+                        Add email address of person to whom you want tp send this document in emial. you
+                        can add multiple email address by adding comma seperated email address. example
+                        : xyz@crameasy.com,abc@crameasy.com
+                    </div>
                     <div>
                         <aspajax:AjaxLinkButton ID="lnkAddQuestion" runat="server" RequestContainner="#acont"
-                            ResponseContainner="#acont" OnAjaxClick="AddAjaxClick"><div class="btn editbtn"><%=Resources.Default.Add_Text%></div></aspajax:AjaxLinkButton>
+                            ResponseContainner="#acont" OnAjaxClick="AddAjaxClick"><div class="btn editbtn">Send</div></aspajax:AjaxLinkButton>
                     </div>
                 </div>
             </div>

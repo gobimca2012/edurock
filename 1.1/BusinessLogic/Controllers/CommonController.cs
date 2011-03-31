@@ -204,6 +204,20 @@ namespace BusinessLogic
             fl.SaveAs(FilePath);
             return ReturnFilePath;
         }
+        public string UploadDocument(HttpPostedFile fl,string fileName)
+        {
+
+            string FolderPath = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["Repository"] + "/Document/");
+            FolderPath += new UserAuthontication().LoggedInUserName + "/";
+            if (!Directory.Exists(FolderPath))
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+            string FilePath = FolderPath + "/" + fileName;
+            string ReturnFilePath = ConfigurationSettings.AppSettings["Repository"] + "/Document/" + new UserAuthontication().LoggedInUserName + "/" + fileName;
+            fl.SaveAs(FilePath);
+            return ReturnFilePath;
+        }
         public static string GetSiteName()
         {
             string Hostname = HttpContext.Current.Request.UserHostName;

@@ -6,26 +6,55 @@
     <title></title>
 </head>
 <body>
-    <form method="POST" action="http://export.writer.zoho.com/remotedoc.im" enctype="multipart/form-data"
+    <%-- <form method="POST" action="http://export.writer.zoho.com/remotedoc.im" enctype="multipart/form-data"
     target="_self" accept-charset="UTF-8">
-    <input type="hidden" name="url" value="[http://www.crameasy.com///Repository/Document/vt3soft/DailySprintBacklogV1 0.xls]">
-
-    <input type="hidden" name="apikey" value="" runat="server" id="apikey"/>
-    <input type="hidden" name="output" value="url" runat="server" id="output"/>
+    <input type="hidden" name="url" value="http://www.crameasy.com///Repository/Document/vt3soft/Resume1.1.docx">
+    <input type="hidden" name="apikey" value="" runat="server" id="apikey" />
+    <input type="hidden" name="output" value="url" runat="server" id="output" />
     <input type="hidden" name="mode" value="normaledit">
-    <input type="hidden" name="filename"  runat="server" id="filename"/>
-
+    <input type="hidden" name="filename" runat="server" id="filename" />
     <input type="hidden" name="lang" value="[en/fr/de/ja/it...]">
-     <input type="hidden" name="skey" value="" runat="server" id="skey"/>
-    <input type="hidden" name="id" value="12345678" runat="server" id="id"/>
-    <input type="hidden" name="format" value="doc" runat="server" id="format"/>
-    <input type="hidden" name="saveurl" value="[http://xyz.com/docs/save.php]"/>
-    
-    
+    <input type="hidden" name="skey" value="" runat="server" id="skey" />
+    <input type="hidden" name="id" value="12345678" runat="server" id="id" />
+    <input type="hidden" name="format" value="doc" runat="server" id="format" />
+    <input type="hidden" name="saveurl" value="[http://xyz.com/docs/save.php]" runat="server"
+        id="saveurl" />
+    <input type="submit" name="submit" value="Open/Edit" />
+    </form>--%>
+    <%--<form method="POST" action="https://export.writer.zoho.com/remotedoc.im" target="_self"
+    accept-charset="UTF-8">
+    <input type="hidden" name="url" value="http://www.crameasy.com///Repository/Document/vt3soft/Resume1.1.docx">
+    <input type="hidden" name="apikey" value="" runat="server" id="apikey" />
+    <input type="hidden" name="output" value="url" runat="server" id="output" />
+    <input type="hidden" name="mode" value="normaledit">
+    <input type="hidden" name="filename" runat="server" id="filename" />
+    <input type="hidden" name="lang" value="[en/fr/de/ja/it...]">
+    <input type="hidden" name="skey" value="" runat="server" id="skey" />
+    <input type="hidden" name="id" value="12345678" runat="server" id="id" />
+    <input type="hidden" name="format" value="doc" runat="server" id="format" />
+   <input type="hidden" name="saveurl" value="[http://xyz.com/docs/save.php]" runat="server"
+        id="saveurl" />
+    <input type="submit" name="submit" value="Open/Edit">
+    </form>--%>
+    <form method="POST" action="https://sheet.zoho.com/remotedoc.im" target="_blank"
+    accept-charset="UTF-8" runat="server" id="zohoform">
+    <div id="aaaaf">
+        <input type="hidden" name="url" value="http://www.crameasy.com///Repository/Document/vt3soft/DailySprintBacklogV1 0.xls"
+            runat="server" id="url">
+        <input type="hidden" name="apikey" value="" runat="server" id="apikey" />
+        <input type="hidden" name="output" value="editor" runat="server" id="output" />
+        <input type="hidden" name="mode" value="normaledit">
+        <input type="hidden" name="filename" runat="server" id="filename" />
+        <input type="hidden" name="lang" value="[en/fr/de/ja/it...]">
+        <input type="hidden" name="skey" value="" runat="server" id="skey" />
+        <input type="hidden" name="id" value="12345678" runat="server" id="id" />
+        <input type="hidden" name="format" value="doc" runat="server" id="format" />
+        <input type="hidden" name="saveurl" value="[http://xyz.com/docs/save.php]" runat="server"
+            id="saveurl" />
+    </div>
    
-   
-    
-    <input type="submit" name="submit" value="Open/Edit"/>
+    <asp:Button ID="btnCheckOut" runat="server" Text="Check Out / Edit" PostBackUrl="https://sheet.zoho.com/remotedoc.im"/>
+    <%-- <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />--%>
     </form>
 </body>
 </html>

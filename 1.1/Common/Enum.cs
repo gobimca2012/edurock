@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace Common
 {
@@ -70,6 +71,12 @@ namespace Common
 
     public class FileInformation
     {
+        
+        public static FileInfo GetFileInfo(string filePath)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            return fileInfo;
+        }
         public static string GetNewFileName(string FileName)
         {
             string name=CustomHelper.GetGuidString(Guid.NewGuid()) + "." + FileInformation.getFileExtention(FileName);
