@@ -596,8 +596,10 @@ namespace BusinessLogic
                     return StatusReturn;
                 }
             }
-            catch
+            catch(Exception e)
             {
+                Logger.TimeLog.ErrorWrite("web service user create exception", e.Message, "0");
+                StatusReturn.Add("status", "error");
                 return StatusReturn;
             }
         }

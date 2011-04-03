@@ -90,7 +90,7 @@ public partial class User_AjaxControl_Document : AjaxPage
                     //lnkViewDoc.HRef = "#";
                     //lnkViewDoc.Attributes["onclick"] = string.Format("$('#contentbox').LinkPostH('/WebSite/User/AjaxControl/ZohoWriter.aspx?ac=p&k=lnkUpdateStatus','#contentbox','#contentbox');");
                     //HyperLink1.NavigateUrl = ResolveUrl("~/User/AjaxControl/ZohoWriter.aspx") + "?did=" + ID.ToString();
-                   lnknnn.NavigateUrl = ResolveUrl("~/User/AjaxControl/ZohoWriter.aspx") + "?did=" + ID.ToString();
+                   
                     
                 }
                 else if (data.DocumentType == (int)ContentTypeEnum.BookMark)
@@ -168,7 +168,7 @@ public partial class User_AjaxControl_Document : AjaxPage
             //JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, false);
             //objPopup.PopUpOen(lnkSendEmail, "", ResolveUrl("~/User/AjaxControl/DocumentHistoryView.aspx") + "?conid=" + ID.ToString());
             new JScripter.ToolTip(this.Page).AjaxToolTip(lnkSendEmail, ResolveUrl("~/User/AjaxControl/SendDocEmail.aspx") + "?conid=" + ID.ToString(), "acont");
-            new JScripter.Loader(this.Page, false).LoadPage("#tempviewload", "http://localhost:1829/WebSite/User/AjaxControl/ZohoWriter.aspx?did=a50f7ca2-d9e4-4763-ad17-e15eb127fecf");
+            new JScripter.Loader(this.Page, false).LoadPage("#tempviewload", ResolveUrl("~/User/AjaxControl/ZohoWriter.aspx")+"?did="+ID.ToString());
         }
 
     }

@@ -10,6 +10,7 @@ using System.Web;
 using System.IO;
 using System.Configuration;
 using BusinessLogic.Cache;
+using Common;
 
 namespace BusinessLogic
 {
@@ -1051,10 +1052,10 @@ namespace BusinessLogic
                 Directory.CreateDirectory(FolderPath);
                 Logger.TimeLog.ErrorWrite("Folder Create", FolderPath, "");
             }
-
-            string FilePath = FolderPath + "/" + fl.FileName;
+            string fileName=FileInformation.GetNewFileName(fl.FileName);
+            string FilePath = FolderPath + "/" + fileName;
             Logger.TimeLog.ErrorWrite("FillPath", FilePath, "");
-            string ReturnFilePath = ConfigurationSettings.AppSettings["ProfilePic"] + new UserAuthontication().LoggedInUserName + "/" + fl.FileName;
+            string ReturnFilePath = ConfigurationSettings.AppSettings["ProfilePic"] + new UserAuthontication().LoggedInUserName + "/" + fileName;
             Logger.TimeLog.ErrorWrite("ReturnFilePath", ReturnFilePath, "");
             fl.SaveAs(FilePath);
             Logger.TimeLog.ErrorWrite("File Saved", FilePath, "");

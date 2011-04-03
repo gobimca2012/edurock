@@ -29,86 +29,71 @@
             <div class="fuleft">
                 <div>
                     <div>
-                        <div>
-                            <h3 id="lblName" runat="server" class="btitle">
-                            </h3>
-                        </div>
+                        <h3 id="lblName" runat="server" class="btitle">
+                        </h3>
                     </div>
                     <div>
                         <asp:Image ID="img" runat="server" Visible="false" Width="98%" />
                     </div>
                     <div id="videoPlayer">
                     </div>
-                    <div>
-                        <div style="float: left">
-                            <a id="lblFilePath" runat="server" target="_blank">
-                                <div class="btn " style="width: 80px">
-                                    Download</div>
-                            </a>
+                    <div class="graycontent roundedall">
+                        <div style="float: left; margin-right: 5px">
+                            <a id="lblFilePath" runat="server" target="_blank">Download </a>
                         </div>
-                        <div style="float: left">
-                            <a id="lnkViewDoc" runat="server">
-                                <div class="btn " style="width: 80px">
-                                    View</div>
-                            </a>
-                            <asp:HyperLink ID="lnknnn" runat="server">dsdsd</asp:HyperLink>
-                            <%--<aspajax:HyperLink ID="HyperLink1" runat="server"  ContainnerID="#contentBox"><div class="btn editbtn">  Share </div></aspajax:HyperLink></div>--%>
+                        <div style="float: left; margin-right: 5px">
+                            <a id="lnkViewDoc" runat="server">View </a>
+                        </div>
+                        <div style="float: left; margin-right: 5px">
+                            <div id="tempviewload">
+                            </div>
                         </div>
                         <div style="clear: both">
                         </div>
                     </div>
-                </div>
-                <div id="tempviewload">
-                </div>
-                <div class="graycontent roundedall" id="divfiletype" runat="server">
-                    <span class="label">File Type : </span><span id="lblfileType" runat="server"></span>
-                    <br />
-                      <span class="label">File Size : </span><span id="lblFileSize" runat="server"></span>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">Description</span>
-                    </div>
-                    <div>
-                        <p id="lblDescription" runat="server">
-                        </p>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span class="label">MetaDescription</span>
-                    </div>
-                    <div>
-                        <p id="lblMetaDescription" runat="server">
-                        </p>
-                    </div>
-                </div>
-                <div style="display: none">
-                    <div>
-                        <span class="label">Tag</span>
-                    </div>
-                    <div>
-                        <span id="lblTag" runat="server"></span>
-                    </div>
-                </div>
-                <%-- <div>
-                    <div>
-                     
+                    <div class="graycontent roundedall" id="divfiletype" runat="server">
+                        <span class="label">File Type : </span><span id="lblfileType" runat="server"></span>
+                        <br />
+                        <span class="label">File Size : </span><span id="lblFileSize" runat="server"></span>
                     </div>
                     <div>
                         <div>
-                            POST BY &nbsp;<asp:HyperLink ID="lnkTool" runat="server"></asp:HyperLink>&nbsp;on
-                            &nbsp;<span id="lblModifiedDate" runat="server"></span>
+                            <span class="label">Description</span>
+                        </div>
+                        <div>
+                            <p id="lblDescription" runat="server">
+                            </p>
                         </div>
                     </div>
-                </div>--%>
-                <div style="display: none">
                     <div>
-                        <span class="label">Rating</span>
+                        <div>
+                            <span class="label">MetaDescription</span>
+                        </div>
+                        <div>
+                            <p id="lblMetaDescription" runat="server">
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                        <span id="lblRating" runat="server"></span>
+                    <div style="display: none">
+                        <div>
+                            <span class="label">Tag</span>
+                        </div>
+                        <div>
+                            <span id="lblTag" runat="server"></span>
+                        </div>
                     </div>
+                    <div style="display: none">
+                        <div>
+                            <span class="label">Rating</span>
+                        </div>
+                        <div>
+                            <span id="lblRating" runat="server"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="comment">
+                </div>
+                <div id="newcommentbox">
                 </div>
             </div>
             <div class="furight">
@@ -116,12 +101,8 @@
             </div>
             <div style="clear: both">
             </div>
-            <div id="comment">
+            <div class="gray">
             </div>
-            <div id="newcommentbox">
-            </div>
-        </div>
-        <div class="gray">
         </div>
     </div>
     </form>
