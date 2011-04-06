@@ -1338,3 +1338,13 @@ select
     padding: 4px 5px;
     width: 80%;
 }
+.questxt
+{
+    background-color:#65A5F2;
+color:#FFFFFF;
+font-size:11px;
+margin:3px 1px 1px;
+padding:2px 5px;
+text-align:right;
+width:55px;
+}

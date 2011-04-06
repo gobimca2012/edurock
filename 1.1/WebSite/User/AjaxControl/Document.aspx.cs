@@ -21,7 +21,7 @@ public partial class User_AjaxControl_Document : AjaxPage
 
         if (new UserAuthontication().IsOwn(LoginUserID))
         {
-            //lnkDelete.Visible = true;
+            //lnkDelete.Visible = true
             lnkShare.Visible = UserAccess.IsEditablable;
             lnkHistory.Visible = true;
 
@@ -39,7 +39,7 @@ public partial class User_AjaxControl_Document : AjaxPage
         if (dataBunch.Count > 0)
         {
             var data = dataBunch[0];
-         
+
             if (data.Name != null)
 
                 lblName.InnerHtml = data.Name.ToString();
@@ -78,7 +78,7 @@ public partial class User_AjaxControl_Document : AjaxPage
                 {
                     img.Visible = true;
                     img.ImageUrl = ResolveUrl(data.FilePath.ToString());
-                    lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" +CommonController.GetSiteName()+ResolveUrl(data.FilePath.ToString());
+                    lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString());
                 }
                 else if (data.DocumentType == (int)DocumentTypeEnum.Document)
                 {
@@ -87,11 +87,10 @@ public partial class User_AjaxControl_Document : AjaxPage
 
                     lnkViewDoc.HRef = "#";
                     lnkViewDoc.Attributes["onclick"] = string.Format("openExcel('{0}');", CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString()));
-                    //lnkViewDoc.HRef = "#";
-                    //lnkViewDoc.Attributes["onclick"] = string.Format("$('#contentbox').LinkPostH('/WebSite/User/AjaxControl/ZohoWriter.aspx?ac=p&k=lnkUpdateStatus','#contentbox','#contentbox');");
-                    //HyperLink1.NavigateUrl = ResolveUrl("~/User/AjaxControl/ZohoWriter.aspx") + "?did=" + ID.ToString();
-                   
-                    
+                    if (lnkEdit.Visible)
+                        new JScripter.Loader(this.Page, false).LoadPage("#tempviewload", ResolveUrl("~/User/AjaxControl/ZohoWriter.aspx") + "?did=" + ID.ToString());
+
+
                 }
                 else if (data.DocumentType == (int)ContentTypeEnum.BookMark)
                 {
@@ -99,12 +98,16 @@ public partial class User_AjaxControl_Document : AjaxPage
                     lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString());
                     lnkViewDoc.Visible = false;
                     lblFilePath.Visible = false;
-                    lblName.InnerHtml = string.Format("<a href='{0}' target='_blank'>{0}</a>",data.Name);
+                    lblName.InnerHtml = string.Format("<a href='{0}' target='_blank'>{0}</a>", data.Name);
                 }
                 else if (data.DocumentType == (int)DocumentTypeEnum.Audio || data.DocumentType == (int)DocumentTypeEnum.Video)
                 {
                     //lblFilePath.InnerHtml = data.FilePath.ToString();
                     new JScripter.Player(this.Page).CreatePlayer(ResolveUrl(data.FilePath.ToString()), "videoPlayer");
+                    if (data.FilePath.ToLower().Contains("youtube"))
+                    {
+                        lblFilePath.Visible = false;
+                    }
                 }
                 DisplayFileInforation(data.FilePath);
 
@@ -168,7 +171,7 @@ public partial class User_AjaxControl_Document : AjaxPage
             //JScripter.PopUp objPopup = new JScripter.PopUp(this.Page, false);
             //objPopup.PopUpOen(lnkSendEmail, "", ResolveUrl("~/User/AjaxControl/DocumentHistoryView.aspx") + "?conid=" + ID.ToString());
             new JScripter.ToolTip(this.Page).AjaxToolTip(lnkSendEmail, ResolveUrl("~/User/AjaxControl/SendDocEmail.aspx") + "?conid=" + ID.ToString(), "acont");
-            new JScripter.Loader(this.Page, false).LoadPage("#tempviewload", ResolveUrl("~/User/AjaxControl/ZohoWriter.aspx")+"?did="+ID.ToString());
+
         }
 
     }

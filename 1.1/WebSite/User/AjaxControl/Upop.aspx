@@ -46,12 +46,12 @@
                             <div class="dasbo">
                                 <span class="label">User Institute:</span> &nbsp;<span id="lblGroup" runat="server"></span>
                             </div>
-                            <div class="dasbo" style="display:none">
+                            <div class="dasbo" style="display: none">
                                 <span class="label">User Cource:</span>&nbsp;<span id="lblCource" runat="server"></span>
                             </div>
                             <div>
                                 <div>
-                                    recent Activity
+                                    <span class="label">Recent Activity</span>
                                 </div>
                                 <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="ID,ContentType" OnItemDataBound="ListQuestionOnItemDataBound">
                                     <LayoutTemplate>

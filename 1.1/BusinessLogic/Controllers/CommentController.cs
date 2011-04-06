@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using DataEntity;
 using DataAccess;
 using System.Diagnostics;
+using Common;
 
 namespace BusinessLogic
 {
@@ -260,7 +261,7 @@ namespace BusinessLogic
 
             try
             {
-                new DataProvider().CommentAdd(CommentID, ContentID, ContentType, LoginUserID, CommentText, ModifiedDate);
+                new DataProvider().CommentAdd(CommentID, ContentID, ContentType, LoginUserID,CustomHelper.ConvertMultitextToHtml(CommentText), ModifiedDate);
                 return true;
             }
             catch (Exception ex)

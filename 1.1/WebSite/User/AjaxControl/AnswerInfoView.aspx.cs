@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
+using Common;
 
 public partial class User_AjaxControl_AnswerInfoView : AjaxPage
 {
@@ -110,8 +111,7 @@ public partial class User_AjaxControl_AnswerInfoView : AjaxPage
         else if (e.Command.Contains("accept"))
         {
             //new AnswerController().UpdateAnswerStateByAnswerID(new Guid(e.Id), Convert.ToInt32(HtmlHelper.ControlValue(e.customId1)));
-            new AnswerController().UpdateAnswerStateByAnswerID(new Guid(e.Id), Convert.ToInt32(HtmlHelper.ControlValue(e.customId1)));
-            BindList();
+            new AnswerController().UpdateAnswerStateByAnswerID(new Guid(e.Id), Convert.ToInt32(e.customId1));            
         }
         base.OnAjaxListViewCommand(e);
     }
@@ -121,18 +121,31 @@ public partial class User_AjaxControl_AnswerInfoView : AjaxPage
         ListViewDataItem currentItem = (ListViewDataItem)e.Item;
         string LoginUserID = ListAnswer.DataKeys[currentItem.DataItemIndex]["LoginUserID"].ToString();
         string AnswerID = ListAnswer.DataKeys[currentItem.DataItemIndex]["AnswerID"].ToString();
+        string answerState = ListAnswer.DataKeys[currentItem.DataItemIndex]["AnswerStatus"].ToString();
         HtmlGenericControl divUser = (HtmlGenericControl)currentItem.FindControl("UserAction");
         HtmlGenericControl acceptAnswer = (HtmlGenericControl)currentItem.FindControl("acceptAnswer");
-        
-        DropDownList ddState = (DropDownList)currentItem.FindControl("ddState");
-        if (ddState != null)
-        {
-            new AnswerStateController().BindAnswerState(ddState);
-        }
+        HtmlGenericControl rejectanswer = (HtmlGenericControl)currentItem.FindControl("rejectanswer");
+
+        //DropDownList ddState = (DropDownList)currentItem.FindControl("ddState");
+        //if (ddState != null)
+        //{
+        //    new AnswerStateController().BindAnswerState(ddState);
+        //}
         if (acceptAnswer != null)
         {
-            acceptAnswer.InnerHtml = _HtmlHelper.ListViewLinkButton("lnkd", "accept Answer", "accept", AnswerID, ddState.ClientID, "#Answer", "#Answer");
+            if (answerState != null && answerState == "Accepted")
+                acceptAnswer.Visible = false;
         }
+        if (rejectanswer != null)
+        {
+            if (answerState != null && answerState == "Rejected")
+                rejectanswer.Visible = false;
+        }
+        //if (!new UserAuthontication().IsOwn(Convert.ToInt32(LoginUserID)))
+        //{
+        //    acceptAnswer.Visible = false;
+        //    rejectanswer.Visible = false;
+        //}
         if (divUser != null)
         {
             if (new UserAuthontication().IsOwn(Convert.ToInt32(LoginUserID)))

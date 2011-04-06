@@ -651,7 +651,7 @@ namespace BusinessLogic
             {
                 //new ContentHistoryController().GetDocumentHistory(DocumentID.ToString());
                 new ContentHistoryController().StoreContentHistory(DocumentID.ToString(), DocumentType);
-                new DataProvider().DocumentUpdateByDocumentID(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, ModifiedDate);
+                new DataProvider().DocumentUpdateByDocumentID(DocumentID, Name, CustomHelper.ConvertMultitextToHtml(Description), MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, ModifiedDate);
                 return true;
             }
             catch (Exception ex)
@@ -746,7 +746,7 @@ namespace BusinessLogic
 
             try
             {
-                new DataProvider().DocumentAdd(DocumentID, Name, Description, MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceiD, InstituteSubjectID, ModifiedDate);
+                new DataProvider().DocumentAdd(DocumentID, Name, CustomHelper.ConvertMultitextToHtml(Description), MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceiD, InstituteSubjectID, ModifiedDate);
                 new ShareController().AddDefaultShareAccess(DocumentType, DocumentID.ToString());
 
                 return true;

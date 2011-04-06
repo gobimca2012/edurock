@@ -95,7 +95,7 @@
                     <div style="max-height:100px;height:100px;background:#f0f0f0;overflow:hidden">
                         <asp:Image ID="img" runat="server" ImageUrl='<%#ResolveUrl(Eval("Param1").ToString()) %>' Width="100" />
                     </div>
-                    <div class="invis fl" style="text-align:center">
+                    <div class="invis fl" style="text-align:center;width:100px;overflow:hidden;">
                       
                         <%#Eval("Title") %>
                     </div>

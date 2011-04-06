@@ -269,6 +269,49 @@ public partial class User_AjaxControl_AllContent : AjaxPage
         }
         return CssClass;
     }
+    public string GetIcon(string ContentType)
+    {
+        string CssClass = "";
+        string baseHtml = "<div class='{0}' >{1}</div>";
+
+        if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Question)
+        {
+            CssClass =string.Format(baseHtml,"questxt","Question");
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Document)
+        {
+            CssClass = "doc";
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Image)
+        {
+            CssClass = "img";
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Video)
+        {
+            CssClass = "vid";
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Audio)
+        {
+            CssClass = "aud";
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.HomeWork)
+        {
+            CssClass = "howo";
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Exam)
+        {
+            CssClass = "exm";
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Event)
+        {
+            CssClass = "evt";
+        }
+        else if (Convert.ToInt32(ContentType) == (int)ContentTypeEnum.Article)
+        {
+            CssClass = "art";
+        }
+        return CssClass;
+    }
     public string getURL(string ContentType, string ID)
     {
         string URL = "";

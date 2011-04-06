@@ -41,7 +41,7 @@
                         <div style="float: left; margin-right: 5px">
                             <a id="lblFilePath" runat="server" target="_blank">Download </a>
                         </div>
-                        <div style="float: left; margin-right: 5px">
+                        <div style="float: left; margin-right: 5px;display:none">
                             <a id="lnkViewDoc" runat="server">View </a>
                         </div>
                         <div style="float: left; margin-right: 5px">
@@ -91,15 +91,15 @@
                         </div>
                     </div>
                 </div>
-                <div id="comment">
-                </div>
-                <div id="newcommentbox">
-                </div>
             </div>
             <div class="furight">
                 <uc1:FullViewSideInfo ID="FullViewSideInfo1" runat="server" />
             </div>
             <div style="clear: both">
+            </div>
+            <div id="comment">
+            </div>
+            <div id="newcommentbox">
             </div>
             <div class="gray">
             </div>

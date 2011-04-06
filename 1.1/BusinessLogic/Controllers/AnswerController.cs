@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using DataEntity;
 using DataAccess;
 using System.Diagnostics;
+using Common;
 
 namespace BusinessLogic
 {
@@ -329,7 +330,7 @@ namespace BusinessLogic
 
             try
             {
-                new DataProvider().AnswerAdd(AnswerID, AnswerText, Description, QuestionID, AnswerStateID, LoginUserID, AnswerRate, ModifiedDate);
+                new DataProvider().AnswerAdd(AnswerID, AnswerText, CustomHelper.ConvertMultitextToHtml(Description), QuestionID, AnswerStateID, LoginUserID, AnswerRate, ModifiedDate);
                 return true;
             }
             catch (Exception ex)
@@ -571,9 +572,9 @@ namespace BusinessLogic
             dd.SelectedValue = SelectedValue;
         }
         #endregion
-        
-	
-	
+
+
+
         #region Answer
         public bool UpdateAnswerStateByAnswerID(Guid AnswerID, int AnswerStatus)
         {
@@ -618,8 +619,8 @@ namespace BusinessLogic
             }
         }
         #endregion
-				
-	
-	
+
+
+
     }
 }

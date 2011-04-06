@@ -24,7 +24,7 @@
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkAddComment" runat="server" RequestContainner="#newcommentbox"
-                    ResponseContainner="#newcommentbox" OnAjaxClick="AddAjaxClick"><div class="btn">Post comment</div> </aspajax:AjaxLinkButton>
+                    ResponseContainner="#newcommentbox" OnAjaxClick="AddAjaxClick"><div class="btn" style="width:100px">Post Comment</div> </aspajax:AjaxLinkButton>
             </div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkUpdateComment" runat="server" RequestContainner="#newcommentbox"

@@ -8,7 +8,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:ListView ID="ListAnswer" runat="server" DataKeyNames="LoginUserID,AnswerID"
+        <asp:ListView ID="ListAnswer" runat="server" DataKeyNames="LoginUserID,AnswerID,AnswerStatus"
             OnItemDataBound="ListAnswerOnItemDataBound">
             <LayoutTemplate>
                 <div style="width: 100%">
@@ -17,14 +17,19 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <div>
-                    <div style="float: left; width: 80%; background: #fff; margin: 5px; padding: 5px;">
-                        <div class="btitle">
-                            <%#Eval("AnswerText") %>
-                        </div>
+                    <div style="float: left; width: 87%; background: #fff; margin: 5px; padding: 10px;">
                         <div>
                             <div class="fl">
                                 <asp:Image ID="imgProf" runat="server" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>'
-                                    Width="100" />
+                                    Width="50" />
+                            </div>
+                            <div class="fl">
+                                <span class="btitle">
+                                    <%#Eval("AnswerText") %></span>
+                                <br />
+                                <span style="font-size: 14px; font-weight: bold">"</span>
+                                <%#Eval("Description") %>
+                                <span style="font-size: 14px; font-weight: bold">"</span>
                             </div>
                             <div class="fr">
                                 Post By
@@ -32,27 +37,15 @@
                                 &nbsp;<%#Eval("LastName") %>
                                 <br />
                                 <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime( Eval("ModifiedDate").ToString())) %>
+                                <br />
+                                <div class="label roundedall">
+                                    <%#Eval("AnswerStatus") %>
+                                </div>
                             </div>
                             <div class="clear">
                             </div>
                         </div>
-                        <div>
-                            <span style="font-size: 14px; font-weight: bold">"</span>
-                            <%#Eval("Description") %>
-                            <span style="font-size: 14px; font-weight: bold">"</span>
-                        </div>
-                        <div style="display: none;">
-                            <div class="btitle">
-                                Answer Status
-                                <%#Eval("AnswerStatus") %>
-                            </div>
-                            <div class="btitle">
-                                Answer Rate
-                                <%#Eval("AnswerRate") %>
-                            </div>
-                        </div>
-                        <div>
-                        </div>
+                       
                     </div>
                     <div style="float: right">
                         <div id="UserAction" runat="server">
@@ -68,9 +61,13 @@
                                 <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/AnswerInfo.aspx") + "?cid=" + Eval("AnswerID")%>'
                                     ContainnerID="#courceinfo"><div class="btn"> Edit</div></aspajax:HyperLink>
                             </div>--%>
-                            <div id="acceptAnswer" runat="server" visible="false">
+                            <div id="acceptAnswer" runat="server" visible="true">
                                 <div class="btn">
-                                    <%#_HtmlHelper.ListViewLinkButton("lnkd", "accept Answer","accept", Eval("AnswerID").ToString(), "#Answer", "#Answer")%></div>
+                                    <%#_HtmlHelper.ListViewLinkButton("lnkda", "Accept","accept", Eval("AnswerID").ToString(),"1", "#Answer", "#Answer")%></div>
+                            </div>
+                            <div id="rejectanswer" runat="server" visible="true">
+                                <div class="btn">
+                                    <%#_HtmlHelper.ListViewLinkButton("lnkda", "Reject","accept", Eval("AnswerID").ToString(),"2", "#Answer", "#Answer")%></div>
                             </div>
                         </div>
                     </div>

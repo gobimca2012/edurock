@@ -21,10 +21,10 @@
                     <div style="float: left; padding: 2px; width: 70px">
                         <uc1:UserBox ID="UserBox1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>' />
                     </div>
-                    <div style="float: left; padding: 2px; width: 65%">
+                    <div style="float: left; padding: 2px; width: 70%;background:#fff;min-height:70px;margin-bottom:5px">
                         <%#Eval("CommentText") %>
                     </div>
-                    <div style="float: left; padding: 2px; ">
+                    <div style="float: right; padding: 2px; ">
                         <div>
                             <div class="btn">
                                 <%#_HtmlHelper.ListViewLinkButton("lnkd", "delete", Eval("CommentID").ToString(), "#comment", "#comment")%></div>

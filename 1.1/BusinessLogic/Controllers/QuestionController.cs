@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using DataEntity;
 using DataAccess;
 using System.Diagnostics;
+using Common;
 
 namespace BusinessLogic
 {
@@ -359,12 +360,12 @@ namespace BusinessLogic
 
 
 
-        public bool Add(Guid QuestionID, string QuestionText, string Description, int LoginUserID, int InstituteCourceID,int InstituteSubjectID, string tag, int QuestionTypeID, int QuestionStatusID, DateTime ModifiedDate)
+        public bool Add(Guid QuestionID, string QuestionText, string Description, int LoginUserID, int InstituteCourceID, int InstituteSubjectID, string tag, int QuestionTypeID, int QuestionStatusID, DateTime ModifiedDate)
         {
 
             try
             {
-                new DataProvider().QuestionAdd(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID,InstituteSubjectID, tag, QuestionTypeID, QuestionStatusID, ModifiedDate);
+                new DataProvider().QuestionAdd(QuestionID, QuestionText, CustomHelper.ConvertMultitextToHtml(Description), LoginUserID, InstituteCourceID, InstituteSubjectID, tag, QuestionTypeID, QuestionStatusID, ModifiedDate);
                 return true;
             }
             catch (Exception ex)
@@ -572,7 +573,7 @@ namespace BusinessLogic
 
 
 
-        
+
 
 
 
@@ -608,16 +609,16 @@ namespace BusinessLogic
             dd.SelectedValue = SelectedValue;
         }
         #endregion
-      
-	
-    
-	
+
+
+
+
         #region Question
         public string GetQuestionStatus(int status)
         {
             try
             {
-                var data=new DataProvider().GetQuestionStatus(status);
+                var data = new DataProvider().GetQuestionStatus(status);
                 return data;
             }
             catch (Exception ex)
@@ -635,7 +636,7 @@ namespace BusinessLogic
 
             try
             {
-                new DataProvider().QuestionUpdateByQuestionID(QuestionID, QuestionText, Description, LoginUserID, InstituteCourceID, InstituteSubjectID, tag, QuestionTypeID, QuestionStatusID, ModifiedDate);
+                new DataProvider().QuestionUpdateByQuestionID(QuestionID, QuestionText, CustomHelper.ConvertMultitextToHtml(Description), LoginUserID, InstituteCourceID, InstituteSubjectID, tag, QuestionTypeID, QuestionStatusID, ModifiedDate);
                 return true;
             }
             catch (Exception ex)
@@ -678,7 +679,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetQuestion(Keyword, QuestionTypeID, QuestionStatusID, InstituteCourceID,  InstituteSubjectID);
+                return new DataProvider().GetQuestion(Keyword, QuestionTypeID, QuestionStatusID, InstituteCourceID, InstituteSubjectID);
             }
             catch
             {
@@ -690,7 +691,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetQuestion(Keyword, QuestionTypeID, QuestionStatusID, InstituteCourceID,  InstituteSubjectID, PageSize, PageNumber);
+                return new DataProvider().GetQuestion(Keyword, QuestionTypeID, QuestionStatusID, InstituteCourceID, InstituteSubjectID, PageSize, PageNumber);
             }
             catch
             {
@@ -720,7 +721,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID,InstituteSubjectID,InstituteCourceID);
+                return new DataProvider().GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID, InstituteSubjectID, InstituteCourceID);
             }
             catch
             {
@@ -732,7 +733,7 @@ namespace BusinessLogic
             try
             {
 
-                return new DataProvider().GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID,InstituteSubjectID,InstituteCourceID, PageSize, PageNumber);
+                return new DataProvider().GetQuestionByQuestionID(QuestionID, QuestionTypeID, QuestionStatusID, InstituteSubjectID, InstituteCourceID, PageSize, PageNumber);
             }
             catch
             {
@@ -740,8 +741,8 @@ namespace BusinessLogic
             }
         }
         #endregion
-				
-	
-	
+
+
+
     }
 }

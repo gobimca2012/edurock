@@ -119,7 +119,7 @@
               vteditor = ed;
               ed.focus();
               //ed.selection.setContent('<strong>Hello world!</strong>');
-              $('#ipop').PUIWEditor('/WebSite/User/UploadPhoto.aspx?uptype=6', '500', '500');
+              $('#ipop').PUIWEditor('/User/UploadPhoto.aspx?uptype=6', '500', '500');
           }
       });
     }

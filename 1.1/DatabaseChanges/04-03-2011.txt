@@ -1,0 +1,63 @@
+=======================================04-06-2011=========================================================================
+USE [Crameasy]
+GO
+/****** Object:  StoredProcedure [dbo].[GetAnswerByQuestionID]    Script Date: 04/06/2011 13:16:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[GetAnswerByQuestionID]
+@QuestionID as uniqueidentifier,
+@AnswerStateID as int
+as
+BEGIN
+
+SELECT     Answer.AnswerID, Answer.AnswerText, Answer.Description, Answer.QuestionID, dbo.GetAnswerStatus(Answer.AnswerStateID) AS AnswerStatus, 
+                      Answer.AnswerStateID, Answer.LoginUserID, Answer.AnswerRate, Answer.ModifiedDate, [User].FirstName, [User].LastName, [User].MiddleName, 
+                      [User].PhotoPath
+FROM         Answer INNER JOIN
+                      LoginUser ON Answer.LoginUserID = LoginUser.LoginUserID INNER JOIN
+                      [User] ON LoginUser.LoginUserID = [User].LoginUserID
+WHERE     (Answer.QuestionID = @QuestionID) AND (Answer.AnswerStateID = CASE WHEN @AnswerStateID<>-1 THEN @AnswerStateID ELSE Answer.AnswerStateID END )
+END
+
+
+
+USE [Crameasy]
+GO
+/****** Object:  UserDefinedFunction [dbo].[GetAnswerStatus]    Script Date: 04/06/2011 13:17:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER Function [dbo].[GetAnswerStatus](@status as int)
+RETURNS varchar(100)
+as
+Begin
+
+declare @statustext as varchar(1000)
+set @statustext=''
+
+
+--SELECT    @statustext=AnswerStateText
+--FROM         AnswerState
+--WHERE  AnswerStateID=@status
+
+if(@status=1)
+BEGIN
+set @statustext='Accepted'
+END
+ELSE IF(@status=2)
+BEGIN
+set @statustext='Rejected'
+END
+ELSE
+BEGIN
+set @statustext=''
+END
+
+
+return @statustext
+END
+
+=================================================================================================

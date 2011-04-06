@@ -36,24 +36,22 @@
                         <span id="lblDescription" runat="server"></span>
                     </div>
                 </div>
-              
-                <div>
+                <div style="display: none;">
                     <div>
                         Question Type : <span id="lblQuestionTypeID" runat="server"></span>
                     </div>
                 </div>
-                <div>
+                <div style="display: none;">
                     <div>
                         Question Status <span id="lblQuestionStatusID" runat="server"></span>
                     </div>
                 </div>
-              
             </div>
-        </div>
-        <div class="furight">
-            <uc1:FullViewSideInfo ID="FullViewSideInfo1" runat="server" />
-        </div>
-        <div style="clear: both">
+            <div class="furight">
+                <uc1:FullViewSideInfo ID="FullViewSideInfo1" runat="server" />
+            </div>
+            <div style="clear: both">
+            </div>
         </div>
         <div>
             <div class="graycontent roundedall">

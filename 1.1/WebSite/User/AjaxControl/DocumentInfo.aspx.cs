@@ -250,6 +250,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
                 AjaxState["did"] = Request.Params["did"];
                 BindData();
                 lnkAddDocument.Visible = false;
+                lnkFilePopUp.Text="<div class='btn' style='width:150px'>Upload New File</div>";
 
             }
             else

@@ -11,5 +11,9 @@ namespace Common
         {
             return ID.ToString().Replace("-", "");
         }
+        public static string ConvertMultitextToHtml(string Body)
+        {
+            return Body.Replace(System.Environment.NewLine, "<br />").Replace("\r\n", "<br/>").Replace("\n", "<br/>");
+        }
     }
 }
