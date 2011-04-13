@@ -19,7 +19,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddExam.ClientID);
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateExam.ClientID);
         objValidate.DrowDownMendatory(ddInstituteCource, "Please select Cource ", this.Page, "0");
-        objValidate.DrowDownMendatory(ddInstituteSubject, "Please select Subject ", this.Page, "0");
+       // objValidate.DrowDownMendatory(ddInstituteSubject, "Please select Subject ", this.Page, "0");
         objValidate.Medatory(txtExamTime, "Please enter Title", this.Page);
         objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
         objValidate.Medatory(txtExamTime, "Please enter Examination Time", this.Page);
@@ -48,7 +48,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteCource.ClientID)=="0") { throw new Exception("Please enter Cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
 
-            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID)=="0") { throw new Exception("Please enter Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+            //int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID)=="0") { throw new Exception("Please enter Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
 
             string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID)=="") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
@@ -69,7 +69,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
             DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID)=="") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
-            int ExamID = new ExamController().Add(ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
+            int ExamID = new ExamController().Add(ExamName, SubjectName, InstituteCourceID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
             Session[SessionName.SucessMessage.ToString()] = string.Format("{0}  hasbeen Added Successfully", "Exam", ExamName);
             Response.Redirect("~/User/AjaxControl/Exam.aspx?eid=" + ExamID.ToString());
         }
@@ -87,7 +87,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
         txtSubjectName.Text = HtmlHelper.ControlValue(txtSubjectName.ClientID);
 
-        new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID)), HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+        //new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID)), HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
         new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, HtmlHelper.ControlValue(ddInstituteCource.ClientID));
         txtDescription.Text = HtmlHelper.ControlValue(txtDescription.ClientID);
 
@@ -116,7 +116,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
             int InstituteCourceID; if (HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteCource.ClientID) == "0") { throw new Exception("Please enter Cource"); } InstituteCourceID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID));
 
-            int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "0") { throw new Exception("Please enter Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
+            //int InstituteSubjectID; if (HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "" || HtmlHelper.ControlValue(ddInstituteSubject.ClientID) == "0") { throw new Exception("Please enter Subject"); } InstituteSubjectID = Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteSubject.ClientID));
 
             string Description; if (HtmlHelper.ControlValue(txtDescription.ClientID) == "") { throw new Exception("Please enter description"); } Description = HtmlHelper.ControlValue(txtDescription.ClientID);
 
@@ -137,7 +137,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
 
             DateTime EndDate; if (HtmlHelper.ControlValue(txtEndDate.ClientID) == "") { throw new Exception("Please enter end date"); } EndDate = Convert.ToDateTime(HtmlHelper.ControlValue(txtEndDate.ClientID));
 
-            new ExamController().UpdateByExamID(ExamID, ExamName, SubjectName, InstituteCourceID, InstituteSubjectID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
+            new ExamController().UpdateByExamID(ExamID, ExamName, SubjectName, InstituteCourceID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
             Session[SessionName.SucessMessage.ToString()] = string.Format("{0} {1} hasbeen Updated Successfully", "Exam", ExamName);
             Response.Redirect("~/User/AjaxControl/Exam.aspx?eid=" + ExamID.ToString());
         }
@@ -162,7 +162,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
             txtSubjectName.Text = data.SubjectName;
 
             new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, data.InstituteCourceID.ToString());
-            new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, data.InstituteSubjectID.ToString());
+            //new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, data.InstituteSubjectID.ToString());
 
             txtDescription.Text = data.Description;
 
@@ -231,7 +231,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
                 if (Request.Params["ddp"] == ddInstituteCource.ClientID)
                 {
 
-                    new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID)));
+                    //new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, Convert.ToInt32(HtmlHelper.ControlValue(ddInstituteCource.ClientID)));
                     new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, HtmlHelper.ControlValue(ddInstituteCource.ClientID));
                 }
             }
@@ -241,7 +241,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
                 new InstituteCourceController().BindInstituteCource(ddInstituteCource);
 
 
-                new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject);
+              //  new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject);
             }
             //ddInstituteCource.Attributes["onchange"] = string.Format("$('#{0}').dropdownPostback('{1}','{2}','{3}','{4}');", ddInstituteCource.ClientID, this.Request.Url.AbsolutePath, "#ddin", "#contentBox", "#SubjectDrop");
             this.DropDownPostBack(ddInstituteCource, "#ddin", "#SubjectDrop");

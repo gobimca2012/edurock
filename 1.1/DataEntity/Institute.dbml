@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="edu" Class="InstituteDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="edu" Class="InstituteDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="dbo.LoginUser" Member="InstituteLoginUsers">
     <Type Name="InstituteLoginUser">
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -9,10 +8,10 @@
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteLoginUser_Tutorial" Member="Tutorials" OtherKey="LoginUserID" Type="Tutorial" />
-      <Association Name="InstituteLoginUser_InstituteUser" Member="InstituteUsers" OtherKey="LoginUserID" Type="InstituteUser" />
-      <Association Name="InstituteLoginUser_InstituteCourceUser" Member="InstituteCourceUsers" OtherKey="LoginUserID" Type="InstituteCourceUser" />
-      <Association Name="InstituteLoginUser_Institute" Member="Institutes" OtherKey="LoginUserID" Type="Institute" />
+      <Association Name="InstituteLoginUser_Tutorial" Member="Tutorials" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Tutorial" />
+      <Association Name="InstituteLoginUser_InstituteUser" Member="InstituteUsers" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="InstituteUser" />
+      <Association Name="InstituteLoginUser_InstituteCourceUser" Member="InstituteCourceUsers" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="InstituteCourceUser" />
+      <Association Name="InstituteLoginUser_Institute" Member="Institutes" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Institute" />
     </Type>
   </Table>
   <Table Name="dbo.CourceCatagory" Member="CourceCatagories">
@@ -23,7 +22,7 @@
       <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="CatagoryType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="CourceCatagory_Cource" Member="Cources" OtherKey="CourceCatagoryID" Type="Cource" />
+      <Association Name="CourceCatagory_Cource" Member="Cources" ThisKey="CourceCatagoryID" OtherKey="CourceCatagoryID" Type="Cource" />
     </Type>
   </Table>
   <Table Name="dbo.Cource" Member="Cources">
@@ -34,8 +33,8 @@
       <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="CourceType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Modifieddate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Cource_InstituteCource" Member="InstituteCources" OtherKey="CourceID" Type="InstituteCource" />
-      <Association Name="CourceCatagory_Cource" Member="CourceCatagory" ThisKey="CourceCatagoryID" Type="CourceCatagory" IsForeignKey="true" />
+      <Association Name="Cource_InstituteCource" Member="InstituteCources" ThisKey="CourceID" OtherKey="CourceID" Type="InstituteCource" />
+      <Association Name="CourceCatagory_Cource" Member="CourceCatagory" ThisKey="CourceCatagoryID" OtherKey="CourceCatagoryID" Type="CourceCatagory" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TutorialType" Member="TutorialTypes">
@@ -44,7 +43,7 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="TutorialType_Tutorial" Member="Tutorials" OtherKey="TutorialTypeID" Type="Tutorial" />
+      <Association Name="TutorialType_Tutorial" Member="Tutorials" ThisKey="TutorialTypeID" OtherKey="TutorialTypeID" Type="Tutorial" />
     </Type>
   </Table>
   <Table Name="dbo.Tutorial" Member="Tutorials">
@@ -56,8 +55,8 @@
       <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="FilePath" Type="System.String" DbType="VarChar(2000) NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteLoginUser_Tutorial" Member="InstituteLoginUser" ThisKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
-      <Association Name="TutorialType_Tutorial" Member="TutorialType" ThisKey="TutorialTypeID" Type="TutorialType" IsForeignKey="true" />
+      <Association Name="InstituteLoginUser_Tutorial" Member="InstituteLoginUser" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
+      <Association Name="TutorialType_Tutorial" Member="TutorialType" ThisKey="TutorialTypeID" OtherKey="TutorialTypeID" Type="TutorialType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Instructor" Member="Instructors">
@@ -69,7 +68,7 @@
       <Column Name="InstructorText" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="Ratting" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="InstituteCource_Instructor" Member="InstituteCource" ThisKey="InstituteCourceID" Type="InstituteCource" IsForeignKey="true" />
+      <Association Name="InstituteCource_Instructor" Member="InstituteCource" ThisKey="InstituteCourceID" OtherKey="InstituteCourceID" Type="InstituteCource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.InstituteSubject" Member="InstituteSubjects">
@@ -80,7 +79,7 @@
       <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="InstituteCourceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteCource_InstituteSubject" Member="InstituteCource" ThisKey="InstituteCourceID" Type="InstituteCource" IsForeignKey="true" />
+      <Association Name="InstituteCource_InstituteSubject" Member="InstituteCource" ThisKey="InstituteCourceID" OtherKey="InstituteCourceID" Type="InstituteCource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.InstituteUser" Member="InstituteUsers">
@@ -90,7 +89,7 @@
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteLoginUser_InstituteUser" Member="InstituteLoginUser" ThisKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
+      <Association Name="InstituteLoginUser_InstituteUser" Member="InstituteLoginUser" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.InstituteUserType" Member="InstituteUserTypes">
@@ -101,8 +100,8 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteUserType_InstituteUserInUserType" Member="InstituteUserInUserTypes" OtherKey="InstituteUserTypeID" Type="InstituteUserInUserType" />
-      <Association Name="InstituteUserType_InstituteUserTypeAccess" Member="InstituteUserTypeAccesses" OtherKey="InstituteUserTypeID" Type="InstituteUserTypeAccess" />
+      <Association Name="InstituteUserType_InstituteUserInUserType" Member="InstituteUserInUserTypes" ThisKey="InstituteUserTypeID" OtherKey="InstituteUserTypeID" Type="InstituteUserInUserType" />
+      <Association Name="InstituteUserType_InstituteUserTypeAccess" Member="InstituteUserTypeAccesses" ThisKey="InstituteUserTypeID" OtherKey="InstituteUserTypeID" Type="InstituteUserTypeAccess" />
     </Type>
   </Table>
   <Table Name="dbo.InstituteUserInUserType" Member="InstituteUserInUserTypes">
@@ -112,7 +111,7 @@
       <Column Name="InstituteUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="InstituteUserTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Modifieddate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteUserType_InstituteUserInUserType" Member="InstituteUserType" ThisKey="InstituteUserTypeID" Type="InstituteUserType" IsForeignKey="true" />
+      <Association Name="InstituteUserType_InstituteUserInUserType" Member="InstituteUserType" ThisKey="InstituteUserTypeID" OtherKey="InstituteUserTypeID" Type="InstituteUserType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.InstituteUserTypeAccess" Member="InstituteUserTypeAccesses">
@@ -132,7 +131,7 @@
       <Column Name="CanAddEvent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="CanAddArticle" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteUserType_InstituteUserTypeAccess" Member="InstituteUserType" ThisKey="InstituteUserTypeID" Type="InstituteUserType" IsForeignKey="true" />
+      <Association Name="InstituteUserType_InstituteUserTypeAccess" Member="InstituteUserType" ThisKey="InstituteUserTypeID" OtherKey="InstituteUserTypeID" Type="InstituteUserType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.InstituteCourceUser" Member="InstituteCourceUsers">
@@ -143,8 +142,8 @@
       <Column Name="WhoLoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Modifieddate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteLoginUser_InstituteCourceUser" Member="InstituteLoginUser" ThisKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
-      <Association Name="InstituteCource_InstituteCourceUser" Member="InstituteCource" ThisKey="InstituteCourceID" Type="InstituteCource" IsForeignKey="true" />
+      <Association Name="InstituteLoginUser_InstituteCourceUser" Member="InstituteLoginUser" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
+      <Association Name="InstituteCource_InstituteCourceUser" Member="InstituteCource" ThisKey="InstituteCourceID" OtherKey="InstituteCourceID" Type="InstituteCource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Institute" Member="Institutes">
@@ -166,9 +165,9 @@
       <Column Name="Logo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Institute_PortalSetting" Member="PortalSettings" OtherKey="InstituteID" Type="PortalSetting" />
-      <Association Name="Institute_InstituteCource" Member="InstituteCources" OtherKey="InstituteID" Type="InstituteCource" />
-      <Association Name="InstituteLoginUser_Institute" Member="InstituteLoginUser" ThisKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
+      <Association Name="Institute_PortalSetting" Member="PortalSettings" ThisKey="InstituteID" OtherKey="InstituteID" Type="PortalSetting" />
+      <Association Name="Institute_InstituteCource" Member="InstituteCources" ThisKey="InstituteID" OtherKey="InstituteID" Type="InstituteCource" />
+      <Association Name="InstituteLoginUser_Institute" Member="InstituteLoginUser" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="InstituteLoginUser" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.HomeWork" Member="HomeWorks">
@@ -190,7 +189,7 @@
       <Column Name="InstituteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Settings" Type="System.Xml.Linq.XElement" DbType="Xml NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Institute_PortalSetting" Member="Institute" ThisKey="InstituteID" Type="Institute" IsForeignKey="true" />
+      <Association Name="Institute_PortalSetting" Member="Institute" ThisKey="InstituteID" OtherKey="InstituteID" Type="Institute" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.InstituteCource" Member="InstituteCources">
@@ -202,11 +201,11 @@
       <Column Name="MetaDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="MetaKeyword" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="Modifieddate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="InstituteCource_Instructor" Member="Instructors" OtherKey="InstituteCourceID" Type="Instructor" />
-      <Association Name="InstituteCource_InstituteSubject" Member="InstituteSubjects" OtherKey="InstituteCourceID" Type="InstituteSubject" />
-      <Association Name="InstituteCource_InstituteCourceUser" Member="InstituteCourceUsers" OtherKey="InstituteCourceID" Type="InstituteCourceUser" />
-      <Association Name="Cource_InstituteCource" Member="Cource" ThisKey="CourceID" Type="Cource" IsForeignKey="true" />
-      <Association Name="Institute_InstituteCource" Member="Institute" ThisKey="InstituteID" Type="Institute" IsForeignKey="true" />
+      <Association Name="InstituteCource_Instructor" Member="Instructors" ThisKey="InstituteCourceID" OtherKey="InstituteCourceID" Type="Instructor" />
+      <Association Name="InstituteCource_InstituteSubject" Member="InstituteSubjects" ThisKey="InstituteCourceID" OtherKey="InstituteCourceID" Type="InstituteSubject" />
+      <Association Name="InstituteCource_InstituteCourceUser" Member="InstituteCourceUsers" ThisKey="InstituteCourceID" OtherKey="InstituteCourceID" Type="InstituteCourceUser" />
+      <Association Name="Cource_InstituteCource" Member="Cource" ThisKey="CourceID" OtherKey="CourceID" Type="Cource" IsForeignKey="true" />
+      <Association Name="Institute_InstituteCource" Member="Institute" ThisKey="InstituteID" OtherKey="InstituteID" Type="Institute" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetTutorial" Method="GetTutorial">

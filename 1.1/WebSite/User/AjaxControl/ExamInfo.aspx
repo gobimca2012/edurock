@@ -26,7 +26,7 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <div id="SubjectDrop">
+       <%--             <div id="SubjectDrop">
                         <div>
                             <cram:CategoryLabel ID="asa" runat="server" EnableViewState="false" CssClass="label"></cram:CategoryLabel><span class="valmsg" >(Required)*</span>
                         </div>
@@ -36,7 +36,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                    </div>
+                    </div>--%>
                     <div>
                         <div>
                             <span class="label">Examination Title</span><span class="valmsg" >(Required)*</span>

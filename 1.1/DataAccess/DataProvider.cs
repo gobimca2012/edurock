@@ -482,6 +482,56 @@ namespace DataAccess
             return ObjExam.ExamID;
         }
 
+        public int ExamAdd(string ExamName, string SubjectName, int InstituteCourceID, string Description, int LoginUserID, DateTime ModifiedDate, string ExamTime, bool IsActive, int RequirePecentage, DateTime StartDate, DateTime EndDate)
+        {
+            Exam ObjExam = new Exam();
+
+
+
+            ObjExam.ExamName = ExamName;
+
+
+            ObjExam.SubjectName = SubjectName;
+
+
+            ObjExam.InstituteCourceID = InstituteCourceID;
+
+
+           // ObjExam.InstituteSubjectID = InstituteSubjectID;
+
+
+            ObjExam.Description = Description;
+
+
+            ObjExam.LoginUserID = LoginUserID;
+
+
+            ObjExam.ModifiedDate = ModifiedDate;
+
+
+            ObjExam.ExamTime = ExamTime;
+
+
+            ObjExam.IsActive = IsActive;
+
+
+            ObjExam.RequirePecentage = RequirePecentage;
+
+
+            ObjExam.StartDate = StartDate;
+
+
+            ObjExam.EndDate = EndDate;
+
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.Exams.InsertOnSubmit(ObjExam);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return ObjExam.ExamID;
+        }
 
 
         public List<Exam> ExamGet(int PageSize, int PageNumber)
@@ -998,6 +1048,28 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
 
+        public void ExamUpdateByExamID(int ExamID, string ExamName, string SubjectName, int InstituteCourceID, string Description, int LoginUserID, DateTime ModifiedDate, string ExamTime, bool IsActive, int RequirePecentage, DateTime StartDate, DateTime EndDate)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+            db.DeferredLoadingEnabled = false;
+            Exam data = db.Exams.Single(p => p.ExamID == ExamID);
+            data.ExamName = ExamName;
+            data.SubjectName = SubjectName;
+            data.InstituteCourceID = InstituteCourceID;
+            //data.InstituteSubjectID = InstituteSubjectID;
+            data.Description = Description;
+            data.LoginUserID = LoginUserID;
+            data.ModifiedDate = ModifiedDate;
+            data.ExamTime = ExamTime;
+            data.IsActive = IsActive;
+            data.RequirePecentage = RequirePecentage;
+            data.StartDate = StartDate;
+            data.EndDate = EndDate;
+
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
 
 
 
