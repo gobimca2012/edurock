@@ -11,7 +11,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="contentbox">
+    <div class="contentbox" style="margin-bottom:5px">
         <div class="clear gray">
             <div style="float: left">
                 <h3 id="Widgetheader" runat="server">
@@ -24,14 +24,15 @@
                 <asp:HyperLink ID="lnkClose" runat="server"><div class="close tp" rel="remove this widget from page"></div></asp:HyperLink>
             </div>
         </div>
-        <div class="">
+        <div  class="clear  vis" id="shoutbox" runat="server">
             <div id="divpost" class="graycontent roundedall">
                 <div>
                     <asp:TextBox ID="txtShout" runat="server" TextMode="MultiLine" Width="93%"></asp:TextBox>
                 </div>
-                <div>
+                <div class="clear"></div>
+                <div style="float:left">
                     <aspajax:AjaxLinkButton ID="lnkPost" runat="server" EnableValidation="False" EnableViewState="False"
-                        Increment="False" OnAjaxClick="Shout" Pagger="False">Post</aspajax:AjaxLinkButton>
+                        Increment="False" OnAjaxClick="Shout" Pagger="False"><div class="btn editbtn">Shout.....</div></aspajax:AjaxLinkButton>
                 </div>
                 <div style="float: right">
                     <font size="1">(Maximum characters: 140)<br>

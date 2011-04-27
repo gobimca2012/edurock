@@ -10,7 +10,7 @@
 <body>
     <form id="form1" runat="server">
     <div style="float: left; width: 100%;">
-        <div class="contentbox">
+        <div class="contentbox" style="margin-bottom:5px">
             <div class="clear gray">
                 <div style="float: left">
                     <h3>

@@ -95,5 +95,7 @@ public partial class User_Widget_Shout : WidgetControl
            
 
         }
+        JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
+        objEffect.Collapspanel("#" + lnkExpand.ClientID, "#" + shoutbox.ClientID);
     }
 }
