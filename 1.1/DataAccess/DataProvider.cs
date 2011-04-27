@@ -3781,6 +3781,8 @@ namespace DataAccess
 
 
         }
+
+        
         #endregion
 
 
@@ -13449,7 +13451,7 @@ namespace DataAccess
             db.LoadOptions = option;
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data = (from p in db.DocumentCources where p.InstituteCourceID == InstituteCourceID && p.Document.DocumentType == DocumentType select p.Document).ToList();
+            var data = (from p in db.DocumentCources where p.InstituteCourceID == InstituteCourceID && p.Document.DocumentType == DocumentType orderby p.ModifiedDate descending select p.Document).ToList();
             //var data = (from p in db.Documents where p.DocumentType == DocumentType && p.DocumentCources select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;

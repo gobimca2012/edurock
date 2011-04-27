@@ -83,6 +83,16 @@ namespace BusinessLogic
             new WidgetController().Add(WidgetID, PageID, "", (int)widgetType, HtmlID.ToString(), orderdata + 1, ColumnID, DateTime.Now);
             return WidgetID;
         }
+        public Guid AddShoutLWidget(Guid PageID, WidgetTypeEnum widgetType, int ColumnID)
+        {
+            Guid HtmlID = Guid.NewGuid();
+            new HTMLWidgetController().Add(HtmlID, "", DateTime.Now);
+
+            Guid WidgetID = Guid.NewGuid();
+            int orderdata = new WidgetController().WidgetOrderGetbyPageID(PageID);
+            new WidgetController().Add(WidgetID, PageID, "", (int)widgetType, HtmlID.ToString(), orderdata + 1, ColumnID, DateTime.Now);
+            return WidgetID;
+        }
         public Guid AddWidget(Guid PageID, WidgetTypeEnum widgetType, string ContentID, int ColumnID)
         {            
             Guid WidgetID = Guid.NewGuid();
@@ -121,7 +131,8 @@ namespace BusinessLogic
         HTMLWidget = 0,
         Content=15,
         UserInfo=16,
-        InstituteInfo=17
+        InstituteInfo=17,
+        ShoutWidget=18
     }
     public enum WidgetColumnEnum
     {

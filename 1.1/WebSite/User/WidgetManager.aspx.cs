@@ -46,4 +46,10 @@ public partial class User_WidgetManager : WidgetManager
         JScripter.Widget widgetScriper = new JScripter.Widget(this.Page, false);
         widgetScriper.AddWidget(RightColumnID, GetWidgetContainnerID(WidgetID), ResolveUrl("~/User/Widget/html.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID));
     }
+    protected void AddRightShout(object sender, AjaxControl.AjaxEventArg e)
+    {
+        Guid WidgetID = new WidgetHelper().AddHTMLWidget(WidgetPageID, WidgetTypeEnum.HTMLWidget, (int)WidgetColumnEnum.RightColumn);
+        JScripter.Widget widgetScriper = new JScripter.Widget(this.Page, false);
+        widgetScriper.AddWidget(RightColumnID, GetWidgetContainnerID(WidgetID), ResolveUrl("~/User/Widget/Shout.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID));
+    }
 }

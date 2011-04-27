@@ -35,6 +35,11 @@
                     RequestContainner="#widgetmanager" ResponseContainner="#widgetmanager" EnableViewState="False"
                     Increment="False" OnAjaxClick="AddRightHtml" Pagger="False"><div class="btn tp" rel="add html widget to your profile right panel">Html</div></aspajax:AjaxLinkButton>
             </div>
+             <div style="float: left">
+                <aspajax:AjaxLinkButton ID="lnkRightShout" runat="server" EnableValidation="False"
+                    RequestContainner="#widgetmanager" ResponseContainner="#widgetmanager" EnableViewState="False"
+                    Increment="False" OnAjaxClick="AddRightShout" Pagger="False"><div class="btn tp" rel="add Shout widget to your profile right panel">Shout</div></aspajax:AjaxLinkButton>
+            </div>
             <div class="graycontent clear roundedall">
                 you can add this widget to your profile page's right side.drag and drop to organize
                 your widget

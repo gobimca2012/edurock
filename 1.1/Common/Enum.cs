@@ -61,7 +61,8 @@ namespace Common
         Article = 8,
         Event = 9,
         BookMark = 10,
-        InstituteCourse = 11
+        InstituteCourse = 11,
+        Shout=12
     }
     public enum AnswerStatusEnum
     {
