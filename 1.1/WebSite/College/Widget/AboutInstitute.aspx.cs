@@ -35,7 +35,7 @@ public partial class College_Ajaxer_AboutInstitute : WidgetControl
         if (data.Count > 0)
         {
             //if (data[0].Logo != null)
-            //    imgLogo.ImageUrl = ResolveUrl(data[0].Logo);
+            //    imgLogo.ImageUrl=ImageHelper.ResolveURL(data[0].Logo);
             lblName.InnerHtml = data[0].Name + "( " + data[0].ShortName + " )";
             if (data[0].Address != null)
                 lblAddress1.InnerHtml = data[0].Address;

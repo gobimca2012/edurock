@@ -93,7 +93,7 @@
                 <div style="float: left; height: 150px; height: 130px;" class="graycontent cbox">
                     <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Document.aspx") + "?did=" + Eval("ID").ToString()%>'>
                     <div style="max-height:100px;height:100px;background:#f0f0f0;overflow:hidden">
-                        <asp:Image ID="img" runat="server" ImageUrl='<%#ResolveUrl(Eval("Param1").ToString()) %>' Width="100" />
+                        <asp:Image ID="img" runat="server" ImageUrl='<%#ImageHelper.ResolveURL(Eval("Param1").ToString()) %>' Width="100" />
                     </div>
                     <div class="invis fl" style="text-align:center;width:100px;overflow:hidden;">
                       

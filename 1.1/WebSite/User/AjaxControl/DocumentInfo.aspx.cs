@@ -185,7 +185,7 @@ public partial class User_AjaxControl_DocumentInfo : AjaxPage
             txtMetaDescription.Text = data.MetaDescription;
 
             txtTag.Text = data.Tag;
-            img.ImageUrl = ResolveUrl(data.FilePath);            
+            img.ImageUrl=ImageHelper.ResolveURL(data.FilePath);            
             filePath.Value = data.FilePath;
             if (data.DocumentCources.Count > 0)
             {

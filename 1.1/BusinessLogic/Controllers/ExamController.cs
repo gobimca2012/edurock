@@ -533,7 +533,7 @@ namespace BusinessLogic
             }
         }
 
-        public int Add(string ExamName, string SubjectName, int InstituteCourceID,  string Description, int LoginUserID, DateTime ModifiedDate, string ExamTime, bool IsActive, int RequirePecentage, DateTime StartDate, DateTime EndDate)
+        public int Add(string ExamName, string SubjectName, int InstituteCourceID, string Description, int LoginUserID, DateTime ModifiedDate, string ExamTime, bool IsActive, int RequirePecentage, DateTime StartDate, DateTime EndDate)
         {
 
             try
@@ -551,6 +551,7 @@ namespace BusinessLogic
                 return 0;
             }
         }
+
 
 
         public bool DeletebyExamID(int ExamID)
@@ -822,13 +823,12 @@ namespace BusinessLogic
         }
 
 
-
-        public bool UpdateByExamID(int ExamID, string ExamName, string SubjectName, int InstituteCourceID,  string Description, int LoginUserID, DateTime ModifiedDate, string ExamTime, bool IsActive, int RequirePecentage, DateTime StartDate, DateTime EndDate)
+        public bool UpdateByExamID(int ExamID, string ExamName, string SubjectName, int InstituteCourceID, string Description, int LoginUserID, DateTime ModifiedDate, string ExamTime, bool IsActive, int RequirePecentage, DateTime StartDate, DateTime EndDate)
         {
 
             try
             {
-                new DataProvider().ExamUpdateByExamID(ExamID, ExamName, SubjectName, InstituteCourceID, Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
+                new DataProvider().ExamUpdateByExamID(ExamID, ExamName, SubjectName, InstituteCourceID,  Description, LoginUserID, ModifiedDate, ExamTime, IsActive, RequirePecentage, StartDate, EndDate);
                 return true;
             }
             catch (Exception ex)
@@ -841,6 +841,8 @@ namespace BusinessLogic
                 return false;
             }
         }
+
+
 
 
 

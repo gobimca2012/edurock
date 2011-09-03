@@ -160,7 +160,7 @@ public partial class User_AjaxControl_Upop : AjaxPage
             var data = dataBunch[0];
             lblStatus.InnerText = data.Status;
             lblName.InnerHtml = data.FirstName + " " + data.LastName;
-            propic.ImageUrl = ResolveUrl(data.PhotoPath);
+            propic.ImageUrl=ImageHelper.ResolveURL(data.PhotoPath);
             lblUserName.InnerText = data.StudentLogin.Username;
             var usergroup = new InstituteController().GetInstituteByLoginUserID(data.LoginUserID);
             string ugo = "";

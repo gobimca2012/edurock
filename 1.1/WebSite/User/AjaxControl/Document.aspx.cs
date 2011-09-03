@@ -77,7 +77,7 @@ public partial class User_AjaxControl_Document : AjaxPage
                 if (data.DocumentType == (int)DocumentTypeEnum.Image)
                 {
                     img.Visible = true;
-                    img.ImageUrl = ResolveUrl(data.FilePath.ToString());
+                    img.ImageUrl=ImageHelper.ResolveURL(data.FilePath.ToString());
                     lnkViewDoc.HRef = "http://docs.google.com/viewer?url=" + CommonController.GetSiteName() + ResolveUrl(data.FilePath.ToString());
                 }
                 else if (data.DocumentType == (int)DocumentTypeEnum.Document)

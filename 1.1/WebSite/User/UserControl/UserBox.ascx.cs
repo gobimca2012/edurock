@@ -26,7 +26,7 @@ public partial class User_UserControl_UserBox : System.Web.UI.UserControl
         if (dataUser.Count > 0)
         {
             lnkTool.Text = dataUser[0].FirstName + " " + dataUser[0].LastName;
-            img.ImageUrl = ResolveUrl(dataUser[0].PhotoPath);
+            img.ImageUrl=ImageHelper.ResolveURL(dataUser[0].PhotoPath);
             new JScripter.ToolTip(this.Page).AjaxToolTip(lnkTool, ResolveUrl("~/User/AjaxControl/Upop.aspx") + "?lid=" + LoginUserID.ToString(), "acont");
         }
 

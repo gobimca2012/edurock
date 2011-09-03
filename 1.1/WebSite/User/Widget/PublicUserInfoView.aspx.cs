@@ -82,7 +82,7 @@ public partial class Widget_PublicUserInfoView : WidgetControl
 
         if (data.PhotoPath != null)
         {
-            imgProfilepic.ImageUrl = ResolveUrl(data.PhotoPath);
+            imgProfilepic.ImageUrl=ImageHelper.ResolveURL(data.PhotoPath);
         }
         if (data.FirstName != null)
 

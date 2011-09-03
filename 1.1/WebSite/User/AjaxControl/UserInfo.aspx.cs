@@ -133,7 +133,7 @@ public partial class User_AjaxControl_UserInfo : AjaxPage
         if (dataBunch.Count > 0)
         {
             var data = dataBunch[0];
-            imgProfilepic.ImageUrl = ResolveUrl( data.PhotoPath);
+            imgProfilepic.ImageUrl=ImageHelper.ResolveURL( data.PhotoPath);
             txtFirstName.Text = data.FirstName;
 
             txtLastName.Text = data.LastName;

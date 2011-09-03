@@ -62,7 +62,7 @@ namespace Common
         Event = 9,
         BookMark = 10,
         InstituteCourse = 11,
-        Shout=12
+        Shout = 12
     }
     public enum AnswerStatusEnum
     {

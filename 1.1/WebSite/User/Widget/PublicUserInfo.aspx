@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="contentbox" style="margin-bottom:5px">
+    <div class="contentbox">
     <div class="gray">
     Edit User Info
     </div>

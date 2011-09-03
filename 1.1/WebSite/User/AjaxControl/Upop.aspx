@@ -61,7 +61,7 @@
                                     </LayoutTemplate>
                                     <ItemTemplate>
                                         <div class="dasbo">
-                                            <div style="overflow: hidden; height: 20px;">
+                                            <div>
                                                 <span class='<%#GetCSSClass(Eval("ContentType").ToString()) %>'>&nbsp;</span>
                                                 <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#getURL(Eval("ContentType").ToString(),Eval("ID").ToString()) %>'>
                             <%#Eval("Title") %></aspajax:HyperLink>

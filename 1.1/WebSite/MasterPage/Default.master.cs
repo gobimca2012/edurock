@@ -85,7 +85,7 @@ public partial class MasterPage_Default : System.Web.UI.MasterPage
             {
                 if (UserData[0].PhotoPath != null)
                 {
-                    img.ImageUrl = ResolveUrl(UserData[0].PhotoPath);
+                    img.ImageUrl=ImageHelper.ResolveURL(UserData[0].PhotoPath);
                 }
                 if (UserData[0].FirstName != null && UserData[0].LastName != null)
                 {

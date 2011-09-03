@@ -20,7 +20,7 @@ public partial class User_AjaxControl_UploadResponse : AjaxPage
         try
         {
             EnableAjaxState = false;
-            img.ImageUrl = ResolveUrl(Session[SessionName.FileUploaderDefaultImage.ToString()].ToString());
+            img.ImageUrl=ImageHelper.ResolveURL(Session[SessionName.FileUploaderDefaultImage.ToString()].ToString());
             filePath.Value = Session[SessionName.FileUploader.ToString()].ToString();
             lblFileName.InnerText = Session[SessionName.FileUploaderFileName.ToString()].ToString();
             Session.Remove(SessionName.FileUploader.ToString());

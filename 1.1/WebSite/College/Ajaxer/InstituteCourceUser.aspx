@@ -20,7 +20,7 @@
                         <asp:HyperLink ID="lnkU" runat="server" NavigateUrl='<%#ResolveUrl("~/User/User.aspx") + "?usid=" + Eval("LoginUserID")%>'>
                             <div>
                                 <div>
-                                    <asp:Image ID="imgPic" runat="server" Width="45" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>' />
+                                    <asp:Image ID="imgPic" runat="server" Width="45" ImageUrl='<%#ImageHelper.ResolveURL(Eval("PhotoPath").ToString()) %>' />
                                 </div>
                                 <div>
                                     <UNameLink:UNameLink ID="UNameLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>' />

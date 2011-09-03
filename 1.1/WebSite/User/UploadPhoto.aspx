@@ -34,7 +34,7 @@
                         DataKeyField="FilePath" RepeatColumns="3">
                         <ItemTemplate>
                             <asp:LinkButton ID="lnkUplo" runat="server" CommandName="upload">
-                                <asp:Image ID="img" runat="server" Width="50px" Height="50px" ImageUrl='<%#ResolveUrl(Eval("ImagePath").ToString()) %>' />
+                                <asp:Image ID="img" runat="server" Width="50px" Height="50px" ImageUrl='<%#ImageHelper.ResolveURL(Eval("ImagePath").ToString()) %>' />
                             </asp:LinkButton>
                         </ItemTemplate>
                     </asp:DataList>

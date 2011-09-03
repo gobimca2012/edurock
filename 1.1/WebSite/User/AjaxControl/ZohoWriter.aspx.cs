@@ -128,7 +128,7 @@ public partial class User_AjaxControl_ZohoWriter : BasePage
 
 
     //        request.ContentType = string.Format("multipart/form-data; boundary={0}", boundary);
-    //        request.Method = "POST";
+    //        request.GetAnswer = "POST";
 
     //        // Build Contents for Post
     //        string header = string.Format("--{0}", boundary);

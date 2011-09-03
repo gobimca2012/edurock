@@ -63,7 +63,7 @@ public partial class User_AjaxControl_UserInfoView : AjaxPage
 
         if (data.PhotoPath != null)
         {
-            imgProfilepic.ImageUrl = ResolveUrl(data.PhotoPath);
+            imgProfilepic.ImageUrl=ImageHelper.ResolveURL(data.PhotoPath);
         }
         if (data.FirstName != null)
 

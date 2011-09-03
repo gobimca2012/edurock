@@ -9,10 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataEntity", "DataEntity\DataEntity.csproj", "{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite", "WebSite", "{1A4C8498-152A-413D-BD91-4D044006DB4D}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite", "WebSite\", "{1A4C8498-152A-413D-BD91-4D044006DB4D}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{1A9E6B33-7990-4479-8CB9-476E3214ECA0}|BusinessLogic.dll;{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}|DataEntity.dll;{8A0AE474-D87D-415B-A5D4-7AC5461431FE}|DataAccess.dll;{E9D7B77D-9F9E-4B81-8078-8A7602AB3CD7}|Logger.dll;{6E9EAAA3-3D77-4300-B1B4-88BFF9EA885D}|JScripter.dll;{DB315DB1-394C-4B9E-8D52-C77FBFEC128B}|MikeCompression.dll;{BFC86F13-B894-4A2C-AED7-1F9E6940E2DF}|AjaxControl.dll;{DA82B465-2DF2-4D7C-81A9-1E617420A69C}|Common.dll;{5985E8BE-C5F6-4BE7-9B6E-68C2CBD66E94}|PaypalPDT.dll;{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}|CustomControls.dll;"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
+		ProjectReferences = "{1A9E6B33-7990-4479-8CB9-476E3214ECA0}|BusinessLogic.dll;{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}|DataEntity.dll;{8A0AE474-D87D-415B-A5D4-7AC5461431FE}|DataAccess.dll;{E9D7B77D-9F9E-4B81-8078-8A7602AB3CD7}|Logger.dll;{6E9EAAA3-3D77-4300-B1B4-88BFF9EA885D}|JScripter.dll;{DB315DB1-394C-4B9E-8D52-C77FBFEC128B}|MikeCompression.dll;{BFC86F13-B894-4A2C-AED7-1F9E6940E2DF}|AjaxControl.dll;{DA82B465-2DF2-4D7C-81A9-1E617420A69C}|Common.dll;{5985E8BE-C5F6-4BE7-9B6E-68C2CBD66E94}|PaypalPDT.dll;{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}|CustomControls.dll;{01D6E481-7A34-4947-BEEA-A26880CDC7F7}|ImageHandlerLib.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/WebSite"
 		Debug.AspNetCompiler.PhysicalPath = "WebSite\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\WebSite\"
@@ -50,6 +50,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paypal", "PaypalPDT\Paypal.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "CustomControls\CustomControls.csproj", "{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageHandlerLib", "ImageHandlerLib\ImageHandlerLib.csproj", "{01D6E481-7A34-4947-BEEA-A26880CDC7F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -80,16 +82,16 @@ Global
 		{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Debug|.NET.ActiveCfg = Debug|.NET
-		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Debug|.NET.Build.0 = Debug|.NET
-		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Debug|Any CPU.ActiveCfg = Debug|.NET
-		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
-		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Debug|Mixed Platforms.Build.0 = Debug|.NET
-		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Release|.NET.ActiveCfg = Debug|.NET
-		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Release|.NET.Build.0 = Debug|.NET
-		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Release|Any CPU.ActiveCfg = Debug|.NET
-		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
-		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Release|.NET.ActiveCfg = Debug|Any CPU
+		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1A4C8498-152A-413D-BD91-4D044006DB4D}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
 		{3BB36129-3E5D-4725-928F-7C32C78F3BA9}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{3BB36129-3E5D-4725-928F-7C32C78F3BA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3BB36129-3E5D-4725-928F-7C32C78F3BA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -180,6 +182,16 @@ Global
 		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C3BBEE52-8395-4D7F-B497-8B3626E59CE7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{01D6E481-7A34-4947-BEEA-A26880CDC7F7}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{01D6E481-7A34-4947-BEEA-A26880CDC7F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01D6E481-7A34-4947-BEEA-A26880CDC7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01D6E481-7A34-4947-BEEA-A26880CDC7F7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{01D6E481-7A34-4947-BEEA-A26880CDC7F7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{01D6E481-7A34-4947-BEEA-A26880CDC7F7}.Release|.NET.ActiveCfg = Release|Any CPU
+		{01D6E481-7A34-4947-BEEA-A26880CDC7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01D6E481-7A34-4947-BEEA-A26880CDC7F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01D6E481-7A34-4947-BEEA-A26880CDC7F7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{01D6E481-7A34-4947-BEEA-A26880CDC7F7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

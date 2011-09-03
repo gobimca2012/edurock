@@ -20,7 +20,7 @@
                     <div style="float: left; width: 87%; background: #fff; margin: 5px; padding: 10px;">
                         <div>
                             <div class="fl">
-                                <asp:Image ID="imgProf" runat="server" ImageUrl='<%#ResolveUrl(Eval("PhotoPath").ToString()) %>'
+                                <asp:Image ID="imgProf" runat="server" ImageUrl='<%#ImageHelper.ResolveURL(Eval("PhotoPath").ToString()) %>'
                                     Width="50" />
                             </div>
                             <div class="fl">

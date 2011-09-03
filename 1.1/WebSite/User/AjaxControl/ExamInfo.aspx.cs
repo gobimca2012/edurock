@@ -19,7 +19,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
         JScripter.Validation objValidate = new JScripter.Validation(this.Page, lnkAddExam.ClientID);
         JScripter.Validation objValidate1 = new JScripter.Validation(this.Page, lnkUpdateExam.ClientID);
         objValidate.DrowDownMendatory(ddInstituteCource, "Please select Cource ", this.Page, "0");
-       // objValidate.DrowDownMendatory(ddInstituteSubject, "Please select Subject ", this.Page, "0");
+        //objValidate.DrowDownMendatory(ddInstituteSubject, "Please select Subject ", this.Page, "0");
         objValidate.Medatory(txtExamTime, "Please enter Title", this.Page);
         objValidate.Medatory(txtEndDate, "Please enter End Date", this.Page);
         objValidate.Medatory(txtExamTime, "Please enter Examination Time", this.Page);
@@ -162,7 +162,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
             txtSubjectName.Text = data.SubjectName;
 
             new InstituteCourceController().BindInstituteCource(ddInstituteCource, new UserAuthontication().UserInstituteID, data.InstituteCourceID.ToString());
-            //new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, data.InstituteSubjectID.ToString());
+           // new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject, data.InstituteSubjectID.ToString());
 
             txtDescription.Text = data.Description;
 
@@ -241,7 +241,7 @@ public partial class College_Ajaxer_ExamViewInfo : AjaxPage
                 new InstituteCourceController().BindInstituteCource(ddInstituteCource);
 
 
-              //  new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject);
+                //new InstituteSubjectController().BindInstituteSubject(ddInstituteSubject);
             }
             //ddInstituteCource.Attributes["onchange"] = string.Format("$('#{0}').dropdownPostback('{1}','{2}','{3}','{4}');", ddInstituteCource.ClientID, this.Request.Url.AbsolutePath, "#ddin", "#contentBox", "#SubjectDrop");
             this.DropDownPostBack(ddInstituteCource, "#ddin", "#SubjectDrop");

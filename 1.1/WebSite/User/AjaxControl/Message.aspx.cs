@@ -47,11 +47,11 @@ public partial class User_AjaxControl_Message : AjaxPage
 
             if (data.FromProfilePic != null)
             {
-                ImgFrom.ImageUrl = ResolveUrl(data.FromProfilePic);
+                ImgFrom.ImageUrl=ImageHelper.ResolveURL(data.FromProfilePic);
             }
             if (data.ToProfilePic != null)
             {
-                ImgTo.ImageUrl = ResolveUrl(data.ToProfilePic);
+                ImgTo.ImageUrl=ImageHelper.ResolveURL(data.ToProfilePic);
             }
 
 

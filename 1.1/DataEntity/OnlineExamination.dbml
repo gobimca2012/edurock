@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="edu" Class="OnlineExaminationDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="edu" Class="OnlineExaminationDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="dbo.UserExam" Member="UserExams">
     <Type Name="UserExam">
       <Column Name="UserExamID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -8,8 +9,8 @@
       <Column Name="EndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="IsFinish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="LoginUser_UserExam" Member="LoginUser" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
-      <Association Name="Exam_UserExam" Member="Exam" ThisKey="ExamID" OtherKey="ExamID" Type="Exam" IsForeignKey="true" />
+      <Association Name="LoginUser_UserExam" Member="LoginUser" ThisKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
+      <Association Name="Exam_UserExam" Member="Exam" ThisKey="ExamID" Type="Exam" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LoginUser" Member="LoginUsers">
@@ -21,8 +22,8 @@
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="LoginUser_UserExam" Member="UserExams" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="UserExam" />
-      <Association Name="LoginUser_Exam" Member="Exams" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Exam" />
+      <Association Name="LoginUser_UserExam" Member="UserExams" OtherKey="LoginUserID" Type="UserExam" />
+      <Association Name="LoginUser_Exam" Member="Exams" OtherKey="LoginUserID" Type="Exam" />
     </Type>
   </Table>
   <Table Name="dbo.EXM_Question" Member="EXM_Questions">
@@ -37,8 +38,8 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="EXM_Question_EXM_Answer" Member="EXM_Answers" ThisKey="EXM_QuestionID" OtherKey="EXM_QuestionID" Type="EXM_Answer" />
-      <Association Name="Exam_EXM_Question" Member="Exam" ThisKey="ExamID" OtherKey="ExamID" Type="Exam" IsForeignKey="true" />
+      <Association Name="EXM_Question_EXM_Answer" Member="EXM_Answers" OtherKey="EXM_QuestionID" Type="EXM_Answer" />
+      <Association Name="Exam_EXM_Question" Member="Exam" ThisKey="ExamID" Type="Exam" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.EXM_Answer" Member="EXM_Answers">
@@ -49,7 +50,7 @@
       <Column Name="IsRight" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Marks" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="EXM_Question_EXM_Answer" Member="EXM_Question" ThisKey="EXM_QuestionID" OtherKey="EXM_QuestionID" Type="EXM_Question" IsForeignKey="true" />
+      <Association Name="EXM_Question_EXM_Answer" Member="EXM_Question" ThisKey="EXM_QuestionID" Type="EXM_Question" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.EXM_UserAnswer" Member="EXM_UserAnswers">
@@ -80,9 +81,9 @@
       <Column Name="RequirePecentage" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Exam_UserExam" Member="UserExams" ThisKey="ExamID" OtherKey="ExamID" Type="UserExam" />
-      <Association Name="Exam_EXM_Question" Member="EXM_Questions" ThisKey="ExamID" OtherKey="ExamID" Type="EXM_Question" />
-      <Association Name="LoginUser_Exam" Member="LoginUser" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
+      <Association Name="Exam_UserExam" Member="UserExams" OtherKey="ExamID" Type="UserExam" />
+      <Association Name="Exam_EXM_Question" Member="EXM_Questions" OtherKey="ExamID" Type="EXM_Question" />
+      <Association Name="LoginUser_Exam" Member="LoginUser" ThisKey="LoginUserID" Type="LoginUser" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetExamTotalmark" Method="GetExamTotalmark" IsComposable="true">
