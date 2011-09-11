@@ -27,8 +27,10 @@
                 <div class="pcm">
                     <div style="clear: both">
                     </div>
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
+                    <div id="contentBox">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
                     <div style="clear: both">
                     </div>
                 </div>
