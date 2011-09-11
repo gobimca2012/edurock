@@ -59,7 +59,13 @@
   <ItemGroup>
     <Compile Include="Cache\CacheEnum.cs" />
     <Compile Include="Cache\CacheHelper.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderItemController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PortalSettingController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductVersionController.cs" />
+    <Compile Include="Controllers\VersionAttributeController.cs" />
     <Compile Include="Entity\UserFiles.cs" />
     <Compile Include="IWidgetPage.cs" />
     <Compile Include="PageHandler\AjaxPage.cs">

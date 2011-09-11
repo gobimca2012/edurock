@@ -64,5 +64,26 @@ namespace DataEntity.Properties {
                 return ((string)(this["CrameasyConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SAI-PC;Initial Catalog=crameasy;User ID=sa")]
+        public string crameasyConnectionString1 {
+            get {
+                return ((string)(this["crameasyConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SAI-PC;Initial Catalog=crameasy;Persist Security Info=True;User ID=sa" +
+            "")]
+        public string crameasyConnectionString2 {
+            get {
+                return ((string)(this["crameasyConnectionString2"]));
+            }
+        }
     }
 }

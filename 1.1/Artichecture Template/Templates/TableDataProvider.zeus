@@ -238,6 +238,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		}
 		<%}%>		
 		
+		<%// Update Function-------------------------------------------%>
 		<%foreach (IColumn column in table.Columns)
 		{
 			if(column.IsInPrimaryKey)
@@ -259,6 +260,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		<%	}
 		
 		}%>
+		<%// Update Function End-------------------------------------------%>
 		
 		
 		

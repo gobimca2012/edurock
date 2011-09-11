@@ -26,6 +26,8 @@ public partial class ShoppingCart_AjaxControl_ProductVersion : AjaxPage
 
             string ShortDescription; if (false) { throw new Exception(""); } ShortDescription = HtmlHelper.ControlValue(txtShortDescription.ClientID);
 
+            string QuantityIn; if (false) { throw new Exception(""); } QuantityIn = HtmlHelper.ControlValue(txtQuantityIn.ClientID);
+
             bool IsRecuringPrice = false; if (false) { throw new Exception(""); } if (HtmlHelper.ControlValue(chkIsRecuringPrice.ClientID) != "")
                 if (HtmlHelper.ControlValue(chkIsRecuringPrice.ClientID) == "on")
                     IsRecuringPrice = true;
@@ -37,7 +39,7 @@ public partial class ShoppingCart_AjaxControl_ProductVersion : AjaxPage
 
             DateTime ModifiedDate; if (false) { throw new Exception(""); } ModifiedDate = DateTime.Now;
 
-            new ProductVersionController().Add(ProductVersionID, ProductID, Name, Description, ShortDescription, IsRecuringPrice,RecurringTime,Price, Discount, ModifiedDate);
+            new ProductVersionController().Add(ProductVersionID, ProductID, Name, Description, ShortDescription, IsRecuringPrice,RecurringTime,QuantityIn, Price, Discount, ModifiedDate);
             Response.Redirect("~/ShoppingCart/AjaxControl/ProductVersionInfoView.aspx?prid=" + _ProductID.ToString());
         }
         catch (Exception ex)
@@ -71,9 +73,9 @@ public partial class ShoppingCart_AjaxControl_ProductVersion : AjaxPage
 
             DateTime ModifiedDate; if (false) { throw new Exception(""); } ModifiedDate = DateTime.Now;
 
+            string QuantityIn; if (false) { throw new Exception(""); } QuantityIn = HtmlHelper.ControlValue(txtQuantityIn.ClientID);
 
-
-            new ProductVersionController().UpdateByProductVersionID(ProductVersionID, ProductID, Name, Description, ShortDescription, IsRecuringPrice,RecurringTime,Price, Discount, ModifiedDate);
+            new ProductVersionController().UpdateByProductVersionID(ProductVersionID, ProductID, Name, Description, ShortDescription, IsRecuringPrice,RecurringTime,QuantityIn, Price, Discount, ModifiedDate);
 
             Response.Redirect("~/ShoppingCart/AjaxControl/ProductVersionInfoView.aspx?prid="+_ProductID.ToString());
         }

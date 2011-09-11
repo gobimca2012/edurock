@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="StaticSite.master.cs" Inherits="MasterPage_StaticSite" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div class="page ">
+            <div style="padding: 0px 10px;" class="menuc">
+                <ul>
+                    <li>
+                        <asp:HyperLink ID="lnkHome" runat="server" CssClass="txt">Home</asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="lnkFeature" runat="server" CssClass="txt" NavigateUrl="~/Features.aspx">Feature</asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="lnkPricing" runat="server" CssClass="txt" NavigateUrl="~/Pricing.aspx" >Pricing</asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="lnkResource" runat="server" CssClass="txt">Resources</asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="lnkContact" runat="server" CssClass="txt">Contact</asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="lnkSupport" runat="server" CssClass="txt">Support</asp:HyperLink>
+                    </li>
+                </ul>
+            </div>
+            <div class="box-shadow" style="background: none repeat scroll 0% 0% rgb(0, 0, 0);
+                height: 300px;">
+            </div>
+            <div class="cram_content roundbottomcor">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div style="margin: 20px 0px;" class="footer">
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

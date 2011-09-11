@@ -56,6 +56,14 @@
                 </tr>
                 <tr>
                     <td>
+                        <span class="label">QuantityIn</span>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtQuantityIn" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <span class="label">Price in Doller</span>
                     </td>
                     <td>
