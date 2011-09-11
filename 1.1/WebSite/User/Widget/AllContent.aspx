@@ -10,7 +10,7 @@
 <body>
     <form id="form1" runat="server">
     <div style="float: left; width: 100%;">
-        <div class="contentbox">
+        <div class="contentbox" style="margin-bottom:5px">
             <div class="clear gray">
                 <div style="float: left">
                     <h3>
@@ -71,30 +71,34 @@
                     <legend>All Activity </legend>
                     <div class="whitecont">
                         <div id="allcon">
-                            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="ID,ContentType" OnItemDataBound="ListQuestionOnItemDataBound">
-                                <LayoutTemplate>
-                                    <div>
-                                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
-                                    </div>
-                                </LayoutTemplate>
-                                <ItemTemplate>
-                                    <div class="dasbo">
-                                        <div style="float: left">
-                                            <span class='<%#GetCSSClass(Eval("ContentType").ToString()) %>'>&nbsp;</span>
-                                            <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#getURL(Eval("ContentType").ToString(),Eval("ID").ToString()) %>'>
+                            <asp:ListView ID="ListQuestion" runat="server" DataKeyNames="ID,ContentType,ItemIndex" OnItemDataBound="ListQuestionOnItemDataBound">
+                            <LayoutTemplate>
+                                <div>
+                                    <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+                                </div>
+                            </LayoutTemplate>
+                            <ItemTemplate>
+                                <div class="dasbo">
+                                   
+                                    <div style="float: left">
+                                        <span class='<%#GetCSSClass(Eval("ContentType").ToString()) %>'>&nbsp;</span>
+                                        <aspajax:HyperLink ID="lnkFull" runat="server" ContainnerID="#contentBox" NavigateUrl='<%#getURL(Eval("ContentType").ToString(),Eval("ID").ToString()) %>'>
                             <%#Eval("Title") %></aspajax:HyperLink>
-                                        </div>
-                                        <div class="clear">
-                                        </div>
-                                        <div style="float: right">
-                                            <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>'
-                                                ModifiedDate='<%#Eval("ModifiedDate") %>' />
-                                        </div>
-                                        <div class="clear">
-                                        </div>
+                                       
                                     </div>
-                                </ItemTemplate>
-                            </asp:ListView>
+                                    <div class="fl" id="isnewdiv" runat="server"></div>
+                                     <div class="graycontent roundedall fr">
+                                            Comments : <%#Eval("Comment")%>
+                                        </div>
+                                    <div style="float: right">
+                                        <uc1:UserToolTipLink ID="UserToolTipLink1" runat="server" LoginUserID='<%#Eval("LoginUserID") %>'
+                                            ModifiedDate='<%#Eval("ModifiedDate") %>' />
+                                    </div>
+                                    <div class="clear">
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:ListView>
                         </div>
                     </div>
                     <div class="hcurv">

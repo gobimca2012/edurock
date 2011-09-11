@@ -22,7 +22,7 @@ namespace DataEntity
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Crameasy")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="crameasy")]
 	public partial class UserDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -48,15 +48,6 @@ namespace DataEntity
     partial void InsertComment(Comment instance);
     partial void UpdateComment(Comment instance);
     partial void DeleteComment(Comment instance);
-    partial void InsertDocument(Document instance);
-    partial void UpdateDocument(Document instance);
-    partial void DeleteDocument(Document instance);
-    partial void InsertArticle(Article instance);
-    partial void UpdateArticle(Article instance);
-    partial void DeleteArticle(Article instance);
-    partial void InsertEvent(Event instance);
-    partial void UpdateEvent(Event instance);
-    partial void DeleteEvent(Event instance);
     partial void InsertContentHistory(ContentHistory instance);
     partial void UpdateContentHistory(ContentHistory instance);
     partial void DeleteContentHistory(ContentHistory instance);
@@ -72,6 +63,15 @@ namespace DataEntity
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertArticle(Article instance);
+    partial void UpdateArticle(Article instance);
+    partial void DeleteArticle(Article instance);
+    partial void InsertEvent(Event instance);
+    partial void UpdateEvent(Event instance);
+    partial void DeleteEvent(Event instance);
+    partial void InsertDocument(Document instance);
+    partial void UpdateDocument(Document instance);
+    partial void DeleteDocument(Document instance);
     #endregion
 		
 		public UserDataContext(string connection) : 
@@ -146,30 +146,6 @@ namespace DataEntity
 			}
 		}
 		
-		public System.Data.Linq.Table<Document> Documents
-		{
-			get
-			{
-				return this.GetTable<Document>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Article> Articles
-		{
-			get
-			{
-				return this.GetTable<Article>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Event> Events
-		{
-			get
-			{
-				return this.GetTable<Event>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ContentHistory> ContentHistories
 		{
 			get
@@ -207,6 +183,30 @@ namespace DataEntity
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Article> Articles
+		{
+			get
+			{
+				return this.GetTable<Article>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Event> Events
+		{
+			get
+			{
+				return this.GetTable<Event>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Document> Documents
+		{
+			get
+			{
+				return this.GetTable<Document>();
 			}
 		}
 		
@@ -293,6 +293,13 @@ namespace DataEntity
 			return ((ISingleResult<GetShareGroupResult>)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetNewContentByIndex")]
+		public ISingleResult<GetNewContentByIndexResult> GetNewContentByIndex([global::System.Data.Linq.Mapping.ParameterAttribute(Name="LastItemIndex", DbType="Int")] System.Nullable<int> lastItemIndex)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), lastItemIndex);
+			return ((ISingleResult<GetNewContentByIndexResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetUserRelatedContentSearch")]
 		public ISingleResult<GetUserRelatedContentSearchResult> GetUserRelatedContentSearch([global::System.Data.Linq.Mapping.ParameterAttribute(Name="LoginUserID", DbType="Int")] System.Nullable<int> loginUserID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InstituteCourceID", DbType="Int")] System.Nullable<int> instituteCourceID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InstituteSubjectID", DbType="Int")] System.Nullable<int> instituteSubjectID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContentType", DbType="Int")] System.Nullable<int> contentType, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LoggedInUserLoginID", DbType="Int")] System.Nullable<int> loggedInUserLoginID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Keyword", DbType="VarChar(MAX)")] string keyword, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Starddate", DbType="DateTime")] System.Nullable<System.DateTime> starddate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Enddate", DbType="DateTime")] System.Nullable<System.DateTime> enddate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="InstituteID", DbType="Int")] System.Nullable<int> instituteID)
 		{
@@ -327,13 +334,13 @@ namespace DataEntity
 		
 		private EntitySet<Comment> _Comments;
 		
-		private EntitySet<Document> _Documents;
+		private EntitySet<User> _Users;
 		
 		private EntitySet<Article> _Articles;
 		
 		private EntitySet<Event> _Events;
 		
-		private EntitySet<User> _Users;
+		private EntitySet<Document> _Documents;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -360,10 +367,10 @@ namespace DataEntity
 			this._UserEducations = new EntitySet<UserEducation>(new Action<UserEducation>(this.attach_UserEducations), new Action<UserEducation>(this.detach_UserEducations));
 			this._ShareUsers = new EntitySet<ShareUser>(new Action<ShareUser>(this.attach_ShareUsers), new Action<ShareUser>(this.detach_ShareUsers));
 			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
-			this._Documents = new EntitySet<Document>(new Action<Document>(this.attach_Documents), new Action<Document>(this.detach_Documents));
+			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			this._Articles = new EntitySet<Article>(new Action<Article>(this.attach_Articles), new Action<Article>(this.detach_Articles));
 			this._Events = new EntitySet<Event>(new Action<Event>(this.attach_Events), new Action<Event>(this.detach_Events));
-			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
+			this._Documents = new EntitySet<Document>(new Action<Document>(this.attach_Documents), new Action<Document>(this.detach_Documents));
 			OnCreated();
 		}
 		
@@ -546,16 +553,16 @@ namespace DataEntity
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentLogin_Document", Storage="_Documents", ThisKey="LoginUserID", OtherKey="LoginUserID")]
-		public EntitySet<Document> Documents
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentLogin_User", Storage="_Users", ThisKey="LoginUserID", OtherKey="LoginUserID")]
+		public EntitySet<User> Users
 		{
 			get
 			{
-				return this._Documents;
+				return this._Users;
 			}
 			set
 			{
-				this._Documents.Assign(value);
+				this._Users.Assign(value);
 			}
 		}
 		
@@ -585,16 +592,16 @@ namespace DataEntity
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentLogin_User", Storage="_Users", ThisKey="LoginUserID", OtherKey="LoginUserID")]
-		public EntitySet<User> Users
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentLogin_Document", Storage="_Documents", ThisKey="LoginUserID", OtherKey="LoginUserID")]
+		public EntitySet<Document> Documents
 		{
 			get
 			{
-				return this._Users;
+				return this._Documents;
 			}
 			set
 			{
-				this._Users.Assign(value);
+				this._Documents.Assign(value);
 			}
 		}
 		
@@ -654,13 +661,13 @@ namespace DataEntity
 			entity.StudentLogin = null;
 		}
 		
-		private void attach_Documents(Document entity)
+		private void attach_Users(User entity)
 		{
 			this.SendPropertyChanging();
 			entity.StudentLogin = this;
 		}
 		
-		private void detach_Documents(Document entity)
+		private void detach_Users(User entity)
 		{
 			this.SendPropertyChanging();
 			entity.StudentLogin = null;
@@ -690,13 +697,13 @@ namespace DataEntity
 			entity.StudentLogin = null;
 		}
 		
-		private void attach_Users(User entity)
+		private void attach_Documents(Document entity)
 		{
 			this.SendPropertyChanging();
 			entity.StudentLogin = this;
 		}
 		
-		private void detach_Users(User entity)
+		private void detach_Documents(Document entity)
 		{
 			this.SendPropertyChanging();
 			entity.StudentLogin = null;
@@ -1947,1159 +1954,6 @@ namespace DataEntity
 					if ((value != null))
 					{
 						value.Comments.Add(this);
-						this._LoginUserID = value.LoginUserID;
-					}
-					else
-					{
-						this._LoginUserID = default(int);
-					}
-					this.SendPropertyChanged("StudentLogin");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Document")]
-	public partial class Document : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _DocumentID;
-		
-		private string _Name;
-		
-		private string _Description;
-		
-		private string _MetaDescription;
-		
-		private string _Tag;
-		
-		private int _LoginUserID;
-		
-		private System.Nullable<int> _EditLoginUserID;
-		
-		private System.Nullable<int> _Rating;
-		
-		private string _FilePath;
-		
-		private int _DocumentType;
-		
-		private System.DateTime _ModifiedDate;
-		
-		private EntitySet<DocumentCource> _DocumentCources;
-		
-		private EntityRef<StudentLogin> _StudentLogin;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnDocumentIDChanging(System.Guid value);
-    partial void OnDocumentIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnMetaDescriptionChanging(string value);
-    partial void OnMetaDescriptionChanged();
-    partial void OnTagChanging(string value);
-    partial void OnTagChanged();
-    partial void OnLoginUserIDChanging(int value);
-    partial void OnLoginUserIDChanged();
-    partial void OnEditLoginUserIDChanging(System.Nullable<int> value);
-    partial void OnEditLoginUserIDChanged();
-    partial void OnRatingChanging(System.Nullable<int> value);
-    partial void OnRatingChanged();
-    partial void OnFilePathChanging(string value);
-    partial void OnFilePathChanged();
-    partial void OnDocumentTypeChanging(int value);
-    partial void OnDocumentTypeChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public Document()
-		{
-			this._DocumentCources = new EntitySet<DocumentCource>(new Action<DocumentCource>(this.attach_DocumentCources), new Action<DocumentCource>(this.detach_DocumentCources));
-			this._StudentLogin = default(EntityRef<StudentLogin>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid DocumentID
-		{
-			get
-			{
-				return this._DocumentID;
-			}
-			set
-			{
-				if ((this._DocumentID != value))
-				{
-					this.OnDocumentIDChanging(value);
-					this.SendPropertyChanging();
-					this._DocumentID = value;
-					this.SendPropertyChanged("DocumentID");
-					this.OnDocumentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(1000)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetaDescription", DbType="VarChar(MAX)")]
-		public string MetaDescription
-		{
-			get
-			{
-				return this._MetaDescription;
-			}
-			set
-			{
-				if ((this._MetaDescription != value))
-				{
-					this.OnMetaDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._MetaDescription = value;
-					this.SendPropertyChanged("MetaDescription");
-					this.OnMetaDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag", DbType="VarChar(MAX)")]
-		public string Tag
-		{
-			get
-			{
-				return this._Tag;
-			}
-			set
-			{
-				if ((this._Tag != value))
-				{
-					this.OnTagChanging(value);
-					this.SendPropertyChanging();
-					this._Tag = value;
-					this.SendPropertyChanged("Tag");
-					this.OnTagChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginUserID", DbType="Int NOT NULL")]
-		public int LoginUserID
-		{
-			get
-			{
-				return this._LoginUserID;
-			}
-			set
-			{
-				if ((this._LoginUserID != value))
-				{
-					if (this._StudentLogin.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLoginUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._LoginUserID = value;
-					this.SendPropertyChanged("LoginUserID");
-					this.OnLoginUserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EditLoginUserID", DbType="Int")]
-		public System.Nullable<int> EditLoginUserID
-		{
-			get
-			{
-				return this._EditLoginUserID;
-			}
-			set
-			{
-				if ((this._EditLoginUserID != value))
-				{
-					this.OnEditLoginUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._EditLoginUserID = value;
-					this.SendPropertyChanged("EditLoginUserID");
-					this.OnEditLoginUserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="Int")]
-		public System.Nullable<int> Rating
-		{
-			get
-			{
-				return this._Rating;
-			}
-			set
-			{
-				if ((this._Rating != value))
-				{
-					this.OnRatingChanging(value);
-					this.SendPropertyChanging();
-					this._Rating = value;
-					this.SendPropertyChanged("Rating");
-					this.OnRatingChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FilePath", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string FilePath
-		{
-			get
-			{
-				return this._FilePath;
-			}
-			set
-			{
-				if ((this._FilePath != value))
-				{
-					this.OnFilePathChanging(value);
-					this.SendPropertyChanging();
-					this._FilePath = value;
-					this.SendPropertyChanged("FilePath");
-					this.OnFilePathChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentType", DbType="Int NOT NULL")]
-		public int DocumentType
-		{
-			get
-			{
-				return this._DocumentType;
-			}
-			set
-			{
-				if ((this._DocumentType != value))
-				{
-					this.OnDocumentTypeChanging(value);
-					this.SendPropertyChanging();
-					this._DocumentType = value;
-					this.SendPropertyChanged("DocumentType");
-					this.OnDocumentTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Document_DocumentCource", Storage="_DocumentCources", ThisKey="DocumentID", OtherKey="DocumentID")]
-		public EntitySet<DocumentCource> DocumentCources
-		{
-			get
-			{
-				return this._DocumentCources;
-			}
-			set
-			{
-				this._DocumentCources.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentLogin_Document", Storage="_StudentLogin", ThisKey="LoginUserID", OtherKey="LoginUserID", IsForeignKey=true)]
-		public StudentLogin StudentLogin
-		{
-			get
-			{
-				return this._StudentLogin.Entity;
-			}
-			set
-			{
-				StudentLogin previousValue = this._StudentLogin.Entity;
-				if (((previousValue != value) 
-							|| (this._StudentLogin.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._StudentLogin.Entity = null;
-						previousValue.Documents.Remove(this);
-					}
-					this._StudentLogin.Entity = value;
-					if ((value != null))
-					{
-						value.Documents.Add(this);
-						this._LoginUserID = value.LoginUserID;
-					}
-					else
-					{
-						this._LoginUserID = default(int);
-					}
-					this.SendPropertyChanged("StudentLogin");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_DocumentCources(DocumentCource entity)
-		{
-			this.SendPropertyChanging();
-			entity.Document = this;
-		}
-		
-		private void detach_DocumentCources(DocumentCource entity)
-		{
-			this.SendPropertyChanging();
-			entity.Document = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Article")]
-	public partial class Article : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ArticleID;
-		
-		private int _LoginUserID;
-		
-		private System.Nullable<int> _EditLoginUserID;
-		
-		private string _Title;
-		
-		private string _Description;
-		
-		private string _MetaDescription;
-		
-		private int _InstituteCourceID;
-		
-		private int _InstituteSubjectID;
-		
-		private string _Tag;
-		
-		private System.Nullable<int> _Rating;
-		
-		private System.DateTime _ModifiedDate;
-		
-		private EntityRef<StudentLogin> _StudentLogin;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnArticleIDChanging(System.Guid value);
-    partial void OnArticleIDChanged();
-    partial void OnLoginUserIDChanging(int value);
-    partial void OnLoginUserIDChanged();
-    partial void OnEditLoginUserIDChanging(System.Nullable<int> value);
-    partial void OnEditLoginUserIDChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnMetaDescriptionChanging(string value);
-    partial void OnMetaDescriptionChanged();
-    partial void OnInstituteCourceIDChanging(int value);
-    partial void OnInstituteCourceIDChanged();
-    partial void OnInstituteSubjectIDChanging(int value);
-    partial void OnInstituteSubjectIDChanged();
-    partial void OnTagChanging(string value);
-    partial void OnTagChanged();
-    partial void OnRatingChanging(System.Nullable<int> value);
-    partial void OnRatingChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public Article()
-		{
-			this._StudentLogin = default(EntityRef<StudentLogin>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ArticleID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ArticleID
-		{
-			get
-			{
-				return this._ArticleID;
-			}
-			set
-			{
-				if ((this._ArticleID != value))
-				{
-					this.OnArticleIDChanging(value);
-					this.SendPropertyChanging();
-					this._ArticleID = value;
-					this.SendPropertyChanged("ArticleID");
-					this.OnArticleIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginUserID", DbType="Int NOT NULL")]
-		public int LoginUserID
-		{
-			get
-			{
-				return this._LoginUserID;
-			}
-			set
-			{
-				if ((this._LoginUserID != value))
-				{
-					if (this._StudentLogin.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLoginUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._LoginUserID = value;
-					this.SendPropertyChanged("LoginUserID");
-					this.OnLoginUserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EditLoginUserID", DbType="Int")]
-		public System.Nullable<int> EditLoginUserID
-		{
-			get
-			{
-				return this._EditLoginUserID;
-			}
-			set
-			{
-				if ((this._EditLoginUserID != value))
-				{
-					this.OnEditLoginUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._EditLoginUserID = value;
-					this.SendPropertyChanged("EditLoginUserID");
-					this.OnEditLoginUserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetaDescription", DbType="VarChar(MAX)")]
-		public string MetaDescription
-		{
-			get
-			{
-				return this._MetaDescription;
-			}
-			set
-			{
-				if ((this._MetaDescription != value))
-				{
-					this.OnMetaDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._MetaDescription = value;
-					this.SendPropertyChanged("MetaDescription");
-					this.OnMetaDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteCourceID", DbType="Int NOT NULL")]
-		public int InstituteCourceID
-		{
-			get
-			{
-				return this._InstituteCourceID;
-			}
-			set
-			{
-				if ((this._InstituteCourceID != value))
-				{
-					this.OnInstituteCourceIDChanging(value);
-					this.SendPropertyChanging();
-					this._InstituteCourceID = value;
-					this.SendPropertyChanged("InstituteCourceID");
-					this.OnInstituteCourceIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteSubjectID", DbType="Int NOT NULL")]
-		public int InstituteSubjectID
-		{
-			get
-			{
-				return this._InstituteSubjectID;
-			}
-			set
-			{
-				if ((this._InstituteSubjectID != value))
-				{
-					this.OnInstituteSubjectIDChanging(value);
-					this.SendPropertyChanging();
-					this._InstituteSubjectID = value;
-					this.SendPropertyChanged("InstituteSubjectID");
-					this.OnInstituteSubjectIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag", DbType="VarChar(MAX)")]
-		public string Tag
-		{
-			get
-			{
-				return this._Tag;
-			}
-			set
-			{
-				if ((this._Tag != value))
-				{
-					this.OnTagChanging(value);
-					this.SendPropertyChanging();
-					this._Tag = value;
-					this.SendPropertyChanged("Tag");
-					this.OnTagChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="Int")]
-		public System.Nullable<int> Rating
-		{
-			get
-			{
-				return this._Rating;
-			}
-			set
-			{
-				if ((this._Rating != value))
-				{
-					this.OnRatingChanging(value);
-					this.SendPropertyChanging();
-					this._Rating = value;
-					this.SendPropertyChanged("Rating");
-					this.OnRatingChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentLogin_Article", Storage="_StudentLogin", ThisKey="LoginUserID", OtherKey="LoginUserID", IsForeignKey=true)]
-		public StudentLogin StudentLogin
-		{
-			get
-			{
-				return this._StudentLogin.Entity;
-			}
-			set
-			{
-				StudentLogin previousValue = this._StudentLogin.Entity;
-				if (((previousValue != value) 
-							|| (this._StudentLogin.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._StudentLogin.Entity = null;
-						previousValue.Articles.Remove(this);
-					}
-					this._StudentLogin.Entity = value;
-					if ((value != null))
-					{
-						value.Articles.Add(this);
-						this._LoginUserID = value.LoginUserID;
-					}
-					else
-					{
-						this._LoginUserID = default(int);
-					}
-					this.SendPropertyChanged("StudentLogin");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Event")]
-	public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _EventID;
-		
-		private int _LoginUserID;
-		
-		private System.Nullable<int> _EditLoginUserID;
-		
-		private string _Title;
-		
-		private string _Description;
-		
-		private string _MetaDescription;
-		
-		private System.Nullable<System.DateTime> _StartDate;
-		
-		private System.Nullable<System.DateTime> _EndDate;
-		
-		private System.Nullable<int> _InstituteCourceID;
-		
-		private System.Nullable<int> _InstituteSubjectID;
-		
-		private string _Tag;
-		
-		private string _ContactPerson;
-		
-		private string _ContactEmail;
-		
-		private string _ContactPhone;
-		
-		private System.Nullable<System.DateTime> _ModifiedDate;
-		
-		private EntityRef<StudentLogin> _StudentLogin;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnEventIDChanging(System.Guid value);
-    partial void OnEventIDChanged();
-    partial void OnLoginUserIDChanging(int value);
-    partial void OnLoginUserIDChanged();
-    partial void OnEditLoginUserIDChanging(System.Nullable<int> value);
-    partial void OnEditLoginUserIDChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnMetaDescriptionChanging(string value);
-    partial void OnMetaDescriptionChanged();
-    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartDateChanged();
-    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndDateChanged();
-    partial void OnInstituteCourceIDChanging(System.Nullable<int> value);
-    partial void OnInstituteCourceIDChanged();
-    partial void OnInstituteSubjectIDChanging(System.Nullable<int> value);
-    partial void OnInstituteSubjectIDChanged();
-    partial void OnTagChanging(string value);
-    partial void OnTagChanged();
-    partial void OnContactPersonChanging(string value);
-    partial void OnContactPersonChanged();
-    partial void OnContactEmailChanging(string value);
-    partial void OnContactEmailChanged();
-    partial void OnContactPhoneChanging(string value);
-    partial void OnContactPhoneChanged();
-    partial void OnModifiedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public Event()
-		{
-			this._StudentLogin = default(EntityRef<StudentLogin>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid EventID
-		{
-			get
-			{
-				return this._EventID;
-			}
-			set
-			{
-				if ((this._EventID != value))
-				{
-					this.OnEventIDChanging(value);
-					this.SendPropertyChanging();
-					this._EventID = value;
-					this.SendPropertyChanged("EventID");
-					this.OnEventIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginUserID", DbType="Int NOT NULL")]
-		public int LoginUserID
-		{
-			get
-			{
-				return this._LoginUserID;
-			}
-			set
-			{
-				if ((this._LoginUserID != value))
-				{
-					if (this._StudentLogin.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLoginUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._LoginUserID = value;
-					this.SendPropertyChanged("LoginUserID");
-					this.OnLoginUserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EditLoginUserID", DbType="Int")]
-		public System.Nullable<int> EditLoginUserID
-		{
-			get
-			{
-				return this._EditLoginUserID;
-			}
-			set
-			{
-				if ((this._EditLoginUserID != value))
-				{
-					this.OnEditLoginUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._EditLoginUserID = value;
-					this.SendPropertyChanged("EditLoginUserID");
-					this.OnEditLoginUserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetaDescription", DbType="VarChar(MAX)")]
-		public string MetaDescription
-		{
-			get
-			{
-				return this._MetaDescription;
-			}
-			set
-			{
-				if ((this._MetaDescription != value))
-				{
-					this.OnMetaDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._MetaDescription = value;
-					this.SendPropertyChanged("MetaDescription");
-					this.OnMetaDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> StartDate
-		{
-			get
-			{
-				return this._StartDate;
-			}
-			set
-			{
-				if ((this._StartDate != value))
-				{
-					this.OnStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._StartDate = value;
-					this.SendPropertyChanged("StartDate");
-					this.OnStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this.OnEndDateChanging(value);
-					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteCourceID", DbType="Int")]
-		public System.Nullable<int> InstituteCourceID
-		{
-			get
-			{
-				return this._InstituteCourceID;
-			}
-			set
-			{
-				if ((this._InstituteCourceID != value))
-				{
-					this.OnInstituteCourceIDChanging(value);
-					this.SendPropertyChanging();
-					this._InstituteCourceID = value;
-					this.SendPropertyChanged("InstituteCourceID");
-					this.OnInstituteCourceIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteSubjectID", DbType="Int")]
-		public System.Nullable<int> InstituteSubjectID
-		{
-			get
-			{
-				return this._InstituteSubjectID;
-			}
-			set
-			{
-				if ((this._InstituteSubjectID != value))
-				{
-					this.OnInstituteSubjectIDChanging(value);
-					this.SendPropertyChanging();
-					this._InstituteSubjectID = value;
-					this.SendPropertyChanged("InstituteSubjectID");
-					this.OnInstituteSubjectIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag", DbType="VarChar(MAX)")]
-		public string Tag
-		{
-			get
-			{
-				return this._Tag;
-			}
-			set
-			{
-				if ((this._Tag != value))
-				{
-					this.OnTagChanging(value);
-					this.SendPropertyChanging();
-					this._Tag = value;
-					this.SendPropertyChanged("Tag");
-					this.OnTagChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPerson", DbType="VarChar(1000)")]
-		public string ContactPerson
-		{
-			get
-			{
-				return this._ContactPerson;
-			}
-			set
-			{
-				if ((this._ContactPerson != value))
-				{
-					this.OnContactPersonChanging(value);
-					this.SendPropertyChanging();
-					this._ContactPerson = value;
-					this.SendPropertyChanged("ContactPerson");
-					this.OnContactPersonChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactEmail", DbType="VarChar(1000)")]
-		public string ContactEmail
-		{
-			get
-			{
-				return this._ContactEmail;
-			}
-			set
-			{
-				if ((this._ContactEmail != value))
-				{
-					this.OnContactEmailChanging(value);
-					this.SendPropertyChanging();
-					this._ContactEmail = value;
-					this.SendPropertyChanged("ContactEmail");
-					this.OnContactEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPhone", DbType="VarChar(20)")]
-		public string ContactPhone
-		{
-			get
-			{
-				return this._ContactPhone;
-			}
-			set
-			{
-				if ((this._ContactPhone != value))
-				{
-					this.OnContactPhoneChanging(value);
-					this.SendPropertyChanging();
-					this._ContactPhone = value;
-					this.SendPropertyChanged("ContactPhone");
-					this.OnContactPhoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentLogin_Event", Storage="_StudentLogin", ThisKey="LoginUserID", OtherKey="LoginUserID", IsForeignKey=true)]
-		public StudentLogin StudentLogin
-		{
-			get
-			{
-				return this._StudentLogin.Entity;
-			}
-			set
-			{
-				StudentLogin previousValue = this._StudentLogin.Entity;
-				if (((previousValue != value) 
-							|| (this._StudentLogin.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._StudentLogin.Entity = null;
-						previousValue.Events.Remove(this);
-					}
-					this._StudentLogin.Entity = value;
-					if ((value != null))
-					{
-						value.Events.Add(this);
 						this._LoginUserID = value.LoginUserID;
 					}
 					else
@@ -4541,6 +3395,1231 @@ namespace DataEntity
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Article")]
+	public partial class Article : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ArticleID;
+		
+		private int _LoginUserID;
+		
+		private System.Nullable<int> _EditLoginUserID;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private string _MetaDescription;
+		
+		private int _InstituteCourceID;
+		
+		private int _InstituteSubjectID;
+		
+		private string _Tag;
+		
+		private System.Nullable<int> _Rating;
+		
+		private string _ItemIndex;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntityRef<StudentLogin> _StudentLogin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnArticleIDChanging(System.Guid value);
+    partial void OnArticleIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnEditLoginUserIDChanging(System.Nullable<int> value);
+    partial void OnEditLoginUserIDChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnMetaDescriptionChanging(string value);
+    partial void OnMetaDescriptionChanged();
+    partial void OnInstituteCourceIDChanging(int value);
+    partial void OnInstituteCourceIDChanged();
+    partial void OnInstituteSubjectIDChanging(int value);
+    partial void OnInstituteSubjectIDChanged();
+    partial void OnTagChanging(string value);
+    partial void OnTagChanged();
+    partial void OnRatingChanging(System.Nullable<int> value);
+    partial void OnRatingChanged();
+    partial void OnItemIndexChanging(string value);
+    partial void OnItemIndexChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public Article()
+		{
+			this._StudentLogin = default(EntityRef<StudentLogin>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ArticleID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ArticleID
+		{
+			get
+			{
+				return this._ArticleID;
+			}
+			set
+			{
+				if ((this._ArticleID != value))
+				{
+					this.OnArticleIDChanging(value);
+					this.SendPropertyChanging();
+					this._ArticleID = value;
+					this.SendPropertyChanged("ArticleID");
+					this.OnArticleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					if (this._StudentLogin.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EditLoginUserID", DbType="Int")]
+		public System.Nullable<int> EditLoginUserID
+		{
+			get
+			{
+				return this._EditLoginUserID;
+			}
+			set
+			{
+				if ((this._EditLoginUserID != value))
+				{
+					this.OnEditLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._EditLoginUserID = value;
+					this.SendPropertyChanged("EditLoginUserID");
+					this.OnEditLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetaDescription", DbType="VarChar(MAX)")]
+		public string MetaDescription
+		{
+			get
+			{
+				return this._MetaDescription;
+			}
+			set
+			{
+				if ((this._MetaDescription != value))
+				{
+					this.OnMetaDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._MetaDescription = value;
+					this.SendPropertyChanged("MetaDescription");
+					this.OnMetaDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteCourceID", DbType="Int NOT NULL")]
+		public int InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this.OnInstituteCourceIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteCourceID = value;
+					this.SendPropertyChanged("InstituteCourceID");
+					this.OnInstituteCourceIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteSubjectID", DbType="Int NOT NULL")]
+		public int InstituteSubjectID
+		{
+			get
+			{
+				return this._InstituteSubjectID;
+			}
+			set
+			{
+				if ((this._InstituteSubjectID != value))
+				{
+					this.OnInstituteSubjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteSubjectID = value;
+					this.SendPropertyChanged("InstituteSubjectID");
+					this.OnInstituteSubjectIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag", DbType="VarChar(MAX)")]
+		public string Tag
+		{
+			get
+			{
+				return this._Tag;
+			}
+			set
+			{
+				if ((this._Tag != value))
+				{
+					this.OnTagChanging(value);
+					this.SendPropertyChanging();
+					this._Tag = value;
+					this.SendPropertyChanged("Tag");
+					this.OnTagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="Int")]
+		public System.Nullable<int> Rating
+		{
+			get
+			{
+				return this._Rating;
+			}
+			set
+			{
+				if ((this._Rating != value))
+				{
+					this.OnRatingChanging(value);
+					this.SendPropertyChanging();
+					this._Rating = value;
+					this.SendPropertyChanged("Rating");
+					this.OnRatingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemIndex", DbType="VarChar(50)")]
+		public string ItemIndex
+		{
+			get
+			{
+				return this._ItemIndex;
+			}
+			set
+			{
+				if ((this._ItemIndex != value))
+				{
+					this.OnItemIndexChanging(value);
+					this.SendPropertyChanging();
+					this._ItemIndex = value;
+					this.SendPropertyChanged("ItemIndex");
+					this.OnItemIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentLogin_Article", Storage="_StudentLogin", ThisKey="LoginUserID", OtherKey="LoginUserID", IsForeignKey=true)]
+		public StudentLogin StudentLogin
+		{
+			get
+			{
+				return this._StudentLogin.Entity;
+			}
+			set
+			{
+				StudentLogin previousValue = this._StudentLogin.Entity;
+				if (((previousValue != value) 
+							|| (this._StudentLogin.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StudentLogin.Entity = null;
+						previousValue.Articles.Remove(this);
+					}
+					this._StudentLogin.Entity = value;
+					if ((value != null))
+					{
+						value.Articles.Add(this);
+						this._LoginUserID = value.LoginUserID;
+					}
+					else
+					{
+						this._LoginUserID = default(int);
+					}
+					this.SendPropertyChanged("StudentLogin");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Event")]
+	public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _EventID;
+		
+		private int _LoginUserID;
+		
+		private System.Nullable<int> _EditLoginUserID;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private string _MetaDescription;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private System.Nullable<int> _InstituteCourceID;
+		
+		private System.Nullable<int> _InstituteSubjectID;
+		
+		private string _Tag;
+		
+		private string _ContactPerson;
+		
+		private string _ContactEmail;
+		
+		private string _ContactPhone;
+		
+		private string _ItemIndex;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		private EntityRef<StudentLogin> _StudentLogin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEventIDChanging(System.Guid value);
+    partial void OnEventIDChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnEditLoginUserIDChanging(System.Nullable<int> value);
+    partial void OnEditLoginUserIDChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnMetaDescriptionChanging(string value);
+    partial void OnMetaDescriptionChanged();
+    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateChanged();
+    partial void OnInstituteCourceIDChanging(System.Nullable<int> value);
+    partial void OnInstituteCourceIDChanged();
+    partial void OnInstituteSubjectIDChanging(System.Nullable<int> value);
+    partial void OnInstituteSubjectIDChanged();
+    partial void OnTagChanging(string value);
+    partial void OnTagChanged();
+    partial void OnContactPersonChanging(string value);
+    partial void OnContactPersonChanged();
+    partial void OnContactEmailChanging(string value);
+    partial void OnContactEmailChanged();
+    partial void OnContactPhoneChanging(string value);
+    partial void OnContactPhoneChanged();
+    partial void OnItemIndexChanging(string value);
+    partial void OnItemIndexChanged();
+    partial void OnModifiedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public Event()
+		{
+			this._StudentLogin = default(EntityRef<StudentLogin>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid EventID
+		{
+			get
+			{
+				return this._EventID;
+			}
+			set
+			{
+				if ((this._EventID != value))
+				{
+					this.OnEventIDChanging(value);
+					this.SendPropertyChanging();
+					this._EventID = value;
+					this.SendPropertyChanged("EventID");
+					this.OnEventIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					if (this._StudentLogin.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EditLoginUserID", DbType="Int")]
+		public System.Nullable<int> EditLoginUserID
+		{
+			get
+			{
+				return this._EditLoginUserID;
+			}
+			set
+			{
+				if ((this._EditLoginUserID != value))
+				{
+					this.OnEditLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._EditLoginUserID = value;
+					this.SendPropertyChanged("EditLoginUserID");
+					this.OnEditLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetaDescription", DbType="VarChar(MAX)")]
+		public string MetaDescription
+		{
+			get
+			{
+				return this._MetaDescription;
+			}
+			set
+			{
+				if ((this._MetaDescription != value))
+				{
+					this.OnMetaDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._MetaDescription = value;
+					this.SendPropertyChanged("MetaDescription");
+					this.OnMetaDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteCourceID", DbType="Int")]
+		public System.Nullable<int> InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this.OnInstituteCourceIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteCourceID = value;
+					this.SendPropertyChanged("InstituteCourceID");
+					this.OnInstituteCourceIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteSubjectID", DbType="Int")]
+		public System.Nullable<int> InstituteSubjectID
+		{
+			get
+			{
+				return this._InstituteSubjectID;
+			}
+			set
+			{
+				if ((this._InstituteSubjectID != value))
+				{
+					this.OnInstituteSubjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteSubjectID = value;
+					this.SendPropertyChanged("InstituteSubjectID");
+					this.OnInstituteSubjectIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag", DbType="VarChar(MAX)")]
+		public string Tag
+		{
+			get
+			{
+				return this._Tag;
+			}
+			set
+			{
+				if ((this._Tag != value))
+				{
+					this.OnTagChanging(value);
+					this.SendPropertyChanging();
+					this._Tag = value;
+					this.SendPropertyChanged("Tag");
+					this.OnTagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPerson", DbType="VarChar(1000)")]
+		public string ContactPerson
+		{
+			get
+			{
+				return this._ContactPerson;
+			}
+			set
+			{
+				if ((this._ContactPerson != value))
+				{
+					this.OnContactPersonChanging(value);
+					this.SendPropertyChanging();
+					this._ContactPerson = value;
+					this.SendPropertyChanged("ContactPerson");
+					this.OnContactPersonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactEmail", DbType="VarChar(1000)")]
+		public string ContactEmail
+		{
+			get
+			{
+				return this._ContactEmail;
+			}
+			set
+			{
+				if ((this._ContactEmail != value))
+				{
+					this.OnContactEmailChanging(value);
+					this.SendPropertyChanging();
+					this._ContactEmail = value;
+					this.SendPropertyChanged("ContactEmail");
+					this.OnContactEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPhone", DbType="VarChar(20)")]
+		public string ContactPhone
+		{
+			get
+			{
+				return this._ContactPhone;
+			}
+			set
+			{
+				if ((this._ContactPhone != value))
+				{
+					this.OnContactPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._ContactPhone = value;
+					this.SendPropertyChanged("ContactPhone");
+					this.OnContactPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemIndex", DbType="VarChar(50)")]
+		public string ItemIndex
+		{
+			get
+			{
+				return this._ItemIndex;
+			}
+			set
+			{
+				if ((this._ItemIndex != value))
+				{
+					this.OnItemIndexChanging(value);
+					this.SendPropertyChanging();
+					this._ItemIndex = value;
+					this.SendPropertyChanged("ItemIndex");
+					this.OnItemIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentLogin_Event", Storage="_StudentLogin", ThisKey="LoginUserID", OtherKey="LoginUserID", IsForeignKey=true)]
+		public StudentLogin StudentLogin
+		{
+			get
+			{
+				return this._StudentLogin.Entity;
+			}
+			set
+			{
+				StudentLogin previousValue = this._StudentLogin.Entity;
+				if (((previousValue != value) 
+							|| (this._StudentLogin.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StudentLogin.Entity = null;
+						previousValue.Events.Remove(this);
+					}
+					this._StudentLogin.Entity = value;
+					if ((value != null))
+					{
+						value.Events.Add(this);
+						this._LoginUserID = value.LoginUserID;
+					}
+					else
+					{
+						this._LoginUserID = default(int);
+					}
+					this.SendPropertyChanged("StudentLogin");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Document")]
+	public partial class Document : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _DocumentID;
+		
+		private string _Name;
+		
+		private string _Description;
+		
+		private string _MetaDescription;
+		
+		private string _Tag;
+		
+		private int _LoginUserID;
+		
+		private System.Nullable<int> _EditLoginUserID;
+		
+		private System.Nullable<int> _Rating;
+		
+		private string _FilePath;
+		
+		private int _DocumentType;
+		
+		private string _ItemIndex;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntitySet<DocumentCource> _DocumentCources;
+		
+		private EntityRef<StudentLogin> _StudentLogin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDocumentIDChanging(System.Guid value);
+    partial void OnDocumentIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnMetaDescriptionChanging(string value);
+    partial void OnMetaDescriptionChanged();
+    partial void OnTagChanging(string value);
+    partial void OnTagChanged();
+    partial void OnLoginUserIDChanging(int value);
+    partial void OnLoginUserIDChanged();
+    partial void OnEditLoginUserIDChanging(System.Nullable<int> value);
+    partial void OnEditLoginUserIDChanged();
+    partial void OnRatingChanging(System.Nullable<int> value);
+    partial void OnRatingChanged();
+    partial void OnFilePathChanging(string value);
+    partial void OnFilePathChanged();
+    partial void OnDocumentTypeChanging(int value);
+    partial void OnDocumentTypeChanged();
+    partial void OnItemIndexChanging(string value);
+    partial void OnItemIndexChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public Document()
+		{
+			this._DocumentCources = new EntitySet<DocumentCource>(new Action<DocumentCource>(this.attach_DocumentCources), new Action<DocumentCource>(this.detach_DocumentCources));
+			this._StudentLogin = default(EntityRef<StudentLogin>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid DocumentID
+		{
+			get
+			{
+				return this._DocumentID;
+			}
+			set
+			{
+				if ((this._DocumentID != value))
+				{
+					this.OnDocumentIDChanging(value);
+					this.SendPropertyChanging();
+					this._DocumentID = value;
+					this.SendPropertyChanged("DocumentID");
+					this.OnDocumentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetaDescription", DbType="VarChar(MAX)")]
+		public string MetaDescription
+		{
+			get
+			{
+				return this._MetaDescription;
+			}
+			set
+			{
+				if ((this._MetaDescription != value))
+				{
+					this.OnMetaDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._MetaDescription = value;
+					this.SendPropertyChanged("MetaDescription");
+					this.OnMetaDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag", DbType="VarChar(MAX)")]
+		public string Tag
+		{
+			get
+			{
+				return this._Tag;
+			}
+			set
+			{
+				if ((this._Tag != value))
+				{
+					this.OnTagChanging(value);
+					this.SendPropertyChanging();
+					this._Tag = value;
+					this.SendPropertyChanged("Tag");
+					this.OnTagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginUserID", DbType="Int NOT NULL")]
+		public int LoginUserID
+		{
+			get
+			{
+				return this._LoginUserID;
+			}
+			set
+			{
+				if ((this._LoginUserID != value))
+				{
+					if (this._StudentLogin.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoginUserID = value;
+					this.SendPropertyChanged("LoginUserID");
+					this.OnLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EditLoginUserID", DbType="Int")]
+		public System.Nullable<int> EditLoginUserID
+		{
+			get
+			{
+				return this._EditLoginUserID;
+			}
+			set
+			{
+				if ((this._EditLoginUserID != value))
+				{
+					this.OnEditLoginUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._EditLoginUserID = value;
+					this.SendPropertyChanged("EditLoginUserID");
+					this.OnEditLoginUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rating", DbType="Int")]
+		public System.Nullable<int> Rating
+		{
+			get
+			{
+				return this._Rating;
+			}
+			set
+			{
+				if ((this._Rating != value))
+				{
+					this.OnRatingChanging(value);
+					this.SendPropertyChanging();
+					this._Rating = value;
+					this.SendPropertyChanged("Rating");
+					this.OnRatingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FilePath", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string FilePath
+		{
+			get
+			{
+				return this._FilePath;
+			}
+			set
+			{
+				if ((this._FilePath != value))
+				{
+					this.OnFilePathChanging(value);
+					this.SendPropertyChanging();
+					this._FilePath = value;
+					this.SendPropertyChanged("FilePath");
+					this.OnFilePathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentType", DbType="Int NOT NULL")]
+		public int DocumentType
+		{
+			get
+			{
+				return this._DocumentType;
+			}
+			set
+			{
+				if ((this._DocumentType != value))
+				{
+					this.OnDocumentTypeChanging(value);
+					this.SendPropertyChanging();
+					this._DocumentType = value;
+					this.SendPropertyChanged("DocumentType");
+					this.OnDocumentTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemIndex", DbType="VarChar(50)")]
+		public string ItemIndex
+		{
+			get
+			{
+				return this._ItemIndex;
+			}
+			set
+			{
+				if ((this._ItemIndex != value))
+				{
+					this.OnItemIndexChanging(value);
+					this.SendPropertyChanging();
+					this._ItemIndex = value;
+					this.SendPropertyChanged("ItemIndex");
+					this.OnItemIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Document_DocumentCource", Storage="_DocumentCources", ThisKey="DocumentID", OtherKey="DocumentID")]
+		public EntitySet<DocumentCource> DocumentCources
+		{
+			get
+			{
+				return this._DocumentCources;
+			}
+			set
+			{
+				this._DocumentCources.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StudentLogin_Document", Storage="_StudentLogin", ThisKey="LoginUserID", OtherKey="LoginUserID", IsForeignKey=true)]
+		public StudentLogin StudentLogin
+		{
+			get
+			{
+				return this._StudentLogin.Entity;
+			}
+			set
+			{
+				StudentLogin previousValue = this._StudentLogin.Entity;
+				if (((previousValue != value) 
+							|| (this._StudentLogin.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StudentLogin.Entity = null;
+						previousValue.Documents.Remove(this);
+					}
+					this._StudentLogin.Entity = value;
+					if ((value != null))
+					{
+						value.Documents.Add(this);
+						this._LoginUserID = value.LoginUserID;
+					}
+					else
+					{
+						this._LoginUserID = default(int);
+					}
+					this.SendPropertyChanged("StudentLogin");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_DocumentCources(DocumentCource entity)
+		{
+			this.SendPropertyChanging();
+			entity.Document = this;
+		}
+		
+		private void detach_DocumentCources(DocumentCource entity)
+		{
+			this.SendPropertyChanging();
+			entity.Document = null;
 		}
 	}
 	
@@ -6342,6 +6421,32 @@ namespace DataEntity
 		}
 	}
 	
+	public partial class GetNewContentByIndexResult
+	{
+		
+		private System.Nullable<int> _InstituteCourceID;
+		
+		public GetNewContentByIndexResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteCourceID", DbType="Int")]
+		public System.Nullable<int> InstituteCourceID
+		{
+			get
+			{
+				return this._InstituteCourceID;
+			}
+			set
+			{
+				if ((this._InstituteCourceID != value))
+				{
+					this._InstituteCourceID = value;
+				}
+			}
+		}
+	}
+	
 	public partial class GetUserRelatedContentSearchResult
 	{
 		
@@ -6362,6 +6467,8 @@ namespace DataEntity
 		private string _Param1;
 		
 		private System.Nullable<int> _Comment;
+		
+		private System.Nullable<int> _ItemIndex;
 		
 		public GetUserRelatedContentSearchResult()
 		{
@@ -6507,6 +6614,22 @@ namespace DataEntity
 				if ((this._Comment != value))
 				{
 					this._Comment = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemIndex", DbType="Int")]
+		public System.Nullable<int> ItemIndex
+		{
+			get
+			{
+				return this._ItemIndex;
+			}
+			set
+			{
+				if ((this._ItemIndex != value))
+				{
+					this._ItemIndex = value;
 				}
 			}
 		}

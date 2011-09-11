@@ -746,7 +746,7 @@ namespace BusinessLogic
 
             try
             {
-                new DataProvider().DocumentAdd(DocumentID, Name, CustomHelper.ConvertMultitextToHtml(Description), MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceiD, InstituteSubjectID, ModifiedDate);
+                new DataProvider().DocumentAdd(DocumentID, Name, CustomHelper.ConvertMultitextToHtml(Description), MetaDescription, Tag, LoginUserID, Rating, FilePath, DocumentType, InstituteCourceiD, InstituteSubjectID,new UserAuthontication().InstituteID, ModifiedDate);
                 new ShareController().AddDefaultShareAccess(DocumentType, DocumentID.ToString());
 
                 return true;

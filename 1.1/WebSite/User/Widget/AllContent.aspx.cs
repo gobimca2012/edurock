@@ -87,8 +87,10 @@ public partial class User_AjaxControl_AllContent : WidgetControl
         JScripter.Effect objEffect = new JScripter.Effect(this.Page, false);
         objEffect.Collapspanel("#" + lnkExpand.ClientID, "#activestram");
     }
+    private int LastItemIndex = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
+        LastItemIndex = Convert.ToInt32(new UserAuthontication().GetViewedContentIndex());
         new JScripter.Widget(this.Page, false).DeleteLinkButton(GetWidgetBoxID(WidgetID), ResolveUrl("~/User/Widget/WidgetAction.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID), lnkClose);
         JScripter.DatePicker objdate = new JScripter.DatePicker(this.Page);
         objdate.DatePickerTextBox(txtEnddate);
@@ -117,8 +119,15 @@ public partial class User_AjaxControl_AllContent : WidgetControl
     }
     private void BindList()
     {
-        ListQuestion.DataSource = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.All, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate, PageSize, PageNumber);
+        var data = new UserController().GetUserRelatedContentSearch(_LoginUserID, _InstituteCourceID, _InstituteSubjectID, (int)ContentTypeEnum.All, new UserAuthontication().LoggedInUserID, Keywork, StartDate, EndDate, PageSize, PageNumber);
+        ListQuestion.DataSource = data;
         ListQuestion.DataBind();
+        if (_InstituteCourceID > 0)
+        {
+            var sortIndexedData = (from p in data orderby p.ItemIndex descending select p).ToList();
+            //new UserAuthontication().SavedViewedContentIndex((int)sortIndexedData[0].ItemIndex);
+            new UserAuthontication().SavedViewedContentIndex(0);
+        }
     }
     private void PaggerLinkManager()
     {
@@ -247,19 +256,31 @@ public partial class User_AjaxControl_AllContent : WidgetControl
         }
         return URL;
     }
+
     protected void ListQuestionOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         ListViewDataItem currentItem = (ListViewDataItem)e.Item;
         string ID = ListQuestion.DataKeys[currentItem.DataItemIndex]["ID"].ToString();
         string ContentType = ListQuestion.DataKeys[currentItem.DataItemIndex]["ContentType"].ToString();
+
+        string ItemIndex = "0";
+        if (ListQuestion.DataKeys[currentItem.DataItemIndex]["ItemIndex"] != null)
+        {
+            ListQuestion.DataKeys[currentItem.DataItemIndex]["ItemIndex"].ToString();
+        }
         AjaxControl.HyperLink lnkFull = (AjaxControl.HyperLink)currentItem.FindControl("lnkFull");
         if (lnkFull != null)
         {
 
         }
-
-
-
+        HtmlGenericControl isnewdiv = (HtmlGenericControl)currentItem.FindControl("isnewdiv");
+        if (isnewdiv != null)
+        {
+            if (Convert.ToInt32(ItemIndex) > LastItemIndex)
+            {
+                isnewdiv.InnerHtml = "<div class='error'>New</div>";
+            }
+        }
     }
 
     private string Keywork

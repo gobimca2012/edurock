@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Security;
 using System.Diagnostics;
 using DataEntity;
+using DataAccess;
 namespace BusinessLogic
 {
     public class UserAuthontication
@@ -433,6 +434,47 @@ namespace BusinessLogic
                 return 0;
             }
         }
+        public void SavedViewedContentIndex(int Index)
+        {
+            HttpContext.Current.Response.Cookies[CookieName.VisitedConentIndex.ToString()].Value = Index.ToString();
+        }
+        public string GetViewedContentIndex()
+        {
+            if (HttpContext.Current.Request.Cookies[CookieName.VisitedConentIndex.ToString()] != null)
+            {
+                return HttpContext.Current.Request.Cookies[CookieName.VisitedConentIndex.ToString()].Value;
+            }
+            else
+            {
+                return "0";
+            }
+        }
+        #region Custom
+        public List<GetNewContentByIndexResult> GetNewContentByIndex(int LastItemIndex)
+        {
+            try
+            {
+
+                return new DataProvider().GetNewContentByIndex(LastItemIndex);
+            }
+            catch
+            {
+                return new List<GetNewContentByIndexResult>();
+            }
+        }
+        public List<GetNewContentByIndexResult> GetNewContentByIndex(int LastItemIndex, int PageSize, int PageNumber)
+        {
+            try
+            {
+
+                return new DataProvider().GetNewContentByIndex(LastItemIndex, PageSize, PageNumber);
+            }
+            catch
+            {
+                return new List<GetNewContentByIndexResult>();
+            }
+        }
+        #endregion
 
     }
 }

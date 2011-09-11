@@ -365,7 +365,7 @@ namespace BusinessLogic
 
             try
             {
-                new DataProvider().QuestionAdd(QuestionID, QuestionText, CustomHelper.ConvertMultitextToHtml(Description), LoginUserID, InstituteCourceID, InstituteSubjectID, tag, QuestionTypeID, QuestionStatusID, ModifiedDate);
+                new DataProvider().QuestionAdd(QuestionID, QuestionText, CustomHelper.ConvertMultitextToHtml(Description), LoginUserID, InstituteCourceID, InstituteSubjectID, tag, QuestionTypeID, QuestionStatusID,new UserAuthontication().InstituteID, ModifiedDate);
                 return true;
             }
             catch (Exception ex)

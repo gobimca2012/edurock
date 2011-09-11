@@ -22,7 +22,7 @@ namespace DataEntity
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="edu")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="crameasy")]
 	public partial class InstituteDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -72,12 +72,12 @@ namespace DataEntity
     partial void InsertHomeWork(HomeWork instance);
     partial void UpdateHomeWork(HomeWork instance);
     partial void DeleteHomeWork(HomeWork instance);
-    partial void InsertPortalSetting(PortalSetting instance);
-    partial void UpdatePortalSetting(PortalSetting instance);
-    partial void DeletePortalSetting(PortalSetting instance);
     partial void InsertInstituteCource(InstituteCource instance);
     partial void UpdateInstituteCource(InstituteCource instance);
     partial void DeleteInstituteCource(InstituteCource instance);
+    partial void InsertPortalSetting(PortalSetting instance);
+    partial void UpdatePortalSetting(PortalSetting instance);
+    partial void DeletePortalSetting(PortalSetting instance);
     #endregion
 		
 		public InstituteDataContext(string connection) : 
@@ -216,19 +216,19 @@ namespace DataEntity
 			}
 		}
 		
-		public System.Data.Linq.Table<PortalSetting> PortalSettings
-		{
-			get
-			{
-				return this.GetTable<PortalSetting>();
-			}
-		}
-		
 		public System.Data.Linq.Table<InstituteCource> InstituteCources
 		{
 			get
 			{
 				return this.GetTable<InstituteCource>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PortalSetting> PortalSettings
+		{
+			get
+			{
+				return this.GetTable<PortalSetting>();
 			}
 		}
 		
@@ -3379,9 +3379,9 @@ namespace DataEntity
 		
 		private bool _IsDeleted;
 		
-		private EntitySet<PortalSetting> _PortalSettings;
-		
 		private EntitySet<InstituteCource> _InstituteCources;
+		
+		private EntitySet<PortalSetting> _PortalSettings;
 		
 		private EntityRef<InstituteLoginUser> _InstituteLoginUser;
 		
@@ -3427,8 +3427,8 @@ namespace DataEntity
 		
 		public Institute()
 		{
-			this._PortalSettings = new EntitySet<PortalSetting>(new Action<PortalSetting>(this.attach_PortalSettings), new Action<PortalSetting>(this.detach_PortalSettings));
 			this._InstituteCources = new EntitySet<InstituteCource>(new Action<InstituteCource>(this.attach_InstituteCources), new Action<InstituteCource>(this.detach_InstituteCources));
+			this._PortalSettings = new EntitySet<PortalSetting>(new Action<PortalSetting>(this.attach_PortalSettings), new Action<PortalSetting>(this.detach_PortalSettings));
 			this._InstituteLoginUser = default(EntityRef<InstituteLoginUser>);
 			OnCreated();
 		}
@@ -3777,19 +3777,6 @@ namespace DataEntity
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institute_PortalSetting", Storage="_PortalSettings", ThisKey="InstituteID", OtherKey="InstituteID")]
-		public EntitySet<PortalSetting> PortalSettings
-		{
-			get
-			{
-				return this._PortalSettings;
-			}
-			set
-			{
-				this._PortalSettings.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institute_InstituteCource", Storage="_InstituteCources", ThisKey="InstituteID", OtherKey="InstituteID")]
 		public EntitySet<InstituteCource> InstituteCources
 		{
@@ -3800,6 +3787,19 @@ namespace DataEntity
 			set
 			{
 				this._InstituteCources.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institute_PortalSetting", Storage="_PortalSettings", ThisKey="InstituteID", OtherKey="InstituteID")]
+		public EntitySet<PortalSetting> PortalSettings
+		{
+			get
+			{
+				return this._PortalSettings;
+			}
+			set
+			{
+				this._PortalSettings.Assign(value);
 			}
 		}
 		
@@ -3857,18 +3857,6 @@ namespace DataEntity
 			}
 		}
 		
-		private void attach_PortalSettings(PortalSetting entity)
-		{
-			this.SendPropertyChanging();
-			entity.Institute = this;
-		}
-		
-		private void detach_PortalSettings(PortalSetting entity)
-		{
-			this.SendPropertyChanging();
-			entity.Institute = null;
-		}
-		
 		private void attach_InstituteCources(InstituteCource entity)
 		{
 			this.SendPropertyChanging();
@@ -3876,6 +3864,18 @@ namespace DataEntity
 		}
 		
 		private void detach_InstituteCources(InstituteCource entity)
+		{
+			this.SendPropertyChanging();
+			entity.Institute = null;
+		}
+		
+		private void attach_PortalSettings(PortalSetting entity)
+		{
+			this.SendPropertyChanging();
+			entity.Institute = this;
+		}
+		
+		private void detach_PortalSettings(PortalSetting entity)
 		{
 			this.SendPropertyChanging();
 			entity.Institute = null;
@@ -4111,181 +4111,6 @@ namespace DataEntity
 					this._ModifiedDate = value;
 					this.SendPropertyChanged("ModifiedDate");
 					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PortalSetting")]
-	public partial class PortalSetting : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _PortalSettingID;
-		
-		private int _InstituteID;
-		
-		private System.Xml.Linq.XElement _Settings;
-		
-		private System.DateTime _ModifiedDate;
-		
-		private EntityRef<Institute> _Institute;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPortalSettingIDChanging(System.Guid value);
-    partial void OnPortalSettingIDChanged();
-    partial void OnInstituteIDChanging(int value);
-    partial void OnInstituteIDChanged();
-    partial void OnSettingsChanging(System.Xml.Linq.XElement value);
-    partial void OnSettingsChanged();
-    partial void OnModifiedDateChanging(System.DateTime value);
-    partial void OnModifiedDateChanged();
-    #endregion
-		
-		public PortalSetting()
-		{
-			this._Institute = default(EntityRef<Institute>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PortalSettingID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid PortalSettingID
-		{
-			get
-			{
-				return this._PortalSettingID;
-			}
-			set
-			{
-				if ((this._PortalSettingID != value))
-				{
-					this.OnPortalSettingIDChanging(value);
-					this.SendPropertyChanging();
-					this._PortalSettingID = value;
-					this.SendPropertyChanged("PortalSettingID");
-					this.OnPortalSettingIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteID", DbType="Int NOT NULL")]
-		public int InstituteID
-		{
-			get
-			{
-				return this._InstituteID;
-			}
-			set
-			{
-				if ((this._InstituteID != value))
-				{
-					if (this._Institute.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnInstituteIDChanging(value);
-					this.SendPropertyChanging();
-					this._InstituteID = value;
-					this.SendPropertyChanged("InstituteID");
-					this.OnInstituteIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Settings", DbType="Xml NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public System.Xml.Linq.XElement Settings
-		{
-			get
-			{
-				return this._Settings;
-			}
-			set
-			{
-				if ((this._Settings != value))
-				{
-					this.OnSettingsChanging(value);
-					this.SendPropertyChanging();
-					this._Settings = value;
-					this.SendPropertyChanged("Settings");
-					this.OnSettingsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institute_PortalSetting", Storage="_Institute", ThisKey="InstituteID", OtherKey="InstituteID", IsForeignKey=true)]
-		public Institute Institute
-		{
-			get
-			{
-				return this._Institute.Entity;
-			}
-			set
-			{
-				Institute previousValue = this._Institute.Entity;
-				if (((previousValue != value) 
-							|| (this._Institute.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Institute.Entity = null;
-						previousValue.PortalSettings.Remove(this);
-					}
-					this._Institute.Entity = value;
-					if ((value != null))
-					{
-						value.PortalSettings.Add(this);
-						this._InstituteID = value.InstituteID;
-					}
-					else
-					{
-						this._InstituteID = default(int);
-					}
-					this.SendPropertyChanged("Institute");
 				}
 			}
 		}
@@ -4680,6 +4505,205 @@ namespace DataEntity
 		{
 			this.SendPropertyChanging();
 			entity.InstituteCource = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PortalSetting")]
+	public partial class PortalSetting : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _PortalSettingID;
+		
+		private int _InstituteID;
+		
+		private System.Xml.Linq.XElement _Settings;
+		
+		private string _ItemIndex;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private EntityRef<Institute> _Institute;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPortalSettingIDChanging(System.Guid value);
+    partial void OnPortalSettingIDChanged();
+    partial void OnInstituteIDChanging(int value);
+    partial void OnInstituteIDChanged();
+    partial void OnSettingsChanging(System.Xml.Linq.XElement value);
+    partial void OnSettingsChanged();
+    partial void OnItemIndexChanging(string value);
+    partial void OnItemIndexChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    #endregion
+		
+		public PortalSetting()
+		{
+			this._Institute = default(EntityRef<Institute>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PortalSettingID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid PortalSettingID
+		{
+			get
+			{
+				return this._PortalSettingID;
+			}
+			set
+			{
+				if ((this._PortalSettingID != value))
+				{
+					this.OnPortalSettingIDChanging(value);
+					this.SendPropertyChanging();
+					this._PortalSettingID = value;
+					this.SendPropertyChanged("PortalSettingID");
+					this.OnPortalSettingIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstituteID", DbType="Int NOT NULL")]
+		public int InstituteID
+		{
+			get
+			{
+				return this._InstituteID;
+			}
+			set
+			{
+				if ((this._InstituteID != value))
+				{
+					if (this._Institute.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnInstituteIDChanging(value);
+					this.SendPropertyChanging();
+					this._InstituteID = value;
+					this.SendPropertyChanged("InstituteID");
+					this.OnInstituteIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Settings", DbType="Xml NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Xml.Linq.XElement Settings
+		{
+			get
+			{
+				return this._Settings;
+			}
+			set
+			{
+				if ((this._Settings != value))
+				{
+					this.OnSettingsChanging(value);
+					this.SendPropertyChanging();
+					this._Settings = value;
+					this.SendPropertyChanged("Settings");
+					this.OnSettingsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemIndex", DbType="VarChar(50)")]
+		public string ItemIndex
+		{
+			get
+			{
+				return this._ItemIndex;
+			}
+			set
+			{
+				if ((this._ItemIndex != value))
+				{
+					this.OnItemIndexChanging(value);
+					this.SendPropertyChanging();
+					this._ItemIndex = value;
+					this.SendPropertyChanged("ItemIndex");
+					this.OnItemIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Institute_PortalSetting", Storage="_Institute", ThisKey="InstituteID", OtherKey="InstituteID", IsForeignKey=true)]
+		public Institute Institute
+		{
+			get
+			{
+				return this._Institute.Entity;
+			}
+			set
+			{
+				Institute previousValue = this._Institute.Entity;
+				if (((previousValue != value) 
+							|| (this._Institute.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Institute.Entity = null;
+						previousValue.PortalSettings.Remove(this);
+					}
+					this._Institute.Entity = value;
+					if ((value != null))
+					{
+						value.PortalSettings.Add(this);
+						this._InstituteID = value.InstituteID;
+					}
+					else
+					{
+						this._InstituteID = default(int);
+					}
+					this.SendPropertyChanged("Institute");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

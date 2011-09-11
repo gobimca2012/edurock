@@ -398,7 +398,8 @@ namespace BusinessLogic
 
             try
             {
-                new DataProvider().ArticleAdd(ArticleID, LoginUserID, Title, Description, MetaDescription, InstituteCourceID, InstituteSubjectID, Tag, Rating, ModifiedDate);
+                new DataProvider().ArticleAdd(ArticleID, LoginUserID, Title, Description, MetaDescription, InstituteCourceID, InstituteSubjectID, Tag, Rating,new UserAuthontication().InstituteID, ModifiedDate);
+                
                 return true;
             }
             catch (Exception ex)

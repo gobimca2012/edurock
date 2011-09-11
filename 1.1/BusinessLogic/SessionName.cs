@@ -28,4 +28,5 @@ namespace BusinessLogic
         PortalSetting
 
     }
+   
 }

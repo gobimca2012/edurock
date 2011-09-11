@@ -60,4 +60,10 @@ public partial class Collage_WidgetManager : WidgetManager
         JScripter.Widget widgetScriper = new JScripter.Widget(this.Page, false);
         widgetScriper.AddWidget(RightColumnID, GetWidgetContainnerID(WidgetID), ResolveUrl("~/User/Widget/html.aspx") + "?wid=" + CustomHelper.GetGuidString(WidgetID));
     }
+    protected void AddRightShout(object sender, AjaxControl.AjaxEventArg e)
+    {
+        Guid WidgetID = new WidgetHelper().AddShoutLWidget(WidgetPageID, WidgetTypeEnum.ShoutWidget, (int)WidgetColumnEnum.RightColumn);
+        JScripter.Widget widgetScriper = new JScripter.Widget(this.Page, false);
+        widgetScriper.AddWidget(RightColumnID, GetWidgetContainnerID(WidgetID), ResolveUrl("~/User/Widget/Shout.aspx") + string.Format("?icid={0}", InstituteCourseID.ToString()) + "&wid=" + CustomHelper.GetGuidString(WidgetID));
+    }
 }

@@ -17,10 +17,15 @@
             <div style="border-bottom: dashed 1px #cfcfcf;">
                 <%--<div class="sub" style="float: left; margin-left: 7px;">
                 </div>--%>
-                <div class="flico" style="float:left">
+                <div class="flico" style="float: left">
                 </div>
                 <div style="float: left; line-height: 24px; margin-left: 5px;">
-                    <aspajax:HyperLink ID="lnkFullvIew" runat="server" ContainnerID="#lander" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'> <div class="tp" rel='<%#Eval("MetaKeyword") %>'>   <%#Eval("CourceName")%></div></aspajax:HyperLink>
+                    <div class="fl">
+                        <aspajax:HyperLink ID="lnkFullvIew" runat="server" ContainnerID="#lander" NavigateUrl='<%#ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?icid=" + Eval("InstituteCourceID").ToString()%>'> <div class="tp" rel='<%#Eval("MetaKeyword") %>'>   <%#Eval("CourceName")%></div></aspajax:HyperLink></div>
+                    <div id="spcount" runat="server" class="fl" style="color:Red;font-weight:bold;">
+                    </div>
+                    <div class="clear">
+                    </div>
                 </div>
                 <div class="clear">
                 </div>

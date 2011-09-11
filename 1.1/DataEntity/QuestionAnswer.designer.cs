@@ -22,7 +22,7 @@ namespace DataEntity
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="edu")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="crameasy")]
 	public partial class QuestionAnswerDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -1256,6 +1256,8 @@ namespace DataEntity
 		
 		private int _QuestionStatusID;
 		
+		private string _ItemIndex;
+		
 		private System.DateTime _ModifiedDate;
 		
 		private EntitySet<Answer> _Answers;
@@ -1288,6 +1290,8 @@ namespace DataEntity
     partial void OnQuestionTypeIDChanged();
     partial void OnQuestionStatusIDChanging(int value);
     partial void OnQuestionStatusIDChanged();
+    partial void OnItemIndexChanging(string value);
+    partial void OnItemIndexChanged();
     partial void OnModifiedDateChanging(System.DateTime value);
     partial void OnModifiedDateChanged();
     #endregion
@@ -1504,6 +1508,26 @@ namespace DataEntity
 					this._QuestionStatusID = value;
 					this.SendPropertyChanged("QuestionStatusID");
 					this.OnQuestionStatusIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemIndex", DbType="VarChar(50)")]
+		public string ItemIndex
+		{
+			get
+			{
+				return this._ItemIndex;
+			}
+			set
+			{
+				if ((this._ItemIndex != value))
+				{
+					this.OnItemIndexChanging(value);
+					this.SendPropertyChanging();
+					this._ItemIndex = value;
+					this.SendPropertyChanged("ItemIndex");
+					this.OnItemIndexChanged();
 				}
 			}
 		}

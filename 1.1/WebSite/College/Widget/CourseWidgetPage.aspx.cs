@@ -72,6 +72,8 @@ public partial class College_Widget_CourseWidgetPage : WidgetContainner
                 objWidgetScript.AddWidget(RightColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/AllContent.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
             if (wd.ContentType == (int)WidgetTypeEnum.UserInfo)
                 objWidgetScript.AddWidget(RightColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/PublicUserInfoView.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID));
+            if (wd.ContentType == (int)WidgetTypeEnum.ShoutWidget)
+                objWidgetScript.AddWidget(RightColumnID, GetWidgetBoxID(wd.WidgetID), ResolveUrl("~/User/Widget/shout.aspx") + "?wid=" + CustomHelper.GetGuidString(wd.WidgetID) + string.Format("&icid={0}", InstituteCourseID.ToString()));
         }
     }
     protected override void CreateControls(Guid pageID)

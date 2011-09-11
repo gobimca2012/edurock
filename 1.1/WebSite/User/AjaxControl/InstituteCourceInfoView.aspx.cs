@@ -11,7 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using BusinessLogic;
-
+using DataEntity;
+using System.Collections.Generic;
 public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
 {
 
@@ -40,7 +41,7 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
 
         {
             BindList();
-          
+
         }
 
     }
@@ -50,7 +51,7 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
         ListInstituteCource.DataSource = new InstituteCourceController().GetInstituteCourseByLoginUserViewAccess(new UserAuthontication().LoggedInUserID, new UserAuthontication().UserInstituteID);
         ListInstituteCource.DataBind();
     }
- 
+
     protected override void OnAjaxListViewCommand(AjaxListViewCommandArg e)
     {
         if (e.Command.Contains("delete"))
@@ -60,12 +61,22 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
         }
         base.OnAjaxListViewCommand(e);
     }
-
+    private List<GetNewContentByIndexResult> NewContentIndex
+    {
+        get
+        {
+            UserAuthontication uauth = new UserAuthontication();
+            var newcontentIndex = uauth.GetNewContentByIndex(Convert.ToInt32(uauth.GetViewedContentIndex()));
+            return newcontentIndex;
+        }
+    }
     protected void ListInstituteCourceOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
         ListViewDataItem currentItem = (ListViewDataItem)e.Item;
         string InstituteCourceID = ListInstituteCource.DataKeys[currentItem.DataItemIndex]["InstituteCourceID"].ToString();
         AjaxControl.HyperLink lnkFullvIew = (AjaxControl.HyperLink)currentItem.FindControl("lnkFullvIew");
+       HtmlGenericControl spcount=(HtmlGenericControl) currentItem.FindControl("spcount");
+        
         if (lnkFullvIew != null)
         {
             if(LoginUserID>0)
@@ -73,10 +84,8 @@ public partial class College_Ajaxer_InstituteCourceInfoView : AjaxPage
             else
                 lnkFullvIew.NavigateUrl = ResolveUrl("~/User/AjaxControl/Lander.aspx") + "?icid=" + InstituteCourceID;
         }
-            
-
-
-
+        int count = (from p in NewContentIndex where p.InstituteCourceID.ToString() == InstituteCourceID select p).ToList().Count;
+        spcount.InnerText =  "(" + count.ToString() + ")";
     }
 
 

@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="edu" Class="QuestionAnswerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="crameasy" Class="QuestionAnswerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="dbo.LoginUser" Member="QALoginUsers">
     <Type Name="QALoginUser">
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -9,8 +8,8 @@
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="QALoginUser_Answer" Member="Answers" OtherKey="LoginUserID" Type="Answer" />
-      <Association Name="QALoginUser_Question" Member="Questions" OtherKey="LoginUserID" Type="Question" />
+      <Association Name="QALoginUser_Answer" Member="Answers" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Answer" />
+      <Association Name="QALoginUser_Question" Member="Questions" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="Question" />
     </Type>
   </Table>
   <Table Name="dbo.AnswerState" Member="AnswerStates">
@@ -19,7 +18,7 @@
       <Column Name="AnswerStateText" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="AnswerState_Answer" Member="Answers" OtherKey="AnswerStateID" Type="Answer" />
+      <Association Name="AnswerState_Answer" Member="Answers" ThisKey="AnswerStateID" OtherKey="AnswerStateID" Type="Answer" />
     </Type>
   </Table>
   <Table Name="dbo.QuestionType" Member="QuestionTypes">
@@ -28,7 +27,7 @@
       <Column Name="QuestionTypeTnext" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="QuestionType_Question" Member="Questions" OtherKey="QuestionTypeID" Type="Question" />
+      <Association Name="QuestionType_Question" Member="Questions" ThisKey="QuestionTypeID" OtherKey="QuestionTypeID" Type="Question" />
     </Type>
   </Table>
   <Table Name="dbo.QuestionStatus" Member="QuestionStatus">
@@ -49,9 +48,9 @@
       <Column Name="LoginUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AnswerRate" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="AnswerState_Answer" Member="AnswerState" ThisKey="AnswerStateID" Type="AnswerState" IsForeignKey="true" />
-      <Association Name="QALoginUser_Answer" Member="QALoginUser" ThisKey="LoginUserID" Type="QALoginUser" IsForeignKey="true" />
-      <Association Name="Question_Answer" Member="Question" ThisKey="QuestionID" Type="Question" IsForeignKey="true" />
+      <Association Name="AnswerState_Answer" Member="AnswerState" ThisKey="AnswerStateID" OtherKey="AnswerStateID" Type="AnswerState" IsForeignKey="true" />
+      <Association Name="QALoginUser_Answer" Member="QALoginUser" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="QALoginUser" IsForeignKey="true" />
+      <Association Name="Question_Answer" Member="Question" ThisKey="QuestionID" OtherKey="QuestionID" Type="Question" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Question" Member="Questions">
@@ -66,10 +65,11 @@
       <Column Name="tag" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="QuestionTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="QuestionStatusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemIndex" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Question_Answer" Member="Answers" OtherKey="QuestionID" Type="Answer" />
-      <Association Name="QALoginUser_Question" Member="QALoginUser" ThisKey="LoginUserID" Type="QALoginUser" IsForeignKey="true" />
-      <Association Name="QuestionType_Question" Member="QuestionType" ThisKey="QuestionTypeID" Type="QuestionType" IsForeignKey="true" />
+      <Association Name="Question_Answer" Member="Answers" ThisKey="QuestionID" OtherKey="QuestionID" Type="Answer" />
+      <Association Name="QALoginUser_Question" Member="QALoginUser" ThisKey="LoginUserID" OtherKey="LoginUserID" Type="QALoginUser" IsForeignKey="true" />
+      <Association Name="QuestionType_Question" Member="QuestionType" ThisKey="QuestionTypeID" OtherKey="QuestionTypeID" Type="QuestionType" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetAnswerByQuestionID" Method="GetAnswerByQuestionID">

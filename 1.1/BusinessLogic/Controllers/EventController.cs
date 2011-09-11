@@ -535,7 +535,7 @@ namespace BusinessLogic
 
             try
             {
-                new DataProvider().EventAdd(EventID, LoginUserID, Title, Description, MetaDescription, StartDate, EndDate, InstituteCourceID, InstituteSubjectID, Tag, ContactPerson, ContactEmail, ContactPhone, ModifiedDate);
+                new DataProvider().EventAdd(EventID, LoginUserID, Title, Description, MetaDescription, StartDate, EndDate, InstituteCourceID, InstituteSubjectID, Tag, ContactPerson, ContactEmail, ContactPhone,new UserAuthontication().InstituteID, ModifiedDate);
                 return true;
             }
             catch (Exception ex)

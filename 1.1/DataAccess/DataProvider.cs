@@ -431,56 +431,6 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
 
-        public int ExamAdd(string ExamName, string SubjectName, int InstituteCourceID, string Description, int LoginUserID, DateTime ModifiedDate, string ExamTime, bool IsActive, int RequirePecentage, DateTime StartDate, DateTime EndDate)
-        {
-            Exam ObjExam = new Exam();
-
-
-
-            ObjExam.ExamName = ExamName;
-
-
-            ObjExam.SubjectName = SubjectName;
-
-
-            ObjExam.InstituteCourceID = InstituteCourceID;
-
-
-           
-
-
-            ObjExam.Description = Description;
-
-
-            ObjExam.LoginUserID = LoginUserID;
-
-
-            ObjExam.ModifiedDate = ModifiedDate;
-
-
-            ObjExam.ExamTime = ExamTime;
-
-
-            ObjExam.IsActive = IsActive;
-
-
-            ObjExam.RequirePecentage = RequirePecentage;
-
-
-            ObjExam.StartDate = StartDate;
-
-
-            ObjExam.EndDate = EndDate;
-
-            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
-
-            db.DeferredLoadingEnabled = false;
-            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-            db.Exams.InsertOnSubmit(ObjExam);
-            db.SubmitChanges();
-            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
-            return ObjExam.ExamID;
-        }
         public int ExamAdd(string ExamName, string SubjectName, int InstituteCourceID, int InstituteSubjectID, string Description, int LoginUserID, DateTime ModifiedDate, string ExamTime, bool IsActive, int RequirePecentage, DateTime StartDate, DateTime EndDate)
         {
             Exam ObjExam = new Exam();
@@ -532,6 +482,56 @@ namespace DataAccess
             return ObjExam.ExamID;
         }
 
+        public int ExamAdd(string ExamName, string SubjectName, int InstituteCourceID, string Description, int LoginUserID, DateTime ModifiedDate, string ExamTime, bool IsActive, int RequirePecentage, DateTime StartDate, DateTime EndDate)
+        {
+            Exam ObjExam = new Exam();
+
+
+
+            ObjExam.ExamName = ExamName;
+
+
+            ObjExam.SubjectName = SubjectName;
+
+
+            ObjExam.InstituteCourceID = InstituteCourceID;
+
+
+            // ObjExam.InstituteSubjectID = InstituteSubjectID;
+
+
+            ObjExam.Description = Description;
+
+
+            ObjExam.LoginUserID = LoginUserID;
+
+
+            ObjExam.ModifiedDate = ModifiedDate;
+
+
+            ObjExam.ExamTime = ExamTime;
+
+
+            ObjExam.IsActive = IsActive;
+
+
+            ObjExam.RequirePecentage = RequirePecentage;
+
+
+            ObjExam.StartDate = StartDate;
+
+
+            ObjExam.EndDate = EndDate;
+
+            OnlineExaminationDataContext db = new OnlineExaminationDataContext();
+
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.Exams.InsertOnSubmit(ObjExam);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+            return ObjExam.ExamID;
+        }
 
 
         public List<Exam> ExamGet(int PageSize, int PageNumber)
@@ -1048,7 +1048,6 @@ namespace DataAccess
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
 
-
         public void ExamUpdateByExamID(int ExamID, string ExamName, string SubjectName, int InstituteCourceID, string Description, int LoginUserID, DateTime ModifiedDate, string ExamTime, bool IsActive, int RequirePecentage, DateTime StartDate, DateTime EndDate)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -1058,7 +1057,7 @@ namespace DataAccess
             data.ExamName = ExamName;
             data.SubjectName = SubjectName;
             data.InstituteCourceID = InstituteCourceID;
-          
+            //data.InstituteSubjectID = InstituteSubjectID;
             data.Description = Description;
             data.LoginUserID = LoginUserID;
             data.ModifiedDate = ModifiedDate;
@@ -1071,6 +1070,7 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
+
 
 
 
@@ -3633,7 +3633,7 @@ namespace DataAccess
             }
             return "";
         }
-        public int UserAdd(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite,string MobileNumber1,string MobileNumber2,string LandlineNumber1,string LandlineNumber2)
+        public int UserAdd(int LoginUserID, string FirstName, string LastName, string MiddleName, DateTime BirthDate, string Address1, string Address2, string City, string State, string Country, string WebSite, string MobileNumber1, string MobileNumber2, string LandlineNumber1, string LandlineNumber2)
         {
             UserDataContext db = new UserDataContext();
             db.DeferredLoadingEnabled = false;
@@ -3781,6 +3781,8 @@ namespace DataAccess
 
 
         }
+
+
         #endregion
 
 
@@ -8166,6 +8168,61 @@ namespace DataAccess
 
             ObjQuestion.ModifiedDate = ModifiedDate;
 
+            QuestionAnswerDataContext db = new QuestionAnswerDataContext();
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+
+            db.Questions.InsertOnSubmit(ObjQuestion);
+            db.SubmitChanges();
+            UserDataContext dbuser = new UserDataContext();
+            Share objShare = new Share();
+            objShare.ModifiedDate = DateTime.Now;
+            objShare.ObjectID = QuestionID.ToString();
+            objShare.ObjectType = (int)ObjectEnum.Question;
+            objShare.ShareID = Guid.NewGuid();
+            dbuser.Shares.InsertOnSubmit(objShare);
+
+
+            ShareUser objShareUser = new ShareUser();
+            objShareUser.EnableAdd = false;
+            objShareUser.EnableDelete = false;
+            objShareUser.EnableEdit = false;
+            objShareUser.EnableEditByLoggedIn = false;
+            objShareUser.EnableView = false;
+            objShareUser.LoginUserID = LoginUserID;
+            objShareUser.ModifiedDate = DateTime.Now;
+            objShareUser.ShareID = objShare.ShareID;
+            objShareUser.ShareUserID = Guid.NewGuid();
+            dbuser.ShareUsers.InsertOnSubmit(objShareUser);
+
+            dbuser.SubmitChanges();
+
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+        public void QuestionAdd(Guid QuestionID, string QuestionText, string Description, int LoginUserID, int InstituteCourceID, int InstituteSubjectID, string tag, int QuestionTypeID, int QuestionStatusID,int InstituteID, DateTime ModifiedDate)
+        {
+            Question ObjQuestion = new Question();
+
+            ObjQuestion.QuestionID = QuestionID;
+
+            ObjQuestion.QuestionText = QuestionText;
+
+            ObjQuestion.Description = Description;
+
+            ObjQuestion.LoginUserID = LoginUserID;
+            ObjQuestion.EditLoginUserID = LoginUserID;
+
+            ObjQuestion.InstituteCourceID = InstituteCourceID;
+            ObjQuestion.InstituteSubjectID = InstituteSubjectID;
+
+            ObjQuestion.tag = tag;
+
+            ObjQuestion.QuestionTypeID = QuestionTypeID;
+
+            ObjQuestion.QuestionStatusID = QuestionStatusID;
+
+            ObjQuestion.ModifiedDate = ModifiedDate;
+            ObjQuestion.ItemIndex = IncreateAndGetItemIndex(InstituteID).ToString();
             QuestionAnswerDataContext db = new QuestionAnswerDataContext();
             db.DeferredLoadingEnabled = false;
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -13413,6 +13470,46 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
+        public void DocumentAdd(Guid DocumentID, string Name, string Description, string MetaDescription, string Tag, int LoginUserID, int Rating, string FilePath, int DocumentType, int InstituteCourceID, int InstituteSubjectID,int InstituteID, DateTime ModifiedDate)
+        {
+            Document ObjDocument = new Document();
+
+            ObjDocument.DocumentID = DocumentID;
+
+            ObjDocument.Name = Name;
+
+            ObjDocument.Description = Description;
+
+            ObjDocument.MetaDescription = MetaDescription;
+
+            ObjDocument.Tag = Tag;
+
+            ObjDocument.LoginUserID = LoginUserID;
+            ObjDocument.EditLoginUserID = LoginUserID;
+
+            ObjDocument.Rating = Rating;
+
+            ObjDocument.FilePath = FilePath;
+
+            ObjDocument.DocumentType = DocumentType;
+            ObjDocument.ItemIndex = IncreateAndGetItemIndex(InstituteID).ToString();
+            ObjDocument.ModifiedDate = ModifiedDate;
+
+            DocumentCource objDcource = new DocumentCource();
+            objDcource.DocumentCourceID = Guid.NewGuid();
+            objDcource.DocumentID = DocumentID;
+            objDcource.InstituteCourceID = InstituteCourceID;
+            objDcource.ModifiedDate = DateTime.Now;
+            objDcource.SubjectID = InstituteSubjectID;
+
+            UserDataContext db = new UserDataContext();
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.DocumentCources.InsertOnSubmit(objDcource);
+            db.Documents.InsertOnSubmit(ObjDocument);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
         public void DocumentDeletebyDocumentID(Guid DocumentID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
@@ -13449,7 +13546,7 @@ namespace DataAccess
             db.LoadOptions = option;
             db.ObjectTrackingEnabled = false;
             db.DeferredLoadingEnabled = false;
-            var data = (from p in db.DocumentCources where p.InstituteCourceID == InstituteCourceID && p.Document.DocumentType == DocumentType select p.Document).ToList();
+            var data = (from p in db.DocumentCources where p.InstituteCourceID == InstituteCourceID && p.Document.DocumentType == DocumentType orderby p.ModifiedDate descending select p.Document).ToList();
             //var data = (from p in db.Documents where p.DocumentType == DocumentType && p.DocumentCources select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             return data;
@@ -15360,6 +15457,41 @@ namespace DataAccess
             db.SubmitChanges();
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
+        public void ArticleAdd(Guid ArticleID, int LoginUserID, string Title, string Description, string MetaDescription, int InstituteCourceID, int InstituteSubjectID, string Tag, int Rating,int InstituteID, DateTime ModifiedDate)
+        {
+            Article ObjArticle = new Article();
+
+            ObjArticle.ArticleID = ArticleID;
+
+            ObjArticle.LoginUserID = LoginUserID;
+            ObjArticle.EditLoginUserID = LoginUserID;
+
+            ObjArticle.Title = Title;
+
+            ObjArticle.Description = Description;
+
+            ObjArticle.MetaDescription = MetaDescription;
+
+            ObjArticle.InstituteCourceID = InstituteCourceID;
+
+            ObjArticle.InstituteSubjectID = InstituteSubjectID;
+
+            ObjArticle.Tag = Tag;
+
+            ObjArticle.Rating = Rating;
+
+            ObjArticle.ModifiedDate = ModifiedDate;
+            ObjArticle.ItemIndex = IncreateAndGetItemIndex(InstituteID).ToString();
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.Articles.InsertOnSubmit(ObjArticle);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
 
         public Guid ArticleAdd(int LoginUserID, string Title, string Description, string MetaDescription, int InstituteCourceID, int InstituteSubjectID, string Tag, int Rating, DateTime ModifiedDate)
         {
@@ -16418,6 +16550,49 @@ namespace DataAccess
 
             ObjEvent.ModifiedDate = ModifiedDate;
 
+            UserDataContext db = new UserDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            db.LoadOptions = option;
+
+            db.DeferredLoadingEnabled = false;
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            db.Events.InsertOnSubmit(ObjEvent);
+            db.SubmitChanges();
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
+        public void EventAdd(Guid EventID, int LoginUserID, string Title, string Description, string MetaDescription, DateTime StartDate, DateTime EndDate, int InstituteCourceID, int InstituteSubjectID, string Tag, string ContactPerson, string ContactEmail, string ContactPhone,int InstituteID, DateTime ModifiedDate)
+        {
+            Event ObjEvent = new Event();
+
+            ObjEvent.EventID = EventID;
+
+            ObjEvent.LoginUserID = LoginUserID;
+            ObjEvent.EditLoginUserID = LoginUserID;
+
+            ObjEvent.Title = Title;
+
+            ObjEvent.Description = Description;
+
+            ObjEvent.MetaDescription = MetaDescription;
+
+            ObjEvent.StartDate = StartDate;
+
+            ObjEvent.EndDate = EndDate;
+
+            ObjEvent.InstituteCourceID = InstituteCourceID;
+
+            ObjEvent.InstituteSubjectID = InstituteSubjectID;
+
+            ObjEvent.Tag = Tag;
+
+            ObjEvent.ContactPerson = ContactPerson;
+
+            ObjEvent.ContactEmail = ContactEmail;
+
+            ObjEvent.ContactPhone = ContactPhone;
+
+            ObjEvent.ModifiedDate = ModifiedDate;
+            ObjEvent.ItemIndex = IncreateAndGetItemIndex(InstituteID).ToString();
             UserDataContext db = new UserDataContext();
             DataLoadOptions option = new DataLoadOptions();
             db.LoadOptions = option;
@@ -18011,7 +18186,7 @@ namespace DataAccess
             {
 
                 var data = dataBunch[0];
-                if (data.RattingUsers.Select(p=>p.RatterID==RatterID).ToList().Count==0)
+                if (data.RattingUsers.Select(p => p.RatterID == RatterID).ToList().Count == 0)
                 {
                     data.Rating = data.Rating + Rating;
                     data.ModifiedDate = DateTime.Now;
@@ -18703,9 +18878,104 @@ namespace DataAccess
 
         #endregion
         #region CustomPortalSetting
+        public void IncreateItemIndex(int InstituteID)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            PortalSetting ObjPortalSetting = new PortalSetting();
+            db.LoadOptions = option;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.PortalSettings where p.InstituteID == InstituteID select p).ToList();
+            if (data.Count > 0)
+            {
+                if (data[0].ItemIndex != null)
+                    data[0].ItemIndex = (Convert.ToInt32(data[0].ItemIndex) + 1).ToString();
+                else
+                    data[0].ItemIndex = "1";
+                db.SubmitChanges();
+            }
+            else
+            {
+                data[0].ItemIndex = "1";
+                db.SubmitChanges();
+
+            }
+
+        }
+        public int IncreateAndGetItemIndex(int InstituteID)
+        {
+
+            InstituteDataContext db = new InstituteDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            PortalSetting ObjPortalSetting = new PortalSetting();
+            db.LoadOptions = option;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.PortalSettings where p.InstituteID == InstituteID select p).ToList();
+            if (data.Count > 0)
+            {
+                if (data[0].ItemIndex != null)
+                {
+                    data[0].ItemIndex = (Convert.ToInt32(data[0].ItemIndex) + 1).ToString();
+                    db.SubmitChanges();
+                    return Convert.ToInt32(data[0].ItemIndex);
+                }
+                else
+                {
+                    data[0].ItemIndex = "1";
+                    db.SubmitChanges();
+                    return 1;
+                }
+            }
+            else
+            {
+                data[0].ItemIndex = "1";
+                db.SubmitChanges();
+                return 1;
+            }
+
+        }
+        public int GetLastItemIndex(int InstituteID)
+        {
+            InstituteDataContext db = new InstituteDataContext();
+            DataLoadOptions option = new DataLoadOptions();
+            PortalSetting ObjPortalSetting = new PortalSetting();
+            db.LoadOptions = option;
+            db.DeferredLoadingEnabled = false;
+            var data = (from p in db.PortalSettings where p.InstituteID == InstituteID select p).ToList();
+            if (data.Count > 0)
+            {
+                return Convert.ToInt32(data[0].ItemIndex);
+            }
+            else
+            {
+                data[0].ItemIndex = "1";
+                db.SubmitChanges();
+                return 1;
+            }
+        }
         #endregion
 
+        #region Custom SP
+        public List<GetNewContentByIndexResult> GetNewContentByIndex(int LastItemIndex)
+        {
 
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetNewContentByIndex(LastItemIndex).ToList();
+
+        }
+        public List<GetNewContentByIndexResult> GetNewContentByIndex(int LastItemIndex, int PageSize, int PageNumber)
+        {
+
+            UserDataContext db = new UserDataContext();
+            db.ObjectTrackingEnabled = false;
+            db.DeferredLoadingEnabled = false;
+            return db.GetNewContentByIndex(LastItemIndex).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+
+        }
+        #endregion
 
 
 
