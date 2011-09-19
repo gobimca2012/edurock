@@ -59,12 +59,14 @@
   <ItemGroup>
     <Compile Include="Cache\CacheEnum.cs" />
     <Compile Include="Cache\CacheHelper.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderItemController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PortalSettingController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductVersionController.cs" />
+    <Compile Include="Controllers\ShoppingController.cs" />
     <Compile Include="Controllers\VersionAttributeController.cs" />
     <Compile Include="Entity\UserFiles.cs" />
     <Compile Include="IWidgetPage.cs" />
@@ -160,6 +162,10 @@
     <ProjectReference Include="..\DataEntity\DataEntity.csproj">
       <Project>{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}</Project>
       <Name>DataEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{925363C1-F8FD-48C2-BBAE-AF3E0E1E2381}</Project>
+      <Name>DTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\JScripter\JScripter.csproj">
       <Project>{6E9EAAA3-3D77-4300-B1B4-88BFF9EA885D}</Project>

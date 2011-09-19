@@ -11,6 +11,7 @@ using Common;
 using System.Collections;
 using System.Xml;
 using System.Xml.Linq;
+using DTO;
 namespace DataAccess
 {
     public class DataProvider
@@ -386,7 +387,64 @@ namespace DataAccess
             data.Password = NewPassword;
             db.SubmitChanges();
         }
+        public int LoginUserAdd(RegisterCustomerDTO registerCustomerDto)
+        {
+            using (UserDataContext db = new UserDataContext())
+            {
+                StudentLogin ObjLoginUser = new StudentLogin();
 
+                ObjLoginUser.Username = registerCustomerDto.Username;
+
+                ObjLoginUser.Password = registerCustomerDto.Password;
+
+                ObjLoginUser.UserType = registerCustomerDto.UserType;
+
+                ObjLoginUser.UserId = registerCustomerDto.MemberShipUserID;
+
+                
+
+                ObjLoginUser.ModifiedDate = DateTime.Now;
+
+                ObjLoginUser.CreatedDate = DateTime.Now;
+
+                db.StudentLogins.InsertOnSubmit(ObjLoginUser);
+
+                db.SubmitChanges();
+
+                User objUser = new User();
+
+                objUser.Address1 = registerCustomerDto.Address1;
+
+                objUser.Address2 = registerCustomerDto.Address2;
+
+                objUser.City = registerCustomerDto.City;
+
+                objUser.Country = registerCustomerDto.Country;
+
+                objUser.Fax = registerCustomerDto.FaxNumber;
+
+                objUser.PhotoPath = "~/Images/DefaultAvtar.png";
+
+                objUser.FirstName = registerCustomerDto.FirstName;
+                objUser.LandLineNumber1 = registerCustomerDto.LandLineNumber;
+                objUser.LastName = registerCustomerDto.LastName;
+                objUser.LoginUserID = ObjLoginUser.LoginUserID;
+                objUser.MiddleName = registerCustomerDto.MiddleName;
+                objUser.MobileNumber1 = registerCustomerDto.MobileNumber;
+                objUser.ModifiedDate = DateTime.Now;
+                objUser.State = registerCustomerDto.State;
+                
+
+
+
+                if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+                
+                db.Users .InsertOnSubmit(objUser);
+                db.SubmitChanges();
+                if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+                return ObjLoginUser.LoginUserID;
+            }
+        }
         #endregion
 
 

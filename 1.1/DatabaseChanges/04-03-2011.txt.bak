@@ -1,0 +1,32 @@
+USE [Crameasy]
+GO
+/****** Object:  UserDefinedFunction [dbo].[GetAnswerStatus]    Script Date: 04/06/2011 13:17:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER Function [dbo].[GetAnswerStatus](@status as int)
+RETURNS varchar(1000)
+as
+Begin
+
+declare @statustext as varchar(1000)
+set @statustext=''
+
+
+SELECT    @statustext=AnswerStateText
+FROM         AnswerState
+WHERE  AnswerStateID=@status
+
+if(@statustext='' AND @statustext='1')
+BEGIN
+set @statustext='Accepted'
+END
+ELSE
+BEGIN
+set @statustext='Rejected'
+END
+
+
+return @statustext
+END

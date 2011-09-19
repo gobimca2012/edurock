@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8A0AE474-D87D-415B-A5D4-7AC5461431FE}</ProjectGuid>
+    <ProjectGuid>{5985E8BE-C5F6-4BE7-9B6E-68C2CBD66E94}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataAccess</RootNamespace>
-    <AssemblyName>DataAccess</AssemblyName>
+    <RootNamespace>VT3.PayPal</RootNamespace>
+    <AssemblyName>VT3.Paypal</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -39,9 +39,6 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -53,28 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataProvider.cs" />
-    <Compile Include="Payment\DataProvider.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="PayPalPDT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingProvider.cs" />
-    <Compile Include="Widget\DataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{DA82B465-2DF2-4D7C-81A9-1E617420A69C}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataEntity\DataEntity.csproj">
-      <Project>{C4EC5AE9-1A5D-4F8D-92B3-2DD58411A2BA}</Project>
-      <Name>DataEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DTO\DTO.csproj">
-      <Project>{925363C1-F8FD-48C2-BBAE-AF3E0E1E2381}</Project>
-      <Name>DTO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logger\Logger.csproj">
-      <Project>{E9D7B77D-9F9E-4B81-8078-8A7602AB3CD7}</Project>
-      <Name>Logger</Name>
+    <ProjectReference Include="..\VT3.Common\VT3.Common.csproj">
+      <Project>{4612ABCD-82AC-4DCC-84DD-309FC59588CA}</Project>
+      <Name>VT3.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

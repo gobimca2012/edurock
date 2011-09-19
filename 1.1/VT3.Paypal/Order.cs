@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PayPal
+namespace VT3.PayPal
 {
     public class PayPalRequest
     {

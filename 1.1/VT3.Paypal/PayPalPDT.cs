@@ -7,9 +7,8 @@ using System.Web;
 using System.Net;
 using System.IO;
 using System.Configuration;
-using PayPal;
 
-namespace PayPal
+namespace VT3.PayPal
 {
     public class PayPalStandardPaymentProcessor
     {

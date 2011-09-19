@@ -4,6 +4,8 @@ using System.Data.Linq.Mapping;
 using System.Reflection;
 namespace DataEntity
 {
+   
+
     partial class OrderPaymentDataContext
     {
         public OrderPaymentDataContext() :

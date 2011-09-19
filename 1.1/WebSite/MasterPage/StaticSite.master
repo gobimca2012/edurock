@@ -14,13 +14,13 @@
             <div style="padding: 0px 10px;" class="menuc">
                 <ul>
                     <li>
-                        <asp:HyperLink ID="lnkHome" runat="server" CssClass="txt">Home</asp:HyperLink>
+                        <asp:HyperLink ID="lnkHome" runat="server" CssClass="txt" NavigateUrl="~/Index.aspx">Home</asp:HyperLink>
                     </li>
                     <li>
                         <asp:HyperLink ID="lnkFeature" runat="server" CssClass="txt" NavigateUrl="~/Features.aspx">Feature</asp:HyperLink>
                     </li>
                     <li>
-                        <asp:HyperLink ID="lnkPricing" runat="server" CssClass="txt" NavigateUrl="~/Pricing.aspx" >Pricing</asp:HyperLink>
+                        <asp:HyperLink ID="lnkPricing" runat="server" CssClass="txt" NavigateUrl="~/Pricing.aspx">Pricing</asp:HyperLink>
                     </li>
                     <li>
                         <asp:HyperLink ID="lnkResource" runat="server" CssClass="txt">Resources</asp:HyperLink>

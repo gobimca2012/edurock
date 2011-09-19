@@ -25,7 +25,6 @@
     color: #E5E5E5;
     font-family: "Lucida Grande" , "Lucida Sans Unicode" , "Helvetica Neue" ,Geneva, "Trebuchet MS" , "Lucida Sans" ,Tahoma, "DejaVu Sans" , "Bitstream Vera Sans" ,Helvetica,Verdana, "Verdana Ref" ,Arial,sans-serif;
     font-size: 13px;
-   
     margin: 0;
     padding: 0.3em 5px;
     text-shadow: 0 1px 2px black;
@@ -62,11 +61,11 @@
     min-height: 300px;
     padding: 0 40px 40px;
 }
-.roundallcorsmall, .collapsepan .panel, .footer,.grayround
+.roundallcorsmall, .collapsepan .panel, .footer, .grayround
 {
     -moz-border-radius: 5px 5px 5px 5px;
 }
-.collapsepan .panel, .footer,.grayround
+.collapsepan .panel, .footer, .grayround
 {
     background-attachment: scroll;
     background-color: #F1F1F1;
@@ -78,74 +77,96 @@
 }
 .grayround
 {
-    
 }
 .pricing li
 {
-    list-style:none;
+    list-style: none;
 }
 .price
 {
-    border-bottom:1px dotted #CFCFCF;
+    border-bottom: 1px dotted #CFCFCF;
 }
 .fl
 {
-    float:left;
+    float: left;
 }
 .fr
 {
-    float:right;
+    float: right;
 }
 .clear
 {
-    clear:both;
+    clear: both;
 }
-li.trial a {
--moz-border-radius:5px 5px 5px 5px;
-background:-moz-linear-gradient(100% 100% 90deg, #3391CC, #70B2DB) repeat scroll 0 0 #2872A1;
-border:1px solid #3391CC;
-color:#FFFFFF;
-display:block;
-font-size:14px;
-font-weight:bold;
-margin:10px auto;
-padding:5px 0;
-text-align:center;
-text-shadow:0 -1px 1px #444444;
-width:145px;
+li.trial a
+{
+    -moz-border-radius: 5px 5px 5px 5px;
+    background: -moz-linear-gradient(100% 100% 90deg, #3391CC, #70B2DB) repeat scroll 0 0 #2872A1;
+    border: 1px solid #3391CC;
+    color: #FFFFFF;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px auto;
+    padding: 5px 0;
+    text-align: center;
+    text-shadow: 0 -1px 1px #444444;
+    width: 145px;
 }
 a
 {
-    text-decoration:none;
+    text-decoration: none;
 }
-.helpertext {
-border-bottom:1px dashed #5899B9;
+.helpertext
+{
+    border-bottom: 1px dashed #5899B9;
 }
 .htu .grayround
 {
-    width:270px;
-    margin:0px 3px;
-    height:295px;
+    width: 270px;
+    margin: 0px 3px;
+    height: 295px;
 }
 
 /*** price tabel ************/
-.nctable tr, .nctable td {
-background:none repeat scroll 0 0 #BBE2FF;
-line-height:22px;
+.nctable tr, .nctable td
+{
+    background: none repeat scroll 0 0 #BBE2FF;
+    line-height: 22px;
 }
-.nctable .odd tr, .nctable .odd td {
-background:none repeat scroll 0 0 #BDE1A8;
-line-height:22px;
+.nctable .odd tr, .nctable .odd td
+{
+    background: none repeat scroll 0 0 #BDE1A8;
+    line-height: 22px;
 }
-.head {
-font-size:14px;
-font-weight:bold;
+.head
+{
+    font-size: 14px;
+    font-weight: bold;
 }
 /****************** end price  ************/
 /*  columns           */
-.colum1,.colum2,.colum3
+.colum1, .colum2, .colum3
 {
-    float:left;
-margin:0 5px;
-width:308px;
+    float: left;
+    margin: 0 5px;
+    width: 308px;
+}
+input[type="text"], input[type="password"], textarea
+{
+    background: url("images/txt.gif") repeat-x scroll 0 0 #FFFFFF;
+    border: 1px solid #999999;
+    padding: 5px 15px;
+}
+input[type="text"], input[type="password"], textarea, .btn, .smbtn
+{
+    border-radius: 20px 20px 20px 20px;
+}
+.totalbox
+{
+    width:500px;
+}
+.totalbox td
+{
+    text-align:right;
 }

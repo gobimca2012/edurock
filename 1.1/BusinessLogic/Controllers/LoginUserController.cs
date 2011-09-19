@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Logger;
 using System.Web.Security;
 using Common;
+using DTO;
 namespace BusinessLogic
 {
     public class LoginUserController
@@ -460,8 +461,7 @@ namespace BusinessLogic
                 }
                 return false;
             }
-        }
-      
+        }      
         public bool ChangePassword(int LoginUserID,string OldPassword, string newPassword)
         {
             try
@@ -603,6 +603,111 @@ namespace BusinessLogic
                 return StatusReturn;
             }
         }
+        public Dictionary<string, string> CreateUser(RegisterCustomerDTO registerCustomerDto)
+        {
+            Dictionary<string, string> StatusReturn = new Dictionary<string, string>();
+            try
+            {
+
+                MembershipCreateStatus status;
+                MembershipUser MemUser = Membership.CreateUser(registerCustomerDto.Username, registerCustomerDto.Password, registerCustomerDto.Email, "No Question", "No Answer", true, out status);
+                if (status == MembershipCreateStatus.Success)
+                {
+                    try
+                    {
+                        registerCustomerDto.MemberShipUserID=new Guid(MemUser.ProviderUserKey.ToString());
+                        int LoginUserID = Add(registerCustomerDto);
+                        if (LoginUserID == 0)
+                        {
+                            Membership.DeleteUser(MemUser.UserName);
+                        }
+                        StatusReturn.Add("loginuserid", LoginUserID.ToString());
+                        StatusReturn.Add("status", "success");
+                        return StatusReturn;
+                    }
+                    catch
+                    {
+                        Membership.DeleteUser(MemUser.UserName);
+                        StatusReturn.Add("status", "error");
+                        return StatusReturn;
+                    }
+
+                }
+                else if (status == MembershipCreateStatus.DuplicateUserName)
+                {
+                    StatusReturn.Add("status", "duplicateusername");
+                    return StatusReturn;
+                }
+                else if (status == MembershipCreateStatus.DuplicateEmail)
+                {
+                    StatusReturn.Add("status", "duplicateemail");
+                    return StatusReturn;
+                }
+                else
+                {
+                    StatusReturn.Add("status", "error");
+                    return StatusReturn;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.TimeLog.ErrorWrite("web service user create exception", e.Message, "0");
+                StatusReturn.Add("status", "error");
+                return StatusReturn;
+            }
+        }
+        //public Dictionary<string, string> CreateUser(RegisterCustomerDTO registerCustomerDTO,int UType)
+        //{
+        //    Dictionary<string, string> StatusReturn = new Dictionary<string, string>();
+        //    try
+        //    {
+
+        //        MembershipCreateStatus status;
+        //        MembershipUser MemUser = Membership.CreateUser(registerCustomerDTO.Username, registerCustomerDTO.Password,registerCustomerDTO.Email, "No Question", "No Answer", true, out status);
+        //        if (status == MembershipCreateStatus.Success)
+        //        {
+        //            try
+        //            {
+        //                int LoginUserID = Add(Username, Password, UType, new Guid(MemUser.ProviderUserKey.ToString()), DateTime.Now, DateTime.Now);
+        //                if (LoginUserID == 0)
+        //                {
+        //                    Membership.DeleteUser(MemUser.UserName);
+        //                }
+        //                StatusReturn.Add("loginuserid", LoginUserID.ToString());
+        //                StatusReturn.Add("status", "success");
+        //                return StatusReturn;
+        //            }
+        //            catch
+        //            {
+        //                Membership.DeleteUser(MemUser.UserName);
+        //                StatusReturn.Add("status", "error");
+        //                return StatusReturn;
+        //            }
+
+        //        }
+        //        else if (status == MembershipCreateStatus.DuplicateUserName)
+        //        {
+        //            StatusReturn.Add("status", "duplicateusername");
+        //            return StatusReturn;
+        //        }
+        //        else if (status == MembershipCreateStatus.DuplicateEmail)
+        //        {
+        //            StatusReturn.Add("status", "duplicateemail");
+        //            return StatusReturn;
+        //        }
+        //        else
+        //        {
+        //            StatusReturn.Add("status", "error");
+        //            return StatusReturn;
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Logger.TimeLog.ErrorWrite("web service user create exception", e.Message, "0");
+        //        StatusReturn.Add("status", "error");
+        //        return StatusReturn;
+        //    }
+        //}
         public Dictionary<string, string> CreateUser(string Username, string Password, string Email, int UType, int InstituteID, int InstituteCourceID)
         {
             Dictionary<string, string> StatusReturn = new Dictionary<string, string>();
@@ -760,11 +865,58 @@ namespace BusinessLogic
                 return false;
             }
         }
+        private int Add(RegisterCustomerDTO registerDto)
+        {
 
+            try
+            {
+                int ID = new DataProvider().LoginUserAdd(registerDto);
+                return ID;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" SaveAnswer: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return 0;
+            }
+        }
+        public NewUserResponseDTO RegisterNewCustomer(RegisterCustomerDTO registerCustomerDto)
+        {
+            NewUserResponseDTO dto = new NewUserResponseDTO();
+            registerCustomerDto.UserType = (int)UserTypeEnum.College;
+            Dictionary<string, string> status = CreateUser(registerCustomerDto);
+
+            if (status["status"].Contains("success"))
+            {
+                int loginUserId = Convert.ToInt32(status["loginuserid"]);
+                dto.UserID = loginUserId;
+                dto.Message = "User has been created successfully";
+                return dto;
+            }
+            else if (status["status"].Contains("duplicateusername"))
+            {
+                dto.Message = "Dupplicate Username";
+                return dto;
+            }
+            else if (status["status"].Contains("duplicateemail"))
+            {
+                dto.Message = "Dupplicate Email Address";
+                return dto;
+            }
+            else
+            {
+                dto.Message = "Un aspected Error";
+                return dto;
+            }
+        }
         #endregion
-    
 
 
+
+     
 
 
     }

@@ -10,7 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using PaypalPDT;
+using PayPal;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -34,7 +34,7 @@ public partial class PayPalPDTHandler : System.Web.UI.Page
                 {
                     decimal total = decimal.Parse(values["mc_gross"], new CultureInfo("en-US"));
                     string orderNumber = values["custom"];
-                    Order order = null;// OrderManager.GetOrderByID(Convert.ToInt32(orderNumber));
+                    PayPalRequest order = null;// OrderManager.GetOrderByID(Convert.ToInt32(orderNumber));
                     if (order != null)
                     {
                         string AVS = string.Empty;

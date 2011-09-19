@@ -15,19 +15,10 @@
                     <thead>
                         <tr>
                             <td>
-                                ProductVersionID
-                            </td>
-                            <td>
                                 ProductID
                             </td>
                             <td>
                                 Name
-                            </td>
-                            <td>
-                                Description
-                            </td>
-                            <td>
-                                ShortDescription
                             </td>
                             <td>
                                 IsRecuringPrice
@@ -46,19 +37,10 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <%#Eval("ProductVersionID") %>
-                    </td>
-                    <td>
                         <%#Eval("ProductID") %>
                     </td>
                     <td>
                         <%#Eval("Name") %>
-                    </td>
-                    <td>
-                        <%#Eval("Description") %>
-                    </td>
-                    <td>
-                        <%#Eval("ShortDescription") %>
                     </td>
                     <td>
                         <%#Eval("IsRecuringPrice") %>
@@ -76,9 +58,12 @@
                         <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/ShoppingCart/AjaxControl/ProductVersionInfo.aspx") + "?prvid=" + Eval("ProductVersionID")%>'
                             ContainnerID="#contentBox">Edit</aspajax:HyperLink>
                     </td>
-                     <td>
+                    <td>
                         <aspajax:HyperLink ID="lnkAttributeAdd" runat="server" NavigateUrl='<%#ResolveUrl("~/ShoppingCart/AjaxControl/VersionAttributeInfoView.aspx") + "?prvid=" + Eval("ProductVersionID")%>'
                             ContainnerID="#contentBox">Add Attribute</aspajax:HyperLink>
+                    </td>
+                    <td>
+                        <asp:HyperLink ID="lnkBuy" runat="server" NavigateUrl='<%#ResolveUrl("~/ShoppingCart/Order.aspx") + "?prvid=" + Eval("ProductVersionID")%>'>Buy</asp:HyperLink>
                     </td>
                 </tr>
             </ItemTemplate>

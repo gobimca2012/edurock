@@ -3,11 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PayPal
+namespace DTO
 {
-    public class PayPalRequest
+    public class OrderDTO
     {
         #region Property
+        public string Fax
+        {
+            get;
+            set;
+        }
+
+        public string ZipCode
+        {
+            get;
+            set;
+        }
+
+        public string MobileNumber
+        {
+            get;
+            set;
+        }
+
+        public string LandlineNumber
+        {
+            get;
+            set;
+        }
         public Guid OrderID
         {
             get;

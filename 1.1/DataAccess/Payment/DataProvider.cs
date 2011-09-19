@@ -24,7 +24,7 @@ namespace DataAccess.PaymentDB
                 DataLoadOptions option = new DataLoadOptions();
                 db.LoadOptions = option;
 
-                Order ObjOrder = new Order();
+                CustomerOrder ObjOrder = new CustomerOrder();
 
                 ObjOrder.OrderID = OrderID;
 
@@ -61,13 +61,13 @@ namespace DataAccess.PaymentDB
 
                 db.DeferredLoadingEnabled = false;
                 if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-                db.Orders.InsertOnSubmit(ObjOrder);
+                db.CustomerOrders.InsertOnSubmit(ObjOrder);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
         }
 
-        public void OrderAdd(Order order)
+        public void OrderAdd(CustomerOrder order)
         {
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
@@ -75,12 +75,12 @@ namespace DataAccess.PaymentDB
                 DataLoadOptions option = new DataLoadOptions();
                 db.LoadOptions = option;
 
-                Order ObjOrder = new Order();
+                CustomerOrder ObjOrder = new CustomerOrder();
 
                 ObjOrder = order;
                 db.DeferredLoadingEnabled = false;
                 if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-                db.Orders.InsertOnSubmit(ObjOrder);
+                db.CustomerOrders.InsertOnSubmit(ObjOrder);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -94,7 +94,7 @@ namespace DataAccess.PaymentDB
                 DataLoadOptions option = new DataLoadOptions();
                 db.LoadOptions = option;
 
-                Order ObjOrder = new Order();
+                CustomerOrder ObjOrder = new CustomerOrder();
 
 
 
@@ -146,7 +146,7 @@ namespace DataAccess.PaymentDB
 
                 db.DeferredLoadingEnabled = false;
                 if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
-                db.Orders.InsertOnSubmit(ObjOrder);
+                db.CustomerOrders.InsertOnSubmit(ObjOrder);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return ObjOrder.OrderID;
@@ -155,7 +155,7 @@ namespace DataAccess.PaymentDB
 
 
 
-        public List<Order> OrderGet(int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGet(int PageSize, int PageNumber)
         {
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
@@ -163,13 +163,13 @@ namespace DataAccess.PaymentDB
                 db.DeferredLoadingEnabled = false;
                 if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
                 db.ObjectTrackingEnabled = false;
-                var data = (from p in db.Orders select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGet()
+        public List<CustomerOrder> OrderGet()
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
@@ -177,7 +177,7 @@ namespace DataAccess.PaymentDB
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
                 db.ObjectTrackingEnabled = false;
-                var data = (from p in db.Orders select p).ToList();
+                var data = (from p in db.CustomerOrders select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
@@ -185,224 +185,224 @@ namespace DataAccess.PaymentDB
         }
 
 
-        public List<Order> OrderGetbyOrderID(Guid OrderID, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyOrderID(Guid OrderID, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.OrderID == OrderID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.OrderID == OrderID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyLoginUserID(int LoginUserID, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyLoginUserID(int LoginUserID, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.LoginUserID == LoginUserID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.LoginUserID == LoginUserID select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyFirstName(string FirstName, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyFirstName(string FirstName, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.FirstName == FirstName select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.FirstName == FirstName select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyLastName(string LastName, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyLastName(string LastName, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.LastName == LastName select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.LastName == LastName select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyPhoneNumber(string PhoneNumber, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyPhoneNumber(string PhoneNumber, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.PhoneNumber == PhoneNumber select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.PhoneNumber == PhoneNumber select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyEmail(string Email, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyEmail(string Email, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Email == Email select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.Email == Email select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyFax(string Fax, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyFax(string Fax, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Fax == Fax select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.Fax == Fax select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyAddress1(string Address1, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyAddress1(string Address1, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Address1 == Address1 select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.Address1 == Address1 select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyAddress2(string Address2, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyAddress2(string Address2, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Address2 == Address2 select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.Address2 == Address2 select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyCity(string City, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyCity(string City, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.City == City select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.City == City select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyState(string State, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyState(string State, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.State == State select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.State == State select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyCountry(string Country, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyCountry(string Country, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Country == Country select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.Country == Country select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyZipCode(string ZipCode, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyZipCode(string ZipCode, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.ZipCode == ZipCode select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.ZipCode == ZipCode select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyIsPaid(bool IsPaid, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyIsPaid(bool IsPaid, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.IsPaid == IsPaid select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.IsPaid == IsPaid select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyExpireDate(DateTime ExpireDate, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyExpireDate(DateTime ExpireDate, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.ExpireDate == ExpireDate select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.ExpireDate == ExpireDate select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
 
         }
 
-        public List<Order> OrderGetbyModifiedDate(DateTime ModifiedDate, int PageSize, int PageNumber)
+        public List<CustomerOrder> OrderGetbyModifiedDate(DateTime ModifiedDate, int PageSize, int PageNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.ModifiedDate == ModifiedDate select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
+                var data = (from p in db.CustomerOrders where p.ModifiedDate == ModifiedDate select p).Skip(PageNumber * PageSize).Take(PageSize).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
@@ -411,209 +411,209 @@ namespace DataAccess.PaymentDB
 
 
 
-        public List<Order> OrderGetbyOrderID(Guid OrderID)
+        public List<CustomerOrder> OrderGetbyOrderID(Guid OrderID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.OrderID == OrderID select p).ToList();
+                var data = (from p in db.CustomerOrders where p.OrderID == OrderID select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyLoginUserID(int LoginUserID)
+        public List<CustomerOrder> OrderGetbyLoginUserID(int LoginUserID)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.LoginUserID == LoginUserID select p).ToList();
+                var data = (from p in db.CustomerOrders where p.LoginUserID == LoginUserID select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyFirstName(string FirstName)
+        public List<CustomerOrder> OrderGetbyFirstName(string FirstName)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.FirstName == FirstName select p).ToList();
+                var data = (from p in db.CustomerOrders where p.FirstName == FirstName select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyLastName(string LastName)
+        public List<CustomerOrder> OrderGetbyLastName(string LastName)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.LastName == LastName select p).ToList();
+                var data = (from p in db.CustomerOrders where p.LastName == LastName select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyPhoneNumber(string PhoneNumber)
+        public List<CustomerOrder> OrderGetbyPhoneNumber(string PhoneNumber)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.PhoneNumber == PhoneNumber select p).ToList();
+                var data = (from p in db.CustomerOrders where p.PhoneNumber == PhoneNumber select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyEmail(string Email)
+        public List<CustomerOrder> OrderGetbyEmail(string Email)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Email == Email select p).ToList();
+                var data = (from p in db.CustomerOrders where p.Email == Email select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyFax(string Fax)
+        public List<CustomerOrder> OrderGetbyFax(string Fax)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Fax == Fax select p).ToList();
+                var data = (from p in db.CustomerOrders where p.Fax == Fax select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyAddress1(string Address1)
+        public List<CustomerOrder> OrderGetbyAddress1(string Address1)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Address1 == Address1 select p).ToList();
+                var data = (from p in db.CustomerOrders where p.Address1 == Address1 select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyAddress2(string Address2)
+        public List<CustomerOrder> OrderGetbyAddress2(string Address2)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Address2 == Address2 select p).ToList();
+                var data = (from p in db.CustomerOrders where p.Address2 == Address2 select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyCity(string City)
+        public List<CustomerOrder> OrderGetbyCity(string City)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.City == City select p).ToList();
+                var data = (from p in db.CustomerOrders where p.City == City select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyState(string State)
+        public List<CustomerOrder> OrderGetbyState(string State)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.State == State select p).ToList();
+                var data = (from p in db.CustomerOrders where p.State == State select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyCountry(string Country)
+        public List<CustomerOrder> OrderGetbyCountry(string Country)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Country == Country select p).ToList();
+                var data = (from p in db.CustomerOrders where p.Country == Country select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyZipCode(string ZipCode)
+        public List<CustomerOrder> OrderGetbyZipCode(string ZipCode)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.ZipCode == ZipCode select p).ToList();
+                var data = (from p in db.CustomerOrders where p.ZipCode == ZipCode select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyIsPaid(bool IsPaid)
+        public List<CustomerOrder> OrderGetbyIsPaid(bool IsPaid)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.IsPaid == IsPaid select p).ToList();
+                var data = (from p in db.CustomerOrders where p.IsPaid == IsPaid select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyExpireDate(DateTime ExpireDate)
+        public List<CustomerOrder> OrderGetbyExpireDate(DateTime ExpireDate)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.ExpireDate == ExpireDate select p).ToList();
+                var data = (from p in db.CustomerOrders where p.ExpireDate == ExpireDate select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
         }
 
-        public List<Order> OrderGetbyModifiedDate(DateTime ModifiedDate)
+        public List<CustomerOrder> OrderGetbyModifiedDate(DateTime ModifiedDate)
         {
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.ModifiedDate == ModifiedDate select p).ToList();
+                var data = (from p in db.CustomerOrders where p.ModifiedDate == ModifiedDate select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;
             }
@@ -627,8 +627,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.OrderID == OrderID select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.OrderID == OrderID select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -640,8 +640,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.LoginUserID == LoginUserID select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.LoginUserID == LoginUserID select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -653,8 +653,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.FirstName == FirstName select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.FirstName == FirstName select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -666,8 +666,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.LastName == LastName select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.LastName == LastName select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -679,8 +679,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.PhoneNumber == PhoneNumber select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.PhoneNumber == PhoneNumber select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -692,8 +692,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Email == Email select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.Email == Email select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -705,8 +705,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Fax == Fax select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.Fax == Fax select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -718,8 +718,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Address1 == Address1 select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.Address1 == Address1 select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -731,8 +731,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Address2 == Address2 select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.Address2 == Address2 select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -744,8 +744,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.City == City select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.City == City select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -757,8 +757,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.State == State select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.State == State select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -770,8 +770,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.Country == Country select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.Country == Country select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -783,8 +783,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.ZipCode == ZipCode select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.ZipCode == ZipCode select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -796,8 +796,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.IsPaid == IsPaid select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.IsPaid == IsPaid select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -809,8 +809,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.ExpireDate == ExpireDate select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.ExpireDate == ExpireDate select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -822,8 +822,8 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                var data = (from p in db.Orders where p.ModifiedDate == ModifiedDate select p);
-                db.Orders.DeleteAllOnSubmit(data);
+                var data = (from p in db.CustomerOrders where p.ModifiedDate == ModifiedDate select p);
+                db.CustomerOrders.DeleteAllOnSubmit(data);
                 db.SubmitChanges();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
             }
@@ -837,7 +837,7 @@ namespace DataAccess.PaymentDB
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
                 db.DeferredLoadingEnabled = false;
-                Order data = db.Orders.Single(p => p.OrderID == OrderID);
+                CustomerOrder data = db.CustomerOrders.Single(p => p.OrderID == OrderID);
                 data.LoginUserID = LoginUserID;
                 data.FirstName = FirstName;
                 data.LastName = LastName;
@@ -2538,8 +2538,13 @@ namespace DataAccess.PaymentDB
             if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
             using (OrderPaymentDataContext db = new OrderPaymentDataContext())
             {
-                db.ObjectTrackingEnabled = false;
-                db.DeferredLoadingEnabled = false;
+                db.ObjectTrackingEnabled = true;
+                db.DeferredLoadingEnabled = true;
+
+                DataLoadOptions option = new DataLoadOptions();
+                option.LoadWith<ProductVersion>(p => p.Product);
+                option.LoadWith<ProductVersion>(p => p.VersionAttributes);
+                db.LoadOptions = option;
                 var data = (from p in db.ProductVersions where p.ProductVersionID == ProductVersionID select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;

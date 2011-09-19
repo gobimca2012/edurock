@@ -32,11 +32,11 @@
                 </tr>
             </table>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkAddVersionAttribute" runat="server" RequestContainner="#VersionAttribute"
+                <aspajax:AjaxLinkButton ID="lnkAddVersionAttribute" runat="server" RequestContainner="#contentBox"
                     ResponseContainner="#contentBox" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>
             </div>
             <div>
-                <aspajax:AjaxLinkButton ID="lnkUpdateVersionAttribute" runat="server" RequestContainner="#VersionAttribute"
+                <aspajax:AjaxLinkButton ID="lnkUpdateVersionAttribute" runat="server" RequestContainner="#contentBox"
                     ResponseContainner="#contentBox" OnAjaxClick="UpdateAjaxClick">Update</aspajax:AjaxLinkButton>
             </div>
         </fieldset>
