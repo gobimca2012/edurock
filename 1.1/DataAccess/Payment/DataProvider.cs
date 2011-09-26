@@ -867,6 +867,20 @@ namespace DataAccess.PaymentDB
 
         #endregion
         #region CustomOrder
+        public void OrderUpdateByOrderID(Guid OrderID, bool IsPaid)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            using (OrderPaymentDataContext db = new OrderPaymentDataContext())
+            {
+                db.DeferredLoadingEnabled = false;
+                CustomerOrder data = db.CustomerOrders.Single(p => p.OrderID == OrderID);
+                data.IsPaid = IsPaid;
+                data.ModifiedDate = DateTime.Now;
+
+                db.SubmitChanges();
+            }
+            if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+        }
         #endregion
 
 

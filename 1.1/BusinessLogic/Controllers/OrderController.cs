@@ -979,23 +979,7 @@ namespace BusinessLogic.Controllers
                 return false;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         public void BindOrder(DropDownList dd)
         {
             var data = Get();
@@ -1008,6 +992,7 @@ namespace BusinessLogic.Controllers
             noneItem.Value = "0";
             dd.Items.Insert(0, noneItem);
         }
+
         public void BindOrder(DropDownList dd, string SelectedValue)
         {
             var data = Get();
@@ -1023,6 +1008,25 @@ namespace BusinessLogic.Controllers
         }
         #endregion
         #region Order
+
+        public bool UpdateByOrderID(Guid OrderID, bool IsPaid)
+        {
+
+            try
+            {
+                new DataProvider().OrderUpdateByOrderID(OrderID, IsPaid);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (SettingProvider.IsLoggerEnable())
+                {
+                    StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber());
+                    Logger.TimeLog.ErrorWrite(FunctionData, ex.Message, "0");
+                }
+                return false;
+            }
+        }
         #endregion
 				
 	

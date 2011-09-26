@@ -8,18 +8,26 @@ using System.Net;
 using System.IO;
 using System.Configuration;
 using PayPal;
+using System.Web.UI;
 
 namespace PayPal
 {
     public class PayPalStandardPaymentProcessor
     {
         #region Property
-        private bool useSandBox = true;
+        private bool useSandBox = Convert.ToBoolean(ConfigurationSettings.AppSettings["PayPalSendBoxEnable"]);
 
         private string BusinessEmail = ConfigurationSettings.AppSettings["PaypalBusinessEmail"];
         private string PDTId = ConfigurationSettings.AppSettings["PDTId"];//"M8saNp8KmlU57oPfGrBiwxFNUsutbmDlSOfdSqPKGbC5EWzhclv9PeElTD0";
         public string BaseUrl = ConfigurationSettings.AppSettings["BaseURL"];
         public string CancelReturnURL;
+        public string ReturnUrl
+        {
+            get
+            {
+                return ConfigurationSettings.AppSettings["ReturnUrl"];
+            }
+        }
         #endregion
         public PayPalStandardPaymentProcessor()
         {
@@ -35,7 +43,7 @@ namespace PayPal
         {
             useSandBox = true;// SettingManager.GetSettingValueBoolean("PaymentMethod.PaypalStandard.UseSandbox");
             BusinessEmail = businessEmail;// SettingManager.GetSettingValue("PaymentMethod.PaypalStandard.BusinessEmail");
-            
+
 
             if (string.IsNullOrEmpty(BusinessEmail))
                 throw new Exception("Paypal Standard business Email is empty");
@@ -56,14 +64,14 @@ namespace PayPal
             builder.Append(GetPaypalUrl());
             builder.AppendFormat("?cmd=_xclick&business={0}", BusinessEmail);
             builder.AppendFormat("&item_name=Order Number {0}", order.OrderID.ToString());
-            builder.AppendFormat("&custom={0}",order.Custom);
+            builder.AppendFormat("&custom={0}", order.Custom);
             builder.AppendFormat("&amount={0}", order.OrderTotal.ToString("N", new CultureInfo("en-us")));
             builder.Append(string.Format("&no_note=1&currency_code={0}", order.PrimaryStoreCurrency));
             builder.AppendFormat("&invoice={0}", order.OrderID.ToString());
             builder.AppendFormat("&rm=2", new object[0]);
             builder.AppendFormat("&no_shipping=1", order.NoOfShipping);
-           builder.AppendFormat("&return={0}&cancel_return={1}", returnURL, cancel_returnURL);
-           // builder.AppendFormat("&return={0}", returnURL);
+            builder.AppendFormat("&return={0}&cancel_return={1}", returnURL, cancel_returnURL);
+            // builder.AppendFormat("&return={0}", returnURL);
             builder.AppendFormat("&first_name={0}", order.BillingFirstName);
             builder.AppendFormat("&last_name={0}", order.BillingLastName);
             builder.AppendFormat("&address1={0}", order.BillingAddress1);
@@ -71,8 +79,9 @@ namespace PayPal
             builder.AppendFormat("&city={0}", order.BillingCity);
             builder.AppendFormat("&state={0}", order.BillingStateProvince);
             builder.AppendFormat("&country={0}", order.BillingCountry);
-            builder.AppendFormat("&Email={0}", order.BillingEmail);            
-            HttpContext.Current.Response.Redirect(builder.ToString());
+            builder.AppendFormat("&Email={0}", order.BillingEmail);
+            //HttpContext.Current.Response.Redirect(builder.ToString());
+            JScripter.Loader.RedirectPage(builder.ToString(), (Page)HttpContext.Current.Handler);
             return string.Empty;
         }
 

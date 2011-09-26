@@ -54,6 +54,12 @@
     <Compile Include="PayPalPDT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JScripter\JScripter.csproj">
+      <Project>{6E9EAAA3-3D77-4300-B1B4-88BFF9EA885D}</Project>
+      <Name>JScripter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

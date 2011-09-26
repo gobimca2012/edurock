@@ -41,7 +41,7 @@ namespace DTO
             paypaldto.NoOfShipping = 1;
             paypaldto.OrderID=orderDto.OrderID;
             paypaldto.OrderTotal=1;
-            paypaldto.PrimaryStoreCurrency="$";
+            paypaldto.PrimaryStoreCurrency = "USD";
             return paypaldto;
             
         }
