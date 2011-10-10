@@ -59,7 +59,7 @@ namespace PayPal
         public string PostProcessPayment(PayPalRequest order)
         {
             StringBuilder builder = new StringBuilder();
-            string returnURL = BaseUrl + "ShoppingCart/PaypalPDTHandler.aspx";
+            string returnURL = ReturnUrl;
             string cancel_returnURL = CancelReturnURL;
             builder.Append(GetPaypalUrl());
             builder.AppendFormat("?cmd=_xclick&business={0}", BusinessEmail);

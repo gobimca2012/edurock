@@ -19,7 +19,7 @@
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkUSer" runat="server" ContainnerID="#contentBox" NavigateUrl="~/College/Ajaxer/InstituteUserInfoView.aspx">User</aspajax:HyperLink>
             </li>
-           <%-- <li class="btn roundedall">
+            <%-- <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkUSerType" runat="server" ContainnerID="#contentBox" NavigateUrl="~/College/Ajaxer/InstituteUserTypeInfoView.aspx">User Type</aspajax:HyperLink>
             </li>--%>
             <li class="btn roundedall">
@@ -31,9 +31,12 @@
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/College/Ajaxer/InstituteUserTypeInfoView.aspx"
                     ContainnerID="#contentBox">User Role</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>
-                      <li class="btn roundedall">
+            <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkSetting" runat="server" NavigateUrl="~/College/Ajaxer/PortalSetting.aspx"
                     ContainnerID="#contentBox">System Settings</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>
+            <li class="btn roundedall">
+                <aspajax:HyperLink ID="lnkOrderdetail" runat="server" NavigateUrl="~/College/Ajaxer/UserOrderDetail.aspx"
+                    ContainnerID="#contentBox">Order details</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>
         </ul>
     </div>
     </form>

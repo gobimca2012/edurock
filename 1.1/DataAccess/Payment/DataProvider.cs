@@ -431,6 +431,9 @@ namespace DataAccess.PaymentDB
             {
                 db.ObjectTrackingEnabled = false;
                 db.DeferredLoadingEnabled = false;
+                DataLoadOptions option = new DataLoadOptions();
+                option.LoadWith<CustomerOrder>(p => p.OrderItems);
+                db.LoadOptions = option;
                 var data = (from p in db.CustomerOrders where p.LoginUserID == LoginUserID select p).ToList();
                 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
                 return data;

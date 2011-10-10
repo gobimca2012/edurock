@@ -79,7 +79,10 @@ public partial class ShoppingCart_AjaxControl_AccountInfo : AjaxPage
         new ShoppingController().AddCartItem(productVersion[0]);
         Guid orderID = new ShoppingController().SaveCart(newUser.UserID.Value);
         if (orderID != Guid.Empty)
+        {
             orderDto.Custom = orderID.ToString();
+            orderDto.OrderID = orderID;
+        }
         new PayPalStandardPaymentProcessor().PostProcessPayment(Translator.GetPayPalRequest(new ShoppingController().CartDto.orderDetail));
     }
      
