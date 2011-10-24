@@ -610,7 +610,7 @@ namespace BusinessLogic
             {
 
                 MembershipCreateStatus status;
-                MembershipUser MemUser = Membership.CreateUser(registerCustomerDto.Username, registerCustomerDto.Password, registerCustomerDto.Email, "No Question", "No Answer", true, out status);
+                MembershipUser MemUser = Membership.CreateUser(registerCustomerDto.Username, registerCustomerDto.Password, registerCustomerDto.Email, "No Question", "No Answer", registerCustomerDto.IsApproved, out status);
                 if (status == MembershipCreateStatus.Success)
                 {
                     try
@@ -654,6 +654,20 @@ namespace BusinessLogic
                 Logger.TimeLog.ErrorWrite("web service user create exception", e.Message, "0");
                 StatusReturn.Add("status", "error");
                 return StatusReturn;
+            }
+        }
+        public bool ActivatUser(string Username)
+        {
+            try
+            {
+                MembershipUser user = Membership.GetUser(Username);
+                user.IsApproved = true;
+                Membership.UpdateUser(user);
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
         //public Dictionary<string, string> CreateUser(RegisterCustomerDTO registerCustomerDTO,int UType)

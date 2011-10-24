@@ -16,7 +16,9 @@
             <div class="fr">
                 <ul style="margin: 0px; padding: 0px;">
                     <li style="display: inline; margin: 0px; padding: 0px;">
-                        <asp:HyperLink ID="lnkLogin" runat="server">Login</asp:HyperLink></li>
+                        <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Home.aspx">Login</asp:HyperLink></li>
+                         <li style="display: inline; margin: 0px; padding: 0px;">
+                        <asp:HyperLink ID="lnkAdmin" runat="server" NavigateUrl="~/ShoppingCart/Product.aspx" Visible="false">Admin</asp:HyperLink></li>
                 </ul>
             </div>
             <div class="clear">

@@ -63,8 +63,8 @@ namespace PayPal
             string cancel_returnURL = CancelReturnURL;
             builder.Append(GetPaypalUrl());
             builder.AppendFormat("?cmd=_xclick&business={0}", BusinessEmail);
-            builder.AppendFormat("&item_name=Order Number {0}", order.OrderID.ToString());
-            builder.AppendFormat("&custom={0}", order.Custom);
+            builder.AppendFormat("&item_name=Order Number {0}", order.OrderID.ToString().Replace("_",""));
+            builder.AppendFormat("&custom={0}", order.Custom.ToString().Replace("_","")+"_"+order.Username);
             builder.AppendFormat("&amount={0}", order.OrderTotal.ToString("N", new CultureInfo("en-us")));
             builder.Append(string.Format("&no_note=1&currency_code={0}", order.PrimaryStoreCurrency));
             builder.AppendFormat("&invoice={0}", order.OrderID.ToString());

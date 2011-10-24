@@ -28,6 +28,12 @@
                                     <td>
                                         Price
                                     </td>
+                                    <td>
+                                    IsPaid
+                                    </td>
+                                    <td>
+                                    Expiration Date
+                                    </td>
                                 </tr>
                             </thead>
                             <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
@@ -37,13 +43,19 @@
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <%#Eval("ItemName") %>
+                            <%#Eval("ItemName")%>
                         </td>
                         <td>
                             <%#Eval("Quantity")%>
                         </td>
                         <td>
                             <%#Eval("Price")%>
+                        </td>
+                        <td>
+                            <%#Eval("CustomerOrder.IsPaid")%>
+                        </td>
+                        <td>
+                            <%#Eval("CustomerOrder.ExpireDate")%>
                         </td>
                     </tr>
                 </ItemTemplate>

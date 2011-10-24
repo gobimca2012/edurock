@@ -29,7 +29,8 @@ public partial class Modules_Login_Login : System.Web.UI.UserControl
             {
                 if (loginData.UserType == 1)
                 {
-                    JScripter.Loader.RedirectPage(ResolveUrl("~/User/DashBoard.aspx"), this.Page);
+                    
+                    JScripter.Loader.RedirectPage(this.Request.UrlReferrer.ToString(), this.Page);
 
                 }
                 else

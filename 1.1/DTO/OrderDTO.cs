@@ -37,6 +37,13 @@ namespace DTO
             set;
         }
         public decimal OrderTotal { get; set; }
+
+        public string Username
+        {
+            get;
+            set;
+
+        }
         public string PrimaryStoreCurrency
         {
             get;

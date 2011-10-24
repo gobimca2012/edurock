@@ -8,7 +8,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <div>
+        <div id="divNewUser" runat="server">
             <fieldset>
                 <legend>Account Information</legend>
                 <div>
@@ -135,6 +135,8 @@
                     </div>
                 </div>
             </fieldset>
+        </div>
+        <div>
             <div>
                 <aspajax:AjaxLinkButton ID="lnkNext" runat="server" RequestContainner="#accountInfo"
                     ResponseContainner="#accountInfo" EnableValidation="False" EnableViewState="False"
@@ -144,6 +146,7 @@
                     Increment="False" OnAjaxClick="ConfirmDetail_Click" Pagger="False"><div class="btn editbtn">Confim Detail</div></aspajax:AjaxLinkButton>
             </div>
         </div>
+    </div>
     </form>
 </body>
 </html>

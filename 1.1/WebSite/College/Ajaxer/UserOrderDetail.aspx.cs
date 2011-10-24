@@ -17,8 +17,7 @@ public partial class User_AjaxControl_UserOrderDetail : AjaxPage
     }
     private List<OrderItem> GetOrders()
     {
-        var data=new OrderController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID);
-        
+        var data=new OrderController().GetbyLoginUserID(new UserAuthontication().LoggedInUserID);        
         return data[0].OrderItems.ToList();
     }
 }

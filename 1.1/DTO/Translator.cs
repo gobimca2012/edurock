@@ -23,6 +23,7 @@ namespace DTO
             orderDto.Fax = registerCustomerdto.FaxNumber;
             orderDto.MobileNumber = registerCustomerdto.MobileNumber;
             orderDto.LandlineNumber = registerCustomerdto.LandLineNumber;
+            orderDto.Username = registerCustomerdto.Username;
             return orderDto;
         }
 
@@ -42,6 +43,7 @@ namespace DTO
             paypaldto.OrderID=orderDto.OrderID;
             paypaldto.OrderTotal=1;
             paypaldto.PrimaryStoreCurrency = "USD";
+            paypaldto.Username = orderDto.Username;
             return paypaldto;
             
         }

@@ -110,5 +110,16 @@ namespace DTO
             get;
             set;
         }
+
+        public bool IsApproved
+        {
+            get
+            {
+                return false;
+            }
+            set
+            {
+            }
+        }
     }
 }
