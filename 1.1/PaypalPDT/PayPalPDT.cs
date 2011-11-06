@@ -67,7 +67,7 @@ namespace PayPal
             builder.AppendFormat("&custom={0}", order.Custom.ToString().Replace("_","")+"_"+order.Username);
             builder.AppendFormat("&amount={0}", order.OrderTotal.ToString("N", new CultureInfo("en-us")));
             builder.Append(string.Format("&no_note=1&currency_code={0}", order.PrimaryStoreCurrency));
-            builder.AppendFormat("&invoice={0}", order.OrderID.ToString());
+            builder.AppendFormat("&invoice={0}", Guid.NewGuid().ToString());
             builder.AppendFormat("&rm=2", new object[0]);
             builder.AppendFormat("&no_shipping=1", order.NoOfShipping);
             builder.AppendFormat("&return={0}&cancel_return={1}", returnURL, cancel_returnURL);

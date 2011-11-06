@@ -8,6 +8,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <div id="diverror" runat="server" class="error">
+        </div>
         <div id="divNewUser" runat="server">
             <fieldset>
                 <legend>Account Information</legend>

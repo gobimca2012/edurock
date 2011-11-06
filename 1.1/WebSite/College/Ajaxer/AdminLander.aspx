@@ -34,6 +34,9 @@
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkSetting" runat="server" NavigateUrl="~/College/Ajaxer/PortalSetting.aspx"
                     ContainnerID="#contentBox">System Settings</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>
+        </ul>
+        <br />
+        <ul>
             <li class="btn roundedall">
                 <aspajax:HyperLink ID="lnkOrderdetail" runat="server" NavigateUrl="~/College/Ajaxer/UserOrderDetail.aspx"
                     ContainnerID="#contentBox">Order details</aspajax:HyperLink><%--<a href="#tabs-5">Cource Catagory</a>--%></li>

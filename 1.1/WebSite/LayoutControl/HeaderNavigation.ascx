@@ -5,17 +5,20 @@
 <%@ Register Src="../Modules/Login/Login.ascx" TagName="Login" TagPrefix="uc2" %>
 <div style="width: 100%; margin: 0 auto; height: 50px">
     <div style="float: right; margin-right: 4px;">
-        <div id="liHome" runat="server" class="fleft" visible="false">
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Home.aspx"><div class="btn"> Home</div></asp:HyperLink>
+        <div id="liHome" runat="server" class="fleft" >
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/User/DashBoard.aspx"><div class="btn"> Dashboard</div></asp:HyperLink>
         </div>
         <div id="lilogin" runat="server" class="fleft">
-            <cc1:ShowHideLinkButton ID="lnkLogin" runat="server" ><div class="btn"> Sign in</div></cc1:ShowHideLinkButton>
+            <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Home.aspx"><div class="btn">Log in</div></asp:HyperLink>
         </div>
-        <div id="liCreate" runat="server" class="fleft">
+        <%--<div id="liCreate" runat="server" class="fleft">
             <cc1:ShowHideLinkButton ID="lnkCreate" runat="server" Show="true" ContainnerID="#creatediv"><div class="btn"> Sign up</div></cc1:ShowHideLinkButton>
-        </div>
+        </div>--%>
         <div id="lilogout" runat="server" class="fleft">
             <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click"><div class="btn"> Log out</div></asp:LinkButton>
+        </div>
+        <div id="liAdmin" runat="server" class="fleft" visible="false">
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/ShoppingCart/Product.aspx"><div class="btn">Admin</div></asp:HyperLink>
         </div>
         <div id="li1" runat="server" class="fleft" visible="false">
             <asp:HyperLink ID="lnkRegisterInstitute" runat="server" NavigateUrl="~/RegisterInstitute.aspx"><div class="btn"> Sign up Institute</div></asp:HyperLink>

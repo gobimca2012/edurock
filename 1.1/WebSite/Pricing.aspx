@@ -550,15 +550,15 @@
                             Recurring Subscription Price
                         </td>
                         <td class="head">
-                            $10/User/Month<br>
-                            1 Month Free<br>
-                            <a href="/web/ShoppingCart/Step1/tabid/95/pid/c473d400-d8d6-4d5f-90dd-ab10e497c3cc/Default.aspx">
+                            $10/User/Month<br />
+                            1 Month Free<br />
+                            <a href="http://localhost:1829/WebSite/ShoppingCart/Order.aspx?prvid=d8ac057b-487c-480f-bcf6-2d9064238dec">
                                 <div class="btn">
                                     Buy Now</div>
                             </a>
                         </td>
                         <td class="head">
-                            $100/Month<br>
+                            $100/Month<br/>
                             <a href="/web/ShoppingCart/Step1/tabid/95/pid/97060b2a-9981-4798-9cd6-5d12e91b838e/Default.aspx">
                                 <div class="btn">
                                     Buy Now</div>

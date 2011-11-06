@@ -21,20 +21,25 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
         {
             lilogout.Visible = false;
             objLoader.LoadPage("#registernew", ResolveUrl("~/All/Ajaxer/RegisterUser.aspx"));
-            
+            lnkHome.Visible = false;
         }
         else
         {
+            if (ConfigurationSettings.AppSettings["AdminUser"] == new UserAuthontication().LoggedInUserName)
+            {
+                liAdmin.Visible = true;
+            }
+
             lnkLogout.Visible = true;
             lilogout.Visible = true;
-            liCreate.Visible = false;
-            lnkLogin.Text =string.Format("<div class='btn'>Welcome {0}</div>", new UserAuthontication().LoggedInUserName);
+            
+            lnkLogin.Text = string.Format("<div class='btn'>Welcome {0}</div>", new UserAuthontication().LoggedInUserName);
             if (new UserAuthontication().LoggedInUserName.Trim().ToLower() == "admin")
             {
                 //ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/AdminNavigation.ascx"));
 
-               
-               
+
+
             }
             else if (new UserAuthontication().UserType == UserTypeEnum.College)
             {
@@ -44,11 +49,11 @@ public partial class LayoutControl_HeaderNavigation : System.Web.UI.UserControl
             else if (new UserAuthontication().UserType == UserTypeEnum.Student)
             {
                 //ActionMenu.Controls.Add(CommonController.GetControl("~/LayoutControl/Menu/UserMenu.ascx"));
-               
-               
-              
+
+
+
             }
-            
+
         }
 
     }

@@ -164,9 +164,35 @@ input[type="text"], input[type="password"], textarea, .btn, .smbtn
 }
 .totalbox
 {
-    width:500px;
+    width: 500px;
 }
 .totalbox td
 {
-    text-align:right;
+    text-align: right;
+}
+.btn
+{
+    line-height: 12px;
+    margin: 2px;
+    max-width: 200px;
+    min-height: 14px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.btn, .brcum
+{
+    background: url("images/graybtn.gif") repeat-x scroll 0 0 transparent;
+    border: 1px solid #C4C7C8;
+    color: #626262;
+    font-weight: bold;
+}
+
+.roundedall, .btn, .cin:hover, .contentbox, .trans, #msgstate div, .success, .hcurv, .ttip, .brcum, .dasbo:hover
+{
+    border-radius: 5px 5px 5px 5px;
+}
+
+.fleft {
+    float: left;
 }

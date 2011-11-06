@@ -13,7 +13,8 @@
             review your order details
         </div>
         <div class="whitecont">
-            <asp:ListView ID="listUserOrder" runat="server">
+            <asp:ListView ID="listUserOrder" runat="server" OnItemDataBound="OnItemDataBound"
+                DataKeyNames="ProductVersionID">
                 <LayoutTemplate>
                     <div>
                         <table>
@@ -29,10 +30,9 @@
                                         Price
                                     </td>
                                     <td>
-                                    IsPaid
+                                        Expiration Date
                                     </td>
                                     <td>
-                                    Expiration Date
                                     </td>
                                 </tr>
                             </thead>
@@ -52,10 +52,10 @@
                             <%#Eval("Price")%>
                         </td>
                         <td>
-                            <%#Eval("CustomerOrder.IsPaid")%>
+                            <%#Eval("CustomerOrder.ExpireDate")%>
                         </td>
                         <td>
-                            <%#Eval("CustomerOrder.ExpireDate")%>
+                            <aspajax:HyperLink ID="lnkrenew" runat="server" ContainnerID="#contentBox">Renew</aspajax:HyperLink>
                         </td>
                     </tr>
                 </ItemTemplate>

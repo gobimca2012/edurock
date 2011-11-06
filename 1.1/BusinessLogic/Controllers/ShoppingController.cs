@@ -68,42 +68,69 @@ namespace BusinessLogic.Controllers
         public Guid SaveCart(int loginUserID)
         {
             CustomerOrder order = new CustomerOrder();
-            order.Address1 = CartDto.orderDetail.BillingAddress1;
-            order.Address2 = CartDto.orderDetail.BillingAddress2;
-            order.City = CartDto.orderDetail.BillingCity;
-            order.Country = CartDto.orderDetail.BillingCountry;
-            order.Email = CartDto.orderDetail.BillingEmail;
-
-            order.ExpireDate = DateTime.Now.AddMonths(CartDto.ProductVersion[0].RecurringPaymentTime.Value);
-            order.Fax = CartDto.orderDetail.Fax;
-            order.FirstName = CartDto.orderDetail.BillingFirstName;
-            order.IsPaid = false;
-            order.LastName = CartDto.orderDetail.BillingLastName;
-            order.LoginUserID = loginUserID;
-            order.ModifiedDate = DateTime.Now;
-            order.OrderID = Guid.NewGuid();
-
-
-            OrderItem orderItem = new OrderItem();
-            orderItem.ItemDescription = CartDto.ProductVersion[0].Description;
-            orderItem.ItemName = CartDto.ProductVersion[0].Name;
-            orderItem.ModifiedDate = DateTime.Now;
-            orderItem.OrderItemID = Guid.NewGuid();
-            orderItem.Price = CartDto.ProductVersion[0].Price.Value;
-            orderItem.ProductVersionID = CartDto.ProductVersion[0].ProductVersionID;
-            orderItem.Quantity = 1;
-            order.OrderItems.Add(orderItem);
-            order.PhoneNumber = CartDto.orderDetail.MobileNumber;
-            order.State = CartDto.orderDetail.BillingStateProvince;
-            order.ZipCode = "12345";/// CartDto.orderDetail.ZipCode;
-            if (new OrderController().Add(order))
+            var data = new OrderController().GetbyProductIDAndLoginUserID(loginUserID, CartDto.ProductVersion[0].ProductID);
+            if (data.Count > 0)
             {
-                return order.OrderID;
+                order = data[0];
+                OrderItem orderItem = new OrderItem();
+                orderItem.ItemDescription = CartDto.ProductVersion[0].Description;
+                orderItem.ItemName = CartDto.ProductVersion[0].Name;
+                orderItem.ModifiedDate = DateTime.Now;
+                orderItem.OrderItemID = Guid.NewGuid();
+                orderItem.Price = CartDto.ProductVersion[0].Price.Value;
+                orderItem.ProductID = CartDto.ProductVersion[0].ProductID;
+                orderItem.ProductVersionID = CartDto.ProductVersion[0].ProductVersionID;
+                orderItem.Quantity = 1;
+                orderItem.OrderID = order.OrderID;
+                
+                if (new OrderItemController().Add(orderItem))
+                {
+                    return order.OrderID;
+                }
+                else
+                {
+                    return Guid.Empty;
+                }
             }
             else
             {
-                return Guid.Empty;
+                order.Address1 = CartDto.orderDetail.BillingAddress1;
+                order.Address2 = CartDto.orderDetail.BillingAddress2;
+                order.City = CartDto.orderDetail.BillingCity;
+                order.Country = CartDto.orderDetail.BillingCountry;
+                order.Email = CartDto.orderDetail.BillingEmail;
+                order.ExpireDate = DateTime.Now.AddMonths(CartDto.ProductVersion[0].RecurringPaymentTime.Value);
+                order.Fax = CartDto.orderDetail.Fax;
+                order.FirstName = CartDto.orderDetail.BillingFirstName;
+                order.IsPaid = false;
+                order.LastName = CartDto.orderDetail.BillingLastName;
+                order.LoginUserID = loginUserID;
+                order.ModifiedDate = DateTime.Now;
+                order.OrderID = Guid.NewGuid();
+                OrderItem orderItem = new OrderItem();
+                orderItem.ItemDescription = CartDto.ProductVersion[0].Description;
+                orderItem.ItemName = CartDto.ProductVersion[0].Name;
+                orderItem.ModifiedDate = DateTime.Now;
+                orderItem.OrderItemID = Guid.NewGuid();
+                orderItem.Price = CartDto.ProductVersion[0].Price.Value;
+                orderItem.ProductID = CartDto.ProductVersion[0].ProductID;
+                orderItem.ProductVersionID = CartDto.ProductVersion[0].ProductVersionID;
+                orderItem.Quantity = 1;
+                order.OrderItems.Add(orderItem);
+                order.PhoneNumber = CartDto.orderDetail.MobileNumber;
+                order.State = CartDto.orderDetail.BillingStateProvince;
+                order.ZipCode = "12345";/// CartDto.orderDetail.ZipCode;
+                if (new OrderController().Add(order))
+                {
+                    return order.OrderID;
+                }
+                else
+                {
+                    return Guid.Empty;
+                }
             }
+
+            
         }
 
     }

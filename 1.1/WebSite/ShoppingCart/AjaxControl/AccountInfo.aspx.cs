@@ -77,11 +77,16 @@ public partial class ShoppingCart_AjaxControl_AccountInfo : AjaxPage
         if (!new UserAuthontication().IsLoggedIn)
         {
             NewUserResponseDTO newUser = new CustomerController().RegisterNewCustomer(dto);
+            if (newUser.UserID == null)
+            {
+                diverror.InnerHtml = newUser.Message;
+                return;
+            }
             loginUserID = newUser.UserID.Value;
         }
         else
         {
-            loginUserID = LoginUserID;
+            loginUserID = new UserAuthontication().LoggedInUserID;
         }
         OrderDTO orderDto =Translator.GetByRegisterCustomerDTO(dto);
         AddOrderDetail(orderDto);

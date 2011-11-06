@@ -33,19 +33,6 @@
       <Association Name="CustomerOrder_Payment" Member="CustomerOrder" ThisKey="OrderID" OtherKey="OrderID" Type="CustomerOrder" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.OrderItem" Member="OrderItems">
-    <Type Name="OrderItem">
-      <Column Name="OrderItemID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="OrderID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ProductVersionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ItemName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="ItemDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="CustomerOrder_OrderItem" Member="CustomerOrder" ThisKey="OrderID" OtherKey="OrderID" Type="CustomerOrder" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ProductVersion" Member="ProductVersions">
     <Type Name="ProductVersion">
       <Column Name="ProductVersionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -83,6 +70,20 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="CustomerOrder_Payment" Member="Payments" ThisKey="OrderID" OtherKey="OrderID" Type="Payment" />
       <Association Name="CustomerOrder_OrderItem" Member="OrderItems" ThisKey="OrderID" OtherKey="OrderID" Type="OrderItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderItem" Member="OrderItems">
+    <Type Name="OrderItem">
+      <Column Name="OrderItemID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OrderID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ProductVersionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ItemName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ItemDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="CustomerOrder_OrderItem" Member="CustomerOrder" ThisKey="OrderID" OtherKey="OrderID" Type="CustomerOrder" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

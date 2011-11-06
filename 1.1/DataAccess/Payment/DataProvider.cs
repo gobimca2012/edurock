@@ -884,6 +884,20 @@ namespace DataAccess.PaymentDB
             }
             if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
         }
+        public List<CustomerOrder> OrderGetbyProductIDAndLoginUserID(int LoginUserID,Guid? ProductID)
+        {
+            if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+            using (OrderPaymentDataContext db = new OrderPaymentDataContext())
+            {
+                db.ObjectTrackingEnabled = false;
+                db.DeferredLoadingEnabled = false;
+                db.ObjectTrackingEnabled = false;
+                var data = (from p in db.CustomerOrders where p.LoginUserID==LoginUserID && (from q in p.OrderItems where q.ProductID.Value==ProductID.Value select q).ToList().Count>0 select p).ToList();
+                if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+                return data;
+            }
+
+        }
         #endregion
 
 
