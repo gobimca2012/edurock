@@ -1,6 +1,6 @@
 ﻿##|TYPE Template
-##|UNIQUEID 8cbd6c29-4933-477b-b875-94b15329d069
-##|TITLE AddFormAjax
+##|UNIQUEID c529cc3f-6cee-4734-a961-98813295bda5
+##|TITLE AddFormAjax1.1
 ##|NAMESPACE 
 ##|SOURCE_TYPE Source
 ##|OUTPUT_LANGUAGE None
@@ -80,14 +80,15 @@ public class GeneratedTemplate : DotNetScriptTemplate
 			<div id="divMessage" runat="server"></div>
 		<fieldset>
 <legend><%=table.Alias%></legend>
-<table>
+<div>
 		<%foreach(IColumn column in table.Columns)
 		{%>
-		<tr>
-                <td>
-                    <span class="label"><%=column.Alias%></span>
-                </td>
-                <td>                    
+		<div>
+                <div>
+				    <span class="label"><%=column.Alias%></span>
+				
+                </div>
+                <div>                    
                     <%if (column.LanguageType == "string" || column.LanguageType == "decimal" || column.LanguageType == "DateTime")
                       {
                     %>
@@ -97,10 +98,10 @@ public class GeneratedTemplate : DotNetScriptTemplate
                       {%>
                     <asp:CheckBox ID="chk<%=column.Alias%>" runat="server" />
                     <%}
-                      else if (column.LanguageType == "Guid")
+                      else if (column.LanguageType == "Guid" || column.LanguageType == "int")
                       {
 					  
-                          if (column.IsInForeignKey)
+                          if (column.IsInForeignKey && !column.Alias.Equals(table.Columns[0].Alias))
                           {                    
                     %>
                     <asp:DropDownList ID="dd<%=column.Alias%>" runat="server">
@@ -108,10 +109,10 @@ public class GeneratedTemplate : DotNetScriptTemplate
 					
                     <%}
                       } %>
-                </td>
-            </tr>
+                </div>
+            </div>
 			<%}%>
-			</table>
+			</div>
 			<div>
                 <aspajax:AjaxLinkButton ID="lnkAdd<%=table.Alias%>" runat="server" RequestContainner="#<%=table.Alias%>"
                     ResponseContainner="#<%=table.Alias%>" OnAjaxClick="AddAjaxClick">Add</aspajax:AjaxLinkButton>

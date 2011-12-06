@@ -1,0 +1,339 @@
+﻿##|TYPE Template
+##|UNIQUEID ecb48cd7-6528-4fd4-8477-644d6821f070
+##|TITLE AddFormAjaxCs1.5
+##|NAMESPACE 
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE None
+##|GUI_ENGINE .Net Script
+##|GUI_LANGUAGE C#
+##|GUI_BEGIN
+
+public class GeneratedGui : DotNetScriptGui
+{
+	public GeneratedGui(ZeusContext context) : base(context) {}
+
+	//-----------------------------------------
+	// The User Interface Entry Point
+	//-----------------------------------------
+	public override void Setup()
+	{
+		// ** UNCOMMENT CODE BELOW TO SEE UI **
+
+		ui.Title = ".NetScript C# Sample: Java Class";
+		ui.Width = 340;
+		ui.Height = 200;
+
+		// Setup Database selection combobox.
+		GuiLabel label_d = ui.AddLabel("lblDatabases", "Select a database:", "Select a database in the dropdown below.");
+		GuiComboBox cmbDatabases = ui.AddComboBox("databaseName", "Select a database.");
+
+		// Setup Tables selection multi-select listbox.
+		GuiLabel label_t = ui.AddLabel("lblTables", "Select table:", "Select table from the combobox below.");
+		GuiComboBox cmbTables = ui.AddComboBox("tableName", "Select a table.");
+
+		// bind data to the controls
+		cmbDatabases.BindData(MyMeta.Databases);
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name;
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+		
+		
+		// Attach the onchange event to the cmbDatabases control.
+		cmbDatabases.AttachEvent("onchange", "cmbDatabases_onchange");
+
+	
+		ui.ShowGui = true;ui.AddLabel("lblDemo", "Demo", "Demo Tooltip");
+		ui.ShowGui = true;
+	}
+	public void cmbDatabases_onchange(GuiComboBox control)
+	{
+		GuiComboBox cmbDatabases = ui["databaseName"] as GuiComboBox;
+		GuiComboBox cmbTables = ui["tableName"] as GuiComboBox;
+		
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+	}
+
+}
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE .Net Script
+##|BODY_LANGUAGE C#
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+public class GeneratedTemplate : DotNetScriptTemplate
+{
+	public GeneratedTemplate(ZeusContext context) : base(context) {}
+
+	//---------------------------------------------------
+	// Render() is where you want to write your logic    
+	//---------------------------------------------------
+	public override void Render()
+	{
+		string databaseName = input["databaseName"].ToString();
+		string tableName = input["tableName"].ToString();
+		
+		IDatabase database = MyMeta.Databases[databaseName];
+		ITable table = database.Tables[tableName];
+		IDproperty();
+		AddFunction(table);
+		EditFunction(table);
+		BindFunction(table);
+		GenerateProperty();
+		output.writeln(GetPreventControlData(table));
+	}
+	
+	//start Function
+	public string IDproperty()
+	{	
+	  string str="private Guid ID";
+	  str+="{\n";
+	  str+="get\n";
+	  str+="        {\n";
+	  str+="if (Request.Params[\"cid\"]!=null || AjaxState[\"cid\"] != null)\n";
+	  str+="{\n";
+	  str+="if (!AjaxState.ContainsKey(\"cid\"))";
+      str+="AjaxState[\"cid\"] = Request.Params[\"cid\"];";
+	  str+="AjaxState[\"cid\"] = Request.Params[\"cid\"];\n";
+	  str+="return new Guid(AjaxState[\"cid\"]);\n";
+	  str+="}\n";
+	  str+="else\n";
+	  str+="{\n";
+	  str+="return Guid.Empty;\n";
+	  str+="}\n";
+	  str+="}\n";
+	  str+="}\n";
+	  return str;
+	}
+	
+	
+	//Start function
+	public string GetPreventControlData(ITable table)
+	{
+	   string str="public void PreventData()\n    {";
+	   foreach(IColumn column in table.Columns)
+	   {
+			str+=GetPreventControlDataString(column);
+			str+="\n";
+	   }
+	   str+="\n}";
+	   return str;
+	}
+	//End Function
+	
+	//Start function
+	public string GetPreventControlDataString(IColumn column)
+	{
+		string str="";
+		if(column.LanguageType.ToLower()=="string" )
+		{
+			str+=string.Format("txt{0}.Text = HtmlHelper.ControlValue(txt{0}.ClientID);",column.Alias);
+		}
+		else if(column.LanguageType.ToLower()=="datetime")
+		{
+			str+=string.Format("txt{0}.Text = HtmlHelper.ControlValue(txt{0}.ClientID);",column.Alias);			
+			
+		}
+		else if(column.LanguageType.ToLower()=="guid")
+		{			
+			
+		}
+		else if(column.LanguageType.ToLower()=="boolean" || column.LanguageType.ToLower()=="bool")
+		{
+			str+=string.Format("chk{0}.Checked = Convert.ToBoolean(HtmlHelper.ControlValue(chk{0}.ClientID));",column.Alias);
+		}
+		else if(column.LanguageType.ToLower()=="int" )
+		{
+						
+		}
+		return str;
+	
+	}
+	//End Function
+	
+	//Start function
+	public string GetFunctionAssignment(IColumn column,string tableName)
+	{
+		string script="";
+		
+		if(column.LanguageType.ToLower()=="string" )
+		{	    
+			
+			script+=string.Format("obj{1}.{0} = HtmlHelper.ControlValue(txt{0}.ClientID);",column.Alias,tableName);
+			
+			
+		}
+		else if(column.LanguageType.ToLower()=="datetime")
+		{
+			
+			script+=string.Format("obj{1}.{0} = Convert.ToDateTime(HtmlHelper.ControlValue(txt{0}.ClientID));",column.Alias,tableName);
+			
+		}
+		else if(column.LanguageType.ToLower()=="guid")
+		{
+			script+=string.Format("obj{1}.{0} = new Guid(HtmlHelper.ControlValue(dd{0}.ClientID));",column.Alias,tableName);
+			
+		}
+		else if(column.LanguageType.ToLower()=="boolean" || column.LanguageType.ToLower()=="bool")
+		{
+			
+			script+=string.Format("obj{1}.{0} = Convert.ToBoolean(HtmlHelper.ControlValue(chk{0}.ClientID));",column.Alias,tableName);
+		
+		}
+		else if(column.LanguageType.ToLower()=="int" )
+		{
+			
+			script+=string.Format("obj{1}.{0} = Convert.ToInt32(HtmlHelper.ControlValue(dd{0}.ClientID));",column.Alias,tableName);
+			
+		}
+		
+		return script;			
+			
+	}
+	//End Function
+	
+	//Start function
+	public string GetControlAssignment(IColumn column)
+	{
+		string script="";
+		if(column.LanguageType.ToLower()=="string" || column.LanguageType.ToLower()=="datetime")
+		{		    
+			script+="txt"+column.Alias+".Text=data."+column.Alias+";";							
+		}
+		else if(column.LanguageType.ToLower()=="guid")
+		{
+			script+="dd"+column.Alias+".SelectedValue=data."+column.Alias+".ToString();";			
+		}
+		else if(column.LanguageType.ToLower()=="boolean" || column.LanguageType.ToLower()=="bool")
+		{
+			script+="chk"+column.Alias+".Checked=data."+column.Alias+";";			
+		}
+		else if(column.LanguageType.ToLower()=="int" )
+		{
+			script+="dd"+column.Alias+".SelectedValue=data."+column.Alias+".ToString();";						
+		}
+		
+		return script;			
+			
+	}
+	//End Function
+	
+	//Start function
+	public string GenerateAddFunction(ITable table)
+	{
+		string script="";
+		script+=string.Format("new {0}Controller().Add(obj{0});",table.Alias);		
+		return script;
+	}
+	
+	//End Function
+	
+	//Start function
+	public string GenerateUpdateFunction(ITable table)
+	{
+		string script="";
+		script+=string.Format("new {0}Controller().UpdateBy{0}ID(obj{0});",table.Alias);				
+		return script;
+	}
+	
+	//End Function
+	
+	
+	
+	
+	
+	//Start function	
+	public void AddFunction(ITable table)
+	{
+	    %>
+		private void AddData()
+		{	
+		try
+		{
+		<%=table.Alias%> obj<%=table.Alias%> = new <%=table.Alias%>();
+		<%
+		foreach(IColumn column in table.Columns)
+		{
+		%>		
+		<%=GetFunctionAssignment(column,table.Alias)%>				
+		<%
+		}
+		%>
+		<%=GenerateAddFunction(table)%>
+		}		
+		catch(Exception ex)
+        {
+                divMessage.InnerHtml="<div class='error'>"+ex.Message+"</div>";
+         }
+		 }
+		<%
+		
+	}
+	
+	//End Function
+	
+	//Start function	
+	public void EditFunction(ITable table)
+	{
+	    %>
+		private void EditData()
+		{		
+		
+		<%=table.Alias%> obj<%=table.Alias%> = new <%=table.Alias%>();
+		<%
+		foreach(IColumn column in table.Columns)
+		{
+		%>		
+		<%=GetFunctionAssignment(column,table.Alias)%>				
+		<%
+		}
+		%>
+		<%=GenerateUpdateFunction(table)%>
+		}
+		<%
+		
+	}
+	
+	//End Function
+	
+	//Start function	
+	public void BindFunction(ITable table)
+	{
+	    %>
+		private void BindData()
+		{
+		    var dataBunch = new <%=table.Alias%>Controller().Getby<%=table.Alias%>ID(ID);
+			if (dataBunch.Count > 0)
+			{
+				var data=dataBunch[0];
+			<%
+			foreach(IColumn column in table.Columns)
+			{
+				%>		
+				<%=GetControlAssignment(column)%>				
+				<%
+			}
+			%>		
+			}
+		}
+		<%		
+	}
+	
+	//End Function
+	
+	//Start function	
+	public void GenerateProperty()
+	{
+	%>
+	protected void AddAjaxClick(object sender, AjaxControl.AjaxEventArg e)
+    {
+        AddData();
+        Response.Redirect("~/College/Ajaxer/CourceCatagoryInfoView.aspx");
+    }
+   	<%
+	}
+	
+	//End Function
+}
+%>
+##|BODY_END

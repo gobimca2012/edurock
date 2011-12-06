@@ -88,6 +88,18 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		<%}
 		}
 	}
+	
+	public void ObjParamToDBvalue(ITable table,string columnName)
+	{
+		foreach(IColumn column in table.Columns)
+		{
+		    if(column.Alias!=columnName)
+			{
+			%>data.<%=column.Name%>=obj<%=table.Alias%>.<%=column.Name%>;
+		<%}
+		}
+	}
+	
 	public GeneratedTemplate(ZeusContext context) : base(context) {}
 
 	//---------------------------------------------------
@@ -262,6 +274,30 @@ public class GeneratedTemplate : DotNetScriptTemplate
 		}%>
 		<%// Update Function End-------------------------------------------%>
 		
+		
+		<%// Update Function-------------------------------------------%>
+		<%foreach (IColumn column in table.Columns)
+		{
+			if(column.IsInPrimaryKey)
+			{
+		%>
+		    public void <%=table.Alias%>UpdateBy<%=column.Alias%>(<%=table.Alias%> obj<%=table.Alias%>)
+			{
+			if (SettingProvider.IsLoggerEnable()) { StackTrace st = new StackTrace(new StackFrame(true)); Console.WriteLine(" Stack trace for current level: {0}", st.ToString()); StackFrame sf = st.GetFrame(0); string FunctionData = ""; FunctionData += string.Format(" File: {0}", sf.GetFileName()); FunctionData += string.Format(" Method: {0}", sf.GetMethod().Name); FunctionData += string.Format(" Line Number: {0}", sf.GetFileLineNumber()); FunctionData += string.Format(" Column Number: {0}", sf.GetFileColumnNumber()); objLogger = new Logger.TimeLog(FunctionData); }
+			using(<%=DataContextDBObject%>)
+			{
+            db.DeferredLoadingEnabled = false;
+			<%=table.Alias%> data = db.<%=GetTableDBSName(table.Alias)%>.Single(p => p.<%=column.Alias%> == obj<%=table.Alias%>.<%=column.Alias%>);
+			<%ObjParamToDBvalue(table,column.Alias);%>
+			db.SubmitChanges();
+			}
+			 if (SettingProvider.IsLoggerEnable()) { objLogger.StopTime(); }
+			}
+		
+		<%	}
+		
+		}%>
+		<%// Update Function End-------------------------------------------%>
 		
 		
 		
