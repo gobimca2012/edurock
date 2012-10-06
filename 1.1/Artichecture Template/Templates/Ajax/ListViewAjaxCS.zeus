@@ -101,14 +101,14 @@ public class GeneratedTemplate : DotNetScriptTemplate
 			
 			{
 				BindList();
-				TotalPage = Convert.ToInt32(Math.Ceiling((decimal) new <%=table.Alias%>Controller().Get().Count / PageSize));
-				PaggerLinkManager();
+				//TotalPage = Convert.ToInt32(Math.Ceiling((decimal) new <%=table.Alias%>Controller().Get().Count / PageSize));
+				//PaggerLinkManager();
 			}
 			
 		}
 		private void BindList()
 		{
-			List<%=table.Alias%>.DataSource = new <%=table.Alias%>Controller().Get(PageSize, PageNumber);
+			List<%=table.Alias%>.DataSource = new <%=table.Alias%>Controller().Get();
 			List<%=table.Alias%>.DataBind();
 		}
 		private void PaggerLinkManager()
@@ -149,7 +149,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
     {
         if (e.Command.Contains("delete"))
         {
-            
+            new <%=table.Alias%>Controller().Deleteby<%=table.Alias%>ID(Convert.ToInt32(e.Id));
             BindList();
         }
         base.OnAjaxListViewCommand(e);

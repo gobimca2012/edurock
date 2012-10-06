@@ -1,6 +1,6 @@
 ﻿##|TYPE Template
-##|UNIQUEID bfa7cddb-5312-46ca-acf1-0da35f9acd69
-##|TITLE StoreProcedureArch
+##|UNIQUEID f2109791-4997-40cc-917b-5a730f246693
+##|TITLE StoreProcedureArchv1.2
 ##|NAMESPACE 
 ##|SOURCE_TYPE Source
 ##|OUTPUT_LANGUAGE None
@@ -29,12 +29,12 @@ public class GeneratedGui : DotNetScriptGui
 
 		// Setup Tables selection multi-select listbox.
 		GuiLabel label_t = ui.AddLabel("lblTables", "Select table:", "Select table from the combobox below.");
-		GuiComboBox cmbTables = ui.AddComboBox("StoreProcedure", "Select a table.");
+		GuiComboBox cmbTables = ui.AddComboBox("StoreProcedure", "Select a Procedure.");
 
 		// bind data to the controls
 		cmbDatabases.BindData(MyMeta.Databases);
 		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name;
-		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables );
+		cmbTables.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Procedures );
 		GuiTextBox txtPrefix=ui.AddTextBox("Prefix","","");
 		
 		// Attach the onchange event to the cmbDatabases control.

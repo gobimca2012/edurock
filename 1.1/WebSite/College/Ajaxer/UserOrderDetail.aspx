@@ -52,10 +52,10 @@
                             <%#Eval("Price")%>
                         </td>
                         <td>
-                            <%#Eval("CustomerOrder.ExpireDate")%>
+                            <%#BusinessLogic.CommonController.GetDate(Convert.ToDateTime(Eval("CustomerOrder.ExpireDate").ToString()))%>
                         </td>
                         <td>
-                            <aspajax:HyperLink ID="lnkrenew" runat="server" ContainnerID="#contentBox">Renew</aspajax:HyperLink>
+                            <aspajax:HyperLink ID="lnkrenew" runat="server" ContainnerID="#contentBox" Visible="false">Renew</aspajax:HyperLink>
                         </td>
                     </tr>
                 </ItemTemplate>

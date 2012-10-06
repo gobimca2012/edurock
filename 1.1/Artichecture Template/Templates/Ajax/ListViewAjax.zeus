@@ -105,7 +105,7 @@ public class GeneratedTemplate : DotNetScriptTemplate
                     </td>
 					 <td>
                         <aspajax:HyperLink ID="lnkedit" runat="server" NavigateUrl='<%#ResolveUrl("~/Admin/Ajaxer/<--=table.Alias-->Info.aspx") + "?cid=" + Eval("<--=table.Alias-->ID")%>'
-                            ContainnerID="#courceinfo">Edit</aspajax:HyperLink>
+                            ContainnerID="#<--=table.Alias-->">Edit</aspajax:HyperLink>
                     </td>
             </tr>
         </ItemTemplate>

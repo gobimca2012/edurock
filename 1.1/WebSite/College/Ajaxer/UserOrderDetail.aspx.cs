@@ -10,9 +10,12 @@ using DataEntity;
 
 public partial class User_AjaxControl_UserOrderDetail : AjaxPage
 {
+    int totalRecords = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-        listUserOrder.DataSource = GetOrders();
+        var data=GetOrders();
+        listUserOrder.DataSource =data ;
+        totalRecords = data.Count;
         listUserOrder.DataBind();
     }
     private List<OrderItem> GetOrders()
@@ -31,6 +34,10 @@ public partial class User_AjaxControl_UserOrderDetail : AjaxPage
             if(lnkrenew!=null)
             {
                 lnkrenew.NavigateUrl = ResolveUrl("~/ShoppingCart/AjaxControl/RenewOrder.aspx") + "?prid=" + data[0].ProductID.ToString();
+            }
+            if (currentItem.DisplayIndex == (totalRecords - 1))
+            {
+                lnkrenew.Visible = true;
             }
                 
         }

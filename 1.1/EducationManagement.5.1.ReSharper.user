@@ -1,0 +1,47 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:User/d:AjaxControl/f:DocumentInfo.aspx.cs" caret="10764" fromTop="9" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:App_Config/f:ConnectionStrings.config" caret="376" fromTop="3" />
+      <File id="1A9E6B33-7990-4479-8CB9-476E3214ECA0/f:UserAuthontication.cs" caret="15513" fromTop="20" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/f:Login.aspx" caret="684" fromTop="17" />
+      <File id="1A9E6B33-7990-4479-8CB9-476E3214ECA0/d:Controllers/f:LoginUserController.cs" caret="33957" fromTop="14" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:Modules/d:Login/f:Create.ascx.cs" caret="876" fromTop="22" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:App_Code/f:Shopping.cs" caret="1773" fromTop="12" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:Modules/d:Login/f:Login.ascx.cs" caret="900" fromTop="18" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/f:web.config" caret="6567" fromTop="15" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:User/d:AjaxControl/f:ImageInfoView.aspx" caret="4322" fromTop="12" />
+      <File id="01D6E481-7A34-4947-BEEA-A26880CDC7F7/f:ImageHelper.cs" caret="3792" fromTop="93" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:User/d:AjaxControl/f:Lander.aspx.cs" caret="213" fromTop="7" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:User/d:AjaxControl/f:Document.aspx.cs" caret="7133" fromTop="15" />
+      <File id="6E9EAAA3-3D77-4300-B1B4-88BFF9EA885D/f:Effect.cs" caret="1767" fromTop="15" />
+      <File id="1A9E6B33-7990-4479-8CB9-476E3214ECA0/d:PageHandler/f:AjaxPage.cs" caret="6541" fromTop="0" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:User/d:AjaxControl/f:Lander.aspx" caret="431" fromTop="10" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:App_Themes/d:Default/f:skin.css" caret="19620" fromTop="21" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:User/d:AjaxControl/f:ArticleInfo.aspx.cs" caret="290" fromTop="9" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/f:Login.aspx" caret="0" fromTop="0" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/f:Login.aspx" caret="605" fromTop="12" />
+      <File id="1A4C8498-152A-413D-BD91-4D044006DB4D/d:User/d:AjaxControl/f:Lander.aspx" caret="431" fromTop="10" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>

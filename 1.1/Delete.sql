@@ -36,6 +36,7 @@ delete from dbo.Tutorial
 delete from dbo.TutorialType
 delete from dbo.UserEducation
 delete from ContentHistory
+delete from [user]
 delete from dbo.LoginUser
 delete from dbo.aspnet_Membership
 delete from dbo.aspnet_Users

@@ -1,9 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
 
-<%@ Register src="Modules/Login/Login.ascx" tagname="Login" tagprefix="uc1" %>
-
+<%@ Register Src="Modules/Login/Login.ascx" TagName="Login" TagPrefix="uc1" %>
+<%@ Register Src="Modules/Login/Create.ascx" TagName="Create" TagPrefix="uc2" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
@@ -11,8 +10,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    
     </div>
+    <uc2:Create ID="Create1" runat="server" />
     <uc1:Login ID="Login1" runat="server" />
     </form>
 </body>
